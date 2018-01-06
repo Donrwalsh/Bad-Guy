@@ -1,5 +1,27 @@
-<h1>Our MongoDB is Working!</h1>
+<h3 *ngIf="earningSchemePoints">Scheming:</h3>
+<button *ngIf="earningSchemePoints" disabled style="text-align: center; border: 1px solid green; display:inline-block; cursor: auto;">
+  <p>
+    <i class="fa {{playerCurrentScheme.fa}}" aria-hidden="true"></i>
+    <strong>{{playerCurrentScheme.name}}</strong> {{(playerSchemeNumbers[playerCurrentScheme['ref']]['level']*1) + 1}}
+    <br>
+    <span>{{playerSchemeNumbers[playerCurrentScheme['ref']]['exp']}}/{{playerCurrentScheme['exp'][playerSchemeNumbers[playerCurrentScheme['ref']]['level']*1]}}</span>
+  </p>
+</button>
+<hr>
+<h1>Bad Guy</h1>
 
-<ul>
-  <li *ngFor="let user of users">{{ user.name }}</li>
-</ul>
+<div>
+  <h2>Available Schemes:</h2>
+  <div style="width:100%;text-align:center;" *ngFor="let scheme of schemes; let i = index">
+    <button  style="text-align: center; border: 1px solid green; display:inline-block; cursor: pointer; width:90%;"
+      [disabled]="scheme['lair_req'][this.playerSchemeNumbers[i]['level']] > this.playerLairLevel" (click)="selectScheme(i)">
+      <p>
+        <i class="fa {{scheme.fa}}" aria-hidden="true"></i>
+        <strong>{{scheme.name}}</strong> {{(playerSchemeNumbers[i]['level']*1) + 1}}
+        <br>
+        <span>{{playerSchemeNumbers[i]['exp']}}/{{scheme['exp'][playerSchemeNumbers[i]['level']*1]}}</span>
+      </p>
+
+    </button>
+  </div>
+</div>

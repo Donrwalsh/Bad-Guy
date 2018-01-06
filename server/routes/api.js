@@ -5,7 +5,7 @@ const ObjectID = require('mongodb').ObjectID;
 
 // Connect
 const connection = (closure) => {
-    return MongoClient.connect('mongodb://localhost:27017/mean', (err, db) => {
+    return MongoClient.connect('mongodb://localhost:27017/schemes', (err, db) => {
 
         if (err) return console.log(err);
 
@@ -27,14 +27,14 @@ let response = {
     message: null
 };
 
-// Get users
-router.get('/users', (req, res) => {
+//Get Schemes
+router.get('/schemes', (req, res) => {
     connection((db) => {
-        db.collection('users')
+        db.collection('scheming')
             .find()
             .toArray()
-            .then((users) => {
-                response.data = users;
+            .then((schemes) => {
+                response.data = schemes;
                 res.json(response);
             })
             .catch((err) => {
@@ -42,5 +42,6 @@ router.get('/users', (req, res) => {
             });
     });
 });
+
 
 module.exports = router;
