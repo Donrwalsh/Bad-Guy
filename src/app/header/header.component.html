@@ -1,41 +1,39 @@
 <div class="scheming" style="height:4em;">
-    <div style="width:20%;margin-left:1px;"></div>
-    <div>
-    <h1 style="text-align:center;margin-top:0;">Bad Guy</h1>
+    <div style="width:20%;">
+        <i class="fa fa-users" style="margin-top:.5em;margin-left:.5em;" aria-hidden="true"></i> 6/10
     </div>
-    <div style="position:absolute;top:0px;right:.1em;height:4em;width:20%;text-align:center;"
-    (mouseenter)="toggle()" (mouseleave)="toggle()">
+    <div>
+        <h1 style="text-align:center;position:fixed;top:5px;right:40%;left:40%;width:20%;margin:0;">Bad Guy</h1>
+    </div>
+    <div style="position:absolute;top:0px;right:.1em;height:4em;width:20%;text-align:center;border-radius:5px;cursor:pointer;"
+        (mouseenter)="showSchemeFlyout = true;" (mouseleave)="showSchemeFlyout = false;">
         <div *ngIf="_player.earningSchemePoints">
             <h5 style="display:inline;">Scheming</h5>
             <br>
-            <div style="margin-top:.25em;text-align: center; display:inline-block; width:100%;position:relative;height:2em;"
-            [ngStyle]="{'border' : '1px solid ' + _player.currentScheme.color }">
-                <div style="position:absolute;top:0px;left:0px;height:2em;"
-                [ngStyle]="{'width': _player.currentSchemePercentage + '%', 'background-color' : _player.currentScheme.color}" ></div>
-                    <i class="fa {{_player.currentScheme.fa}}" style="position:relative;font-size: 1.5em;padding-top:.125em;" aria-hidden="true"></i>
-                
-                </div>
+            <div style="margin-top:.25em;text-align: center; display:inline-block; width:100%;position:relative;height:2em;border-radius:5px;"
+                [ngStyle]="{'border' : '1px solid ' + _player.currentScheme.color }">
+                <div style="position:absolute;top:0px;left:0px;height:2em;" [ngStyle]="{'width': _player.currentSchemePercentage + '%', 'background-color' : _player.currentScheme.color}"></div>
+                <i class="fa {{_player.currentScheme.fa}}" style="position:relative;font-size: 1.5em;padding-top:.125em;" aria-hidden="true"></i>
+
+            </div>
         </div>
-        <div *ngIf="!_player.earningSchemePoints" >
-            <h5 style="display:inline;">Not Scheming</h5>
-            <br style="margin-top:.25em;">
+        <div *ngIf="!_player.earningSchemePoints">
+            <h5 style="margin-bottom:.5em;margin-top:.1em;">Not Scheming</h5>
             <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
         </div>
     </div>
 </div>
 
-<div *ngIf = "_player.earningSchemePoints;" [@popOverState]="stateName" 
-    style="text-align:center;width:25%;background-color:pink;position:absolute;right:0;"
+<div *ngIf="_player.earningSchemePoints;" [@popOverState]="stateName" style="text-align:center;width:25%;background-color:pink;position:absolute;right:0;"
     [ngStyle]="{'background-color' : _player.currentScheme.flyout_color}">
     <div style="margin:.5em;">
         <i class="fa {{_player.currentScheme.fa}}" style="position:relative;" aria-hidden="true"></i>
-        <h4 style ="margin:.1em;display:inline;">{{_player.currentScheme.name}} {{_player.currentSchemeLevel > 1 ? _player.currentSchemeLevel : ''}}</h4>
+        <h4 style="margin:.1em;display:inline;">{{_player.currentScheme.name}} {{_player.currentSchemeLevel > 1 ? _player.currentSchemeLevel : ''}}</h4>
         <br>
         <h5 style="text-align:left;margin:0;padding-top:1em;">Benefit: </h5>
         <h6 style="text-align:left;margin:0;">{{_player.currentScheme.description[_player.currentSchemeLevel-1]}} </h6>
-        <h6 style="text-align:left;margin:.1em;padding-top:1em;font-style:italic;">{{_player.currentScheme.flavor[_player.currentSchemeLevel-1]}}</h6> 
+        <h6 style="text-align:left;margin:.1em;padding-top:1em;font-style:italic;">{{_player.currentScheme.flavor[_player.currentSchemeLevel-1]}}</h6>
         <p style="margin:0;"> {{_player.currentSchemeEXP}}/{{_player.currentSchemeEXPTarget}}</p>
     </div>
 
 </div>
-<button (click)="toggle()">Toggle PopOver</button>

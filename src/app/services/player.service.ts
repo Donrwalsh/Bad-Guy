@@ -9,10 +9,10 @@ export class PlayerService {
     earningSchemePoints: boolean = false;
     lairLevel: number = 0;
     schemes: Array<Object> = [
-        { level: 0, exp: 0 },
-        { level: 0, exp: 0 },
-        { level: 0, exp: 0 },
-        { level: 0, exp: 0 }
+        { level: 4, exp: 0 },
+        { level: 4, exp: 0 },
+        { level: 4, exp: 0 },
+        { level: 1, exp: 0 }
     ]
 
     get currentSchemeEXP() {

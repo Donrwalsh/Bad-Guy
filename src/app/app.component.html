@@ -1,5 +1,13 @@
 <header></header>
 <div class="skulls_pattern" style="height:100vh;">
+  <div style="width:12em;height:1.2em;border: 1px solid #6699ff;border-radius:0px 15px 15px 0px;margin-left:.25em;"
+  *ngIf="_player.schemes[3]['level'] > 0">
+  <div style="position:absolute;top:4.05em;left:.25em;height:1.2em;background-color:#6699ff" [ngStyle]="{'width': 5 + '%'}"></div>
+    <p style="margin:0;position: relative;">
+      Help Wanted Ad
+      <i style="float:right;margin-right:1em;margin-top:.05em;" class="fa fa-user faa-slow faa-tada animated" aria-hidden="true"></i></p>
+    
+  </div>
   <h2 style="margin-top:0;">Available Schemes:</h2>
   <div *ngFor="let scheme of schemes; let i = index">
     <button style="text-align: center; border: 1px solid green; display:inline; cursor: pointer;"

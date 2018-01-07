@@ -31,12 +31,9 @@ export class HeaderComponent {
     constructor(public _player: PlayerService) {
     }
 
-    show = false;
+    showSchemeFlyout = false;
 
     get stateName() {
-        return this.show ? 'show' : 'hide'
-    }
-    toggle() {
-        this.show = !this.show;
+        return this.showSchemeFlyout ? 'show' : 'hide'
     }
 }
