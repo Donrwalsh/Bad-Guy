@@ -1,15 +1,14 @@
-<div class="scheming" style="height:4em;">
-    <div style="width:20%;">
-        <i class="fa fa-users" style="margin-top:.5em;margin-left:.5em;" aria-hidden="true"></i> {{_player.currentHenchmen}}/{{_player.henchmenCapacity}}
+<div class="header">
+    <div class="resources">
+        <i class="henchmen fa fa-users" aria-hidden="true"></i>
+        <p class="henchmen-readout">{{_player.currentHenchmen}}/{{_player.henchmenCapacity}}</p>
     </div>
     <div>
-        <h1 style="text-align:center;position:absolute;top:5px;right:40%;left:40%;width:20%;margin:0;">Bad Guy</h1>
+        <h1 class="title">Bad Guy</h1>
     </div>
-    <div style="position:absolute;top:0px;right:.1em;height:4em;width:20%;text-align:center;border-radius:5px;cursor:pointer;"
-        (mouseenter)="showSchemeFlyout = true;" (mouseleave)="showSchemeFlyout = false;">
+    <div class="scheme" (mouseenter)="showSchemeFlyout = true;" (mouseleave)="showSchemeFlyout = false;">
         <div *ngIf="_player.earningSchemePoints">
-            <h5 style="display:inline;">Scheming</h5>
-            <br>
+            <h5 class="status-text">Scheming</h5>
             <div style="margin-top:.25em;text-align: center; display:inline-block; width:100%;position:relative;height:2em;border-radius:5px;"
                 [ngStyle]="{'border' : '1px solid ' + _player.currentScheme.color }">
                 <div style="position:absolute;top:0px;left:0px;height:2em;" [ngStyle]="{'width': _player.currentSchemePercentage + '%', 'background-color' : _player.currentScheme.color}"></div>
@@ -18,7 +17,7 @@
             </div>
         </div>
         <div *ngIf="!_player.earningSchemePoints">
-            <h5 style="margin-bottom:.5em;margin-top:.1em;">Not Scheming</h5>
+            <h5 class="status-text">Not Scheming</h5>
             <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
         </div>
     </div>

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class PlayerService {
 
+    //*****************************************************************************************
     //Schemes
     currentScheme: Object = {};
     currentSchemeLevel: number = 0;
@@ -29,8 +30,37 @@ export class PlayerService {
         return Math.round((this.currentSchemeEXP/this.currentSchemeEXPTarget)*100);
     }
 
+    currentSchemeJustLearned() {
+        return this.schemes[this.currentScheme['ref']]['exp'] >= this.currentScheme['exp'][this.schemes[this.currentScheme['ref']]['level']];
+    }
+
+    levelCurrentScheme() {
+        this.schemes[this.currentScheme['ref']]['level']++;
+        this.schemes[this.currentScheme['ref']]['exp'] = 0;
+        this.currentScheme = {};
+        this.earningSchemePoints = false;
+    }
+
+    schemeLearnable(scheme) {
+        return this.lairLevel >= scheme['lair_req'][this.schemes[scheme['ref']]['level']];
+    }
+
+    setCurrentSchemeLevel() {
+        this.currentSchemeLevel = (this.schemes[this.currentScheme['ref']]['level'] * 1) +1;
+    }
+
+    //*****************************************************************************************
     //Henchmen
     currentHenchmen: number = 0;
+    helpWantedRateLock: number;
+    helpWanted: Array<Object> = [
+        {currentStore :  0, 
+            percentage : 0, 
+            magicModulo : -1, 
+            full : false, 
+            capacity: this.helpWantedCapacity, 
+            unlocked: this.helpWanted1Unlocked}
+    ]
 
     get henchmenCapacity() {
         //Base capacity is 10
@@ -66,8 +96,6 @@ export class PlayerService {
         return this.schemes[3]['level'] > 0;
     } 
 
-    //This needs to be an array and not individual variables. Done this way for speed.
-
     get helpWantedCapacity() {
         var capacity = 1;
         if (this.schemes[3]['level'] >= 3) {
@@ -89,15 +117,9 @@ export class PlayerService {
       }  
       return rate;
     } 
-    helpWantedRateLock: number;
-    helpWanted: Array<Object> = [
-        {currentStore :  0, 
-            percentage : 0, 
-            magicModulo : -1, 
-            full : false, 
-            capacity: this.helpWantedCapacity, 
-            unlocked: this.helpWanted1Unlocked}
-    ]
+
+
+    
 
     
     
@@ -110,23 +132,6 @@ export class PlayerService {
 
     
 
-    currentSchemeJustLearned() {
-        return this.schemes[this.currentScheme['ref']]['exp'] >= this.currentScheme['exp'][this.schemes[this.currentScheme['ref']]['level']];
-    }
-
-    levelCurrentScheme() {
-        this.schemes[this.currentScheme['ref']]['level']++;
-        this.schemes[this.currentScheme['ref']]['exp'] = 0;
-        this.currentScheme = {};
-        this.earningSchemePoints = false;
-    }
-
-    schemeLearnable(scheme) {
-        return this.lairLevel >= scheme['lair_req'][this.schemes[scheme['ref']]['level']];
-    }
-
-    setCurrentSchemeLevel() {
-        this.currentSchemeLevel = (this.schemes[this.currentScheme['ref']]['level'] * 1) +1;
-    }
+    
 
 }

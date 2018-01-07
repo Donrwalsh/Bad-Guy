@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
 import { PlayerService } from './services/player.service';
 import { HeaderModule } from './header/header.module';
+import { SchemePanelModule } from './scheme-panel/scheme-panel.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { HeaderModule } from './header/header.module';
   ],
   imports: [
     HeaderModule,
+    SchemePanelModule,
     BrowserModule,
     HttpModule
   ],
