@@ -27,15 +27,21 @@ let response = {
     message: null
 };
 
-//Get Schemes
-router.get('/schemes', (req, res) => {
+//Get All Schemes
+router.get('/schemes/', (req, res) => {
     connection((db) => {
         db.collection('scheming')
             .find()
             .toArray()
-            .then((schemes) => {
-                response.data = schemes;
-                res.json(response);
+            .then((scheming) => {
+                response.data = scheming;
+                db.collection('henchmen')
+                .find()
+                .toArray()
+                .then((henchmen) => {
+                    response.data.push.apply(response.data, henchmen);
+                    res.json(response);
+                });
             })
             .catch((err) => {
                 sendError(err, res);

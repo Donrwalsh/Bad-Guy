@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
 import {HeaderComponent} from "./header.component";
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { BrowserModule } from '@angular/platform-browser';
     HeaderComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   providers: []
 })
