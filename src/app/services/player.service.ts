@@ -21,6 +21,10 @@ export class PlayerService {
     get currentSchemeEXPTarget() {
         return  this.currentScheme['exp'][this.schemes[this.currentScheme['ref']]['level']*1]
     }
+
+    get currentSchemePercentage() {
+        return Math.round((this.currentSchemeEXP/this.currentSchemeEXPTarget)*100);
+    }
     
 
     currentSchemeJustLearned() {

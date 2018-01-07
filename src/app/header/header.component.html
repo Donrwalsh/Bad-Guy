@@ -1,0 +1,24 @@
+<div class="scheming" style="height:4em;">
+    <div style="width:20%;margin-left:1px;"></div>
+    <div>
+    <h1 style="text-align:center;margin-top:0;">Bad Guy</h1>
+    </div>
+    <div style="position:absolute;top:0px;right:.1em;height:4em;width:20%;text-align:center;">
+        <div *ngIf="_player.earningSchemePoints">
+            <h5 style="display:inline;">Scheming</h5>
+            <br>
+            <div style="margin-top:.25em;text-align: center; border: 1px solid #40ff00; display:inline-block; width:100%;position:relative;">
+                <div style="position:absolute;background-color: #40ff00;top:0px;left:0px;height:2em;"
+                [ngStyle]="{'width': _player.currentSchemePercentage + '%'}" ></div>
+                    <i class="fa {{_player.currentScheme.fa}}" style="position:relative;" aria-hidden="true"></i>
+                <h6 style="margin:0;position:relative;">
+                    {{_player.currentScheme.name}} {{_player.currentSchemeLevel}}</h6>
+                </div>
+        </div>
+        <div *ngIf="!_player.earningSchemePoints" >
+            <h5 style="display:inline;">Not Scheming</h5>
+            <br style="margin-top:.25em;">
+            <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+        </div>
+    </div>
+</div>

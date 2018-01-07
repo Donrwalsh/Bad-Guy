@@ -4,12 +4,14 @@ import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
 import { PlayerService } from './services/player.service';
+import { HeaderModule } from './header/header.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    HeaderModule,
     BrowserModule,
     HttpModule
   ],

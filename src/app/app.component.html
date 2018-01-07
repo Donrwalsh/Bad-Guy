@@ -1,19 +1,8 @@
-<h3 *ngIf="_player.earningSchemePoints">Scheming:</h3>
-<button *ngIf="_player.earningSchemePoints" style="text-align: center; border: 1px solid green; display:inline-block; cursor: auto;">
-  <p>
-    <i class="fa {{_player.currentScheme.fa}}" aria-hidden="true"></i>
-    <strong>{{_player.currentScheme.name}}</strong> {{_player.currentSchemeLevel}}
-    <br>
-    <span>{{_player.currentSchemeEXP}}/{{_player.currentSchemeEXPTarget}}</span>
-  </p>
-</button>
-<hr>
-<h1>Bad Guy</h1>
-
-<div>
-  <h2>Available Schemes:</h2>
-  <div style="width:100%;text-align:center;" *ngFor="let scheme of schemes; let i = index">
-    <button style="text-align: center; border: 1px solid green; display:inline-block; cursor: pointer; width:90%;"
+<header></header>
+<div class="skulls_pattern" style="height:100vh;">
+  <h2 style="margin-top:0;">Available Schemes:</h2>
+  <div *ngFor="let scheme of schemes; let i = index">
+    <button style="text-align: center; border: 1px solid green; display:inline; cursor: pointer;"
       [disabled]="scheme['lair_req'][this._player.schemes[i]['level']] > this._player.lairLevel" (click)="selectScheme(scheme, i)">
       <p>
         <i class="fa {{scheme.fa}}" aria-hidden="true"></i>
