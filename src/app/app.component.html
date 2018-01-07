@@ -1,10 +1,10 @@
-<h3 *ngIf="earningSchemePoints">Scheming:</h3>
-<button *ngIf="earningSchemePoints" disabled style="text-align: center; border: 1px solid green; display:inline-block; cursor: auto;">
+<h3 *ngIf="_player.earningSchemePoints">Scheming:</h3>
+<button *ngIf="_player.earningSchemePoints" style="text-align: center; border: 1px solid green; display:inline-block; cursor: auto;">
   <p>
-    <i class="fa {{playerCurrentScheme.fa}}" aria-hidden="true"></i>
-    <strong>{{playerCurrentScheme.name}}</strong> {{(playerSchemeNumbers[playerCurrentScheme['ref']]['level']*1) + 1}}
+    <i class="fa {{_player.currentScheme.fa}}" aria-hidden="true"></i>
+    <strong>{{_player.currentScheme.name}}</strong> {{_player.currentSchemeLevel}}
     <br>
-    <span>{{playerSchemeNumbers[playerCurrentScheme['ref']]['exp']}}/{{playerCurrentScheme['exp'][playerSchemeNumbers[playerCurrentScheme['ref']]['level']*1]}}</span>
+    <span>{{_player.currentSchemeEXP}}/{{_player.currentSchemeEXPTarget}}</span>
   </p>
 </button>
 <hr>
@@ -13,13 +13,13 @@
 <div>
   <h2>Available Schemes:</h2>
   <div style="width:100%;text-align:center;" *ngFor="let scheme of schemes; let i = index">
-    <button  style="text-align: center; border: 1px solid green; display:inline-block; cursor: pointer; width:90%;"
-      [disabled]="scheme['lair_req'][this.playerSchemeNumbers[i]['level']] > this.playerLairLevel" (click)="selectScheme(i)">
+    <button style="text-align: center; border: 1px solid green; display:inline-block; cursor: pointer; width:90%;"
+      [disabled]="scheme['lair_req'][this._player.schemes[i]['level']] > this._player.lairLevel" (click)="selectScheme(scheme, i)">
       <p>
         <i class="fa {{scheme.fa}}" aria-hidden="true"></i>
-        <strong>{{scheme.name}}</strong> {{(playerSchemeNumbers[i]['level']*1) + 1}}
+        <strong>{{scheme.name}}</strong> {{(_player.schemes[i]['level']*1) + 1}}
         <br>
-        <span>{{playerSchemeNumbers[i]['exp']}}/{{scheme['exp'][playerSchemeNumbers[i]['level']*1]}}</span>
+        <span>{{_player.schemes[i]['exp']}}/{{scheme['exp'][_player.schemes[i]['level']*1]}}</span>
       </p>
 
     </button>

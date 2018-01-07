@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-
-// Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
+import { PlayerService } from './services/player.service';
 
 @NgModule({
   declarations: [
@@ -12,9 +11,12 @@ import { DataService } from './data.service';
   ],
   imports: [
     BrowserModule,
-    HttpModule              // <-Add HttpModule
+    HttpModule
   ],
-  providers: [DataService], // <-Add DataService
+  providers: [
+    DataService,
+    PlayerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
