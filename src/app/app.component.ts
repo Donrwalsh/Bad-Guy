@@ -64,6 +64,65 @@ export class AppComponent implements OnInit {
     }
   }
 
+  collectingHenchmen: boolean = false;
+
+  collectHelpWanted1() {
+    if (this._player.helpWanted[0]['currentStore'] > 0) {
+      if (!this.collectingHenchmen) {
+        this.collectingHenchmen = true;
+        if (this._player.helpWanted[0]['full']) {
+
+        }
+
+        this._player.currentHenchmen += this._player.helpWanted[0]['currentStore'];
+        if (this._player.currentHenchmen > this._player.henchmenCapacity) {
+          this._player.helpWanted[0]['currentStore'] = this._player.currentHenchmen - this._player.henchmenCapacity;
+          this._player.currentHenchmen = this._player.henchmenCapacity;
+          if (this._player.helpWanted[0]['full']) {
+            this._player.helpWanted[0]['magicModulo'] =   -1;
+          }
+          this._player.helpWanted[0]['full'] = this._player.helpWanted[0]['currentStore'] == this._player.helpWanted[0]['capacity'];
+        } else {
+          this._player.helpWanted[0]['currentStore'] = 0;
+          if (this._player.helpWanted[0]['full']) {
+            this._player.helpWanted[0]['magicModulo'] =   -1;
+          }
+          this._player.helpWanted[0]['full'] = false;
+          this._player.helpWanted[0]['percentage'] = 0;
+        }
+
+        this.collectingHenchmen = false;
+      }
+    }
+  }
+
+  hench() {
+    if (this._player.helpWantedUnlocked) {
+      if (!this._player.helpWanted[0]['full']) {
+        if (!(this._player.helpWanted[0]['magicModulo'] > -1)) {
+          this._player.helpWanted[0]['magicModulo'] = this.ticker % this._player.helpWantedRate == 0 ? this._player.helpWantedRate : (this.ticker % this._player.helpWantedRate) - 1;
+          this._player.helpWantedRateLock = this._player.helpWantedRate;
+        } else {
+          if (this._player.helpWanted[0]['magicModulo'] == this.ticker % this._player.helpWantedRateLock) {
+            this._player.helpWanted[0]['currentStore']++;
+            if (this._player.helpWanted[0]['capacity'] == this._player.helpWanted[0]['currentStore']) {
+              this._player.helpWanted[0]['full'] = true;
+            }
+            //The Help Wanted Ad just completed a cycle.
+
+            //Check if there is another slot available, if there is, do another cycle and hold one henchman to be collected.
+
+            //If there is not another slot available, hold at 100% until collected.
+          }
+        }
+        var sanityTickerNumber = this.ticker % this._player.helpWantedRateLock <= this._player.helpWanted[0]['magicModulo'] ? (this.ticker % this._player.helpWantedRateLock) + this._player.helpWantedRateLock : this.ticker % this._player.helpWantedRateLock;
+        this._player.helpWanted[0]['percentage'] = Math.round(((sanityTickerNumber - this._player.helpWanted[0]['magicModulo']) / this._player.helpWantedRateLock) * 10000) / 100;
+        
+
+      }
+    }
+  }
+
   ngOnInit() {
 
 
@@ -74,8 +133,9 @@ export class AppComponent implements OnInit {
       }
 
       this.scheme();
+      this.hench();
 
       this.minute = false;
-    }, 1000);
+    }, 100);
   }
 }

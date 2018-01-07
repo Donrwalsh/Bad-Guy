@@ -3,16 +3,18 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class PlayerService {
 
-    //Player Stats
+    //Schemes
     currentScheme: Object = {};
     currentSchemeLevel: number = 0;
     earningSchemePoints: boolean = false;
     lairLevel: number = 0;
     schemes: Array<Object> = [
-        { level: 4, exp: 0 },
-        { level: 4, exp: 0 },
-        { level: 4, exp: 0 },
-        { level: 1, exp: 0 }
+        { level: 0, exp: 0 }, //0 Diabolical Mastermind
+        { level: 0, exp: 0 },
+        { level: 0, exp: 0 },
+        { level: 5, exp: 0 }, //3 Hired Help
+        { level: 0, exp: 0 }, 
+        { level: 0, exp: 0 }
     ]
 
     get currentSchemeEXP() {
@@ -26,6 +28,86 @@ export class PlayerService {
     get currentSchemePercentage() {
         return Math.round((this.currentSchemeEXP/this.currentSchemeEXPTarget)*100);
     }
+
+    //Henchmen
+    currentHenchmen: number = 0;
+
+    get henchmenCapacity() {
+        //Base capacity is 10
+        var capacity = 10;
+        //Henchman Lodging
+        var lodgingMod = 0;
+        for (var i = 0; i < this.schemes[5]['level']; i++) {
+            if (i < 2) {
+                lodgingMod += 5;
+            } else if (i > 1 && i < 4 ) {
+                lodgingMod += 10;
+            } else if (i == 4) {
+                lodgingMod += 20;
+            } else if (i == 5) {
+                lodgingMod += 50;
+            }
+        }
+        capacity += lodgingMod;
+        return capacity;
+    }
+
+    get isHechmenCapacityFull() {
+        return this.currentHenchmen == this.henchmenCapacity;
+    }
+
+
+    //Recruitment Object - Help Wanted
+    get helpWantedUnlocked() {
+        return this.schemes[3]['level'] > 0;
+    }
+
+    get helpWanted1Unlocked() {
+        return this.schemes[3]['level'] > 0;
+    } 
+
+    //This needs to be an array and not individual variables. Done this way for speed.
+
+    get helpWantedCapacity() {
+        var capacity = 1;
+        if (this.schemes[3]['level'] >= 3) {
+            capacity += 2;
+        }
+        if (this.schemes[3]['level'] >= 5) {
+            capacity += 7;
+        }
+        return capacity;
+    }
+
+    get helpWantedRate() {
+      var rate = 60;
+      if (this.schemes[3]['level'] >= 2) {
+          rate -= 15;
+      }
+      if (this.schemes[3]['level'] >= 4) {
+          rate -= 15;
+      }  
+      return rate;
+    } 
+    helpWantedRateLock: number;
+    helpWanted: Array<Object> = [
+        {currentStore :  0, 
+            percentage : 0, 
+            magicModulo : -1, 
+            full : false, 
+            capacity: this.helpWantedCapacity, 
+            unlocked: this.helpWanted1Unlocked}
+    ]
+
+    
+    
+
+
+
+
+
+    
+
     
 
     currentSchemeJustLearned() {
