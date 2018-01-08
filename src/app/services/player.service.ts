@@ -13,7 +13,7 @@ export class PlayerService {
         { level: 0, exp: 0 }, //0 Diabolical Mastermind
         { level: 0, exp: 0 },
         { level: 0, exp: 0 },
-        { level: 5, exp: 0 }, //3 Hired Help
+        { level: 2, exp: 0 }, //3 Hired Help
         { level: 0, exp: 0 }, 
         { level: 0, exp: 0 }
     ]

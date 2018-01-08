@@ -1,30 +1,20 @@
 <header></header>
-<div class="potato"></div>
-<div class="skulls_pattern" style="height:100vh;">
-  <div style="width:25%;height:1.2em;border: 1px solid #ccddff;border-radius:0px 15px 15px 0px;margin-left:.25em;cursor:pointer;" 
-  *ngIf="_player.helpWanted1Unlocked" (click)="collectHelpWanted1()">
-    <div style="border-radius:0px 15px 15px 0px;position:absolute;top:4.05em;height:1.2em;background-color:#ccddff" [ngStyle]="{'width': 25*(_player.helpWanted[0]['percentage']/100) + '%'}"></div>
-    <p style="margin:0;position: relative;" class="noselect">
-        <i style="margin-left:1em;margin-top:.05em;" class="fa fa-user faa-slow faa-flash animated" aria-hidden="true"
-        [ngStyle]="{'display': _player.helpWanted[0]['full'] ? 'none' : 'block' }"></i>
-      Help Wanted Ad
-      <i style="float:right;margin-right:1em;margin-top:.05em;" class="fa fa-user faa-slow animated" aria-hidden="true"
-        [ngStyle]="{'display': _player.helpWanted[0]['currentStore'] > 0 ? 'block' : 'none' }"
-        [ngClass]="{'faa-tada': !_player.isHenchmenCapacityFull, 'faa-horizontal': _player.isHenchmenCapacityFull }"></i>
-    </p>
+<div class="skulls_pattern">
+  <activity-panel></activity-panel>
+  <div style="margin-left:50%;display:inline-block;">
+    
+    <h2 style="margin-top:0;">Available Schemes:</h2>
+    <div *ngFor="let scheme of schemes; let i = index">
+      <button style="text-align: center; border: 1px solid green; display:inline; cursor: pointer;" [disabled]="scheme['lair_req'][this._player.schemes[i]['level']] > this._player.lairLevel"
+        (click)="selectScheme(scheme, i)">
+        <p>
+          <i class="fa {{scheme.fa}}" aria-hidden="true"></i>
+          <strong>{{scheme.name}}</strong> {{(_player.schemes[i]['level']*1) + 1}}
+          <br>
+          <span>{{_player.schemes[i]['exp']}}/{{scheme['exp'][_player.schemes[i]['level']*1]}}</span>
+        </p>
 
-  </div>
-  <h2 style="margin-top:0;">Available Schemes:</h2>
-  <div *ngFor="let scheme of schemes; let i = index">
-    <button style="text-align: center; border: 1px solid green; display:inline; cursor: pointer;" [disabled]="scheme['lair_req'][this._player.schemes[i]['level']] > this._player.lairLevel"
-      (click)="selectScheme(scheme, i)">
-      <p>
-        <i class="fa {{scheme.fa}}" aria-hidden="true"></i>
-        <strong>{{scheme.name}}</strong> {{(_player.schemes[i]['level']*1) + 1}}
-        <br>
-        <span>{{_player.schemes[i]['exp']}}/{{scheme['exp'][_player.schemes[i]['level']*1]}}</span>
-      </p>
-
-    </button>
+      </button>
+    </div>
   </div>
 </div>

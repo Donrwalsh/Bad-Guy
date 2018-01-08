@@ -6,6 +6,7 @@ import { DataService } from './data.service';
 import { PlayerService } from './services/player.service';
 import { HeaderModule } from './header/header.module';
 import { SchemePanelModule } from './scheme-panel/scheme-panel.module';
+import { ActivityPanelModule } from './activity-panel/activity-panel.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SchemePanelModule } from './scheme-panel/scheme-panel.module';
   imports: [
     HeaderModule,
     SchemePanelModule,
+    ActivityPanelModule,
     BrowserModule,
     HttpModule
   ],

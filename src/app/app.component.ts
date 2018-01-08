@@ -64,38 +64,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  collectingHenchmen: boolean = false;
-
-  collectHelpWanted1() {
-    if (this._player.helpWanted[0]['currentStore'] > 0) {
-      if (!this.collectingHenchmen) {
-        this.collectingHenchmen = true;
-        if (this._player.helpWanted[0]['full']) {
-
-        }
-
-        this._player.currentHenchmen += this._player.helpWanted[0]['currentStore'];
-        if (this._player.currentHenchmen > this._player.henchmenCapacity) {
-          this._player.helpWanted[0]['currentStore'] = this._player.currentHenchmen - this._player.henchmenCapacity;
-          this._player.currentHenchmen = this._player.henchmenCapacity;
-          if (this._player.helpWanted[0]['full']) {
-            this._player.helpWanted[0]['magicModulo'] =   -1;
-          }
-          this._player.helpWanted[0]['full'] = this._player.helpWanted[0]['currentStore'] == this._player.helpWanted[0]['capacity'];
-        } else {
-          this._player.helpWanted[0]['currentStore'] = 0;
-          if (this._player.helpWanted[0]['full']) {
-            this._player.helpWanted[0]['magicModulo'] =   -1;
-          }
-          this._player.helpWanted[0]['full'] = false;
-          this._player.helpWanted[0]['percentage'] = 0;
-        }
-
-        this.collectingHenchmen = false;
-      }
-    }
-  }
-
   hench() {
     if (this._player.helpWantedUnlocked) {
       if (!this._player.helpWanted[0]['full']) {
