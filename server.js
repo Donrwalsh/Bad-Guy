@@ -26,7 +26,8 @@ app.use('/api', api);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
+    const index = path.join(__dirname, 'build', 'dist/index.html');
+    res.sendFile(index);
 });
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
