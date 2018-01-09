@@ -16,6 +16,15 @@
         .henchmen-readout {
             display: inline;
         }
+
+        .guard {
+            margin-top: .5em;
+            margin-left: .5em;
+        }
+
+        .guard-readout {
+            display: inline;
+        }
     }
 
     .title {
@@ -74,6 +83,7 @@
     background-color: pink;
     position: absolute;
     right: 0;
+    pointer-events: none;
 
     .inner-content {
         margin: .5em;

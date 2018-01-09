@@ -13,8 +13,8 @@ export class PlayerService {
         { level: 0, exp: 0 }, //0 Diabolical Mastermind
         { level: 0, exp: 0 },
         { level: 0, exp: 0 },
-        { level: 2, exp: 0 }, //3 Hired Help
-        { level: 0, exp: 0 }, 
+        { level: 0, exp: 0 }, //3 Hired Help
+        { level: 0, exp: 0 }, //4 Guard Duty
         { level: 0, exp: 0 }
     ]
 
@@ -82,7 +82,7 @@ export class PlayerService {
         return capacity;
     }
 
-    get isHechmenCapacityFull() {
+    get isHenchmenCapacityFull() {
         return this.currentHenchmen == this.henchmenCapacity;
     }
 
@@ -118,6 +118,42 @@ export class PlayerService {
       return rate;
     } 
 
+    isGuardTrainingHappening: boolean = false;
+    currentGuards: number = 0;
+    guardTrainingRateLock : number;
+    training: Array<Object> = [
+        {currentStore :  0, 
+            percentage : 0, 
+            magicModulo : -1, 
+            full : false, 
+            capacity: this.guardTrainingCapacity, 
+            unlocked: this.guardTrainingUnlocked,
+            queued: 0}
+    ]
+
+    get guardTrainingUnlocked() {
+        return this.schemes[4]['level'] >= 1;
+    }
+
+    get guardTrainingCapacity () {
+        var capacity = 1;
+        if (this.schemes[4]['level'] >= 1) {
+            capacity += 4;
+        }
+        return capacity;
+    }
+    
+    get guardCapacity () {
+        return 10;
+    }
+
+    get guardTrainingRate () {
+        return 500;
+    }
+
+    get isGuardCapacityFull() {
+        return this.currentGuards == this.guardCapacity;
+    }
 
     
 

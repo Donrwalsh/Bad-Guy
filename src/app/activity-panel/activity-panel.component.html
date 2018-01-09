@@ -1,14 +1,29 @@
 <div class="activity-panel">
-    <div class="help-wanted-container" *ngIf="_player.helpWanted1Unlocked" (click)="collectHelpWanted1()">
-        <div class="help-wanted-progress-bar wide" [ngStyle]="{'width': 25*(_player.helpWanted[0]['percentage']/100) + '%'}"></div>
-        <div class="help-wanted-progress-bar narrow" [ngStyle]="{'width': 50*(_player.helpWanted[0]['percentage']/100) + '%'}"></div>
-        <p class="help-wanted-display noselect">
-            <i class="help-wanted-generation-icon fa fa-user faa-slow faa-flash animated" aria-hidden="true" 
-                [ngStyle]="{'color': _player.helpWanted[0]['full'] ? '#ccddff' : 'black' }"></i>
-                    Help Wanted Ad                
-            <i class="help-wanted-collection-icon fa fa-user faa-slow animated" aria-hidden="true" 
-                [ngStyle]="{'display': _player.helpWanted[0]['currentStore'] > 0 ? 'inline-block' : 'none' }"
-                [ngClass]="{'faa-tada': !_player.isHenchmenCapacityFull, 'faa-horizontal': _player.isHenchmenCapacityFull }"></i>
+    <div class="left-side noselect">
+        <div class="help-wanted-container" *ngIf="_player.helpWanted1Unlocked" (click)="collectHelpWanted1()" [ngStyle]="{'cursor': _player.helpWanted[0]['currentStore'] > 0 ? 'pointer' : 'default' }">
+            <div class="help-wanted-progress-bar wide" [ngStyle]="{'width': 25*(_player.helpWanted[0]['percentage']/100) + '%'}"></div>
+            <div class="help-wanted-progress-bar narrow" [ngStyle]="{'width': 50*(_player.helpWanted[0]['percentage']/100) + '%'}"></div>
+            <p class="help-wanted-display noselect">
+                <i class="help-wanted-generation-icon fa fa-user faa-slow faa-flash animated" aria-hidden="true" [ngStyle]="{'color': _player.helpWanted[0]['full'] ? '#ccddff' : 'black' }"></i>
+                Help Wanted Ad
+                <i class="help-wanted-collection-icon fa fa-user faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.helpWanted[0]['currentStore'] > 0 ? 'inline-block' : 'none' }"
+                    [ngClass]="{'faa-tada': !_player.isHenchmenCapacityFull, 'faa-horizontal': _player.isHenchmenCapacityFull }"></i>
             </p>
+        </div>
+    </div>
+    <div class="right-side noselect">
+            <i class="add-to-queue-icon fa fa-plus" *ngIf="_player.guardTrainingUnlocked"  aria-hidden="true" (click)="trainAGuard()" [ngStyle]="{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.training[0]['capacity']) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.training[0]['capacity']) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}"></i>
+            <div class="guard-training-container noselect" *ngIf="_player.guardTrainingUnlocked" (click)="collectGuards()" [ngStyle]="{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }">
+                    
+                    <div class="guard-training-progress-bar wide" [ngStyle]="{'width': 18*(_player.training[0]['percentage']/100) + '%'}"></div>
+                    <div class="guard-training-progress-bar narrow" [ngStyle]="{'width': 36*(_player.training[0]['percentage']/100) + '%'}"></div>
+                    <p class="guard-training-display noselect">
+                            
+                        <i class="guard-training-generation-icon fa fa-shield faa-slow faa-flash animated" aria-hidden="true" [ngStyle]="{'color': _player.training[0]['full'] ? '#ccddff' : 'black', 'visibility': _player.isGuardTrainingHappening ? 'initial' : 'hidden' }"></i>
+                        Guard
+                        <i class="guard-training-collection-icon fa fa-shield faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }"
+                            [ngClass]="{'faa-tada': !_player.isGuardCapacityFull, 'faa-horizontal': _player.isGuardCapacityFull }"></i>
+                    </p>
+                </div>
     </div>
 </div>

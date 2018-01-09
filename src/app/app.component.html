@@ -1,11 +1,11 @@
 <header></header>
 <div class="skulls_pattern">
   <activity-panel></activity-panel>
-  <div style="margin-left:50%;display:inline-block;">
+  <div style="float:right;width:50%;text-align:center;">
     
     <h2 style="margin-top:0;">Available Schemes:</h2>
-    <div *ngFor="let scheme of schemes; let i = index">
-      <button style="text-align: center; border: 1px solid green; display:inline; cursor: pointer;" [disabled]="scheme['lair_req'][this._player.schemes[i]['level']] > this._player.lairLevel"
+    <div style="display:inline-block;" *ngFor="let scheme of schemes; let i = index">
+      <button style="text-align: center; border: 1px solid green; display:inline; cursor: pointer;margin:.5em;" [disabled]="scheme['lair_req'][this._player.schemes[i]['level']] > this._player.lairLevel"
         (click)="selectScheme(scheme, i)">
         <p>
           <i class="fa {{scheme.fa}}" aria-hidden="true"></i>
