@@ -5,7 +5,7 @@ const ObjectID = require('mongodb').ObjectID;
 
 // Connect
 const connection = (closure) => {
-    return MongoClient.connect (process.env.MONGODB_URI || 'mongodb://potato:potato@heroku_gxgcx796:4asjfi0vuldb941j6c0munbtqp@ds245287.mlab.com:45287/heroku_gxgcx796', (err, db) => {
+    return MongoClient.connect('mongodb://potato:potato@ds245337.mlab.com:45337/badguy', (err, db) => {
 
         if (err) return console.log(err);
 
