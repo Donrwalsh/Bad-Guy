@@ -29,7 +29,7 @@ let response = {
 
 //Get All Schemes
 
-router.get('/schemes/', (req, res) => {
+router.get('/api/schemes/', (req, res) => {
     
     connection((db) => {
         db.collection('scheming')
