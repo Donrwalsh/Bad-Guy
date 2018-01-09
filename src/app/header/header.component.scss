@@ -3,14 +3,14 @@
 .header {
     background-color: #ffffff;
     background-image: url("data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E");
-    height: 4em;
+    height: 4rem;
 
     .resources {
         width: 35%;
 
         .henchmen {
-            margin-top: .5em;
-            margin-left: .5em;
+            margin-top: .5rem;
+            margin-left: .5rem;
         }
 
         .henchmen-readout {
@@ -18,8 +18,8 @@
         }
 
         .guard {
-            margin-top: .5em;
-            margin-left: .5em;
+            margin-top: .5rem;
+            margin-left: .5rem;
         }
 
         .guard-readout {
@@ -30,7 +30,7 @@
     .title {
         text-align: center;
         position: absolute;
-        top: 5px;
+        top: .5rem;
         right: 40%;
         left: 40%;
         width: 20%;
@@ -40,38 +40,38 @@
     .scheme {
         position: absolute;
         top: 0px;
-        right: .1em;
-        height: 4em;
+        right: .5rem;
+        height: 4rem;
         width: 35%;
         text-align: center;
         border-radius: 5px;
         cursor: pointer;
 
         .status-text {
-            margin-top: .1em;
-            margin-bottom: .2em;
+            margin-top: .1rem;
+            margin-bottom: .2rem;
         }
 
         .scheme-bar-container {
-            margin-top: .25em;
+            margin-top: .25rem;
             text-align: center; 
             display: inline-block; 
             width: 100%;
             position: relative;
-            height: 2em;
+            height: 2rem;
             border-radius: 5px;
 
             .scheme-progress-bar {
                 position: absolute;
                 top: 0px;
                 left: 0px;
-                height: 2em;
+                height: 2rem;
             }
 
             .scheme-icon {
                 position: relative;
-                font-size: 1.5em;
-                padding-top: .125em;
+                font-size: 1.5rem;
+                padding-top: .125rem;
             }
         }
     }
@@ -86,21 +86,21 @@
     pointer-events: none;
 
     .inner-content {
-        margin: .5em;
+        margin: .5rem;
 
         .scheme-icon {
             position: relative;
         }
 
         .scheme-name {
-            margin: .1em;
+            margin: .1rem;
             display: inline;
         }
 
         .benefit-header {
             text-align: left;
             margin: 0;
-            padding-top: 1em;
+            padding-top: 1rem;
         }
 
         .benefit-text {
@@ -110,13 +110,13 @@
 
         .flavor-text {
             text-align: left;
-            margin: .1em;
-            padding-top: 1em;
+            margin: .1rem;
+            padding-top: 1rem;
             font-style: italic;
         }
 
         .scheme-exp {
-            margin-top: .25em;
+            margin-top: .25rem;
             margin-bottom: 0;
         }
     }
@@ -126,25 +126,25 @@
 
 @media all and (min-width:640px) {
     .title {
-        font-size: 2em;
+        font-size: 2rem;
     }
 }
 
 @media all and (max-width:639px) {
     .title {
-        font-size: 1.5em;
+        font-size: 1.5rem;
     }
 }
 
 @media all and (max-width:459px) {
     .title {
-        font-size: 1.25em;
+        font-size: 1.25rem;
     }
 }
 
 @media all and (max-width:399px) {
     .title {
-        font-size: 1em;
+        font-size: 1rem;
     }
 
 }

@@ -114,7 +114,7 @@ export class AppComponent implements OnInit {
             if (this._player.training[0]['queued'] == 0) {
               this._player.isGuardTrainingHappening = false;
             }
-            if (this._player.training[0]['capacity'] == this._player.training[0]['currentStore']) {
+            if (this._player.guardTrainingCapacity == this._player.training[0]['currentStore']) {
               this._player.training[0]['full'] = true;
             }
           }
@@ -141,6 +141,6 @@ export class AppComponent implements OnInit {
       this.train();
 
       this.minute = false;
-    }, 1000);
+    }, 100);
   }
 }

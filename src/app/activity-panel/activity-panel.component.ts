@@ -44,7 +44,7 @@ export class ActivityPanelComponent {
     trainAGuard() {
         if (this._player.currentHenchmen > 0) {
             if (!this.queueingAGuard) {
-                if (this._player.training[0]['queued'] + this._player.training[0]['currentStore'] < this._player.training[0]['capacity']) {
+                if (this._player.training[0]['queued'] + this._player.training[0]['currentStore'] < this._player.guardTrainingCapacity) {
                     this.queueingAGuard = true;
                     this._player.isGuardTrainingHappening = true;
                     this._player.currentHenchmen -= 1;

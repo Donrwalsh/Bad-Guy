@@ -13,8 +13,8 @@ export class PlayerService {
         { level: 0, exp: 0 }, //0 Diabolical Mastermind
         { level: 0, exp: 0 },
         { level: 0, exp: 0 },
-        { level: 0, exp: 0 }, //3 Hired Help
-        { level: 0, exp: 0 }, //4 Guard Duty
+        { level: 1, exp: 0 }, //3 Hired Help
+        { level: 1, exp: 0 }, //4 Guard Duty
         { level: 0, exp: 0 }
     ]
 
@@ -137,7 +137,7 @@ export class PlayerService {
 
     get guardTrainingCapacity () {
         var capacity = 1;
-        if (this.schemes[4]['level'] >= 1) {
+        if (this.schemes[4]['level'] >= 2) {
             capacity += 4;
         }
         return capacity;

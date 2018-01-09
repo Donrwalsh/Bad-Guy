@@ -1,5 +1,34 @@
 <div class="activity-panel">
+    <h4 style="padding-bottom:.5rem;padding-top:.5rem;margin:0;text-align:center">Training</h4>
     <div class="left-side noselect">
+        <p style="margin:0;width:100%;" class="training-display">
+            <i style="padding-left:.5rem" class="capacity-icon fa fa-archive" aria-hidden="true"></i>
+            0/5
+            <i style="padding-left:.5rem" class="capacity-icon fa fa-clock-o" aria-hidden="true"></i>
+            5:00
+        </p>
+
+    </div>
+    <div class="add-column">
+        <div class="add-block">
+            <i class="add-to-queue-icon fa fa-plus" *ngIf="_player.guardTrainingUnlocked" aria-hidden="true" (click)="trainAGuard()"
+                [ngStyle]="{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}"></i>
+        </div>
+    </div>
+    <div class="right-side noselect">
+
+        <div class="guard-training-container noselect" *ngIf="_player.guardTrainingUnlocked" (click)="collectGuards()" [ngStyle]="{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }">
+
+            <div class="guard-training-progress-bar" [ngStyle]="{'width': 100*(_player.training[0]['percentage']/100) + '%'}"></div>
+            <p class="guard-training-display noselect">
+
+                <i class="guard-training-generation-icon fa fa-shield faa-slow faa-flash animated" aria-hidden="true" [ngStyle]="{'color': _player.training[0]['full'] ? '#ccddff' : 'black', 'visibility': _player.isGuardTrainingHappening ? 'initial' : 'hidden' }"></i>
+                Guard
+                <i class="guard-training-collection-icon fa fa-shield faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }"
+                    [ngClass]="{'faa-tada': !_player.isGuardCapacityFull, 'faa-horizontal': _player.isGuardCapacityFull }"></i>
+            </p>
+        </div>
+
         <div class="help-wanted-container" *ngIf="_player.helpWanted1Unlocked" (click)="collectHelpWanted1()" [ngStyle]="{'cursor': _player.helpWanted[0]['currentStore'] > 0 ? 'pointer' : 'default' }">
             <div class="help-wanted-progress-bar" [ngStyle]="{'width': 100*(_player.helpWanted[0]['percentage']/100) + '%'}"></div>
             <p class="help-wanted-display noselect">
@@ -9,19 +38,5 @@
                     [ngClass]="{'faa-tada': !_player.isHenchmenCapacityFull, 'faa-horizontal': _player.isHenchmenCapacityFull }"></i>
             </p>
         </div>
-    </div>
-    <div class="right-side noselect">
-            <i class="add-to-queue-icon fa fa-plus" *ngIf="_player.guardTrainingUnlocked"  aria-hidden="true" (click)="trainAGuard()" [ngStyle]="{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.training[0]['capacity']) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}"></i>
-            <div class="guard-training-container noselect" *ngIf="_player.guardTrainingUnlocked" (click)="collectGuards()" [ngStyle]="{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }">
-                    
-                    <div class="guard-training-progress-bar" [ngStyle]="{'width': 100*(_player.training[0]['percentage']/100) + '%'}"></div>
-                    <p class="guard-training-display noselect">
-                            
-                        <i class="guard-training-generation-icon fa fa-shield faa-slow faa-flash animated" aria-hidden="true" [ngStyle]="{'color': _player.training[0]['full'] ? '#ccddff' : 'black', 'visibility': _player.isGuardTrainingHappening ? 'initial' : 'hidden' }"></i>
-                        Guard
-                        <i class="guard-training-collection-icon fa fa-shield faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }"
-                            [ngClass]="{'faa-tada': !_player.isGuardCapacityFull, 'faa-horizontal': _player.isGuardCapacityFull }"></i>
-                    </p>
-                </div>
     </div>
 </div>
