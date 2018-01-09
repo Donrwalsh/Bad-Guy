@@ -21,6 +21,7 @@ export class ActivityPanelComponent {
                 if (this._player.currentHenchmen > this._player.henchmenCapacity) {
                     this._player.helpWanted[0]['currentStore'] = this._player.currentHenchmen - this._player.henchmenCapacity;
                     this._player.currentHenchmen = this._player.henchmenCapacity;
+                    //This is currently busted.
                     if (this._player.helpWanted[0]['full']) {
                         this._player.helpWanted[0]['magicModulo'] = -1;
                     }
