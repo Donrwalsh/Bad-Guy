@@ -5,7 +5,7 @@ const ObjectID = require('mongodb').ObjectID;
 
 // Connect
 const connection = (closure) => {
-    return MongoClient.connect('mongodb://localhost:27017/schemes', (err, db) => {
+    return MongoClient.connect('process.env.MONGODB_URI || mongodb://localhost:27017/schemes', (err, db) => {
 
         if (err) return console.log(err);
 
