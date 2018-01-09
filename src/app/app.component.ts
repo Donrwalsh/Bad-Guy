@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from './services/player.service';
+import { HttpClient } from '@angular/common/http';
 
 // Import the DataService
 import { DataService } from './data.service';
@@ -13,16 +14,13 @@ export class AppComponent implements OnInit {
 
   constructor(public _player: PlayerService,
     private _dataService: DataService,
-  ) {
-
-    this._dataService.getSchemes()
-      .subscribe(res => this.schemes = res);
-  }
+    public _http: HttpClient
+  ) {}
 
   ticker: number = 0;
   minute: boolean = false;
 
-  schemes: Array<any>;
+  schemes: any[];
 
   selectScheme(scheme, id) {
     if (this._player.schemeLearnable(scheme)) {
@@ -128,7 +126,9 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this._http.get('/api/schemes').subscribe(data => {
+      console.log(data);
+    });
 
     setInterval(() => {
       this.ticker++;
