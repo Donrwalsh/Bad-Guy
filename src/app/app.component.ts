@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from './services/player.service';
+import { PrimaryLoopService } from './services/primary-loop.service';
 
 // Import the DataService
 import { DataService } from './data.service';
+import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +14,7 @@ import { DataService } from './data.service';
 export class AppComponent implements OnInit {
 
   constructor(public _player: PlayerService,
+    public _loop: PrimaryLoopService,
     private _dataService: DataService,
   ) {
 
@@ -20,6 +23,7 @@ export class AppComponent implements OnInit {
   }
 
   ticker: number = 0;
+  betterTicker: number = 600;
   minute: boolean = false;
 
   schemes: Array<any>;
@@ -29,38 +33,6 @@ export class AppComponent implements OnInit {
       this._player.currentScheme = scheme;
       this._player.setCurrentSchemeLevel();
       this._player.earningSchemePoints = true;
-    }
-  }
-
-  //Scheme action.
-  scheme() {
-
-    if (this._player.earningSchemePoints) {
-
-      //Starting scheme points per second is 1
-      var schemePointsHatched: number = 1;
-
-      //Flip a coin
-      var coinFlip = Math.random() >= 0.5;
-
-      //Logic for Diabloical Genius, Nefarious Logic and Evil Certifications
-      schemePointsHatched += this._player.schemes[0]['level'] < 6 ? this._player.schemes[0]['level'] : 5;
-      if (this.minute) {
-        schemePointsHatched += this._player.schemes[1]['level'] < 6 ? this._player.schemes[1]['level'] * 60 : 300;
-      }
-      if (coinFlip) {
-        schemePointsHatched += this._player.schemes[2]['level'] < 6 ? this._player.schemes[2]['level'] * 2 : 10;
-      }
-
-      //Multipliers go here.
-
-      //All Calculations done. Increment:
-      this._player.schemes[this._player.currentScheme['ref']]['exp'] += schemePointsHatched;
-
-      //Check and Level the Scheme
-      if (this._player.currentSchemeJustLearned()) {
-        this._player.levelCurrentScheme();
-      }
     }
   }
 
@@ -130,13 +102,16 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
 
+
     setInterval(() => {
+      this._loop.action();
+
+
       this.ticker++;
       if (this.ticker % 60 == 0) {
         this.minute = true;
       }
 
-      this.scheme();
       this.hench();
       this.train();
 
