@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PlayerService } from '../services/player.service';
-import { RecruitingService} from '../services/recruiting.service';
+import { RecruitingService } from '../services/recruiting.service';
+import { InventoryService } from '../services/inventory.service';
 
 @Component({
     selector: 'activity-panel',
@@ -10,11 +11,9 @@ import { RecruitingService} from '../services/recruiting.service';
 export class ActivityPanelComponent {
 
     constructor(public _player: PlayerService,
-    public _recruiting: RecruitingService) {
+    public _recruiting: RecruitingService,
+    public _inventory: InventoryService) {
     }
-
-
-    
 
     queueingAGuard: boolean = false;
 

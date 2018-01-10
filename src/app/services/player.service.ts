@@ -4,6 +4,8 @@ import { PACKAGE_ROOT_URL } from "@angular/core/src/application_tokens";
 @Injectable()
 export class PlayerService {
 
+    //Everything in this service is saved. All game details can be derived from this service.
+
     //Not yet implemented, but used for scheme prereqs
     lairLevel: number = 0;
 
@@ -17,42 +19,13 @@ export class PlayerService {
         { level: 0, exp: 0 } //5 Henchmen Lodging
     ]
 
-    //*****************************************************************************************
     //Henchmen
     currentHenchmen: number = 0;
-
     recruiting: Array<Object> = [
         {currentStore : 0, capacity : 0, countdown : 0, lock : 0 } //Help Wanted 1
     ]
 
-    
-    
-
-    get henchmenCapacity() {
-        //Base capacity is 10
-        var capacity = 10;
-        //Henchman Lodging
-        var lodgingMod = 0;
-        for (var i = 0; i < this.schemes[5]['level']; i++) {
-            if (i < 2) {
-                lodgingMod += 5;
-            } else if (i > 1 && i < 4 ) {
-                lodgingMod += 10;
-            } else if (i == 4) {
-                lodgingMod += 20;
-            } else if (i == 5) {
-                lodgingMod += 50;
-            }
-        }
-        capacity += lodgingMod;
-        return capacity;
-    }
-
-    get isHenchmenCapacityFull() {
-        return this.currentHenchmen == this.henchmenCapacity;
-    }
-
-
+    //Old stuff
 
 
     isGuardTrainingHappening: boolean = false;

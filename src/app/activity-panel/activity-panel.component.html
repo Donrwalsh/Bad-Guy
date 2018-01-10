@@ -1,6 +1,6 @@
 <div class="activity-panel" noselect>
     <h4 style="padding-bottom:.5rem;padding-top:.5rem;margin:0;text-align:center">Training</h4>
-    <div class="left-side">
+    <div class="left-side"></div>
         <div style="height:1.2rem;width:40%;display:inline-block;">
             <p style="margin:0;width:100%;display:inline-block;" class="training-display">
                 <i style="padding-left:.5rem" class="capacity-icon fa fa-archive" aria-hidden="true"></i>
@@ -57,7 +57,7 @@
                 <i class="help-wanted-generation-icon fa fa-user faa-slow faa-flash animated" aria-hidden="true" [ngStyle]="{'visibility': _recruiting.isRecruitingById(0) ? 'default' : 'hidden' }"></i>
                 Craigslist Ad
                 <i class="help-wanted-collection-icon fa fa-user faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }"
-                    [ngClass]="{'faa-tada': !_player.isHenchmenCapacityFull, 'faa-horizontal': _player.isHenchmenCapacityFull }"></i>
+                    [ngClass]="{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }"></i>
             </p>
         </div>
     </div>

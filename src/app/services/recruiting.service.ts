@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { PlayerService } from "./player.service";
+import { InventoryService } from "./inventory.service";
 
 @Injectable()
 export class RecruitingService {
 
-    constructor(public _player: PlayerService) { }
+    constructor(public _player: PlayerService,
+    public _inventory: InventoryService) { }
 
     getCapacityById(id) {
         if (id == 0) { //Help Wanted Objects
@@ -45,7 +47,7 @@ export class RecruitingService {
             if (!this.collecting) {
                 this.collecting = true;
                 for (var _i = 0; _i < this._player.recruiting[id]['currentStore']; _i++) {
-                    if (this._player.currentHenchmen < this._player.henchmenCapacity) {
+                    if (this._player.currentHenchmen < this._inventory.henchmenCapacity) {
                         this._player.currentHenchmen++;
                         this._player.recruiting[id]['currentStore']--;
                     }
