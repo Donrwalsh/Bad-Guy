@@ -1,13 +1,16 @@
 import { Injectable } from "@angular/core";
 import { PlayerService } from "./player.service";
+import { SchemingService } from "./scheming.service";
 
 //All loop related activities. Called by app.component and nowhere else.
 @Injectable()
 export class PrimaryLoopService {
 
-    constructor(public _player: PlayerService) { }
+    constructor(public _player: PlayerService,
+        public _scheming: SchemingService) { }
 
-    //Saved Variables
+    //Flow logic is 1. Scheme 2. Recruit
+
     //Ticker set at one minute (@100 ms/s) for now.
     ticker: number = 600
 
@@ -16,22 +19,22 @@ export class PrimaryLoopService {
 
     //Events that occur every tick
     tick() {
-        if (this._player.earningSchemePoints) {
-            this._player.earnSchemePoints(this._player.schemePointsHatchedThisTick);
+        if (this._scheming.earningSchemePoints) {
+            this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
     }
 
     //Events that occur every second
     second() {
-        if (this._player.earningSchemePoints) {
-            this._player.earnSchemePoints(this._player.schemePointsHatchedThisSecond)
+        if (this._scheming.earningSchemePoints) {
+            this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisSecond)
         }
     }
 
     //Events that occur every minute
     minute() {
-        if (this._player.earningSchemePoints) {
-            this._player.earnSchemePoints(this._player.schemePointsHatchedThisMinute)
+        if (this._scheming.earningSchemePoints) {
+            this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute)
         }
     }
 

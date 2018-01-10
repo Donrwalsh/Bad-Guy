@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PlayerService } from '../services/player.service';
+import { SchemingService } from '../services/scheming.service';
 
 import {
     trigger,
@@ -28,7 +29,8 @@ import {
 })
 export class HeaderComponent {
 
-    constructor(public _player: PlayerService) {
+    constructor(public _player: PlayerService,
+        public _scheming: SchemingService) {
     }
 
     showSchemeFlyout = false;

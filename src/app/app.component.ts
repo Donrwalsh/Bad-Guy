@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from './services/player.service';
+import { SchemingService} from './services/scheming.service';
 import { PrimaryLoopService } from './services/primary-loop.service';
 
 // Import the DataService
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit {
 
   constructor(public _player: PlayerService,
     public _loop: PrimaryLoopService,
+    public _scheming: SchemingService,
     private _dataService: DataService,
   ) {
 
@@ -29,10 +31,10 @@ export class AppComponent implements OnInit {
   schemes: Array<any>;
 
   selectScheme(scheme, id) {
-    if (this._player.schemeLearnable(scheme)) {
-      this._player.currentScheme = scheme;
-      this._player.setCurrentSchemeLevel();
-      this._player.earningSchemePoints = true;
+    if (this._scheming.schemeLearnable(scheme)) {
+      this._scheming.currentScheme = scheme;
+      this._scheming.setCurrentSchemeLevel();
+      this._scheming.earningSchemePoints = true;
     }
   }
 

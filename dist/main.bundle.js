@@ -219,8 +219,9 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -233,13 +234,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 // Import the DataService
 
 var AppComponent = (function () {
-    function AppComponent(_player, _loop, _dataService) {
+    function AppComponent(_player, _loop, _scheming, _dataService) {
         var _this = this;
         this._player = _player;
         this._loop = _loop;
+        this._scheming = _scheming;
         this._dataService = _dataService;
         this.ticker = 0;
         this.betterTicker = 600;
@@ -248,10 +251,10 @@ var AppComponent = (function () {
             .subscribe(function (res) { return _this.schemes = res; });
     }
     AppComponent.prototype.selectScheme = function (scheme, id) {
-        if (this._player.schemeLearnable(scheme)) {
-            this._player.currentScheme = scheme;
-            this._player.setCurrentSchemeLevel();
-            this._player.earningSchemePoints = true;
+        if (this._scheming.schemeLearnable(scheme)) {
+            this._scheming.currentScheme = scheme;
+            this._scheming.setCurrentSchemeLevel();
+            this._scheming.earningSchemePoints = true;
         }
     };
     //currently only a single help wanted object is supported.
@@ -335,10 +338,10 @@ AppComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_primary_loop_service__["a" /* PrimaryLoopService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_primary_loop_service__["a" /* PrimaryLoopService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__data_service__["a" /* DataService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__data_service__["a" /* DataService */]) === "function" && _d || Object])
 ], AppComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -355,15 +358,17 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -385,15 +390,16 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_7__header_header_module__["a" /* HeaderModule */],
-            __WEBPACK_IMPORTED_MODULE_8__scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */],
-            __WEBPACK_IMPORTED_MODULE_9__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
+            __WEBPACK_IMPORTED_MODULE_8__header_header_module__["a" /* HeaderModule */],
+            __WEBPACK_IMPORTED_MODULE_9__scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */],
+            __WEBPACK_IMPORTED_MODULE_10__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_4__data_service__["a" /* DataService */],
             __WEBPACK_IMPORTED_MODULE_5__services_player_service__["a" /* PlayerService */],
+            __WEBPACK_IMPORTED_MODULE_7__services_scheming_service__["a" /* SchemingService */],
             __WEBPACK_IMPORTED_MODULE_6__services_primary_loop_service__["a" /* PrimaryLoopService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
@@ -449,7 +455,7 @@ var _a;
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\">\n    <div class=\"resources\">\n        <i class=\"henchmen fa fa-users\" aria-hidden=\"true\"></i>\n        <p class=\"henchmen-readout\">{{_player.currentHenchmen}}/{{_player.henchmenCapacity}}</p>\n        <i class=\"guard fa fa-shield\" aria-hidden=\"true\"></i>\n        <p class=\"guard-readout\">{{_player.currentGuards}}/{{_player.guardCapacity}}</p>\n    </div>\n    <div>\n        <h1 class=\"title\">Bad Guy</h1>\n    </div>\n    <div class=\"scheme\" (mouseenter)=\"showSchemeFlyout = true;\" (mouseleave)=\"showSchemeFlyout = false;\">\n        <div *ngIf=\"_player.earningSchemePoints\">\n            <h5 class=\"status-text\">Scheming</h5>\n            <div class=\"scheme-bar-container\" [ngStyle]=\"{'border' : '1px solid ' + _player.currentScheme.color }\">\n                <div class=\"scheme-progress-bar\" [ngStyle]=\"{'width': _player.currentSchemePercentage + '%', 'background-color' : _player.currentScheme.color}\"></div>\n                <i class=\"scheme-icon fa {{_player.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n            </div>\n        </div>\n        <div *ngIf=\"!_player.earningSchemePoints\">\n            <h5 class=\"status-text\">Not Scheming</h5>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>\n\n<div class=\"scheme-flyout\" *ngIf=\"_player.earningSchemePoints;\" [@popOverState]=\"stateName\" [ngStyle]=\"{'background-color' : _player.currentScheme.flyout_color}\">\n    <div class=\"inner-content\">\n        <i class=\"scheme-icon fa {{_player.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n        <h4 class=\"scheme-name\">{{_player.currentScheme.name}} {{_player.currentSchemeLevel > 1 ? _player.currentSchemeLevel : ''}}</h4>\n        <h5 class=\"benefit-header\">Benefit: </h5>\n        <h6 class=\"benefit-text\">{{_player.currentScheme.description[_player.currentSchemeLevel-1]}} </h6>\n        <h6 class=\"flavor-text\">{{_player.currentScheme.flavor[_player.currentSchemeLevel-1]}}</h6>\n        <p class=\"scheme-exp\"> {{_player.currentSchemeEXP}}/{{_player.currentSchemeEXPTarget}}</p>\n    </div>\n\n</div>"
+module.exports = "<div class=\"header\">\n    <div class=\"resources\">\n        <i class=\"henchmen fa fa-users\" aria-hidden=\"true\"></i>\n        <p class=\"henchmen-readout\">{{_player.currentHenchmen}}/{{_player.henchmenCapacity}}</p>\n        <i class=\"guard fa fa-shield\" aria-hidden=\"true\"></i>\n        <p class=\"guard-readout\">{{_player.currentGuards}}/{{_player.guardCapacity}}</p>\n    </div>\n    <div>\n        <h1 class=\"title\">Bad Guy</h1>\n    </div>\n    <div class=\"scheme\" (mouseenter)=\"showSchemeFlyout = true;\" (mouseleave)=\"showSchemeFlyout = false;\">\n        <div *ngIf=\"_scheming.earningSchemePoints\">\n            <h5 class=\"status-text\">Scheming</h5>\n            <div class=\"scheme-bar-container\" [ngStyle]=\"{'border' : '1px solid ' + _scheming.currentScheme.color }\">\n                <div class=\"scheme-progress-bar\" [ngStyle]=\"{'width': _scheming.currentSchemePercentage + '%', 'background-color' : _scheming.currentScheme.color}\"></div>\n                <i class=\"scheme-icon fa {{_scheming.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n            </div>\n        </div>\n        <div *ngIf=\"!_scheming.earningSchemePoints\">\n            <h5 class=\"status-text\">Not Scheming</h5>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>\n\n<div class=\"scheme-flyout\" *ngIf=\"_scheming.earningSchemePoints;\" [@popOverState]=\"stateName\" [ngStyle]=\"{'background-color' : _scheming.currentScheme.flyout_color}\">\n    <div class=\"inner-content\">\n        <i class=\"scheme-icon fa {{_scheming.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n        <h4 class=\"scheme-name\">{{_scheming.currentScheme.name}} {{_scheming.currentSchemeLevel > 1 ? _scheming.currentSchemeLevel : ''}}</h4>\n        <h5 class=\"benefit-header\">Benefit: </h5>\n        <h6 class=\"benefit-text\">{{_scheming.currentScheme.description[_scheming.currentSchemeLevel-1]}} </h6>\n        <h6 class=\"flavor-text\">{{_scheming.currentScheme.flavor[_scheming.currentSchemeLevel-1]}}</h6>\n        <p class=\"scheme-exp\"> {{_scheming.currentSchemeEXP}}/{{_scheming.currentSchemeEXPTarget}}</p>\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -478,7 +484,8 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_animations__ = __webpack_require__("../../../animations/@angular/animations.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_animations__ = __webpack_require__("../../../animations/@angular/animations.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -491,9 +498,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HeaderComponent = (function () {
-    function HeaderComponent(_player) {
+    function HeaderComponent(_player, _scheming) {
         this._player = _player;
+        this._scheming = _scheming;
         this.showSchemeFlyout = false;
     }
     Object.defineProperty(HeaderComponent.prototype, "stateName", {
@@ -511,22 +520,22 @@ HeaderComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/header/header.component.html"),
         styles: [__webpack_require__("../../../../../src/app/header/header.component.scss")],
         animations: [
-            Object(__WEBPACK_IMPORTED_MODULE_2__angular_animations__["j" /* trigger */])('popOverState', [
-                Object(__WEBPACK_IMPORTED_MODULE_2__angular_animations__["g" /* state */])('show', Object(__WEBPACK_IMPORTED_MODULE_2__angular_animations__["h" /* style */])({
+            Object(__WEBPACK_IMPORTED_MODULE_3__angular_animations__["j" /* trigger */])('popOverState', [
+                Object(__WEBPACK_IMPORTED_MODULE_3__angular_animations__["g" /* state */])('show', Object(__WEBPACK_IMPORTED_MODULE_3__angular_animations__["h" /* style */])({
                     opacity: 1
                 })),
-                Object(__WEBPACK_IMPORTED_MODULE_2__angular_animations__["g" /* state */])('hide', Object(__WEBPACK_IMPORTED_MODULE_2__angular_animations__["h" /* style */])({
+                Object(__WEBPACK_IMPORTED_MODULE_3__angular_animations__["g" /* state */])('hide', Object(__WEBPACK_IMPORTED_MODULE_3__angular_animations__["h" /* style */])({
                     opacity: 0
                 })),
-                Object(__WEBPACK_IMPORTED_MODULE_2__angular_animations__["i" /* transition */])('show => hide', Object(__WEBPACK_IMPORTED_MODULE_2__angular_animations__["e" /* animate */])('1200ms ease-out')),
-                Object(__WEBPACK_IMPORTED_MODULE_2__angular_animations__["i" /* transition */])('hide => show', Object(__WEBPACK_IMPORTED_MODULE_2__angular_animations__["e" /* animate */])('2000ms ease-in'))
+                Object(__WEBPACK_IMPORTED_MODULE_3__angular_animations__["i" /* transition */])('show => hide', Object(__WEBPACK_IMPORTED_MODULE_3__angular_animations__["e" /* animate */])('1200ms ease-out')),
+                Object(__WEBPACK_IMPORTED_MODULE_3__angular_animations__["i" /* transition */])('hide => show', Object(__WEBPACK_IMPORTED_MODULE_3__angular_animations__["e" /* animate */])('2000ms ease-in'))
             ])
         ]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */]) === "function" && _b || Object])
 ], HeaderComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=header.component.js.map
 
 /***/ }),
@@ -699,11 +708,6 @@ var PlayerService = (function () {
     function PlayerService() {
         //Not yet implemented, but used for scheme prereqs
         this.lairLevel = 0;
-        //*****************************************************************************************
-        //Schemes
-        this.currentScheme = {};
-        this.currentSchemeLevel = 0;
-        this.earningSchemePoints = false;
         //Primary scheme object. Stores level and accumulated exp toward next level by scheme ref.
         this.schemes = [
             { level: 0, exp: 0 },
@@ -713,8 +717,6 @@ var PlayerService = (function () {
             { level: 0, exp: 0 },
             { level: 0, exp: 0 }
         ];
-        this.report_ticks = 0;
-        this.report_earned = 0;
         //*****************************************************************************************
         //Henchmen
         this.currentHenchmen = 0;
@@ -738,129 +740,6 @@ var PlayerService = (function () {
                 queued: 0 }
         ];
     }
-    PlayerService.prototype.coinFlip = function (times) {
-        var successes = 0;
-        for (var _i = 0; _i < times; _i++) {
-            if (Math.random() >= 0.5) {
-                successes++;
-            }
-        }
-        return successes;
-    };
-    //Scheme calculation setters
-    PlayerService.prototype.earnSchemePoints = function (num) {
-        this.schemes[this.currentScheme['ref']]['exp'] += num;
-        if (this.schemes[this.currentScheme['ref']]['exp'] >= this.currentScheme['exp'][this.schemes[this.currentScheme['ref']]['level']]) {
-            this.schemes[this.currentScheme['ref']]['level']++;
-            this.schemes[this.currentScheme['ref']]['exp'] = 0;
-            this.currentScheme = {};
-            this.earningSchemePoints = false;
-        }
-    };
-    Object.defineProperty(PlayerService.prototype, "schemePointsHatchedThisTick", {
-        //Scheme calculation getters
-        get: function () {
-            //Starting scheme points per tick is 0
-            var hatched = 0;
-            //Evil Research increases scheme points per tick by flipping coins
-            var successes = this.coinFlip(6);
-            for (var _i = 0; _i < this.schemes[2]['level']; _i++) {
-                if (_i < 5) {
-                    hatched += successes >= 5 ? 1 : 0;
-                }
-                if (_i > 4 && _i < 10) {
-                    hatched += successes >= 5 ? 2 : 0;
-                }
-                if (_i > 9 && _i < 15) {
-                    hatched += successes >= 5 ? 5 : 0;
-                }
-                if (_i > 14 && _i < 20) {
-                    hatched += successes > -5 ? 10 : 0;
-                }
-            }
-            this.report_ticks++;
-            this.report_earned += hatched;
-            console.log("Successes: " + successes + ", Ticks: " + this.report_ticks + ", earned: " + this.report_earned + ", PPS (should be 5): " + this.report_earned / (this.report_ticks / 10));
-            return hatched;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "schemePointsHatchedThisSecond", {
-        get: function () {
-            //Starting scheme points per second is 1
-            var hatched = 1;
-            //Diabolic Genius increases scheme points per second
-            for (var _i = 0; _i < this.schemes[0]['level']; _i++) {
-                if (_i < 5) {
-                    hatched += 1;
-                }
-                if (_i > 4 && _i < 10) {
-                    hatched += 2;
-                }
-                if (_i > 9 && _i < 15) {
-                    hatched += 5;
-                }
-                if (_i > 14) {
-                    hatched += 10;
-                }
-            }
-            return hatched;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "schemePointsHatchedThisMinute", {
-        get: function () {
-            //Starting scheme points per minute is 0
-            var hatched = 0;
-            //Nefarious Logic increases scheme points per minute
-            for (var _i = 0; _i < this.schemes[1]['level']; _i++) {
-                if (_i < 5) {
-                    hatched += 60;
-                }
-                if (_i > 4 && _i < 10) {
-                    hatched += 120;
-                }
-                if (_i > 9 && _i < 15) {
-                    hatched += 300;
-                }
-                if (_i > 14) {
-                    hatched += 600;
-                }
-            }
-            return hatched;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "currentSchemeEXP", {
-        get: function () {
-            return this.schemes[this.currentScheme['ref']]['exp'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "currentSchemeEXPTarget", {
-        get: function () {
-            return this.currentScheme['exp'][this.schemes[this.currentScheme['ref']]['level'] * 1];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "currentSchemePercentage", {
-        get: function () {
-            return Math.round((this.currentSchemeEXP / this.currentSchemeEXPTarget) * 100);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    PlayerService.prototype.schemeLearnable = function (scheme) {
-        return this.lairLevel >= scheme['lair_req'][this.schemes[scheme['ref']]['level']];
-    };
-    PlayerService.prototype.setCurrentSchemeLevel = function () {
-        this.currentSchemeLevel = (this.schemes[this.currentScheme['ref']]['level'] * 1) + 1;
-    };
     Object.defineProperty(PlayerService.prototype, "henchmenCapacity", {
         get: function () {
             //Base capacity is 10
@@ -993,6 +872,7 @@ PlayerService = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PrimaryLoopService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1004,10 +884,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 //All loop related activities. Called by app.component and nowhere else.
 var PrimaryLoopService = (function () {
-    function PrimaryLoopService(_player) {
+    function PrimaryLoopService(_player, _scheming) {
         this._player = _player;
+        this._scheming = _scheming;
+        //Flow logic is 1. Scheme 2. Recruit
         //Saved Variables
         //Ticker set at one minute (@100 ms/s) for now.
         this.ticker = 600;
@@ -1016,20 +899,20 @@ var PrimaryLoopService = (function () {
     }
     //Events that occur every tick
     PrimaryLoopService.prototype.tick = function () {
-        if (this._player.earningSchemePoints) {
-            this._player.earnSchemePoints(this._player.schemePointsHatchedThisTick);
+        if (this._scheming.earningSchemePoints) {
+            this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
     };
     //Events that occur every second
     PrimaryLoopService.prototype.second = function () {
-        if (this._player.earningSchemePoints) {
-            this._player.earnSchemePoints(this._player.schemePointsHatchedThisSecond);
+        if (this._scheming.earningSchemePoints) {
+            this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisSecond);
         }
     };
     //Events that occur every minute
     PrimaryLoopService.prototype.minute = function () {
-        if (this._player.earningSchemePoints) {
-            this._player.earnSchemePoints(this._player.schemePointsHatchedThisMinute);
+        if (this._scheming.earningSchemePoints) {
+            this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute);
         }
     };
     //This event happens at every iteration of the main loop.
@@ -1050,11 +933,171 @@ var PrimaryLoopService = (function () {
 }());
 PrimaryLoopService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */]) === "function" && _b || Object])
 ], PrimaryLoopService);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=primary-loop.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/scheming.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SchemingService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var SchemingService = (function () {
+    function SchemingService(_player) {
+        this._player = _player;
+        //*****************************************************************************************
+        //Schemes
+        this.currentScheme = {};
+        this.currentSchemeLevel = 0;
+        this.earningSchemePoints = false;
+    }
+    //Belongs elsewhere.
+    SchemingService.prototype.coinFlip = function (times) {
+        var successes = 0;
+        for (var _i = 0; _i < times; _i++) {
+            if (Math.random() >= 0.5) {
+                successes++;
+            }
+        }
+        return successes;
+    };
+    //Scheme calculation setters
+    SchemingService.prototype.earnSchemePoints = function (num) {
+        this._player.schemes[this.currentScheme['ref']]['exp'] += num;
+        if (this._player.schemes[this.currentScheme['ref']]['exp'] >= this.currentScheme['exp'][this._player.schemes[this.currentScheme['ref']]['level']]) {
+            this._player.schemes[this.currentScheme['ref']]['level']++;
+            this._player.schemes[this.currentScheme['ref']]['exp'] = 0;
+            this.currentScheme = {};
+            this.earningSchemePoints = false;
+        }
+    };
+    Object.defineProperty(SchemingService.prototype, "schemePointsHatchedThisTick", {
+        //Scheme calculation getters
+        get: function () {
+            //Starting scheme points per tick is 0
+            var hatched = 0;
+            //Evil Research increases scheme points per tick by flipping coins
+            var successes = this.coinFlip(6);
+            for (var _i = 0; _i < this._player.schemes[2]['level']; _i++) {
+                if (_i < 5) {
+                    hatched += successes >= 5 ? 1 : 0;
+                }
+                if (_i > 4 && _i < 10) {
+                    hatched += successes >= 5 ? 2 : 0;
+                }
+                if (_i > 9 && _i < 15) {
+                    hatched += successes >= 5 ? 5 : 0;
+                }
+                if (_i > 14 && _i < 20) {
+                    hatched += successes > -5 ? 10 : 0;
+                }
+            }
+            return hatched;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SchemingService.prototype, "schemePointsHatchedThisSecond", {
+        get: function () {
+            //Starting scheme points per second is 1
+            var hatched = 1;
+            //Diabolic Genius increases scheme points per second
+            for (var _i = 0; _i < this._player.schemes[0]['level']; _i++) {
+                if (_i < 5) {
+                    hatched += 1;
+                }
+                if (_i > 4 && _i < 10) {
+                    hatched += 2;
+                }
+                if (_i > 9 && _i < 15) {
+                    hatched += 5;
+                }
+                if (_i > 14) {
+                    hatched += 10;
+                }
+            }
+            return hatched;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SchemingService.prototype, "schemePointsHatchedThisMinute", {
+        get: function () {
+            //Starting scheme points per minute is 0
+            var hatched = 0;
+            //Nefarious Logic increases scheme points per minute
+            for (var _i = 0; _i < this._player.schemes[1]['level']; _i++) {
+                if (_i < 5) {
+                    hatched += 60;
+                }
+                if (_i > 4 && _i < 10) {
+                    hatched += 120;
+                }
+                if (_i > 9 && _i < 15) {
+                    hatched += 300;
+                }
+                if (_i > 14) {
+                    hatched += 600;
+                }
+            }
+            return hatched;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SchemingService.prototype, "currentSchemeEXP", {
+        get: function () {
+            return this._player.schemes[this.currentScheme['ref']]['exp'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SchemingService.prototype, "currentSchemeEXPTarget", {
+        get: function () {
+            return this.currentScheme['exp'][this._player.schemes[this.currentScheme['ref']]['level'] * 1];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SchemingService.prototype, "currentSchemePercentage", {
+        get: function () {
+            return Math.round((this.currentSchemeEXP / this.currentSchemeEXPTarget) * 100);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SchemingService.prototype.schemeLearnable = function (scheme) {
+        return this._player.lairLevel >= scheme['lair_req'][this._player.schemes[scheme['ref']]['level']];
+    };
+    SchemingService.prototype.setCurrentSchemeLevel = function () {
+        this.currentSchemeLevel = (this._player.schemes[this.currentScheme['ref']]['level'] * 1) + 1;
+    };
+    return SchemingService;
+}());
+SchemingService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object])
+], SchemingService);
+
+var _a;
+//# sourceMappingURL=scheming.service.js.map
 
 /***/ }),
 
