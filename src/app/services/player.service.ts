@@ -11,7 +11,7 @@ export class PlayerService {
     schemes: Array<Object> = [
         { level: 0, exp: 0 }, //0 Mastermind, fully coded.
         { level: 0, exp: 0 }, //1 Cold Logic, fully coded.
-        { level: 20, exp: 0 }, //2 Quick Thinking, fully coded.
+        { level: 0, exp: 0 }, //2 Quick Thinking, fully coded.
         { level: 0, exp: 0 }, //3 Hired Help
         { level: 0, exp: 0 }, //4 Guard Duty
         { level: 0, exp: 0 } //5 Henchmen Lodging
@@ -20,15 +20,13 @@ export class PlayerService {
     //*****************************************************************************************
     //Henchmen
     currentHenchmen: number = 0;
-    helpWantedRateLock: number;
-    helpWanted: Array<Object> = [
-        {currentStore :  0, 
-            percentage : 0, 
-            magicModulo : -1, 
-            full : false, 
-            capacity: this.helpWantedCapacity, 
-            unlocked: this.helpWanted1Unlocked}
+
+    recruiting: Array<Object> = [
+        {currentStore : 0, capacity : 0, countdown : 0, lock : 0 } //Help Wanted 1
     ]
+
+    
+    
 
     get henchmenCapacity() {
         //Base capacity is 10
@@ -55,36 +53,7 @@ export class PlayerService {
     }
 
 
-    //Recruitment Object - Help Wanted
-    get helpWantedUnlocked() {
-        return this.schemes[3]['level'] > 0;
-    }
 
-    get helpWanted1Unlocked() {
-        return this.schemes[3]['level'] > 0;
-    } 
-
-    get helpWantedCapacity() {
-        var capacity = 1;
-        if (this.schemes[3]['level'] >= 3) {
-            capacity += 2;
-        }
-        if (this.schemes[3]['level'] >= 5) {
-            capacity += 7;
-        }
-        return capacity;
-    }
-
-    get helpWantedRate() {
-      var rate = 60;
-      if (this.schemes[3]['level'] >= 2) {
-          rate -= 15;
-      }
-      if (this.schemes[3]['level'] >= 4) {
-          rate -= 15;
-      }  
-      return rate;
-    } 
 
     isGuardTrainingHappening: boolean = false;
     currentGuards: number = 0;

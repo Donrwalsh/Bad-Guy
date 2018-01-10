@@ -38,35 +38,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  //currently only a single help wanted object is supported.
-  hench() {
-    if (this._player.helpWantedUnlocked) {
-      if (this._player.helpWanted[0]['full']) {
-        //Reset the full variable in case their capacity has changed.
-        if (this._player.helpWantedCapacity != this._player.helpWanted[0]['currentStore']) {
-          this._player.helpWanted[0]['full'] = false;
-          this._player.helpWanted[0]['magicModulo'] = this.ticker % this._player.helpWantedRate == 0 ? this._player.helpWantedRate : (this.ticker % this._player.helpWantedRate) - 1;
-          this._player.helpWantedRateLock = this._player.helpWantedRate;
-        }
-      }
-      if (!this._player.helpWanted[0]['full']) {
-        if (!(this._player.helpWanted[0]['magicModulo'] > -1)) {
-          this._player.helpWanted[0]['magicModulo'] = this.ticker % this._player.helpWantedRate == 0 ? this._player.helpWantedRate : (this.ticker % this._player.helpWantedRate) - 1;
-          this._player.helpWantedRateLock = this._player.helpWantedRate;
-        } else {
-          if (this._player.helpWanted[0]['magicModulo'] == this.ticker % this._player.helpWantedRateLock) {
-            this._player.helpWanted[0]['currentStore']++;
-            if (this._player.helpWantedCapacity == this._player.helpWanted[0]['currentStore']) {
-              this._player.helpWanted[0]['full'] = true;
-            }
-          }
-        }
-        var sanityTickerNumber = this.ticker % this._player.helpWantedRateLock <= this._player.helpWanted[0]['magicModulo'] ? (this.ticker % this._player.helpWantedRateLock) + this._player.helpWantedRateLock : this.ticker % this._player.helpWantedRateLock;
-        this._player.helpWanted[0]['percentage'] = Math.round(((sanityTickerNumber - this._player.helpWanted[0]['magicModulo']) / this._player.helpWantedRateLock) * 10000) / 100;
-
-      }
-    }
-  }
+  
 
   train() {
     if (this._player.guardTrainingUnlocked) {
@@ -114,7 +86,6 @@ export class AppComponent implements OnInit {
         this.minute = true;
       }
 
-      this.hench();
       this.train();
 
       this.minute = false;

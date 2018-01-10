@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "../../../../../src lazy recursive";
 /***/ "../../../../../src/app/activity-panel/activity-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activity-panel\" noselect>\n    <h4 style=\"padding-bottom:.5rem;padding-top:.5rem;margin:0;text-align:center\">Training</h4>\n    <div class=\"left-side\">\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-archive\" aria-hidden=\"true\"></i>\n                {{_player.training[0]['currentStore']+_player.training[0]['queued']}}/{{_player.guardTrainingCapacity}}\n            </p>\n        </div>\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-clock-o\" aria-hidden=\"true\"></i>\n                5:00\n            </p>\n        </div>\n    </div>\n    <div class=\"add-column\">\n        <div class=\"add-block\">\n            <i class=\"add-to-queue-icon fa fa-plus\" *ngIf=\"_player.guardTrainingUnlocked\" aria-hidden=\"true\" (click)=\"trainAGuard()\"\n                [ngStyle]=\"{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}\"></i>\n        </div>\n    </div>\n    <div class=\"right-side noselect\">\n\n\n        <div class=\"guard-training-container noselect\" *ngIf=\"_player.guardTrainingUnlocked\" (click)=\"collectGuards()\" [ngStyle]=\"{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n\n            <div class=\"guard-training-progress-bar\" [ngStyle]=\"{'width': 100*(_player.training[0]['percentage']/100) + '%'}\"></div>\n            <p class=\"guard-training-display noselect\">\n\n                <i class=\"guard-training-generation-icon fa fa-shield faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'color': _player.training[0]['full'] ? '#ccddff' : 'black', 'visibility': _player.isGuardTrainingHappening ? 'initial' : 'hidden' }\"></i>\n                Guard\n                <i class=\"guard-training-collection-icon fa fa-shield faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                    [ngClass]=\"{'faa-tada': !_player.isGuardCapacityFull, 'faa-horizontal': _player.isGuardCapacityFull }\"></i>\n            </p>\n        </div>\n    </div>\n    <h4 style=\"padding-bottom:.5rem;padding-top:.5rem;margin:0;text-align:center\">Recruitment</h4>\n    <div class=\"left-side\">\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-archive\" aria-hidden=\"true\"></i>\n                {{_player.helpWanted[0]['currentStore']}}/{{_player.helpWantedCapacity}}\n            </p>\n        </div>\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-clock-o\" aria-hidden=\"true\"></i>\n                5:00\n            </p>\n        </div>\n    </div>\n    <div class=\"right-side noselect\">\n\n\n        <div class=\"help-wanted-container\" *ngIf=\"_player.helpWanted1Unlocked\" (click)=\"collectHelpWanted1()\" [ngStyle]=\"{'cursor': _player.helpWanted[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n            <div class=\"help-wanted-progress-bar\" [ngStyle]=\"{'width': 100*(_player.helpWanted[0]['percentage']/100) + '%'}\"></div>\n            <p class=\"help-wanted-display noselect\">\n                <i class=\"help-wanted-generation-icon fa fa-user faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'color': _player.helpWanted[0]['full'] ? '#ccddff' : 'black' }\"></i>\n                Help Wanted Ad\n                <i class=\"help-wanted-collection-icon fa fa-user faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.helpWanted[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                    [ngClass]=\"{'faa-tada': !_player.isHenchmenCapacityFull, 'faa-horizontal': _player.isHenchmenCapacityFull }\"></i>\n            </p>\n        </div>\n    </div>\n\n\n</div>\n"
+module.exports = "<div class=\"activity-panel\" noselect>\n    <h4 style=\"padding-bottom:.5rem;padding-top:.5rem;margin:0;text-align:center\">Training</h4>\n    <div class=\"left-side\">\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-archive\" aria-hidden=\"true\"></i>\n                {{_player.training[0]['currentStore']+_player.training[0]['queued']}}/{{_player.guardTrainingCapacity}}\n            </p>\n        </div>\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-clock-o\" aria-hidden=\"true\"></i>\n                5:00\n            </p>\n        </div>\n    </div>\n    <div class=\"add-column\">\n        <div class=\"add-block\">\n            <i class=\"add-to-queue-icon fa fa-plus\" *ngIf=\"_player.guardTrainingUnlocked\" aria-hidden=\"true\" (click)=\"trainAGuard()\"\n                [ngStyle]=\"{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}\"></i>\n        </div>\n    </div>\n    <div class=\"right-side noselect\">\n\n\n        <div class=\"guard-training-container noselect\" *ngIf=\"_player.guardTrainingUnlocked\" (click)=\"collectGuards()\" [ngStyle]=\"{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n\n            <div class=\"guard-training-progress-bar\" [ngStyle]=\"{'width': 100*(_player.training[0]['percentage']/100) + '%'}\"></div>\n            <p class=\"guard-training-display noselect\">\n\n                <i class=\"guard-training-generation-icon fa fa-shield faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'color': _player.training[0]['full'] ? '#ccddff' : 'black', 'visibility': _player.isGuardTrainingHappening ? 'initial' : 'hidden' }\"></i>\n                Guard\n                <i class=\"guard-training-collection-icon fa fa-shield faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                    [ngClass]=\"{'faa-tada': !_player.isGuardCapacityFull, 'faa-horizontal': _player.isGuardCapacityFull }\"></i>\n            </p>\n        </div>\n    </div>\n    <h4 *ngIf=\"_recruiting.areAnyUnlocked()\" style=\"padding-bottom:.5rem;padding-top:.5rem;margin:0;text-align:center\">Recruitment</h4>\n    <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"left-side\">\n            <div style=\"height:1.2rem;width:20%;display:inline-block;\">\n                   \n                </div>\n        <div style=\"height:1.2rem;width:60%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-archive\" aria-hidden=\"true\"></i>\n                {{_player.recruiting[0]['currentStore']}}/{{_recruiting.getCapacityById(0)}}\n            </p>\n        </div>\n        \n    </div>\n    <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"right-side noselect\">\n\n\n        <div class=\"help-wanted-container\" *ngIf=\"_recruiting.isUnlockedById(0)\" (click)=\"_recruiting.collectById(0)\" [ngStyle]=\"{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n            <div class=\"help-wanted-progress-bar\" [ngStyle]=\"{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}\"></div>\n            <p class=\"help-wanted-display noselect\">\n                <i class=\"help-wanted-generation-icon fa fa-user faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'visibility': _recruiting.isRecruitingById(0) ? 'default' : 'hidden' }\"></i>\n                Craigslist Ad\n                <i class=\"help-wanted-collection-icon fa fa-user faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                    [ngClass]=\"{'faa-tada': !_player.isHenchmenCapacityFull, 'faa-horizontal': _player.isHenchmenCapacityFull }\"></i>\n            </p>\n        </div>\n    </div>\n\n\n</div>\n"
 
 /***/ }),
 
@@ -45,6 +45,7 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivityPanelComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,39 +57,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var ActivityPanelComponent = (function () {
-    function ActivityPanelComponent(_player) {
+    function ActivityPanelComponent(_player, _recruiting) {
         this._player = _player;
-        this.collectingHenchmen = false;
+        this._recruiting = _recruiting;
         this.queueingAGuard = false;
         this.collectingGuards = false;
     }
-    ActivityPanelComponent.prototype.collectHelpWanted1 = function () {
-        if (this._player.helpWanted[0]['currentStore'] > 0) {
-            if (!this.collectingHenchmen) {
-                this.collectingHenchmen = true;
-                this._player.currentHenchmen += this._player.helpWanted[0]['currentStore'];
-                if (this._player.currentHenchmen > this._player.henchmenCapacity) {
-                    this._player.helpWanted[0]['currentStore'] = this._player.currentHenchmen - this._player.henchmenCapacity;
-                    this._player.currentHenchmen = this._player.henchmenCapacity;
-                    //This is currently busted.
-                    if (this._player.helpWanted[0]['full']) {
-                        this._player.helpWanted[0]['magicModulo'] = -1;
-                    }
-                    this._player.helpWanted[0]['full'] = this._player.helpWanted[0]['currentStore'] == this._player.helpWanted[0]['capacity'];
-                }
-                else {
-                    this._player.helpWanted[0]['currentStore'] = 0;
-                    if (this._player.helpWanted[0]['full']) {
-                        this._player.helpWanted[0]['magicModulo'] = -1;
-                    }
-                    this._player.helpWanted[0]['full'] = false;
-                    this._player.helpWanted[0]['percentage'] = 0;
-                }
-                this.collectingHenchmen = false;
-            }
-        }
-    };
     ActivityPanelComponent.prototype.trainAGuard = function () {
         if (this._player.currentHenchmen > 0) {
             if (!this.queueingAGuard) {
@@ -135,10 +111,10 @@ ActivityPanelComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/activity-panel/activity-panel.component.html"),
         styles: [__webpack_require__("../../../../../src/app/activity-panel/activity-panel.component.scss")],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__["a" /* RecruitingService */]) === "function" && _b || Object])
 ], ActivityPanelComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=activity-panel.component.js.map
 
 /***/ }),
@@ -257,35 +233,6 @@ var AppComponent = (function () {
             this._scheming.earningSchemePoints = true;
         }
     };
-    //currently only a single help wanted object is supported.
-    AppComponent.prototype.hench = function () {
-        if (this._player.helpWantedUnlocked) {
-            if (this._player.helpWanted[0]['full']) {
-                //Reset the full variable in case their capacity has changed.
-                if (this._player.helpWantedCapacity != this._player.helpWanted[0]['currentStore']) {
-                    this._player.helpWanted[0]['full'] = false;
-                    this._player.helpWanted[0]['magicModulo'] = this.ticker % this._player.helpWantedRate == 0 ? this._player.helpWantedRate : (this.ticker % this._player.helpWantedRate) - 1;
-                    this._player.helpWantedRateLock = this._player.helpWantedRate;
-                }
-            }
-            if (!this._player.helpWanted[0]['full']) {
-                if (!(this._player.helpWanted[0]['magicModulo'] > -1)) {
-                    this._player.helpWanted[0]['magicModulo'] = this.ticker % this._player.helpWantedRate == 0 ? this._player.helpWantedRate : (this.ticker % this._player.helpWantedRate) - 1;
-                    this._player.helpWantedRateLock = this._player.helpWantedRate;
-                }
-                else {
-                    if (this._player.helpWanted[0]['magicModulo'] == this.ticker % this._player.helpWantedRateLock) {
-                        this._player.helpWanted[0]['currentStore']++;
-                        if (this._player.helpWantedCapacity == this._player.helpWanted[0]['currentStore']) {
-                            this._player.helpWanted[0]['full'] = true;
-                        }
-                    }
-                }
-                var sanityTickerNumber = this.ticker % this._player.helpWantedRateLock <= this._player.helpWanted[0]['magicModulo'] ? (this.ticker % this._player.helpWantedRateLock) + this._player.helpWantedRateLock : this.ticker % this._player.helpWantedRateLock;
-                this._player.helpWanted[0]['percentage'] = Math.round(((sanityTickerNumber - this._player.helpWanted[0]['magicModulo']) / this._player.helpWantedRateLock) * 10000) / 100;
-            }
-        }
-    };
     AppComponent.prototype.train = function () {
         if (this._player.guardTrainingUnlocked) {
             if (this._player.isGuardTrainingHappening) {
@@ -325,7 +272,6 @@ var AppComponent = (function () {
             if (_this.ticker % 60 == 0) {
                 _this.minute = true;
             }
-            _this.hench();
             _this.train();
             _this.minute = false;
         }, 100);
@@ -359,15 +305,17 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -390,9 +338,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_8__header_header_module__["a" /* HeaderModule */],
-            __WEBPACK_IMPORTED_MODULE_9__scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */],
-            __WEBPACK_IMPORTED_MODULE_10__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
+            __WEBPACK_IMPORTED_MODULE_9__header_header_module__["a" /* HeaderModule */],
+            __WEBPACK_IMPORTED_MODULE_10__scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */],
+            __WEBPACK_IMPORTED_MODULE_11__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */]
         ],
@@ -400,6 +348,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4__data_service__["a" /* DataService */],
             __WEBPACK_IMPORTED_MODULE_5__services_player_service__["a" /* PlayerService */],
             __WEBPACK_IMPORTED_MODULE_7__services_scheming_service__["a" /* SchemingService */],
+            __WEBPACK_IMPORTED_MODULE_8__services_recruiting_service__["a" /* RecruitingService */],
             __WEBPACK_IMPORTED_MODULE_6__services_primary_loop_service__["a" /* PrimaryLoopService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
@@ -712,21 +661,16 @@ var PlayerService = (function () {
         this.schemes = [
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
-            { level: 20, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
-            { level: 0, exp: 0 }
+            { level: 0, exp: 0 },
+            { level: 0, exp: 0 } //5 Henchmen Lodging
         ];
         //*****************************************************************************************
         //Henchmen
         this.currentHenchmen = 0;
-        this.helpWanted = [
-            { currentStore: 0,
-                percentage: 0,
-                magicModulo: -1,
-                full: false,
-                capacity: this.helpWantedCapacity,
-                unlocked: this.helpWanted1Unlocked }
+        this.recruiting = [
+            { currentStore: 0, capacity: 0, countdown: 0, lock: 0 } //Help Wanted 1
         ];
         this.isGuardTrainingHappening = false;
         this.currentGuards = 0;
@@ -769,49 +713,6 @@ var PlayerService = (function () {
     Object.defineProperty(PlayerService.prototype, "isHenchmenCapacityFull", {
         get: function () {
             return this.currentHenchmen == this.henchmenCapacity;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "helpWantedUnlocked", {
-        //Recruitment Object - Help Wanted
-        get: function () {
-            return this.schemes[3]['level'] > 0;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "helpWanted1Unlocked", {
-        get: function () {
-            return this.schemes[3]['level'] > 0;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "helpWantedCapacity", {
-        get: function () {
-            var capacity = 1;
-            if (this.schemes[3]['level'] >= 3) {
-                capacity += 2;
-            }
-            if (this.schemes[3]['level'] >= 5) {
-                capacity += 7;
-            }
-            return capacity;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "helpWantedRate", {
-        get: function () {
-            var rate = 60;
-            if (this.schemes[3]['level'] >= 2) {
-                rate -= 15;
-            }
-            if (this.schemes[3]['level'] >= 4) {
-                rate -= 15;
-            }
-            return rate;
         },
         enumerable: true,
         configurable: true
@@ -873,6 +774,7 @@ PlayerService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -885,13 +787,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 //All loop related activities. Called by app.component and nowhere else.
 var PrimaryLoopService = (function () {
-    function PrimaryLoopService(_player, _scheming) {
+    function PrimaryLoopService(_player, _scheming, _recruiting) {
         this._player = _player;
         this._scheming = _scheming;
+        this._recruiting = _recruiting;
         //Flow logic is 1. Scheme 2. Recruit
-        //Saved Variables
         //Ticker set at one minute (@100 ms/s) for now.
         this.ticker = 600;
         //Duplicate of above for replacement events.
@@ -901,6 +804,11 @@ var PrimaryLoopService = (function () {
     PrimaryLoopService.prototype.tick = function () {
         if (this._scheming.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
+        }
+        for (var i = 0; i < this._player.recruiting.length; i++) {
+            if (this._recruiting.isRecruitingById(i)) {
+                this._recruiting.tickById(i);
+            }
         }
     };
     //Events that occur every second
@@ -933,11 +841,135 @@ var PrimaryLoopService = (function () {
 }());
 PrimaryLoopService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__recruiting_service__["a" /* RecruitingService */]) === "function" && _c || Object])
 ], PrimaryLoopService);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=primary-loop.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/recruiting.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecruitingService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var RecruitingService = (function () {
+    function RecruitingService(_player) {
+        this._player = _player;
+        this.collecting = false;
+    }
+    RecruitingService.prototype.getCapacityById = function (id) {
+        if (id == 0) {
+            //Starting capacity is 1
+            var capacity = 1;
+            //Hired Help reduces the rate by static amounts.
+            for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
+                if (_i == 2) {
+                    capacity += 2;
+                }
+                if (_i == 4) {
+                    capacity += 7;
+                }
+            }
+            return capacity;
+        }
+    };
+    RecruitingService.prototype.isUnlockedById = function (id) {
+        if (id == 0) {
+            return this._player.schemes[3]['level'] > 0;
+        }
+    };
+    RecruitingService.prototype.areAnyUnlocked = function () {
+        for (var _i = 0; _i < this._player.recruiting.length; _i++) {
+            if (this.isUnlockedById(_i)) {
+                return true;
+            }
+        }
+        return false;
+    };
+    RecruitingService.prototype.isFullById = function (id) {
+        return this._player.recruiting[id]['currentStore'] == this.getCapacityById(id);
+    };
+    RecruitingService.prototype.collectById = function (id) {
+        if (this._player.recruiting[id]['currentStore'] > 0) {
+            if (!this.collecting) {
+                this.collecting = true;
+                for (var _i = 0; _i < this._player.recruiting[id]['currentStore']; _i++) {
+                    if (this._player.currentHenchmen < this._player.henchmenCapacity) {
+                        this._player.currentHenchmen++;
+                        this._player.recruiting[id]['currentStore']--;
+                    }
+                }
+                if (!this.isFullById(id)) {
+                    this.resetCountdownById(id);
+                }
+                this.collecting = false;
+            }
+        }
+    };
+    RecruitingService.prototype.getRecruitingCountdownById = function (id) {
+        if (id == 0) {
+            //Starting recruitment rate is 60 seconds.
+            var rate = 600;
+            //Hired Help reduces the rate by static amounts.
+            for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
+                if (_i == 1) {
+                    rate -= 100;
+                }
+                if (_i == 3) {
+                    rate -= 100;
+                }
+            }
+            return rate;
+        }
+    };
+    RecruitingService.prototype.isRecruitingById = function (id) {
+        if (this.isUnlockedById(id)) {
+            if (!this.isFullById(id)) {
+                return true;
+            }
+        }
+        return false;
+    };
+    RecruitingService.prototype.resetCountdownById = function (id) {
+        this._player.recruiting[id]['countdown'] = this.getRecruitingCountdownById(id);
+        this._player.recruiting[id]['lock'] = this.getRecruitingCountdownById(id);
+    };
+    RecruitingService.prototype.tickById = function (id) {
+        if (this._player.recruiting[0]['countdown'] == 0 && this._player.recruiting[0]['lock'] == 0) {
+            this.resetCountdownById(id);
+        }
+        this._player.recruiting[id]['countdown']--;
+        if (this._player.recruiting[id]['countdown'] == 0) {
+            this._player.recruiting[id]['currentStore']++;
+            if (!this.isFullById(id)) {
+                this.resetCountdownById(id);
+            }
+        }
+    };
+    return RecruitingService;
+}());
+RecruitingService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object])
+], RecruitingService);
+
+var _a;
+//# sourceMappingURL=recruiting.service.js.map
 
 /***/ }),
 
@@ -962,8 +994,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SchemingService = (function () {
     function SchemingService(_player) {
         this._player = _player;
-        //*****************************************************************************************
-        //Schemes
         this.currentScheme = {};
         this.currentSchemeLevel = 0;
         this.earningSchemePoints = false;
@@ -993,7 +1023,7 @@ var SchemingService = (function () {
         get: function () {
             //Starting scheme points per tick is 0
             var hatched = 0;
-            //Evil Research increases scheme points per tick by flipping coins
+            //Quick Thinking increases scheme points per tick by flipping coins
             var successes = this.coinFlip(6);
             for (var _i = 0; _i < this._player.schemes[2]['level']; _i++) {
                 if (_i < 5) {
@@ -1018,7 +1048,7 @@ var SchemingService = (function () {
         get: function () {
             //Starting scheme points per second is 1
             var hatched = 1;
-            //Diabolic Genius increases scheme points per second
+            //Mastermind increases scheme points per second
             for (var _i = 0; _i < this._player.schemes[0]['level']; _i++) {
                 if (_i < 5) {
                     hatched += 1;
@@ -1042,7 +1072,7 @@ var SchemingService = (function () {
         get: function () {
             //Starting scheme points per minute is 0
             var hatched = 0;
-            //Nefarious Logic increases scheme points per minute
+            //Cold Logic increases scheme points per minute
             for (var _i = 0; _i < this._player.schemes[1]['level']; _i++) {
                 if (_i < 5) {
                     hatched += 60;

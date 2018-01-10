@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PlayerService } from '../services/player.service';
+import { RecruitingService} from '../services/recruiting.service';
 
 @Component({
     selector: 'activity-panel',
@@ -8,37 +9,12 @@ import { PlayerService } from '../services/player.service';
 })
 export class ActivityPanelComponent {
 
-    constructor(public _player: PlayerService) {
+    constructor(public _player: PlayerService,
+    public _recruiting: RecruitingService) {
     }
 
-    collectingHenchmen: boolean = false;
 
-    collectHelpWanted1() {
-        if (this._player.helpWanted[0]['currentStore'] > 0) {
-            if (!this.collectingHenchmen) {
-                this.collectingHenchmen = true;
-                this._player.currentHenchmen += this._player.helpWanted[0]['currentStore'];
-                if (this._player.currentHenchmen > this._player.henchmenCapacity) {
-                    this._player.helpWanted[0]['currentStore'] = this._player.currentHenchmen - this._player.henchmenCapacity;
-                    this._player.currentHenchmen = this._player.henchmenCapacity;
-                    //This is currently busted.
-                    if (this._player.helpWanted[0]['full']) {
-                        this._player.helpWanted[0]['magicModulo'] = -1;
-                    }
-                    this._player.helpWanted[0]['full'] = this._player.helpWanted[0]['currentStore'] == this._player.helpWanted[0]['capacity'];
-                } else {
-                    this._player.helpWanted[0]['currentStore'] = 0;
-                    if (this._player.helpWanted[0]['full']) {
-                        this._player.helpWanted[0]['magicModulo'] = -1;
-                    }
-                    this._player.helpWanted[0]['full'] = false;
-                    this._player.helpWanted[0]['percentage'] = 0;
-                }
-
-                this.collectingHenchmen = false;
-            }
-        }
-    }
+    
 
     queueingAGuard: boolean = false;
 

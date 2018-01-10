@@ -6,6 +6,7 @@ import { DataService } from './data.service';
 import { PlayerService } from './services/player.service';
 import { PrimaryLoopService } from './services/primary-loop.service';
 import { SchemingService } from './services/scheming.service';
+import { RecruitingService } from './services/recruiting.service';
 import { HeaderModule } from './header/header.module';
 import { SchemePanelModule } from './scheme-panel/scheme-panel.module';
 import { ActivityPanelModule } from './activity-panel/activity-panel.module';
@@ -25,6 +26,7 @@ import { ActivityPanelModule } from './activity-panel/activity-panel.module';
     DataService,
     PlayerService,
     SchemingService,
+    RecruitingService,
     PrimaryLoopService
   ],
   bootstrap: [AppComponent]
