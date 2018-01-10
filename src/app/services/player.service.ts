@@ -15,12 +15,12 @@ export class PlayerService {
         { level: 0, exp: 0 }, //1 Cold Logic, fully coded.
         { level: 0, exp: 0 }, //2 Quick Thinking, fully coded.
         { level: 0, exp: 0 }, //3 Hired Help
-        { level: 0, exp: 0 }, //4 Guard Duty
+        { level: 3, exp: 0 }, //4 Guard Duty
         { level: 0, exp: 0 } //5 Henchmen Lodging
     ]
 
     //Henchmen
-    currentHenchmen: number = 0;
+    currentHenchmen: number = 5;
     recruiting: Array<Object> = [
         {currentStore : 0, capacity : 0, countdown : 0, lock : 0 } //Help Wanted 1
     ]

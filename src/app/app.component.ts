@@ -89,6 +89,6 @@ export class AppComponent implements OnInit {
       this.train();
 
       this.minute = false;
-    }, 100);
+    }, 10);
   }
 }

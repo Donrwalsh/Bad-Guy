@@ -1,6 +1,60 @@
 <div class="activity-panel" noselect>
-    <h4 style="padding-bottom:.5rem;padding-top:.5rem;margin:0;text-align:center">Training</h4>
-    <div class="left-side"></div>
+    <div class="henchmen-column">
+        <h4 class="title">Training</h4>
+        <div class="left-padding"></div>
+        <div class="add-column">
+            <div class="add-block">
+                <i class="add-to-queue-icon fa fa-plus" *ngIf="_player.guardTrainingUnlocked" aria-hidden="true" (click)="trainAGuard()"
+                    [ngStyle]="{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}"></i>
+            </div>
+        </div>
+        <div class="progress-column">
+            <div class="guard-training-container" *ngIf="_player.guardTrainingUnlocked" (click)="collectGuards()" [ngStyle]="{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }">
+
+                <div class="guard-training-progress-bar" [ngStyle]="{'width': 100*(_player.training[0]['percentage']/100) + '%'}"></div>
+                <p class="guard-training-display">
+
+                    <i class="guard-training-generation-icon fa fa-shield faa-slow faa-flash animated" aria-hidden="true" [ngStyle]="{'color': _player.training[0]['full'] ? '#ccddff' : 'black', 'visibility': _player.isGuardTrainingHappening ? 'initial' : 'hidden' }"></i>
+                    Guard
+                    <i class="guard-training-collection-icon fa fa-shield faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }"
+                        [ngClass]="{'faa-tada': !_player.isGuardCapacityFull, 'faa-horizontal': _player.isGuardCapacityFull }"></i>
+                </p>
+            </div>
+        </div>
+        <h4 class="title" *ngIf="_recruiting.areAnyUnlocked()">Recruitment</h4>
+        <div *ngIf="_recruiting.areAnyUnlocked()" class="left-padding"></div>
+        <div *ngIf="_recruiting.areAnyUnlocked()" class="progress-no-add-column">
+            <div class="help-wanted-container" *ngIf="_recruiting.isUnlockedById(0)" (click)="_recruiting.collectById(0)" [ngStyle]="{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }">
+                <div class="help-wanted-progress-bar" [ngStyle]="{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}"></div>
+                <p class="help-wanted-display noselect">
+                    <i class="help-wanted-generation-icon fa fa-user faa-slow faa-flash animated" aria-hidden="true" [ngStyle]="{'visibility': _recruiting.isRecruitingById(0) ? 'default' : 'hidden' }"></i>
+                    Craigslist Ad
+                    <i class="help-wanted-collection-icon fa fa-user faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }"
+                        [ngClass]="{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }"></i>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div style="width:50%;height:300px;background-color:pink;float:right;">
+        <div style="position:relative;">Operations</div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
         <div style="height:1.2rem;width:40%;display:inline-block;">
             <p style="margin:0;width:100%;display:inline-block;" class="training-display">
                 <i style="padding-left:.5rem" class="capacity-icon fa fa-archive" aria-hidden="true"></i>
@@ -16,7 +70,7 @@
     </div>
     <div class="add-column">
         <div class="add-block">
-            <i class="add-to-queue-icon fa fa-plus" *ngIf="_player.guardTrainingUnlocked" aria-hidden="true" (click)="trainAGuard()"
+            
                 [ngStyle]="{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}"></i>
         </div>
     </div>
@@ -64,3 +118,4 @@
 
 
 </div>
+-->

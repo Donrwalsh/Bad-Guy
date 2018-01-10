@@ -6,242 +6,258 @@
         width: 100%;
     }
 
-    .left-side {
-        width: 45%;
-        display:inline-block;
-        cursor: default;
-
-        .training-display {
-            height: 1.2rem;
-
-            
-        }
-    }
-
-    .add-column {
-        cursor: default;
-        width: 3%;
-        display:inline-block;
-        .add-block {
-            height: 1.2rem;
-        }
-
-        .add-to-queue-icon {
-            vertical-align: middle;
-        }
-    }
-
-    .right-side {
+    .henchmen-column {
         width: 50%;
-        float: right;
-        display:block;
-        cursor: default;
+        display: inline-block;
 
-        .guard-training-container {
-            width: 100%;
-            height: 1.2rem;
-            border: 1px solid #ccddff;
-            border-radius: 0px 15px 15px 0px;
+        .title {
+            padding-bottom: .5rem;
+            padding-top: .5rem;
+            margin: 0;
+            text-align: center;
+        }
+    
+        .left-padding {
+            width:5%;
+            background-color: pink;
+            display:inline-block;
+        }
+        
+        .add-column {
+            width: 5%;
+            vertical-align: middle;
             display: inline-block;
-            position: relative;
-
-            .guard-training-progress-bar {
-                border-radius: 0px 15px 15px 0px;
-                position: absolute;
-                height: 1.2em;
-                background-color: #ccddff;
-            }
-
-            .wide {
-                @media all and (min-width:640px) {
-                    display: block;
-                }
-                @media all and (max-width:639px) {
-                    display: block;
-                }
-                @media all and (max-width:459px) {
-                    display: none;
-                }
-                @media all and (max-width:399px) {
-                    display: none;
-                }
-            }
-
-            .narrow {
-                @media all and (min-width:640px) {
-                    display: none;
-                }
-                @media all and (max-width:639px) {
-                    display: none;
-                }
-                @media all and (max-width:459px) {
-                    display: block;
-                }
-                @media all and (max-width:399px) {
-                    display: block;
-                }
-            }
             
+            .add-block {
+                height: 1.2rem;
+                
+                .add-to-queue-icon {
 
-            .guard-training-display {
-                font-size: .8em;
+                }
+            }
+    
+        }
+
+        .progress-column {
+            width:75%;
+            display:inline-block;
+
+            .guard-training-container {
                 width: 100%;
-                margin: 0;
+                height: 1.2rem;
+                border: 1px solid #ccddff;
+                border-radius: 0px 15px 15px 0px;
+                display: inline-block;
                 position: relative;
-                user-select: none;
-                @media all and (max-width:639px) {
-                    font-size: .6em;
+
+                .training-display {
+                    height: 1.2rem;
                 }
-                @media all and (max-width:459px) {
+    
+                .guard-training-progress-bar {
+                    border-radius: 0px 15px 15px 0px;
+                    position: absolute;
+                    height: 1.2em;
+                    background-color: #ccddff;
+                }
+    
+                .wide {
+                    @media all and (min-width:640px) {
+                        display: block;
+                    }
+                    @media all and (max-width:639px) {
+                        display: block;
+                    }
+                    @media all and (max-width:459px) {
+                        display: none;
+                    }
+                    @media all and (max-width:399px) {
+                        display: none;
+                    }
+                }
+    
+                .narrow {
+                    @media all and (min-width:640px) {
+                        display: none;
+                    }
+                    @media all and (max-width:639px) {
+                        display: none;
+                    }
+                    @media all and (max-width:459px) {
+                        display: block;
+                    }
+                    @media all and (max-width:399px) {
+                        display: block;
+                    }
+                }
+                
+    
+                .guard-training-display {
                     font-size: .8em;
-                }
-                @media all and (max-width:399px) {
-                    font-size: .5em;
-                }
-
-                .guard-training-generation-icon {
-                    min-width: 10px;
-                    float: left;
-                    margin-left: .5em;
-                    margin-top: .3em;
-                    margin-right: 1em;
+                    width: 100%;
+                    margin: 0;
+                    position: relative;
+                    user-select: none;
                     @media all and (max-width:639px) {
-                        font-size: .9em;
-                        margin-top: .25em;
-                        margin-right: .8em;
+                        font-size: .6em;
                     }
                     @media all and (max-width:459px) {
-                        margin-top: .25em;
+                        font-size: .8em;
                     }
                     @media all and (max-width:399px) {
-                        font-size: .9em;
-                        margin-top: .1em;
+                        font-size: .5em;
                     }
-                }
-
-                .guard-training-collection-icon {
-                    float: right;
-                    margin-right: .5em;
-                    margin-top: .3em;
-                    @media all and (max-width:639px) {
-                        font-size: .9em;
-                        margin-top: .25em;
+    
+                    .guard-training-generation-icon {
+                        min-width: 10px;
+                        float: left;
+                        margin-left: .5em;
+                        margin-top: .3em;
+                        margin-right: 1em;
+                        @media all and (max-width:639px) {
+                            font-size: .9em;
+                            margin-top: .25em;
+                            margin-right: .8em;
+                        }
+                        @media all and (max-width:459px) {
+                            margin-top: .25em;
+                        }
+                        @media all and (max-width:399px) {
+                            font-size: .9em;
+                            margin-top: .1em;
+                        }
                     }
-                    @media all and (max-width:459px) {
-                        margin-top: .25em;
-                    }
-                    @media all and (max-width:399px) {
-                        font-size: .9em;
-                        margin-top: .1em;
+    
+                    .guard-training-collection-icon {
+                        float: right;
+                        margin-right: .5em;
+                        margin-top: .3em;
+                        @media all and (max-width:639px) {
+                            font-size: .9em;
+                            margin-top: .25em;
+                        }
+                        @media all and (max-width:459px) {
+                            margin-top: .25em;
+                        }
+                        @media all and (max-width:399px) {
+                            font-size: .9em;
+                            margin-top: .1em;
+                        }
                     }
                 }
             }
         }
 
-        .help-wanted-container {
-            margin-top: .1em;
-            width: 100%;
-            height: 1.2em;
-            border: 1px solid #ccddff;
-            border-radius: 0px 15px 15px 0px;
-            position: relative;
+        .progress-no-add-column {
+            width:82%;
+            display:inline-block;
 
-            .help-wanted-progress-bar {
-                border-radius: 0px 15px 15px 0px;
-                position: absolute;
-                height: 1.2em;
-                background-color: #ccddff;
-            }
-
-            .wide {
-                @media all and (min-width:640px) {
-                    display: block;
-                }
-                @media all and (max-width:639px) {
-                    display: block;
-                }
-                @media all and (max-width:459px) {
-                    display: none;
-                }
-                @media all and (max-width:399px) {
-                    display: none;
-                }
-            }
-
-            .narrow {
-                @media all and (min-width:640px) {
-                    display: none;
-                }
-                @media all and (max-width:639px) {
-                    display: none;
-                }
-                @media all and (max-width:459px) {
-                    display: block;
-                }
-                @media all and (max-width:399px) {
-                    display: block;
-                }
-            }
-            
-
-            .help-wanted-display {
-                font-size: .8em;
-                width: 100%;
+            .help-wanted-container {
                 margin-top: .1em;
-                margin: 0;
-                user-select: none;
+                width: 100%;
+                height: 1.2em;
+                border: 1px solid #ccddff;
+                border-radius: 0px 15px 15px 0px;
                 position: relative;
-                @media all and (max-width:639px) {
-                    font-size: .6em;
-                    margin-top: .2em;
+    
+                .help-wanted-progress-bar {
+                    border-radius: 0px 15px 15px 0px;
+                    position: absolute;
+                    height: 1.2em;
+                    background-color: #ccddff;
                 }
-                @media all and (max-width:459px) {
+    
+                .wide {
+                    @media all and (min-width:640px) {
+                        display: block;
+                    }
+                    @media all and (max-width:639px) {
+                        display: block;
+                    }
+                    @media all and (max-width:459px) {
+                        display: none;
+                    }
+                    @media all and (max-width:399px) {
+                        display: none;
+                    }
+                }
+    
+                .narrow {
+                    @media all and (min-width:640px) {
+                        display: none;
+                    }
+                    @media all and (max-width:639px) {
+                        display: none;
+                    }
+                    @media all and (max-width:459px) {
+                        display: block;
+                    }
+                    @media all and (max-width:399px) {
+                        display: block;
+                    }
+                }
+                
+    
+                .help-wanted-display {
                     font-size: .8em;
+                    width: 100%;
                     margin-top: .1em;
-                }
-                @media all and (max-width:399px) {
-                    font-size: .5em;
-                    margin-top: .4em;
-                }
-
-                .help-wanted-generation-icon {
-                    min-width: 10px;
-                    float: left;
-                    margin-left: .5em;
-                    margin-top: .3em;
-                    margin-right: 1em;
+                    margin: 0;
+                    user-select: none;
+                    position: relative;
                     @media all and (max-width:639px) {
-                        font-size: .9em;
-                        margin-top: .25em;
-                        margin-right: .8em;
+                        font-size: .6em;
+                        margin-top: .2em;
                     }
                     @media all and (max-width:459px) {
-                        margin-top: .25em;
-                    }
-                    @media all and (max-width:399px) {
-                        font-size: .9em;
+                        font-size: .8em;
                         margin-top: .1em;
                     }
-                }
-
-                .help-wanted-collection-icon {
-                    float: right;
-                    margin-right: .5em;
-                    margin-top: .3em;
-                    @media all and (max-width:639px) {
-                        font-size: .9em;
-                        margin-top: .25em;
-                    }
-                    @media all and (max-width:459px) {
-                        margin-top: .25em;
-                    }
                     @media all and (max-width:399px) {
-                        font-size: .9em;
-                        margin-top: .1em;
+                        font-size: .5em;
+                        margin-top: .4em;
+                    }
+    
+                    .help-wanted-generation-icon {
+                        min-width: 10px;
+                        float: left;
+                        margin-left: .5em;
+                        margin-top: .3em;
+                        margin-right: 1em;
+                        @media all and (max-width:639px) {
+                            font-size: .9em;
+                            margin-top: .25em;
+                            margin-right: .8em;
+                        }
+                        @media all and (max-width:459px) {
+                            margin-top: .25em;
+                        }
+                        @media all and (max-width:399px) {
+                            font-size: .9em;
+                            margin-top: .1em;
+                        }
+                    }
+    
+                    .help-wanted-collection-icon {
+                        float: right;
+                        margin-right: .5em;
+                        margin-top: .3em;
+                        @media all and (max-width:639px) {
+                            font-size: .9em;
+                            margin-top: .25em;
+                        }
+                        @media all and (max-width:459px) {
+                            margin-top: .25em;
+                        }
+                        @media all and (max-width:399px) {
+                            font-size: .9em;
+                            margin-top: .1em;
+                        }
                     }
                 }
             }
-        }
 
+        }
     }
+
 }
