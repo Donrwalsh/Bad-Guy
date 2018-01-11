@@ -8,11 +8,11 @@
     <div>
         <h1 class="title">Bad Guy</h1>
     </div>
-    <div class="scheme">
+    <div class="scheme" [ngStyle]="{'cursor': _player.currentScheme ? 'pointer' : 'default'}" (click)="_scheming.switchToCurrentSchemePreview()">
         <div *ngIf="_scheming.earningSchemePoints">
             <h5 class="status-text">Scheming</h5>
             <div class="scheme-bar-container" [ngStyle]="{'border' : '1px solid ' + _player.currentScheme.color }">
-                <div class="scheme-progress-bar" [ngStyle]="{'width': _player.currentSchemePercentage + '%', 'background-color' : _scheming.currentScheme.color}"></div>
+                <div class="scheme-progress-bar" [ngStyle]="{'width': _scheming.currentSchemePercentage + '%', 'background-color' : _player.currentScheme.color}"></div>
                 <i class="scheme-icon fa {{_player.currentScheme.fa}}" aria-hidden="true"></i>
             </div>
         </div>

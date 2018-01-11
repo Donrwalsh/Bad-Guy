@@ -29,16 +29,18 @@ export class SchemingService {
         }        
     }
 
+    selected = 'scheme';
+
     getSchemeCurrentLevel(id) {
         return this._player.schemes[id]['level'];
     }
 
     get previewSchemeDescription() {
-        return this.previewScheme['description'][this.previewSchemeLevel]
+        return this.previewScheme['description'][this.previewSchemeLevel-1]
     }
     
     get previewSchemeFlavor() {
-        return this.previewScheme['flavor'][this.previewSchemeLevel]
+        return this.previewScheme['flavor'][this.previewSchemeLevel-1]
     }
 
     get previewSchemeExp() {
@@ -46,12 +48,11 @@ export class SchemingService {
     }
 
     get previewSchemeExpTarget() {
-        return this.previewScheme['exp'][this.previewSchemeLevel]
+        return this.previewScheme['exp'][this.previewSchemeLevel-1]
     }
 
 
     startSchemingPreview() {
-        console.log("potato");
         if (this.schemeLearnable(this.previewScheme)) {
           this._player.currentScheme = this.previewScheme;
           this.setCurrentSchemeLevel();
@@ -70,12 +71,27 @@ export class SchemingService {
     currentSchemeLevel: number = 0;
     earningSchemePoints: boolean = false;
 
+    switchToCurrentSchemePreview() {
+        //Garbage. Needs to be actually coded.
+        if (this._player.currentScheme['ref'] <= 2 ) {
+            this.selected = "scheme";
+        } else {
+            this.selected = "hench"
+        }
+        this.previewScheme = this._player.currentScheme;
+        this.setCurrentSchemeLevel();
+        this.showPreview = true;
+    }
+
     //Scheme calculation setters
     earnSchemePoints(num) {
         this._player.schemes[this._player.currentScheme['ref']]['exp'] += num;
         if(this._player.schemes[this._player.currentScheme['ref']]['exp'] >= this._player.currentScheme['exp'][this._player.schemes[this._player.currentScheme['ref']]['level']]) {
             this._player.schemes[this._player.currentScheme['ref']]['level']++;
             this._player.schemes[this._player.currentScheme['ref']]['exp'] = 0;
+            if (this.previewScheme == this._player.currentScheme) {
+                this.previewSchemeLevel++;
+            }
             this._player.currentScheme = {};
             this.earningSchemePoints = false;
         }

@@ -31,10 +31,9 @@ export class AppComponent implements OnInit {
   schemes: Array<any>;
 
   ngOnInit() {
-    console.log(this._scheming.schemes)
 
     setInterval(() => {
       this._loop.action();
-    }, 10000000);
+    }, 100);
   }
 }

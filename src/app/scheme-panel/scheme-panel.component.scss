@@ -174,19 +174,23 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
         .benefit-text {
             text-align: left;
+            font-size: .75rem;
             margin: 0;
+            margin-top: 1rem;
+            
         }
 
         .flavor-text {
             text-align: left;
             margin: .1rem;
-            padding-top: 1rem;
+            margin-top: 1rem;
             font-style: italic;
+            font-size: .75rem;
         }
 
         .scheme-exp {
-            margin-top: .25rem;
-            margin-bottom: 0;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
         }
     }
 }

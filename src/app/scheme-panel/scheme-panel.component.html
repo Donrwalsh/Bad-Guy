@@ -1,30 +1,30 @@
 <div *ngIf="_scheming.schemes" class="scheme-panel">
     <div class="select-bar">
-        <div class="schemes select" (click)="selected = 'schemes'">
+        <div class="schemes select" (click)="_scheming.selected = 'scheme'; _scheming.showPreview = false;">
             <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
         </div>
-        <div class="hench select" (click)="selected = 'hench'">
+        <div class="hench select" (click)="_scheming.selected = 'hench'; _scheming.showPreview = false;">
             <i class="fa fa-user" aria-hidden="true"></i>
         </div>
-        <div class="operate select" (click)="selected = 'operate'">
+        <div class="operate select" (click)="_scheming.selected = 'operate'; _scheming.showPreview = false;">
             <i class="fa fa-location-arrow" aria-hidden="true"></i>
         </div>
-        <div class="lair select" (click)="selected = 'lair'">
+        <div class="lair select" (click)="_scheming.selected = 'lair'; _scheming.showPreview = false;">
             <i class="fa fa-home" aria-hidden="true"></i>
         </div>
     </div>
-    <div class="scheme-area" *ngIf="selected == 'schemes'">
+    <div class="scheme-area" *ngIf="_scheming.selected == 'scheme'">
         <div class="column">
-            <p class="node">
-                <i class="fa {{_scheming.schemes[0].fa}}" aria-hidden="true" (click)="_scheming.schemePreview(0)"></i>
+            <p class="node" (click)="_scheming.schemePreview(0)">
+                <i class="fa {{_scheming.schemes[0].fa}}" aria-hidden="true" ></i>
             </p>
             <!--<p class="level">{{_scheming.getSchemeCurrentLevel(0)+1}}</p>-->
-            <p class="node">
-                <i class="fa {{_scheming.schemes[1].fa}}" aria-hidden="true" (click)="_scheming.schemePreview(1)"></i>
+            <p class="node" (click)="_scheming.schemePreview(1)">
+                <i class="fa {{_scheming.schemes[1].fa}}" aria-hidden="true"></i>
             </p>
             <!--<p class="level">{{_scheming.getSchemeCurrentLevel(1)+1}}</p>-->
-            <p class="node">
-                <i class="fa {{_scheming.schemes[2].fa}}" aria-hidden="true" (click)="_scheming.schemePreview(2)"></i>
+            <p class="node" (click)="_scheming.schemePreview(2)">
+                <i class="fa {{_scheming.schemes[2].fa}}" aria-hidden="true"></i>
             </p>
             <!--<p class="level">{{_scheming.getSchemeCurrentLevel(2)+1}}</p>-->
         </div>
@@ -33,18 +33,18 @@
         <div class="column"></div>
         <div class="column"></div>
     </div>
-    <div class="hench-area" *ngIf="selected == 'hench'">
+    <div class="hench-area" *ngIf="_scheming.selected == 'hench'">
         <div class="column">
-            <p class="node">
-                <i class="fa {{_scheming.schemes[3].fa}}" aria-hidden="true" (click)="_scheming.schemePreview(3)"></i>
+            <p class="node" (click)="_scheming.schemePreview(3)">
+                <i class="fa {{_scheming.schemes[3].fa}}" aria-hidden="true"></i>
             </p>
             <!--<p class="level">{{_scheming.getSchemeCurrentLevel(0)+1}}</p> -->
-            <p class="node">
-                <i class="fa {{_scheming.schemes[4].fa}}" aria-hidden="true" (click)="_scheming.schemePreview(4)"></i>
+            <p class="node" (click)="_scheming.schemePreview(4)">
+                <i class="fa {{_scheming.schemes[4].fa}}" aria-hidden="true"></i>
             </p>
             <!--<p class="level">{{_scheming.getSchemeCurrentLevel(1)+1}}</p> -->
-            <p class="node">
-                <i class="fa {{_scheming.schemes[5].fa}}" aria-hidden="true" (click)="_scheming.schemePreview(5)"></i>
+            <p class="node" (click)="_scheming.schemePreview(5)">
+                <i class="fa {{_scheming.schemes[5].fa}}" aria-hidden="true"></i>
             </p>
             <!--<p class="level">{{_scheming.getSchemeCurrentLevel(2)+1}}</p> -->
         </div>
@@ -53,18 +53,17 @@
         <div class="column"></div>
         <div class="column"></div>
     </div>
-    <div class="operate-area" *ngIf="selected == 'operate'"></div>
-    <div class="lair-area" *ngIf="selected == 'lair'"></div>
+    <div class="operate-area" *ngIf="_scheming.selected == 'operate'"></div>
+    <div class="lair-area" *ngIf="_scheming.selected == 'lair'"></div>
     <div *ngIf="_scheming.showPreview" class="scheme-flyout" [ngStyle]="{'background-color' : _scheming.previewScheme['flyout_color']}">
         <div class="inner-content">
             <i class="scheme-icon fa {{_scheming.previewScheme.fa}}" aria-hidden="true"></i>
             <p class="scheme-name">{{_scheming.previewScheme.name}} {{_scheming.previewSchemeLevel > 1 ? _scheming.previewSchemeLevel : ''}}</p>
-                <p class="benefit-header">Benefit: </p>
                 <p class="benefit-text">{{_scheming.previewSchemeDescription}} </p>
             <p class="flavor-text">{{_scheming.previewSchemeFlavor}}</p>
             <p class="scheme-exp"> {{_scheming.previewSchemeExp}}/{{_scheming.previewSchemeExpTarget}}</p>
-            <p class="node" style="width:80%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;" [ngStyle]="{'background-color' : previewScheme['flyout_color']}"
-                *ngIf="_scheming.previewScheme['ref'] != _player.currentScheme['ref']" (click)="_scheming.startSchemingPreview()">Learn {{_scheming.previewScheme.name}} {{_scheming.previewSchemeLevel > 1 ? _scheming.previewSchemeLevel : ''}}</p>
+            <p class="node" style="width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;" [ngStyle]="{'background-color' : _scheming.previewScheme['color']}"
+                *ngIf="_scheming.previewScheme['ref'] != _player.currentScheme['ref']" (click)="_scheming.startSchemingPreview()">Scheme</p>
         </div>
 
 
