@@ -2,6 +2,7 @@
     display:inline-block;
     width: 50%;
     cursor: default;
+    user-select: none;
     @media all and (max-width:459px) {
         width: 100%;
     }

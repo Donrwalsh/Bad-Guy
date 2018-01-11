@@ -7,6 +7,7 @@ import { PlayerService } from './services/player.service';
 import { PrimaryLoopService } from './services/primary-loop.service';
 import { SchemingService } from './services/scheming.service';
 import { InventoryService } from './services/inventory.service';
+import { TrainingService } from './services/training.service';
 import { RecruitingService } from './services/recruiting.service';
 import { HeaderModule } from './header/header.module';
 import { SchemePanelModule } from './scheme-panel/scheme-panel.module';
@@ -28,6 +29,7 @@ import { ActivityPanelModule } from './activity-panel/activity-panel.module';
     PlayerService,
     SchemingService,
     RecruitingService,
+    TrainingService,
     InventoryService,
     PrimaryLoopService
   ],

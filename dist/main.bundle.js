@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "../../../../../src lazy recursive";
 /***/ "../../../../../src/app/activity-panel/activity-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activity-panel\" noselect>\n    <div class=\"henchmen-column\">\n        <h4 class=\"title\">Training</h4>\n        <div class=\"left-padding\"></div>\n        <div class=\"add-column\">\n            <div class=\"add-block\">\n                <i class=\"add-to-queue-icon fa fa-plus\" *ngIf=\"_player.guardTrainingUnlocked\" aria-hidden=\"true\" (click)=\"trainAGuard()\"\n                    [ngStyle]=\"{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}\"></i>\n            </div>\n        </div>\n        <div class=\"progress-column\">\n            <div class=\"guard-training-container\" *ngIf=\"_player.guardTrainingUnlocked\" (click)=\"collectGuards()\" [ngStyle]=\"{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n\n                <div class=\"guard-training-progress-bar\" [ngStyle]=\"{'width': 100*(_player.training[0]['percentage']/100) + '%'}\"></div>\n                <p class=\"guard-training-display\">\n\n                    <i class=\"guard-training-generation-icon fa fa-shield faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'color': _player.training[0]['full'] ? '#ccddff' : 'black', 'visibility': _player.isGuardTrainingHappening ? 'initial' : 'hidden' }\"></i>\n                    Guard\n                    <i class=\"guard-training-collection-icon fa fa-shield faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                        [ngClass]=\"{'faa-tada': !_player.isGuardCapacityFull, 'faa-horizontal': _player.isGuardCapacityFull }\"></i>\n                </p>\n            </div>\n        </div>\n        <h4 class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</h4>\n        <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"left-padding\"></div>\n        <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"progress-no-add-column\">\n            <div class=\"help-wanted-container\" *ngIf=\"_recruiting.isUnlockedById(0)\" (click)=\"_recruiting.collectById(0)\" [ngStyle]=\"{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n                <div class=\"help-wanted-progress-bar\" [ngStyle]=\"{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}\"></div>\n                <p class=\"help-wanted-display noselect\">\n                    <i class=\"help-wanted-generation-icon fa fa-user faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'visibility': _recruiting.isRecruitingById(0) ? 'default' : 'hidden' }\"></i>\n                    Craigslist Ad\n                    <i class=\"help-wanted-collection-icon fa fa-user faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                        [ngClass]=\"{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }\"></i>\n                </p>\n            </div>\n        </div>\n    </div>\n    <div style=\"width:50%;height:300px;background-color:pink;float:right;\">\n        <div style=\"position:relative;\">Operations</div>\n    </div>\n\n\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!--\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-archive\" aria-hidden=\"true\"></i>\n                {{_player.training[0]['currentStore']+_player.training[0]['queued']}}/{{_player.guardTrainingCapacity}}\n            </p>\n        </div>\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-clock-o\" aria-hidden=\"true\"></i>\n                5:00\n            </p>\n        </div>\n    </div>\n    <div class=\"add-column\">\n        <div class=\"add-block\">\n            \n                [ngStyle]=\"{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}\"></i>\n        </div>\n    </div>\n    <div class=\"right-side noselect\">\n\n\n        <div class=\"guard-training-container noselect\" *ngIf=\"_player.guardTrainingUnlocked\" (click)=\"collectGuards()\" [ngStyle]=\"{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n\n            <div class=\"guard-training-progress-bar\" [ngStyle]=\"{'width': 100*(_player.training[0]['percentage']/100) + '%'}\"></div>\n            <p class=\"guard-training-display noselect\">\n\n                <i class=\"guard-training-generation-icon fa fa-shield faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'color': _player.training[0]['full'] ? '#ccddff' : 'black', 'visibility': _player.isGuardTrainingHappening ? 'initial' : 'hidden' }\"></i>\n                Guard\n                <i class=\"guard-training-collection-icon fa fa-shield faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                    [ngClass]=\"{'faa-tada': !_player.isGuardCapacityFull, 'faa-horizontal': _player.isGuardCapacityFull }\"></i>\n            </p>\n        </div>\n    </div>\n    <h4 *ngIf=\"_recruiting.areAnyUnlocked()\" style=\"padding-bottom:.5rem;padding-top:.5rem;margin:0;text-align:center\">Recruitment</h4>\n    <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"left-side\">\n            <div style=\"height:1.2rem;width:20%;display:inline-block;\">\n                   \n                </div>\n        <div style=\"height:1.2rem;width:60%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-archive\" aria-hidden=\"true\"></i>\n                {{_player.recruiting[0]['currentStore']}}/{{_recruiting.getCapacityById(0)}}\n            </p>\n        </div>\n        \n    </div>\n    <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"right-side noselect\">\n\n\n        <div class=\"help-wanted-container\" *ngIf=\"_recruiting.isUnlockedById(0)\" (click)=\"_recruiting.collectById(0)\" [ngStyle]=\"{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n            <div class=\"help-wanted-progress-bar\" [ngStyle]=\"{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}\"></div>\n            <p class=\"help-wanted-display noselect\">\n                <i class=\"help-wanted-generation-icon fa fa-user faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'visibility': _recruiting.isRecruitingById(0) ? 'default' : 'hidden' }\"></i>\n                Craigslist Ad\n                <i class=\"help-wanted-collection-icon fa fa-user faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                    [ngClass]=\"{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }\"></i>\n            </p>\n        </div>\n    </div>\n\n\n</div>\n-->"
+module.exports = "<div class=\"activity-panel\" noselect>\n    <div class=\"henchmen-column\" noselect>\n        <h4 class=\"title\" *ngIf=\"_training.areAnyUnlocked()\" noselect>Training</h4>\n        <div *ngIf=\"_training.areAnyUnlocked()\" class=\"left-padding\"></div>\n        <div *ngIf=\"_training.areAnyUnlocked()\" class=\"add-column\">\n            <div class=\"add-block\">\n                <i class=\"add-to-queue-icon fa fa-plus\"aria-hidden=\"true\" (click)=\"_training.trainById(0)\"\n                    [ngStyle]=\"{'visibility' : _training.canTrainById(0) ? 'initial' : 'hidden', 'cursor': _training.canTrainById(0) ? 'pointer' : 'default'}\"></i>\n            </div>\n        </div>\n        <div *ngIf=\"_training.areAnyUnlocked()\" class=\"progress-column\">\n            <div class=\"guard-training-container\" (click)=\"_training.collectById(0)\" [ngStyle]=\"{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n\n                <div class=\"guard-training-progress-bar\" [ngStyle]=\"{'width': _training.getPercentageById(0) + '%'}\"></div>\n                <p class=\"guard-training-display\">\n\n                    <i class=\"guard-training-generation-icon fa fa-shield faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'color': _training.isFullById(0) ? '#ccddff' : 'black', 'visibility': _training.isTrainingById(0) ? 'initial' : 'hidden' }\"></i>\n                    Guard\n                    <i class=\"guard-training-collection-icon fa fa-shield faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                        [ngClass]=\"{'faa-tada': !_inventory.isGuardCapacityFull, 'faa-horizontal': _inventory.isGuardCapacityFull }\"></i>\n                </p>\n            </div>\n        </div>\n        <h4 class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</h4>\n        <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"left-padding\"></div>\n        <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"progress-no-add-column\">\n            <div class=\"help-wanted-container\" *ngIf=\"_recruiting.isUnlockedById(0)\" (click)=\"_recruiting.collectById(0)\" [ngStyle]=\"{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n                <div class=\"help-wanted-progress-bar\" [ngStyle]=\"{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}\"></div>\n                <p class=\"help-wanted-display noselect\">\n                    <i class=\"help-wanted-generation-icon fa fa-user faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'visibility': _recruiting.isRecruitingById(0) ? 'default' : 'hidden' }\"></i>\n                    Craigslist Ad\n                    <i class=\"help-wanted-collection-icon fa fa-user faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                        [ngClass]=\"{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }\"></i>\n                </p>\n            </div>\n        </div>\n    </div>\n    <div style=\"width:50%;height:300px;background-color:pink;float:right;\">\n        <div style=\"position:relative;\">Operations</div>\n    </div>\n\n\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!--\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-archive\" aria-hidden=\"true\"></i>\n                {{_player.training[0]['currentStore']+_player.training[0]['queued']}}/{{_player.guardTrainingCapacity}}\n            </p>\n        </div>\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-clock-o\" aria-hidden=\"true\"></i>\n                5:00\n            </p>\n        </div>\n    </div>\n    <div class=\"add-column\">\n        <div class=\"add-block\">\n            \n                [ngStyle]=\"{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}\"></i>\n        </div>\n    </div>\n    <div class=\"right-side noselect\">\n\n\n        <div class=\"guard-training-container noselect\" *ngIf=\"_player.guardTrainingUnlocked\" (click)=\"collectGuards()\" [ngStyle]=\"{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n\n            <div class=\"guard-training-progress-bar\" [ngStyle]=\"{'width': 100*(_player.training[0]['percentage']/100) + '%'}\"></div>\n            <p class=\"guard-training-display noselect\">\n\n                <i class=\"guard-training-generation-icon fa fa-shield faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'color': _player.training[0]['full'] ? '#ccddff' : 'black', 'visibility': _player.isGuardTrainingHappening ? 'initial' : 'hidden' }\"></i>\n                Guard\n                <i class=\"guard-training-collection-icon fa fa-shield faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                    [ngClass]=\"{'faa-tada': !_player.isGuardCapacityFull, 'faa-horizontal': _player.isGuardCapacityFull }\"></i>\n            </p>\n        </div>\n    </div>\n    <h4 *ngIf=\"_recruiting.areAnyUnlocked()\" style=\"padding-bottom:.5rem;padding-top:.5rem;margin:0;text-align:center\">Recruitment</h4>\n    <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"left-side\">\n            <div style=\"height:1.2rem;width:20%;display:inline-block;\">\n                   \n                </div>\n        <div style=\"height:1.2rem;width:60%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-archive\" aria-hidden=\"true\"></i>\n                {{_player.recruiting[0]['currentStore']}}/{{_recruiting.getCapacityById(0)}}\n            </p>\n        </div>\n        \n    </div>\n    <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"right-side noselect\">\n\n\n        <div class=\"help-wanted-container\" *ngIf=\"_recruiting.isUnlockedById(0)\" (click)=\"_recruiting.collectById(0)\" [ngStyle]=\"{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n            <div class=\"help-wanted-progress-bar\" [ngStyle]=\"{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}\"></div>\n            <p class=\"help-wanted-display noselect\">\n                <i class=\"help-wanted-generation-icon fa fa-user faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'visibility': _recruiting.isRecruitingById(0) ? 'default' : 'hidden' }\"></i>\n                Craigslist Ad\n                <i class=\"help-wanted-collection-icon fa fa-user faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                    [ngClass]=\"{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }\"></i>\n            </p>\n        </div>\n    </div>\n\n\n</div>\n-->"
 
 /***/ }),
 
@@ -28,7 +28,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".activity-panel {\n  display: inline-block;\n  width: 50%;\n  cursor: default; }\n  @media all and (max-width: 459px) {\n    .activity-panel {\n      width: 100%; } }\n  .activity-panel .henchmen-column {\n    width: 50%;\n    display: inline-block; }\n    .activity-panel .henchmen-column .title {\n      padding-bottom: .5rem;\n      padding-top: .5rem;\n      margin: 0;\n      text-align: center; }\n    .activity-panel .henchmen-column .left-padding {\n      width: 5%;\n      background-color: pink;\n      display: inline-block; }\n    .activity-panel .henchmen-column .add-column {\n      width: 5%;\n      vertical-align: middle;\n      display: inline-block; }\n      .activity-panel .henchmen-column .add-column .add-block {\n        height: 1.2rem; }\n    .activity-panel .henchmen-column .progress-column {\n      width: 75%;\n      display: inline-block; }\n      .activity-panel .henchmen-column .progress-column .guard-training-container {\n        width: 100%;\n        height: 1.2rem;\n        border: 1px solid #ccddff;\n        border-radius: 0px 15px 15px 0px;\n        display: inline-block;\n        position: relative; }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .training-display {\n          height: 1.2rem; }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-progress-bar {\n          border-radius: 0px 15px 15px 0px;\n          position: absolute;\n          height: 1.2em;\n          background-color: #ccddff; }\n        @media all and (min-width: 640px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .wide {\n            display: block; } }\n        @media all and (max-width: 639px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .wide {\n            display: block; } }\n        @media all and (max-width: 459px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .wide {\n            display: none; } }\n        @media all and (max-width: 399px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .wide {\n            display: none; } }\n        @media all and (min-width: 640px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .narrow {\n            display: none; } }\n        @media all and (max-width: 639px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .narrow {\n            display: none; } }\n        @media all and (max-width: 459px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .narrow {\n            display: block; } }\n        @media all and (max-width: 399px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .narrow {\n            display: block; } }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display {\n          font-size: .8em;\n          width: 100%;\n          margin: 0;\n          position: relative;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none; }\n          @media all and (max-width: 639px) {\n            .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display {\n              font-size: .6em; } }\n          @media all and (max-width: 459px) {\n            .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display {\n              font-size: .8em; } }\n          @media all and (max-width: 399px) {\n            .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display {\n              font-size: .5em; } }\n          .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n            @media all and (max-width: 639px) {\n              .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-generation-icon {\n                font-size: .9em;\n                margin-top: .25em;\n                margin-right: .8em; } }\n            @media all and (max-width: 459px) {\n              .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-generation-icon {\n                margin-top: .25em; } }\n            @media all and (max-width: 399px) {\n              .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-generation-icon {\n                font-size: .9em;\n                margin-top: .1em; } }\n          .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n            @media all and (max-width: 639px) {\n              .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-collection-icon {\n                font-size: .9em;\n                margin-top: .25em; } }\n            @media all and (max-width: 459px) {\n              .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-collection-icon {\n                margin-top: .25em; } }\n            @media all and (max-width: 399px) {\n              .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-collection-icon {\n                font-size: .9em;\n                margin-top: .1em; } }\n    .activity-panel .henchmen-column .progress-no-add-column {\n      width: 82%;\n      display: inline-block; }\n      .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container {\n        margin-top: .1em;\n        width: 100%;\n        height: 1.2em;\n        border: 1px solid #ccddff;\n        border-radius: 0px 15px 15px 0px;\n        position: relative; }\n        .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-progress-bar {\n          border-radius: 0px 15px 15px 0px;\n          position: absolute;\n          height: 1.2em;\n          background-color: #ccddff; }\n        @media all and (min-width: 640px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .wide {\n            display: block; } }\n        @media all and (max-width: 639px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .wide {\n            display: block; } }\n        @media all and (max-width: 459px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .wide {\n            display: none; } }\n        @media all and (max-width: 399px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .wide {\n            display: none; } }\n        @media all and (min-width: 640px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .narrow {\n            display: none; } }\n        @media all and (max-width: 639px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .narrow {\n            display: none; } }\n        @media all and (max-width: 459px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .narrow {\n            display: block; } }\n        @media all and (max-width: 399px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .narrow {\n            display: block; } }\n        .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n          font-size: .8em;\n          width: 100%;\n          margin-top: .1em;\n          margin: 0;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          position: relative; }\n          @media all and (max-width: 639px) {\n            .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n              font-size: .6em;\n              margin-top: .2em; } }\n          @media all and (max-width: 459px) {\n            .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n              font-size: .8em;\n              margin-top: .1em; } }\n          @media all and (max-width: 399px) {\n            .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n              font-size: .5em;\n              margin-top: .4em; } }\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n            @media all and (max-width: 639px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-generation-icon {\n                font-size: .9em;\n                margin-top: .25em;\n                margin-right: .8em; } }\n            @media all and (max-width: 459px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-generation-icon {\n                margin-top: .25em; } }\n            @media all and (max-width: 399px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-generation-icon {\n                font-size: .9em;\n                margin-top: .1em; } }\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n            @media all and (max-width: 639px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-collection-icon {\n                font-size: .9em;\n                margin-top: .25em; } }\n            @media all and (max-width: 459px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-collection-icon {\n                margin-top: .25em; } }\n            @media all and (max-width: 399px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-collection-icon {\n                font-size: .9em;\n                margin-top: .1em; } }\n", ""]);
+exports.push([module.i, ".activity-panel {\n  display: inline-block;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n  @media all and (max-width: 459px) {\n    .activity-panel {\n      width: 100%; } }\n  .activity-panel .henchmen-column {\n    width: 50%;\n    display: inline-block; }\n    .activity-panel .henchmen-column .title {\n      padding-bottom: .5rem;\n      padding-top: .5rem;\n      margin: 0;\n      text-align: center; }\n    .activity-panel .henchmen-column .left-padding {\n      width: 5%;\n      background-color: pink;\n      display: inline-block; }\n    .activity-panel .henchmen-column .add-column {\n      width: 5%;\n      vertical-align: middle;\n      display: inline-block; }\n      .activity-panel .henchmen-column .add-column .add-block {\n        height: 1.2rem; }\n    .activity-panel .henchmen-column .progress-column {\n      width: 75%;\n      display: inline-block; }\n      .activity-panel .henchmen-column .progress-column .guard-training-container {\n        width: 100%;\n        height: 1.2rem;\n        border: 1px solid #ccddff;\n        border-radius: 0px 15px 15px 0px;\n        display: inline-block;\n        position: relative; }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .training-display {\n          height: 1.2rem; }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-progress-bar {\n          border-radius: 0px 15px 15px 0px;\n          position: absolute;\n          height: 1.2em;\n          background-color: #ccddff; }\n        @media all and (min-width: 640px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .wide {\n            display: block; } }\n        @media all and (max-width: 639px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .wide {\n            display: block; } }\n        @media all and (max-width: 459px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .wide {\n            display: none; } }\n        @media all and (max-width: 399px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .wide {\n            display: none; } }\n        @media all and (min-width: 640px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .narrow {\n            display: none; } }\n        @media all and (max-width: 639px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .narrow {\n            display: none; } }\n        @media all and (max-width: 459px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .narrow {\n            display: block; } }\n        @media all and (max-width: 399px) {\n          .activity-panel .henchmen-column .progress-column .guard-training-container .narrow {\n            display: block; } }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display {\n          font-size: .8em;\n          width: 100%;\n          margin: 0;\n          position: relative;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none; }\n          @media all and (max-width: 639px) {\n            .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display {\n              font-size: .6em; } }\n          @media all and (max-width: 459px) {\n            .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display {\n              font-size: .8em; } }\n          @media all and (max-width: 399px) {\n            .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display {\n              font-size: .5em; } }\n          .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n            @media all and (max-width: 639px) {\n              .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-generation-icon {\n                font-size: .9em;\n                margin-top: .25em;\n                margin-right: .8em; } }\n            @media all and (max-width: 459px) {\n              .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-generation-icon {\n                margin-top: .25em; } }\n            @media all and (max-width: 399px) {\n              .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-generation-icon {\n                font-size: .9em;\n                margin-top: .1em; } }\n          .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n            @media all and (max-width: 639px) {\n              .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-collection-icon {\n                font-size: .9em;\n                margin-top: .25em; } }\n            @media all and (max-width: 459px) {\n              .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-collection-icon {\n                margin-top: .25em; } }\n            @media all and (max-width: 399px) {\n              .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display .guard-training-collection-icon {\n                font-size: .9em;\n                margin-top: .1em; } }\n    .activity-panel .henchmen-column .progress-no-add-column {\n      width: 82%;\n      display: inline-block; }\n      .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container {\n        margin-top: .1em;\n        width: 100%;\n        height: 1.2em;\n        border: 1px solid #ccddff;\n        border-radius: 0px 15px 15px 0px;\n        position: relative; }\n        .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-progress-bar {\n          border-radius: 0px 15px 15px 0px;\n          position: absolute;\n          height: 1.2em;\n          background-color: #ccddff; }\n        @media all and (min-width: 640px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .wide {\n            display: block; } }\n        @media all and (max-width: 639px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .wide {\n            display: block; } }\n        @media all and (max-width: 459px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .wide {\n            display: none; } }\n        @media all and (max-width: 399px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .wide {\n            display: none; } }\n        @media all and (min-width: 640px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .narrow {\n            display: none; } }\n        @media all and (max-width: 639px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .narrow {\n            display: none; } }\n        @media all and (max-width: 459px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .narrow {\n            display: block; } }\n        @media all and (max-width: 399px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .narrow {\n            display: block; } }\n        .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n          font-size: .8em;\n          width: 100%;\n          margin-top: .1em;\n          margin: 0;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          position: relative; }\n          @media all and (max-width: 639px) {\n            .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n              font-size: .6em;\n              margin-top: .2em; } }\n          @media all and (max-width: 459px) {\n            .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n              font-size: .8em;\n              margin-top: .1em; } }\n          @media all and (max-width: 399px) {\n            .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n              font-size: .5em;\n              margin-top: .4em; } }\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n            @media all and (max-width: 639px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-generation-icon {\n                font-size: .9em;\n                margin-top: .25em;\n                margin-right: .8em; } }\n            @media all and (max-width: 459px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-generation-icon {\n                margin-top: .25em; } }\n            @media all and (max-width: 399px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-generation-icon {\n                font-size: .9em;\n                margin-top: .1em; } }\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n            @media all and (max-width: 639px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-collection-icon {\n                font-size: .9em;\n                margin-top: .25em; } }\n            @media all and (max-width: 459px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-collection-icon {\n                margin-top: .25em; } }\n            @media all and (max-width: 399px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-collection-icon {\n                font-size: .9em;\n                margin-top: .1em; } }\n", ""]);
 
 // exports
 
@@ -46,7 +46,8 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60,52 +61,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ActivityPanelComponent = (function () {
-    function ActivityPanelComponent(_player, _recruiting, _inventory) {
+    function ActivityPanelComponent(_player, _recruiting, _inventory, _training) {
         this._player = _player;
         this._recruiting = _recruiting;
         this._inventory = _inventory;
-        this.queueingAGuard = false;
-        this.collectingGuards = false;
+        this._training = _training;
     }
-    ActivityPanelComponent.prototype.trainAGuard = function () {
-        if (this._player.currentHenchmen > 0) {
-            if (!this.queueingAGuard) {
-                if (this._player.training[0]['queued'] + this._player.training[0]['currentStore'] < this._player.guardTrainingCapacity) {
-                    this.queueingAGuard = true;
-                    this._player.isGuardTrainingHappening = true;
-                    this._player.currentHenchmen -= 1;
-                    this._player.training[0]['queued'] += 1;
-                    this.queueingAGuard = false;
-                }
-            }
-        }
-    };
-    ActivityPanelComponent.prototype.collectGuards = function () {
-        if (this._player.training[0]['currentStore'] > 0) {
-            if (!this.collectingGuards) {
-                this.collectingGuards = true;
-                this._player.currentGuards += this._player.training[0]['currentStore'];
-                if (this._player.currentGuards > this._player.guardCapacity) {
-                    this._player.training[0]['currentStore'] = this._player.currentGuards - this._player.guardCapacity;
-                    this._player.currentGuards = this._player.guardCapacity;
-                    if (this._player.training[0]['full']) {
-                        this._player.training[0]['magicModulo'] = -1;
-                    }
-                    this._player.training[0]['full'] = this._player.training[0]['currentStore'] == this._player.training[0]['capacity'];
-                }
-                else {
-                    this._player.training[0]['currentStore'] = 0;
-                    if (this._player.training[0]['full']) {
-                        this._player.training[0]['magicModulo'] = -1;
-                    }
-                    this._player.training[0]['full'] = false;
-                    this._player.training[0]['percentage'] = 0;
-                }
-                this.collectingGuards = false;
-            }
-        }
-    };
     return ActivityPanelComponent;
 }());
 ActivityPanelComponent = __decorate([
@@ -114,10 +77,10 @@ ActivityPanelComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/activity-panel/activity-panel.component.html"),
         styles: [__webpack_require__("../../../../../src/app/activity-panel/activity-panel.component.scss")],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__["a" /* RecruitingService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__["a" /* InventoryService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__["a" /* RecruitingService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_training_service__["a" /* TrainingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_training_service__["a" /* TrainingService */]) === "function" && _d || Object])
 ], ActivityPanelComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=activity-panel.component.js.map
 
 /***/ }),
@@ -236,47 +199,10 @@ var AppComponent = (function () {
             this._scheming.earningSchemePoints = true;
         }
     };
-    AppComponent.prototype.train = function () {
-        if (this._player.guardTrainingUnlocked) {
-            if (this._player.isGuardTrainingHappening) {
-                if (this._player.training[0]['full']) {
-                    if (this._player.guardTrainingCapacity != this._player.training[0]['currentStore']) {
-                        this._player.training[0]['full'] = false;
-                        this._player.training[0]['magicModulo'] = this.ticker % this._player.guardTrainingRate == 0 ? this._player.guardTrainingRate : (this.ticker % this._player.guardTrainingRate) - 1;
-                        this._player.guardTrainingRateLock = this._player.guardTrainingRate;
-                    }
-                }
-                if (!(this._player.training[0]['magicModulo'] > -1)) {
-                    this._player.training[0]['magicModulo'] = this.ticker % this._player.guardTrainingRate == 0 ? this._player.guardTrainingRate : (this.ticker % this._player.guardTrainingRate) - 1;
-                    this._player.guardTrainingRateLock = this._player.guardTrainingRate;
-                }
-                else {
-                    if (this._player.training[0]['magicModulo'] == this.ticker % this._player.guardTrainingRateLock) {
-                        this._player.training[0]['currentStore']++;
-                        this._player.training[0]['queued']--;
-                        if (this._player.training[0]['queued'] == 0) {
-                            this._player.isGuardTrainingHappening = false;
-                        }
-                        if (this._player.guardTrainingCapacity == this._player.training[0]['currentStore']) {
-                            this._player.training[0]['full'] = true;
-                        }
-                    }
-                    var sanityTickerNumber = this.ticker % this._player.guardTrainingRateLock <= this._player.training[0]['magicModulo'] ? (this.ticker % this._player.guardTrainingRateLock) + this._player.guardTrainingRateLock : this.ticker % this._player.guardTrainingRateLock;
-                    this._player.training[0]['percentage'] = Math.round(((sanityTickerNumber - this._player.training[0]['magicModulo']) / this._player.guardTrainingRateLock) * 10000) / 100;
-                }
-            }
-        }
-    };
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         setInterval(function () {
             _this._loop.action();
-            _this.ticker++;
-            if (_this.ticker % 60 == 0) {
-                _this.minute = true;
-            }
-            _this.train();
-            _this.minute = false;
         }, 10);
     };
     return AppComponent;
@@ -309,16 +235,18 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -343,9 +271,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_10__header_header_module__["a" /* HeaderModule */],
-            __WEBPACK_IMPORTED_MODULE_11__scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */],
-            __WEBPACK_IMPORTED_MODULE_12__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
+            __WEBPACK_IMPORTED_MODULE_11__header_header_module__["a" /* HeaderModule */],
+            __WEBPACK_IMPORTED_MODULE_12__scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */],
+            __WEBPACK_IMPORTED_MODULE_13__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */]
         ],
@@ -353,7 +281,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4__data_service__["a" /* DataService */],
             __WEBPACK_IMPORTED_MODULE_5__services_player_service__["a" /* PlayerService */],
             __WEBPACK_IMPORTED_MODULE_7__services_scheming_service__["a" /* SchemingService */],
-            __WEBPACK_IMPORTED_MODULE_9__services_recruiting_service__["a" /* RecruitingService */],
+            __WEBPACK_IMPORTED_MODULE_10__services_recruiting_service__["a" /* RecruitingService */],
+            __WEBPACK_IMPORTED_MODULE_9__services_training_service__["a" /* TrainingService */],
             __WEBPACK_IMPORTED_MODULE_8__services_inventory_service__["a" /* InventoryService */],
             __WEBPACK_IMPORTED_MODULE_6__services_primary_loop_service__["a" /* PrimaryLoopService */]
         ],
@@ -410,7 +339,7 @@ var _a;
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\">\n    <div class=\"resources\">\n        <i class=\"henchmen fa fa-users\" aria-hidden=\"true\"></i>\n        <p class=\"henchmen-readout\">{{_player.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>\n        <i class=\"guard fa fa-shield\" aria-hidden=\"true\"></i>\n        <p class=\"guard-readout\">{{_player.currentGuards}}/{{_player.guardCapacity}}</p>\n    </div>\n    <div>\n        <h1 class=\"title\">Bad Guy</h1>\n    </div>\n    <div class=\"scheme\" (mouseenter)=\"showSchemeFlyout = true;\" (mouseleave)=\"showSchemeFlyout = false;\">\n        <div *ngIf=\"_scheming.earningSchemePoints\">\n            <h5 class=\"status-text\">Scheming</h5>\n            <div class=\"scheme-bar-container\" [ngStyle]=\"{'border' : '1px solid ' + _scheming.currentScheme.color }\">\n                <div class=\"scheme-progress-bar\" [ngStyle]=\"{'width': _scheming.currentSchemePercentage + '%', 'background-color' : _scheming.currentScheme.color}\"></div>\n                <i class=\"scheme-icon fa {{_scheming.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n            </div>\n        </div>\n        <div *ngIf=\"!_scheming.earningSchemePoints\">\n            <h5 class=\"status-text\">Not Scheming</h5>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>\n\n<div class=\"scheme-flyout\" *ngIf=\"_scheming.earningSchemePoints;\" [@popOverState]=\"stateName\" [ngStyle]=\"{'background-color' : _scheming.currentScheme.flyout_color}\">\n    <div class=\"inner-content\">\n        <i class=\"scheme-icon fa {{_scheming.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n        <h4 class=\"scheme-name\">{{_scheming.currentScheme.name}} {{_scheming.currentSchemeLevel > 1 ? _scheming.currentSchemeLevel : ''}}</h4>\n        <h5 class=\"benefit-header\">Benefit: </h5>\n        <h6 class=\"benefit-text\">{{_scheming.currentScheme.description[_scheming.currentSchemeLevel-1]}} </h6>\n        <h6 class=\"flavor-text\">{{_scheming.currentScheme.flavor[_scheming.currentSchemeLevel-1]}}</h6>\n        <p class=\"scheme-exp\"> {{_scheming.currentSchemeEXP}}/{{_scheming.currentSchemeEXPTarget}}</p>\n    </div>\n\n</div>"
+module.exports = "<div class=\"header\">\n    <div class=\"resources\">\n        <i class=\"henchmen fa fa-users\" aria-hidden=\"true\"></i>\n        <p class=\"henchmen-readout\">{{_player.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>\n        <i class=\"guard fa fa-shield\" aria-hidden=\"true\"></i>\n        <p class=\"guard-readout\">{{_player.currentGuards}}/{{_inventory.guardCapacity}}</p>\n    </div>\n    <div>\n        <h1 class=\"title\">Bad Guy</h1>\n    </div>\n    <div class=\"scheme\" (mouseenter)=\"showSchemeFlyout = true;\" (mouseleave)=\"showSchemeFlyout = false;\">\n        <div *ngIf=\"_scheming.earningSchemePoints\">\n            <h5 class=\"status-text\">Scheming</h5>\n            <div class=\"scheme-bar-container\" [ngStyle]=\"{'border' : '1px solid ' + _scheming.currentScheme.color }\">\n                <div class=\"scheme-progress-bar\" [ngStyle]=\"{'width': _scheming.currentSchemePercentage + '%', 'background-color' : _scheming.currentScheme.color}\"></div>\n                <i class=\"scheme-icon fa {{_scheming.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n            </div>\n        </div>\n        <div *ngIf=\"!_scheming.earningSchemePoints\">\n            <h5 class=\"status-text\">Not Scheming</h5>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>\n\n<div class=\"scheme-flyout\" *ngIf=\"_scheming.earningSchemePoints;\" [@popOverState]=\"stateName\" [ngStyle]=\"{'background-color' : _scheming.currentScheme.flyout_color}\">\n    <div class=\"inner-content\">\n        <i class=\"scheme-icon fa {{_scheming.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n        <h4 class=\"scheme-name\">{{_scheming.currentScheme.name}} {{_scheming.currentSchemeLevel > 1 ? _scheming.currentSchemeLevel : ''}}</h4>\n        <h5 class=\"benefit-header\">Benefit: </h5>\n        <h6 class=\"benefit-text\">{{_scheming.currentScheme.description[_scheming.currentSchemeLevel-1]}} </h6>\n        <h6 class=\"flavor-text\">{{_scheming.currentScheme.flavor[_scheming.currentSchemeLevel-1]}}</h6>\n        <p class=\"scheme-exp\"> {{_scheming.currentSchemeEXP}}/{{_scheming.currentSchemeEXPTarget}}</p>\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -671,9 +600,23 @@ var InventoryService = (function () {
     function InventoryService(_player) {
         this._player = _player;
     }
-    Object.defineProperty(InventoryService.prototype, "henchmenCapacity", {
+    Object.defineProperty(InventoryService.prototype, "guardCapacity", {
         //While the player service holds the current inventory variables, this service busies
         //itself with deriving capacity and other derived inventory values.
+        get: function () {
+            return 10; //No modifiers yet.
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InventoryService.prototype, "isGuardCapacityFull", {
+        get: function () {
+            return this._player.currentGuards == this.guardCapacity;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InventoryService.prototype, "henchmenCapacity", {
         get: function () {
             //Base capacity is 10
             var capacity = 10;
@@ -740,7 +683,7 @@ var PlayerService = (function () {
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
-            { level: 3, exp: 0 },
+            { level: 0, exp: 0 },
             { level: 0, exp: 0 } //5 Henchmen Lodging
         ];
         //Henchmen
@@ -748,58 +691,12 @@ var PlayerService = (function () {
         this.recruiting = [
             { currentStore: 0, capacity: 0, countdown: 0, lock: 0 } //Help Wanted 1
         ];
-        //Old stuff
-        this.isGuardTrainingHappening = false;
+        //Improved Henchmen
         this.currentGuards = 0;
         this.training = [
-            { currentStore: 0,
-                percentage: 0,
-                magicModulo: -1,
-                full: false,
-                capacity: this.guardTrainingCapacity,
-                unlocked: this.guardTrainingUnlocked,
-                queued: 0 }
+            { currentStore: 0, capacity: 0, queued: 0, countdown: 0, lock: 0 } //Guards
         ];
     }
-    Object.defineProperty(PlayerService.prototype, "guardTrainingUnlocked", {
-        get: function () {
-            return this.schemes[4]['level'] >= 1;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "guardTrainingCapacity", {
-        get: function () {
-            var capacity = 1;
-            if (this.schemes[4]['level'] >= 2) {
-                capacity += 4;
-            }
-            return capacity;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "guardCapacity", {
-        get: function () {
-            return 10;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "guardTrainingRate", {
-        get: function () {
-            return 500;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PlayerService.prototype, "isGuardCapacityFull", {
-        get: function () {
-            return this.currentGuards == this.guardCapacity;
-        },
-        enumerable: true,
-        configurable: true
-    });
     return PlayerService;
 }());
 PlayerService = __decorate([
@@ -819,6 +716,7 @@ PlayerService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -832,12 +730,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 //All loop related activities. Called by app.component and nowhere else.
 var PrimaryLoopService = (function () {
-    function PrimaryLoopService(_player, _scheming, _recruiting) {
+    function PrimaryLoopService(_player, _scheming, _recruiting, _training) {
         this._player = _player;
         this._scheming = _scheming;
         this._recruiting = _recruiting;
+        this._training = _training;
         //Flow logic is 1. Scheme 2. Recruit
         //Ticker set at one minute (@100 ms/s) for now.
         this.ticker = 600;
@@ -852,6 +752,11 @@ var PrimaryLoopService = (function () {
         for (var i = 0; i < this._player.recruiting.length; i++) {
             if (this._recruiting.isRecruitingById(i)) {
                 this._recruiting.tickById(i);
+            }
+        }
+        for (var i = 0; i < this._player.training.length; i++) {
+            if (this._training.isTrainingById(i)) {
+                this._training.tickById(i);
             }
         }
     };
@@ -885,10 +790,10 @@ var PrimaryLoopService = (function () {
 }());
 PrimaryLoopService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__recruiting_service__["a" /* RecruitingService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__recruiting_service__["a" /* RecruitingService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__training_service__["a" /* TrainingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__training_service__["a" /* TrainingService */]) === "function" && _d || Object])
 ], PrimaryLoopService);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=primary-loop.service.js.map
 
 /***/ }),
@@ -923,7 +828,7 @@ var RecruitingService = (function () {
         if (id == 0) {
             //Starting capacity is 1
             var capacity = 1;
-            //Hired Help reduces the rate by static amounts.
+            //Hired Help increases capacity by static amounts.
             for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
                 if (_i == 2) {
                     capacity += 2;
@@ -1175,6 +1080,216 @@ SchemingService = __decorate([
 
 var _a;
 //# sourceMappingURL=scheming.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/training.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrainingService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var TrainingService = (function () {
+    function TrainingService(_player, _inventory) {
+        this._player = _player;
+        this._inventory = _inventory;
+        this.training = false;
+        this.collecting = false;
+    }
+    TrainingService.prototype.getCapacityById = function (id) {
+        if (id == 0) {
+            //Starting capacity is 1
+            var capacity = 1;
+            //Guard Duty increases capacity by static amounts.
+            for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+                if (_i == 1) {
+                    capacity += 4;
+                }
+                if (_i == 4) {
+                    capacity += 5;
+                }
+                if (_i == 6) {
+                    capacity += 10;
+                }
+            }
+            return capacity;
+        }
+    };
+    TrainingService.prototype.isUnlockedById = function (id) {
+        if (id == 0) {
+            return this._player.schemes[4]['level'] > 0;
+        }
+    };
+    TrainingService.prototype.areAnyUnlocked = function () {
+        for (var _i = 0; _i < this._player.training.length; _i++) {
+            if (this.isUnlockedById(_i)) {
+                return true;
+            }
+        }
+        return false;
+    };
+    TrainingService.prototype.isFullById = function (id) {
+        return this._player.training[id]['currentStore'] + this._player.training[id]['queued'] == this.getCapacityById(id);
+    };
+    TrainingService.prototype.isTrainingById = function (id) {
+        if (this.isUnlockedById(id)) {
+            if (!this.isFullById(id)) {
+                if (this._player.training[id]['queued'] > 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
+    Object.defineProperty(TrainingService.prototype, "guardTrainingUnlocked", {
+        get: function () {
+            return this._player.schemes[4]['level'] >= 1;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TrainingService.prototype, "guardTrainingCapacity", {
+        get: function () {
+            var capacity = 1;
+            if (this._player.schemes[4]['level'] >= 2) {
+                capacity += 4;
+            }
+            return capacity;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TrainingService.prototype, "guardCapacity", {
+        get: function () {
+            return 10;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TrainingService.prototype, "guardTrainingRate", {
+        get: function () {
+            return 500;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TrainingService.prototype, "isGuardCapacityFull", {
+        get: function () {
+            return this._player.currentGuards == this.guardCapacity;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TrainingService.prototype.canTrainById = function (id) {
+        if (this._player.currentHenchmen > 0) {
+            if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.getCapacityById(id)) {
+                return true;
+            }
+        }
+        return false;
+    };
+    TrainingService.prototype.trainById = function (id) {
+        if (id == 0) {
+            if (this._player.currentHenchmen > 0) {
+                if (!this.training) {
+                    if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.getCapacityById(id)) {
+                        this.training = true;
+                        this._player.currentHenchmen--;
+                        this._player.training[id]['queued']++;
+                        this.training = false;
+                    }
+                }
+            }
+        }
+    };
+    TrainingService.prototype.collectById = function (id) {
+        if (this._player.training[id]['currentStore'] > 0) {
+            if (!this.collecting == true) {
+                for (var _i = 0; _i < this._player.training[id]['currentStore']; _i++) {
+                    if (this._player.currentGuards < this._inventory.guardCapacity) {
+                        this._player.currentGuards++;
+                        this._player.training[id]['currentStore']--;
+                    }
+                }
+                if (!this.isTrainingById(id)) {
+                    this.resetCountdownById(id);
+                }
+                this.collecting = false;
+            }
+        }
+    };
+    TrainingService.prototype.getPercentageById = function (id) {
+        if (this.isTrainingById(id)) {
+            return 100 * (1 - (this._player.training[0]['countdown'] / this._player.training[0]['lock']));
+        }
+        else {
+            if (this.canTrainById(id)) {
+                return 0;
+            }
+            else {
+                if (this._player.training[0]['currentStore'] > 0) {
+                    return 100;
+                }
+            }
+        }
+        return 0;
+    };
+    TrainingService.prototype.getTrainingCountdownById = function (id) {
+        if (id == 0) {
+            //Starting training rate is 10 minutes.
+            var rate = 6000;
+            //Guard duty reduces this amount by static time.
+            for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+                if (_i == 2) {
+                    rate -= 600;
+                }
+                if (_i == 3) {
+                    rate -= 600;
+                }
+            }
+            return rate;
+        }
+    };
+    TrainingService.prototype.resetCountdownById = function (id) {
+        this._player.training[id]['countdown'] = this.getTrainingCountdownById(id);
+        this._player.training[id]['lock'] = this.getTrainingCountdownById(id);
+    };
+    TrainingService.prototype.tickById = function (id) {
+        if (this._player.training[0]['countdown'] == 0 && this._player.training[0]['lock'] == 0) {
+            this.resetCountdownById(id);
+        }
+        this._player.training[id]['countdown']--;
+        if (this._player.training[id]['countdown'] == 0) {
+            this._player.training[id]['currentStore']++;
+            this._player.training[id]['queued']--;
+            if (!this.isFullById(id) && this._player.training[id]['queued'] > 0) {
+                this.resetCountdownById(id);
+            }
+        }
+    };
+    return TrainingService;
+}());
+TrainingService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]) === "function" && _b || Object])
+], TrainingService);
+
+var _a, _b;
+//# sourceMappingURL=training.service.js.map
 
 /***/ }),
 

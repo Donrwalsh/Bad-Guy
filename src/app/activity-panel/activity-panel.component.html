@@ -1,23 +1,23 @@
 <div class="activity-panel" noselect>
-    <div class="henchmen-column">
-        <h4 class="title">Training</h4>
-        <div class="left-padding"></div>
-        <div class="add-column">
+    <div class="henchmen-column" noselect>
+        <h4 class="title" *ngIf="_training.areAnyUnlocked()" noselect>Training</h4>
+        <div *ngIf="_training.areAnyUnlocked()" class="left-padding"></div>
+        <div *ngIf="_training.areAnyUnlocked()" class="add-column">
             <div class="add-block">
-                <i class="add-to-queue-icon fa fa-plus" *ngIf="_player.guardTrainingUnlocked" aria-hidden="true" (click)="trainAGuard()"
-                    [ngStyle]="{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}"></i>
+                <i class="add-to-queue-icon fa fa-plus"aria-hidden="true" (click)="_training.trainById(0)"
+                    [ngStyle]="{'visibility' : _training.canTrainById(0) ? 'initial' : 'hidden', 'cursor': _training.canTrainById(0) ? 'pointer' : 'default'}"></i>
             </div>
         </div>
-        <div class="progress-column">
-            <div class="guard-training-container" *ngIf="_player.guardTrainingUnlocked" (click)="collectGuards()" [ngStyle]="{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }">
+        <div *ngIf="_training.areAnyUnlocked()" class="progress-column">
+            <div class="guard-training-container" (click)="_training.collectById(0)" [ngStyle]="{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }">
 
-                <div class="guard-training-progress-bar" [ngStyle]="{'width': 100*(_player.training[0]['percentage']/100) + '%'}"></div>
+                <div class="guard-training-progress-bar" [ngStyle]="{'width': _training.getPercentageById(0) + '%'}"></div>
                 <p class="guard-training-display">
 
-                    <i class="guard-training-generation-icon fa fa-shield faa-slow faa-flash animated" aria-hidden="true" [ngStyle]="{'color': _player.training[0]['full'] ? '#ccddff' : 'black', 'visibility': _player.isGuardTrainingHappening ? 'initial' : 'hidden' }"></i>
+                    <i class="guard-training-generation-icon fa fa-shield faa-slow faa-flash animated" aria-hidden="true" [ngStyle]="{'color': _training.isFullById(0) ? '#ccddff' : 'black', 'visibility': _training.isTrainingById(0) ? 'initial' : 'hidden' }"></i>
                     Guard
                     <i class="guard-training-collection-icon fa fa-shield faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }"
-                        [ngClass]="{'faa-tada': !_player.isGuardCapacityFull, 'faa-horizontal': _player.isGuardCapacityFull }"></i>
+                        [ngClass]="{'faa-tada': !_inventory.isGuardCapacityFull, 'faa-horizontal': _inventory.isGuardCapacityFull }"></i>
                 </p>
             </div>
         </div>

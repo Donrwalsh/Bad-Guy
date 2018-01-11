@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { PlayerService } from "./player.service";
 import { SchemingService } from "./scheming.service";
 import { RecruitingService } from "./recruiting.service";
+import { TrainingService } from "./training.service";
 
 //All loop related activities. Called by app.component and nowhere else.
 @Injectable()
@@ -9,7 +10,8 @@ export class PrimaryLoopService {
 
     constructor(public _player: PlayerService,
         public _scheming: SchemingService,
-        public _recruiting: RecruitingService) { }
+        public _recruiting: RecruitingService,
+        public _training: TrainingService) { }
 
     //Flow logic is 1. Scheme 2. Recruit
 
@@ -27,6 +29,11 @@ export class PrimaryLoopService {
         for (var i = 0; i < this._player.recruiting.length; i++) {
             if (this._recruiting.isRecruitingById(i)) {
                 this._recruiting.tickById(i);
+            }
+        }
+        for (var i = 0; i < this._player.training.length; i++) {
+            if (this._training.isTrainingById(i)) {
+                this._training.tickById(i);
             }
         }
     }

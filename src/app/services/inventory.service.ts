@@ -12,6 +12,14 @@ export class InventoryService {
     //While the player service holds the current inventory variables, this service busies
     //itself with deriving capacity and other derived inventory values.
 
+    get guardCapacity() {
+        return 10 //No modifiers yet.
+    }
+
+    get isGuardCapacityFull() {
+        return this._player.currentGuards == this.guardCapacity;
+    }
+
     get henchmenCapacity() {
         //Base capacity is 10
         var capacity = 10;

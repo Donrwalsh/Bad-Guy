@@ -38,57 +38,10 @@ export class AppComponent implements OnInit {
     }
   }
 
-  
-
-  train() {
-    if (this._player.guardTrainingUnlocked) {
-      if (this._player.isGuardTrainingHappening) {
-        if (this._player.training[0]['full']) {
-          if (this._player.guardTrainingCapacity != this._player.training[0]['currentStore']) {
-            this._player.training[0]['full'] = false;
-            this._player.training[0]['magicModulo'] = this.ticker % this._player.guardTrainingRate == 0 ? this._player.guardTrainingRate : (this.ticker % this._player.guardTrainingRate) - 1;
-            this._player.guardTrainingRateLock = this._player.guardTrainingRate;
-          }
-        }
-        if (!(this._player.training[0]['magicModulo'] > -1)) {
-          this._player.training[0]['magicModulo'] = this.ticker % this._player.guardTrainingRate == 0 ? this._player.guardTrainingRate : (this.ticker % this._player.guardTrainingRate) - 1;
-          this._player.guardTrainingRateLock = this._player.guardTrainingRate;
-        } else {
-          if (this._player.training[0]['magicModulo'] == this.ticker % this._player.guardTrainingRateLock) {
-            this._player.training[0]['currentStore']++;
-            this._player.training[0]['queued']--;
-            if (this._player.training[0]['queued'] == 0) {
-              this._player.isGuardTrainingHappening = false;
-            }
-            if (this._player.guardTrainingCapacity == this._player.training[0]['currentStore']) {
-              this._player.training[0]['full'] = true;
-            }
-          }
-          var sanityTickerNumber = this.ticker % this._player.guardTrainingRateLock <= this._player.training[0]['magicModulo'] ? (this.ticker % this._player.guardTrainingRateLock) + this._player.guardTrainingRateLock : this.ticker % this._player.guardTrainingRateLock;
-          this._player.training[0]['percentage'] = Math.round(((sanityTickerNumber - this._player.training[0]['magicModulo']) / this._player.guardTrainingRateLock) * 10000) / 100;
-
-        }
-      }
-    }
-  }
-
-
   ngOnInit() {
-
-
 
     setInterval(() => {
       this._loop.action();
-
-
-      this.ticker++;
-      if (this.ticker % 60 == 0) {
-        this.minute = true;
-      }
-
-      this.train();
-
-      this.minute = false;
     }, 10);
   }
 }

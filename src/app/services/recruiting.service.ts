@@ -13,7 +13,7 @@ export class RecruitingService {
             //Starting capacity is 1
             var capacity = 1;
 
-            //Hired Help reduces the rate by static amounts.
+            //Hired Help increases capacity by static amounts.
             for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
                 if (_i == 2) { capacity += 2 }
                 if (_i == 4) { capacity += 7 }

@@ -15,7 +15,7 @@ export class PlayerService {
         { level: 0, exp: 0 }, //1 Cold Logic, fully coded.
         { level: 0, exp: 0 }, //2 Quick Thinking, fully coded.
         { level: 0, exp: 0 }, //3 Hired Help
-        { level: 3, exp: 0 }, //4 Guard Duty
+        { level: 0, exp: 0 }, //4 Guard Duty
         { level: 0, exp: 0 } //5 Henchmen Lodging
     ]
 
@@ -25,59 +25,10 @@ export class PlayerService {
         {currentStore : 0, capacity : 0, countdown : 0, lock : 0 } //Help Wanted 1
     ]
 
-    //Old stuff
-
-
-    isGuardTrainingHappening: boolean = false;
+    //Improved Henchmen
     currentGuards: number = 0;
-    guardTrainingRateLock : number;
     training: Array<Object> = [
-        {currentStore :  0, 
-            percentage : 0, 
-            magicModulo : -1, 
-            full : false, 
-            capacity: this.guardTrainingCapacity, 
-            unlocked: this.guardTrainingUnlocked,
-            queued: 0}
+        {currentStore :  0, capacity : 0, queued : 0, countdown : 0, lock : 0} //Guards
+            
     ]
-
-    get guardTrainingUnlocked() {
-        return this.schemes[4]['level'] >= 1;
-    }
-
-    get guardTrainingCapacity () {
-        var capacity = 1;
-        if (this.schemes[4]['level'] >= 2) {
-            capacity += 4;
-        }
-        return capacity;
-    }
-    
-    get guardCapacity () {
-        return 10;
-    }
-
-    get guardTrainingRate () {
-        return 500;
-    }
-
-    get isGuardCapacityFull() {
-        return this.currentGuards == this.guardCapacity;
-    }
-
-    
-
-    
-    
-
-
-
-
-
-    
-
-    
-
-    
-
 }
