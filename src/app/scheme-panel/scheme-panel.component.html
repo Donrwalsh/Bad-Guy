@@ -1,4 +1,23 @@
-<div style="background-color:pink;position:absolute;width:40%;height:100%;right:0;">
-    <div style="width:10%;height:20%;background-color:grey;">
+<div *ngIf="schemes" class="scheme-panel" style="float:right;width:50%;cursor:default;user-select:none;height:15em;">
+    <div class="select-bar" style="width:5%;height:15em;padding:0;margin:0;float:left;text-align:center;">
+        <div class="schemes-select" (click)="selected = 'schemes'" style="cursor:pointer;border-radius: 1rem 0 0 1rem;height:3rem;background-color:#D9FFCC;"><i class="fa fa-lightbulb-o" style="padding-top:1rem;" aria-hidden="true"></i></div>
+        <div class="hench-select" (click)="selected = 'hench'" style="cursor:pointer;border-radius: 1rem 0 0 1rem;height:3rem;background-color:#ccddff"></div>
+        <div class="operate-select" (click)="selected = 'operate'" style="cursor:pointer;border-radius: 1rem 0 0 1rem;height:3rem;background-color:#ffe6cc"></div>
+        <div class="operate-select" (click)="selected = 'lair'" style="cursor:pointer;border-radius: 1rem 0 0 1rem;height:3rem;background-color:#f2ccff"></div>
     </div>
+    <div *ngIf="selected == 'schemes'" class="scheme-area" style="border-radius:0 3rem;width:90%;height:15em;padding:0;margin:0;float: left;">
+        <div style="width:20%;padding:0;margin:0;float:left;text-align:center;">
+            <p style="margin:0;">Tier 1</p>
+                <button class="node" style="width:75%;margin-top:1.5rem;font-size:1.5rem;border-radius:.3rem;background-color:#d9ffcc;" noselect><i class="fa {{schemes[0].fa}}"aria-hidden="true"></i></button>
+                <button class="node" style="width:75%;margin-top:1.5rem;font-size:1.5rem;border-radius:.3rem;background-color:#d9ffcc;" noselect><i class="fa {{schemes[1].fa}}"aria-hidden="true"></i></button>
+                <button class="node" style="width:75%;margin-top:1.5rem;font-size:1.5rem;border-radius:.3rem;background-color:#d9ffcc;" noselect><i class="fa {{schemes[2].fa}}"aria-hidden="true"></i></button>
+        </div>
+        <div style="width:20%;padding:0;margin:0;float:left;text-align:center;">2</div>
+        <div style="width:20%;padding:0;margin:0;float:left;text-align:center;">3</div>
+        <div style="width:20%;padding:0;margin:0;float:left;text-align:center;">4</div>
+        <div style="width:20%;padding:0;margin:0;float:left;text-align:center;">5</div>
+    </div>
+    <div *ngIf="selected == 'hench'" class="hench-area" style="border-radius:0 3rem;width:90%;height:15em;padding:0;margin:0;float: left;"></div>
+    <div *ngIf="selected == 'operate'" class="operate-area" style="border-radius:0 3rem;width:90%;height:15em;padding:0;margin:0;float: left;"></div>
+    <div *ngIf="selected == 'lair'" class="lair-area" style="border-radius:0 3rem;width:90%;height:15em;padding:0;margin:0;float: left;"></div>
 </div>
