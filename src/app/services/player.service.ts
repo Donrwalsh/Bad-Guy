@@ -19,6 +19,8 @@ export class PlayerService {
         { level: 0, exp: 0 } //5 Henchmen Lodging
     ]
 
+    currentScheme: Object = {};
+
     //Henchmen
     currentHenchmen: number = 5;
     recruiting: Array<Object> = [

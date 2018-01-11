@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { PACKAGE_ROOT_URL } from "@angular/core/src/application_tokens";
 import { PlayerService } from "./player.service";
 
 @Injectable()
@@ -16,17 +15,68 @@ export class SchemingService {
 
     constructor(public _player: PlayerService) { }
 
-    currentScheme: Object = {};
+    schemes;
+
+    canSchemeBeLearned(id) {
+        return this.schemes[id]['lair_req'][this.getSchemeCurrentLevel(id)] <= this._player.lairLevel;
+    }
+
+    schemePreview(id) {
+        if(this.canSchemeBeLearned(id)) {
+            this.previewScheme= this.schemes[id];
+            this.previewSchemeLevel = this.getSchemeCurrentLevel(id) + 1;
+            this.showPreview = true;
+        }        
+    }
+
+    getSchemeCurrentLevel(id) {
+        return this._player.schemes[id]['level'];
+    }
+
+    get previewSchemeDescription() {
+        return this.previewScheme['description'][this.previewSchemeLevel]
+    }
+    
+    get previewSchemeFlavor() {
+        return this.previewScheme['flavor'][this.previewSchemeLevel]
+    }
+
+    get previewSchemeExp() {
+        return this._player.schemes[this.previewScheme['ref']]['exp'];
+    }
+
+    get previewSchemeExpTarget() {
+        return this.previewScheme['exp'][this.previewSchemeLevel]
+    }
+
+
+    startSchemingPreview() {
+        console.log("potato");
+        if (this.schemeLearnable(this.previewScheme)) {
+          this._player.currentScheme = this.previewScheme;
+          this.setCurrentSchemeLevel();
+          this.earningSchemePoints = true;
+        }
+      }
+
+
+
+
+    
+    previewScheme: Object = {};
+    previewSchemeLevel;
+    showPreview: boolean = false;
+
     currentSchemeLevel: number = 0;
     earningSchemePoints: boolean = false;
 
     //Scheme calculation setters
     earnSchemePoints(num) {
-        this._player.schemes[this.currentScheme['ref']]['exp'] += num;
-        if(this._player.schemes[this.currentScheme['ref']]['exp'] >= this.currentScheme['exp'][this._player.schemes[this.currentScheme['ref']]['level']]) {
-            this._player.schemes[this.currentScheme['ref']]['level']++;
-            this._player.schemes[this.currentScheme['ref']]['exp'] = 0;
-            this.currentScheme = {};
+        this._player.schemes[this._player.currentScheme['ref']]['exp'] += num;
+        if(this._player.schemes[this._player.currentScheme['ref']]['exp'] >= this._player.currentScheme['exp'][this._player.schemes[this._player.currentScheme['ref']]['level']]) {
+            this._player.schemes[this._player.currentScheme['ref']]['level']++;
+            this._player.schemes[this._player.currentScheme['ref']]['exp'] = 0;
+            this._player.currentScheme = {};
             this.earningSchemePoints = false;
         }
     }
@@ -79,11 +129,11 @@ export class SchemingService {
     }
 
     get currentSchemeEXP() {
-        return this._player.schemes[this.currentScheme['ref']]['exp'];
+        return this._player.schemes[this._player.currentScheme['ref']]['exp'];
     }
 
     get currentSchemeEXPTarget() {
-        return  this.currentScheme['exp'][this._player.schemes[this.currentScheme['ref']]['level']*1]
+        return  this._player.currentScheme['exp'][this._player.schemes[this._player.currentScheme['ref']]['level']*1]
     }
 
     get currentSchemePercentage() {
@@ -95,7 +145,7 @@ export class SchemingService {
     }
 
     setCurrentSchemeLevel() {
-        this.currentSchemeLevel = (this._player.schemes[this.currentScheme['ref']]['level'] * 1) +1;
+        this.currentSchemeLevel = (this._player.schemes[this._player.currentScheme['ref']]['level'] * 1) +1;
     }
 
 }

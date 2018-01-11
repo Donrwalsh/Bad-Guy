@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   ) {
 
     this._dataService.getSchemes()
-      .subscribe(res => this.schemes = res);
+      .subscribe(res => this._scheming.schemes = res);
   }
 
   ticker: number = 0;
@@ -30,18 +30,11 @@ export class AppComponent implements OnInit {
 
   schemes: Array<any>;
 
-  selectScheme(scheme, id) {
-    if (this._scheming.schemeLearnable(scheme)) {
-      this._scheming.currentScheme = scheme;
-      this._scheming.setCurrentSchemeLevel();
-      this._scheming.earningSchemePoints = true;
-    }
-  }
-
   ngOnInit() {
+    console.log(this._scheming.schemes)
 
     setInterval(() => {
       this._loop.action();
-    }, 10);
+    }, 10000000);
   }
 }

@@ -8,12 +8,12 @@
     <div>
         <h1 class="title">Bad Guy</h1>
     </div>
-    <div class="scheme" (mouseenter)="showSchemeFlyout = true;" (mouseleave)="showSchemeFlyout = false;">
+    <div class="scheme">
         <div *ngIf="_scheming.earningSchemePoints">
             <h5 class="status-text">Scheming</h5>
-            <div class="scheme-bar-container" [ngStyle]="{'border' : '1px solid ' + _scheming.currentScheme.color }">
-                <div class="scheme-progress-bar" [ngStyle]="{'width': _scheming.currentSchemePercentage + '%', 'background-color' : _scheming.currentScheme.color}"></div>
-                <i class="scheme-icon fa {{_scheming.currentScheme.fa}}" aria-hidden="true"></i>
+            <div class="scheme-bar-container" [ngStyle]="{'border' : '1px solid ' + _player.currentScheme.color }">
+                <div class="scheme-progress-bar" [ngStyle]="{'width': _player.currentSchemePercentage + '%', 'background-color' : _scheming.currentScheme.color}"></div>
+                <i class="scheme-icon fa {{_player.currentScheme.fa}}" aria-hidden="true"></i>
             </div>
         </div>
         <div *ngIf="!_scheming.earningSchemePoints">
@@ -21,16 +21,4 @@
             <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
         </div>
     </div>
-</div>
-
-<div class="scheme-flyout" *ngIf="_scheming.earningSchemePoints;" [@popOverState]="stateName" [ngStyle]="{'background-color' : _scheming.currentScheme.flyout_color}">
-    <div class="inner-content">
-        <i class="scheme-icon fa {{_scheming.currentScheme.fa}}" aria-hidden="true"></i>
-        <h4 class="scheme-name">{{_scheming.currentScheme.name}} {{_scheming.currentSchemeLevel > 1 ? _scheming.currentSchemeLevel : ''}}</h4>
-        <h5 class="benefit-header">Benefit: </h5>
-        <h6 class="benefit-text">{{_scheming.currentScheme.description[_scheming.currentSchemeLevel-1]}} </h6>
-        <h6 class="flavor-text">{{_scheming.currentScheme.flavor[_scheming.currentSchemeLevel-1]}}</h6>
-        <p class="scheme-exp"> {{_scheming.currentSchemeEXP}}/{{_scheming.currentSchemeEXPTarget}}</p>
-    </div>
-
 </div>
