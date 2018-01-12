@@ -27,7 +27,7 @@
             <div class="help-wanted-container" *ngIf="_recruiting.isUnlockedById(0)" (click)="_recruiting.collectById(0)" [ngStyle]="{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }">
                 <div class="help-wanted-progress-bar" [ngStyle]="{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}"></div>
                 <p class="help-wanted-display noselect">
-                    <i class="help-wanted-generation-icon fa fa-user faa-slow faa-flash animated" aria-hidden="true" [ngStyle]="{'visibility': _recruiting.isRecruitingById(0) ? 'default' : 'hidden' }"></i>
+                    <i class="help-wanted-generation-icon fa fa-user faa-slow faa-flash animated" aria-hidden="true" [ngStyle]="{'visibility': _recruiting.isRecruitingById(0) ? 'initial' : 'hidden' }"></i>
                     Craigslist Ad
                     <i class="help-wanted-collection-icon fa fa-user faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }"
                         [ngClass]="{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }"></i>

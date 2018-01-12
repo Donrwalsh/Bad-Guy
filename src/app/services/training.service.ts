@@ -15,9 +15,7 @@ export class TrainingService {
 
             //Guard Duty increases capacity by static amounts.
             for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
-                if (_i == 1) { capacity += 4; }
-                if (_i == 4) { capacity += 5; }
-                if (_i == 6) { capacity += 10 }
+                if (_i == 2) { capacity += 9; }
             }
 
             return capacity;
@@ -56,17 +54,6 @@ export class TrainingService {
         return this._player.schemes[4]['level'] >= 1;
     }
 
-    get guardTrainingCapacity() {
-        //Default Guard Training Capacity is 1
-        var capacity = 1;
-
-        //Guard Duty increases this number by static amounts
-        if (this._player.schemes[4]['level'] >= 2) {
-            capacity += 9;
-        }
-        return capacity;
-    }
-
     get guardCapacity() {
         return 10;
     }
@@ -94,8 +81,6 @@ export class TrainingService {
         if (id == 0) { //Guards
             if (this._player.currentHenchmen > 0) {
                 if (!this.training) {
-                    console.log("We are now training by id.")
-                    console.log(this._player.training[id]['queued'], this._player.training[id]['currentStore'], this.getCapacityById(id))
                     if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.getCapacityById(id)) {
                         this.training = true;
                         this._player.currentHenchmen--;

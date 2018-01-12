@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "../../../../../src lazy recursive";
 /***/ "../../../../../src/app/activity-panel/activity-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activity-panel\" noselect>\n    <div class=\"henchmen-column\" noselect>\n        <h4 class=\"title\" *ngIf=\"_training.areAnyUnlocked()\" noselect>Training</h4>\n        <div *ngIf=\"_training.areAnyUnlocked()\" class=\"left-padding\"></div>\n        <div *ngIf=\"_training.areAnyUnlocked()\" class=\"add-column\">\n            <div class=\"add-block\">\n                <i class=\"add-to-queue-icon fa fa-plus\"aria-hidden=\"true\" (click)=\"_training.trainById(0)\"\n                    [ngStyle]=\"{'visibility' : _training.canTrainById(0) ? 'initial' : 'hidden', 'cursor': _training.canTrainById(0) ? 'pointer' : 'default'}\"></i>\n            </div>\n        </div>\n        <div *ngIf=\"_training.areAnyUnlocked()\" class=\"progress-column\">\n            <div class=\"guard-training-container\" (click)=\"_training.collectById(0)\" [ngStyle]=\"{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n\n                <div class=\"guard-training-progress-bar\" [ngStyle]=\"{'width': _training.getPercentageById(0) + '%'}\"></div>\n                <p class=\"guard-training-display\">\n\n                    <i class=\"guard-training-generation-icon fa fa-shield faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'color': _training.isFullById(0) ? '#ccddff' : 'black', 'visibility': _training.isTrainingById(0) ? 'initial' : 'hidden' }\"></i>\n                    Guard\n                    <i class=\"guard-training-collection-icon fa fa-shield faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                        [ngClass]=\"{'faa-tada': !_inventory.isGuardCapacityFull, 'faa-horizontal': _inventory.isGuardCapacityFull }\"></i>\n                </p>\n            </div>\n        </div>\n        <h4 class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</h4>\n        <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"left-padding\"></div>\n        <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"progress-no-add-column\">\n            <div class=\"help-wanted-container\" *ngIf=\"_recruiting.isUnlockedById(0)\" (click)=\"_recruiting.collectById(0)\" [ngStyle]=\"{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n                <div class=\"help-wanted-progress-bar\" [ngStyle]=\"{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}\"></div>\n                <p class=\"help-wanted-display noselect\">\n                    <i class=\"help-wanted-generation-icon fa fa-user faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'visibility': _recruiting.isRecruitingById(0) ? 'default' : 'hidden' }\"></i>\n                    Craigslist Ad\n                    <i class=\"help-wanted-collection-icon fa fa-user faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                        [ngClass]=\"{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }\"></i>\n                </p>\n            </div>\n        </div>\n    </div>\n    <div style=\"visibility:hidden;width:50%;height:300px;background-color:pink;float:right;\">\n        <div style=\"position:relative;\">Operations</div>\n    </div>\n\n\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!--\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-archive\" aria-hidden=\"true\"></i>\n                {{_player.training[0]['currentStore']+_player.training[0]['queued']}}/{{_player.guardTrainingCapacity}}\n            </p>\n        </div>\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-clock-o\" aria-hidden=\"true\"></i>\n                5:00\n            </p>\n        </div>\n    </div>\n    <div class=\"add-column\">\n        <div class=\"add-block\">\n            \n                [ngStyle]=\"{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}\"></i>\n        </div>\n    </div>\n    <div class=\"right-side noselect\">\n\n\n        <div class=\"guard-training-container noselect\" *ngIf=\"_player.guardTrainingUnlocked\" (click)=\"collectGuards()\" [ngStyle]=\"{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n\n            <div class=\"guard-training-progress-bar\" [ngStyle]=\"{'width': 100*(_player.training[0]['percentage']/100) + '%'}\"></div>\n            <p class=\"guard-training-display noselect\">\n\n                <i class=\"guard-training-generation-icon fa fa-shield faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'color': _player.training[0]['full'] ? '#ccddff' : 'black', 'visibility': _player.isGuardTrainingHappening ? 'initial' : 'hidden' }\"></i>\n                Guard\n                <i class=\"guard-training-collection-icon fa fa-shield faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                    [ngClass]=\"{'faa-tada': !_player.isGuardCapacityFull, 'faa-horizontal': _player.isGuardCapacityFull }\"></i>\n            </p>\n        </div>\n    </div>\n    <h4 *ngIf=\"_recruiting.areAnyUnlocked()\" style=\"padding-bottom:.5rem;padding-top:.5rem;margin:0;text-align:center\">Recruitment</h4>\n    <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"left-side\">\n            <div style=\"height:1.2rem;width:20%;display:inline-block;\">\n                   \n                </div>\n        <div style=\"height:1.2rem;width:60%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-archive\" aria-hidden=\"true\"></i>\n                {{_player.recruiting[0]['currentStore']}}/{{_recruiting.getCapacityById(0)}}\n            </p>\n        </div>\n        \n    </div>\n    <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"right-side noselect\">\n\n\n        <div class=\"help-wanted-container\" *ngIf=\"_recruiting.isUnlockedById(0)\" (click)=\"_recruiting.collectById(0)\" [ngStyle]=\"{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n            <div class=\"help-wanted-progress-bar\" [ngStyle]=\"{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}\"></div>\n            <p class=\"help-wanted-display noselect\">\n                <i class=\"help-wanted-generation-icon fa fa-user faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'visibility': _recruiting.isRecruitingById(0) ? 'default' : 'hidden' }\"></i>\n                Craigslist Ad\n                <i class=\"help-wanted-collection-icon fa fa-user faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                    [ngClass]=\"{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }\"></i>\n            </p>\n        </div>\n    </div>\n\n\n</div>\n-->"
+module.exports = "<div class=\"activity-panel\" noselect>\n    <div class=\"henchmen-column\" noselect>\n        <h4 class=\"title\" *ngIf=\"_training.areAnyUnlocked()\" noselect>Training</h4>\n        <div *ngIf=\"_training.areAnyUnlocked()\" class=\"left-padding\"></div>\n        <div *ngIf=\"_training.areAnyUnlocked()\" class=\"add-column\">\n            <div class=\"add-block\">\n                <i class=\"add-to-queue-icon fa fa-plus\"aria-hidden=\"true\" (click)=\"_training.trainById(0)\"\n                    [ngStyle]=\"{'visibility' : _training.canTrainById(0) ? 'initial' : 'hidden', 'cursor': _training.canTrainById(0) ? 'pointer' : 'default'}\"></i>\n            </div>\n        </div>\n        <div *ngIf=\"_training.areAnyUnlocked()\" class=\"progress-column\">\n            <div class=\"guard-training-container\" (click)=\"_training.collectById(0)\" [ngStyle]=\"{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n\n                <div class=\"guard-training-progress-bar\" [ngStyle]=\"{'width': _training.getPercentageById(0) + '%'}\"></div>\n                <p class=\"guard-training-display\">\n\n                    <i class=\"guard-training-generation-icon fa fa-shield faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'color': _training.isFullById(0) ? '#ccddff' : 'black', 'visibility': _training.isTrainingById(0) ? 'initial' : 'hidden' }\"></i>\n                    Guard\n                    <i class=\"guard-training-collection-icon fa fa-shield faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                        [ngClass]=\"{'faa-tada': !_inventory.isGuardCapacityFull, 'faa-horizontal': _inventory.isGuardCapacityFull }\"></i>\n                </p>\n            </div>\n        </div>\n        <h4 class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</h4>\n        <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"left-padding\"></div>\n        <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"progress-no-add-column\">\n            <div class=\"help-wanted-container\" *ngIf=\"_recruiting.isUnlockedById(0)\" (click)=\"_recruiting.collectById(0)\" [ngStyle]=\"{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n                <div class=\"help-wanted-progress-bar\" [ngStyle]=\"{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}\"></div>\n                <p class=\"help-wanted-display noselect\">\n                    <i class=\"help-wanted-generation-icon fa fa-user faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'visibility': _recruiting.isRecruitingById(0) ? 'initial' : 'hidden' }\"></i>\n                    Craigslist Ad\n                    <i class=\"help-wanted-collection-icon fa fa-user faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                        [ngClass]=\"{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }\"></i>\n                </p>\n            </div>\n        </div>\n    </div>\n    <div style=\"visibility:hidden;width:50%;height:300px;background-color:pink;float:right;\">\n        <div style=\"position:relative;\">Operations</div>\n    </div>\n\n\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!--\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-archive\" aria-hidden=\"true\"></i>\n                {{_player.training[0]['currentStore']+_player.training[0]['queued']}}/{{_player.guardTrainingCapacity}}\n            </p>\n        </div>\n        <div style=\"height:1.2rem;width:40%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-clock-o\" aria-hidden=\"true\"></i>\n                5:00\n            </p>\n        </div>\n    </div>\n    <div class=\"add-column\">\n        <div class=\"add-block\">\n            \n                [ngStyle]=\"{'visibility' : (_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'initial' : 'hidden', 'cursor':(_player.training[0]['queued'] + _player.training[0]['currentStore'] < _player.guardTrainingCapacity) && _player.currentHenchmen > 0 ? 'pointer' : 'default'}\"></i>\n        </div>\n    </div>\n    <div class=\"right-side noselect\">\n\n\n        <div class=\"guard-training-container noselect\" *ngIf=\"_player.guardTrainingUnlocked\" (click)=\"collectGuards()\" [ngStyle]=\"{'cursor': _player.training[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n\n            <div class=\"guard-training-progress-bar\" [ngStyle]=\"{'width': 100*(_player.training[0]['percentage']/100) + '%'}\"></div>\n            <p class=\"guard-training-display noselect\">\n\n                <i class=\"guard-training-generation-icon fa fa-shield faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'color': _player.training[0]['full'] ? '#ccddff' : 'black', 'visibility': _player.isGuardTrainingHappening ? 'initial' : 'hidden' }\"></i>\n                Guard\n                <i class=\"guard-training-collection-icon fa fa-shield faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.training[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                    [ngClass]=\"{'faa-tada': !_player.isGuardCapacityFull, 'faa-horizontal': _player.isGuardCapacityFull }\"></i>\n            </p>\n        </div>\n    </div>\n    <h4 *ngIf=\"_recruiting.areAnyUnlocked()\" style=\"padding-bottom:.5rem;padding-top:.5rem;margin:0;text-align:center\">Recruitment</h4>\n    <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"left-side\">\n            <div style=\"height:1.2rem;width:20%;display:inline-block;\">\n                   \n                </div>\n        <div style=\"height:1.2rem;width:60%;display:inline-block;\">\n            <p style=\"margin:0;width:100%;display:inline-block;\" class=\"training-display\">\n                <i style=\"padding-left:.5rem\" class=\"capacity-icon fa fa-archive\" aria-hidden=\"true\"></i>\n                {{_player.recruiting[0]['currentStore']}}/{{_recruiting.getCapacityById(0)}}\n            </p>\n        </div>\n        \n    </div>\n    <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"right-side noselect\">\n\n\n        <div class=\"help-wanted-container\" *ngIf=\"_recruiting.isUnlockedById(0)\" (click)=\"_recruiting.collectById(0)\" [ngStyle]=\"{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n            <div class=\"help-wanted-progress-bar\" [ngStyle]=\"{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}\"></div>\n            <p class=\"help-wanted-display noselect\">\n                <i class=\"help-wanted-generation-icon fa fa-user faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'visibility': _recruiting.isRecruitingById(0) ? 'default' : 'hidden' }\"></i>\n                Craigslist Ad\n                <i class=\"help-wanted-collection-icon fa fa-user faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                    [ngClass]=\"{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }\"></i>\n            </p>\n        </div>\n    </div>\n\n\n</div>\n-->"
 
 /***/ }),
 
@@ -132,7 +132,7 @@ ActivityPanelModule = __decorate([
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header></header>\n<div class=\"skulls_pattern\">\n  <div style=\"height:1rem;\"></div>\n  <activity-panel></activity-panel>\n  <scheme-panel></scheme-panel>\n  \n</div>"
+module.exports = "<header></header>\n<div class=\"skulls_pattern\">\n  <div class=\"resources-bar\" style=\"user-select:none;height:2rem;border-top:solid .75px\">\n    <div class=\"resource-tab\" style=\"margin-left:0.5rem;display:inline-block;border:1px solid #f2ccff;color:#bf00ff;border-radius:0 0 .5rem .5rem; padding-right: .2rem; padding-bottom: .2rem; padding-left: .2rem; border-top:none;\">\n      <i class=\"guard fa fa-home\" aria-hidden=\"true\"></i>\n      <p style=\"display:inline-block; margin:0;\" class=\"guard-readout\">Mom's Basement</p>\n    </div>\n    <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"resource-tab\" style=\"margin-left:0.1rem;display:inline-block;border:1px solid #e6e6e6;border-radius:0 0 .5rem .5rem; padding-right: .2rem; padding-bottom: .2rem; padding-left: .2rem; border-top:none;\">\n      <i class=\"henchmen fa fa-users\" aria-hidden=\"true\"></i>\n      <p style=\"display:inline-block; margin:0;\" class=\"henchmen-readout\">{{_player.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>\n    </div>\n    <div *ngIf=\"_training.guardTrainingUnlocked\" class=\"resource-tab\" style=\"margin-left:0.1rem;display:inline-block;border:1px solid #ccddff;border-radius:0 0 .5rem .5rem; padding-right: .2rem; padding-bottom: .2rem; padding-left: .2rem; border-top:none;\">\n      <i class=\"guard fa fa-shield\" aria-hidden=\"true\"></i>\n      <p style=\"display:inline-block; margin:0;\" class=\"guard-readout\">{{_player.currentGuards}}/{{_inventory.guardCapacity}}</p>\n    </div>\n\n\n  </div>\n  <activity-panel></activity-panel>\n  <scheme-panel></scheme-panel>\n\n</div>"
 
 /***/ }),
 
@@ -163,7 +163,10 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -177,14 +180,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 // Import the DataService
 
 var AppComponent = (function () {
-    function AppComponent(_player, _loop, _scheming, _dataService) {
+    function AppComponent(_player, _loop, _scheming, _inventory, _training, _recruiting, _dataService) {
         var _this = this;
         this._player = _player;
         this._loop = _loop;
         this._scheming = _scheming;
+        this._inventory = _inventory;
+        this._training = _training;
+        this._recruiting = _recruiting;
         this._dataService = _dataService;
         this.ticker = 0;
         this.betterTicker = 600;
@@ -196,7 +205,7 @@ var AppComponent = (function () {
         var _this = this;
         setInterval(function () {
             _this._loop.action();
-        }, 100);
+        }, 10);
     };
     return AppComponent;
 }());
@@ -206,10 +215,10 @@ AppComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__data_service__["a" /* DataService */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__services_training_service__["a" /* TrainingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_training_service__["a" /* TrainingService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__services_recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_recruiting_service__["a" /* RecruitingService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__data_service__["a" /* DataService */]) === "function" && _g || Object])
 ], AppComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -332,7 +341,7 @@ var _a;
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\">\n    <div class=\"resources\">\n        <i class=\"henchmen fa fa-users\" aria-hidden=\"true\"></i>\n        <p class=\"henchmen-readout\">{{_player.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>\n        <i class=\"guard fa fa-shield\" aria-hidden=\"true\"></i>\n        <p class=\"guard-readout\">{{_player.currentGuards}}/{{_inventory.guardCapacity}}</p>\n    </div>\n    <div>\n        <h1 class=\"title\">Bad Guy</h1>\n    </div>\n    <div class=\"scheme\" [ngStyle]=\"{'cursor': _player.currentScheme ? 'pointer' : 'default'}\" (click)=\"_scheming.switchToCurrentSchemePreview()\">\n        <div *ngIf=\"_scheming.earningSchemePoints\">\n            <h5 class=\"status-text\">Scheming</h5>\n            <div class=\"scheme-bar-container\" [ngStyle]=\"{'border' : '1px solid ' + _player.currentScheme.color }\">\n                <div class=\"scheme-progress-bar\" [ngStyle]=\"{'width': _scheming.currentSchemePercentage + '%', 'background-color' : _player.currentScheme.color}\"></div>\n                <i class=\"scheme-icon fa {{_player.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n            </div>\n        </div>\n        <div *ngIf=\"!_scheming.earningSchemePoints\">\n            <h5 class=\"status-text\">Not Scheming</h5>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"header\">\n    <div class=\"resources\">\n\n    </div>\n    <div>\n        <h1 class=\"title\">Bad Guy</h1>\n    </div>\n    <div class=\"scheme\" [ngStyle]=\"{'cursor': _player.currentScheme ? 'pointer' : 'default'}\" (click)=\"_scheming.switchToCurrentSchemePreview()\">\n        <div *ngIf=\"_scheming.earningSchemePoints\">\n            <h5 class=\"status-text\">Scheming</h5>\n            <div class=\"scheme-bar-container\" [ngStyle]=\"{'border' : '1px solid ' + _player.currentScheme.color }\">\n                <div class=\"scheme-progress-bar\" [ngStyle]=\"{'width': _scheming.currentSchemePercentage + '%', 'background-color' : _player.currentScheme.color}\"></div>\n                <i class=\"scheme-icon fa {{_player.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n            </div>\n        </div>\n        <div *ngIf=\"!_scheming.earningSchemePoints\">\n            <h5 class=\"status-text\">Not Scheming</h5>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -675,19 +684,19 @@ var PlayerService = (function () {
         this.lairLevel = 0;
         //Primary scheme object. Stores level and accumulated exp toward next level by scheme ref.
         this.schemes = [
-            { level: 4, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
-            { level: 4, exp: 0 },
-            { level: 1, exp: 0 },
-            { level: 4, exp: 0 },
+            { level: 0, exp: 0 },
+            { level: 0, exp: 0 },
+            { level: 0, exp: 0 },
+            { level: 0, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 } //8 Communications, not coded.
         ];
         this.currentScheme = {};
         //Henchmen
-        this.currentHenchmen = 5;
+        this.currentHenchmen = 0;
         this.recruiting = [
             { currentStore: 0, capacity: 0, countdown: 0, lock: 0 } //Help Wanted 1
         ];
@@ -1179,14 +1188,8 @@ var TrainingService = (function () {
             var capacity = 1;
             //Guard Duty increases capacity by static amounts.
             for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
-                if (_i == 1) {
-                    capacity += 4;
-                }
-                if (_i == 4) {
-                    capacity += 5;
-                }
-                if (_i == 6) {
-                    capacity += 10;
+                if (_i == 2) {
+                    capacity += 9;
                 }
             }
             return capacity;
@@ -1225,19 +1228,6 @@ var TrainingService = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(TrainingService.prototype, "guardTrainingCapacity", {
-        get: function () {
-            //Default Guard Training Capacity is 1
-            var capacity = 1;
-            //Guard Duty increases this number by static amounts
-            if (this._player.schemes[4]['level'] >= 2) {
-                capacity += 9;
-            }
-            return capacity;
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(TrainingService.prototype, "guardCapacity", {
         get: function () {
             return 10;
@@ -1271,8 +1261,6 @@ var TrainingService = (function () {
         if (id == 0) {
             if (this._player.currentHenchmen > 0) {
                 if (!this.training) {
-                    console.log("We are now training by id.");
-                    console.log(this._player.training[id]['queued'], this._player.training[id]['currentStore'], this.getCapacityById(id));
                     if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.getCapacityById(id)) {
                         this.training = true;
                         this._player.currentHenchmen--;

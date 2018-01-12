@@ -1,7 +1,22 @@
 <header></header>
 <div class="skulls_pattern">
-  <div style="height:1rem;"></div>
+  <div class="resources-bar" style="user-select:none;height:2rem;border-top:solid .75px">
+    <div class="resource-tab" style="margin-left:0.5rem;display:inline-block;border:1px solid #f2ccff;color:#bf00ff;border-radius:0 0 .5rem .5rem; padding-right: .2rem; padding-bottom: .2rem; padding-left: .2rem; border-top:none;">
+      <i class="guard fa fa-home" aria-hidden="true"></i>
+      <p style="display:inline-block; margin:0;" class="guard-readout">Mom's Basement</p>
+    </div>
+    <div *ngIf="_recruiting.areAnyUnlocked()" class="resource-tab" style="margin-left:0.1rem;display:inline-block;border:1px solid #e6e6e6;border-radius:0 0 .5rem .5rem; padding-right: .2rem; padding-bottom: .2rem; padding-left: .2rem; border-top:none;">
+      <i class="henchmen fa fa-users" aria-hidden="true"></i>
+      <p style="display:inline-block; margin:0;" class="henchmen-readout">{{_player.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>
+    </div>
+    <div *ngIf="_training.guardTrainingUnlocked" class="resource-tab" style="margin-left:0.1rem;display:inline-block;border:1px solid #ccddff;border-radius:0 0 .5rem .5rem; padding-right: .2rem; padding-bottom: .2rem; padding-left: .2rem; border-top:none;">
+      <i class="guard fa fa-shield" aria-hidden="true"></i>
+      <p style="display:inline-block; margin:0;" class="guard-readout">{{_player.currentGuards}}/{{_inventory.guardCapacity}}</p>
+    </div>
+
+
+  </div>
   <activity-panel></activity-panel>
   <scheme-panel></scheme-panel>
-  
+
 </div>
