@@ -27,7 +27,7 @@ export class InventoryService {
         //Henchman Lodging increases this value by a static amount.
         for (var i = 0; i < this._player.schemes[5]['level']; i++) {
             if (i < 2) {
-                capacity += 5;
+            capacity += 5;
             } else if (i > 1 && i < 4 ) {
                 capacity += 10;
             } else if (i == 4) {

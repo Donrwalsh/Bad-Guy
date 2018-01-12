@@ -42,7 +42,13 @@ router.get('/schemes/', (req, res) => {
                 .toArray()
                 .then((henchmen) => {
                     response.data.push.apply(response.data, henchmen);
-                    res.json(response);
+                    db.collection('operations')
+                    .find()
+                    .toArray()
+                    .then((operations) => {
+                        response.data.push.apply(response.data, operations);
+                        res.json(response);
+                    });
                 });
             })
             .catch((err) => {

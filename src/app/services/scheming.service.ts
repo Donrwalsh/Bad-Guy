@@ -8,7 +8,7 @@ export class SchemingService {
     coinFlip(times) {
         var successes = 0;
         for (var _i = 0; _i < times; _i++) {
-            if (Math.random() >= 0.5) { successes++}
+            if (Math.random() >= 0.5) { successes++ }
         }
         return successes;
     }
@@ -18,15 +18,15 @@ export class SchemingService {
     schemes;
 
     canSchemeBeLearned(id) {
-        return this.schemes[id]['lair_req'][this.getSchemeCurrentLevel(id)] <= this._player.lairLevel;
+        return this.schemes[id]['lair_req'][this.getSchemeCurrentLevel(id) + 1] <= this._player.lairLevel;
     }
 
     schemePreview(id) {
-        if(this.canSchemeBeLearned(id)) {
-            this.previewScheme= this.schemes[id];
-            this.previewSchemeLevel = this.getSchemeCurrentLevel(id) + 1;
-            this.showPreview = true;
-        }        
+
+        this.previewScheme = this.schemes[id];
+        this.previewSchemeLevel = this.getSchemeCurrentLevel(id) + 1;
+        this.showPreview = true;
+
     }
 
     selected = 'scheme';
@@ -36,11 +36,11 @@ export class SchemingService {
     }
 
     get previewSchemeDescription() {
-        return this.previewScheme['description'][this.previewSchemeLevel-1]
+        return this.previewScheme['description'][this.previewSchemeLevel - 1]
     }
-    
+
     get previewSchemeFlavor() {
-        return this.previewScheme['flavor'][this.previewSchemeLevel-1]
+        return this.previewScheme['flavor'][this.previewSchemeLevel - 1]
     }
 
     get previewSchemeExp() {
@@ -48,22 +48,22 @@ export class SchemingService {
     }
 
     get previewSchemeExpTarget() {
-        return this.previewScheme['exp'][this.previewSchemeLevel-1]
+        return this.previewScheme['exp'][this.previewSchemeLevel - 1]
     }
 
 
     startSchemingPreview() {
         if (this.schemeLearnable(this.previewScheme)) {
-          this._player.currentScheme = this.previewScheme;
-          this.setCurrentSchemeLevel();
-          this.earningSchemePoints = true;
+            this._player.currentScheme = this.previewScheme;
+            this.setCurrentSchemeLevel();
+            this.earningSchemePoints = true;
         }
-      }
+    }
 
 
 
 
-    
+
     previewScheme: Object = {};
     previewSchemeLevel;
     showPreview: boolean = false;
@@ -73,7 +73,7 @@ export class SchemingService {
 
     switchToCurrentSchemePreview() {
         //Garbage. Needs to be actually coded.
-        if (this._player.currentScheme['ref'] <= 2 ) {
+        if (this._player.currentScheme['ref'] <= 2) {
             this.selected = "scheme";
         } else {
             this.selected = "hench"
@@ -86,7 +86,7 @@ export class SchemingService {
     //Scheme calculation setters
     earnSchemePoints(num) {
         this._player.schemes[this._player.currentScheme['ref']]['exp'] += num;
-        if(this._player.schemes[this._player.currentScheme['ref']]['exp'] >= this._player.currentScheme['exp'][this._player.schemes[this._player.currentScheme['ref']]['level']]) {
+        if (this._player.schemes[this._player.currentScheme['ref']]['exp'] >= this._player.currentScheme['exp'][this._player.schemes[this._player.currentScheme['ref']]['level']]) {
             this._player.schemes[this._player.currentScheme['ref']]['level']++;
             this._player.schemes[this._player.currentScheme['ref']]['exp'] = 0;
             if (this.previewScheme == this._player.currentScheme) {
@@ -106,9 +106,9 @@ export class SchemingService {
         var successes = this.coinFlip(6);
         for (var _i = 0; _i < this._player.schemes[2]['level']; _i++) {
             if (_i < 5) { hatched += successes >= 5 ? 1 : 0 }
-            if (_i > 4 && _i < 10) { hatched += successes >= 5 ? 2 : 0}
-            if (_i >9 && _i <15) { hatched += successes >= 5 ? 5 : 0}
-            if (_i >14 && _i <20) { hatched += successes >- 5 ? 10 : 0}
+            if (_i > 4 && _i < 10) { hatched += successes >= 5 ? 2 : 0 }
+            if (_i > 9 && _i < 15) { hatched += successes >= 5 ? 5 : 0 }
+            if (_i > 14 && _i < 20) { hatched += successes > - 5 ? 10 : 0 }
         }
 
         return hatched;
@@ -120,10 +120,10 @@ export class SchemingService {
 
         //Mastermind increases scheme points per second
         for (var _i = 0; _i < this._player.schemes[0]['level']; _i++) {
-            if (_i < 5 ) { hatched += 1}
+            if (_i < 5) { hatched += 1 }
             if (_i > 4 && _i < 10) { hatched += 2 }
             if (_i > 9 && _i < 15) { hatched += 5 }
-            if (_i > 14) { hatched += 10 } 
+            if (_i > 14) { hatched += 10 }
         }
 
         return hatched;
@@ -135,12 +135,12 @@ export class SchemingService {
 
         //Cold Logic increases scheme points per minute
         for (var _i = 0; _i < this._player.schemes[1]['level']; _i++) {
-            if (_i < 5 ) { hatched += 60}
+            if (_i < 5) { hatched += 60 }
             if (_i > 4 && _i < 10) { hatched += 120 }
             if (_i > 9 && _i < 15) { hatched += 300 }
-            if (_i > 14) { hatched += 600 } 
+            if (_i > 14) { hatched += 600 }
         }
-        
+
         return hatched;
     }
 
@@ -149,11 +149,11 @@ export class SchemingService {
     }
 
     get currentSchemeEXPTarget() {
-        return  this._player.currentScheme['exp'][this._player.schemes[this._player.currentScheme['ref']]['level']*1]
+        return this._player.currentScheme['exp'][this._player.schemes[this._player.currentScheme['ref']]['level'] * 1]
     }
 
     get currentSchemePercentage() {
-        return Math.round((this.currentSchemeEXP/this.currentSchemeEXPTarget)*100);
+        return Math.round((this.currentSchemeEXP / this.currentSchemeEXPTarget) * 100);
     }
 
     schemeLearnable(scheme) {
@@ -161,7 +161,7 @@ export class SchemingService {
     }
 
     setCurrentSchemeLevel() {
-        this.currentSchemeLevel = (this._player.schemes[this._player.currentScheme['ref']]['level'] * 1) +1;
+        this.currentSchemeLevel = (this._player.schemes[this._player.currentScheme['ref']]['level'] * 1) + 1;
     }
 
 }

@@ -38,7 +38,7 @@ export class TrainingService {
     }
 
     isFullById(id) {
-        return this._player.training[id]['currentStore'] + this._player.training[id]['queued'] == this.getCapacityById(id);
+        return this._player.training[id]['currentStore'] == this.getCapacityById(id);
     }
 
     isTrainingById(id) {
@@ -57,9 +57,12 @@ export class TrainingService {
     }
 
     get guardTrainingCapacity() {
+        //Default Guard Training Capacity is 1
         var capacity = 1;
+
+        //Guard Duty increases this number by static amounts
         if (this._player.schemes[4]['level'] >= 2) {
-            capacity += 4;
+            capacity += 9;
         }
         return capacity;
     }
@@ -91,6 +94,8 @@ export class TrainingService {
         if (id == 0) { //Guards
             if (this._player.currentHenchmen > 0) {
                 if (!this.training) {
+                    console.log("We are now training by id.")
+                    console.log(this._player.training[id]['queued'], this._player.training[id]['currentStore'], this.getCapacityById(id))
                     if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.getCapacityById(id)) {
                         this.training = true;
                         this._player.currentHenchmen--;
@@ -143,7 +148,7 @@ export class TrainingService {
 
             //Guard duty reduces this amount by static time.
             for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
-                if (_i == 2) { rate -= 600 }
+                if (_i == 1) { rate -= 600 }
                 if (_i == 3) { rate -= 600 }
             }
 
@@ -157,6 +162,7 @@ export class TrainingService {
     }
 
     tickById(id) {
+        console.log("Ticking by ID: Training")
         
         if (this._player.training[0]['countdown'] == 0 && this._player.training[0]['lock'] == 0) {
             this.resetCountdownById(id);
