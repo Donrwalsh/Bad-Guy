@@ -12,10 +12,37 @@ import { InventoryService } from '../services/inventory.service';
 export class ActivityPanelComponent {
 
     constructor(public _player: PlayerService,
-    public _recruiting: RecruitingService,
-    public _inventory: InventoryService,
-    public _training: TrainingService) {
+        public _recruiting: RecruitingService,
+        public _inventory: InventoryService,
+        public _training: TrainingService) {
     }
 
-    
+    addToQueueIconStyle(id) {
+        return {
+            'visibility': this._training.canTrainById(id) ? 'initial' : 'hidden',
+            'cursor': this._training.canTrainById(id) ? 'pointer' : 'default'
+        }
+    }
+
+    trainingContainerStyle(id) {
+        return {
+            'cursor': this._player.training[id]['currentStore'] > 0 ? 'pointer' : 'default'
+        }
+    }
+
+    trainingProgressBarStyle(id) {
+        return { 
+            'width': this._training.getPercentageById(id) + '%' 
+        }
+    }
+
+    trainingCollectionIcon(id) {
+        return {
+            'faa-tada': !this._inventory.isHenchmenUpgradeFullById(id),
+            'faa-horizontal': this._inventory.isHenchmenUpgradeFullById(id),
+            'fa-shield': id == 0
+        }
+    }
+
+
 }

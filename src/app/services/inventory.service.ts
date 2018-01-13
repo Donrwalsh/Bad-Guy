@@ -16,6 +16,10 @@ export class InventoryService {
         return 10 //No modifiers yet.
     }
 
+    isHenchmenUpgradeFullById(id) {
+        if (id==0) {return this.isGuardCapacityFull}
+    }
+
     get isGuardCapacityFull() {
         return this._player.currentGuards == this.guardCapacity;
     }

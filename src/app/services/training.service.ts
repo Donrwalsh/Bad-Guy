@@ -35,6 +35,14 @@ export class TrainingService {
         return false;
     }
 
+    getUpgradeNameById(id) {
+        if(id == 0) {return "Guard"}
+    }
+
+    getFaById(id) {
+        if (id == 0) {return "fa-shield"}
+    }
+
     isFullById(id) {
         return this._player.training[id]['currentStore'] == this.getCapacityById(id);
     }
@@ -60,10 +68,6 @@ export class TrainingService {
 
     get guardTrainingRate() {
         return 500;
-    }
-
-    get isGuardCapacityFull() {
-        return this._player.currentGuards == this.guardCapacity;
     }
 
     training: boolean = false;
