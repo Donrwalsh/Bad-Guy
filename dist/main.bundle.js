@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "../../../../../src lazy recursive";
 /***/ "../../../../../src/app/activity-panel/activity-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activity-panel\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let Training of _player.training; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlockedById(i)\" ></div>\n            <div class=\"add-column\" *ngIf=\"_training.isUnlockedById(i)\">\n                <div class=\"add-block\">\n                    <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.trainById(i)\" [ngStyle]=\"addToQueueIconStyle(i)\"></i>\n                </div>\n            </div>\n            <div *ngIf=\"_training.isUnlockedById(i)\" class=\"progress-column\">\n                <div [ngClass]=\"containerClass(i)\" (click)=\"_training.collectById(i)\" [ngStyle]=\"trainingContainerStyle(i)\">\n                    <div [ngClass]=\"progressBarClass(i)\" [ngStyle]=\"trainingProgressBarStyle(i)\"></div>\n                    <p [ngClass]=\"trainingDisplayClass(i)\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated\" [ngClass]=\"_training.getFaById(i)\" aria-hidden=\"true\" [ngStyle]=\"{'visibility': _training.isTrainingById(0) ? 'initial' : 'hidden' }\"></i>\n                        {{_training.getUpgradeNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.training[i]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                            [ngClass]=\"trainingCollectionIcon(i)\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <h4 class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</h4>\n        <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"left-padding\"></div>\n        <div *ngIf=\"_recruiting.areAnyUnlocked()\" class=\"progress-no-add-column\">\n            <div class=\"help-wanted-container\" *ngIf=\"_recruiting.isUnlockedById(0)\" (click)=\"_recruiting.collectById(0)\" [ngStyle]=\"{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }\">\n                <div class=\"help-wanted-progress-bar\" [ngStyle]=\"{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}\"></div>\n                <p class=\"help-wanted-display noselect\">\n                    <i class=\"help-wanted-generation-icon fa fa-user faa-slow faa-flash animated\" aria-hidden=\"true\" [ngStyle]=\"{'visibility': _recruiting.isRecruitingById(0) ? 'initial' : 'hidden' }\"></i>\n                    Craigslist Ad\n                    <i class=\"help-wanted-collection-icon fa fa-user faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }\"\n                        [ngClass]=\"{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }\"></i>\n                </p>\n            </div>\n        </div>\n    </div>\n    <div style=\"visibility:hidden;width:50%;height:300px;background-color:pink;float:right;\">\n        <div style=\"position:relative;\">Operations</div>\n    </div>\n</div>"
+module.exports = "<div class=\"activity-panel\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let Training of _player.training; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlockedById(i)\"></div>\n            <div class=\"add-column\" *ngIf=\"_training.isUnlockedById(i)\">\n                <div class=\"add-block\">\n                    <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.trainById(i)\" [ngStyle]=\"addToQueueIconStyle(i)\"></i>\n                </div>\n            </div>\n            <div *ngIf=\"_training.isUnlockedById(i)\" class=\"progress-column\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectById(i)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated\" [ngClass]=\"_training.getFaById(i)\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{_training.getUpgradeNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let Recruiting of _player.recruiting; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlockedById(i)\" class=\"progress-no-add-column\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectById(i)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated\" [ngClass]=\"_recruiting.getFaById(i)\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{_recruiting.getRecruitmentNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!--In progress: -->\n    <div style=\"visibility:hidden;width:50%;height:300px;background-color:pink;float:right;\">\n        <div style=\"position:relative;\">Operations</div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -28,7 +28,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* Henchmen Colors */\n.activity-panel {\n  display: inline-block;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n  @media all and (max-width: 459px) {\n    .activity-panel {\n      width: 100%; } }\n  .activity-panel .henchmen-column {\n    width: 50%;\n    display: inline-block; }\n    .activity-panel .henchmen-column .title {\n      padding-bottom: .5rem;\n      padding-top: .5rem;\n      margin: 0;\n      text-align: center; }\n    .activity-panel .henchmen-column .left-padding {\n      width: 5%;\n      display: inline-block; }\n    .activity-panel .henchmen-column .add-column {\n      width: 5%;\n      vertical-align: middle;\n      display: inline-block; }\n      .activity-panel .henchmen-column .add-column .add-block {\n        height: 1.2rem; }\n    .activity-panel .henchmen-column .progress-column {\n      width: 75%;\n      display: inline-block; }\n      .activity-panel .henchmen-column .progress-column .guard-training-container {\n        border: 1px solid #ccccff; }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .guard-progress-bar {\n          background-color: #ccccff; }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display {\n          color: #000099; }\n      .activity-panel .henchmen-column .progress-column .training-container {\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        display: inline-block;\n        position: relative; }\n        .activity-panel .henchmen-column .progress-column .training-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n        .activity-panel .henchmen-column .progress-column .training-container .training-display {\n          font-size: .8em;\n          width: 100%;\n          margin: 0;\n          position: relative;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          height: 1.2rem; }\n          .activity-panel .henchmen-column .progress-column .training-container .training-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n          .activity-panel .henchmen-column .progress-column .training-container .training-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n    .activity-panel .henchmen-column .progress-no-add-column {\n      width: 82%;\n      display: inline-block; }\n      .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container {\n        margin-top: .1em;\n        width: 100%;\n        height: 1.2em;\n        border: 1px solid #ccddff;\n        border-radius: 0px 15px 15px 0px;\n        position: relative; }\n        .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-progress-bar {\n          border-radius: 0px 15px 15px 0px;\n          position: absolute;\n          height: 1.2em;\n          background-color: #ccddff; }\n        @media all and (min-width: 640px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .wide {\n            display: block; } }\n        @media all and (max-width: 639px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .wide {\n            display: block; } }\n        @media all and (max-width: 459px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .wide {\n            display: none; } }\n        @media all and (max-width: 399px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .wide {\n            display: none; } }\n        @media all and (min-width: 640px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .narrow {\n            display: none; } }\n        @media all and (max-width: 639px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .narrow {\n            display: none; } }\n        @media all and (max-width: 459px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .narrow {\n            display: block; } }\n        @media all and (max-width: 399px) {\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .narrow {\n            display: block; } }\n        .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n          font-size: .8em;\n          width: 100%;\n          margin-top: .1em;\n          margin: 0;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          position: relative; }\n          @media all and (max-width: 639px) {\n            .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n              font-size: .6em;\n              margin-top: .2em; } }\n          @media all and (max-width: 459px) {\n            .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n              font-size: .8em;\n              margin-top: .1em; } }\n          @media all and (max-width: 399px) {\n            .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n              font-size: .5em;\n              margin-top: .4em; } }\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n            @media all and (max-width: 639px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-generation-icon {\n                font-size: .9em;\n                margin-top: .25em;\n                margin-right: .8em; } }\n            @media all and (max-width: 459px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-generation-icon {\n                margin-top: .25em; } }\n            @media all and (max-width: 399px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-generation-icon {\n                font-size: .9em;\n                margin-top: .1em; } }\n          .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n            @media all and (max-width: 639px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-collection-icon {\n                font-size: .9em;\n                margin-top: .25em; } }\n            @media all and (max-width: 459px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-collection-icon {\n                margin-top: .25em; } }\n            @media all and (max-width: 399px) {\n              .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display .help-wanted-collection-icon {\n                font-size: .9em;\n                margin-top: .1em; } }\n", ""]);
+exports.push([module.i, "/* Henchmen Colors */\n.activity-panel {\n  display: inline-block;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n  @media all and (max-width: 459px) {\n    .activity-panel {\n      width: 100%; } }\n  .activity-panel .henchmen-column {\n    width: 50%;\n    display: inline-block; }\n    .activity-panel .henchmen-column .title {\n      padding-bottom: .5rem;\n      padding-top: .5rem;\n      margin: 0;\n      text-align: center; }\n    .activity-panel .henchmen-column .left-padding {\n      width: 5%;\n      display: inline-block; }\n    .activity-panel .henchmen-column .add-column {\n      width: 5%;\n      vertical-align: middle;\n      display: inline-block; }\n      .activity-panel .henchmen-column .add-column .add-block {\n        height: 1.2rem; }\n    .activity-panel .henchmen-column .progress-column {\n      width: 75%;\n      display: inline-block; }\n      .activity-panel .henchmen-column .progress-column .training-container {\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        display: inline-block;\n        position: relative; }\n        .activity-panel .henchmen-column .progress-column .training-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n        .activity-panel .henchmen-column .progress-column .training-container .training-display {\n          font-size: .8em;\n          width: 100%;\n          margin: 0;\n          position: relative;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          height: 1.2rem; }\n          .activity-panel .henchmen-column .progress-column .training-container .training-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n          .activity-panel .henchmen-column .progress-column .training-container .training-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n      .activity-panel .henchmen-column .progress-column .guard-training-container {\n        border: 1px solid #ccccff; }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .guard-progress-bar {\n          background-color: #ccccff; }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display {\n          color: #000099; }\n    .activity-panel .henchmen-column .progress-no-add-column {\n      width: 82%;\n      display: inline-block; }\n      .activity-panel .henchmen-column .progress-no-add-column .recruitment-container {\n        margin-top: .5em;\n        width: 100%;\n        height: 1.2em;\n        border-radius: 0px 15px 15px 0px;\n        position: relative; }\n        .activity-panel .henchmen-column .progress-no-add-column .recruitment-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n        .activity-panel .henchmen-column .progress-no-add-column .recruitment-container .recruitment-display {\n          font-size: .8em;\n          width: 100%;\n          margin-top: .1em;\n          margin: 0;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          position: relative; }\n          .activity-panel .henchmen-column .progress-no-add-column .recruitment-container .recruitment-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n          .activity-panel .henchmen-column .progress-no-add-column .recruitment-container .recruitment-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n      .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container {\n        border: 1px solid #ccddff; }\n        .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-progress-bar {\n          background-color: #ccddff; }\n        .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n          color: #003399; }\n", ""]);
 
 // exports
 
@@ -69,22 +69,33 @@ var ActivityPanelComponent = (function () {
         this._inventory = _inventory;
         this._training = _training;
     }
-    ActivityPanelComponent.prototype.containerClass = function (id) {
+    ActivityPanelComponent.prototype.containerClass = function (id, type) {
         return {
-            'training-container': true,
-            'guard-training-container': id == 0
+            'recruitment-container': type == "recruiting",
+            'training-container': type == "training",
+            'help-wanted-container': type == "recruiting" && (id == 0 || id == 1),
+            'guard-training-container': type == "training" && id == 0
         };
     };
-    ActivityPanelComponent.prototype.progressBarClass = function (id) {
+    ActivityPanelComponent.prototype.progressBarClass = function (id, type) {
         return {
             'progress-bar': true,
-            'guard-progress-bar': id == 0
+            'help-wanted-progress-bar': type == "recruiting" && (id == 0 || id == 1),
+            'guard-progress-bar': type == "training" && id == 0
         };
     };
-    ActivityPanelComponent.prototype.trainingDisplayClass = function (id) {
+    //This will break if more than 2 types are used.
+    ActivityPanelComponent.prototype.styleProgressBar = function (id, type) {
         return {
-            'training-display': true,
-            'guard-training-display': id == 0
+            'width': type == 'recruiting' ? this._recruiting.getPercentageById(id) + '%' : this._training.getPercentageById(id) + '%'
+        };
+    };
+    ActivityPanelComponent.prototype.displayClass = function (id, type) {
+        return {
+            'recruitment-display': type == "recruiting",
+            'training-display': type == "training",
+            'help-wanted-display': type == "recruiting" && (id == 0 || id == 1),
+            'guard-training-display': type == "training" && id == 0
         };
     };
     ActivityPanelComponent.prototype.addToQueueIconStyle = function (id) {
@@ -93,22 +104,49 @@ var ActivityPanelComponent = (function () {
             'cursor': this._training.canTrainById(id) ? 'pointer' : 'default'
         };
     };
-    ActivityPanelComponent.prototype.trainingContainerStyle = function (id) {
-        return {
-            'cursor': this._player.training[id]['currentStore'] > 0 ? 'pointer' : 'default'
-        };
+    ActivityPanelComponent.prototype.collectingIconStyle = function (id, type) {
+        if (type == "training") {
+            return { 'visibility': this._training.isTrainingById(0) ? 'initial' : 'hidden' };
+        }
+        else {
+            return { 'visibility': this._recruiting.isRecruitingById(0) ? 'initial' : 'hidden' };
+        }
     };
-    ActivityPanelComponent.prototype.trainingProgressBarStyle = function (id) {
-        return {
-            'width': this._training.getPercentageById(id) + '%'
-        };
+    ActivityPanelComponent.prototype.containerStyle = function (id, type) {
+        if (type == "training") {
+            return { 'cursor': this._player.training[id]['currentStore'] > 0 ? 'pointer' : 'default' };
+        }
+        else {
+            return { 'cursor': this._player.recruiting[id]['currentStore'] > 0 ? 'pointer' : 'default' };
+        }
     };
-    ActivityPanelComponent.prototype.trainingCollectionIcon = function (id) {
-        return {
-            'faa-tada': !this._inventory.isHenchmenUpgradeFullById(id),
-            'faa-horizontal': this._inventory.isHenchmenUpgradeFullById(id),
-            'fa-shield': id == 0
-        };
+    ActivityPanelComponent.prototype.collectionIcon = function (id, type) {
+        if (type == "training") {
+            return {
+                'faa-tada': !this._inventory.isHenchmenUpgradeFullById(id),
+                'faa-horizontal': this._inventory.isHenchmenUpgradeFullById(id),
+                'fa-shield': id == 0
+            };
+        }
+        else {
+            return {
+                'faa-tada': !this._inventory.isHenchmenCapacityFull,
+                'faa-horizontal': this._inventory.isHenchmenCapacityFull,
+                'fa-user': id == 0 || id == 1
+            };
+        }
+    };
+    ActivityPanelComponent.prototype.collectionIconStyle = function (id, type) {
+        if (type == "training") {
+            return {
+                'display': this._player.training[id]['currentStore'] > 0 ? 'inline-block' : 'none'
+            };
+        }
+        else {
+            return {
+                'display': this._player.recruiting[id]['currentStore'] > 0 ? 'inline-block' : 'none'
+            };
+        }
     };
     return ActivityPanelComponent;
 }());
@@ -733,7 +771,7 @@ var PlayerService = (function () {
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
+            { level: 4, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
@@ -744,7 +782,8 @@ var PlayerService = (function () {
         //Henchmen
         this.currentHenchmen = 0;
         this.recruiting = [
-            { currentStore: 0, capacity: 0, countdown: 0, lock: 0 } //Help Wanted 1
+            { currentStore: 0, capacity: 0, countdown: 0, lock: 0 },
+            { currentStore: 0, capacity: 0, countdown: 0, lock: 0 } //Help Wanted 2
         ];
         //Improved Henchmen
         this.currentGuards = 0;
@@ -880,24 +919,51 @@ var RecruitingService = (function () {
         this.collecting = false;
     }
     RecruitingService.prototype.getCapacityById = function (id) {
-        if (id == 0) {
+        if (id == 0 || id == 1) {
             //Starting capacity is 1
             var capacity = 1;
             //Hired Help increases capacity by static amounts.
             for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
-                if (_i == 2) {
-                    capacity += 2;
+                if (_i == 1) {
+                    capacity += 4;
                 }
-                if (_i == 4) {
-                    capacity += 7;
+                if (_i == 3) {
+                    capacity += 5;
                 }
             }
             return capacity;
         }
     };
+    RecruitingService.prototype.getPercentageById = function (id) {
+        if (this.isRecruitingById(id)) {
+            return 100 * (1 - (this._player.recruiting[id]['countdown'] / this._player.recruiting[id]['lock']));
+        }
+        else {
+            return 100;
+        }
+    };
+    RecruitingService.prototype.getRecruitmentNameById = function (id) {
+        if (id == 0) {
+            return "Sign Stapled to a Post";
+        }
+        if (id == 1) {
+            return "Newspaper Ad";
+        }
+    };
+    RecruitingService.prototype.getFaById = function (id) {
+        if (id == 0) {
+            return "fa-user";
+        }
+        if (id == 1) {
+            return "fa-user";
+        }
+    };
     RecruitingService.prototype.isUnlockedById = function (id) {
         if (id == 0) {
             return this._player.schemes[3]['level'] > 0;
+        }
+        if (id == 1) {
+            return this._player.schemes[3]['level'] >= 4;
         }
     };
     RecruitingService.prototype.areAnyUnlocked = function () {
@@ -915,13 +981,14 @@ var RecruitingService = (function () {
         if (this._player.recruiting[id]['currentStore'] > 0) {
             if (!this.collecting) {
                 this.collecting = true;
-                for (var _i = 0; _i < this._player.recruiting[id]['currentStore']; _i++) {
+                var collectMarker = this._player.recruiting[id]['currentStore'];
+                for (var _i = 0; _i < collectMarker; _i++) {
                     if (this._player.currentHenchmen < this._inventory.henchmenCapacity) {
                         this._player.currentHenchmen++;
                         this._player.recruiting[id]['currentStore']--;
                     }
                 }
-                if (!this.isFullById(id)) {
+                if (this._player.recruiting[id]['countdown'] == 0) {
                     this.resetCountdownById(id);
                 }
                 this.collecting = false;
@@ -929,16 +996,13 @@ var RecruitingService = (function () {
         }
     };
     RecruitingService.prototype.getRecruitingCountdownById = function (id) {
-        if (id == 0) {
+        if (id == 0 || id == 1) {
             //Starting recruitment rate is 60 seconds.
             var rate = 600;
             //Hired Help reduces the rate by static amounts.
             for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
-                if (_i == 1) {
-                    rate -= 100;
-                }
-                if (_i == 3) {
-                    rate -= 100;
+                if (_i == 2) {
+                    rate -= 150;
                 }
             }
             return rate;
@@ -957,7 +1021,7 @@ var RecruitingService = (function () {
         this._player.recruiting[id]['lock'] = this.getRecruitingCountdownById(id);
     };
     RecruitingService.prototype.tickById = function (id) {
-        if (this._player.recruiting[0]['countdown'] == 0 && this._player.recruiting[0]['lock'] == 0) {
+        if (this._player.recruiting[id]['countdown'] == 0 && this._player.recruiting[id]['lock'] == 0) {
             this.resetCountdownById(id);
         }
         this._player.recruiting[id]['countdown']--;
@@ -1373,7 +1437,6 @@ var TrainingService = (function () {
         this._player.training[id]['lock'] = this.getTrainingCountdownById(id);
     };
     TrainingService.prototype.tickById = function (id) {
-        console.log("Ticking by ID: Training");
         if (this._player.training[0]['countdown'] == 0 && this._player.training[0]['lock'] == 0) {
             this.resetCountdownById(id);
         }

@@ -17,27 +17,38 @@ export class ActivityPanelComponent {
         public _training: TrainingService) {
     }
 
-    containerClass(id) {
+    containerClass(id, type) {
         return {
-            'training-container': true,
-            'guard-training-container': id == 0
+            'recruitment-container': type == "recruiting",
+            'training-container': type == "training",
+            'help-wanted-container': type == "recruiting" && (id == 0 || id == 1),
+            'guard-training-container' : type == "training" && id == 0
         }
     }
 
-    progressBarClass(id) {
+    progressBarClass(id, type) {
         return {
             'progress-bar': true,
-            'guard-progress-bar': id == 0
+            'help-wanted-progress-bar': type == "recruiting" && (id == 0 || id == 1),
+            'guard-progress-bar': type == "training" && id == 0
         }
     }
 
-    trainingDisplayClass(id) {
+    //This will break if more than 2 types are used.
+    styleProgressBar(id, type) {
         return {
-            'training-display': true,
-            'guard-training-display': id == 0
+            'width': type == 'recruiting' ? this._recruiting.getPercentageById(id) + '%' : this._training.getPercentageById(id) + '%' 
         }
     }
-    
+
+    displayClass(id, type) {
+        return {
+            'recruitment-display': type == "recruiting",
+            'training-display': type == "training",
+            'help-wanted-display': type == "recruiting" && (id == 0 || id == 1),
+            'guard-training-display' : type == "training" && id == 0
+        }
+    }
 
     addToQueueIconStyle(id) {
         return {
@@ -46,25 +57,49 @@ export class ActivityPanelComponent {
         }
     }
 
-    trainingContainerStyle(id) {
-        return {
-            'cursor': this._player.training[id]['currentStore'] > 0 ? 'pointer' : 'default'
+    collectingIconStyle(id, type) {
+        if (type == "training") {
+            return {'visibility': this._training.isTrainingById(0) ? 'initial' : 'hidden' }
+        } else {
+            return {'visibility': this._recruiting.isRecruitingById(0) ? 'initial' : 'hidden' }
+        }
+        
+            
+    }
+
+    containerStyle(id, type) {
+        if (type == "training") {
+            return { 'cursor': this._player.training[id]['currentStore'] > 0 ? 'pointer' : 'default'}
+        } else {
+            return { 'cursor': this._player.recruiting[id]['currentStore'] > 0 ? 'pointer' : 'default'}
         }
     }
 
-    trainingProgressBarStyle(id) {
-        return { 
-            'width': this._training.getPercentageById(id) + '%' 
+    collectionIcon(id, type) {
+        if (type == "training") {
+            return { 
+                'faa-tada': !this._inventory.isHenchmenUpgradeFullById(id),
+                'faa-horizontal': this._inventory.isHenchmenUpgradeFullById(id),
+                'fa-shield': id == 0}
+        } else {
+            return {
+                'faa-tada': !this._inventory.isHenchmenCapacityFull,
+                'faa-horizontal': this._inventory.isHenchmenCapacityFull,
+                'fa-user': id == 0 || id == 1
+            }
+            
         }
     }
 
-    trainingCollectionIcon(id) {
-        return {
-            'faa-tada': !this._inventory.isHenchmenUpgradeFullById(id),
-            'faa-horizontal': this._inventory.isHenchmenUpgradeFullById(id),
-            'fa-shield': id == 0
+    collectionIconStyle(id, type) {
+        if (type == "training") {
+            return {
+                'display': this._player.training[id]['currentStore'] > 0 ? 'inline-block' : 'none' 
+            }
+        } else {
+            return {
+                'display': this._player.recruiting[id]['currentStore'] > 0 ? 'inline-block' : 'none' 
+            }
         }
     }
-
-
 }

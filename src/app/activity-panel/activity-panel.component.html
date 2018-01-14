@@ -2,38 +2,41 @@
     <div class="henchmen-column">
         <p class="title" *ngIf="_training.areAnyUnlocked()">Training</p>
         <div *ngFor="let Training of _player.training; index as i">
-            <div class="left-padding" *ngIf="_training.isUnlockedById(i)" ></div>
+            <div class="left-padding" *ngIf="_training.isUnlockedById(i)"></div>
             <div class="add-column" *ngIf="_training.isUnlockedById(i)">
                 <div class="add-block">
                     <i class="add-to-queue-icon fa fa-plus" aria-hidden="true" (click)="_training.trainById(i)" [ngStyle]="addToQueueIconStyle(i)"></i>
                 </div>
             </div>
             <div *ngIf="_training.isUnlockedById(i)" class="progress-column">
-                <div [ngClass]="containerClass(i)" (click)="_training.collectById(i)" [ngStyle]="trainingContainerStyle(i)">
-                    <div [ngClass]="progressBarClass(i)" [ngStyle]="trainingProgressBarStyle(i)"></div>
-                    <p [ngClass]="trainingDisplayClass(i)">
-                        <i class="generation-icon fa faa-slow faa-flash animated" [ngClass]="_training.getFaById(i)" aria-hidden="true" [ngStyle]="{'visibility': _training.isTrainingById(0) ? 'initial' : 'hidden' }"></i>
+                <div [ngClass]="containerClass(i, 'training')" (click)="_training.collectById(i)" [ngStyle]="containerStyle(i, 'training')">
+                    <div [ngClass]="progressBarClass(i, 'training')" [ngStyle]="styleProgressBar(i, 'training')"></div>
+                    <p [ngClass]="displayClass(i, 'training')">
+                        <i class="generation-icon fa faa-slow faa-flash animated" [ngClass]="_training.getFaById(i)" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'training')"></i>
                         {{_training.getUpgradeNameById(i)}}
-                        <i class="collection-icon fa faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.training[i]['currentStore'] > 0 ? 'inline-block' : 'none' }"
-                            [ngClass]="trainingCollectionIcon(i)"></i>
+                        <i class="collection-icon fa faa-slow animated" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'training')"
+                            [ngClass]="collectionIcon(i, 'training')"></i>
                     </p>
                 </div>
             </div>
         </div>
-        <h4 class="title" *ngIf="_recruiting.areAnyUnlocked()">Recruitment</h4>
-        <div *ngIf="_recruiting.areAnyUnlocked()" class="left-padding"></div>
-        <div *ngIf="_recruiting.areAnyUnlocked()" class="progress-no-add-column">
-            <div class="help-wanted-container" *ngIf="_recruiting.isUnlockedById(0)" (click)="_recruiting.collectById(0)" [ngStyle]="{'cursor': _player.recruiting[0]['currentStore'] > 0 ? 'pointer' : 'default' }">
-                <div class="help-wanted-progress-bar" [ngStyle]="{'width':  100*(1-(_player.recruiting[0]['countdown']/_player.recruiting[0]['lock'])) + '%'}"></div>
-                <p class="help-wanted-display noselect">
-                    <i class="help-wanted-generation-icon fa fa-user faa-slow faa-flash animated" aria-hidden="true" [ngStyle]="{'visibility': _recruiting.isRecruitingById(0) ? 'initial' : 'hidden' }"></i>
-                    Craigslist Ad
-                    <i class="help-wanted-collection-icon fa fa-user faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.recruiting[0]['currentStore'] > 0 ? 'inline-block' : 'none' }"
-                        [ngClass]="{'faa-tada': !_inventory.isHenchmenCapacityFull, 'faa-horizontal': _inventory.isHenchmenCapacityFull }"></i>
-                </p>
+        <p class="title" *ngIf="_recruiting.areAnyUnlocked()">Recruitment</p>
+        <div *ngFor="let Recruiting of _player.recruiting; index as i">
+            <div class="left-padding"></div>
+            <div *ngIf="_recruiting.isUnlockedById(i)" class="progress-no-add-column">
+                <div [ngClass]="containerClass(i, 'recruiting')" (click)="_recruiting.collectById(i)" [ngStyle]="containerStyle(i, 'recruiting')">
+                    <div [ngClass]="progressBarClass(i, 'recruiting')" [ngStyle]="styleProgressBar(i, 'recruiting')"></div>
+                    <p [ngClass]="displayClass(i, 'recruiting')" class="help-wanted-display">
+                        <i class="generation-icon fa faa-slow faa-flash animated" [ngClass]="_recruiting.getFaById(i)" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'recruiting')"></i>
+                        {{_recruiting.getRecruitmentNameById(i)}}
+                        <i class="collection-icon fa faa-slow animated" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'recruiting')"
+                            [ngClass]="collectionIcon(i, 'recruiting')"></i>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
+    <!--In progress: -->
     <div style="visibility:hidden;width:50%;height:300px;background-color:pink;float:right;">
         <div style="position:relative;">Operations</div>
     </div>

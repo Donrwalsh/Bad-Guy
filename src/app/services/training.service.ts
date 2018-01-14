@@ -151,8 +151,6 @@ export class TrainingService {
     }
 
     tickById(id) {
-        console.log("Ticking by ID: Training")
-        
         if (this._player.training[0]['countdown'] == 0 && this._player.training[0]['lock'] == 0) {
             this.resetCountdownById(id);
         }
