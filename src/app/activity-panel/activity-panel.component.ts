@@ -79,15 +79,13 @@ export class ActivityPanelComponent {
         if (type == "training") {
             return { 
                 'faa-tada': !this._inventory.isHenchmenUpgradeFullById(id),
-                'faa-horizontal': this._inventory.isHenchmenUpgradeFullById(id),
-                'fa-shield': id == 0}
+                'faa-horizontal': this._inventory.isHenchmenUpgradeFullById(id)
+            }
         } else {
             return {
                 'faa-tada': !this._inventory.isHenchmenCapacityFull,
                 'faa-horizontal': this._inventory.isHenchmenCapacityFull,
-                'fa-user': id == 0 || id == 1
             }
-            
         }
     }
 

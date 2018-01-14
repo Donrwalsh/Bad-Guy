@@ -40,6 +40,6 @@ export class AppComponent implements OnInit {
 
     setInterval(() => {
       this._loop.action();
-    }, 10);
+    }, 1000);
   }
 }

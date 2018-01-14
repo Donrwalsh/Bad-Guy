@@ -15,18 +15,6 @@ import {
     selector: 'header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
-    animations: [
-        trigger('popOverState', [
-            state('show', style({
-                opacity: 1
-            })),
-            state('hide', style({
-                opacity: 0
-            })),
-            transition('show => hide', animate('1200ms ease-out')),
-            transition('hide => show', animate('2000ms ease-in'))
-        ])
-    ]
 })
 export class HeaderComponent {
 
@@ -35,9 +23,16 @@ export class HeaderComponent {
         public _inventory: InventoryService) {
     }
 
-    showSchemeFlyout = false;
-
-    get stateName() {
-        return this.showSchemeFlyout ? 'show' : 'hide'
+    schemeStyle() {
+        return {'cursor': this._scheming.earningSchemePoints ? 'pointer' : 'default'}
     }
+
+    schemeTreeClass() {
+        return this._scheming.getTreeById(this._player.currentScheme['ref'])
+    }
+
+    schemeProgressBarStyle() {
+        return {'width': this._scheming.currentSchemePercentage + '%'}
+    }
+
 }

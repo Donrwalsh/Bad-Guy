@@ -60,7 +60,13 @@ export class SchemingService {
         }
     }
 
-
+    
+    getTreeById(id) {
+        if (id >= 0 && id <= 2) { return 'scheming'}
+        if (id >= 3 && id <= 5) { return 'henchmen'}
+        if (id >= 6 && id <= 8) { return 'operations'}
+        if (id == 9 ) {return 'lairs'}
+    }
 
 
 
@@ -72,15 +78,17 @@ export class SchemingService {
     earningSchemePoints: boolean = false;
 
     switchToCurrentSchemePreview() {
-        //Garbage. Needs to be actually coded.
-        if (this._player.currentScheme['ref'] <= 2) {
-            this.selected = "scheme";
-        } else {
-            this.selected = "hench"
+        if (this.earningSchemePoints) {
+            //Garbage. Needs to be actually coded.
+            if (this._player.currentScheme['ref'] <= 2) {
+                this.selected = "scheme";
+            } else {
+                this.selected = "hench"
+            }
+            this.previewScheme = this._player.currentScheme;
+            this.setCurrentSchemeLevel();
+            this.showPreview = true;
         }
-        this.previewScheme = this._player.currentScheme;
-        this.setCurrentSchemeLevel();
-        this.showPreview = true;
     }
 
     //Scheme calculation setters

@@ -1,20 +1,18 @@
 <div class="header">
-    <div class="resources">
-
-    </div>
+    <div class="notoriety"></div>
     <div>
-        <h1 class="title">Bad Guy</h1>
+        <p class="title">Bad Guy</p>
     </div>
-    <div class="scheme" [ngStyle]="{'cursor': _player.currentScheme ? 'pointer' : 'default'}" (click)="_scheming.switchToCurrentSchemePreview()">
+    <div class="scheme" [ngStyle]="schemeStyle()" (click)="_scheming.switchToCurrentSchemePreview()">
         <div *ngIf="_scheming.earningSchemePoints">
-            <h5 class="status-text">Scheming</h5>
-            <div class="scheme-bar-container" [ngStyle]="{'border' : '1px solid ' + _player.currentScheme.color }">
-                <div class="scheme-progress-bar" [ngStyle]="{'width': _scheming.currentSchemePercentage + '%', 'background-color' : _player.currentScheme.color}"></div>
+            <p class="status-text">Scheming</p>
+            <div class="scheme-bar-container" [ngClass]="schemeTreeClass()">
+                <div class="scheme-progress-bar" [ngStyle]="schemeProgressBarStyle()" [ngClass]="schemeTreeClass()"></div>
                 <i class="scheme-icon fa {{_player.currentScheme.fa}}" aria-hidden="true"></i>
             </div>
         </div>
         <div *ngIf="!_scheming.earningSchemePoints">
-            <h5 class="status-text">Not Scheming</h5>
+            <p class="status-text">Not Scheming</p>
             <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
         </div>
     </div>

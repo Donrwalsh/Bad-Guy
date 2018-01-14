@@ -12,9 +12,9 @@
                 <div [ngClass]="containerClass(i, 'training')" (click)="_training.collectById(i)" [ngStyle]="containerStyle(i, 'training')">
                     <div [ngClass]="progressBarClass(i, 'training')" [ngStyle]="styleProgressBar(i, 'training')"></div>
                     <p [ngClass]="displayClass(i, 'training')">
-                        <i class="generation-icon fa faa-slow faa-flash animated" [ngClass]="_training.getFaById(i)" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'training')"></i>
+                        <i class="generation-icon fa faa-slow faa-flash animated {{_training.getFaById(i)}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'training')"></i>
                         {{_training.getUpgradeNameById(i)}}
-                        <i class="collection-icon fa faa-slow animated" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'training')"
+                        <i class="collection-icon fa faa-slow animated {{_training.getFaById(i)}}" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'training')"
                             [ngClass]="collectionIcon(i, 'training')"></i>
                     </p>
                 </div>
@@ -27,9 +27,9 @@
                 <div [ngClass]="containerClass(i, 'recruiting')" (click)="_recruiting.collectById(i)" [ngStyle]="containerStyle(i, 'recruiting')">
                     <div [ngClass]="progressBarClass(i, 'recruiting')" [ngStyle]="styleProgressBar(i, 'recruiting')"></div>
                     <p [ngClass]="displayClass(i, 'recruiting')" class="help-wanted-display">
-                        <i class="generation-icon fa faa-slow faa-flash animated" [ngClass]="_recruiting.getFaById(i)" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'recruiting')"></i>
+                        <i class="generation-icon fa faa-slow faa-flash animated {{_recruiting.getFaById(i)}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'recruiting')"></i>
                         {{_recruiting.getRecruitmentNameById(i)}}
-                        <i class="collection-icon fa faa-slow animated" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'recruiting')"
+                        <i class="collection-icon fa faa-slow animated {{_recruiting.getFaById(i)}}" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'recruiting')"
                             [ngClass]="collectionIcon(i, 'recruiting')"></i>
                     </p>
                 </div>

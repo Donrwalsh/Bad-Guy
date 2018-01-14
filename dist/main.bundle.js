@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "../../../../../src lazy recursive";
 /***/ "../../../../../src/app/activity-panel/activity-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activity-panel\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let Training of _player.training; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlockedById(i)\"></div>\n            <div class=\"add-column\" *ngIf=\"_training.isUnlockedById(i)\">\n                <div class=\"add-block\">\n                    <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.trainById(i)\" [ngStyle]=\"addToQueueIconStyle(i)\"></i>\n                </div>\n            </div>\n            <div *ngIf=\"_training.isUnlockedById(i)\" class=\"progress-column\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectById(i)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated\" [ngClass]=\"_training.getFaById(i)\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{_training.getUpgradeNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let Recruiting of _player.recruiting; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlockedById(i)\" class=\"progress-no-add-column\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectById(i)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated\" [ngClass]=\"_recruiting.getFaById(i)\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{_recruiting.getRecruitmentNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!--In progress: -->\n    <div style=\"visibility:hidden;width:50%;height:300px;background-color:pink;float:right;\">\n        <div style=\"position:relative;\">Operations</div>\n    </div>\n</div>"
+module.exports = "<div class=\"activity-panel\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let Training of _player.training; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlockedById(i)\"></div>\n            <div class=\"add-column\" *ngIf=\"_training.isUnlockedById(i)\">\n                <div class=\"add-block\">\n                    <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.trainById(i)\" [ngStyle]=\"addToQueueIconStyle(i)\"></i>\n                </div>\n            </div>\n            <div *ngIf=\"_training.isUnlockedById(i)\" class=\"progress-column\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectById(i)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{_training.getUpgradeNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let Recruiting of _player.recruiting; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlockedById(i)\" class=\"progress-no-add-column\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectById(i)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{_recruiting.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{_recruiting.getRecruitmentNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated {{_recruiting.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!--In progress: -->\n    <div style=\"visibility:hidden;width:50%;height:300px;background-color:pink;float:right;\">\n        <div style=\"position:relative;\">Operations</div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -28,7 +28,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* Henchmen Colors */\n.activity-panel {\n  display: inline-block;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n  @media all and (max-width: 459px) {\n    .activity-panel {\n      width: 100%; } }\n  .activity-panel .henchmen-column {\n    width: 50%;\n    display: inline-block; }\n    .activity-panel .henchmen-column .title {\n      padding-bottom: .5rem;\n      padding-top: .5rem;\n      margin: 0;\n      text-align: center; }\n    .activity-panel .henchmen-column .left-padding {\n      width: 5%;\n      display: inline-block; }\n    .activity-panel .henchmen-column .add-column {\n      width: 5%;\n      vertical-align: middle;\n      display: inline-block; }\n      .activity-panel .henchmen-column .add-column .add-block {\n        height: 1.2rem; }\n    .activity-panel .henchmen-column .progress-column {\n      width: 75%;\n      display: inline-block; }\n      .activity-panel .henchmen-column .progress-column .training-container {\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        display: inline-block;\n        position: relative; }\n        .activity-panel .henchmen-column .progress-column .training-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n        .activity-panel .henchmen-column .progress-column .training-container .training-display {\n          font-size: .8em;\n          width: 100%;\n          margin: 0;\n          position: relative;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          height: 1.2rem; }\n          .activity-panel .henchmen-column .progress-column .training-container .training-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n          .activity-panel .henchmen-column .progress-column .training-container .training-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n      .activity-panel .henchmen-column .progress-column .guard-training-container {\n        border: 1px solid #ccccff; }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .guard-progress-bar {\n          background-color: #ccccff; }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display {\n          color: #000099; }\n    .activity-panel .henchmen-column .progress-no-add-column {\n      width: 82%;\n      display: inline-block; }\n      .activity-panel .henchmen-column .progress-no-add-column .recruitment-container {\n        margin-top: .5em;\n        width: 100%;\n        height: 1.2em;\n        border-radius: 0px 15px 15px 0px;\n        position: relative; }\n        .activity-panel .henchmen-column .progress-no-add-column .recruitment-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n        .activity-panel .henchmen-column .progress-no-add-column .recruitment-container .recruitment-display {\n          font-size: .8em;\n          width: 100%;\n          margin-top: .1em;\n          margin: 0;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          position: relative; }\n          .activity-panel .henchmen-column .progress-no-add-column .recruitment-container .recruitment-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n          .activity-panel .henchmen-column .progress-no-add-column .recruitment-container .recruitment-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n      .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container {\n        border: 1px solid #ccddff; }\n        .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-progress-bar {\n          background-color: #ccddff; }\n        .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n          color: #003399; }\n", ""]);
+exports.push([module.i, "/* Henchmen Colors */\n/*Scheme Tree Colors */\n.activity-panel {\n  display: inline-block;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n  @media all and (max-width: 459px) {\n    .activity-panel {\n      width: 100%; } }\n  .activity-panel .henchmen-column {\n    width: 50%;\n    display: inline-block; }\n    .activity-panel .henchmen-column .title {\n      padding-bottom: .5rem;\n      padding-top: .5rem;\n      margin: 0;\n      text-align: center; }\n    .activity-panel .henchmen-column .left-padding {\n      width: 5%;\n      display: inline-block; }\n    .activity-panel .henchmen-column .add-column {\n      width: 5%;\n      vertical-align: middle;\n      display: inline-block; }\n      .activity-panel .henchmen-column .add-column .add-block {\n        height: 1.2rem; }\n    .activity-panel .henchmen-column .progress-column {\n      width: 75%;\n      display: inline-block; }\n      .activity-panel .henchmen-column .progress-column .training-container {\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        display: inline-block;\n        position: relative; }\n        .activity-panel .henchmen-column .progress-column .training-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n        .activity-panel .henchmen-column .progress-column .training-container .training-display {\n          font-size: .8em;\n          width: 100%;\n          margin: 0;\n          position: relative;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          height: 1.2rem; }\n          .activity-panel .henchmen-column .progress-column .training-container .training-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n          .activity-panel .henchmen-column .progress-column .training-container .training-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n      .activity-panel .henchmen-column .progress-column .guard-training-container {\n        border: 1px solid #ccccff; }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .guard-progress-bar {\n          background-color: #ccccff; }\n        .activity-panel .henchmen-column .progress-column .guard-training-container .guard-training-display {\n          color: #000099; }\n    .activity-panel .henchmen-column .progress-no-add-column {\n      width: 82%;\n      display: inline-block; }\n      .activity-panel .henchmen-column .progress-no-add-column .recruitment-container {\n        margin-top: .5em;\n        width: 100%;\n        height: 1.2em;\n        border-radius: 0px 15px 15px 0px;\n        position: relative; }\n        .activity-panel .henchmen-column .progress-no-add-column .recruitment-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n        .activity-panel .henchmen-column .progress-no-add-column .recruitment-container .recruitment-display {\n          font-size: .8em;\n          width: 100%;\n          margin-top: .1em;\n          margin: 0;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          position: relative; }\n          .activity-panel .henchmen-column .progress-no-add-column .recruitment-container .recruitment-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n          .activity-panel .henchmen-column .progress-no-add-column .recruitment-container .recruitment-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n      .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container {\n        border: 1px solid #ccddff; }\n        .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-progress-bar {\n          background-color: #ccddff; }\n        .activity-panel .henchmen-column .progress-no-add-column .help-wanted-container .help-wanted-display {\n          color: #003399; }\n", ""]);
 
 // exports
 
@@ -124,15 +124,13 @@ var ActivityPanelComponent = (function () {
         if (type == "training") {
             return {
                 'faa-tada': !this._inventory.isHenchmenUpgradeFullById(id),
-                'faa-horizontal': this._inventory.isHenchmenUpgradeFullById(id),
-                'fa-shield': id == 0
+                'faa-horizontal': this._inventory.isHenchmenUpgradeFullById(id)
             };
         }
         else {
             return {
                 'faa-tada': !this._inventory.isHenchmenCapacityFull,
                 'faa-horizontal': this._inventory.isHenchmenCapacityFull,
-                'fa-user': id == 0 || id == 1
             };
         }
     };
@@ -284,7 +282,7 @@ var AppComponent = (function () {
         var _this = this;
         setInterval(function () {
             _this._loop.action();
-        }, 10);
+        }, 1000);
     };
     return AppComponent;
 }());
@@ -420,7 +418,7 @@ var _a;
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\">\n    <div class=\"resources\">\n\n    </div>\n    <div>\n        <h1 class=\"title\">Bad Guy</h1>\n    </div>\n    <div class=\"scheme\" [ngStyle]=\"{'cursor': _player.currentScheme ? 'pointer' : 'default'}\" (click)=\"_scheming.switchToCurrentSchemePreview()\">\n        <div *ngIf=\"_scheming.earningSchemePoints\">\n            <h5 class=\"status-text\">Scheming</h5>\n            <div class=\"scheme-bar-container\" [ngStyle]=\"{'border' : '1px solid ' + _player.currentScheme.color }\">\n                <div class=\"scheme-progress-bar\" [ngStyle]=\"{'width': _scheming.currentSchemePercentage + '%', 'background-color' : _player.currentScheme.color}\"></div>\n                <i class=\"scheme-icon fa {{_player.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n            </div>\n        </div>\n        <div *ngIf=\"!_scheming.earningSchemePoints\">\n            <h5 class=\"status-text\">Not Scheming</h5>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"header\">\n    <div class=\"notoriety\"></div>\n    <div>\n        <p class=\"title\">Bad Guy</p>\n    </div>\n    <div class=\"scheme\" [ngStyle]=\"schemeStyle()\" (click)=\"_scheming.switchToCurrentSchemePreview()\">\n        <div *ngIf=\"_scheming.earningSchemePoints\">\n            <p class=\"status-text\">Scheming</p>\n            <div class=\"scheme-bar-container\" [ngClass]=\"schemeTreeClass()\">\n                <div class=\"scheme-progress-bar\" [ngStyle]=\"schemeProgressBarStyle()\" [ngClass]=\"schemeTreeClass()\"></div>\n                <i class=\"scheme-icon fa {{_player.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n            </div>\n        </div>\n        <div *ngIf=\"!_scheming.earningSchemePoints\">\n            <p class=\"status-text\">Not Scheming</p>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -432,7 +430,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".header {\n  background-color: #ffffff;\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E\");\n  height: 4rem; }\n  .header .resources {\n    width: 35%; }\n    .header .resources .henchmen {\n      margin-top: .5rem;\n      margin-left: .5rem; }\n    .header .resources .henchmen-readout {\n      display: inline; }\n    .header .resources .guard {\n      margin-top: .5rem;\n      margin-left: .5rem; }\n    .header .resources .guard-readout {\n      display: inline; }\n  .header .title {\n    text-align: center;\n    position: absolute;\n    top: .5rem;\n    right: 40%;\n    left: 40%;\n    width: 20%;\n    margin: 0; }\n  .header .scheme {\n    position: absolute;\n    top: 0px;\n    right: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-radius: 5px;\n    cursor: pointer; }\n    .header .scheme .status-text {\n      margin-top: .1rem;\n      margin-bottom: .2rem; }\n    .header .scheme .scheme-bar-container {\n      margin-top: .25rem;\n      text-align: center;\n      display: inline-block;\n      width: 100%;\n      position: relative;\n      height: 2rem;\n      border-radius: 5px; }\n      .header .scheme .scheme-bar-container .scheme-progress-bar {\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        height: 2rem; }\n      .header .scheme .scheme-bar-container .scheme-icon {\n        position: relative;\n        font-size: 1.5rem;\n        padding-top: .125rem; }\n\n.scheme-flyout {\n  text-align: center;\n  width: 25%;\n  background-color: pink;\n  position: absolute;\n  right: 0;\n  pointer-events: none; }\n  .scheme-flyout .inner-content {\n    margin: .5rem; }\n    .scheme-flyout .inner-content .scheme-icon {\n      position: relative; }\n    .scheme-flyout .inner-content .scheme-name {\n      margin: .1rem;\n      display: inline; }\n    .scheme-flyout .inner-content .benefit-header {\n      text-align: left;\n      margin: 0;\n      padding-top: 1rem; }\n    .scheme-flyout .inner-content .benefit-text {\n      text-align: left;\n      margin: 0; }\n    .scheme-flyout .inner-content .flavor-text {\n      text-align: left;\n      margin: .1rem;\n      padding-top: 1rem;\n      font-style: italic; }\n    .scheme-flyout .inner-content .scheme-exp {\n      margin-top: .25rem;\n      margin-bottom: 0; }\n\n@media all and (min-width: 640px) {\n  .title {\n    font-size: 2rem; } }\n\n@media all and (max-width: 639px) {\n  .title {\n    font-size: 1.5rem; } }\n\n@media all and (max-width: 459px) {\n  .title {\n    font-size: 1.25rem; } }\n\n@media all and (max-width: 399px) {\n  .title {\n    font-size: 1rem; } }\n", ""]);
+exports.push([module.i, "/* Henchmen Colors */\n/*Scheme Tree Colors */\n/* SVG Image Backgrounds */\n.header {\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E\");\n  height: 4rem; }\n  .header .notoriety {\n    width: 35%; }\n  .header .title {\n    text-align: center;\n    position: absolute;\n    top: .5rem;\n    right: 40%;\n    left: 40%;\n    width: 20%;\n    margin: 0;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none; }\n  .header .scheme {\n    position: absolute;\n    top: 0px;\n    right: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-radius: 5px; }\n    .header .scheme .status-text {\n      font-size: .8rem;\n      margin-top: .1rem;\n      margin-bottom: .2rem;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n    .header .scheme .scheme-bar-container {\n      margin-top: .25rem;\n      text-align: center;\n      display: inline-block;\n      width: 100%;\n      position: relative;\n      height: 2rem;\n      border-radius: .5rem; }\n      .header .scheme .scheme-bar-container .scheme-progress-bar {\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        height: 2rem;\n        border-radius: .5rem; }\n      .header .scheme .scheme-bar-container .scheming {\n        background-color: #40ff00; }\n      .header .scheme .scheme-bar-container .henchmen {\n        background-color: #6699ff; }\n      .header .scheme .scheme-bar-container .operations {\n        background-color: #ffb366; }\n      .header .scheme .scheme-bar-container .lairs {\n        background-color: #000000; }\n      .header .scheme .scheme-bar-container .scheme-icon {\n        font-size: 1.9rem;\n        padding-top: 1px; }\n    .header .scheme .scheming {\n      border: 1px solid #40ff00; }\n    .header .scheme .henchmen {\n      border: 1px solid #6699ff; }\n    .header .scheme .operations {\n      border: 1px solid #ffb366; }\n    .header .scheme .lairs {\n      border: 1px solid #000000; }\n", ""]);
 
 // exports
 
@@ -451,7 +449,6 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_animations__ = __webpack_require__("../../../animations/@angular/animations.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -465,21 +462,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var HeaderComponent = (function () {
     function HeaderComponent(_player, _scheming, _inventory) {
         this._player = _player;
         this._scheming = _scheming;
         this._inventory = _inventory;
-        this.showSchemeFlyout = false;
     }
-    Object.defineProperty(HeaderComponent.prototype, "stateName", {
-        get: function () {
-            return this.showSchemeFlyout ? 'show' : 'hide';
-        },
-        enumerable: true,
-        configurable: true
-    });
+    HeaderComponent.prototype.schemeStyle = function () {
+        return { 'cursor': this._scheming.earningSchemePoints ? 'pointer' : 'default' };
+    };
+    HeaderComponent.prototype.schemeTreeClass = function () {
+        return this._scheming.getTreeById(this._player.currentScheme['ref']);
+    };
+    HeaderComponent.prototype.schemeProgressBarStyle = function () {
+        return { 'width': this._scheming.currentSchemePercentage + '%' };
+    };
     return HeaderComponent;
 }());
 HeaderComponent = __decorate([
@@ -487,18 +484,6 @@ HeaderComponent = __decorate([
         selector: 'header',
         template: __webpack_require__("../../../../../src/app/header/header.component.html"),
         styles: [__webpack_require__("../../../../../src/app/header/header.component.scss")],
-        animations: [
-            Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["j" /* trigger */])('popOverState', [
-                Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["g" /* state */])('show', Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["h" /* style */])({
-                    opacity: 1
-                })),
-                Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["g" /* state */])('hide', Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["h" /* style */])({
-                    opacity: 0
-                })),
-                Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["i" /* transition */])('show => hide', Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["e" /* animate */])('1200ms ease-out')),
-                Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["i" /* transition */])('hide => show', Object(__WEBPACK_IMPORTED_MODULE_4__angular_animations__["e" /* animate */])('2000ms ease-in'))
-            ])
-        ]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__["a" /* InventoryService */]) === "function" && _c || Object])
 ], HeaderComponent);
@@ -1127,17 +1112,33 @@ var SchemingService = (function () {
             this.earningSchemePoints = true;
         }
     };
+    SchemingService.prototype.getTreeById = function (id) {
+        if (id >= 0 && id <= 2) {
+            return 'scheming';
+        }
+        if (id >= 3 && id <= 5) {
+            return 'henchmen';
+        }
+        if (id >= 6 && id <= 8) {
+            return 'operations';
+        }
+        if (id == 9) {
+            return 'lairs';
+        }
+    };
     SchemingService.prototype.switchToCurrentSchemePreview = function () {
-        //Garbage. Needs to be actually coded.
-        if (this._player.currentScheme['ref'] <= 2) {
-            this.selected = "scheme";
+        if (this.earningSchemePoints) {
+            //Garbage. Needs to be actually coded.
+            if (this._player.currentScheme['ref'] <= 2) {
+                this.selected = "scheme";
+            }
+            else {
+                this.selected = "hench";
+            }
+            this.previewScheme = this._player.currentScheme;
+            this.setCurrentSchemeLevel();
+            this.showPreview = true;
         }
-        else {
-            this.selected = "hench";
-        }
-        this.previewScheme = this._player.currentScheme;
-        this.setCurrentSchemeLevel();
-        this.showPreview = true;
     };
     //Scheme calculation setters
     SchemingService.prototype.earnSchemePoints = function (num) {
