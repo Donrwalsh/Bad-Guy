@@ -9,12 +9,12 @@
                 </div>
             </div>
             <div *ngIf="_training.isUnlockedById(i)" class="progress-column">
-                <div class="guard-training-container" (click)="_training.collectById(i)" [ngStyle]="trainingContainerStyle(i)">
-                    <div class="guard-training-progress-bar" [ngStyle]="trainingProgressBarStyle(i)"></div>
-                    <p class="guard-training-display">
-                        <i class="guard-training-generation-icon fa faa-slow faa-flash animated" [ngClass]="_training.getFaById(i)" aria-hidden="true" [ngStyle]="{'color': _training.isFullById(i) ? '#ccddff' : 'black', 'visibility': _training.isTrainingById(0) ? 'initial' : 'hidden' }"></i>
+                <div [ngClass]="containerClass(i)" (click)="_training.collectById(i)" [ngStyle]="trainingContainerStyle(i)">
+                    <div [ngClass]="progressBarClass(i)" [ngStyle]="trainingProgressBarStyle(i)"></div>
+                    <p [ngClass]="trainingDisplayClass(i)">
+                        <i class="generation-icon fa faa-slow faa-flash animated" [ngClass]="_training.getFaById(i)" aria-hidden="true" [ngStyle]="{'visibility': _training.isTrainingById(0) ? 'initial' : 'hidden' }"></i>
                         {{_training.getUpgradeNameById(i)}}
-                        <i class="guard-training-collection-icon fa faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.training[i]['currentStore'] > 0 ? 'inline-block' : 'none' }"
+                        <i class="collection-icon fa faa-slow animated" aria-hidden="true" [ngStyle]="{'display': _player.training[i]['currentStore'] > 0 ? 'inline-block' : 'none' }"
                             [ngClass]="trainingCollectionIcon(i)"></i>
                     </p>
                 </div>

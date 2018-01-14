@@ -17,6 +17,28 @@ export class ActivityPanelComponent {
         public _training: TrainingService) {
     }
 
+    containerClass(id) {
+        return {
+            'training-container': true,
+            'guard-training-container': id == 0
+        }
+    }
+
+    progressBarClass(id) {
+        return {
+            'progress-bar': true,
+            'guard-progress-bar': id == 0
+        }
+    }
+
+    trainingDisplayClass(id) {
+        return {
+            'training-display': true,
+            'guard-training-display': id == 0
+        }
+    }
+    
+
     addToQueueIconStyle(id) {
         return {
             'visibility': this._training.canTrainById(id) ? 'initial' : 'hidden',
