@@ -3,12 +3,14 @@ import { PlayerService } from "./player.service";
 import { SchemingService } from "./scheming.service";
 import { RecruitingService } from "./recruiting.service";
 import { TrainingService } from "./training.service";
+import { OperatingService } from "./operating.service";
 
 //All loop related activities. Called by app.component and nowhere else.
 @Injectable()
 export class PrimaryLoopService {
 
     constructor(public _player: PlayerService,
+        public _operating: OperatingService,
         public _scheming: SchemingService,
         public _recruiting: RecruitingService,
         public _training: TrainingService) { }
@@ -34,6 +36,11 @@ export class PrimaryLoopService {
         for (var i = 0; i < this._player.training.length; i++) {
             if (this._training.isTrainingById(i)) {
                 this._training.tickById(i);
+            }
+        }
+        for (var i = 0; i < this._player.operating.length; i++) {
+            if (this._operating.isUnlockedById(i)) {
+                this._operating.tickById(i);
             }
         }
     }

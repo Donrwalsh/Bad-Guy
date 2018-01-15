@@ -145,4 +145,123 @@
             }
         }
     }
+    .operations-column {
+        width: 50%;
+        height: 300px;
+        float: right;
+
+        .left-padding {
+            width: 5%;
+            height: 2rem;
+            float: left; 
+        }
+
+        .routine-tab {
+            text-align: center;
+            border-radius: 2rem 2rem 0 0; 
+            width: 30%; 
+            height: 2rem;
+            float: left;
+            background-color: $routine-background;
+        }
+
+        .campaign-tab {
+            text-align: center;
+            border-radius: 2rem 2rem 0 0; 
+            width: 30%; 
+            height: 2rem;
+            float: left;
+            background-color: $campaign-background;
+        }
+
+        .ascension-tab {
+            text-align: center;
+            border-radius: 2rem 2rem 0 0; 
+            width: 30%; 
+            height: 2rem;
+            float: left;
+            background-color: $ascension-background;
+        }
+
+        .divider-5 {
+            width: 5%;
+            height: 2rem;
+            float: left;
+        }
+
+        .heists-row {
+            width: 90%;
+            height: 3rem;
+            float: left;
+            background-color: $routine-background;
+
+            .column {
+                text-align: center;
+                border-radius: .5rem;
+                border: 1px solid;
+                margin-left: 3%;
+                margin-top: .5rem;
+                float: left;
+                height: 2rem;
+                width: 15%;
+
+                .fa {
+                    font-size: 1.25rem;
+                    margin-top: .375rem;
+                    
+                }
+            }
+
+            
+        }
+
+        .operation-flyout {
+            text-align: center;
+            float: right;
+            margin-right: 5%;
+            width: 90%;
+            border-radius: 0 0 3rem 3rem;
+            cursor: default;
+            user-select: none;
+            background-color: $routine-background;
+        
+            .inner-content {
+                margin: 0 0 1rem 0;
+        
+                .operation-icon {
+                    position: relative;
+                    font-size: 1rem;
+                }
+        
+                .operation-name {
+                    margin: .1rem;
+                    font-size: 1rem;
+                    display: inline;
+                }
+        
+                .flyout-text {
+                    text-align: center;
+                    margin: 0;
+                    font-size:.8rem;
+                    margin-top: .5rem;
+                    
+                    .flyout-icon {
+                        position: relative;
+                        font-size: .8rem;
+                        margin-top: .3rem;
+                    }
+                }
+
+                .secondary {
+                    margin-top:.1rem;
+                }
+
+                
+            }
+        }
+    }
+}
+
+.tab-icon {
+    margin-top: .5rem;
 }

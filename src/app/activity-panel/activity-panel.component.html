@@ -37,32 +37,85 @@
         </div>
     </div>
     <!--In progress: -->
-    <div style="width:50%;height:300px;float:right;">
-        <div *ngIf="_operating.areAnyUnlocked()">
-            <div style="width:5%;height:2rem;float:left;"></div>
-            <div *ngIf="_operating.areRoutineOpsUnlocked()" style="text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#e6e6e6;">
-                <i class="fa fa-certificate" style="margin-top:.5rem;" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="!_operating.areRoutineOpsUnlocked()" style="width:30%;height:2rem;float:left;"></div>
-            <div *ngIf="_operating.areCampaignOpsUnlocked()" style="text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#cceaff;">
-                <i class="fa fa-book" style="margin-top:.5rem;" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="!_operating.areCampaignOpsUnlocked()" style="width:30%;height:2rem;float:left;"></div>
-            <div *ngIf="_operating.areAscensionOpsUnlocked()" style="text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#fffecc">
-                <i class="fa fa-rocket" style="margin-top:.5rem;" aria-hidden="true"></i>
-            </div>
-            <div *ngIf="!_operating.areAscensionOpsUnlocked()" style="width:30%;height:2rem;float:left;"></div>
-            <div style="width:5%;height:2rem;float:left;"></div>
-            <div style="width:5%;height:2rem;float:left;">
-            </div>
-            <div style="width:90%;height:3rem;float:left;background-color:#e6e6e6;">
-                <div style="border-radius:.5rem;border:1px solid;margin-left:5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;"></div>
-                <div style="border-radius:.5rem;border:1px solid;margin-left:2.5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;"></div>
-                <div style="border-radius:.5rem;border:1px solid;margin-left:2.5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;"></div>
-                <div style="border-radius:.5rem;border:1px solid;margin-left:2.5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;"></div>
-                <div style="border-radius:.5rem;border:1px solid;margin-left:2.5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;"></div>
-            </div>
-            <div style="width:5%;height:2rem;float:left;"></div>
+    <div class="operations-column" *ngIf="_operating.areAnyUnlocked()">
+        <div class="left-padding"></div>
+        <div class="routine-tab" [ngStyle]="{'visibility': _operating.areRoutineOpsUnlocked() ? 'initial' : 'hidden'}">
+            <i class="fa fa-certificate tab-icon" aria-hidden="true"></i>
         </div>
+        <div class="campaign-tab" [ngStyle]="{'visibility': _operating.areCampaignOpsUnlocked() ? 'initial' : 'hidden'}">
+            <i class="fa fa-book tab-icon" aria-hidden="true"></i>
+        </div>
+        <div class="ascension-tab" [ngStyle]="{'visibility': _operating.areAscensionOpsUnlocked() ? 'initial' : 'hidden'}">
+            <i class="fa fa-rocket tab-icon" aria-hidden="true"></i>
+        </div>
+        <div class="divider-5"></div>
+        <div class="divider-5"></div>
+        <div class="heists-row" *ngIf="_player.schemes[6]['level'] > 0">
+            <div class="column" (click)="_operating.operationPreview(0)" [ngStyle]="{'cursor': _player.operating[0]['available'] ? 'pointer' : 'initial' }">
+                <i class="fa fa-usd" aria-hidden="true" [ngClass]="{'faa-tada' : _player.operating[0]['available'], 'faa-slow' : _player.operating[0]['available'], 'animated' : _player.operating[0]['available'] }"
+                    [ngStyle]="{'color': _operating.getFaColorById(0)}"></i>
+            </div>
+            <div class="column">
+                <i class="fa fa-lock" aria-hidden="true" [ngStyle]="{'color': _operating.getFaColorById(1)}"></i>
+            </div>
+            <div class="column">
+                <i class="fa fa-lock" aria-hidden="true" [ngStyle]="{'color': _operating.getFaColorById(2)}"></i>
+            </div>
+            <div class="column">
+                <i class="fa fa-lock" aria-hidden="true" [ngStyle]="{'color': _operating.getFaColorById(3)}"></i>
+            </div>
+            <div class="column">
+                <i class="fa fa-lock" aria-hidden="true" [ngStyle]="{'color': _operating.getFaColorById(4)}"></i>
+            </div>
+        </div>
+        <div class="divider-5"></div>
+        <div *ngIf="_operating.showPreview" class="operation-flyout">
+            <div class="inner-content" [ngStyle]="{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}">
+                <i class="operation-icon fa fa-usd" aria-hidden="true"></i>
+                <p class="operation-name">Rob the paper boy</p>
+                <div class="split" style="display:inline-block;width:48%">
+                    <p class="flyout-text">
+                        Requires:</p>
+                    <p class="flyout-text secondary">{{_operating.previewOperation['henchmen']}}
+                        <i class="flyout-icon fa fa-user" aria-hidden="true"></i>
+                    </p>
+                </div>
+                <div class="split" style="display:inline-block;width:48%">
+                    <p class="flyout-text">
+                        Rewards:</p>
+                    <p class="flyout-text secondary">{{_operating.previewOperation['reward']}}
+                        <i class="flyout-icon fa fa-money" aria-hidden="true"></i>
+                    </p>
+                </div>
+                <div class="split" style="display:inline-block;width:32%">
+                    <p class="flyout-text">
+                        Risk:</p>
+                    <p class="flyout-text secondary">{{_operating.previewOperationRiskDisplay()}}%
+                    </p>
+                </div>
+                <div class="split" style="display:inline-block;width:32%">
+                        <p class="flyout-text">
+                            Success:</p>
+                        <p class="flyout-text secondary">{{_operating.previewOperation['success']*100}}%
+                        </p>
+                    </div>
+                    <div class="split" style="display:inline-block;width:32%">
+                            <p class="flyout-text">
+                                <i class="flyout-icon fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+                            <p class="flyout-text secondary">{{_operating.previewOperation['notoriety']}}
+                            </p>
+                        </div>
+            </div>
+
+            <!-- <p class="benefit-text">{{_scheming.previewSchemeDescription}} </p>
+                <p *ngIf="_scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])" class="flavor-text">{{_scheming.previewSchemeFlavor}}</p>
+                <p *ngIf="!_scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])" style="color:red" class="flavor-text">Lair Level 1 required.</p>
+                <p class="scheme-exp"> {{_scheming.previewSchemeExp}}/{{_scheming.previewSchemeExpTarget}}</p>
+                <p class="node" style="width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;" [ngStyle]="{'background-color' : _scheming.previewScheme['color']}"
+                    *ngIf="(_scheming.previewScheme['ref'] != _player.currentScheme['ref']) && _scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])" (click)="_scheming.startSchemingPreview()">Scheme</p> -->
+        </div>
+
+
     </div>
+
 </div>
