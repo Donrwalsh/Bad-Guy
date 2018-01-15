@@ -3,6 +3,7 @@ import { PlayerService } from '../services/player.service';
 import { RecruitingService } from '../services/recruiting.service';
 import { TrainingService } from '../services/training.service';
 import { InventoryService } from '../services/inventory.service';
+import { OperatingService } from '../services/operating.service';
 
 @Component({
     selector: 'activity-panel',
@@ -14,6 +15,7 @@ export class ActivityPanelComponent {
     constructor(public _player: PlayerService,
         public _recruiting: RecruitingService,
         public _inventory: InventoryService,
+        public _operating: OperatingService,
         public _training: TrainingService) {
     }
 

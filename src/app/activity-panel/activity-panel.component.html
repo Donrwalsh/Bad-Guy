@@ -38,16 +38,31 @@
     </div>
     <!--In progress: -->
     <div style="width:50%;height:300px;float:right;">
-        <div style="width:10%;height:2rem;float:left;"></div>
-        <div style="text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#e6e6e6;">
-            <i class="fa fa-certificate" style="margin-top:.5rem;" aria-hidden="true"></i>
-        </div>
-        <div style="text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#cceaff;">
-            <i class="fa fa-book" style="margin-top:.5rem;" aria-hidden="true"></i>
-        </div>
-        <div style="text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#fffecc">
+        <div *ngIf="_operating.areAnyUnlocked()">
+            <div style="width:5%;height:2rem;float:left;"></div>
+            <div *ngIf="_operating.areRoutineOpsUnlocked()" style="text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#e6e6e6;">
+                <i class="fa fa-certificate" style="margin-top:.5rem;" aria-hidden="true"></i>
+            </div>
+            <div *ngIf="!_operating.areRoutineOpsUnlocked()" style="width:30%;height:2rem;float:left;"></div>
+            <div *ngIf="_operating.areCampaignOpsUnlocked()" style="text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#cceaff;">
+                <i class="fa fa-book" style="margin-top:.5rem;" aria-hidden="true"></i>
+            </div>
+            <div *ngIf="!_operating.areCampaignOpsUnlocked()" style="width:30%;height:2rem;float:left;"></div>
+            <div *ngIf="_operating.areAscensionOpsUnlocked()" style="text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#fffecc">
                 <i class="fa fa-rocket" style="margin-top:.5rem;" aria-hidden="true"></i>
+            </div>
+            <div *ngIf="!_operating.areAscensionOpsUnlocked()" style="width:30%;height:2rem;float:left;"></div>
+            <div style="width:5%;height:2rem;float:left;"></div>
+            <div style="width:5%;height:2rem;float:left;">
+            </div>
+            <div style="width:90%;height:3rem;float:left;background-color:#e6e6e6;">
+                <div style="border-radius:.5rem;border:1px solid;margin-left:5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;"></div>
+                <div style="border-radius:.5rem;border:1px solid;margin-left:2.5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;"></div>
+                <div style="border-radius:.5rem;border:1px solid;margin-left:2.5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;"></div>
+                <div style="border-radius:.5rem;border:1px solid;margin-left:2.5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;"></div>
+                <div style="border-radius:.5rem;border:1px solid;margin-left:2.5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;"></div>
+            </div>
+            <div style="width:5%;height:2rem;float:left;"></div>
         </div>
-        <div style="position:relative;">Operations</div>
     </div>
 </div>

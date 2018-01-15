@@ -1,20 +1,20 @@
 <div *ngIf="_scheming.schemes" class="scheme-panel">
     <div style="width:2.5%;height:50vh;float:left;"></div>
     <div class="select-bar">
-        <div class="schemes select" (click)="_scheming.selected = 'scheme'; _scheming.showPreview = false;">
+        <div class="schemes select" (click)="_scheming.selected = 'scheming'; _scheming.showPreview = false;">
             <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
         </div>
-        <div class="hench select" (click)="_scheming.selected = 'hench'; _scheming.showPreview = false;">
+        <div class="hench select" (click)="_scheming.selected = 'henchmen'; _scheming.showPreview = false;">
             <i class="fa fa-user" aria-hidden="true"></i>
         </div>
-        <div class="operate select" (click)="_scheming.selected = 'operate'; _scheming.showPreview = false;">
+        <div class="operate select" (click)="_scheming.selected = 'operations'; _scheming.showPreview = false;">
             <i class="fa fa-location-arrow" aria-hidden="true"></i>
         </div>
-        <div class="lair select" (click)="_scheming.selected = 'lair'; _scheming.showPreview = false;">
+        <div class="lair select" (click)="_scheming.selected = 'lairs'; _scheming.showPreview = false;">
             <i class="fa fa-home" aria-hidden="true"></i>
         </div>
     </div>
-    <div class="scheme-area" *ngIf="_scheming.selected == 'scheme'">
+    <div class="scheme-area" *ngIf="_scheming.selected == 'scheming'">
         <div class="column">
             <p class="node" (click)="_scheming.schemePreview(0)">
                 <i class="fa {{_scheming.schemes[0].fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.canSchemeBeLearned(0) ? 'default' : 'grey' } " ></i>
@@ -34,7 +34,7 @@
         <div class="column"></div>
         <div class="column"></div>
     </div>
-    <div class="hench-area" *ngIf="_scheming.selected == 'hench'">
+    <div class="hench-area" *ngIf="_scheming.selected == 'henchmen'">
         <div class="column">
             <p class="node" (click)="_scheming.schemePreview(3)">
                 <i class="fa {{_scheming.schemes[3].fa}}" aria-hidden="true"></i>
@@ -54,7 +54,7 @@
         <div class="column"></div>
         <div class="column"></div>
     </div>
-    <div class="operate-area" *ngIf="_scheming.selected == 'operate'">
+    <div class="operate-area" *ngIf="_scheming.selected == 'operations'">
         <div class="column">
             <p class="node" (click)="_scheming.schemePreview(6)">
                 <i class="fa {{_scheming.schemes[6].fa}}" aria-hidden="true"></i>
@@ -71,7 +71,7 @@
         <div class="column"></div>
         <div class="column"></div>
     </div>
-    <div class="lair-area" *ngIf="_scheming.selected == 'lair'"></div>
+    <div class="lair-area" *ngIf="_scheming.selected == 'lairs'"></div>
     <div *ngIf="_scheming.showPreview" class="scheme-flyout" [ngStyle]="{'background-color' : _scheming.previewScheme['flyout_color']}">
         <div class="inner-content">
             <i class="scheme-icon fa {{_scheming.previewScheme.fa}}" aria-hidden="true"></i>

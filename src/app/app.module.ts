@@ -9,6 +9,7 @@ import { SchemingService } from './services/scheming.service';
 import { InventoryService } from './services/inventory.service';
 import { TrainingService } from './services/training.service';
 import { RecruitingService } from './services/recruiting.service';
+import { OperatingService } from './services/operating.service';
 import { HeaderModule } from './header/header.module';
 import { SchemePanelModule } from './scheme-panel/scheme-panel.module';
 import { ActivityPanelModule } from './activity-panel/activity-panel.module';
@@ -28,6 +29,7 @@ import { ActivityPanelModule } from './activity-panel/activity-panel.module';
     DataService,
     PlayerService,
     SchemingService,
+    OperatingService,
     RecruitingService,
     TrainingService,
     InventoryService,

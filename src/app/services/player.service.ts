@@ -17,7 +17,7 @@ export class PlayerService {
         { level: 4, exp: 0 }, //3 Hired Help, 0-4 coded.
         { level: 0, exp: 0 }, //4 Guard Duty, 0-3 coded.
         { level: 0, exp: 0 }, //5 Henchmen Lodging, 0-4 coded.
-        { level: 0, exp: 0 }, //6 Heists, not coded.
+        { level: 1, exp: 0 }, //6 Heists, not coded.
         { level: 0, exp: 0 }, //7 Spread Influence, not coded.
         { level: 0, exp: 0 }  //8 Communications, not coded.
     ]

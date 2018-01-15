@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "../../../../../src lazy recursive";
 /***/ "../../../../../src/app/activity-panel/activity-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activity-panel\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let Training of _player.training; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlockedById(i)\"></div>\n            <div class=\"add-column\" *ngIf=\"_training.isUnlockedById(i)\">\n                <div class=\"add-block\">\n                    <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.trainById(i)\" [ngStyle]=\"addToQueueIconStyle(i)\"></i>\n                </div>\n            </div>\n            <div *ngIf=\"_training.isUnlockedById(i)\" class=\"progress-column\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectById(i)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{_training.getUpgradeNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let Recruiting of _player.recruiting; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlockedById(i)\" class=\"progress-no-add-column\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectById(i)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{_recruiting.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{_recruiting.getRecruitmentNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated {{_recruiting.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!--In progress: -->\n    <div style=\"width:50%;height:300px;float:right;\">\n        <div style=\"width:10%;height:2rem;float:left;\"></div>\n        <div style=\"text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#e6e6e6;\">\n            <i class=\"fa fa-certificate\" style=\"margin-top:.5rem;\" aria-hidden=\"true\"></i>\n        </div>\n        <div style=\"text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#cceaff;\">\n            <i class=\"fa fa-book\" style=\"margin-top:.5rem;\" aria-hidden=\"true\"></i>\n        </div>\n        <div style=\"text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#fffecc\">\n                <i class=\"fa fa-rocket\" style=\"margin-top:.5rem;\" aria-hidden=\"true\"></i>\n        </div>\n        <div style=\"position:relative;\">Operations</div>\n    </div>\n</div>"
+module.exports = "<div class=\"activity-panel\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let Training of _player.training; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlockedById(i)\"></div>\n            <div class=\"add-column\" *ngIf=\"_training.isUnlockedById(i)\">\n                <div class=\"add-block\">\n                    <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.trainById(i)\" [ngStyle]=\"addToQueueIconStyle(i)\"></i>\n                </div>\n            </div>\n            <div *ngIf=\"_training.isUnlockedById(i)\" class=\"progress-column\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectById(i)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{_training.getUpgradeNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let Recruiting of _player.recruiting; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlockedById(i)\" class=\"progress-no-add-column\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectById(i)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{_recruiting.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{_recruiting.getRecruitmentNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated {{_recruiting.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!--In progress: -->\n    <div style=\"width:50%;height:300px;float:right;\">\n        <div *ngIf=\"_operating.areAnyUnlocked()\">\n            <div style=\"width:5%;height:2rem;float:left;\"></div>\n            <div *ngIf=\"_operating.areRoutineOpsUnlocked()\" style=\"text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#e6e6e6;\">\n                <i class=\"fa fa-certificate\" style=\"margin-top:.5rem;\" aria-hidden=\"true\"></i>\n            </div>\n            <div *ngIf=\"!_operating.areRoutineOpsUnlocked()\" style=\"width:30%;height:2rem;float:left;\"></div>\n            <div *ngIf=\"_operating.areCampaignOpsUnlocked()\" style=\"text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#cceaff;\">\n                <i class=\"fa fa-book\" style=\"margin-top:.5rem;\" aria-hidden=\"true\"></i>\n            </div>\n            <div *ngIf=\"!_operating.areCampaignOpsUnlocked()\" style=\"width:30%;height:2rem;float:left;\"></div>\n            <div *ngIf=\"_operating.areAscensionOpsUnlocked()\" style=\"text-align:center;border-radius:2rem 2rem 0 0;width:30%;height:2rem;float:left;background-color:#fffecc\">\n                <i class=\"fa fa-rocket\" style=\"margin-top:.5rem;\" aria-hidden=\"true\"></i>\n            </div>\n            <div *ngIf=\"!_operating.areAscensionOpsUnlocked()\" style=\"width:30%;height:2rem;float:left;\"></div>\n            <div style=\"width:5%;height:2rem;float:left;\"></div>\n            <div style=\"width:5%;height:2rem;float:left;\">\n            </div>\n            <div style=\"width:90%;height:3rem;float:left;background-color:#e6e6e6;\">\n                <div style=\"border-radius:.5rem;border:1px solid;margin-left:5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;\"></div>\n                <div style=\"border-radius:.5rem;border:1px solid;margin-left:2.5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;\"></div>\n                <div style=\"border-radius:.5rem;border:1px solid;margin-left:2.5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;\"></div>\n                <div style=\"border-radius:.5rem;border:1px solid;margin-left:2.5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;\"></div>\n                <div style=\"border-radius:.5rem;border:1px solid;margin-left:2.5%;margin-top:.5rem;float:left;height:2rem;width:15%;background-color:pink;\"></div>\n            </div>\n            <div style=\"width:5%;height:2rem;float:left;\"></div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -48,6 +48,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62,11 +63,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ActivityPanelComponent = (function () {
-    function ActivityPanelComponent(_player, _recruiting, _inventory, _training) {
+    function ActivityPanelComponent(_player, _recruiting, _inventory, _operating, _training) {
         this._player = _player;
         this._recruiting = _recruiting;
         this._inventory = _inventory;
+        this._operating = _operating;
         this._training = _training;
     }
     ActivityPanelComponent.prototype.containerClass = function (id, type) {
@@ -154,10 +157,10 @@ ActivityPanelComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/activity-panel/activity-panel.component.html"),
         styles: [__webpack_require__("../../../../../src/app/activity-panel/activity-panel.component.scss")],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__["a" /* RecruitingService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_training_service__["a" /* TrainingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_training_service__["a" /* TrainingService */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__["a" /* RecruitingService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__services_operating_service__["a" /* OperatingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_operating_service__["a" /* OperatingService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__services_training_service__["a" /* TrainingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_training_service__["a" /* TrainingService */]) === "function" && _e || Object])
 ], ActivityPanelComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=activity-panel.component.js.map
 
 /***/ }),
@@ -282,7 +285,7 @@ var AppComponent = (function () {
         var _this = this;
         setInterval(function () {
             _this._loop.action();
-        }, 100);
+        }, 10);
     };
     return AppComponent;
 }());
@@ -316,15 +319,17 @@ var _a, _b, _c, _d, _e, _f, _g;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -350,9 +355,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_11__header_header_module__["a" /* HeaderModule */],
-            __WEBPACK_IMPORTED_MODULE_12__scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */],
-            __WEBPACK_IMPORTED_MODULE_13__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
+            __WEBPACK_IMPORTED_MODULE_12__header_header_module__["a" /* HeaderModule */],
+            __WEBPACK_IMPORTED_MODULE_13__scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */],
+            __WEBPACK_IMPORTED_MODULE_14__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */]
         ],
@@ -360,6 +365,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4__data_service__["a" /* DataService */],
             __WEBPACK_IMPORTED_MODULE_5__services_player_service__["a" /* PlayerService */],
             __WEBPACK_IMPORTED_MODULE_7__services_scheming_service__["a" /* SchemingService */],
+            __WEBPACK_IMPORTED_MODULE_11__services_operating_service__["a" /* OperatingService */],
             __WEBPACK_IMPORTED_MODULE_10__services_recruiting_service__["a" /* RecruitingService */],
             __WEBPACK_IMPORTED_MODULE_9__services_training_service__["a" /* TrainingService */],
             __WEBPACK_IMPORTED_MODULE_8__services_inventory_service__["a" /* InventoryService */],
@@ -418,7 +424,7 @@ var _a;
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\">\n    <div class=\"notoriety\"></div>\n    <div>\n        <p class=\"title\">Bad Guy</p>\n    </div>\n    <div class=\"scheme\" [ngStyle]=\"schemeStyle()\" (click)=\"_scheming.switchToCurrentSchemePreview()\">\n        <div *ngIf=\"_scheming.earningSchemePoints\">\n            <p class=\"status-text\">Scheming</p>\n            <div class=\"scheme-bar-container\" [ngClass]=\"schemeTreeClass()\">\n                <i class=\"scheme-icon fa {{_player.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n                <div class=\"scheme-progress-bar\" [ngStyle]=\"schemeProgressBarStyle()\" [ngClass]=\"schemeTreeClass()\"></div>\n            </div>\n        </div>\n        <div *ngIf=\"!_scheming.earningSchemePoints\">\n            <p class=\"status-text\">Not Scheming</p>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"header\">\n    <div class=\"notoriety\"></div>\n    <div>\n        <p class=\"title\">Bad Guy</p>\n    </div>\n    <div class=\"scheme\" [ngStyle]=\"schemeStyle()\" (click)=\"_scheming.switchToCurrentSchemePreview()\">\n        <div *ngIf=\"_scheming.earningSchemePoints\">\n            <p class=\"status-text\">Scheming</p>\n            <div class=\"scheme-bar-container\" [ngClass]=\"schemeTreeClass()\">\n                <i style=\"z-index: -1\" class=\"scheme-icon fa {{_player.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n                <div class=\"scheme-progress-bar\" [ngStyle]=\"schemeProgressBarStyle()\" [ngClass]=\"schemeTreeClass()\"></div>\n            </div>\n        </div>\n        <div *ngIf=\"!_scheming.earningSchemePoints\">\n            <p class=\"status-text\">Not Scheming</p>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -430,7 +436,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* Henchmen Colors */\n/*Scheme Tree Colors */\n/* SVG Image Backgrounds */\n.header {\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E\");\n  height: 4rem; }\n  .header .notoriety {\n    width: 35%; }\n  .header .title {\n    text-align: center;\n    position: absolute;\n    top: .5rem;\n    right: 40%;\n    left: 40%;\n    width: 20%;\n    margin: 0;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none; }\n  .header .scheme {\n    position: absolute;\n    top: 0px;\n    right: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-radius: 5px; }\n    .header .scheme .status-text {\n      font-size: .8rem;\n      margin-top: .1rem;\n      margin-bottom: .2rem;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n    .header .scheme .scheme-bar-container {\n      margin-top: .25rem;\n      text-align: center;\n      display: inline-block;\n      width: 100%;\n      position: relative;\n      height: 2rem;\n      border-radius: 0 .5rem .5rem 0; }\n      .header .scheme .scheme-bar-container .scheme-progress-bar {\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        height: 1.9rem;\n        border-radius: 0 .5rem .5rem 0; }\n      .header .scheme .scheme-bar-container .scheming {\n        background-color: #40ff00; }\n      .header .scheme .scheme-bar-container .henchmen {\n        background-color: #6699ff; }\n      .header .scheme .scheme-bar-container .operations {\n        background-color: #ffb366; }\n      .header .scheme .scheme-bar-container .lairs {\n        background-color: #bf00ff; }\n      .header .scheme .scheme-bar-container .scheme-icon {\n        font-size: 1.9rem;\n        padding-top: 1px; }\n    .header .scheme .scheming {\n      border: 1px solid #40ff00; }\n    .header .scheme .henchmen {\n      border: 1px solid #6699ff; }\n    .header .scheme .operations {\n      border: 1px solid #ffb366; }\n    .header .scheme .lairs {\n      border: 1px solid #bf00ff; }\n", ""]);
+exports.push([module.i, "/* Henchmen Colors */\n/*Scheme Tree Colors */\n/* SVG Image Backgrounds */\n.header {\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E\");\n  height: 4rem; }\n  .header .notoriety {\n    width: 35%; }\n  .header .title {\n    text-align: center;\n    position: absolute;\n    top: .5rem;\n    right: 40%;\n    left: 40%;\n    width: 20%;\n    margin: 0;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none; }\n  .header .scheme {\n    position: absolute;\n    top: 0px;\n    right: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-radius: 5px; }\n    .header .scheme .status-text {\n      font-size: .8rem;\n      margin-top: .1rem;\n      margin-bottom: .2rem;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n    .header .scheme .scheme-bar-container {\n      margin-top: .25rem;\n      text-align: center;\n      display: inline-block;\n      width: 100%;\n      position: relative;\n      height: 2rem;\n      border-radius: 0 .5rem .5rem 0; }\n      .header .scheme .scheme-bar-container .scheme-progress-bar {\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        height: 1.9rem;\n        border-radius: 0 .5rem .5rem 0; }\n      .header .scheme .scheme-bar-container .scheming {\n        background-color: #40ff00; }\n      .header .scheme .scheme-bar-container .henchmen {\n        background-color: #6699ff; }\n      .header .scheme .scheme-bar-container .operations {\n        background-color: #ffb366; }\n      .header .scheme .scheme-bar-container .lairs {\n        background-color: #bf00ff; }\n      .header .scheme .scheme-bar-container .scheme-icon {\n        font-size: 1.9rem;\n        padding-top: 1px;\n        z-index: 100;\n        position: relative; }\n    .header .scheme .scheming {\n      border: 1px solid #40ff00; }\n    .header .scheme .henchmen {\n      border: 1px solid #6699ff; }\n    .header .scheme .operations {\n      border: 1px solid #ffb366; }\n    .header .scheme .lairs {\n      border: 1px solid #bf00ff; }\n", ""]);
 
 // exports
 
@@ -540,7 +546,7 @@ HeaderModule = __decorate([
 /***/ "../../../../../src/app/scheme-panel/scheme-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"_scheming.schemes\" class=\"scheme-panel\">\n    <div style=\"width:2.5%;height:50vh;float:left;\"></div>\n    <div class=\"select-bar\">\n        <div class=\"schemes select\" (click)=\"_scheming.selected = 'scheme'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"hench select\" (click)=\"_scheming.selected = 'hench'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-user\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operate select\" (click)=\"_scheming.selected = 'operate'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"lair select\" (click)=\"_scheming.selected = 'lair'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n        </div>\n    </div>\n    <div class=\"scheme-area\" *ngIf=\"_scheming.selected == 'scheme'\">\n        <div class=\"column\">\n            <p class=\"node\" (click)=\"_scheming.schemePreview(0)\">\n                <i class=\"fa {{_scheming.schemes[0].fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(0) ? 'default' : 'grey' } \" ></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(0)+1}}</p>-->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(1)\">\n                <i class=\"fa {{_scheming.schemes[1].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(1)+1}}</p>-->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(2)\">\n                <i class=\"fa {{_scheming.schemes[2].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(2)+1}}</p>-->\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"hench-area\" *ngIf=\"_scheming.selected == 'hench'\">\n        <div class=\"column\">\n            <p class=\"node\" (click)=\"_scheming.schemePreview(3)\">\n                <i class=\"fa {{_scheming.schemes[3].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(0)+1}}</p> -->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(4)\">\n                <i class=\"fa {{_scheming.schemes[4].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(1)+1}}</p> -->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(5)\">\n                <i class=\"fa {{_scheming.schemes[5].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(2)+1}}</p> -->\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"operate-area\" *ngIf=\"_scheming.selected == 'operate'\">\n        <div class=\"column\">\n            <p class=\"node\" (click)=\"_scheming.schemePreview(6)\">\n                <i class=\"fa {{_scheming.schemes[6].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <p class=\"node\" (click)=\"_scheming.schemePreview(7)\">\n                <i class=\"fa {{_scheming.schemes[7].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <p class=\"node\" (click)=\"_scheming.schemePreview(8)\">\n                <i class=\"fa {{_scheming.schemes[8].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"lair-area\" *ngIf=\"_scheming.selected == 'lair'\"></div>\n    <div *ngIf=\"_scheming.showPreview\" class=\"scheme-flyout\" [ngStyle]=\"{'background-color' : _scheming.previewScheme['flyout_color']}\">\n        <div class=\"inner-content\">\n            <i class=\"scheme-icon fa {{_scheming.previewScheme.fa}}\" aria-hidden=\"true\"></i>\n            <p class=\"scheme-name\">{{_scheming.previewScheme.name}} {{_scheming.previewSchemeLevel > 1 ? _scheming.previewSchemeLevel : ''}}</p>\n                <p class=\"benefit-text\">{{_scheming.previewSchemeDescription}} </p>\n            <p *ngIf=\"_scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])\" class=\"flavor-text\">{{_scheming.previewSchemeFlavor}}</p>\n            <p *ngIf=\"!_scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])\" style=\"color:red\" class=\"flavor-text\">Lair Level 1 required.</p>\n            <p class=\"scheme-exp\"> {{_scheming.previewSchemeExp}}/{{_scheming.previewSchemeExpTarget}}</p>\n            <p class=\"node\" style=\"width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;\" [ngStyle]=\"{'background-color' : _scheming.previewScheme['color']}\"\n                *ngIf=\"(_scheming.previewScheme['ref'] != _player.currentScheme['ref']) && _scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])\" (click)=\"_scheming.startSchemingPreview()\">Scheme</p>\n        </div>\n\n\n    </div>\n\n</div>"
+module.exports = "<div *ngIf=\"_scheming.schemes\" class=\"scheme-panel\">\n    <div style=\"width:2.5%;height:50vh;float:left;\"></div>\n    <div class=\"select-bar\">\n        <div class=\"schemes select\" (click)=\"_scheming.selected = 'scheming'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"hench select\" (click)=\"_scheming.selected = 'henchmen'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-user\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operate select\" (click)=\"_scheming.selected = 'operations'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"lair select\" (click)=\"_scheming.selected = 'lairs'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n        </div>\n    </div>\n    <div class=\"scheme-area\" *ngIf=\"_scheming.selected == 'scheming'\">\n        <div class=\"column\">\n            <p class=\"node\" (click)=\"_scheming.schemePreview(0)\">\n                <i class=\"fa {{_scheming.schemes[0].fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(0) ? 'default' : 'grey' } \" ></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(0)+1}}</p>-->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(1)\">\n                <i class=\"fa {{_scheming.schemes[1].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(1)+1}}</p>-->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(2)\">\n                <i class=\"fa {{_scheming.schemes[2].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(2)+1}}</p>-->\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"hench-area\" *ngIf=\"_scheming.selected == 'henchmen'\">\n        <div class=\"column\">\n            <p class=\"node\" (click)=\"_scheming.schemePreview(3)\">\n                <i class=\"fa {{_scheming.schemes[3].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(0)+1}}</p> -->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(4)\">\n                <i class=\"fa {{_scheming.schemes[4].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(1)+1}}</p> -->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(5)\">\n                <i class=\"fa {{_scheming.schemes[5].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(2)+1}}</p> -->\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"operate-area\" *ngIf=\"_scheming.selected == 'operations'\">\n        <div class=\"column\">\n            <p class=\"node\" (click)=\"_scheming.schemePreview(6)\">\n                <i class=\"fa {{_scheming.schemes[6].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <p class=\"node\" (click)=\"_scheming.schemePreview(7)\">\n                <i class=\"fa {{_scheming.schemes[7].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n            <p class=\"node\" (click)=\"_scheming.schemePreview(8)\">\n                <i class=\"fa {{_scheming.schemes[8].fa}}\" aria-hidden=\"true\"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"lair-area\" *ngIf=\"_scheming.selected == 'lairs'\"></div>\n    <div *ngIf=\"_scheming.showPreview\" class=\"scheme-flyout\" [ngStyle]=\"{'background-color' : _scheming.previewScheme['flyout_color']}\">\n        <div class=\"inner-content\">\n            <i class=\"scheme-icon fa {{_scheming.previewScheme.fa}}\" aria-hidden=\"true\"></i>\n            <p class=\"scheme-name\">{{_scheming.previewScheme.name}} {{_scheming.previewSchemeLevel > 1 ? _scheming.previewSchemeLevel : ''}}</p>\n                <p class=\"benefit-text\">{{_scheming.previewSchemeDescription}} </p>\n            <p *ngIf=\"_scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])\" class=\"flavor-text\">{{_scheming.previewSchemeFlavor}}</p>\n            <p *ngIf=\"!_scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])\" style=\"color:red\" class=\"flavor-text\">Lair Level 1 required.</p>\n            <p class=\"scheme-exp\"> {{_scheming.previewSchemeExp}}/{{_scheming.previewSchemeExpTarget}}</p>\n            <p class=\"node\" style=\"width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;\" [ngStyle]=\"{'background-color' : _scheming.previewScheme['color']}\"\n                *ngIf=\"(_scheming.previewScheme['ref'] != _player.currentScheme['ref']) && _scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])\" (click)=\"_scheming.startSchemingPreview()\">Scheme</p>\n        </div>\n\n\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -733,6 +739,55 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/operating.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OperatingService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var OperatingService = (function () {
+    function OperatingService(_player) {
+        this._player = _player;
+    }
+    OperatingService.prototype.areAnyUnlocked = function () {
+        //Currently checks for heists or campaign operations.
+        return this._player.schemes[6]['level'] > 0 || this._player.schemes[7]['level'] > 0;
+    };
+    OperatingService.prototype.areRoutineOpsUnlocked = function () {
+        //Currently only accounts for Heists.
+        return this._player.schemes[6]['level'] > 0;
+    };
+    OperatingService.prototype.areCampaignOpsUnlocked = function () {
+        //Currently only accounts for the 1st one.
+        return this._player.schemes[7]['level'] > 0;
+    };
+    OperatingService.prototype.areAscensionOpsUnlocked = function () {
+        return false;
+    };
+    return OperatingService;
+}());
+OperatingService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object])
+], OperatingService);
+
+var _a;
+//# sourceMappingURL=operating.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/player.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -759,7 +814,7 @@ var PlayerService = (function () {
             { level: 4, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
+            { level: 1, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 } //8 Communications, not coded.
         ];
@@ -1050,7 +1105,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SchemingService = (function () {
     function SchemingService(_player) {
         this._player = _player;
-        this.selected = 'scheme';
+        this.selected = 'scheming';
         this.previewScheme = {};
         this.showPreview = false;
         this.currentSchemeLevel = 0;
@@ -1129,12 +1184,7 @@ var SchemingService = (function () {
     SchemingService.prototype.switchToCurrentSchemePreview = function () {
         if (this.earningSchemePoints) {
             //Garbage. Needs to be actually coded.
-            if (this._player.currentScheme['ref'] <= 2) {
-                this.selected = "scheme";
-            }
-            else {
-                this.selected = "hench";
-            }
+            this.selected = this.getTreeById(this._player.currentScheme['ref']);
             this.previewScheme = this._player.currentScheme;
             this.setCurrentSchemeLevel();
             this.showPreview = true;

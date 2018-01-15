@@ -29,7 +29,7 @@ export class SchemingService {
 
     }
 
-    selected = 'scheme';
+    selected = 'scheming';
 
     getSchemeCurrentLevel(id) {
         return this._player.schemes[id]['level'];
@@ -80,11 +80,7 @@ export class SchemingService {
     switchToCurrentSchemePreview() {
         if (this.earningSchemePoints) {
             //Garbage. Needs to be actually coded.
-            if (this._player.currentScheme['ref'] <= 2) {
-                this.selected = "scheme";
-            } else {
-                this.selected = "hench"
-            }
+            this.selected = this.getTreeById(this._player.currentScheme['ref'])
             this.previewScheme = this._player.currentScheme;
             this.setCurrentSchemeLevel();
             this.showPreview = true;
