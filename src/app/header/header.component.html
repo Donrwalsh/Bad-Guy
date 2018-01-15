@@ -7,8 +7,8 @@
         <div *ngIf="_scheming.earningSchemePoints">
             <p class="status-text">Scheming</p>
             <div class="scheme-bar-container" [ngClass]="schemeTreeClass()">
-                <div class="scheme-progress-bar" [ngStyle]="schemeProgressBarStyle()" [ngClass]="schemeTreeClass()"></div>
                 <i class="scheme-icon fa {{_player.currentScheme.fa}}" aria-hidden="true"></i>
+                <div class="scheme-progress-bar" [ngStyle]="schemeProgressBarStyle()" [ngClass]="schemeTreeClass()"></div>
             </div>
         </div>
         <div *ngIf="!_scheming.earningSchemePoints">

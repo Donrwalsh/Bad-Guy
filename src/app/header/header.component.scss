@@ -44,14 +44,14 @@
             width: 100%;
             position: relative;
             height: 2rem;
-            border-radius: .5rem;
+            border-radius: 0 .5rem .5rem 0;
 
             .scheme-progress-bar {
                 position: absolute;
                 top: 0px;
                 left: 0px;
-                height: 2rem;
-                border-radius: .5rem;
+                height: 1.9rem;
+                border-radius: 0 .5rem .5rem 0;
             }
 
             .scheming {
