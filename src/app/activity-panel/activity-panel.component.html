@@ -71,48 +71,60 @@
         <div class="divider-5"></div>
         <div *ngIf="_operating.showPreview" class="operation-flyout">
             <div class="inner-content" [ngStyle]="{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}">
-                <i class="operation-icon fa fa-usd" aria-hidden="true"></i>
-                <p class="operation-name">Rob the paper boy</p>
-                <div class="split" style="display:inline-block;width:48%">
-                    <p class="flyout-text">
+                <p class="operation-name" style="width:100%"><i class="operation-icon fa fa-usd" aria-hidden="true" style="margin-right:.2rem;"></i>Steal Candy from Children. Sell Candy</p>
+                <div class="split" style="margin-top:.5rem;display:inline-block;width:48%">
+                    <p class="flyout-text" style="float:right;">
                         Requires:</p>
-                    <p class="flyout-text secondary">{{_operating.previewOperation['henchmen']}}
+                </div>
+                <div class="split" style="display:inline-block;width:48%">
+                    <p class="flyout-text" style="float:left;">{{_operating.previewOperation['henchmen']}}
                         <i class="flyout-icon fa fa-user" aria-hidden="true"></i>
                     </p>
                 </div>
                 <div class="split" style="display:inline-block;width:48%">
-                    <p class="flyout-text">
+                    <p class="flyout-text" style="float:right;">
+                        Risk:</p>
+                </div>
+                <div class="split" style="display:inline-block;width:48%">
+                    <p class="flyout-text" style="float:left;">{{_operating.previewOperationRiskDisplay()}}%
+                    </p>
+                </div>
+                <div class="split" style="display:inline-block;width:48%">
+                    <p class="flyout-text" style="float:right;">
                         Rewards:</p>
-                    <p class="flyout-text secondary">{{_operating.previewOperation['reward']}}
+                </div>
+                <div class="split" style="display:inline-block;width:48%">
+                    <p class="flyout-text" style="float:left;">{{_operating.previewOperation['reward']}}
                         <i class="flyout-icon fa fa-money" aria-hidden="true"></i>
                     </p>
                 </div>
-                <div class="split" style="display:inline-block;width:32%">
-                    <p class="flyout-text">
-                        Risk:</p>
-                    <p class="flyout-text secondary">{{_operating.previewOperationRiskDisplay()}}%
+                <div class="split" style="display:inline-block;width:48%">
+                    <p class="flyout-text" style="float:right;">
+                        Success:</p>
+                </div>
+                <div class="split" style="display:inline-block;width:48%">
+                    <p class="flyout-text" style="float:left;">{{_operating.previewOperation['success']*100}}%
                     </p>
                 </div>
-                <div class="split" style="display:inline-block;width:32%">
-                        <p class="flyout-text">
-                            Success:</p>
-                        <p class="flyout-text secondary">{{_operating.previewOperation['success']*100}}%
-                        </p>
-                    </div>
-                    <div class="split" style="display:inline-block;width:32%">
-                            <p class="flyout-text">
-                                <i class="flyout-icon fa fa-exclamation-triangle" aria-hidden="true"></i></p>
-                            <p class="flyout-text secondary">{{_operating.previewOperation['notoriety']}}
-                            </p>
-                        </div>
+                <div class="split" style="display:inline-block;width:48%">
+                    <p class="flyout-text" style="float:right;">
+                        Notoriety:</p>
+                </div>
+                <div class="split" style="display:inline-block;width:48%">
+                    <p class="flyout-text" style="float:left;">{{_operating.previewOperation['notoriety']}}
+                        <i class="flyout-icon fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    </p>
+                </div>
+
+
+
+
+
+                
+                
+
             </div>
 
-            <!-- <p class="benefit-text">{{_scheming.previewSchemeDescription}} </p>
-                <p *ngIf="_scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])" class="flavor-text">{{_scheming.previewSchemeFlavor}}</p>
-                <p *ngIf="!_scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])" style="color:red" class="flavor-text">Lair Level 1 required.</p>
-                <p class="scheme-exp"> {{_scheming.previewSchemeExp}}/{{_scheming.previewSchemeExpTarget}}</p>
-                <p class="node" style="width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;" [ngStyle]="{'background-color' : _scheming.previewScheme['color']}"
-                    *ngIf="(_scheming.previewScheme['ref'] != _player.currentScheme['ref']) && _scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])" (click)="_scheming.startSchemingPreview()">Scheme</p> -->
         </div>
 
 

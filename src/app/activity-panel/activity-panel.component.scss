@@ -228,22 +228,23 @@
             .inner-content {
                 margin: 0 0 1rem 0;
         
-                .operation-icon {
-                    position: relative;
-                    font-size: 1rem;
-                }
+                
         
                 .operation-name {
                     margin: .1rem;
                     font-size: 1rem;
-                    display: inline;
+                    display: block;
+
+                    .operation-icon {
+                        position: relative;
+                        font-size: 1rem;
+                    }
                 }
         
                 .flyout-text {
-                    text-align: center;
                     margin: 0;
                     font-size:.8rem;
-                    margin-top: .5rem;
+                    
                     
                     .flyout-icon {
                         position: relative;
