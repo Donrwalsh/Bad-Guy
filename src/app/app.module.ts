@@ -13,6 +13,7 @@ import { OperatingService } from './services/operating.service';
 import { HeaderModule } from './header/header.module';
 import { SchemePanelModule } from './scheme-panel/scheme-panel.module';
 import { ActivityPanelModule } from './activity-panel/activity-panel.module';
+import { NumbersService } from './services/core/numbers.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ActivityPanelModule } from './activity-panel/activity-panel.module';
     RecruitingService,
     TrainingService,
     InventoryService,
-    PrimaryLoopService
+    PrimaryLoopService,
+    NumbersService
   ],
   bootstrap: [AppComponent]
 })

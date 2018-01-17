@@ -323,12 +323,14 @@ var _a, _b, _c, _d, _e, _f, _g;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -369,7 +371,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_10__services_recruiting_service__["a" /* RecruitingService */],
             __WEBPACK_IMPORTED_MODULE_9__services_training_service__["a" /* TrainingService */],
             __WEBPACK_IMPORTED_MODULE_8__services_inventory_service__["a" /* InventoryService */],
-            __WEBPACK_IMPORTED_MODULE_6__services_primary_loop_service__["a" /* PrimaryLoopService */]
+            __WEBPACK_IMPORTED_MODULE_6__services_primary_loop_service__["a" /* PrimaryLoopService */],
+            __WEBPACK_IMPORTED_MODULE_15__services_core_numbers_service__["a" /* NumbersService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
     })
@@ -650,6 +653,58 @@ SchemePanelModule = __decorate([
 ], SchemePanelModule);
 
 //# sourceMappingURL=scheme-panel.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/core/numbers.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NumbersService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var NumbersService = (function () {
+    function NumbersService(_player) {
+        this._player = _player;
+        this.standardExpArray = [
+            60, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
+        ];
+        this.standardLairReq = [
+            0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3
+        ];
+        this.schemeLairReq = [
+            this.standardLairReq //0: Mastermind
+        ];
+        this.schemeExp = [
+            this.standardExpArray //0: Mastermind
+        ];
+    }
+    //Scheme Modifiers
+    //01: Mastermind
+    //1 scheme point per level per second.
+    NumbersService.prototype.mastermindNumbers = function () {
+        return this._player.schemes[0]['level'];
+    };
+    return NumbersService;
+}());
+NumbersService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object])
+], NumbersService);
+
+var _a;
+//# sourceMappingURL=numbers.service.js.map
 
 /***/ }),
 
@@ -1302,6 +1357,7 @@ var _a, _b;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SchemingService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1313,15 +1369,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var SchemingService = (function () {
-    function SchemingService(_player) {
+    function SchemingService(_player, _numbers) {
         this._player = _player;
+        this._numbers = _numbers;
         //Which scheme tree is selected by the scheme-panel
         this.selected = 'scheming';
         //Handling the preview scheme being displayed in the header
         this.previewScheme = {};
         //Controls the appearance of the scheme-panel flyout
         this.showPreview = false;
+        //Belongs in player service.
         this.earningSchemePoints = false;
     }
     //Belongs elsewhere.
@@ -1406,23 +1465,8 @@ var SchemingService = (function () {
     });
     Object.defineProperty(SchemingService.prototype, "schemePointsHatchedThisSecond", {
         get: function () {
-            //Starting scheme points per second is 1
             var hatched = 1;
-            //Mastermind increases scheme points per second
-            for (var _i = 0; _i < this._player.schemes[0]['level']; _i++) {
-                if (_i < 5) {
-                    hatched += 1;
-                }
-                if (_i > 4 && _i < 10) {
-                    hatched += 2;
-                }
-                if (_i > 9 && _i < 15) {
-                    hatched += 5;
-                }
-                if (_i > 14) {
-                    hatched += 10;
-                }
-            }
+            hatched += this._numbers.mastermindNumbers();
             return hatched;
         },
         enumerable: true,
@@ -1526,10 +1570,10 @@ var SchemingService = (function () {
 }());
 SchemingService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__core_numbers_service__["a" /* NumbersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__core_numbers_service__["a" /* NumbersService */]) === "function" && _b || Object])
 ], SchemingService);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=scheming.service.js.map
 
 /***/ }),

@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { PlayerService } from "./player.service";
+import { NumbersService } from "./core/numbers.service";
 
 @Injectable()
 export class SchemingService {
@@ -13,7 +14,8 @@ export class SchemingService {
         return successes;
     }
 
-    constructor(public _player: PlayerService) { }
+    constructor(public _player: PlayerService,
+    public _numbers: NumbersService) { }
 
     //This object contains raw schemes from the database provided by app.component.ts and data.service.ts
     schemes;
@@ -25,6 +27,8 @@ export class SchemingService {
     //Controls the appearance of the scheme-panel flyout
     showPreview: boolean = false;
 
+
+    //Belongs in player service.
     earningSchemePoints: boolean = false;
 
     //By ID Functions
@@ -90,17 +94,8 @@ export class SchemingService {
     }
 
     get schemePointsHatchedThisSecond() {
-        //Starting scheme points per second is 1
         var hatched = 1;
-
-        //Mastermind increases scheme points per second
-        for (var _i = 0; _i < this._player.schemes[0]['level']; _i++) {
-            if (_i < 5) { hatched += 1 }
-            if (_i > 4 && _i < 10) { hatched += 2 }
-            if (_i > 9 && _i < 15) { hatched += 5 }
-            if (_i > 14) { hatched += 10 }
-        }
-
+        hatched += this._numbers.mastermindNumbers();
         return hatched;
     }
 
