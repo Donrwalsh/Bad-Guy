@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { PlayerService } from "./player.service";
+import { NumbersService } from "./core/numbers.service";
 
 @Injectable()
 export class OperatingService {
 
-    constructor(public _player: PlayerService) { }
+    constructor(public _player: PlayerService,
+    public _numbers: NumbersService) { }
 
     areAnyUnlocked() {
         //Currently checks for heists or campaign operations.
@@ -12,6 +14,7 @@ export class OperatingService {
     }
 
     areRoutineOpsUnlocked() {
+        
         //Currently only accounts for Heists.
         return this._player.schemes[6]['level'] > 0;
     }
@@ -25,18 +28,19 @@ export class OperatingService {
         return false;
     }
 
+    getRoutineOperationCountdownById(id) {
+        if (id == 0) { //Hesits
+            var rate = 1800;
+            rate -= this._numbers.heistRechargeRate()
+            return rate;
+        }
+    }
+
     isUnlockedById(id) {
-        if (id == 0) return this.isHeistUnlockedById(id);
+        if (id >= 0 && id <=4) return this._numbers.heistUnlocked(id);
     }
 
-    isHeistUnlockedById(id) {
-        if (id == 0) return this._player.schemes[6]['level'] > 0;
-    }
 
-    get heistRarityChances() {
-        var chances = [.5, .7, .85, .95, 1];
-        return chances;
-    }
 
     getFaColorById(id) {
         if (this._player.operating[id]['available']) {
@@ -164,9 +168,15 @@ export class OperatingService {
         }
     }
 
+    get heistRarityChances() {
+        var chances = [.5, .7, .85, .95, 1];
+        return chances;
+    }
+
     //Heists specifically
     rollHeistRarity() {
         var roll = Math.random();
+        var heistRarityChances = this._numbers.heistRarityChancesArray();
         if (roll <= this.heistRarityChances[0]) { return 0 }
         if (roll >= this.heistRarityChances[0] && roll <= this.heistRarityChances[1]) { return 1 }
         if (roll >= this.heistRarityChances[1] && roll <= this.heistRarityChances[2]) { return 2 }

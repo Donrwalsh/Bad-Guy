@@ -99,4 +99,30 @@ export class NumbersService {
         return increase;
     }
 
+    //06: Heists
+    heistUnlocked(id) {
+        if (id == 0) return this._player.schemes[6]['level'] > 0;
+    }
+
+    heistRarityChancesArray() {
+        if (this._player.schemes[6]['level'] == 0) { 
+            return [.5, .7, .85, .95, 1] 
+        }
+        else if (this._player.schemes[6]['level'] >= 1 && this._player.schemes[6]['level'] <= 2) {
+            return [.46, .67, .83, .94, 1]
+        } else if (this._player.schemes[6]['level'] >= 3 && this._player.schemes[6]['level'] <= 5) {
+            return [.42, .64, .81, .93, 1]
+        }
+    }
+
+    heistRechargeRate() {
+        var reduce = 0;
+        for (var _i = 0; _i < this._player.schemes[6]['level']; _i++) {
+            if (_i == 2) { reduce += 180}
+            if (_i == 4) { reduce += 180}
+        }
+        return reduce;
+    }
+
+
 }
