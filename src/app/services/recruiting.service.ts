@@ -1,49 +1,45 @@
 import { Injectable } from "@angular/core";
 import { PlayerService } from "./player.service";
 import { InventoryService } from "./inventory.service";
+import { NumbersService } from './core/numbers.service';
 
 @Injectable()
 export class RecruitingService {
 
     constructor(public _player: PlayerService,
-    public _inventory: InventoryService) { }
+        public _numbers: NumbersService,
+        public _inventory: InventoryService) { }
 
     getCapacityById(id) {
         if (id == 0 || id == 1) { //Help Wanted Objects
-            //Starting capacity is 1
             var capacity = 1;
-
-            //Hired Help increases capacity by static amounts.
-            for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
-                if (_i == 1) { capacity += 4 }
-                if (_i == 3) { capacity += 5 }
-            }
-
+            capacity += this._numbers.hiredHelpCapacity();
             return capacity;
         }
     }
 
     getPercentageById(id) {
         if (this.isRecruitingById(id)) {
-            return 100*(1-(this._player.recruiting[id]['countdown']/this._player.recruiting[id]['lock']))
+            return 100 * (1 - (this._player.recruiting[id]['countdown'] / this._player.recruiting[id]['lock']))
         } else {
             return 100
         }
     }
 
     getRecruitmentNameById(id) {
-        if(id == 0) {return "Sign Stapled to a Post"}
-        if(id == 1) {return "Newspaper Ad"}
+        if (id == 0) { return "Sign Stapled to a Post" }
+        if (id == 1) { return "Newspaper Ad" }
     }
 
     getFaById(id) {
-        if (id == 0) {return "fa-user"}
-        if (id == 1) {return "fa-user"}
+        if (id == 0) { return "fa-user" }
+        if (id == 1) { return "fa-user" }
     }
 
     isUnlockedById(id) {
-        if (id == 0) { return this._player.schemes[3]['level'] > 0; }
-        if (id == 1) { return this._player.schemes[3]['level'] >= 4; }
+        if (id == 0 || id == 1) {//Help Wanted Objects
+            return this._numbers.hiredHelpUnlocked(id);
+        }
     }
 
     areAnyUnlocked() {
@@ -85,14 +81,8 @@ export class RecruitingService {
 
     getRecruitingCountdownById(id) {
         if (id == 0 || id == 1) { //Help Wanted Objects
-            //Starting recruitment rate is 60 seconds.
             var rate = 600;
-
-            //Hired Help reduces the rate by static amounts.
-            for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
-                if (_i == 2) { rate -= 150 }
-            }
-
+            rate -= this._numbers.hiredHelpRecruitRate()
             return rate;
         }
     }
@@ -114,7 +104,7 @@ export class RecruitingService {
 
 
     tickById(id) {
-        if (this._player.recruiting[id]['countdown'] == 0 && this._player.recruiting[id]['lock'] == 0) {
+        if (this._player.recruiting[id]['countdown'] == 0) {
             this.resetCountdownById(id);
         }
         this._player.recruiting[id]['countdown']--;

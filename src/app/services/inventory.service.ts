@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
-import { PACKAGE_ROOT_URL } from "@angular/core/src/application_tokens";
+import { NumbersService } from "./core/numbers.service";
 import { PlayerService } from "./player.service";
 
 @Injectable()
 export class InventoryService {
 
-    constructor ( public _player: PlayerService) {
+    constructor(public _player: PlayerService,
+        public _numbers: NumbersService) {
 
     }
 
@@ -17,7 +18,7 @@ export class InventoryService {
     }
 
     isHenchmenUpgradeFullById(id) {
-        if (id==0) {return this.isGuardCapacityFull}
+        if (id == 0) { return this.isGuardCapacityFull }
     }
 
     get isGuardCapacityFull() {
@@ -25,27 +26,13 @@ export class InventoryService {
     }
 
     get henchmenCapacity() {
-        //Base capacity is 10
         var capacity = 10;
-
-        //Henchman Lodging increases this value by a static amount.
-        for (var i = 0; i < this._player.schemes[5]['level']; i++) {
-            if (i < 2) {
-            capacity += 5;
-            } else if (i > 1 && i < 4 ) {
-                capacity += 10;
-            } else if (i == 4) {
-                capacity += 20;
-            } else if (i == 5) {
-                capacity += 50;
-            }
-        }
-        
+        capacity += this._numbers.lodgingNumbers();
         return capacity;
     }
 
     get isHenchmenCapacityFull() {
         return this._player.currentHenchmen == this.henchmenCapacity;
-    }    
+    }
 
 }

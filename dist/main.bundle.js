@@ -687,12 +687,14 @@ var NumbersService = (function () {
         this.schemeLairReq = [
             this.standardLairReq,
             this.standardLairReq,
-            this.standardLairReq //2: Quick Thinking
+            this.standardLairReq,
+            this.standardLairReq //3: Hired Help
         ];
         this.schemeExp = [
             this.standardExpArray,
             this.standardExpArray,
-            this.standardExpArray //2: Quick Thinking
+            this.standardExpArray,
+            this.standardExpArray //3: Hired Help
         ];
     }
     NumbersService.prototype.coinFlip = function (times) {
@@ -719,6 +721,58 @@ var NumbersService = (function () {
         var successes = this.coinFlip(6);
         return successes >= 5 ? this._player.schemes[2]['level'] : 0;
     };
+    //04: Hired Help
+    NumbersService.prototype.hiredHelpCapacity = function () {
+        var space = 0;
+        for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
+            if (_i == 1) {
+                space += 4;
+            }
+            if (_i == 3) {
+                space += 5;
+            }
+        }
+        return space;
+    };
+    NumbersService.prototype.hiredHelpUnlocked = function (id) {
+        if (id == 0) {
+            return this._player.schemes[3]['level'] > 0;
+        }
+        else if (id == 1) {
+            return this._player.schemes[3]['level'] >= 4;
+        }
+        else {
+            return false;
+        }
+    };
+    NumbersService.prototype.hiredHelpRecruitRate = function () {
+        var reduce = 0;
+        for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
+            if (_i == 2) {
+                reduce += 150;
+            }
+        }
+        return reduce;
+    };
+    //05: Lodging
+    NumbersService.prototype.lodgingNumbers = function () {
+        var increase = 0;
+        for (var i = 0; i < this._player.schemes[5]['level']; i++) {
+            if (i < 2) {
+                increase += 5;
+            }
+            else if (i > 1 && i < 4) {
+                increase += 10;
+            }
+            else if (i == 4) {
+                increase += 20;
+            }
+            else if (i == 5) {
+                increase += 50;
+            }
+        }
+        return increase;
+    };
     return NumbersService;
 }());
 NumbersService = __decorate([
@@ -737,7 +791,8 @@ var _a;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InventoryService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -749,9 +804,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var InventoryService = (function () {
-    function InventoryService(_player) {
+    function InventoryService(_player, _numbers) {
         this._player = _player;
+        this._numbers = _numbers;
     }
     Object.defineProperty(InventoryService.prototype, "guardCapacity", {
         //While the player service holds the current inventory variables, this service busies
@@ -776,23 +833,8 @@ var InventoryService = (function () {
     });
     Object.defineProperty(InventoryService.prototype, "henchmenCapacity", {
         get: function () {
-            //Base capacity is 10
             var capacity = 10;
-            //Henchman Lodging increases this value by a static amount.
-            for (var i = 0; i < this._player.schemes[5]['level']; i++) {
-                if (i < 2) {
-                    capacity += 5;
-                }
-                else if (i > 1 && i < 4) {
-                    capacity += 10;
-                }
-                else if (i == 4) {
-                    capacity += 20;
-                }
-                else if (i == 5) {
-                    capacity += 50;
-                }
-            }
+            capacity += this._numbers.lodgingNumbers();
             return capacity;
         },
         enumerable: true,
@@ -809,10 +851,10 @@ var InventoryService = (function () {
 }());
 InventoryService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__core_numbers_service__["a" /* NumbersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__core_numbers_service__["a" /* NumbersService */]) === "function" && _b || Object])
 ], InventoryService);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=inventory.service.js.map
 
 /***/ }),
@@ -1229,6 +1271,7 @@ var _a, _b, _c, _d, _e;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1241,25 +1284,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var RecruitingService = (function () {
-    function RecruitingService(_player, _inventory) {
+    function RecruitingService(_player, _numbers, _inventory) {
         this._player = _player;
+        this._numbers = _numbers;
         this._inventory = _inventory;
         this.collecting = false;
     }
     RecruitingService.prototype.getCapacityById = function (id) {
         if (id == 0 || id == 1) {
-            //Starting capacity is 1
             var capacity = 1;
-            //Hired Help increases capacity by static amounts.
-            for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
-                if (_i == 1) {
-                    capacity += 4;
-                }
-                if (_i == 3) {
-                    capacity += 5;
-                }
-            }
+            capacity += this._numbers.hiredHelpCapacity();
             return capacity;
         }
     };
@@ -1288,11 +1324,8 @@ var RecruitingService = (function () {
         }
     };
     RecruitingService.prototype.isUnlockedById = function (id) {
-        if (id == 0) {
-            return this._player.schemes[3]['level'] > 0;
-        }
-        if (id == 1) {
-            return this._player.schemes[3]['level'] >= 4;
+        if (id == 0 || id == 1) {
+            return this._numbers.hiredHelpUnlocked(id);
         }
     };
     RecruitingService.prototype.areAnyUnlocked = function () {
@@ -1326,14 +1359,8 @@ var RecruitingService = (function () {
     };
     RecruitingService.prototype.getRecruitingCountdownById = function (id) {
         if (id == 0 || id == 1) {
-            //Starting recruitment rate is 60 seconds.
             var rate = 600;
-            //Hired Help reduces the rate by static amounts.
-            for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
-                if (_i == 2) {
-                    rate -= 150;
-                }
-            }
+            rate -= this._numbers.hiredHelpRecruitRate();
             return rate;
         }
     };
@@ -1350,7 +1377,7 @@ var RecruitingService = (function () {
         this._player.recruiting[id]['lock'] = this.getRecruitingCountdownById(id);
     };
     RecruitingService.prototype.tickById = function (id) {
-        if (this._player.recruiting[id]['countdown'] == 0 && this._player.recruiting[id]['lock'] == 0) {
+        if (this._player.recruiting[id]['countdown'] == 0) {
             this.resetCountdownById(id);
         }
         this._player.recruiting[id]['countdown']--;
@@ -1365,10 +1392,10 @@ var RecruitingService = (function () {
 }());
 RecruitingService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]) === "function" && _c || Object])
 ], RecruitingService);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=recruiting.service.js.map
 
 /***/ }),

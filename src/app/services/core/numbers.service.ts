@@ -29,13 +29,15 @@ export class NumbersService {
     schemeLairReq: Array<Array<Number>> = [
         this.standardLairReq, //0: Mastermind
         this.standardLairReq, //1: Cold Logic
-        this.standardLairReq //2: Quick Thinking
+        this.standardLairReq, //2: Quick Thinking
+        this.standardLairReq //3: Hired Help
     ]
 
     schemeExp: Array<Array<Number>> = [
         this.standardExpArray, //0: Mastermind
         this.standardExpArray, //1: Cold Logic
-        this.standardExpArray //2: Quick Thinking
+        this.standardExpArray, //2: Quick Thinking
+        this.standardExpArray //3: Hired Help
     ]   
 
     //Scheme Modifiers
@@ -55,6 +57,46 @@ export class NumbersService {
     quickThinkingNumbers() {
         var successes = this.coinFlip(6);
         return successes >= 5 ? this._player.schemes[2]['level'] : 0;
+    }
+
+    //04: Hired Help
+    hiredHelpCapacity() {
+        var space = 0;
+        for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
+            if (_i == 1) { space += 4 }
+            if (_i == 3) { space += 5 }
+        }
+        return space;
+    }
+    
+    hiredHelpUnlocked(id) {
+        if (id == 0) {
+            return this._player.schemes[3]['level'] > 0;
+        } else if (id == 1) {
+            return this._player.schemes[3]['level'] >= 4;
+        } else {
+            return false;
+        }
+    }
+
+    hiredHelpRecruitRate() {
+        var reduce = 0;
+        for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
+            if (_i == 2) { reduce += 150}
+        }
+        return reduce;
+    }
+
+    //05: Lodging
+    lodgingNumbers() {
+        var increase = 0
+        for (var i = 0; i < this._player.schemes[5]['level']; i++) {
+            if (i < 2) { increase += 5; } 
+            else if (i > 1 && i < 4) { increase += 10; }
+            else if (i == 4) { increase += 20; } 
+            else if (i == 5) { increase += 50; }
+        }
+        return increase;
     }
 
 }
