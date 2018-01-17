@@ -102,4 +102,18 @@ export class ActivityPanelComponent {
             }
         }
     }
+
+    operateButtonInPreviewStyle() {
+        return {
+            'color': this._operating.canPreviewBeOperated ? 'red' : this._operating.getFaColorByRarity(this._operating.previewOperation['rarity']),
+            'cursor': this._operating.canPreviewBeOperated ? 'initial' : 'pointer'
+        }
+    }
+
+    operationIconClass(id) {
+        if (this._player.operating[id]['available'] && this._player.operating[id] == this._operating.previewOperation) {
+            return {'faa-tada' : true, 'faa-slow' : true, 'animated' : true }
+        }
+    }
+    
 }

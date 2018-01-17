@@ -6,7 +6,7 @@ import { NumbersService } from "./core/numbers.service";
 export class OperatingService {
 
     constructor(public _player: PlayerService,
-    public _numbers: NumbersService) { }
+        public _numbers: NumbersService) { }
 
     operations;
 
@@ -16,7 +16,7 @@ export class OperatingService {
     }
 
     areRoutineOpsUnlocked() {
-        
+
         //Currently only accounts for Heists.
         return this._player.schemes[6]['level'] > 0;
     }
@@ -39,7 +39,7 @@ export class OperatingService {
     }
 
     isUnlockedById(id) {
-        if (id >= 0 && id <=4) return this._numbers.heistUnlocked(id);
+        if (id >= 0 && id <= 4) return this._numbers.heistUnlocked(id);
     }
 
 
@@ -55,8 +55,8 @@ export class OperatingService {
 
     getFaColorByRarity(rarity) {
         if (rarity == 0) { return 'black' }
-        if (rarity == 1) { return 'blue' }
-        if (rarity == 2) { return 'green' }
+        if (rarity == 1) { return 'green' }
+        if (rarity == 2) { return 'blue' }
         if (rarity == 3) { return 'purple' }
         if (rarity == 4) { return 'orange' }
     }
@@ -66,9 +66,14 @@ export class OperatingService {
 
     operationPreview(id) {
         if (this._player.operating[id]['available']) {
-            console.log("Pass");
-            this.previewOperation = this._player.operating[id];
-            this.showPreview = true;
+            if (this._player.operating[id] == this.previewOperation) {
+                this.showPreview = false;
+                this.previewOperation = [];
+            } else {
+                this.previewOperation = this._player.operating[id];
+                this.showPreview = true;
+            }
+
         }
 
 
@@ -116,17 +121,17 @@ export class OperatingService {
         if (rarity == 4) { rate = .35 }
         var multiplier = 1;
         for (var i = 0; i < this._player.schemes[8]['level']; i++) {
-            multiplier-= .05;
+            multiplier -= .05;
         }
-        return rate*multiplier;
+        return rate * multiplier;
     }
 
     previewOperationRiskDisplay() {
-        return Math.floor(this.previewOperation['risk']*10000)/100;
+        return Math.floor(this.previewOperation['risk'] * 10000) / 100;
     }
 
     getHeistNotoriety(rarity) {
-        return Math.floor((rarity * .1)*100)/100;
+        return Math.floor((rarity * .1) * 100) / 100;
     }
 
     tickById(id) {
@@ -134,11 +139,9 @@ export class OperatingService {
             //If lock and countdown are both 0, the operation slot has been unlocked since the last tick.
             if (this._player.operating[id]['lock'] == 0 && this._player.operating[id]['countdown'] == 0) {
                 this.operationSpawn(id);
-                console.log("Tier: " + this._player.operating[id]['rarity'] + ", Henchmen: " + this._player.operating[id]['henchmen']);
-                console.log("Cash Output: " + this.getHeistCashOutput(this._player.operating[id]['rarity'], this._player.operating[id]['henchmen']))
             }
             //If the operation is available, recheck certain values that may have changed:
-            if(this._player.operating[id]['available']) {
+            if (this._player.operating[id]['available']) {
                 this._player.operating[id]['risk'] = this.getHeistRiskRate(this._player.operating[id]['rarity']);
             }
         }
@@ -154,13 +157,12 @@ export class OperatingService {
     pickAHeistName(rarity) {
         var tiers = ['Tier0', 'Tier1', 'Tier2', 'Tier3', 'Tier4']
         var cap = this.operations[0][tiers[rarity]].length;
-        return this.operations[0][tiers[rarity]][Math.floor(Math.random()*cap)];
+        return this.operations[0][tiers[rarity]][Math.floor(Math.random() * cap)];
     }
 
     operationSpawn(id) {
         if (id >= 0 && id <= 4) {//Heists
             var rarity = this.rollHeistRarity();
-            console.log(rarity);
             var henchmen = this.getHeistHenchmenCost(rarity);
             this._player.operating[id]['name'] = this.pickAHeistName(rarity);
             this._player.operating[id]['rarity'] = rarity;
@@ -178,6 +180,10 @@ export class OperatingService {
 
     get heistRarityChances() {
         return this._numbers.heistRarityChancesArray;
+    }
+
+    get canPreviewBeOperated() {
+        return this._player.currentHenchmen < this.previewOperation['henchmen'];
     }
 
     //Heists specifically

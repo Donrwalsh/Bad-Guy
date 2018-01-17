@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "../../../../../src lazy recursive";
 /***/ "../../../../../src/app/activity-panel/activity-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activity-panel\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let Training of _player.training; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlockedById(i)\"></div>\n            <div class=\"add-column\" *ngIf=\"_training.isUnlockedById(i)\">\n                <div class=\"add-block\">\n                    <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.trainById(i)\" [ngStyle]=\"addToQueueIconStyle(i)\"></i>\n                </div>\n            </div>\n            <div *ngIf=\"_training.isUnlockedById(i)\" class=\"progress-column\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectById(i)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{_training.getUpgradeNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let Recruiting of _player.recruiting; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlockedById(i)\" class=\"progress-no-add-column\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectById(i)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{_recruiting.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{_recruiting.getRecruitmentNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated {{_recruiting.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!--In progress: -->\n    <div class=\"operations-column\" *ngIf=\"_operating.areAnyUnlocked()\">\n        <div class=\"left-padding\"></div>\n        <div class=\"routine-tab\" [ngStyle]=\"{'visibility': _operating.areRoutineOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-certificate tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"campaign-tab\" [ngStyle]=\"{'visibility': _operating.areCampaignOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-book tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"ascension-tab\" [ngStyle]=\"{'visibility': _operating.areAscensionOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-rocket tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"divider-5\"></div>\n        <div class=\"divider-5\"></div>\n        <div class=\"heists-row\" *ngIf=\"_player.schemes[6]['level'] > 0\">\n            <div class=\"column\" (click)=\"_operating.operationPreview(0)\" [ngStyle]=\"{'cursor': _player.operating[0]['available'] ? 'pointer' : 'initial' }\">\n                <i class=\"fa fa-usd\" aria-hidden=\"true\" [ngClass]=\"{'faa-tada' : _player.operating[0]['available'], 'faa-slow' : _player.operating[0]['available'], 'animated' : _player.operating[0]['available'] }\"\n                    [ngStyle]=\"{'color': _operating.getFaColorById(0)}\"></i>\n            </div>\n            <div class=\"column\">\n                <i class=\"fa fa-lock\" aria-hidden=\"true\" [ngStyle]=\"{'color': _operating.getFaColorById(1)}\"></i>\n            </div>\n            <div class=\"column\">\n                <i class=\"fa fa-lock\" aria-hidden=\"true\" [ngStyle]=\"{'color': _operating.getFaColorById(2)}\"></i>\n            </div>\n            <div class=\"column\">\n                <i class=\"fa fa-lock\" aria-hidden=\"true\" [ngStyle]=\"{'color': _operating.getFaColorById(3)}\"></i>\n            </div>\n            <div class=\"column\">\n                <i class=\"fa fa-lock\" aria-hidden=\"true\" [ngStyle]=\"{'color': _operating.getFaColorById(4)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\"></div>\n        <div *ngIf=\"_operating.showPreview\" class=\"operation-flyout\">\n            <div class=\"inner-content\" [ngStyle]=\"{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}\">\n                <p class=\"operation-name\" style=\"width:95%\"><i class=\"operation-icon fa fa-usd\" aria-hidden=\"true\" style=\"margin-right:.2rem;\"></i>{{_operating.previewOperation['name']}}</p>\n                <div class=\"split\" style=\"margin-top:.5rem;display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:right;\">\n                        Requires:</p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:left;\">{{_operating.previewOperation['henchmen']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:right;\">\n                        Risk:</p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:left;\">{{_operating.previewOperationRiskDisplay()}}%\n                    </p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:right;\">\n                        Rewards:</p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:left;\">{{_operating.previewOperation['reward']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:right;\">\n                        Success:</p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:left;\">{{_operating.previewOperation['success']*100}}%\n                    </p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:right;\">\n                        Notoriety:</p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:left;\">{{_operating.previewOperation['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <p style=\"margin-left:7%;margin-right:2%;width:40%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">Operate</p>\n                <p style=\"margin-left:2%;margin-right:7%;width:40%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">Abandon</p>\n                <!--<p style=\"width:85%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">Upgrade</p>-->\n                \n                \n\n\n\n\n\n                \n                \n\n            </div>\n\n        </div>\n\n\n    </div>\n\n</div>"
+module.exports = "<div class=\"activity-panel\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let Training of _player.training; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlockedById(i)\"></div>\n            <div class=\"add-column\" *ngIf=\"_training.isUnlockedById(i)\">\n                <div class=\"add-block\">\n                    <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.trainById(i)\" [ngStyle]=\"addToQueueIconStyle(i)\"></i>\n                </div>\n            </div>\n            <div *ngIf=\"_training.isUnlockedById(i)\" class=\"progress-column\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectById(i)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{_training.getUpgradeNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let Recruiting of _player.recruiting; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlockedById(i)\" class=\"progress-no-add-column\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectById(i)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{_recruiting.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{_recruiting.getRecruitmentNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated {{_recruiting.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!--In progress: -->\n    <div class=\"operations-column\" *ngIf=\"_operating.areAnyUnlocked()\">\n        <div class=\"left-padding\"></div>\n        <div class=\"routine-tab\" [ngStyle]=\"{'visibility': _operating.areRoutineOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-certificate tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"campaign-tab\" [ngStyle]=\"{'visibility': _operating.areCampaignOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-book tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"ascension-tab\" [ngStyle]=\"{'visibility': _operating.areAscensionOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-rocket tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"divider-5\"></div>\n        <div class=\"divider-5\"></div>\n        <div class=\"heists-row\" *ngIf=\"_player.schemes[6]['level'] > 0\">\n            <div class=\"column\" (click)=\"_operating.operationPreview(0)\" [ngStyle]=\"{'cursor': _player.operating[0]['available'] ? 'pointer' : 'initial' }\">\n                <i class=\"fa fa-usd\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(0)\"\n                    [ngStyle]=\"{'color': _operating.getFaColorById(0)}\"></i>\n            </div>\n            <div class=\"column\">\n                <i class=\"fa fa-lock\" aria-hidden=\"true\" [ngStyle]=\"{'color': _operating.getFaColorById(1)}\"></i>\n            </div>\n            <div class=\"column\">\n                <i class=\"fa fa-lock\" aria-hidden=\"true\" [ngStyle]=\"{'color': _operating.getFaColorById(2)}\"></i>\n            </div>\n            <div class=\"column\">\n                <i class=\"fa fa-lock\" aria-hidden=\"true\" [ngStyle]=\"{'color': _operating.getFaColorById(3)}\"></i>\n            </div>\n            <div class=\"column\">\n                <i class=\"fa fa-lock\" aria-hidden=\"true\" [ngStyle]=\"{'color': _operating.getFaColorById(4)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\"></div>\n        <div *ngIf=\"_operating.showPreview\" class=\"operation-flyout\">\n            <div class=\"inner-content\" [ngStyle]=\"{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}\">\n                <p class=\"operation-name\" style=\"width:95%\"><i class=\"operation-icon fa fa-usd\" aria-hidden=\"true\" style=\"margin-right:.2rem;\"></i>{{_operating.previewOperation['name']}}</p>\n                <div class=\"split\" style=\"margin-top:.5rem;display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:right;\">\n                        Requires:</p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:left;\">{{_operating.previewOperation['henchmen']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:right;\">\n                        Risk:</p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:left;\">{{_operating.previewOperationRiskDisplay()}}%\n                    </p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:right;\">\n                        Rewards:</p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:left;\">{{_operating.previewOperation['reward']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:right;\">\n                        Success:</p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:left;\">{{_operating.previewOperation['success']*100}}%\n                    </p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:right;\">\n                        Notoriety:</p>\n                </div>\n                <div class=\"split\" style=\"display:inline-block;width:48%\">\n                    <p class=\"flyout-text\" style=\"float:left;\">{{_operating.previewOperation['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <p style=\"margin-left:7%;margin-right:2%;width:40%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\"\n                [ngStyle]=\"operateButtonInPreviewStyle()\">Operate</p>\n                <p style=\"margin-left:2%;margin-right:7%;width:40%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">Abandon</p>\n                <!--<p style=\"width:85%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">Upgrade</p>-->\n                \n                \n\n\n\n\n\n                \n                \n\n            </div>\n\n        </div>\n\n\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -147,6 +147,17 @@ var ActivityPanelComponent = (function () {
             return {
                 'display': this._player.recruiting[id]['currentStore'] > 0 ? 'inline-block' : 'none'
             };
+        }
+    };
+    ActivityPanelComponent.prototype.operateButtonInPreviewStyle = function () {
+        return {
+            'color': this._operating.canPreviewBeOperated ? 'red' : this._operating.getFaColorByRarity(this._operating.previewOperation['rarity']),
+            'cursor': this._operating.canPreviewBeOperated ? 'initial' : 'pointer'
+        };
+    };
+    ActivityPanelComponent.prototype.operationIconClass = function (id) {
+        if (this._player.operating[id]['available'] && this._player.operating[id] == this._operating.previewOperation) {
+            return { 'faa-tada': true, 'faa-slow': true, 'animated': true };
         }
     };
     return ActivityPanelComponent;
@@ -290,7 +301,7 @@ var AppComponent = (function () {
         var _this = this;
         setInterval(function () {
             _this._loop.action();
-        }, 100);
+        }, 10);
     };
     return AppComponent;
 }());
@@ -972,10 +983,10 @@ var OperatingService = (function () {
             return 'black';
         }
         if (rarity == 1) {
-            return 'blue';
+            return 'green';
         }
         if (rarity == 2) {
-            return 'green';
+            return 'blue';
         }
         if (rarity == 3) {
             return 'purple';
@@ -986,9 +997,14 @@ var OperatingService = (function () {
     };
     OperatingService.prototype.operationPreview = function (id) {
         if (this._player.operating[id]['available']) {
-            console.log("Pass");
-            this.previewOperation = this._player.operating[id];
-            this.showPreview = true;
+            if (this._player.operating[id] == this.previewOperation) {
+                this.showPreview = false;
+                this.previewOperation = [];
+            }
+            else {
+                this.previewOperation = this._player.operating[id];
+                this.showPreview = true;
+            }
         }
         //this.previewSchemeLevel = this.getSchemeCurrentLevel(id) + 1;
     };
@@ -1083,8 +1099,6 @@ var OperatingService = (function () {
             //If lock and countdown are both 0, the operation slot has been unlocked since the last tick.
             if (this._player.operating[id]['lock'] == 0 && this._player.operating[id]['countdown'] == 0) {
                 this.operationSpawn(id);
-                console.log("Tier: " + this._player.operating[id]['rarity'] + ", Henchmen: " + this._player.operating[id]['henchmen']);
-                console.log("Cash Output: " + this.getHeistCashOutput(this._player.operating[id]['rarity'], this._player.operating[id]['henchmen']));
             }
             //If the operation is available, recheck certain values that may have changed:
             if (this._player.operating[id]['available']) {
@@ -1108,7 +1122,6 @@ var OperatingService = (function () {
     OperatingService.prototype.operationSpawn = function (id) {
         if (id >= 0 && id <= 4) {
             var rarity = this.rollHeistRarity();
-            console.log(rarity);
             var henchmen = this.getHeistHenchmenCost(rarity);
             this._player.operating[id]['name'] = this.pickAHeistName(rarity);
             this._player.operating[id]['rarity'] = rarity;
@@ -1125,6 +1138,13 @@ var OperatingService = (function () {
     Object.defineProperty(OperatingService.prototype, "heistRarityChances", {
         get: function () {
             return this._numbers.heistRarityChancesArray;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OperatingService.prototype, "canPreviewBeOperated", {
+        get: function () {
+            return this._player.currentHenchmen < this.previewOperation['henchmen'];
         },
         enumerable: true,
         configurable: true
@@ -1184,7 +1204,7 @@ var PlayerService = (function () {
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
+            { level: 4, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
             { level: 1, exp: 0 },
@@ -1335,6 +1355,7 @@ var _a, _b, _c, _d, _e, _f;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1348,10 +1369,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var RecruitingService = (function () {
-    function RecruitingService(_player, _numbers, _inventory) {
+    function RecruitingService(_player, _numbers, _operating, _inventory) {
         this._player = _player;
         this._numbers = _numbers;
+        this._operating = _operating;
         this._inventory = _inventory;
         this.collecting = false;
     }
@@ -1455,10 +1478,10 @@ var RecruitingService = (function () {
 }());
 RecruitingService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__operating_service__["a" /* OperatingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__operating_service__["a" /* OperatingService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]) === "function" && _d || Object])
 ], RecruitingService);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=recruiting.service.js.map
 
 /***/ }),

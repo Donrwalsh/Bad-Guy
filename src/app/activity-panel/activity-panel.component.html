@@ -52,7 +52,7 @@
         <div class="divider-5"></div>
         <div class="heists-row" *ngIf="_player.schemes[6]['level'] > 0">
             <div class="column" (click)="_operating.operationPreview(0)" [ngStyle]="{'cursor': _player.operating[0]['available'] ? 'pointer' : 'initial' }">
-                <i class="fa fa-usd" aria-hidden="true" [ngClass]="{'faa-tada' : _player.operating[0]['available'], 'faa-slow' : _player.operating[0]['available'], 'animated' : _player.operating[0]['available'] }"
+                <i class="fa fa-usd" aria-hidden="true" [ngClass]="operationIconClass(0)"
                     [ngStyle]="{'color': _operating.getFaColorById(0)}"></i>
             </div>
             <div class="column">
@@ -115,7 +115,8 @@
                         <i class="flyout-icon fa fa-exclamation-triangle" aria-hidden="true"></i>
                     </p>
                 </div>
-                <p style="margin-left:7%;margin-right:2%;width:40%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;">Operate</p>
+                <p style="margin-left:7%;margin-right:2%;width:40%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;"
+                [ngStyle]="operateButtonInPreviewStyle()">Operate</p>
                 <p style="margin-left:2%;margin-right:7%;width:40%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;">Abandon</p>
                 <!--<p style="width:85%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;">Upgrade</p>-->
                 
