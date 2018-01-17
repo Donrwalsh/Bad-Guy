@@ -6,9 +6,9 @@
     <div class="scheme" [ngStyle]="schemeStyle()" (click)="_scheming.switchToCurrentSchemePreview()">
         <div *ngIf="_scheming.earningSchemePoints">
             <p class="status-text">Scheming</p>
-            <div class="scheme-bar-container" [ngClass]="schemeTreeClass()">
-                <i class="scheme-icon fa {{_player.currentScheme.fa}}" aria-hidden="true"></i>
-                <div class="scheme-progress-bar" [ngStyle]="schemeProgressBarStyle()" [ngClass]="schemeTreeClass()"></div>
+            <div class="scheme-bar-container {{_player.currentScheme['tree']}}">
+                <i class="scheme-icon fa {{_scheming.getFaById(_player.currentScheme['ref'])}}" aria-hidden="true"></i>
+                <div class="scheme-progress-bar {{_player.currentScheme['tree']}}" [ngStyle]="schemeProgressBarStyle()"></div>
             </div>
         </div>
         <div *ngIf="!_scheming.earningSchemePoints">

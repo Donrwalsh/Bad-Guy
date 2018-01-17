@@ -8,6 +8,8 @@ export class OperatingService {
     constructor(public _player: PlayerService,
     public _numbers: NumbersService) { }
 
+    operations;
+
     areAnyUnlocked() {
         //Currently checks for heists or campaign operations.
         return this._player.schemes[6]['level'] > 0 || this._player.schemes[7]['level'] > 0;
@@ -63,8 +65,6 @@ export class OperatingService {
     showPreview = false;
 
     operationPreview(id) {
-        console.log("called");
-        console.log(this._player.operating);
         if (this._player.operating[id]['available']) {
             console.log("Pass");
             this.previewOperation = this._player.operating[id];
@@ -151,10 +151,18 @@ export class OperatingService {
         return 1800;
     }
 
+    pickAHeistName(rarity) {
+        var tiers = ['Tier0', 'Tier1', 'Tier2', 'Tier3', 'Tier4']
+        var cap = this.operations[0][tiers[rarity]].length;
+        return this.operations[0][tiers[rarity]][Math.floor(Math.random()*cap)];
+    }
+
     operationSpawn(id) {
         if (id >= 0 && id <= 4) {//Heists
             var rarity = this.rollHeistRarity();
+            console.log(rarity);
             var henchmen = this.getHeistHenchmenCost(rarity);
+            this._player.operating[id]['name'] = this.pickAHeistName(rarity);
             this._player.operating[id]['rarity'] = rarity;
             this._player.operating[id]['henchmen'] = henchmen;
             this._player.operating[id]['reward'] = this.getHeistCashOutput(rarity, henchmen);
@@ -169,19 +177,18 @@ export class OperatingService {
     }
 
     get heistRarityChances() {
-        var chances = [.5, .7, .85, .95, 1];
-        return chances;
+        return this._numbers.heistRarityChancesArray;
     }
 
     //Heists specifically
     rollHeistRarity() {
         var roll = Math.random();
         var heistRarityChances = this._numbers.heistRarityChancesArray();
-        if (roll <= this.heistRarityChances[0]) { return 0 }
-        if (roll >= this.heistRarityChances[0] && roll <= this.heistRarityChances[1]) { return 1 }
-        if (roll >= this.heistRarityChances[1] && roll <= this.heistRarityChances[2]) { return 2 }
-        if (roll >= this.heistRarityChances[2] && roll <= this.heistRarityChances[3]) { return 3 }
-        if (roll >= this.heistRarityChances[3] && roll <= this.heistRarityChances[4]) { return 4 }
+        if (roll <= heistRarityChances[0]) { return 0 }
+        if (roll >= heistRarityChances[0] && roll <= heistRarityChances[1]) { return 1 }
+        if (roll >= heistRarityChances[1] && roll <= heistRarityChances[2]) { return 2 }
+        if (roll >= heistRarityChances[2] && roll <= heistRarityChances[3]) { return 3 }
+        if (roll >= heistRarityChances[3] && roll <= heistRarityChances[4]) { return 4 }
     }
 
 }

@@ -56,7 +56,7 @@
         float: left;
 
         .node {
-            background-color: #9fff80;
+            background-color: $scheming-strong;
         }
     }
 
@@ -71,7 +71,7 @@
         float: left;
 
         .node {
-            background-color: #80aaff;
+            background-color: $henchmen-strong;
         }
     }
 
@@ -86,7 +86,7 @@
         float: left;
 
         .node {
-            background-color: #ffbf80;
+            background-color: $operations-strong;
         }
     }
 
@@ -101,7 +101,7 @@
         float: left;
 
         .node {
-            background-color: #df80ff;
+            background-color: $lairs-strong;
         }
     }
 
@@ -130,6 +130,11 @@
         .fa {
             margin-top: .75rem;
         }
+    }
+
+    .hidden {
+        cursor: default;
+        visibility: hidden;
     }
 
     .level {
@@ -192,4 +197,36 @@
             margin-bottom: 1rem;
         }
     }
+}
+
+.scheming {
+    background-color: $scheming-secondary;
+}
+
+.scheming-strong {
+    background-color: $scheming-strong;
+}
+
+.henchmen {
+    background-color: $henchmen-secondary;
+}
+
+.henchmen-strong {
+    background-color: $henchmen-strong;
+}
+
+.operations {
+    background-color: $operations-secondary;
+}
+
+.operations-strong {
+    background-color: $operations-strong;
+}
+
+.lairs {
+    background-color: $lairs-secondary;
+}
+
+.lairs-strong {
+    background-color: $lairs-strong;
 }

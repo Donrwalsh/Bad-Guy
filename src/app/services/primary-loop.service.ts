@@ -4,6 +4,7 @@ import { SchemingService } from "./scheming.service";
 import { RecruitingService } from "./recruiting.service";
 import { TrainingService } from "./training.service";
 import { OperatingService } from "./operating.service";
+import { NumbersService } from "./core/numbers.service";
 
 //All loop related activities. Called by app.component and nowhere else.
 @Injectable()
@@ -13,6 +14,7 @@ export class PrimaryLoopService {
         public _operating: OperatingService,
         public _scheming: SchemingService,
         public _recruiting: RecruitingService,
+        public _numbers: NumbersService,
         public _training: TrainingService) { }
 
     //Flow logic is 1. Scheme 2. Recruit
@@ -54,6 +56,7 @@ export class PrimaryLoopService {
 
     //Events that occur every minute
     minute() {
+        console.log(this._operating.operations)
         if (this._scheming.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute)
         }

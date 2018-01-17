@@ -19,7 +19,8 @@ export class PlayerService {
         { level: 0, exp: 0 }, //5 Henchmen Lodging, 0-4 coded.
         { level: 1, exp: 0 }, //6 Heists, not coded.
         { level: 0, exp: 0 }, //7 Spread Influence, not coded.
-        { level: 1, exp: 0 }  //8 Communications, not coded.
+        { level: 1, exp: 0 }, //8 Communications, not coded.
+        { level: 0, exp: 0 } //9 Starter Lair, not coded.
     ]
 
     currentScheme: Object = {};
@@ -40,11 +41,11 @@ export class PlayerService {
 
     //Operations
     operating: Array<Object> = [
-        {rarity: -1, henchmen : -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},//Heists 1
-        {rarity: -1, henchmen : -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},//Heists 2
-        {rarity: -1, henchmen : -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},//Heists 3
-        {rarity: -1, henchmen : -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},//Heists 4
-        {rarity: -1, henchmen : -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0} //Heists 5
+        {name: '', rarity: -1, henchmen : -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},//Heists 1
+        {name: '', rarity: -1, henchmen : -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},//Heists 2
+        {name: '', rarity: -1, henchmen : -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},//Heists 3
+        {name: '', rarity: -1, henchmen : -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},//Heists 4
+        {name: '', rarity: -1, henchmen : -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0} //Heists 5
     ]
 
     

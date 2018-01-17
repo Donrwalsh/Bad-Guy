@@ -27,10 +27,6 @@ export class HeaderComponent {
         return {'cursor': this._scheming.earningSchemePoints ? 'pointer' : 'default'}
     }
 
-    schemeTreeClass() {
-        return this._scheming.getTreeById(this._player.currentScheme['ref'])
-    }
-
     schemeProgressBarStyle() {
         return {'width': this._scheming.currentSchemePercentage + '%'}
     }

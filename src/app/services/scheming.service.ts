@@ -32,36 +32,46 @@ export class SchemingService {
     earningSchemePoints: boolean = false;
 
     //By ID Functions
+    getFaById(id) {
+        if (id == 0) { return 'fa-graduation-cap'}
+        if (id == 1) { return 'fa-hand-spock-o'}
+        if (id == 2) { return 'fa-flash'}
+        if (id == 3) { return 'fa-address-book'}
+        if (id == 4) { return 'fa-shield'}
+        if (id == 5) { return 'fa-bed'}
+        if (id == 6) { return 'fa-usd'}
+        if (id == 7) { return 'fa-address-card-o'}
+        if (id == 8) { return 'fa-microphone'}
+        if (id == 9) { return 'fa-angle-up'}
+    }
+
     canSchemeBeLearned(id) {
-        return this.schemes[id]['lair_req'][this.getSchemeCurrentLevel(id) + 1] <= this._player.lairLevel;
+        return this._numbers.schemeLairReq[id][this.getSchemeCurrentLevel(id) + 1] <= this._player.lairLevel;
     }
 
     getSchemeCurrentLevel(id) {
         return this._player.schemes[id]['level'];
     }
 
-    getTreeById(id) {
-        if (id >= 0 && id <= 2) { return 'scheming'}
-        if (id >= 3 && id <= 5) { return 'henchmen'}
-        if (id >= 6 && id <= 8) { return 'operations'}
-        if (id == 9 ) {return 'lairs'}
+    showSchemeButtonInPreviewScheme() {
+        return (this.previewScheme['ref'] != this._player.currentScheme['ref']) && this.canSchemeBeLearned(this.previewScheme['ref'])
     }
 
-    schemeLearnable(scheme) {
-        return this._player.lairLevel >= scheme['lair_req'][this._player.schemes[scheme['ref']]['level']];
+    schemePreviewFa() {
+        return this.getFaById(this.previewScheme['ref']);
     }
 
     schemePreview(id) {
 
         this.previewScheme = this.schemes[id];
-        this.previewSchemeLevel = this.getSchemeCurrentLevel(id) + 1;
+        this.previewSchemeLevel = this.getSchemeCurrentLevel(id);
         this.showPreview = true;
 
     }
 
     //A couple of scheme preview functions
     startSchemingPreview() {
-        if (this.schemeLearnable(this.previewScheme)) {
+        if (this.canSchemeBeLearned(this.previewScheme['ref'])) {
             this._player.currentScheme = this.previewScheme;
             this.earningSchemePoints = true;
         }
@@ -70,7 +80,7 @@ export class SchemingService {
     switchToCurrentSchemePreview() {
         if (this.earningSchemePoints) {
             //Garbage. Needs to be actually coded.
-            this.selected = this.getTreeById(this._player.currentScheme['ref'])
+            this.selected = this._player.currentScheme['tree'];
             this.previewScheme = this._player.currentScheme;
             this.showPreview = true;
         }
@@ -98,7 +108,8 @@ export class SchemingService {
     //Scheme Calculation Loop Setter
     earnSchemePoints(num) {
         this._player.schemes[this._player.currentScheme['ref']]['exp'] += num;
-        if (this._player.schemes[this._player.currentScheme['ref']]['exp'] >= this._player.currentScheme['exp'][this._player.schemes[this._player.currentScheme['ref']]['level']]) {
+        console.log("if (" + this._player.schemes[this._player.currentScheme['ref']]['exp'] + " >= " + this._numbers.schemeExp[this._player.currentScheme['ref']][this._player.schemes[this._player.currentScheme['ref']]['level']] + ")")
+        if (this._player.schemes[this._player.currentScheme['ref']]['exp'] >= this._numbers.schemeExp[this._player.currentScheme['ref']][this._player.schemes[this._player.currentScheme['ref']]['level']]) {
             this._player.schemes[this._player.currentScheme['ref']]['level']++;
             this._player.schemes[this._player.currentScheme['ref']]['exp'] = 0;
             if (this.previewScheme == this._player.currentScheme) {
@@ -116,7 +127,8 @@ export class SchemingService {
     }
 
     get currentSchemeEXPTarget() {
-        return this._player.currentScheme['exp'][this._player.schemes[this._player.currentScheme['ref']]['level'] * 1]
+        var currentSchemeId = this._player.currentScheme['ref'];
+        return Number(this._numbers.schemeExp[currentSchemeId][this._player.schemes[currentSchemeId]['level']]);
     }
 
     get currentSchemePercentage() {
@@ -124,11 +136,11 @@ export class SchemingService {
     }
 
     get previewSchemeDescription() {
-        return this.previewScheme['description'][this.previewSchemeLevel - 1]
+        return this.previewScheme['description'][this.previewSchemeLevel];
     }
 
     get previewSchemeFlavor() {
-        return this.previewScheme['flavor'][this.previewSchemeLevel - 1]
+        return this.previewScheme['flavor'][this.previewSchemeLevel]
     }
 
     get previewSchemeExp() {
@@ -136,7 +148,7 @@ export class SchemingService {
     }
 
     get previewSchemeExpTarget() {
-        return this.previewScheme['exp'][this.previewSchemeLevel - 1]
+        return this._numbers.schemeExp[this.previewScheme['ref']][this.previewSchemeLevel]
     }
 
     get currentSchemeLevel() {

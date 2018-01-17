@@ -5,7 +5,7 @@ const ObjectID = require('mongodb').ObjectID;
 
 // Connect
 const connection = (closure) => {
-    return MongoClient.connect('mongodb://localhost:27017/schemes', (err, db) => {
+    return MongoClient.connect('mongodb://localhost:27017/data', (err, db) => {
 
         if (err) return console.log(err);
 
@@ -30,6 +30,37 @@ let response = {
 //Get All Schemes
 
 router.get('/schemes/', (req, res) => {
+    connection((db) => {
+        db.collection('schemes')
+            .find()
+            .toArray()
+            .then((schemes) => {
+                response.data = schemes;
+                res.json(response);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
+});
+
+router.get('/operations/', (req, res) => {
+    connection((db) => {
+        db.collection('operations')
+            .find()
+            .toArray()
+            .then((operations) => {
+                response.data = operations;
+                res.json(response);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
+});
+
+
+/*router.get('/schemes/', (req, res) => {
     
     connection((db) => {
         db.collection('scheming')
@@ -56,6 +87,6 @@ router.get('/schemes/', (req, res) => {
             });
     });
 });
-
+*/
 
 module.exports = router;

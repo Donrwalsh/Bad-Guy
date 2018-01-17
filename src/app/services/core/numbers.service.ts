@@ -30,14 +30,26 @@ export class NumbersService {
         this.standardLairReq, //0: Mastermind
         this.standardLairReq, //1: Cold Logic
         this.standardLairReq, //2: Quick Thinking
-        this.standardLairReq //3: Hired Help
+        this.standardLairReq, //3: Hired Help
+        this.standardLairReq, //4: Guard Duty
+        this.standardLairReq, //5: Lodging
+        this.standardLairReq, //6: Heists
+        this.standardLairReq, //7: Act I
+        this.standardLairReq, //8: Communications
+        this.standardLairReq //9: Starter Lair 
     ]
 
     schemeExp: Array<Array<Number>> = [
         this.standardExpArray, //0: Mastermind
         this.standardExpArray, //1: Cold Logic
         this.standardExpArray, //2: Quick Thinking
-        this.standardExpArray //3: Hired Help
+        this.standardExpArray, //3: Hired Help
+        this.standardExpArray, //4: Guard Duty
+        this.standardExpArray, //5: Lodging
+        this.standardExpArray, //6: Heists
+        this.standardExpArray, //7: Act I
+        this.standardExpArray, //8: Communications
+        this.standardExpArray //9: Starter Lair
     ]   
 
     //Scheme Modifiers
