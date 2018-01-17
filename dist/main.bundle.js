@@ -677,6 +677,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var NumbersService = (function () {
     function NumbersService(_player) {
         this._player = _player;
+        this.coinFlipChance = 0.5; //Here to be modified later.
         this.standardExpArray = [
             60, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
         ];
@@ -684,17 +685,39 @@ var NumbersService = (function () {
             0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3
         ];
         this.schemeLairReq = [
-            this.standardLairReq //0: Mastermind
+            this.standardLairReq,
+            this.standardLairReq,
+            this.standardLairReq //2: Quick Thinking
         ];
         this.schemeExp = [
-            this.standardExpArray //0: Mastermind
+            this.standardExpArray,
+            this.standardExpArray,
+            this.standardExpArray //2: Quick Thinking
         ];
     }
+    NumbersService.prototype.coinFlip = function (times) {
+        var successes = 0;
+        for (var _i = 0; _i < times; _i++) {
+            if (Math.random() >= this.coinFlipChance) {
+                successes++;
+            }
+        }
+        return successes;
+    };
     //Scheme Modifiers
     //01: Mastermind
     //1 scheme point per level per second.
     NumbersService.prototype.mastermindNumbers = function () {
         return this._player.schemes[0]['level'];
+    };
+    //02: Cold Logic
+    NumbersService.prototype.coldLogicNumbers = function () {
+        return this._player.schemes[1]['level'] * 60;
+    };
+    //03: Quick Thinking
+    NumbersService.prototype.quickThinkingNumbers = function () {
+        var successes = this.coinFlip(6);
+        return successes >= 5 ? this._player.schemes[2]['level'] : 0;
     };
     return NumbersService;
 }());
@@ -1440,24 +1463,8 @@ var SchemingService = (function () {
     Object.defineProperty(SchemingService.prototype, "schemePointsHatchedThisTick", {
         //Scheming during the loop calculation getters
         get: function () {
-            //Starting scheme points per tick is 0
             var hatched = 0;
-            //Quick Thinking increases scheme points per tick by flipping coins
-            var successes = this.coinFlip(6);
-            for (var _i = 0; _i < this._player.schemes[2]['level']; _i++) {
-                if (_i < 5) {
-                    hatched += successes >= 5 ? 1 : 0;
-                }
-                if (_i > 4 && _i < 10) {
-                    hatched += successes >= 5 ? 2 : 0;
-                }
-                if (_i > 9 && _i < 15) {
-                    hatched += successes >= 5 ? 5 : 0;
-                }
-                if (_i > 14 && _i < 20) {
-                    hatched += successes > -5 ? 10 : 0;
-                }
-            }
+            hatched += this._numbers.quickThinkingNumbers();
             return hatched;
         },
         enumerable: true,
@@ -1474,23 +1481,8 @@ var SchemingService = (function () {
     });
     Object.defineProperty(SchemingService.prototype, "schemePointsHatchedThisMinute", {
         get: function () {
-            //Starting scheme points per minute is 0
             var hatched = 0;
-            //Cold Logic increases scheme points per minute
-            for (var _i = 0; _i < this._player.schemes[1]['level']; _i++) {
-                if (_i < 5) {
-                    hatched += 60;
-                }
-                if (_i > 4 && _i < 10) {
-                    hatched += 120;
-                }
-                if (_i > 9 && _i < 15) {
-                    hatched += 300;
-                }
-                if (_i > 14) {
-                    hatched += 600;
-                }
-            }
+            hatched += this._numbers.coldLogicNumbers();
             return hatched;
         },
         enumerable: true,

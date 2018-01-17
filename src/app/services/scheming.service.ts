@@ -78,18 +78,8 @@ export class SchemingService {
 
     //Scheming during the loop calculation getters
     get schemePointsHatchedThisTick() {
-        //Starting scheme points per tick is 0
         var hatched = 0;
-
-        //Quick Thinking increases scheme points per tick by flipping coins
-        var successes = this.coinFlip(6);
-        for (var _i = 0; _i < this._player.schemes[2]['level']; _i++) {
-            if (_i < 5) { hatched += successes >= 5 ? 1 : 0 }
-            if (_i > 4 && _i < 10) { hatched += successes >= 5 ? 2 : 0 }
-            if (_i > 9 && _i < 15) { hatched += successes >= 5 ? 5 : 0 }
-            if (_i > 14 && _i < 20) { hatched += successes > - 5 ? 10 : 0 }
-        }
-
+        hatched += this._numbers.quickThinkingNumbers();
         return hatched;
     }
 
@@ -100,17 +90,8 @@ export class SchemingService {
     }
 
     get schemePointsHatchedThisMinute() {
-        //Starting scheme points per minute is 0
         var hatched = 0;
-
-        //Cold Logic increases scheme points per minute
-        for (var _i = 0; _i < this._player.schemes[1]['level']; _i++) {
-            if (_i < 5) { hatched += 60 }
-            if (_i > 4 && _i < 10) { hatched += 120 }
-            if (_i > 9 && _i < 15) { hatched += 300 }
-            if (_i > 14) { hatched += 600 }
-        }
-
+        hatched += this._numbers.coldLogicNumbers();
         return hatched;
     }
 
