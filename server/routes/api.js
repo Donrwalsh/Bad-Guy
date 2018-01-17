@@ -41,7 +41,9 @@ router.get('/schemes/', (req, res) => {
             .catch((err) => {
                 sendError(err, res);
             });
+            db.close();
     });
+    
 });
 
 router.get('/operations/', (req, res) => {
@@ -56,7 +58,9 @@ router.get('/operations/', (req, res) => {
             .catch((err) => {
                 sendError(err, res);
             });
+            db.close();
     });
+    
 });
 
 
