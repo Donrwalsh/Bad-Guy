@@ -56,7 +56,6 @@ export class PrimaryLoopService {
 
     //Events that occur every minute
     minute() {
-        console.log(this._operating.operations)
         if (this._scheming.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute)
         }

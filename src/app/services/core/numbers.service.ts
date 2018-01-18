@@ -54,24 +54,24 @@ export class NumbersService {
 
     //Scheme Modifiers
     
-    //01: Mastermind
+    //00: Mastermind
     //1 scheme point per level per second.
     mastermindNumbers() {
         return this._player.schemes[0]['level'];
     }
 
-    //02: Cold Logic
+    //01: Cold Logic
     coldLogicNumbers() {
         return this._player.schemes[1]['level']*60;
     }
 
-    //03: Quick Thinking
+    //02: Quick Thinking
     quickThinkingNumbers() {
         var successes = this.coinFlip(6);
         return successes >= 5 ? this._player.schemes[2]['level'] : 0;
     }
 
-    //04: Hired Help
+    //03: Hired Help
     hiredHelpCapacity() {
         var space = 0;
         for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
@@ -95,6 +95,16 @@ export class NumbersService {
         var reduce = 0;
         for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
             if (_i == 2) { reduce += 150}
+        }
+        return reduce;
+    }
+
+    //04: Guard Duty
+    guardDutyTrainRate() {
+        var reduce = 0;
+        for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+            if (_i == 1) { reduce += 600}
+            if (_i == 3) { reduce += 600}
         }
         return reduce;
     }

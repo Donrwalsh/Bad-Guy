@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 import { PlayerService } from "./player.service";
 import { InventoryService } from "./inventory.service";
+import { NumbersService } from "./core/numbers.service";
 
 @Injectable()
 export class TrainingService {
 
     constructor(public _player: PlayerService,
+        public _numbers: NumbersService,
         public _inventory: InventoryService) { }
 
     getCapacityById(id) {
@@ -36,11 +38,11 @@ export class TrainingService {
     }
 
     getUpgradeNameById(id) {
-        if(id == 0) {return "Guard"}
+        if (id == 0) { return "Guard" }
     }
 
     getFaById(id) {
-        if (id == 0) {return "fa-shield"}
+        if (id == 0) { return "fa-shield" }
     }
 
     isFullById(id) {
@@ -117,7 +119,7 @@ export class TrainingService {
 
     getPercentageById(id) {
         if (this.isTrainingById(id)) {
-            return 100*(1-(this._player.training[0]['countdown']/this._player.training[0]['lock']))
+            return 100 * (1 - (this._player.training[0]['countdown'] / this._player.training[0]['lock']))
         } else {
             if (this.canTrainById(id)) {
                 return 0;
@@ -127,20 +129,13 @@ export class TrainingService {
                 }
             }
         }
-        return 0 
+        return 0
     }
 
     getTrainingCountdownById(id) {
         if (id == 0) { //Guard Training
-            //Starting training rate is 10 minutes.
             var rate = 6000;
-
-            //Guard duty reduces this amount by static time.
-            for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
-                if (_i == 1) { rate -= 600 }
-                if (_i == 3) { rate -= 600 }
-            }
-
+            rate -= this._numbers.guardDutyTrainRate();
             return rate;
         }
     }

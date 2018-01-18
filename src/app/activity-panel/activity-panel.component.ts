@@ -24,7 +24,8 @@ export class ActivityPanelComponent {
             'recruitment-container': type == "recruiting",
             'training-container': type == "training",
             'help-wanted-container': type == "recruiting" && (id == 0 || id == 1),
-            'guard-training-container' : type == "training" && id == 0
+            'guard-training-container' : type == "training" && id == 0,
+            'heist-recharge-container' : type == "operating" && id <= 4 && id >= 0
         }
     }
 
@@ -105,14 +106,17 @@ export class ActivityPanelComponent {
 
     operateButtonInPreviewStyle() {
         return {
-            'color': this._operating.canPreviewBeOperated ? 'red' : this._operating.getFaColorByRarity(this._operating.previewOperation['rarity']),
-            'cursor': this._operating.canPreviewBeOperated ? 'initial' : 'pointer'
+            'color': !this._operating.canPreviewBeOperated ? 'red' : this._operating.getFaColorByRarity(this._operating.previewOperation['rarity']),
+            'cursor': !this._operating.canPreviewBeOperated ? 'initial' : 'pointer'
         }
     }
 
     operationIconClass(id) {
         if (this._player.operating[id]['available'] && this._player.operating[id] == this._operating.previewOperation) {
             return {'faa-tada' : true, 'faa-slow' : true, 'animated' : true }
+        }
+        if (!this._player.operating[id]['available']) {
+            return {'faa-slow' : true, 'faa-flash' : true, 'animated' : true}
         }
     }
     

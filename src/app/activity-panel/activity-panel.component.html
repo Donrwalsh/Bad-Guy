@@ -52,8 +52,7 @@
         <div class="divider-5"></div>
         <div class="heists-row" *ngIf="_player.schemes[6]['level'] > 0">
             <div class="column" (click)="_operating.operationPreview(0)" [ngStyle]="{'cursor': _player.operating[0]['available'] ? 'pointer' : 'initial' }">
-                <i class="fa fa-usd" aria-hidden="true" [ngClass]="operationIconClass(0)"
-                    [ngStyle]="{'color': _operating.getFaColorById(0)}"></i>
+                <i class="fa fa-usd" aria-hidden="true" [ngClass]="operationIconClass(0)" [ngStyle]="{'color': _operating.getFaColorById(0)}"></i>
             </div>
             <div class="column">
                 <i class="fa fa-lock" aria-hidden="true" [ngStyle]="{'color': _operating.getFaColorById(1)}"></i>
@@ -71,67 +70,83 @@
         <div class="divider-5"></div>
         <div *ngIf="_operating.showPreview" class="operation-flyout">
             <div class="inner-content" [ngStyle]="{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}">
-                <p class="operation-name" style="width:95%"><i class="operation-icon fa fa-usd" aria-hidden="true" style="margin-right:.2rem;"></i>{{_operating.previewOperation['name']}}</p>
-                <div class="split" style="margin-top:.5rem;display:inline-block;width:48%">
+                <div [ngStyle]="{'visibility': !_operating.operatingNow ? 'hidden' : 'initial'}" style="position:absolute;width:100%;height:9rem;">
+
+                    <p><i class="operation-icon fa fa-usd" aria-hidden="true" style="margin-right:.2rem;"></i>
+                        {{_operating.previewOperation['name']}} was a {{_operating.operateReadout['result']}}  {{_operating.operateReadout['lost']}}  
+                        <i class="flyout-icon fa fa-user" aria-hidden="true"></i> lost. {{_operating.operateReadout['earned']}} <i class="flyout-icon fa fa-money" aria-hidden="true"></i> earned.</p>
+                    <p (click)="_operating.closeCompleteOperation()" style="width:75%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;"
+                        >{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>
+
+                </div>
+                <p class="operation-name" style="width:95%" [ngStyle]="{'visibility': _operating.operatingNow ? 'hidden' : 'initial'}">
+                    <i class="operation-icon fa fa-usd" aria-hidden="true" style="margin-right:.2rem;"></i>{{_operating.previewOperation['name']}}</p>
+                <div class="split" [ngStyle]="{'visibility': _operating.operatingNow ? 'hidden' : 'initial'}" style="margin-top:.5rem;display:inline-block;width:48%">
                     <p class="flyout-text" style="float:right;">
                         Requires:</p>
                 </div>
-                <div class="split" style="display:inline-block;width:48%">
+                <div class="split" [ngStyle]="{'visibility': _operating.operatingNow ? 'hidden' : 'initial'}" style="display:inline-block;width:48%">
                     <p class="flyout-text" style="float:left;">{{_operating.previewOperation['henchmen']}}
                         <i class="flyout-icon fa fa-user" aria-hidden="true"></i>
                     </p>
                 </div>
-                <div class="split" style="display:inline-block;width:48%">
+                <div class="split" [ngStyle]="{'visibility': _operating.operatingNow ? 'hidden' : 'initial'}" style="display:inline-block;width:48%">
                     <p class="flyout-text" style="float:right;">
                         Risk:</p>
                 </div>
-                <div class="split" style="display:inline-block;width:48%">
+                <div class="split" [ngStyle]="{'visibility': _operating.operatingNow ? 'hidden' : 'initial'}" style="display:inline-block;width:48%">
                     <p class="flyout-text" style="float:left;">{{_operating.previewOperationRiskDisplay()}}%
                     </p>
                 </div>
-                <div class="split" style="display:inline-block;width:48%">
+                <div class="split" [ngStyle]="{'visibility': _operating.operatingNow ? 'hidden' : 'initial'}" style="display:inline-block;width:48%">
                     <p class="flyout-text" style="float:right;">
                         Rewards:</p>
                 </div>
-                <div class="split" style="display:inline-block;width:48%">
+                <div class="split" [ngStyle]="{'visibility': _operating.operatingNow ? 'hidden' : 'initial'}" style="display:inline-block;width:48%">
                     <p class="flyout-text" style="float:left;">{{_operating.previewOperation['reward']}}
                         <i class="flyout-icon fa fa-money" aria-hidden="true"></i>
                     </p>
                 </div>
-                <div class="split" style="display:inline-block;width:48%">
+                <div class="split" [ngStyle]="{'visibility': _operating.operatingNow ? 'hidden' : 'initial'}" style="display:inline-block;width:48%">
                     <p class="flyout-text" style="float:right;">
                         Success:</p>
                 </div>
-                <div class="split" style="display:inline-block;width:48%">
+                <div class="split" [ngStyle]="{'visibility': _operating.operatingNow ? 'hidden' : 'initial'}" style="display:inline-block;width:48%">
                     <p class="flyout-text" style="float:left;">{{_operating.previewOperation['success']*100}}%
                     </p>
                 </div>
-                <div class="split" style="display:inline-block;width:48%">
+                <div class="split" [ngStyle]="{'visibility': _operating.operatingNow ? 'hidden' : 'initial'}" style="display:inline-block;width:48%">
                     <p class="flyout-text" style="float:right;">
                         Notoriety:</p>
                 </div>
-                <div class="split" style="display:inline-block;width:48%">
+                <div class="split" [ngStyle]="{'visibility': _operating.operatingNow ? 'hidden' : 'initial'}" style="display:inline-block;width:48%">
                     <p class="flyout-text" style="float:left;">{{_operating.previewOperation['notoriety']}}
                         <i class="flyout-icon fa fa-exclamation-triangle" aria-hidden="true"></i>
                     </p>
                 </div>
-                <p style="margin-left:7%;margin-right:2%;width:40%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;"
-                [ngStyle]="operateButtonInPreviewStyle()">Operate</p>
-                <p style="margin-left:2%;margin-right:7%;width:40%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;">Abandon</p>
+                <div [ngStyle]="{'visibility': _operating.operatingNow ? 'hidden' : 'initial'}">
+
+
+                    <p style="margin-left:7%;margin-right:2%;width:40%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;"
+                        [ngStyle]="operateButtonInPreviewStyle()" (click)="_operating.operate()">Operate</p>
+                    <p style="margin-left:2%;margin-right:7%;width:40%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;cursor:pointer;" (click)="_operating.closeCompleteOperation()">Abandon</p>
+                </div>
                 <!--<p style="width:85%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;">Upgrade</p>-->
-                
-                
-
-
-
-
-
-                
-                
-
             </div>
-
         </div>
+        <div style="width: 5%; float: left; height:2rem;"></div>
+        <div *ngFor="let Operating of _player.operating; index as i">
+                <div style="width: 5%; float: left; height:2rem;"></div>
+                <div *ngIf="_operating.isUnlockedById(i) && !_player.operating[i]['available']" style="width:90%;display:inline-block;margin-right:5%;">
+                    <div style="border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;">
+                        <div style="background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;" [ngStyle]="{'width': this._operating.getPercentageById(i) + '%' }"></div>
+                        <p style="color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;">
+                            <i class="generation-icon fa faa-slow faa-flash animated fa-usd" aria-hidden="true" style="margin-left:.5rem;margin-right:.5rem"></i>
+                             Slot {{i+1}} Recharging
+                        </p>
+                    </div>
+                </div>
+            </div>
 
 
     </div>
