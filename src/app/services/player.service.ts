@@ -49,5 +49,7 @@ export class PlayerService {
     ]
 
     cash = 0;
+
+    notoriety = 0.5;
     
 }

@@ -22,6 +22,8 @@ export class NumbersService {
         60, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
     ]
 
+    specialExpArray: Array<Number> = [ 6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000 ]
+
     standardLairReq: Array<Number> = [
         0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3
     ]
@@ -49,7 +51,7 @@ export class NumbersService {
         this.standardExpArray, //6: Heists
         this.standardExpArray, //7: Act I
         this.standardExpArray, //8: Communications
-        this.standardExpArray //9: Starter Lair
+        [ 6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000 ] //9: Starter Lair
     ]   
 
     //Scheme Modifiers

@@ -35,12 +35,6 @@ export class AppComponent implements OnInit {
       .subscribe(res => this._operating.operations = res)
   }
 
-  ticker: number = 0;
-  betterTicker: number = 600;
-  minute: boolean = false;
-
-  schemes: Array<any>;
-
   ngOnInit() {
 
     setInterval(() => {

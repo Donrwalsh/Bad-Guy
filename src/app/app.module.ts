@@ -14,6 +14,7 @@ import { HeaderModule } from './header/header.module';
 import { SchemePanelModule } from './scheme-panel/scheme-panel.module';
 import { ActivityPanelModule } from './activity-panel/activity-panel.module';
 import { NumbersService } from './services/core/numbers.service';
+import { HeroesService } from './services/heroes.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { NumbersService } from './services/core/numbers.service';
     DataService,
     PlayerService,
     SchemingService,
+    HeroesService,
     OperatingService,
     RecruitingService,
     TrainingService,

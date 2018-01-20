@@ -7,6 +7,63 @@
     height: 4rem;
 
     .notoriety {
+        overflow: hidden;
+        margin-left: .5rem;
+        height: 4rem;
+        width: 35%;
+        text-align: center;
+        border-radius: 5px;
+      }
+      
+      .gauge-a {
+        z-index: 1;
+        position: absolute;
+        background-color: rgba(255,255,255,.2);
+        width: 35%;
+        height: 4rem;
+        top: 0%;
+        border-radius: 250px 250px 0px 0px;
+      }
+      
+      .gauge-b {
+        z-index: 3;
+        background-color: #00ff9d;
+        width: 4rem;
+        position: absolute;
+        height: 2rem;
+        margin-left: 1rem;
+        border-radius: 0px 0px 250px 250px;
+      }
+      
+      .gauge-c {
+        z-index: 2;
+        position: absolute;
+        background-color: #00804f;
+        width: 6em;
+        height: 3em;
+        top: -3rem;
+        margin-right: auto;
+        border-radius: 250px 250px 0px 0px;
+        transform-origin: center bottom;
+        transition: all 1s ease-in-out;
+      }
+      
+      .gauge-data {
+        z-index: 4;
+        color: rgba(255,255,255,.2);
+        font-size: 1.5em;
+        line-height: 25px;
+        position: absolute;
+        width: 400px;
+        height: 200px;
+        top: 90px;
+        margin-left: auto;
+        margin-right: auto;
+        transition: all 1s ease-out;
+      }
+
+
+    .notoriety {
         width: 35%;
     }
 

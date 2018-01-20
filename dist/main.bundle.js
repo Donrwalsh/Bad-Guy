@@ -293,9 +293,6 @@ var AppComponent = (function () {
         this._operating = _operating;
         this._recruiting = _recruiting;
         this._dataService = _dataService;
-        this.ticker = 0;
-        this.betterTicker = 600;
-        this.minute = false;
         this._dataService.getSchemes()
             .subscribe(function (res) { return _this._scheming.schemes = res; });
         this._dataService.getOperations()
@@ -344,12 +341,14 @@ var _a, _b, _c, _d, _e, _f, _g, _h;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -387,6 +386,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4__data_service__["a" /* DataService */],
             __WEBPACK_IMPORTED_MODULE_5__services_player_service__["a" /* PlayerService */],
             __WEBPACK_IMPORTED_MODULE_7__services_scheming_service__["a" /* SchemingService */],
+            __WEBPACK_IMPORTED_MODULE_16__services_heroes_service__["a" /* HeroesService */],
             __WEBPACK_IMPORTED_MODULE_11__services_operating_service__["a" /* OperatingService */],
             __WEBPACK_IMPORTED_MODULE_10__services_recruiting_service__["a" /* RecruitingService */],
             __WEBPACK_IMPORTED_MODULE_9__services_training_service__["a" /* TrainingService */],
@@ -452,7 +452,7 @@ var _a;
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\">\n    <div class=\"notoriety\"></div>\n    <div>\n        <p class=\"title\">Bad Guy</p>\n    </div>\n    <div class=\"scheme\" [ngStyle]=\"schemeStyle()\" (click)=\"_scheming.switchToCurrentSchemePreview()\">\n        <div *ngIf=\"_scheming.earningSchemePoints\">\n            <p class=\"status-text\">Scheming</p>\n            <div class=\"scheme-bar-container {{_player.currentScheme['tree']}}\">\n                <i class=\"scheme-icon fa {{_scheming.getFaById(_player.currentScheme['ref'])}}\" aria-hidden=\"true\"></i>\n                <div class=\"scheme-progress-bar {{_player.currentScheme['tree']}}\" [ngStyle]=\"schemeProgressBarStyle()\"></div>\n            </div>\n        </div>\n        <div *ngIf=\"!_scheming.earningSchemePoints\">\n            <p class=\"status-text\">Not Scheming</p>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"header\">\n    <div class=\"notoriety\">\n        <div class=\"gauge-a\"></div>\n        <div class=\"gauge-b\">\n                <i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"gauge-c\"></div>\n        <div>\n                <p style=\"position:relative;margin:0 auto; text-align:center; margin-top:3rem; font-size:.8rem;\">Notoriety</p>\n            </div>    \n    </div>\n\n\n    <div>\n        <p class=\"title\">Bad Guy</p>\n    </div>\n    <div class=\"scheme\" [ngStyle]=\"schemeStyle()\" (click)=\"_scheming.switchToCurrentSchemePreview()\">\n        <div *ngIf=\"_scheming.earningSchemePoints\">\n            <p class=\"status-text\">Scheming</p>\n            <div class=\"scheme-bar-container {{_player.currentScheme['tree']}}\">\n                <i class=\"scheme-icon fa {{_scheming.getFaById(_player.currentScheme['ref'])}}\" aria-hidden=\"true\"></i>\n                <div class=\"scheme-progress-bar {{_player.currentScheme['tree']}}\" [ngStyle]=\"schemeProgressBarStyle()\"></div>\n            </div>\n        </div>\n        <div *ngIf=\"!_scheming.earningSchemePoints\">\n            <p class=\"status-text\">Not Scheming</p>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -464,7 +464,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* Henchmen Colors */\n/*Scheme Tree Colors */\n/* SVG Image Backgrounds */\n.header {\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E\");\n  height: 4rem; }\n  .header .notoriety {\n    width: 35%; }\n  .header .title {\n    text-align: center;\n    position: absolute;\n    top: .5rem;\n    right: 40%;\n    left: 40%;\n    width: 20%;\n    margin: 0;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none; }\n  .header .scheme {\n    position: absolute;\n    top: 0px;\n    right: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-radius: 5px; }\n    .header .scheme .status-text {\n      font-size: .8rem;\n      margin-top: .1rem;\n      margin-bottom: .2rem;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n    .header .scheme .scheme-bar-container {\n      margin-top: .25rem;\n      text-align: center;\n      display: inline-block;\n      width: 100%;\n      position: relative;\n      height: 2rem;\n      border-radius: 0 .5rem .5rem 0; }\n      .header .scheme .scheme-bar-container .scheme-progress-bar {\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        height: 1.9rem;\n        border-radius: 0 .5rem .5rem 0; }\n      .header .scheme .scheme-bar-container .scheming {\n        background-color: #40ff00; }\n      .header .scheme .scheme-bar-container .henchmen {\n        background-color: #6699ff; }\n      .header .scheme .scheme-bar-container .operations {\n        background-color: #ffb366; }\n      .header .scheme .scheme-bar-container .lairs {\n        background-color: #bf00ff; }\n      .header .scheme .scheme-bar-container .scheme-icon {\n        font-size: 1.9rem;\n        padding-top: 1px;\n        z-index: 100;\n        position: relative; }\n    .header .scheme .scheming {\n      border: 1px solid #40ff00; }\n    .header .scheme .henchmen {\n      border: 1px solid #6699ff; }\n    .header .scheme .operations {\n      border: 1px solid #ffb366; }\n    .header .scheme .lairs {\n      border: 1px solid #bf00ff; }\n", ""]);
+exports.push([module.i, "/* Henchmen Colors */\n/*Scheme Tree Colors */\n/* SVG Image Backgrounds */\n.header {\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E\");\n  height: 4rem; }\n  .header .notoriety {\n    overflow: hidden;\n    margin-left: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-radius: 5px; }\n  .header .gauge-a {\n    z-index: 1;\n    position: absolute;\n    background-color: rgba(255, 255, 255, 0.2);\n    width: 35%;\n    height: 4rem;\n    top: 0%;\n    border-radius: 250px 250px 0px 0px; }\n  .header .gauge-b {\n    z-index: 3;\n    background-color: #00ff9d;\n    width: 4rem;\n    position: absolute;\n    height: 2rem;\n    margin-left: 1rem;\n    border-radius: 0px 0px 250px 250px; }\n  .header .gauge-c {\n    z-index: 2;\n    position: absolute;\n    background-color: #00804f;\n    width: 6em;\n    height: 3em;\n    top: -3rem;\n    margin-right: auto;\n    border-radius: 250px 250px 0px 0px;\n    -webkit-transform-origin: center bottom;\n            transform-origin: center bottom;\n    transition: all 1s ease-in-out; }\n  .header .gauge-data {\n    z-index: 4;\n    color: rgba(255, 255, 255, 0.2);\n    font-size: 1.5em;\n    line-height: 25px;\n    position: absolute;\n    width: 400px;\n    height: 200px;\n    top: 90px;\n    margin-left: auto;\n    margin-right: auto;\n    transition: all 1s ease-out; }\n  .header .notoriety {\n    width: 35%; }\n  .header .title {\n    text-align: center;\n    position: absolute;\n    top: .5rem;\n    right: 40%;\n    left: 40%;\n    width: 20%;\n    margin: 0;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none; }\n  .header .scheme {\n    position: absolute;\n    top: 0px;\n    right: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-radius: 5px; }\n    .header .scheme .status-text {\n      font-size: .8rem;\n      margin-top: .1rem;\n      margin-bottom: .2rem;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n    .header .scheme .scheme-bar-container {\n      margin-top: .25rem;\n      text-align: center;\n      display: inline-block;\n      width: 100%;\n      position: relative;\n      height: 2rem;\n      border-radius: 0 .5rem .5rem 0; }\n      .header .scheme .scheme-bar-container .scheme-progress-bar {\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        height: 1.9rem;\n        border-radius: 0 .5rem .5rem 0; }\n      .header .scheme .scheme-bar-container .scheming {\n        background-color: #40ff00; }\n      .header .scheme .scheme-bar-container .henchmen {\n        background-color: #6699ff; }\n      .header .scheme .scheme-bar-container .operations {\n        background-color: #ffb366; }\n      .header .scheme .scheme-bar-container .lairs {\n        background-color: #bf00ff; }\n      .header .scheme .scheme-bar-container .scheme-icon {\n        font-size: 1.9rem;\n        padding-top: 1px;\n        z-index: 100;\n        position: relative; }\n    .header .scheme .scheming {\n      border: 1px solid #40ff00; }\n    .header .scheme .henchmen {\n      border: 1px solid #6699ff; }\n    .header .scheme .operations {\n      border: 1px solid #ffb366; }\n    .header .scheme .lairs {\n      border: 1px solid #bf00ff; }\n", ""]);
 
 // exports
 
@@ -483,6 +483,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -496,9 +497,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HeaderComponent = (function () {
-    function HeaderComponent(_player, _scheming, _inventory) {
+    function HeaderComponent(_player, _heroes, _scheming, _inventory) {
         this._player = _player;
+        this._heroes = _heroes;
         this._scheming = _scheming;
         this._inventory = _inventory;
     }
@@ -508,6 +511,14 @@ var HeaderComponent = (function () {
     HeaderComponent.prototype.schemeProgressBarStyle = function () {
         return { 'width': this._scheming.currentSchemePercentage + '%' };
     };
+    HeaderComponent.prototype.notorietyGaugeStyle = function (id) {
+        if (id == 0) {
+            console.log('rotate(-' + this._heroes.notorietyToDegrees(id) + 'deg)');
+            return {
+                'transform': 'none'
+            };
+        }
+    };
     return HeaderComponent;
 }());
 HeaderComponent = __decorate([
@@ -516,10 +527,10 @@ HeaderComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/header/header.component.html"),
         styles: [__webpack_require__("../../../../../src/app/header/header.component.scss")],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__["a" /* InventoryService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__services_heroes_service__["a" /* HeroesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_heroes_service__["a" /* HeroesService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__["a" /* InventoryService */]) === "function" && _d || Object])
 ], HeaderComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=header.component.js.map
 
 /***/ }),
@@ -703,6 +714,7 @@ var NumbersService = (function () {
         this.standardExpArray = [
             60, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
         ];
+        this.specialExpArray = [6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000];
         this.standardLairReq = [
             0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3
         ];
@@ -728,7 +740,7 @@ var NumbersService = (function () {
             this.standardExpArray,
             this.standardExpArray,
             this.standardExpArray,
-            this.standardExpArray //9: Starter Lair
+            [6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000] //9: Starter Lair
         ];
     }
     NumbersService.prototype.coinFlip = function (times) {
@@ -857,6 +869,58 @@ NumbersService = __decorate([
 
 var _a;
 //# sourceMappingURL=numbers.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/heroes.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeroesService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var HeroesService = (function () {
+    function HeroesService(_player, _numbers, _operating, _inventory) {
+        this._player = _player;
+        this._numbers = _numbers;
+        this._operating = _operating;
+        this._inventory = _inventory;
+    }
+    HeroesService.prototype.notorietyToDegrees = function (id) {
+        if (id == 0) {
+            var degs = 0;
+            for (var _i = .1; _i < this._player.notoriety; _i + .1) {
+                degs += 18;
+            }
+            return degs;
+        }
+    };
+    return HeroesService;
+}());
+HeroesService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__operating_service__["a" /* OperatingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__operating_service__["a" /* OperatingService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]) === "function" && _d || Object])
+], HeroesService);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=heroes.service.js.map
 
 /***/ }),
 
@@ -1303,6 +1367,7 @@ var PlayerService = (function () {
             { name: '', rarity: -1, henchmen: -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 } //Heists 5
         ];
         this.cash = 0;
+        this.notoriety = 0.5;
     }
     return PlayerService;
 }());
