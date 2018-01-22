@@ -72,10 +72,12 @@
             <div class="inner-content" [ngStyle]="{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}">
                 <div [ngStyle]="{'visibility': !_operating.operatingNow ? 'hidden' : 'initial'}" style="position:absolute;width:100%;height:9rem;">
 
-                    <p><i class="operation-icon fa fa-usd" aria-hidden="true" style="margin-right:.2rem;"></i>
-                        {{_operating.previewOperation['name']}} was a {{_operating.operateReadout['result']}}  {{_operating.operateReadout['lost']}}  
-                        <i class="flyout-icon fa fa-user" aria-hidden="true"></i> lost. {{_operating.operateReadout['earned']}} <i class="flyout-icon fa fa-money" aria-hidden="true"></i> earned.</p>
-                    <p (click)="_operating.closeCompleteOperation()" style="width:75%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;"
+                    <p style="margin-bottom:0;margin-right:.2rem;margin-top:.2rem;"><i class="operation-icon fa fa-usd" aria-hidden="true" style="margin-right:.2rem;margin-top:.3rem;"></i>
+                        {{_operating.previewOperation['name']}} was a {{_operating.operateReadout['result']}}</p>
+                    <p *ngIf="_operating.operateReadout['lost'] > 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.2rem;">{{_operating.operateReadout['lost']}}  <i class="flyout-icon fa fa-user" aria-hidden="true"></i> lost.</p>   
+                    <p *ngIf="_operating.operateReadout['earned'] > 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.2rem;">{{_operating.operateReadout['earned']}} <i class="flyout-icon fa fa-money" aria-hidden="true"></i> earned.</p>
+                    <p *ngIf="_operating.operateReadout['notoriety'] > 0" style="margin-bottom:.5rem;margin-right:.2rem;margin-top:.2rem;">{{_operating.operateReadout['notoriety']}} <i class="flyout-icon fa fa-exclamation-triangle" aria-hidden="true"></i> earned.</p>
+                    <p (click)="_operating.closeCompleteOperation()" style="cursor: pointer;width:75%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;"
                         >{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>
 
                 </div>

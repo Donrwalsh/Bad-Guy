@@ -110,12 +110,13 @@ export class OperatingService {
     operateReadout = {
         result: '',
         lost: 0,
-        earned: 0
+        earned: 0,
+        notoriety: 0
     };
 
     operate() {
         if (this.canPreviewBeOperated) {
-            this.operateReadout = {result: '', lost: 0, earned: 0};
+            this.operateReadout = {result: '', lost: 0, earned: 0, notoriety: 0};
             this.operatingNow = true;
             var roll = Math.random() <= this.previewOperation['success']
             this.operateReadout['result'] = roll ? 'success!' : 'failure.';
@@ -131,6 +132,8 @@ export class OperatingService {
             }
             this.operateReadout['lost'] = lost;
             this._player.currentHenchmen -= lost;
+            this.operateReadout['notoriety'] = this.previewOperation['notoriety'];
+            this._player.notoriety += this.operateReadout['notoriety'];
         }
     }
 

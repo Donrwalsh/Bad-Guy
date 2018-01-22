@@ -25,6 +25,11 @@ export class HeaderComponent {
         public _inventory: InventoryService) {
     }
 
+    notorietyRotationStyle() {
+        var degrees = this._player.notoriety*180;
+        return {'transform': 'rotate(-' + degrees + 'deg)'}
+    }
+
     schemeStyle() {
         return {'cursor': this._scheming.earningSchemePoints ? 'pointer' : 'default'}
     }
