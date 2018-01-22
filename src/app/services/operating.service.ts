@@ -32,7 +32,7 @@ export class OperatingService {
 
     getRoutineOperationCountdownById(id) {
         if (id == 0) { //Hesits
-            var rate = 1800;
+            var rate = 600;
             rate -= this._numbers.heistRechargeRate()
             return rate;
         }
@@ -45,7 +45,7 @@ export class OperatingService {
 
 
     getFaColorById(id) {
-        if (this._player.operating[id]['available']) {
+        if (this.isUnlockedById(id) && this._player.operating[id]['available']) {
             var rarity = this._player.operating[id]['rarity'];
             return this.getFaColorByRarity(rarity);
         } else {
@@ -72,9 +72,7 @@ export class OperatingService {
 
     getOperationRechargeById(id) {
         if (id >= 0 && id <= 4) { //Heists
-            var rate = 1800;
-            //do stuff
-            return rate;
+            return this.getRoutineOperationCountdownById(id);
         }
     }
 

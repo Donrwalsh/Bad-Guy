@@ -134,7 +134,7 @@ export class TrainingService {
 
     getTrainingCountdownById(id) {
         if (id == 0) { //Guard Training
-            var rate = 6000;
+            var rate = 600;
             rate -= this._numbers.guardDutyTrainRate();
             return rate;
         }

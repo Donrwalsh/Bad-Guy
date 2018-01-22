@@ -19,7 +19,7 @@ export class NumbersService {
     }
 
     standardExpArray: Array<Number> = [
-        60, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
+        10, 30, 60, 120, 240, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
     ]
 
     specialExpArray: Array<Number> = [ 6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000 ]
@@ -105,8 +105,8 @@ export class NumbersService {
     guardDutyTrainRate() {
         var reduce = 0;
         for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
-            if (_i == 1) { reduce += 600}
-            if (_i == 3) { reduce += 600}
+            if (_i == 1) { reduce += 60}
+            if (_i == 3) { reduce += 60}
         }
         return reduce;
     }
@@ -126,11 +126,12 @@ export class NumbersService {
     //06: Heists
     heistUnlocked(id) {
         if (id == 0) return this._player.schemes[6]['level'] > 0;
+        if (id == 1) return this._player.schemes[6]['level'] > 3;
     }
 
     heistRarityChancesArray() {
-        if (this._player.schemes[6]['level'] == 0) { 
-            return [.5, .7, .85, .95, 1] 
+        if (this._player.schemes[6]['level'] == 1) { 
+            return [1, 1.1, 1.1, 1.1, 1.1] 
         }
         else if (this._player.schemes[6]['level'] >= 1 && this._player.schemes[6]['level'] <= 2) {
             return [.46, .67, .83, .94, 1]
@@ -142,8 +143,7 @@ export class NumbersService {
     heistRechargeRate() {
         var reduce = 0;
         for (var _i = 0; _i < this._player.schemes[6]['level']; _i++) {
-            if (_i == 2) { reduce += 180}
-            if (_i == 4) { reduce += 180}
+            if (_i == 2) { reduce += 150}
         }
         return reduce;
     }

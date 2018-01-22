@@ -302,7 +302,7 @@ var AppComponent = (function () {
         var _this = this;
         setInterval(function () {
             _this._loop.action();
-        }, 10);
+        }, 100);
     };
     return AppComponent;
 }());
@@ -716,7 +716,7 @@ var NumbersService = (function () {
         this._player = _player;
         this.coinFlipChance = 0.5; //Here to be modified later.
         this.standardExpArray = [
-            60, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
+            10, 30, 60, 120, 240, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
         ];
         this.specialExpArray = [6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000];
         this.standardLairReq = [
@@ -809,10 +809,10 @@ var NumbersService = (function () {
         var reduce = 0;
         for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
             if (_i == 1) {
-                reduce += 600;
+                reduce += 60;
             }
             if (_i == 3) {
-                reduce += 600;
+                reduce += 60;
             }
         }
         return reduce;
@@ -840,10 +840,12 @@ var NumbersService = (function () {
     NumbersService.prototype.heistUnlocked = function (id) {
         if (id == 0)
             return this._player.schemes[6]['level'] > 0;
+        if (id == 1)
+            return this._player.schemes[6]['level'] > 3;
     };
     NumbersService.prototype.heistRarityChancesArray = function () {
-        if (this._player.schemes[6]['level'] == 0) {
-            return [.5, .7, .85, .95, 1];
+        if (this._player.schemes[6]['level'] == 1) {
+            return [1, 1.1, 1.1, 1.1, 1.1];
         }
         else if (this._player.schemes[6]['level'] >= 1 && this._player.schemes[6]['level'] <= 2) {
             return [.46, .67, .83, .94, 1];
@@ -856,10 +858,7 @@ var NumbersService = (function () {
         var reduce = 0;
         for (var _i = 0; _i < this._player.schemes[6]['level']; _i++) {
             if (_i == 2) {
-                reduce += 180;
-            }
-            if (_i == 4) {
-                reduce += 180;
+                reduce += 150;
             }
         }
         return reduce;
@@ -1052,7 +1051,7 @@ var OperatingService = (function () {
     };
     OperatingService.prototype.getRoutineOperationCountdownById = function (id) {
         if (id == 0) {
-            var rate = 1800;
+            var rate = 600;
             rate -= this._numbers.heistRechargeRate();
             return rate;
         }
@@ -1062,7 +1061,7 @@ var OperatingService = (function () {
             return this._numbers.heistUnlocked(id);
     };
     OperatingService.prototype.getFaColorById = function (id) {
-        if (this._player.operating[id]['available']) {
+        if (this.isUnlockedById(id) && this._player.operating[id]['available']) {
             var rarity = this._player.operating[id]['rarity'];
             return this.getFaColorByRarity(rarity);
         }
@@ -1093,9 +1092,7 @@ var OperatingService = (function () {
     };
     OperatingService.prototype.getOperationRechargeById = function (id) {
         if (id >= 0 && id <= 4) {
-            var rate = 1800;
-            //do stuff
-            return rate;
+            return this.getRoutineOperationCountdownById(id);
         }
     };
     OperatingService.prototype.closeCompleteOperation = function () {
@@ -1345,10 +1342,10 @@ var PlayerService = (function () {
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
-            { level: 4, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
-            { level: 1, exp: 0 },
+            { level: 0, exp: 0 },
+            { level: 0, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 } //9 Starter Lair, not coded.
@@ -1367,11 +1364,11 @@ var PlayerService = (function () {
         ];
         //Operations
         this.operating = [
-            { name: '', rarity: -1, henchmen: -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: false, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 } //Heists 5
+            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
+            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
+            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
+            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
+            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 } //Heists 5
         ];
         this.cash = 0;
         this.notoriety = 0;
@@ -1587,7 +1584,7 @@ var RecruitingService = (function () {
     };
     RecruitingService.prototype.getRecruitingCountdownById = function (id) {
         if (id == 0 || id == 1) {
-            var rate = 600;
+            var rate = 50;
             rate -= this._numbers.hiredHelpRecruitRate();
             return rate;
         }
@@ -2004,7 +2001,7 @@ var TrainingService = (function () {
     };
     TrainingService.prototype.getTrainingCountdownById = function (id) {
         if (id == 0) {
-            var rate = 6000;
+            var rate = 600;
             rate -= this._numbers.guardDutyTrainRate();
             return rate;
         }

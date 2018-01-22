@@ -83,7 +83,7 @@ export class RecruitingService {
 
     getRecruitingCountdownById(id) {
         if (id == 0 || id == 1) { //Help Wanted Objects
-            var rate = 600;
+            var rate = 50;
             rate -= this._numbers.hiredHelpRecruitRate()
             return rate;
         }
