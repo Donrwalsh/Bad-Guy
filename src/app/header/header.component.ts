@@ -15,7 +15,7 @@ import {
 @Component({
     selector: 'header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss'],
+    styleUrls: ['../app.component.scss'],
 })
 export class HeaderComponent {
 
@@ -27,7 +27,7 @@ export class HeaderComponent {
 
     notorietyRotationStyle() {
         var degrees = this._player.notoriety*180;
-        return {'transform': 'rotate(-' + degrees + 'deg)'}
+        return {'transform': 'rotate(' + degrees + 'deg)'}
     }
 
     schemeStyle() {

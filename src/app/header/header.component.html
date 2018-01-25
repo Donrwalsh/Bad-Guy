@@ -1,30 +1,31 @@
-<div class="header">
-    <div class="notoriety">
-        <div class="gauge-a"></div>
-        <div class="gauge-b">
-                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-        </div>
-        <div [ngStyle]="notorietyRotationStyle()" class="gauge-c"></div>
-        <div>
-                <p style="position:relative;margin:0 auto; text-align:center; margin-top:3rem; font-size:.8rem;">Notoriety</p>
-            </div>    
+<div class="notoriety-container">
+    <p class="notoriety-title">Notoriety</p>
+    <div class="notoriety-gauge-1">
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
     </div>
-
-
-    <div>
-        <p class="title">Bad Guy</p>
+    <div class="notoriety-meter-1" [ngStyle]="notorietyRotationStyle()"></div>
+    <div class="notoriety-gauge-2">
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
     </div>
-    <div class="scheme" [ngStyle]="schemeStyle()" (click)="_scheming.switchToCurrentSchemePreview()">
-        <div *ngIf="_scheming.earningSchemePoints">
-            <p class="status-text">Scheming</p>
-            <div class="scheme-bar-container {{_player.currentScheme['tree']}}">
+    <div class="notoriety-meter-2" [ngStyle]="notorietyRotationStyle()"></div>
+    <div class="notoriety-gauge-3">
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    </div>
+    <div class="notoriety-meter-3" [ngStyle]="notorietyRotationStyle()"></div>
+</div>
+<div>
+    <p class="main-title">Bad Guy</p>
+</div>
+<div class="scheme-container" [ngStyle]="schemeStyle()" (click)="_scheming.switchToCurrentSchemePreview()">
+    <div *ngIf="_scheming.earningSchemePoints">
+        <p class="scheme-title">Scheming</p>
+        <div class="scheme-bar-container {{_player.currentScheme['tree']}}">
                 <i class="scheme-icon fa {{_scheming.getFaById(_player.currentScheme['ref'])}}" aria-hidden="true"></i>
                 <div class="scheme-progress-bar {{_player.currentScheme['tree']}}" [ngStyle]="schemeProgressBarStyle()"></div>
             </div>
-        </div>
-        <div *ngIf="!_scheming.earningSchemePoints">
-            <p class="status-text">Not Scheming</p>
-            <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-        </div>
+    </div>
+    <div *ngIf="!_scheming.earningSchemePoints">
+        <p class="scheme-title">Not Scheming</p>
+        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
     </div>
 </div>
