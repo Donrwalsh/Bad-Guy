@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
-import { PlayerService } from './services/player.service';
+import { PlayerService } from './services/core/player.service';
 import { PrimaryLoopService } from './services/primary-loop.service';
 import { SchemingService } from './services/scheming.service';
 import { InventoryService } from './services/inventory.service';

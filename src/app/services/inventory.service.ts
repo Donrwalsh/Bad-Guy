@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { NumbersService } from "./core/numbers.service";
-import { PlayerService } from "./player.service";
+import { PlayerService } from "./core/player.service";
 
 @Injectable()
 export class InventoryService {

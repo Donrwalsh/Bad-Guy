@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { PlayerService } from "./player.service";
+import { PlayerService } from "./core/player.service";
 import { SchemingService } from "./scheming.service";
 import { RecruitingService } from "./recruiting.service";
 import { TrainingService } from "./training.service";

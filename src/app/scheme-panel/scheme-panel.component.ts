@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PlayerService } from '../services/player.service';
+import { PlayerService } from '../services/core/player.service';
 import { DataService } from '../data.service';
 import { SchemingService } from '../services/scheming.service'
 

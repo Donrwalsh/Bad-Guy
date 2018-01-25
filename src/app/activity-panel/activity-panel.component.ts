@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PlayerService } from '../services/player.service';
+import { PlayerService } from '../services/core/player.service';
 import { RecruitingService } from '../services/recruiting.service';
 import { TrainingService } from '../services/training.service';
 import { InventoryService } from '../services/inventory.service';
