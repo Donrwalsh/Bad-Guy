@@ -52,10 +52,29 @@
         <div class="divider-5"></div>
         <div class="heists-row" *ngIf="_player.schemes[6]['level'] > 0">
             <div class="column" (click)="_operating.operationPreview(0)" [ngStyle]="{'cursor': _player.operating[0]['available'] ? 'pointer' : 'initial' }">
-                <i class="fa fa-usd" aria-hidden="true" [ngClass]="operationIconClass(0)" [ngStyle]="{'color': _operating.getFaColorById(0)}"></i>
+                <i class="fa" aria-hidden="true" [ngClass]="operationIconClass(0)" [ngStyle]="{'color': _operating.getFaColorById(0)}"></i>
+            </div>
+            <div class="column" (click)="_operating.operationPreview(1)" [ngStyle]="{'cursor': _player.operating[1]['available'] ? 'pointer' : 'initial' }">
+                <i class="fa" aria-hidden="true" [ngClass]="operationIconClass(1)" [ngStyle]="{'color': _operating.getFaColorById(1)}"></i>
             </div>
             <div class="column">
-                <i class="fa fa-lock" aria-hidden="true" [ngStyle]="{'color': _operating.getFaColorById(1)}"></i>
+                <i class="fa fa-lock" aria-hidden="true" [ngStyle]="{'color': _operating.getFaColorById(2)}"></i>
+            </div>
+            <div class="column">
+                <i class="fa fa-lock" aria-hidden="true" [ngStyle]="{'color': _operating.getFaColorById(3)}"></i>
+            </div>
+            <div class="column">
+                <i class="fa fa-lock" aria-hidden="true" [ngStyle]="{'color': _operating.getFaColorById(4)}"></i>
+            </div>
+        </div>
+        <div class="divider-5"></div>
+        <div class="divider-5"></div>
+        <div class="heists-row" *ngIf="_player.schemes[7]['level'] > 0">
+            <div class="column" (click)="_operating.operationPreview(0)" [ngStyle]="{'cursor': _player.operating[0]['available'] ? 'pointer' : 'initial' }">
+                <i class="fa" aria-hidden="true" [ngClass]="operationIconClass(0)" [ngStyle]="{'color': _operating.getFaColorById(0)}"></i>
+            </div>
+            <div class="column" (click)="_operating.operationPreview(1)" [ngStyle]="{'cursor': _player.operating[1]['available'] ? 'pointer' : 'initial' }">
+                <i class="fa" aria-hidden="true" [ngClass]="operationIconClass(1)" [ngStyle]="{'color': _operating.getFaColorById(1)}"></i>
             </div>
             <div class="column">
                 <i class="fa fa-lock" aria-hidden="true" [ngStyle]="{'color': _operating.getFaColorById(2)}"></i>
@@ -138,7 +157,7 @@
         </div>
         <div style="width: 5%; float: left; height:2rem;"></div>
         <div *ngFor="let Operating of _player.operating; index as i">
-                <div style="width: 5%; float: left; height:2rem;"></div>
+                <div *ngIf="_operating.isUnlockedById(i) && !_player.operating[i]['available']" style="width: 5%; float: left; height:1rem;"></div>
                 <div *ngIf="_operating.isUnlockedById(i) && !_player.operating[i]['available']" style="width:90%;display:inline-block;margin-right:5%;">
                     <div style="border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;">
                         <div style="background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;" [ngStyle]="{'width': this._operating.getPercentageById(i) + '%' }"></div>

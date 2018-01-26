@@ -13,11 +13,15 @@ export class HeroesService {
         public _inventory: InventoryService) { }
 
 
+    get prettyNotoriety() {
+        return this._player.notoriety/10;
+    }
+
         notorietyToDegrees(id) {
             if (id == 0) {
                 var degs = 0;
-                for (var _i = .1; _i < this._player.notoriety; _i + .1) {
-                    degs += 18;
+                for (var _i = 1; _i < this._player.notoriety; _i ++) {
+                    degs += 1.8;
                 }
                 return degs;
             }

@@ -26,7 +26,7 @@ export class HeaderComponent {
     }
 
     notorietyRotationStyle() {
-        var degrees = this._player.notoriety*180;
+        var degrees = this._player.notoriety*1.8;
         return {'transform': 'rotate(' + degrees + 'deg)'}
     }
 

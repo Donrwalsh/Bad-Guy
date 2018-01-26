@@ -8,7 +8,7 @@ import { OperatingService } from '../services/operating.service';
 @Component({
     selector: 'activity-panel',
     templateUrl: './activity-panel.component.html',
-    styleUrls: ['./activity-panel.component.scss'],
+    styleUrls: ['./activity-panel.component.scss', '../app.component.scss'],
 })
 export class ActivityPanelComponent {
 
@@ -112,12 +112,17 @@ export class ActivityPanelComponent {
     }
 
     operationIconClass(id) {
+        var object = {}
+        if (!this._operating.isUnlockedById(id)) {
+            return {'fa-lock': true};
+        }
         if (this._player.operating[id]['available'] && this._player.operating[id] == this._operating.previewOperation) {
-            return {'faa-tada' : true, 'faa-slow' : true, 'animated' : true }
+            return {'fa-usd': true, 'faa-tada' : true, 'faa-slow' : true, 'animated' : true }
         }
         if (!this._player.operating[id]['available']) {
-            return {'faa-slow' : true, 'faa-flash' : true, 'animated' : true}
+            return {'fa-usd': true, 'faa-slow' : true, 'faa-flash' : true, 'animated' : true}
         }
+        return {'fa-usd': true }
     }
     
 }

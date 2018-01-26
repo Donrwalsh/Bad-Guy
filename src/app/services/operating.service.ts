@@ -11,19 +11,18 @@ export class OperatingService {
     operations;
 
     areAnyUnlocked() {
-        //Currently checks for heists or campaign operations.
-        return this._player.schemes[6]['level'] > 0 || this._player.schemes[7]['level'] > 0;
+        return this.areRoutineOpsUnlocked() || this.areCampaignOpsUnlocked();
     }
 
     areRoutineOpsUnlocked() {
-
         //Currently only accounts for Heists.
-        return this._player.schemes[6]['level'] > 0;
+        return this._player.schemes[6]['level'] > 0 || this._player.schemes[7]['level'] > 0 ;
     }
 
     areCampaignOpsUnlocked() {
-        //Currently only accounts for the 1st one.
-        return this._player.schemes[7]['level'] > 0;
+        //No longer planned for Phase 0
+        //return this._player.schemes[7]['level'] > 0;
+        return false;
     }
 
     areAscensionOpsUnlocked() {
@@ -31,7 +30,7 @@ export class OperatingService {
     }
 
     getRoutineOperationCountdownById(id) {
-        if (id == 0) { //Hesits
+        if (id >= 0 && id <= 4) { //Hesits
             var rate = 600;
             rate -= this._numbers.heistRechargeRate()
             return rate;
@@ -131,7 +130,7 @@ export class OperatingService {
             this.operateReadout['lost'] = lost;
             this._player.currentHenchmen -= lost;
             this.operateReadout['notoriety'] = this.previewOperation['notoriety'];
-            this._player.notoriety += this.operateReadout['notoriety'];
+            this._player.notoriety += this.operateReadout['notoriety']*10;
         }
     }
 
@@ -192,7 +191,7 @@ export class OperatingService {
     }
 
     tickById(id) {
-        if (this.isUnlockedById(id) && !this._player.operating['available']) {
+        if (this.isUnlockedById(id)) {
             //If lock and countdown are both 0, the operation slot has been unlocked since the last tick.
             if (this._player.operating[id]['lock'] == 0 && this._player.operating[id]['countdown'] == 0) {
                 this.operationSpawn(id);

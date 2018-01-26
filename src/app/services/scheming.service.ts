@@ -40,7 +40,7 @@ export class SchemingService {
         if (id == 4) { return 'fa-shield'}
         if (id == 5) { return 'fa-bed'}
         if (id == 6) { return 'fa-usd'}
-        if (id == 7) { return 'fa-address-card-o'}
+        if (id == 7) { return 'fa-suitcase'}
         if (id == 8) { return 'fa-microphone'}
         if (id == 9) { return 'fa-angle-up'}
     }
@@ -108,7 +108,6 @@ export class SchemingService {
     //Scheme Calculation Loop Setter
     earnSchemePoints(num) {
         this._player.schemes[this._player.currentScheme['ref']]['exp'] += num;
-        console.log("if (" + this._player.schemes[this._player.currentScheme['ref']]['exp'] + " >= " + this._numbers.schemeExp[this._player.currentScheme['ref']][this._player.schemes[this._player.currentScheme['ref']]['level']] + ")")
         if (this._player.schemes[this._player.currentScheme['ref']]['exp'] >= this._numbers.schemeExp[this._player.currentScheme['ref']][this._player.schemes[this._player.currentScheme['ref']]['level']]) {
             this._player.schemes[this._player.currentScheme['ref']]['level']++;
             this._player.schemes[this._player.currentScheme['ref']]['exp'] = 0;
