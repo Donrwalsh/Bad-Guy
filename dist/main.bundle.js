@@ -293,7 +293,8 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_scheme__ = __webpack_require__("../../../../../src/app/models/scheme.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -303,6 +304,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -325,7 +327,13 @@ var AppComponent = (function () {
         this._recruiting = _recruiting;
         this._dataService = _dataService;
         this._dataService.getSchemes()
-            .subscribe(function (res) { return _this._scheming.schemes = res; });
+            .subscribe(function (res) {
+            var SchemeData = new Array();
+            for (var i = 0; i < res.length; i++) {
+                SchemeData.push(new __WEBPACK_IMPORTED_MODULE_8__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree));
+            }
+            _this._scheming.schemes = SchemeData;
+        });
         this._dataService.getOperations()
             .subscribe(function (res) { return _this._operating.operations = res; });
     }
@@ -343,7 +351,7 @@ AppComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__services_training_service__["a" /* TrainingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_training_service__["a" /* TrainingService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__services_operating_service__["a" /* OperatingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__services_operating_service__["a" /* OperatingService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__services_recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_recruiting_service__["a" /* RecruitingService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__data_service__["a" /* DataService */]) === "function" && _h || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__services_training_service__["a" /* TrainingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_training_service__["a" /* TrainingService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__services_operating_service__["a" /* OperatingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__services_operating_service__["a" /* OperatingService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__services_recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_recruiting_service__["a" /* RecruitingService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_9__data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__data_service__["a" /* DataService */]) === "function" && _h || Object])
 ], AppComponent);
 
 var _a, _b, _c, _d, _e, _f, _g, _h;
@@ -461,7 +469,7 @@ var DataService = (function () {
     DataService.prototype.getSchemes = function () {
         var _this = this;
         return this._http.get("/api/schemes")
-            .map(function (result) { return _this.result = result.json().data; });
+            .map(function (result) { return _this.schemeResult = result.json().data; });
     };
     DataService.prototype.getOperations = function () {
         var _this = this;
@@ -596,10 +604,63 @@ HeaderModule = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/models/scheme.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Scheme; });
+var Scheme = (function () {
+    function Scheme(ref, name, description, flavor, tree) {
+        this.ref = ref;
+        this.name = name;
+        this.description = description;
+        this.flavor = flavor;
+        this.tree = tree;
+        if (this.ref == 0) {
+            this.fa = 'fa-graduation-cap';
+        }
+        if (this.ref == 1) {
+            this.fa = 'fa-hand-spock-o';
+        }
+        if (this.ref == 2) {
+            this.fa = 'fa-flash';
+        }
+        if (this.ref == 3) {
+            this.fa = 'fa-address-book';
+        }
+        if (this.ref == 4) {
+            this.fa = 'fa-shield';
+        }
+        if (this.ref == 5) {
+            this.fa = 'fa-bed';
+        }
+        if (this.ref == 6) {
+            this.fa = 'fa-usd';
+        }
+        if (this.ref == 7) {
+            this.fa = 'fa-suitcase';
+        }
+        if (this.ref == 8) {
+            this.fa = 'fa-microphone';
+        }
+        if (this.ref == 9) {
+            this.fa = 'fa-angle-up';
+        }
+    }
+    Scheme.prototype.showMeName = function () {
+        console.log(this.name);
+    };
+    return Scheme;
+}());
+
+//# sourceMappingURL=scheme.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/scheme-panel/scheme-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"_scheming.schemes\" class=\"scheme-panel\">\n    <div style=\"width:2.5%;height:50vh;float:left;\"></div>\n    <div class=\"select-bar\">\n        <div class=\"schemes select\" (click)=\"_scheming.selected = 'scheming'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"hench select\" (click)=\"_scheming.selected = 'henchmen'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-user\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operate select\" (click)=\"_scheming.selected = 'operations'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"lair select\" (click)=\"_scheming.selected = 'lairs'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n        </div>\n    </div>\n    <div class=\"scheme-area\" *ngIf=\"_scheming.selected == 'scheming'\">\n        <div class=\"column\">\n            <p class=\"node\" (click)=\"_scheming.schemePreview(0)\">\n                <i class=\"fa {{_scheming.getFaById(0)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(0) ? 'default' : 'grey' } \"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(0)+1}}</p>-->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(1)\">\n                <i class=\"fa {{_scheming.getFaById(1)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(1) ? 'default' : 'grey' } \"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(1)+1}}</p>-->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(2)\">\n                <i class=\"fa {{_scheming.getFaById(2)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(2) ? 'default' : 'grey' } \"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(2)+1}}</p>-->\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"hench-area\" *ngIf=\"_scheming.selected == 'henchmen'\">\n        <div class=\"column\">\n            <p class=\"node\" (click)=\"_scheming.schemePreview(3)\">\n                <i class=\"fa {{_scheming.getFaById(3)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(3) ? 'default' : 'grey' } \"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(0)+1}}</p> -->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(4)\">\n                <i class=\"fa {{_scheming.getFaById(4)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(4) ? 'default' : 'grey' } \"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(1)+1}}</p> -->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(5)\">\n                <i class=\"fa {{_scheming.getFaById(5)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(5) ? 'default' : 'grey' } \"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(2)+1}}</p> -->\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"operate-area\" *ngIf=\"_scheming.selected == 'operations'\">\n        <div class=\"column\">\n            <p class=\"node\" (click)=\"_scheming.schemePreview(6)\">\n                <i class=\"fa {{_scheming.getFaById(6)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(6) ? 'default' : 'grey' } \"></i>\n            </p>\n            <p class=\"node\" (click)=\"_scheming.schemePreview(7)\">\n                <i class=\"fa {{_scheming.getFaById(7)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(7) ? 'default' : 'grey' } \"></i>\n            </p>\n            <p class=\"node\" (click)=\"_scheming.schemePreview(8)\">\n                <i class=\"fa {{_scheming.getFaById(8)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(8) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"lair-area\" *ngIf=\"_scheming.selected == 'lairs'\">\n        <div class=\"column\">\n            <p class=\"node hidden\"></p>\n            <p class=\"node\" (click)=\"_scheming.schemePreview(9)\">\n                <i class=\"fa {{_scheming.getFaById(9)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(9) ? 'default' : 'grey' } \"></i>\n            </p>\n            <p class=\"node hidden\"></p>\n        </div>\n    </div>\n    <div *ngIf=\"_scheming.showPreview\" class=\"scheme-flyout {{_scheming.previewScheme['tree']}}\">\n        <div class=\"inner-content\">\n            <i class=\"scheme-icon fa {{_scheming.schemePreviewFa()}}\" aria-hidden=\"true\"></i>\n            <p class=\"scheme-name\">{{_scheming.previewScheme.name}} {{_scheming.previewSchemeLevel > 0 ? _scheming.previewSchemeLevel+1 : ''}}</p>\n            <p class=\"benefit-text\">{{_scheming.previewSchemeDescription}} </p>\n            <p *ngIf=\"_scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])\" class=\"flavor-text\">{{_scheming.previewSchemeFlavor}}</p>\n            <p *ngIf=\"!_scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])\" style=\"color:red\" class=\"flavor-text\">Lair Level 1 required.</p>\n            <p class=\"scheme-exp\"> {{_scheming.previewSchemeExp}}/{{_scheming.previewSchemeExpTarget}}</p>\n            <p class=\"node {{_scheming.previewScheme['tree']}}-strong\" style=\"width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;\"\n                [ngStyle]=\"{'background-color' : _scheming.previewScheme['color']}\" *ngIf=\"_scheming.showSchemeButtonInPreviewScheme()\"\n                (click)=\"_scheming.startSchemingPreview()\">Scheme</p>\n        </div>\n\n\n    </div>\n\n</div>"
+module.exports = "<div *ngIf=\"_scheming.schemes\" class=\"scheme-panel\">\n    <div style=\"width:2.5%;height:50vh;float:left;\"></div>\n    <div class=\"select-bar\">\n        <div class=\"schemes select\" (click)=\"_scheming.selected = 'scheming'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"hench select\" (click)=\"_scheming.selected = 'henchmen'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-user\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operate select\" (click)=\"_scheming.selected = 'operations'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"lair select\" (click)=\"_scheming.selected = 'lairs'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n        </div>\n    </div>\n    <div class=\"scheme-area\" *ngIf=\"_scheming.selected == 'scheming'\">\n        <div class=\"column\">\n            <p class=\"node\" (click)=\"_scheming.schemePreview(0)\">\n                <i class=\"fa {{_scheming.schemes[0].fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(0) ? 'default' : 'grey' } \"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(0)+1}}</p>-->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(1)\">\n                <i class=\"fa {{_scheming.getFaById(1)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(1) ? 'default' : 'grey' } \"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(1)+1}}</p>-->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(2)\">\n                <i class=\"fa {{_scheming.getFaById(2)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(2) ? 'default' : 'grey' } \"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(2)+1}}</p>-->\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"hench-area\" *ngIf=\"_scheming.selected == 'henchmen'\">\n        <div class=\"column\">\n            <p class=\"node\" (click)=\"_scheming.schemePreview(3)\">\n                <i class=\"fa {{_scheming.getFaById(3)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(3) ? 'default' : 'grey' } \"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(0)+1}}</p> -->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(4)\">\n                <i class=\"fa {{_scheming.getFaById(4)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(4) ? 'default' : 'grey' } \"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(1)+1}}</p> -->\n            <p class=\"node\" (click)=\"_scheming.schemePreview(5)\">\n                <i class=\"fa {{_scheming.getFaById(5)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(5) ? 'default' : 'grey' } \"></i>\n            </p>\n            <!--<p class=\"level\">{{_scheming.getSchemeCurrentLevel(2)+1}}</p> -->\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"operate-area\" *ngIf=\"_scheming.selected == 'operations'\">\n        <div class=\"column\">\n            <p class=\"node\" (click)=\"_scheming.schemePreview(6)\">\n                <i class=\"fa {{_scheming.getFaById(6)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(6) ? 'default' : 'grey' } \"></i>\n            </p>\n            <p class=\"node\" (click)=\"_scheming.schemePreview(7)\">\n                <i class=\"fa {{_scheming.getFaById(7)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(7) ? 'default' : 'grey' } \"></i>\n            </p>\n            <p class=\"node\" (click)=\"_scheming.schemePreview(8)\">\n                <i class=\"fa {{_scheming.getFaById(8)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(8) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"lair-area\" *ngIf=\"_scheming.selected == 'lairs'\">\n        <div class=\"column\">\n            <p class=\"node hidden\"></p>\n            <p class=\"node\" (click)=\"_scheming.schemePreview(9)\">\n                <i class=\"fa {{_scheming.getFaById(9)}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canSchemeBeLearned(9) ? 'default' : 'grey' } \"></i>\n            </p>\n            <p class=\"node hidden\"></p>\n        </div>\n    </div>\n    <div *ngIf=\"_scheming.showPreview\" class=\"scheme-flyout {{_scheming.previewScheme['tree']}}\">\n        <div class=\"inner-content\">\n            <i class=\"scheme-icon fa {{_scheming.schemePreviewFa()}}\" aria-hidden=\"true\"></i>\n            <p class=\"scheme-name\">{{_scheming.previewScheme.name}} {{_scheming.previewSchemeLevel > 0 ? _scheming.previewSchemeLevel+1 : ''}}</p>\n            <p class=\"benefit-text\">{{_scheming.previewSchemeDescription}} </p>\n            <p *ngIf=\"_scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])\" class=\"flavor-text\">{{_scheming.previewSchemeFlavor}}</p>\n            <p *ngIf=\"!_scheming.canSchemeBeLearned(_scheming.previewScheme['ref'])\" style=\"color:red\" class=\"flavor-text\">Lair Level 1 required.</p>\n            <p class=\"scheme-exp\"> {{_scheming.previewSchemeExp}}/{{_scheming.previewSchemeExpTarget}}</p>\n            <p class=\"node {{_scheming.previewScheme['tree']}}-strong\" style=\"width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;\"\n                [ngStyle]=\"{'background-color' : _scheming.previewScheme['color']}\" *ngIf=\"_scheming.showSchemeButtonInPreviewScheme()\"\n                (click)=\"_scheming.startSchemingPreview()\">Scheme</p>\n        </div>\n\n\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -1229,6 +1290,8 @@ var OperatingService = (function () {
         }
         //this.previewSchemeLevel = this.getSchemeCurrentLevel(id) + 1;
     };
+    OperatingService.prototype.operateById = function (id) {
+    };
     OperatingService.prototype.operate = function () {
         if (this.canPreviewBeOperated) {
             this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
@@ -1485,6 +1548,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_scheme__ = __webpack_require__("../../../../../src/app/models/scheme.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1494,6 +1558,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1515,9 +1580,42 @@ var PrimaryLoopService = (function () {
         this.ticker = 600;
         //Duplicate of above for replacement events.
         this.defaultTicker = 600;
+        this.didOnce = true;
     }
+    PrimaryLoopService.prototype.doOnce = function () {
+        var id = 0;
+        var potato = new __WEBPACK_IMPORTED_MODULE_7__models_scheme__["a" /* Scheme */](this._scheming.schemes[id].ref, this._scheming.schemes[id].name, this._scheming.schemes[id].description, this._scheming.schemes[id].flavor, this._scheming.schemes[id].tree);
+        console.log(potato);
+        console.log();
+        console.log(this._scheming.schemes);
+    };
     //Events that occur every tick
     PrimaryLoopService.prototype.tick = function () {
+        if (!this.didOnce) {
+            this.doOnce();
+            this.didOnce = true;
+        }
+        /*
+    if (!this._scheming.earningSchemePoints) {
+        var selectionArray = [];
+        for (i = 0; i < 9; i++) {
+            if (this._scheming.canSchemeBeLearned(i)) {
+                selectionArray.push(i);
+            }
+        }
+        if (selectionArray.length > 0) {
+            var schemeSelection = Math.floor(Math.random()*selectionArray.length);
+            this._player.currentScheme = this._scheming.schemes[selectionArray[schemeSelection]];
+            this._scheming.earningSchemePoints = true;
+        }
+        
+    }
+    */
+        for (var i = 0; i < this._player.recruiting.length; i++) {
+            this._recruiting.collectById(i);
+        }
+        for (var i = 0; i < this._player.operating.length; i++) {
+        }
         if (this._scheming.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }

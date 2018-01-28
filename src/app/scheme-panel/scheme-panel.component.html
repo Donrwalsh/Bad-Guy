@@ -17,7 +17,7 @@
     <div class="scheme-area" *ngIf="_scheming.selected == 'scheming'">
         <div class="column">
             <p class="node" (click)="_scheming.schemePreview(0)">
-                <i class="fa {{_scheming.getFaById(0)}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.canSchemeBeLearned(0) ? 'default' : 'grey' } "></i>
+                <i class="fa {{_scheming.schemes[0].fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.canSchemeBeLearned(0) ? 'default' : 'grey' } "></i>
             </p>
             <!--<p class="level">{{_scheming.getSchemeCurrentLevel(0)+1}}</p>-->
             <p class="node" (click)="_scheming.schemePreview(1)">

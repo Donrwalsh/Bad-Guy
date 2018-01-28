@@ -5,6 +5,7 @@ import { RecruitingService } from "./recruiting.service";
 import { TrainingService } from "./training.service";
 import { OperatingService } from "./operating.service";
 import { NumbersService } from "./core/numbers.service";
+import { Scheme } from "../models/scheme";
 
 //All loop related activities. Called by app.component and nowhere else.
 @Injectable()
@@ -25,8 +26,55 @@ export class PrimaryLoopService {
     //Duplicate of above for replacement events.
     defaultTicker: number = 600;
 
+
+    didOnce = true;
+    doOnce() {
+        var id = 0;
+        var potato = new Scheme(this._scheming.schemes[id].ref, this._scheming.schemes[id].name, this._scheming.schemes[id].description, this._scheming.schemes[id].flavor, this._scheming.schemes[id].tree);
+
+        console.log(potato);
+        console.log()
+        console.log(this._scheming.schemes);
+    }
+
+
+
     //Events that occur every tick
     tick() {
+
+        if (!this.didOnce) {
+            this.doOnce();
+            this.didOnce = true;
+        }
+
+            /*
+        if (!this._scheming.earningSchemePoints) {
+            var selectionArray = [];
+            for (i = 0; i < 9; i++) {
+                if (this._scheming.canSchemeBeLearned(i)) {
+                    selectionArray.push(i);
+                }
+            }
+            if (selectionArray.length > 0) {
+                var schemeSelection = Math.floor(Math.random()*selectionArray.length);
+                this._player.currentScheme = this._scheming.schemes[selectionArray[schemeSelection]];
+                this._scheming.earningSchemePoints = true;
+            }
+            
+        }
+        */
+
+        
+
+        for (var i = 0; i < this._player.recruiting.length; i++) {
+            this._recruiting.collectById(i);
+        }
+
+        for (var i = 0; i < this._player.operating.length; i++) {
+
+        }
+
+
         if (this._scheming.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
@@ -45,6 +93,9 @@ export class PrimaryLoopService {
                 this._operating.tickById(i);
             }
         }
+
+        
+
     }
 
     //Events that occur every second

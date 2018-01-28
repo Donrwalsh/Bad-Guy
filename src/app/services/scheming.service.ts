@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { PlayerService } from "./core/player.service";
 import { NumbersService } from "./core/numbers.service";
+import { Scheme } from "../models/scheme"
 
 @Injectable()
 export class SchemingService {
@@ -18,7 +19,8 @@ export class SchemingService {
     public _numbers: NumbersService) { }
 
     //This object contains raw schemes from the database provided by app.component.ts and data.service.ts
-    schemes;
+    schemes: Array<Scheme>;
+
     //Which scheme tree is selected by the scheme-panel
     selected = 'scheming';
     //Handling the preview scheme being displayed in the header

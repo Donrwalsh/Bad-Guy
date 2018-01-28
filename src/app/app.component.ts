@@ -6,6 +6,7 @@ import { InventoryService } from './services/inventory.service';
 import { TrainingService } from './services/training.service';
 import { RecruitingService } from './services/recruiting.service';
 import { OperatingService } from './services/operating.service';
+import { Scheme } from './models/scheme'
 
 // Import the DataService
 import { DataService } from './data.service';
@@ -29,10 +30,16 @@ export class AppComponent implements OnInit {
   ) {
 
     this._dataService.getSchemes()
-      .subscribe(res => this._scheming.schemes = res);
+      .subscribe((res) => {
+        var SchemeData = new Array();
+        for (var i = 0; i < res.length; i++) {
+          SchemeData.push( new Scheme(res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree));
+        }
+        this._scheming.schemes = SchemeData;
+      });
 
     this._dataService.getOperations()
-      .subscribe(res => this._operating.operations = res)
+      .subscribe(res =>  this._operating.operations = res)
   }
 
   ngOnInit() {

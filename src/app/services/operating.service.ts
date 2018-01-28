@@ -112,6 +112,10 @@ export class OperatingService {
         notoriety: 0
     };
 
+    operateById(id) {
+        
+    }
+
     operate() {
         if (this.canPreviewBeOperated) {
             this.operateReadout = {result: '', lost: 0, earned: 0, notoriety: 0};
