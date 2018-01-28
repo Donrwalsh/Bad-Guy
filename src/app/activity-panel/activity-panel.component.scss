@@ -1,213 +1,124 @@
 @import "../../assets/palette.scss";
 
 .activity-panel {
-    display:inline-block;
-    width: 50%;
-    cursor: default;
-    user-select: none;
     @media all and (max-width:459px) {
         width: 100%;
     }
 
     .henchmen-column {
-        width: 50%;
-        display: inline-block;
 
         .title {
-            padding-bottom: .5rem;
-            padding-top: .5rem;
-            margin: 0;
-            text-align: center;
+
         }
     
         .left-padding {
-            width:5%;
-            display:inline-block;
+
         }
         
         .add-column {
-            width: 5%;
-            vertical-align: middle;
-            display: inline-block;
             
             .add-block {
-                height: 1.2rem;
+                
             }
     
         }
 
         .progress-column {
-            width:75%;
-            display:inline-block;
 
             .training-container {
-                width: 100%;
-                height: 1.2rem;
-                border-radius: 0px 1rem 1rem 0px;
-                display: inline-block;
-                position: relative;
 
                 .progress-bar {
-                    border-radius: 0px 1rem 1rem 0px;
-                    position: absolute;
-                    height: 1.2em;
+                    
                 }
     
                 .training-display {
-                    font-size: .8em;
-                    width: 100%;
-                    margin: 0;
-                    position: relative;
-                    user-select: none;
-                    height: 1.2rem;
     
                     .generation-icon {
-                        min-width: 10px;
-                        float: left;
-                        margin-left: .5em;
-                        margin-top: .3em;
-                        margin-right: 1em;
+
                     }
     
                     .collection-icon {
-                        float: right;
-                        margin-right: .5em;
-                        margin-top: .3em;
+
                     }
                 }
             }
 
             //Specific Colors:
             .guard-training-container {
-                border: 1px solid $guard-weak;
+
 
                 .guard-progress-bar {
-                    background-color: $guard-weak;
+
                 }
 
                 .guard-training-display {
-                    color: $guard-strong;
+
                 }
             }
         }
 
         .progress-no-add-column {
-            width:82%;
-            display:inline-block;
 
             .recruitment-container {
-                margin-top: .5em;
-                width: 100%;
-                height: 1.2em;
-                border-radius: 0px 15px 15px 0px;
-                position: relative;
 
                 .progress-bar {
-                    border-radius: 0px 1rem 1rem 0px;
-                    position: absolute;
-                    height: 1.2em;
+
                 }
 
                 .recruitment-display {
-                    font-size: .8em;
-                    width: 100%;
-                    margin-top: .1em;
-                    margin: 0;
-                    user-select: none;
-                    position: relative;
 
                     .generation-icon {
-                        min-width: 10px;
-                        float: left;
-                        margin-left: .5em;
-                        margin-top: .3em;
-                        margin-right: 1em;
+
                     }
 
                     .collection-icon {
-                        float: right;
-                        margin-right: .5em;
-                        margin-top: .3em;
+                        
                     }
                 }
             }
 
             .help-wanted-container {
-                border: 1px solid $help-wanted-weak;
+                
                 
                 .help-wanted-progress-bar {
-                    background-color: $help-wanted-weak;
+                    
                 }
 
                 .help-wanted-display {
-                    color: $help-wanted-strong;
+                    
                 }
             }
         }
     }
     .operations-column {
-        width: 50%;
-        height: 300px;
-        float: right;
+        
 
         .left-padding {
-            width: 5%;
-            height: 2rem;
-            float: left; 
+            
         }
 
         .routine-tab {
-            text-align: center;
-            border-radius: 2rem 2rem 0 0; 
-            width: 30%; 
-            height: 2rem;
-            float: left;
-            background-color: $routine-background;
+
         }
 
         .campaign-tab {
-            text-align: center;
-            border-radius: 2rem 2rem 0 0; 
-            width: 30%; 
-            height: 2rem;
-            float: left;
-            background-color: $campaign-background;
+
         }
 
         .ascension-tab {
-            text-align: center;
-            border-radius: 2rem 2rem 0 0; 
-            width: 30%; 
-            height: 2rem;
-            float: left;
-            background-color: $ascension-background;
+
         }
 
         .divider-5 {
-            width: 5%;
-            height: 2rem;
-            float: left;
+
         }
 
         .heists-row {
-            width: 90%;
-            height: 3rem;
-            float: left;
-            background-color: $routine-background;
+            
 
             .column {
-                text-align: center;
-                border-radius: .5rem;
-                border: 1px solid;
-                margin-left: 3%;
-                margin-top: .5rem;
-                float: left;
-                height: 2rem;
-                width: 15%;
 
                 .fa {
-                    font-size: 1.25rem;
-                    margin-top: .375rem;
                     
                 }
             }
@@ -216,42 +127,20 @@
         }
 
         .operation-flyout {
-            text-align: center;
-            float: right;
-            margin-right: 5%;
-            width: 90%;
-            border-radius: 0 0 3rem 3rem;
-            cursor: default;
-            user-select: none;
-            background-color: $routine-background;
         
-            .inner-content {
-                position: relative;
-                min-height: 9rem;
-                margin: 0 0 1rem 0;
-        
-                
+            .inner-content {            
         
                 .operation-name {
-                    margin: .1rem;
-                    font-size: 1rem;
-                    display: block;
 
                     .operation-icon {
-                        position: relative;
-                        font-size: 1rem;
+                        
                     }
                 }
         
                 .flyout-text {
-                    margin: 0;
-                    font-size:.8rem;
-                    
                     
                     .flyout-icon {
-                        position: relative;
-                        font-size: .8rem;
-                        margin-top: .3rem;
+                        
                     }
                 }
 

@@ -38,7 +38,8 @@ export class OperatingService {
     }
 
     isUnlockedById(id) {
-        if (id >= 0 && id <= 4) return this._numbers.heistUnlocked(id);
+        if (id >= 0 && id <= 4) { return this._numbers.heistUnlocked(id) };
+        if (id >= 5 && id <= 9) { return this._numbers.shadyBusinessDealUnlocked(id) };
     }
 
 
@@ -85,7 +86,7 @@ export class OperatingService {
     }
 
     operationPreview(id) {
-        if (this._player.operating[id]['available']) {
+        if (this._player.operating[id]['available'] && this.isUnlockedById(id)) {
             if (this._player.operating[id] == this.previewOperation) {
                 this.showPreview = false;
                 this.previewOperation = [];
@@ -144,6 +145,16 @@ export class OperatingService {
         return Math.ceil(Math.random() * multiplier)
     }
 
+    getDealHenchmenCost(rarity) {
+        var multiplier;
+        if (rarity == 0) { multiplier = 10 }
+        if (rarity == 1) { multiplier = 20 }
+        if (rarity == 2) { multiplier = 50 }
+        if (rarity == 3) { multiplier = 100 }
+        if (rarity == 4) { multiplier = 200 }
+        return Math.ceil(Math.random() * multiplier)
+    }
+
     getHeistCashOutput(rarity, henchmen) {
         var multiplier;
         if (rarity == 0) { multiplier = 1 }
@@ -166,11 +177,11 @@ export class OperatingService {
 
     getHeistRiskRate(rarity) {
         var rate;
-        if (rarity == 0) { rate = .15 }
-        if (rarity == 1) { rate = .2 }
-        if (rarity == 2) { rate = .25 }
-        if (rarity == 3) { rate = .3 }
-        if (rarity == 4) { rate = .35 }
+        if (rarity == 0) { rate = .55 }
+        if (rarity == 1) { rate = .6 }
+        if (rarity == 2) { rate = .65 }
+        if (rarity == 3) { rate = .7 }
+        if (rarity == 4) { rate = .75 }
         var multiplier = 1;
         for (var i = 0; i < this._player.schemes[8]['level']; i++) {
             multiplier -= .05;
@@ -210,8 +221,8 @@ export class OperatingService {
     }
 
     get heistCountdown() {
-        //Default is 3 minutes
-        return 1800;
+        //Default is 2 minutes
+        return 1200;
     }
 
     pickAHeistName(rarity) {
@@ -234,7 +245,12 @@ export class OperatingService {
             this._player.operating[id]['available'] = true;
             //Reset the countdown in case it was 0.
             this._player.operating[id]['lock'] = this.heistCountdown;
+        } else if (id >=5 && id <= 9) {//Shady Business Deals
+            var rarity = this.rollShadyBusinessDealRarity();
+            var henchmen = this.getDealHenchmenCost(rarity);
 
+            this._player.operating[id]['rarity'] = rarity;
+            this._player.operating[id]['henchmen'] = henchmen;
         }
     }
 
@@ -255,6 +271,15 @@ export class OperatingService {
         if (roll >= heistRarityChances[1] && roll <= heistRarityChances[2]) { return 2 }
         if (roll >= heistRarityChances[2] && roll <= heistRarityChances[3]) { return 3 }
         if (roll >= heistRarityChances[3] && roll <= heistRarityChances[4]) { return 4 }
+    }
+
+    rollShadyBusinessDealRarity() {
+        var roll = Math.random();
+        var dealRarityChances = this._numbers.shadyBusinessDealRarityChancesArray();
+        if (roll >= dealRarityChances[0] && roll <= dealRarityChances[1]) { return 1 }
+        if (roll >= dealRarityChances[1] && roll <= dealRarityChances[2]) { return 2 }
+        if (roll >= dealRarityChances[2] && roll <= dealRarityChances[3]) { return 3 }
+        if (roll >= dealRarityChances[3] && roll <= dealRarityChances[4]) { return 4 }
     }
 
 }

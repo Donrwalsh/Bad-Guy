@@ -17,7 +17,7 @@ export class PlayerService {
         { level: 0, exp: 0 }, //3 Hired Help, 0-4 coded.
         { level: 0, exp: 0 }, //4 Guard Duty, 0-3 coded.
         { level: 0, exp: 0 }, //5 Henchmen Lodging, 0-4 coded.
-        { level: 4, exp: 0 }, //6 Heists, 0-4 coded.
+        { level: 0, exp: 0 }, //6 Heists, 0-4 coded.
         { level: 0, exp: 0 }, //7 Shady Business Deals, not coded.
         { level: 0, exp: 0 }, //8 Communications, not coded.
         { level: 0, exp: 0 } //9 Starter Lair, not coded.
@@ -45,7 +45,12 @@ export class PlayerService {
         {name: '', rarity: -1, henchmen : -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},//Heists 2
         {name: '', rarity: -1, henchmen : -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},//Heists 3
         {name: '', rarity: -1, henchmen : -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},//Heists 4
-        {name: '', rarity: -1, henchmen : -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0} //Heists 5
+        {name: '', rarity: -1, henchmen : -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0}, //Heists 5
+        {name: '', rarity: -1, henchmen : -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},
+        {name: '', rarity: -1, henchmen : -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},
+        {name: '', rarity: -1, henchmen : -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},
+        {name: '', rarity: -1, henchmen : -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0},
+        {name: '', rarity: -1, henchmen : -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0} 
     ]
 
     cash = 0;

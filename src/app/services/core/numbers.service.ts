@@ -134,9 +134,9 @@ export class NumbersService {
             return [1, 1.1, 1.1, 1.1, 1.1] 
         }
         else if (this._player.schemes[6]['level'] >= 1 && this._player.schemes[6]['level'] <= 2) {
-            return [.46, .67, .83, .94, 1]
+            return [.9, 1, 1.1, 1.1, 1.1]
         } else if (this._player.schemes[6]['level'] >= 3 && this._player.schemes[6]['level'] <= 5) {
-            return [.42, .64, .81, .93, 1]
+            return [.8, .95, 1, 1.1, 1.1]
         }
     }
 
@@ -146,6 +146,23 @@ export class NumbersService {
             if (_i == 2) { reduce += 150}
         }
         return reduce;
+    }
+
+    //07: Shady Business Deals
+    shadyBusinessDealUnlocked(id) {
+        if (id == 5) return this._player.schemes[7]['level'] > 0;
+        if (id == 6) return this._player.schemes[7]['level'] > 3;
+    }
+
+    shadyBusinessDealRarityChancesArray() {
+        if (this._player.schemes[7]['level'] == 1) { 
+            return [1, 1.1, 1.1, 1.1, 1.1] 
+        }
+        else if (this._player.schemes[7]['level'] >= 1 && this._player.schemes[7]['level'] <= 2) {
+            return [.9, 1, 1.1, 1.1, 1.1]
+        } else if (this._player.schemes[7]['level'] >= 3 && this._player.schemes[7]['level'] <= 5) {
+            return [.8, .95, 1, 1.1, 1.1]
+        }
     }
 
 

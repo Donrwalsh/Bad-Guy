@@ -21,7 +21,7 @@ export class ActivityPanelComponent {
 
     containerClass(id, type) {
         return {
-            'recruitment-container': type == "recruiting",
+            'recruiting-container': type == "recruiting",
             'training-container': type == "training",
             'help-wanted-container': type == "recruiting" && (id == 0 || id == 1),
             'guard-training-container' : type == "training" && id == 0,
@@ -46,7 +46,7 @@ export class ActivityPanelComponent {
 
     displayClass(id, type) {
         return {
-            'recruitment-display': type == "recruiting",
+            'recruiting-display': type == "recruiting",
             'training-display': type == "training",
             'help-wanted-display': type == "recruiting" && (id == 0 || id == 1),
             'guard-training-display' : type == "training" && id == 0
@@ -104,6 +104,10 @@ export class ActivityPanelComponent {
         }
     }
 
+    hideIfOperating() {
+        return {'visibility': this._operating.operatingNow ? 'hidden' : 'initial'}
+    }
+
     operateButtonInPreviewStyle() {
         return {
             'color': !this._operating.canPreviewBeOperated ? 'red' : this._operating.getFaColorByRarity(this._operating.previewOperation['rarity']),
@@ -117,12 +121,36 @@ export class ActivityPanelComponent {
             return {'fa-lock': true};
         }
         if (this._player.operating[id]['available'] && this._player.operating[id] == this._operating.previewOperation) {
-            return {'fa-usd': true, 'faa-tada' : true, 'faa-slow' : true, 'animated' : true }
+            if (id >= 0 && id < 5) {
+                return {'fa-usd': true, 'faa-tada' : true, 'faa-slow' : true, 'animated' : true }    
+            } else if (id > 4 && id < 10) {
+                return {'fa-suitcase': true, 'faa-tada' : true, 'faa-slow' : true, 'animated' : true }    
+            }
+            
         }
         if (!this._player.operating[id]['available']) {
-            return {'fa-usd': true, 'faa-slow' : true, 'faa-flash' : true, 'animated' : true}
+            if (id > 0 && id < 5) {
+                return {'fa-usd': true, 'faa-slow' : true, 'faa-flash' : true, 'animated' : true}
+            } else if (id > 4 && id < 10) {
+                return {'fa-suitcase': true, 'faa-slow' : true, 'faa-flash' : true, 'animated' : true}
+            }
+            
         }
-        return {'fa-usd': true }
+        if ( id >= 0 && id < 5) {
+            return {'fa-usd': true }
+        } else if (id > 4 && id < 10) {
+            return {'fa-suitcase': true}
+        }
+    
+        
+    }
+
+    previewOperationFa() {
+        if (this._operating.previewOperationId >= 0 && this._operating.previewOperationId <= 4) {
+            return {'fa-usd': true}
+        } else if (this._operating.previewOperationId >= 5 && this._operating.previewOperationId <= 9) {
+            return {'fa-suitcase': true}
+        }
     }
     
 }
