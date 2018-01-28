@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlayerService } from './services/core/player.service';
 import { SchemingService } from './services/scheming.service';
 import { PrimaryLoopService } from './services/primary-loop.service';
+import { NumbersService } from './services/core/numbers.service';
 import { InventoryService } from './services/inventory.service';
 import { TrainingService } from './services/training.service';
 import { RecruitingService } from './services/recruiting.service';
@@ -20,6 +21,7 @@ import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 export class AppComponent implements OnInit {
 
   constructor(public _player: PlayerService,
+    public _numbers: NumbersService,
     public _loop: PrimaryLoopService,
     public _scheming: SchemingService,
     public _inventory: InventoryService,
@@ -33,7 +35,7 @@ export class AppComponent implements OnInit {
       .subscribe((res) => {
         var SchemeData = new Array();
         for (var i = 0; i < res.length; i++) {
-          SchemeData.push( new Scheme(res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree));
+          SchemeData.push( new Scheme(_player, _numbers, res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree));
         }
         this._scheming.schemes = SchemeData;
       });

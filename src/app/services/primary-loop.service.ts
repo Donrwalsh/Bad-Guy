@@ -27,14 +27,9 @@ export class PrimaryLoopService {
     defaultTicker: number = 600;
 
 
-    didOnce = true;
+    didOnce = false;
     doOnce() {
-        var id = 0;
-        var potato = new Scheme(this._scheming.schemes[id].ref, this._scheming.schemes[id].name, this._scheming.schemes[id].description, this._scheming.schemes[id].flavor, this._scheming.schemes[id].tree);
-
-        console.log(potato);
-        console.log()
-        console.log(this._scheming.schemes);
+        //console.log(this._scheming.schemes);
     }
 
 
@@ -42,12 +37,14 @@ export class PrimaryLoopService {
     //Events that occur every tick
     tick() {
 
+        
+
         if (!this.didOnce) {
             this.doOnce();
             this.didOnce = true;
         }
 
-            /*
+            /* Abandoned 'auto-player' functionality
         if (!this._scheming.earningSchemePoints) {
             var selectionArray = [];
             for (i = 0; i < 9; i++) {
@@ -62,20 +59,17 @@ export class PrimaryLoopService {
             }
             
         }
-        */
 
-        
-
-        for (var i = 0; i < this._player.recruiting.length; i++) {
+                for (var i = 0; i < this._player.recruiting.length; i++) {
             this._recruiting.collectById(i);
         }
 
         for (var i = 0; i < this._player.operating.length; i++) {
 
         }
+        */
 
-
-        if (this._scheming.earningSchemePoints) {
+        if (this._player.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
         for (var i = 0; i < this._player.recruiting.length; i++) {
@@ -100,14 +94,14 @@ export class PrimaryLoopService {
 
     //Events that occur every second
     second() {
-        if (this._scheming.earningSchemePoints) {
+        if (this._player.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisSecond)
         }
     }
 
     //Events that occur every minute
     minute() {
-        if (this._scheming.earningSchemePoints) {
+        if (this._player.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute)
         }
     }

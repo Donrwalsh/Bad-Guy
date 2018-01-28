@@ -18,17 +18,17 @@ export class NumbersService {
         return successes;
     }
 
-    standardExpArray: Array<Number> = [
+    standardExpArray: Array<number> = [
         10, 30, 60, 120, 240, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
     ]
 
-    specialExpArray: Array<Number> = [ 6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000 ]
+    specialExpArray: Array<number> = [ 6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000 ]
 
-    standardLairReq: Array<Number> = [
+    standardLairReq: Array<number> = [
         0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3
     ]
 
-    schemeLairReq: Array<Array<Number>> = [
+    schemeLairReq: Array<Array<number>> = [
         this.standardLairReq, //0: Mastermind
         this.standardLairReq, //1: Cold Logic
         this.standardLairReq, //2: Quick Thinking
@@ -41,7 +41,7 @@ export class NumbersService {
         this.standardLairReq //9: Starter Lair 
     ]
 
-    schemeExp: Array<Array<Number>> = [
+    schemeExp: Array<Array<number>> = [
         this.standardExpArray, //0: Mastermind
         this.standardExpArray, //1: Cold Logic
         this.standardExpArray, //2: Quick Thinking

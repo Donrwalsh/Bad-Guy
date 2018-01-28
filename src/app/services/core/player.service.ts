@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { PACKAGE_ROOT_URL } from "@angular/core/src/application_tokens";
+import { Scheme } from '../../models/scheme';
 
 @Injectable()
 export class PlayerService {
@@ -11,7 +12,7 @@ export class PlayerService {
 
     //Primary scheme object. Stores level and accumulated exp toward next level by scheme ref.
     schemes: Array<Object> = [
-        { level: 0, exp: 0 }, //0 Mastermind, fully coded.
+        { level: 4, exp: 0 }, //0 Mastermind, fully coded.
         { level: 0, exp: 0 }, //1 Cold Logic, fully coded.
         { level: 0, exp: 0 }, //2 Quick Thinking, fully coded.
         { level: 0, exp: 0 }, //3 Hired Help, 0-4 coded.
@@ -23,7 +24,9 @@ export class PlayerService {
         { level: 0, exp: 0 } //9 Starter Lair, not coded.
     ]
 
-    currentScheme: Object = {};
+    earningSchemePoints: boolean = false;
+
+    currentScheme: Scheme;
 
     //Henchmen
     currentHenchmen: number = 0;

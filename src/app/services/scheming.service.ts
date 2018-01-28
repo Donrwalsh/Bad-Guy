@@ -6,89 +6,46 @@ import { Scheme } from "../models/scheme"
 @Injectable()
 export class SchemingService {
 
-    //Belongs elsewhere.
-    coinFlip(times) {
-        var successes = 0;
-        for (var _i = 0; _i < times; _i++) {
-            if (Math.random() >= 0.5) { successes++ }
-        }
-        return successes;
-    }
-
     constructor(public _player: PlayerService,
-    public _numbers: NumbersService) { }
+        public _numbers: NumbersService) { }
 
-    //This object contains raw schemes from the database provided by app.component.ts and data.service.ts
-    schemes: Array<Scheme>;
-
-    //Which scheme tree is selected by the scheme-panel
-    selected = 'scheming';
-    //Handling the preview scheme being displayed in the header
-    previewScheme: Object = {};
-    previewSchemeLevel;
-    //Controls the appearance of the scheme-panel flyout
-    showPreview: boolean = false;
-
-
-    //Belongs in player service.
-    earningSchemePoints: boolean = false;
-
-    //By ID Functions
-    getFaById(id) {
-        if (id == 0) { return 'fa-graduation-cap'}
-        if (id == 1) { return 'fa-hand-spock-o'}
-        if (id == 2) { return 'fa-flash'}
-        if (id == 3) { return 'fa-address-book'}
-        if (id == 4) { return 'fa-shield'}
-        if (id == 5) { return 'fa-bed'}
-        if (id == 6) { return 'fa-usd'}
-        if (id == 7) { return 'fa-suitcase'}
-        if (id == 8) { return 'fa-microphone'}
-        if (id == 9) { return 'fa-angle-up'}
-    }
-
-    canSchemeBeLearned(id) {
-        return this._numbers.schemeLairReq[id][this.getSchemeCurrentLevel(id) + 1] <= this._player.lairLevel;
-    }
-
-    getSchemeCurrentLevel(id) {
-        return this._player.schemes[id]['level'];
-    }
-
+    //STRUCTURAL VARIABLES
+    schemes: Array<Scheme>; //Raw schemes. Provided by app.component.ts
+    selected = 'scheming'; //Which scheme tree is currently displayed on the scheme panel
+    previewScheme: Scheme; //Scheme being previewed
+    showPreview: boolean = false; //Controls the appearance of the scheme-panel flyout
+    
+    //Decide whether to display the "Scheme" button in the flyout
     showSchemeButtonInPreviewScheme() {
-        return (this.previewScheme['ref'] != this._player.currentScheme['ref']) && this.canSchemeBeLearned(this.previewScheme['ref'])
+        return !this._player.earningSchemePoints && this.previewScheme.canBeLearned || ((this.previewScheme != this._player.currentScheme) && this.previewScheme.canBeLearned);
     }
 
-    schemePreviewFa() {
-        return this.getFaById(this.previewScheme['ref']);
-    }
+    //ACTIONS
 
+    //Open the flyout and display preview scheme details.
     schemePreview(id) {
-
         this.previewScheme = this.schemes[id];
-        this.previewSchemeLevel = this.getSchemeCurrentLevel(id);
         this.showPreview = true;
-
     }
 
-    //A couple of scheme preview functions
+    //Clicking "Scheme" assigns the previewScheme as the currentScheme
     startSchemingPreview() {
-        if (this.canSchemeBeLearned(this.previewScheme['ref'])) {
+        if (this.previewScheme.canBeLearned) {
             this._player.currentScheme = this.previewScheme;
-            this.earningSchemePoints = true;
+            this._player.earningSchemePoints = true;
         }
     }
 
+    //Clicking the currentScheme in the header assigns the currentScheme as the previewScheme
     switchToCurrentSchemePreview() {
-        if (this.earningSchemePoints) {
-            //Garbage. Needs to be actually coded.
+        if (this._player.earningSchemePoints) {
             this.selected = this._player.currentScheme['tree'];
             this.previewScheme = this._player.currentScheme;
             this.showPreview = true;
         }
     }
 
-    //Scheming during the loop calculation getters
+    //LOOP GETTERS
     get schemePointsHatchedThisTick() {
         var hatched = 0;
         hatched += this._numbers.quickThinkingNumbers();
@@ -107,52 +64,14 @@ export class SchemingService {
         return hatched;
     }
 
-    //Scheme Calculation Loop Setter
+    //All scheme points earned should route through this function.
     earnSchemePoints(num) {
-        this._player.schemes[this._player.currentScheme['ref']]['exp'] += num;
-        if (this._player.schemes[this._player.currentScheme['ref']]['exp'] >= this._numbers.schemeExp[this._player.currentScheme['ref']][this._player.schemes[this._player.currentScheme['ref']]['level']]) {
-            this._player.schemes[this._player.currentScheme['ref']]['level']++;
-            this._player.schemes[this._player.currentScheme['ref']]['exp'] = 0;
-            if (this.previewScheme == this._player.currentScheme) {
-                this.previewSchemeLevel++;
-            }
-            this._player.currentScheme = {};
-            this.earningSchemePoints = false;
+        this._player.schemes[this._player.currentScheme.ref]['exp'] += num;
+        if (this._player.currentScheme.exp >= this._player.currentScheme.target){
+            this._player.schemes[this._player.currentScheme.ref]['level']++;
+            this._player.schemes[this._player.currentScheme.ref]['exp'] = 0;
+            this._player.earningSchemePoints = false;
         }
     }
 
-    //Vanilla Getters
-
-    get currentSchemeEXP() {
-        return this._player.schemes[this._player.currentScheme['ref']]['exp'];
-    }
-
-    get currentSchemeEXPTarget() {
-        var currentSchemeId = this._player.currentScheme['ref'];
-        return Number(this._numbers.schemeExp[currentSchemeId][this._player.schemes[currentSchemeId]['level']]);
-    }
-
-    get currentSchemePercentage() {
-        return Math.round((this.currentSchemeEXP / this.currentSchemeEXPTarget) * 100);
-    }
-
-    get previewSchemeDescription() {
-        return this.previewScheme['description'][this.previewSchemeLevel];
-    }
-
-    get previewSchemeFlavor() {
-        return this.previewScheme['flavor'][this.previewSchemeLevel]
-    }
-
-    get previewSchemeExp() {
-        return this._player.schemes[this.previewScheme['ref']]['exp'];
-    }
-
-    get previewSchemeExpTarget() {
-        return this._numbers.schemeExp[this.previewScheme['ref']][this.previewSchemeLevel]
-    }
-
-    get currentSchemeLevel() {
-        return (this._player.schemes[this._player.currentScheme['ref']]['level'] * 1) + 1;
-    }
 }

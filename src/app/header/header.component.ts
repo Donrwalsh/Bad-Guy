@@ -31,11 +31,11 @@ export class HeaderComponent {
     }
 
     schemeStyle() {
-        return {'cursor': this._scheming.earningSchemePoints ? 'pointer' : 'default'}
+        return {'cursor': this._player.earningSchemePoints ? 'pointer' : 'default'}
     }
 
     schemeProgressBarStyle() {
-        return {'width': this._scheming.currentSchemePercentage + '%'}
+        return {'width': this._player.currentScheme.percentage + '%'}
     }
 
     notorietyGaugeStyle(id) {

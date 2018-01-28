@@ -2,63 +2,12 @@
 @import "../../assets/images.scss";
 
 .scheme-panel {
-    float: right;
-    width: 50%;
-    cursor: default;
-    user-select: none;
-    height: 25em;
-
-    .select-bar {
-        width: 5%;
-        height: 15em;
-        padding: 0;
-        margin: 0;
-        float: left;
-        text-align: center;
-
-        .schemes {
-            background-color: $scheming-secondary;
-        }
-
-        .hench {
-            background-color: $henchmen-secondary;
-        }
-
-        .operate {
-            background-color: $operations-secondary;
-        }
-
-        .lair {
-            background-color: $lairs-secondary;
-        }
-
-        .select {
-            cursor: pointer;
-            border-radius: 1rem 0 0 1rem;
-            height: 3rem;
-        }
-
-        .fa {
-            padding-top: 1rem;
-        }
-    }
 
     
 
-    .scheme-area {
-        background-color: $scheming-secondary;
-        background-image: $scheme-scheme-panel-background;
-        border-radius: 0 3rem;
-        width: 90%;
-        height: 15em;
-        padding: 0;
-        margin: 0; 
-        float: left;
+    
 
-        .node {
-            background-color: $scheming-strong;
-        }
-    }
+    
 
     .hench-area {
         background-color: $henchmen-secondary;
