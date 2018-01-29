@@ -8,12 +8,11 @@ export class Scheme {
     flavor: Array<string>;
     tree: string;
     fa: string;
-    expTarget: Array<number>;
-    lairReq: Array<number>;
+
+    public _player: PlayerService;
+    public _numbers: NumbersService;
 
     constructor(
-        public _player: PlayerService,
-        public _numbers: NumbersService,
         ref: number,
         name: string,
         description: Array<string>,
@@ -25,8 +24,6 @@ export class Scheme {
         this.description = description;
         this.flavor = flavor;
         this.tree = tree;
-        this.expTarget = this._numbers.schemeExp[this.ref];
-        this.lairReq = this._numbers.schemeLairReq[this.ref];
 
         if (this.ref == 0) { this.fa = 'fa-graduation-cap'}
         if (this.ref == 1) { this.fa = 'fa-hand-spock-o'}
@@ -39,6 +36,16 @@ export class Scheme {
         if (this.ref == 8) { this.fa = 'fa-microphone'}
         if (this.ref == 9) { this.fa = 'fa-angle-up'}
     }   
+
+    //Array of exp amounts for level advancement
+    get expTarget() {
+        return this._numbers.schemeExp[this.ref];
+    }
+
+    //Array of lair level requirements
+    get lairReq() {
+        return this._numbers.schemeLairReq[this.ref];
+    }
 
     //Accrued exp so far toward the current level
     get exp() {

@@ -29,7 +29,7 @@ export class PrimaryLoopService {
 
     didOnce = false;
     doOnce() {
-        //console.log(this._scheming.schemes);
+        console.log(this._scheming.schemes);
     }
 
 

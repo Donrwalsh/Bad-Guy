@@ -35,7 +35,10 @@ export class AppComponent implements OnInit {
       .subscribe((res) => {
         var SchemeData = new Array();
         for (var i = 0; i < res.length; i++) {
-          SchemeData.push( new Scheme(_player, _numbers, res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree));
+          let newScheme = new Scheme(res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree);
+          newScheme._player = this._player;
+          newScheme._numbers = this._numbers;
+          SchemeData.push( newScheme );
         }
         this._scheming.schemes = SchemeData;
       });

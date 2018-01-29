@@ -333,7 +333,10 @@ var AppComponent = (function () {
             .subscribe(function (res) {
             var SchemeData = new Array();
             for (var i = 0; i < res.length; i++) {
-                SchemeData.push(new __WEBPACK_IMPORTED_MODULE_9__models_scheme__["a" /* Scheme */](_player, _numbers, res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree));
+                var newScheme = new __WEBPACK_IMPORTED_MODULE_9__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree);
+                newScheme._player = _this._player;
+                newScheme._numbers = _this._numbers;
+                SchemeData.push(newScheme);
             }
             _this._scheming.schemes = SchemeData;
         });
@@ -613,16 +616,12 @@ HeaderModule = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Scheme; });
 var Scheme = (function () {
-    function Scheme(_player, _numbers, ref, name, description, flavor, tree) {
-        this._player = _player;
-        this._numbers = _numbers;
+    function Scheme(ref, name, description, flavor, tree) {
         this.ref = ref;
         this.name = name;
         this.description = description;
         this.flavor = flavor;
         this.tree = tree;
-        this.expTarget = this._numbers.schemeExp[this.ref];
-        this.lairReq = this._numbers.schemeLairReq[this.ref];
         if (this.ref == 0) {
             this.fa = 'fa-graduation-cap';
         }
@@ -654,6 +653,22 @@ var Scheme = (function () {
             this.fa = 'fa-angle-up';
         }
     }
+    Object.defineProperty(Scheme.prototype, "expTarget", {
+        //Array of exp amounts for level advancement
+        get: function () {
+            return this._numbers.schemeExp[this.ref];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Scheme.prototype, "lairReq", {
+        //Array of lair level requirements
+        get: function () {
+            return this._numbers.schemeLairReq[this.ref];
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Scheme.prototype, "exp", {
         //Accrued exp so far toward the current level
         get: function () {
@@ -1657,7 +1672,7 @@ var PrimaryLoopService = (function () {
         this.didOnce = false;
     }
     PrimaryLoopService.prototype.doOnce = function () {
-        //console.log(this._scheming.schemes);
+        console.log(this._scheming.schemes);
     };
     //Events that occur every tick
     PrimaryLoopService.prototype.tick = function () {
