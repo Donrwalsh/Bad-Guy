@@ -1,4 +1,76 @@
-<div style="background-color:pink;position:absolute;width:40%;height:100%;right:0;">
-    <div style="width:10%;height:20%;background-color:grey;">
+<div class="scheme-panel" *ngIf="_scheming.schemes">
+    <div class="spacer"></div>
+    <div class="select-bar">
+        <div class="schemes select" (click)="_scheming.selected = 'scheming'; _scheming.showPreview = false;">
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+        </div>
+        <div class="hench select" (click)="_scheming.selected = 'henchmen'; _scheming.showPreview = false;">
+            <i class="fa fa-user" aria-hidden="true"></i>
+        </div>
+        <div class="operate select" (click)="_scheming.selected = 'operations'; _scheming.showPreview = false;">
+            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+        </div>
+        <div class="lair select" (click)="_scheming.selected = 'lairs'; _scheming.showPreview = false;">
+            <i class="fa fa-home" aria-hidden="true"></i>
+        </div>
     </div>
+    <div class="scheme-area" *ngIf="_scheming.selected == 'scheming'">
+        <div class="column">
+            <p class="node" *ngFor="let scheme of _scheming.schemes | slice: 0:3; let i = index" (click)="_scheming.schemePreview(scheme.ref)">
+                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : scheme.canBeLearned ? 'default' : 'grey' } "></i>
+            </p>
+        </div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+    </div>
+    <div class="hench-area" *ngIf="_scheming.selected == 'henchmen'">
+        <div class="column">
+            <p class="node" *ngFor="let scheme of _scheming.schemes | slice: 3:6; let i = index" (click)="_scheming.schemePreview(scheme.ref)">
+                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : scheme.canBeLearned ? 'default' : 'grey' } "></i>
+            </p>
+        </div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+    </div>
+    <div class="operate-area" *ngIf="_scheming.selected == 'operations'">
+        <div class="column">
+            <p class="node" *ngFor="let scheme of _scheming.schemes | slice: 6:9; let i = index" (click)="_scheming.schemePreview(scheme.ref)">
+                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : scheme.canBeLearned ? 'default' : 'grey' } "></i>
+            </p>
+        </div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+    </div>
+    <div class="lair-area" *ngIf="_scheming.selected == 'lairs'">
+        <div class="column">
+            <p class="node" *ngFor="let scheme of _scheming.schemes | slice: 9:10; let i = index" (click)="_scheming.schemePreview(scheme.ref)">
+                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : scheme.canBeLearned ? 'default' : 'grey' } "></i>
+            </p>
+        </div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column"></div>
+    </div>
+    <div *ngIf="_scheming.showPreview" class="scheme-flyout {{_scheming.previewScheme.tree}}">
+        <div class="inner-content">
+            <i class="scheme-icon fa {{_scheming.previewScheme.fa}}" aria-hidden="true"></i>
+            <p class="scheme-name">{{_scheming.previewScheme.name}} {{_scheming.previewScheme.level > 0 ? _scheming.previewScheme.level+1 : ''}}</p>
+            <p class="benefit-text">{{_scheming.previewScheme.previewDescription}} </p>
+            <p *ngIf="_scheming.previewScheme.canBeLearned" class="flavor-text">{{_scheming.previewScheme.previewFlavor}}</p>
+            <p *ngIf="!_scheming.previewScheme.learnLair" style="color:red" class="flavor-text">Lair Level {{_scheming.previewScheme.previewLairLevel}} required.</p>
+            <p class="scheme-exp"> {{_scheming.previewScheme.exp}}/{{_scheming.previewScheme.target}}</p>
+            <p class="node {{_scheming.previewScheme.tree}}-strong" style="width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;" 
+            *ngIf="_scheming.showSchemeButtonInPreviewScheme()" (click)="_scheming.startSchemingPreview()">Scheme</p>
+        </div>
+
+
+    </div>
+
 </div>

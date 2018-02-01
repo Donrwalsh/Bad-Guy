@@ -30,6 +30,41 @@ let response = {
 //Get All Schemes
 
 router.get('/schemes/', (req, res) => {
+    connection((db) => {
+        db.collection('schemes')
+            .find()
+            .toArray()
+            .then((schemes) => {
+                response.data = schemes;
+                res.json(response);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+            db.close();
+    });
+    
+});
+
+router.get('/operations/', (req, res) => {
+    connection((db) => {
+        db.collection('operations')
+            .find()
+            .toArray()
+            .then((operations) => {
+                response.data = operations;
+                res.json(response);
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+            db.close();
+    });
+    
+});
+
+
+/*router.get('/schemes/', (req, res) => {
     
     connection((db) => {
         db.collection('scheming')
@@ -42,7 +77,13 @@ router.get('/schemes/', (req, res) => {
                 .toArray()
                 .then((henchmen) => {
                     response.data.push.apply(response.data, henchmen);
-                    res.json(response);
+                    db.collection('operations')
+                    .find()
+                    .toArray()
+                    .then((operations) => {
+                        response.data.push.apply(response.data, operations);
+                        res.json(response);
+                    });
                 });
             })
             .catch((err) => {
@@ -50,6 +91,6 @@ router.get('/schemes/', (req, res) => {
             });
     });
 });
-
+*/
 
 module.exports = router;

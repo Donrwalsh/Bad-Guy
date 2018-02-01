@@ -1,251 +1,159 @@
+@import "../../assets/palette.scss";
+
 .activity-panel {
-    display:inline-block;
-    width: 50%;
-    height: 80vh;
     @media all and (max-width:459px) {
         width: 100%;
     }
 
-    .left-side {
-        width: 50%;
-        display:inline-block;
-        cursor: default;
+    .henchmen-column {
+
+        .title {
+
+        }
+    
+        .left-padding {
+
+        }
+        
+        .add-column {
+            
+            .add-block {
+                
+            }
+    
+        }
+
+        .progress-column {
+
+            .training-container {
+
+                .progress-bar {
+                    
+                }
+    
+                .training-display {
+    
+                    .generation-icon {
+
+                    }
+    
+                    .collection-icon {
+
+                    }
+                }
+            }
+
+            //Specific Colors:
+            .guard-training-container {
+
+
+                .guard-progress-bar {
+
+                }
+
+                .guard-training-display {
+
+                }
+            }
+        }
+
+        .progress-no-add-column {
+
+            .recruitment-container {
+
+                .progress-bar {
+
+                }
+
+                .recruitment-display {
+
+                    .generation-icon {
+
+                    }
+
+                    .collection-icon {
+                        
+                    }
+                }
+            }
+
+            .help-wanted-container {
+                
+                
+                .help-wanted-progress-bar {
+                    
+                }
+
+                .help-wanted-display {
+                    
+                }
+            }
+        }
+    }
+    .operations-column {
         
 
-        .help-wanted-container {
-            margin-top: .1em;
-            width: 100%;
-            height: 1.2em;
-            border: 1px solid #ccddff;
-            border-radius: 0px 15px 15px 0px;
+        .left-padding {
+            
+        }
 
-            .help-wanted-progress-bar {
-                border-radius: 0px 15px 15px 0px;
-                position: absolute;
-                top: 4.15em;
-                height: 1.2em;
-                background-color: #ccddff;
-                @media all and (max-width:639px) {
-                    top: 4.21em;
-                }
-                @media all and (max-width:399px) {
-                    top: 4.21em;
-                }
+        .routine-tab {
 
-            }
+        }
 
-            .wide {
-                @media all and (min-width:640px) {
-                    display: block;
-                }
-                @media all and (max-width:639px) {
-                    display: block;
-                }
-                @media all and (max-width:459px) {
-                    display: none;
-                }
-                @media all and (max-width:399px) {
-                    display: none;
-                }
-            }
+        .campaign-tab {
 
-            .narrow {
-                @media all and (min-width:640px) {
-                    display: none;
-                }
-                @media all and (max-width:639px) {
-                    display: none;
-                }
-                @media all and (max-width:459px) {
-                    display: block;
-                }
-                @media all and (max-width:399px) {
-                    display: block;
-                }
-            }
+        }
+
+        .ascension-tab {
+
+        }
+
+        .divider-5 {
+
+        }
+
+        .heists-row {
             
 
-            .help-wanted-display {
-                font-size: .8em;
-                width: 100%;
-                margin-top: .1em;
-                margin: 0;
-                user-select: none;
-                position: relative;
-                @media all and (max-width:639px) {
-                    font-size: .6em;
-                    margin-top: .2em;
-                }
-                @media all and (max-width:459px) {
-                    font-size: .8em;
-                    margin-top: .1em;
-                }
-                @media all and (max-width:399px) {
-                    font-size: .5em;
-                    margin-top: .4em;
-                }
+            .column {
 
-                .help-wanted-generation-icon {
-                    min-width: 10px;
-                    float: left;
-                    margin-left: .5em;
-                    margin-top: .3em;
-                    margin-right: 1em;
-                    @media all and (max-width:639px) {
-                        font-size: .9em;
-                        margin-top: .25em;
-                        margin-right: .8em;
+                .fa {
+                    
+                }
+            }
+
+            
+        }
+
+        .operation-flyout {
+        
+            .inner-content {            
+        
+                .operation-name {
+
+                    .operation-icon {
+                        
                     }
-                    @media all and (max-width:459px) {
-                        margin-top: .25em;
-                    }
-                    @media all and (max-width:399px) {
-                        font-size: .9em;
-                        margin-top: .1em;
+                }
+        
+                .flyout-text {
+                    
+                    .flyout-icon {
+                        
                     }
                 }
 
-                .help-wanted-collection-icon {
-                    float: right;
-                    margin-right: .5em;
-                    margin-top: .3em;
-                    @media all and (max-width:639px) {
-                        font-size: .9em;
-                        margin-top: .25em;
-                    }
-                    @media all and (max-width:459px) {
-                        margin-top: .25em;
-                    }
-                    @media all and (max-width:399px) {
-                        font-size: .9em;
-                        margin-top: .1em;
-                    }
+                .secondary {
+                    margin-top:.1rem;
                 }
+
+                
             }
         }
     }
+}
 
-    .right-side {
-        width: 45%;
-        float: right;
-        display:block;
-        cursor: default;
-
-        .add-to-queue-icon {
-            vertical-align: middle;
-        }
-
-        .guard-training-container {
-            margin-top: .1em;
-            width: 80%;
-            height: 1.2em;
-            border: 1px solid #ccddff;
-            border-radius: 0px 15px 15px 0px;
-            display: inline-block;
-
-            .guard-training-progress-bar {
-                border-radius: 0px 15px 15px 0px;
-                position: absolute;
-                top: 4.15em;
-                height: 1.2em;
-                background-color: #ccddff;
-                @media all and (max-width:639px) {
-                    top: 4.21em;
-                }
-                @media all and (max-width:399px) {
-                    top: 4.21em;
-                }
-
-            }
-
-            .wide {
-                @media all and (min-width:640px) {
-                    display: block;
-                }
-                @media all and (max-width:639px) {
-                    display: block;
-                }
-                @media all and (max-width:459px) {
-                    display: none;
-                }
-                @media all and (max-width:399px) {
-                    display: none;
-                }
-            }
-
-            .narrow {
-                @media all and (min-width:640px) {
-                    display: none;
-                }
-                @media all and (max-width:639px) {
-                    display: none;
-                }
-                @media all and (max-width:459px) {
-                    display: block;
-                }
-                @media all and (max-width:399px) {
-                    display: block;
-                }
-            }
-            
-
-            .guard-training-display {
-                font-size: .8em;
-                width: 100%;
-                margin-top: .1em;
-                margin: 0;
-                position: relative;
-                user-select: none;
-                @media all and (max-width:639px) {
-                    font-size: .6em;
-                    margin-top: .2em;
-                }
-                @media all and (max-width:459px) {
-                    font-size: .8em;
-                    margin-top: .1em;
-                }
-                @media all and (max-width:399px) {
-                    font-size: .5em;
-                    margin-top: .4em;
-                }
-
-                .guard-training-generation-icon {
-                    min-width: 10px;
-                    float: left;
-                    margin-left: .5em;
-                    margin-top: .3em;
-                    margin-right: 1em;
-                    @media all and (max-width:639px) {
-                        font-size: .9em;
-                        margin-top: .25em;
-                        margin-right: .8em;
-                    }
-                    @media all and (max-width:459px) {
-                        margin-top: .25em;
-                    }
-                    @media all and (max-width:399px) {
-                        font-size: .9em;
-                        margin-top: .1em;
-                    }
-                }
-
-                .guard-training-collection-icon {
-                    float: right;
-                    margin-right: .5em;
-                    margin-top: .3em;
-                    @media all and (max-width:639px) {
-                        font-size: .9em;
-                        margin-top: .25em;
-                    }
-                    @media all and (max-width:459px) {
-                        margin-top: .25em;
-                    }
-                    @media all and (max-width:399px) {
-                        font-size: .9em;
-                        margin-top: .1em;
-                    }
-                }
-            }
-        }
-    }
+.tab-icon {
+    margin-top: .5rem;
 }

@@ -1,0 +1,181 @@
+@import "../../assets/palette.scss";
+@import "../../assets/images.scss";
+
+.scheme-panel {
+
+    
+
+    
+
+    
+
+    .hench-area {
+        background-color: $henchmen-secondary;
+        background-image: $hench-scheme-panel-background;
+        border-radius: 0 3rem;
+        width: 90%;
+        height: 15em;
+        padding: 0;
+        margin: 0; 
+        float: left;
+
+        .node {
+            background-color: $henchmen-strong;
+        }
+    }
+
+    .operate-area {
+        background-color:$operations-secondary;
+        background-image: $operate-area-panel-background;
+        border-radius: 0 3rem;
+        width: 90%;
+        height: 15em;
+        padding: 0;
+        margin: 0; 
+        float: left;
+
+        .node {
+            background-color: $operations-strong;
+        }
+    }
+
+    .lair-area {
+        background-color: $lairs-secondary;
+        background-image: $lair-scheme-panel-background;
+        border-radius: 0 3rem;
+        width: 90%;
+        height: 15em;
+        padding: 0;
+        margin: 0; 
+        float: left;
+
+        .node {
+            background-color: $lairs-strong;
+        }
+    }
+
+
+
+
+    
+    .column {
+        width: 20%;
+        padding: 0;
+        margin: 0;
+        float: left;
+        text-align: center;
+    }
+
+    .node {
+        width: 3rem;
+        height: 3rem;
+        margin:0 auto;
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        border-radius: .5rem;
+        border: 1px solid;
+        cursor:pointer;
+
+        .fa {
+            margin-top: .75rem;
+        }
+    }
+
+    .hidden {
+        cursor: default;
+        visibility: hidden;
+    }
+
+    .level {
+        margin:0;
+    }
+
+
+    .node:focus {
+        outline: none;
+    }
+}
+
+
+
+.scheme-flyout {
+    text-align: center;
+    float: right;
+    width: 75%;
+    border-radius: 0 0 3rem 3rem;
+    margin-right: 2.5%;
+    cursor: default;
+    user-select: none;
+
+    .inner-content {
+        margin: .5rem;
+
+        .scheme-icon {
+            position: relative;
+        }
+
+        .scheme-name {
+            margin: .1rem;
+            display: inline;
+        }
+
+        .benefit-header {
+            text-align: left;
+            margin: 0;
+            padding-top: 1rem;
+        }
+
+        .benefit-text {
+            text-align: left;
+            font-size: .75rem;
+            margin: 0;
+            margin-top: 1rem;
+            
+        }
+
+        .flavor-text {
+            text-align: left;
+            margin: .1rem;
+            margin-top: 1rem;
+            font-style: italic;
+            font-size: .75rem;
+        }
+
+        .scheme-exp {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.scheming {
+    background-color: $scheming-secondary;
+}
+
+.scheming-strong {
+    background-color: $scheming-strong;
+}
+
+.henchmen {
+    background-color: $henchmen-secondary;
+}
+
+.henchmen-strong {
+    background-color: $henchmen-strong;
+}
+
+.operations {
+    background-color: $operations-secondary;
+}
+
+.operations-strong {
+    background-color: $operations-strong;
+}
+
+.lairs {
+    background-color: $lairs-secondary;
+}
+
+.lairs-strong {
+    background-color: $lairs-strong;
+}

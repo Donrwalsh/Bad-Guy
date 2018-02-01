@@ -1,36 +1,25 @@
 <div class="header">
-    <div class="resources">
-        <i class="henchmen fa fa-users" aria-hidden="true"></i>
-        <p class="henchmen-readout">{{_player.currentHenchmen}}/{{_player.henchmenCapacity}}</p>
-        <i class="guard fa fa-shield" aria-hidden="true"></i>
-        <p class="guard-readout">{{_player.currentGuards}}/{{_player.guardCapacity}}</p>
+    <div class="notoriety-container">
+        <div class="notoriety-gauge" *ngIf="_player.notoriety > 0">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <p>{{_heroes.prettyNotoriety}}/10</p>
+        </div>
+        <div *ngIf="_player.notoriety > 0" class="notoriety-meter" [ngStyle]="notorietyRotationStyle()"></div>
     </div>
     <div>
-        <h1 class="title">Bad Guy</h1>
+        <p class="main-title">Bad Guy</p>
     </div>
-    <div class="scheme" (mouseenter)="showSchemeFlyout = true;" (mouseleave)="showSchemeFlyout = false;">
+    <div class="scheme-container" [ngStyle]="schemeStyle()" (click)="_scheming.switchToCurrentSchemePreview()">
         <div *ngIf="_player.earningSchemePoints">
-            <h5 class="status-text">Scheming</h5>
-            <div class="scheme-bar-container" [ngStyle]="{'border' : '1px solid ' + _player.currentScheme.color }">
-                <div class="scheme-progress-bar" [ngStyle]="{'width': _player.currentSchemePercentage + '%', 'background-color' : _player.currentScheme.color}"></div>
-                <i class="scheme-icon fa {{_player.currentScheme.fa}}" aria-hidden="true"></i>
+            <p class="scheme-title">Scheming</p>
+            <div class="scheme-bar-container {{_player.currentScheme['tree']}}">
+                <i class="scheme-icon fa {{_scheming.schemes[_player.currentScheme['ref']].fa}}" aria-hidden="true"></i>
+                <div class="scheme-progress-bar {{_player.currentScheme['tree']}}" [ngStyle]="schemeProgressBarStyle()"></div>
             </div>
         </div>
         <div *ngIf="!_player.earningSchemePoints">
-            <h5 class="status-text">Not Scheming</h5>
+            <p class="scheme-title">Not Scheming</p>
             <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
         </div>
     </div>
-</div>
-
-<div class="scheme-flyout" *ngIf="_player.earningSchemePoints;" [@popOverState]="stateName" [ngStyle]="{'background-color' : _player.currentScheme.flyout_color}">
-    <div class="inner-content">
-        <i class="scheme-icon fa {{_player.currentScheme.fa}}" aria-hidden="true"></i>
-        <h4 class="scheme-name">{{_player.currentScheme.name}} {{_player.currentSchemeLevel > 1 ? _player.currentSchemeLevel : ''}}</h4>
-        <h5 class="benefit-header">Benefit: </h5>
-        <h6 class="benefit-text">{{_player.currentScheme.description[_player.currentSchemeLevel-1]}} </h6>
-        <h6 class="flavor-text">{{_player.currentScheme.flavor[_player.currentSchemeLevel-1]}}</h6>
-        <p class="scheme-exp"> {{_player.currentSchemeEXP}}/{{_player.currentSchemeEXPTarget}}</p>
-    </div>
-
 </div>
