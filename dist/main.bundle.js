@@ -1078,7 +1078,7 @@ var PlayerService = (function () {
         this.lairLevel = 0;
         //Primary scheme object. Stores level and accumulated exp toward next level by scheme ref.
         this.schemes = [
-            { level: 4, exp: 0 },
+            { level: 0, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
             { level: 0, exp: 0 },
