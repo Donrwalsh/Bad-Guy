@@ -1791,7 +1791,8 @@ var RecruitingService = (function () {
         this._numbers = _numbers;
         this._operating = _operating;
         this._inventory = _inventory;
-        this.collecting = false;
+        //STRUCTURAL VARIABLES
+        this.collecting = false; //Collection lockout
     }
     RecruitingService.prototype.getCapacityById = function (id) {
         if (id == 0 || id == 1) {

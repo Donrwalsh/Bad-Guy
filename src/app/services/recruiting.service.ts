@@ -12,6 +12,9 @@ export class RecruitingService {
         public _operating: OperatingService,
         public _inventory: InventoryService) { }
 
+    //STRUCTURAL VARIABLES
+    collecting: boolean = false; //Collection lockout
+
     getCapacityById(id) {
         if (id == 0 || id == 1) { //Help Wanted Objects
             var capacity = 1;
@@ -57,7 +60,7 @@ export class RecruitingService {
         return this._player.recruiting[id]['currentStore'] == this.getCapacityById(id);
     }
 
-    collecting: boolean = false;
+    
 
     collectById(id) {
         if (this._player.recruiting[id]['currentStore'] > 0) {
