@@ -6,6 +6,7 @@ import { TrainingService } from "./training.service";
 import { OperatingService } from "./operating.service";
 import { NumbersService } from "./core/numbers.service";
 import { Scheme } from "../models/scheme";
+import { Recruit } from "../models/recruit";
 
 //All loop related activities. Called by app.component and nowhere else.
 @Injectable()
@@ -30,12 +31,14 @@ export class PrimaryLoopService {
     didOnce = false;
     doOnce() {
         console.log(this._scheming.schemes);
+        console.log(this._player.recruiting);
     }
 
 
 
     //Events that occur every tick
     tick() {
+        
 
         
 

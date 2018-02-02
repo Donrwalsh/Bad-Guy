@@ -295,7 +295,8 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_scheme__ = __webpack_require__("../../../../../src/app/models/scheme.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_recruit__ = __webpack_require__("../../../../../src/app/models/recruit.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -305,6 +306,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -329,6 +331,7 @@ var AppComponent = (function () {
         this._operating = _operating;
         this._recruiting = _recruiting;
         this._dataService = _dataService;
+        //Construct Scheme data from MongoDB
         this._dataService.getSchemes()
             .subscribe(function (res) {
             var SchemeData = new Array();
@@ -340,6 +343,15 @@ var AppComponent = (function () {
             }
             _this._scheming.schemes = SchemeData;
         });
+        //Construct Recruit data
+        var RecruitData = new Array();
+        for (var i = 0; i < 2; i++) {
+            var newRecruit = new __WEBPACK_IMPORTED_MODULE_10__models_recruit__["a" /* Recruit */](i, 0, 0, 0);
+            newRecruit._player = this._player;
+            newRecruit._numbers = this._numbers;
+            RecruitData.push(newRecruit);
+        }
+        this._recruiting.recruits = RecruitData;
         this._dataService.getOperations()
             .subscribe(function (res) { return _this._operating.operations = res; });
     }
@@ -357,7 +369,7 @@ AppComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__services_core_numbers_service__["a" /* NumbersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_core_numbers_service__["a" /* NumbersService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__services_inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_inventory_service__["a" /* InventoryService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__services_training_service__["a" /* TrainingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_training_service__["a" /* TrainingService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_8__services_operating_service__["a" /* OperatingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__services_operating_service__["a" /* OperatingService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__services_recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__services_recruiting_service__["a" /* RecruitingService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_10__data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__data_service__["a" /* DataService */]) === "function" && _j || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__services_core_numbers_service__["a" /* NumbersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_core_numbers_service__["a" /* NumbersService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__services_inventory_service__["a" /* InventoryService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_inventory_service__["a" /* InventoryService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__services_training_service__["a" /* TrainingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_training_service__["a" /* TrainingService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_8__services_operating_service__["a" /* OperatingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__services_operating_service__["a" /* OperatingService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__services_recruiting_service__["a" /* RecruitingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__services_recruiting_service__["a" /* RecruitingService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_11__data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_11__data_service__["a" /* DataService */]) === "function" && _j || Object])
 ], AppComponent);
 
 var _a, _b, _c, _d, _e, _f, _g, _h, _j;
@@ -607,6 +619,36 @@ HeaderModule = __decorate([
 ], HeaderModule);
 
 //# sourceMappingURL=header.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/models/recruit.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Recruit; });
+var Recruit = (function () {
+    function Recruit(id, currentStore, countdown, lock) {
+    }
+    Object.defineProperty(Recruit.prototype, "capacity", {
+        //How many henchmen can the recruitment object hold?
+        get: function () {
+            return 5;
+            /*if (this.id == 0 || this.id == 1) { //Help Wanted Objects
+                var capacity = 1;
+                capacity += this._numbers.hiredHelpCapacity();
+                return capacity;
+            } else {
+                return 0;
+            }*/
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Recruit;
+}());
+
+//# sourceMappingURL=recruit.js.map
 
 /***/ }),
 
@@ -1093,8 +1135,8 @@ var PlayerService = (function () {
         //Henchmen
         this.currentHenchmen = 0;
         this.recruiting = [
-            { currentStore: 0, capacity: 0, countdown: 0, lock: 0 },
-            { currentStore: 0, capacity: 0, countdown: 0, lock: 0 } //Help Wanted 2
+            { id: 0, currentStore: 0, countdown: 0, lock: 0 },
+            { id: 1, currentStore: 0, countdown: 0, lock: 0 } //Help Wanted 2
         ];
         //Improved Henchmen
         this.currentGuards = 0;
@@ -1673,6 +1715,7 @@ var PrimaryLoopService = (function () {
     }
     PrimaryLoopService.prototype.doOnce = function () {
         console.log(this._scheming.schemes);
+        console.log(this._player.recruiting);
     };
     //Events that occur every tick
     PrimaryLoopService.prototype.tick = function () {
@@ -1791,7 +1834,6 @@ var RecruitingService = (function () {
         this._numbers = _numbers;
         this._operating = _operating;
         this._inventory = _inventory;
-        //STRUCTURAL VARIABLES
         this.collecting = false; //Collection lockout
     }
     RecruitingService.prototype.getCapacityById = function (id) {

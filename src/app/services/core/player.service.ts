@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { PACKAGE_ROOT_URL } from "@angular/core/src/application_tokens";
 import { Scheme } from '../../models/scheme';
+import { Recruit } from '../../models/recruit';
 
 @Injectable()
 export class PlayerService {
@@ -31,8 +32,8 @@ export class PlayerService {
     //Henchmen
     currentHenchmen: number = 0;
     recruiting: Array<Object> = [
-        {currentStore : 0, capacity : 0, countdown : 0, lock : 0 }, //Help Wanted 1
-        {currentStore : 0, capacity : 0, countdown : 0, lock : 0 } //Help Wanted 2
+        {id: 0, currentStore: 0, countdown: 0, lock: 0 }, //Help Wanted 1
+        {id: 1, currentStore: 0, countdown: 0, lock: 0 } //Help Wanted 2
     ]
 
     //Improved Henchmen

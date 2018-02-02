@@ -3,6 +3,7 @@ import { PlayerService } from "./core/player.service";
 import { InventoryService } from "./inventory.service";
 import { NumbersService } from './core/numbers.service';
 import { OperatingService } from './operating.service';
+import { Recruit } from '../models/recruit';
 
 @Injectable()
 export class RecruitingService {
@@ -13,6 +14,7 @@ export class RecruitingService {
         public _inventory: InventoryService) { }
 
     //STRUCTURAL VARIABLES
+    recruits: Array<Recruit>; //Raw Recruitment objects. Constructed by app.component.
     collecting: boolean = false; //Collection lockout
 
     getCapacityById(id) {

@@ -1,7 +1,35 @@
 import { NumbersService } from "../services/core/numbers.service"
 import { PlayerService } from "../services/core/player.service"
+import { PACKAGE_ROOT_URL } from "@angular/core/src/application_tokens";
 
 export class Recruit {
+    id: number;
+    currentStore: number;
+    countdown: number;
+    lock: number;
+
+    public _player: PlayerService;
+    public _numbers: NumbersService;
+
+    constructor(
+        id: number,
+        currentStore: number,
+        countdown: number,
+        lock: number
+    ) {}
+
+    //How many henchmen can the recruitment object hold?
+    get capacity() {
+        return 5;
+        /*if (this.id == 0 || this.id == 1) { //Help Wanted Objects
+            var capacity = 1;
+            capacity += this._numbers.hiredHelpCapacity();
+            return capacity;
+        } else {
+            return 0;
+        }*/
+    }
+
     /*
 
 

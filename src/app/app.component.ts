@@ -7,7 +7,8 @@ import { InventoryService } from './services/inventory.service';
 import { TrainingService } from './services/training.service';
 import { RecruitingService } from './services/recruiting.service';
 import { OperatingService } from './services/operating.service';
-import { Scheme } from './models/scheme'
+import { Scheme } from './models/scheme';
+import { Recruit } from './models/recruit';
 
 // Import the DataService
 import { DataService } from './data.service';
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit {
     public _recruiting: RecruitingService,
     private _dataService: DataService,
   ) {
-
+    //Construct Scheme data from MongoDB
     this._dataService.getSchemes()
       .subscribe((res) => {
         var SchemeData = new Array();
@@ -42,6 +43,15 @@ export class AppComponent implements OnInit {
         }
         this._scheming.schemes = SchemeData;
       });
+    //Construct Recruit data
+    var RecruitData = new Array();
+    for (var i = 0; i < 2; i++) {
+      let newRecruit = new Recruit(i, 0, 0, 0);
+      newRecruit._player = this._player;
+      newRecruit._numbers = this._numbers;
+      RecruitData.push ( newRecruit );
+    }
+    this._recruiting.recruits = RecruitData;
 
     this._dataService.getOperations()
       .subscribe(res =>  this._operating.operations = res)
