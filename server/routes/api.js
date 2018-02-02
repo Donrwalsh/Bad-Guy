@@ -33,6 +33,7 @@ router.get('/schemes/', (req, res) => {
     connection((db) => {
         db.collection('schemes')
             .find()
+            .sort( { ref: 1} )
             .toArray()
             .then((schemes) => {
                 response.data = schemes;

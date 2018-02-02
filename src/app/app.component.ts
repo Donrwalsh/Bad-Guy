@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
           newScheme._numbers = this._numbers;
           SchemeData.push( newScheme );
         }
-        this._scheming.schemes = (SchemeData || []).sort((a: Scheme, b: Scheme) => a.ref < b.ref ? -1 : 1)
+        this._scheming.schemes = SchemeData;
       });
 
     this._dataService.getOperations()
