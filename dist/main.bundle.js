@@ -346,7 +346,7 @@ var AppComponent = (function () {
         //Construct Recruit data
         var RecruitData = new Array();
         for (var i = 0; i < 2; i++) {
-            var newRecruit = new __WEBPACK_IMPORTED_MODULE_10__models_recruit__["a" /* Recruit */](i, 0, 0, 0);
+            var newRecruit = new __WEBPACK_IMPORTED_MODULE_10__models_recruit__["a" /* Recruit */](i);
             newRecruit._player = this._player;
             newRecruit._numbers = this._numbers;
             RecruitData.push(newRecruit);
@@ -628,19 +628,27 @@ HeaderModule = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Recruit; });
 var Recruit = (function () {
-    function Recruit(id, currentStore, countdown, lock) {
+    function Recruit(id) {
+        this.id = id;
     }
-    Object.defineProperty(Recruit.prototype, "capacity", {
-        //How many henchmen can the recruitment object hold?
+    Object.defineProperty(Recruit.prototype, "currentStore", {
+        //Get basic details from the player service
         get: function () {
-            return 5;
-            /*if (this.id == 0 || this.id == 1) { //Help Wanted Objects
-                var capacity = 1;
-                capacity += this._numbers.hiredHelpCapacity();
-                return capacity;
-            } else {
-                return 0;
-            }*/
+            return this._player.recruiting[this.id]['currentStore'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Recruit.prototype, "countdown", {
+        get: function () {
+            return this._player.recruiting[this.id]['countdown'];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Recruit.prototype, "lock", {
+        get: function () {
+            return this._player.recruiting[this.id]['lock'];
         },
         enumerable: true,
         configurable: true
@@ -1719,6 +1727,8 @@ var PrimaryLoopService = (function () {
     };
     //Events that occur every tick
     PrimaryLoopService.prototype.tick = function () {
+        //console.log(this._recruiting.recruits[0].currentStore);
+        //console.log(this._recruiting.recruits[0].countdown);
         if (!this.didOnce) {
             this.doOnce();
             this.didOnce = true;

@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
     //Construct Recruit data
     var RecruitData = new Array();
     for (var i = 0; i < 2; i++) {
-      let newRecruit = new Recruit(i, 0, 0, 0);
+      let newRecruit = new Recruit(i);
       newRecruit._player = this._player;
       newRecruit._numbers = this._numbers;
       RecruitData.push ( newRecruit );

@@ -38,6 +38,8 @@ export class PrimaryLoopService {
 
     //Events that occur every tick
     tick() {
+        //console.log(this._recruiting.recruits[0].currentStore);
+        //console.log(this._recruiting.recruits[0].countdown);
         
 
         

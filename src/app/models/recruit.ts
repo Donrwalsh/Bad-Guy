@@ -4,31 +4,30 @@ import { PACKAGE_ROOT_URL } from "@angular/core/src/application_tokens";
 
 export class Recruit {
     id: number;
-    currentStore: number;
-    countdown: number;
-    lock: number;
 
     public _player: PlayerService;
     public _numbers: NumbersService;
 
     constructor(
         id: number,
-        currentStore: number,
-        countdown: number,
-        lock: number
-    ) {}
-
-    //How many henchmen can the recruitment object hold?
-    get capacity() {
-        return 5;
-        /*if (this.id == 0 || this.id == 1) { //Help Wanted Objects
-            var capacity = 1;
-            capacity += this._numbers.hiredHelpCapacity();
-            return capacity;
-        } else {
-            return 0;
-        }*/
+    ) {
+        this.id = id;
     }
+
+    //Get basic details from the player service
+    get currentStore() {
+        return this._player.recruiting[this.id]['currentStore'];
+    }
+
+    get countdown() {
+        return this._player.recruiting[this.id]['countdown'];
+    }
+
+    get lock() {
+        return this._player.recruiting[this.id]['lock'];
+    }
+
+    
 
     /*
 
