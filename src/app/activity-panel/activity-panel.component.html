@@ -19,15 +19,15 @@
             </div>
         </div>
         <p class="title" *ngIf="_recruiting.areAnyUnlocked()">Recruitment</p>
-        <div *ngFor="let Recruiting of _player.recruiting; index as i">
+        <div *ngFor="let recruit of _recruiting.recruits; index as i">
             <div class="left-padding"></div>
-            <div *ngIf="_recruiting.recruits[i].isUnlocked" class="progress-no-add">
+            <div *ngIf="recruit.isUnlocked" class="progress-no-add">
                 <div [ngClass]="containerClass(i, 'recruiting')" (click)="_recruiting.collectById(i)" [ngStyle]="containerStyle(i, 'recruiting')">
                     <div [ngClass]="progressBarClass(i, 'recruiting')" [ngStyle]="styleProgressBar(i, 'recruiting')"></div>
                     <p [ngClass]="displayClass(i, 'recruiting')" class="help-wanted-display">
-                        <i class="generation-icon fa faa-slow faa-flash animated {{_recruiting.recruits[i].fa}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'recruiting')"></i>
-                        {{_recruiting.recruits[i].name}}
-                        <i class="collection-icon fa faa-slow animated {{_recruiting.recruits[i].fa}}" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'recruiting')"
+                        <i class="generation-icon fa faa-slow faa-flash animated {{recruit.fa}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'recruiting')"></i>
+                        {{recruit.name}}
+                        <i class="collection-icon fa faa-slow animated {{recruit.fa}}" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'recruiting')"
                             [ngClass]="collectionIcon(i, 'recruiting')"></i>
                     </p>
                 </div>

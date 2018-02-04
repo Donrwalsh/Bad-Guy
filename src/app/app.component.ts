@@ -9,6 +9,7 @@ import { RecruitingService } from './services/recruiting.service';
 import { OperatingService } from './services/operating.service';
 import { Scheme } from './models/scheme';
 import { Recruit } from './models/recruit';
+import { Train } from './models/train';
 
 // Import the DataService
 import { DataService } from './data.service';
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit {
     public _recruiting: RecruitingService,
     private _dataService: DataService,
   ) {
+    
     //Construct Scheme data from MongoDB
     this._dataService.getSchemes()
       .subscribe((res) => {
@@ -39,22 +41,35 @@ export class AppComponent implements OnInit {
           let newScheme = new Scheme(res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree);
           newScheme._player = this._player;
           newScheme._numbers = this._numbers;
-          SchemeData.push( newScheme );
+          SchemeData.push(newScheme);
         }
         this._scheming.schemes = SchemeData;
       });
-    //Construct Recruit data
+    
+    //Construct Recruit data from Angular logic
     var RecruitData = new Array();
-    for (var i = 0; i < 2; i++) {
+    for (var i = 0; i < _player.recruiting.length; i++) {
       let newRecruit = new Recruit(i);
       newRecruit._player = this._player;
       newRecruit._numbers = this._numbers;
-      RecruitData.push ( newRecruit );
+      RecruitData.push(newRecruit);
     }
     this._recruiting.recruits = RecruitData;
 
+    //Construct Train data from Angular logic
+    var TrainData = new Array();
+    for (var i = 0; i < _player.training.length; i++) {
+      let newTrain = new Train(i);
+      newTrain._player = this._player;
+      newTrain._numbers = this._numbers;
+      TrainData.push(newTrain);
+    }
+    console.log(TrainData);
+
+
+
     this._dataService.getOperations()
-      .subscribe(res =>  this._operating.operations = res)
+      .subscribe(res => this._operating.operations = res)
   }
 
   ngOnInit() {
