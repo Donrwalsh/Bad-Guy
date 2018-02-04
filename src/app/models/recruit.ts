@@ -1,6 +1,5 @@
 import { NumbersService } from "../services/core/numbers.service"
 import { PlayerService } from "../services/core/player.service"
-import { PACKAGE_ROOT_URL } from "@angular/core/src/application_tokens";
 
 export class Recruit {
     id: number;

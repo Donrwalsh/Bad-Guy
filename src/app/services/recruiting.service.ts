@@ -26,7 +26,7 @@ export class RecruitingService {
         }
         return false;
     }
-    
+
     //ACTIONS
 
     //Harvesting training objects.
@@ -52,7 +52,7 @@ export class RecruitingService {
     //Determinining countdown numbers
     getRecruitingCountdownById(id) {
         if (id == 0 || id == 1) { //Help Wanted Objects
-            var rate = 50;
+            var rate = 90;
             rate -= this._numbers.hiredHelpRecruitRate()
             return rate;
         }

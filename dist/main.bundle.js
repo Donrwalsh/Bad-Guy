@@ -887,85 +887,6 @@ var Train = (function () {
             this.fa = "fa-shield";
         }
     }
-    Object.defineProperty(Train.prototype, "currentStore", {
-        //Get basic details from the player service
-        get: function () {
-            return this._player.recruiting[this.id]['currentStore'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Train.prototype, "countdown", {
-        get: function () {
-            return this._player.recruiting[this.id]['countdown'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Train.prototype, "lock", {
-        get: function () {
-            return this._player.recruiting[this.id]['lock'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Train.prototype, "type", {
-        //Other structural details, not necessarily coming from the player service.
-        get: function () {
-            if (this.id == 0 || this.id == 1) {
-                return 'help-wanted';
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Train.prototype, "capacity", {
-        get: function () {
-            if (this.type == 'help-wanted') {
-                var capacity = 1;
-                capacity += this._numbers.hiredHelpCapacity();
-                return capacity;
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Train.prototype, "percentage", {
-        get: function () {
-            if (this.isRecruiting) {
-                return 100 * (1 - (this.countdown / this.lock));
-            }
-            else {
-                return 100;
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Train.prototype, "isUnlocked", {
-        //Activity properties of this recruitment object. Used extensively by the view.
-        get: function () {
-            if (this.type == 'help-wanted') {
-                return this._numbers.hiredHelpUnlocked(this.id);
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Train.prototype, "isFull", {
-        get: function () {
-            return this.currentStore == this.capacity;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Train.prototype, "isRecruiting", {
-        get: function () {
-            return this.isUnlocked && !this.isFull;
-        },
-        enumerable: true,
-        configurable: true
-    });
     return Train;
 }());
 
@@ -1186,7 +1107,7 @@ var NumbersService = (function () {
         var reduce = 0;
         for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
             if (_i == 2) {
-                reduce += 150;
+                reduce += 30;
             }
         }
         return reduce;
@@ -2048,7 +1969,7 @@ var RecruitingService = (function () {
     //Determinining countdown numbers
     RecruitingService.prototype.getRecruitingCountdownById = function (id) {
         if (id == 0 || id == 1) {
-            var rate = 50;
+            var rate = 90;
             rate -= this._numbers.hiredHelpRecruitRate();
             return rate;
         }

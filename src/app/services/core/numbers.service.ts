@@ -96,7 +96,7 @@ export class NumbersService {
     hiredHelpRecruitRate() {
         var reduce = 0;
         for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
-            if (_i == 2) { reduce += 150}
+            if (_i == 2) { reduce += 30}
         }
         return reduce;
     }
