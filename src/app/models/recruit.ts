@@ -4,6 +4,8 @@ import { PACKAGE_ROOT_URL } from "@angular/core/src/application_tokens";
 
 export class Recruit {
     id: number;
+    name: string;
+    fa: string;
 
     public _player: PlayerService;
     public _numbers: NumbersService;
@@ -12,6 +14,17 @@ export class Recruit {
         id: number,
     ) {
         this.id = id;
+
+        if (this.id === 0) 
+        { 
+            this.name = "Sign Stapled to a Post";
+            this.fa = "fa-user";
+        }
+        if (this.id === 1)
+        {
+            this.name = "Newspaper Ad";
+            this.fa = "fa-user";
+        }
     }
 
     //Get basic details from the player service
@@ -27,104 +40,42 @@ export class Recruit {
         return this._player.recruiting[this.id]['lock'];
     }
 
-    
-
-    /*
-
-
-
-
-    ref: number;
-    name: string;
-    description: Array<string>;
-    flavor: Array<string>;
-    tree: string;
-    fa: string;
-
-    public _player: PlayerService;
-    public _numbers: NumbersService;
-
-    constructor(
-        ref: number,
-        name: string,
-        description: Array<string>,
-        flavor: Array<string>,
-        tree: string,
-    ) {
-        this.ref = ref;
-        this.name = name;
-        this.description = description;
-        this.flavor = flavor;
-        this.tree = tree;
-
-        if (this.ref == 0) { this.fa = 'fa-graduation-cap'}
-        if (this.ref == 1) { this.fa = 'fa-hand-spock-o'}
-        if (this.ref == 2) { this.fa = 'fa-flash'}
-        if (this.ref == 3) { this.fa = 'fa-address-book'}
-        if (this.ref == 4) { this.fa = 'fa-shield'}
-        if (this.ref == 5) { this.fa = 'fa-bed'}
-        if (this.ref == 6) { this.fa = 'fa-usd'}
-        if (this.ref == 7) { this.fa = 'fa-suitcase'}
-        if (this.ref == 8) { this.fa = 'fa-microphone'}
-        if (this.ref == 9) { this.fa = 'fa-angle-up'}
-    }   
-
-    //Array of exp amounts for level advancement
-    get expTarget() {
-        return this._numbers.schemeExp[this.ref];
+    //Other structural details, not necessarily coming from the player service.
+    get type() {
+        if (this.id == 0 || this.id == 1) {
+            return 'help-wanted';
+        }
     }
 
-    //Array of lair level requirements
-    get lairReq() {
-        return this._numbers.schemeLairReq[this.ref];
+    get capacity() {
+        if (this.type == 'help-wanted') {
+            var capacity = 1;
+            capacity += this._numbers.hiredHelpCapacity();
+            return capacity;
+        }
     }
 
-    //Accrued exp so far toward the current level
-    get exp() {
-        return this._player.schemes[this.ref]['exp'];
-    }
-
-    //Current scheme level (0-19)
-    get level() {
-        return this._player.schemes[this.ref]['level'];
-    }
-
-    //Amount of exp to accrue for advancement to next level
-    get target() {
-        return this.expTarget[this.level]
-    }
-
-    //Are all prerequisites met to begin scheming?
-    get canBeLearned() {
-        return this.learnLair;
-    }
-
-    //Does the player satisfy the lair requirement?
-    get learnLair() {
-        return this.lairReq[this.level + 1] <= this._player.lairLevel;
-    }
-
-    //Getter for preview flyout
-    get previewDescription() {
-        return this.description[this.level]
-    }
-
-    //Getter for preview flyout
-    get previewFlavor() {
-        return this.flavor[this.level]
-    }
-
-    //Getter for preview flyout
-    get previewLairLevel() {
-        return this.lairReq[this.level+1]
-    }
-
-    //Getter for header progress bar
     get percentage() {
-        return Math.round((this.exp / this.target) * 100);
+        if (this.isRecruiting) {
+            return 100 * (1 - (this.countdown / this.lock))
+        } else {
+            return 100
+        }
     }
 
-    
-    */
+    //Activity properties of this recruitment object. Used extensively by the view.
+    get isUnlocked() {
+        if (this.type == 'help-wanted') {
+            return this._numbers.hiredHelpUnlocked(this.id);
+        }
+    }
+
+    get isFull() {
+        return this.currentStore == this.capacity;
+    }
+
+    get isRecruiting() {
+        return this.isUnlocked && !this.isFull;
+    }
 
 }

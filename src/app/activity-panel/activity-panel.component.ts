@@ -40,7 +40,7 @@ export class ActivityPanelComponent {
     //This will break if more than 2 types are used.
     styleProgressBar(id, type) {
         return {
-            'width': type == 'recruiting' ? this._recruiting.getPercentageById(id) + '%' : this._training.getPercentageById(id) + '%' 
+            'width': type == 'recruiting' ? this._recruiting.recruits[id].percentage + '%' : this._training.getPercentageById(id) + '%' 
         }
     }
 
@@ -64,7 +64,7 @@ export class ActivityPanelComponent {
         if (type == "training") {
             return {'visibility': this._training.isTrainingById(0) ? 'initial' : 'hidden' }
         } else {
-            return {'visibility': this._recruiting.isRecruitingById(0) ? 'initial' : 'hidden' }
+            return {'visibility': this._recruiting.recruits[id].isRecruiting ? 'initial' : 'hidden' }
         }
         
             

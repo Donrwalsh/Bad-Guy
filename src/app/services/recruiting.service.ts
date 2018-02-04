@@ -17,65 +17,31 @@ export class RecruitingService {
     recruits: Array<Recruit>; //Raw Recruitment objects. Constructed by app.component.
     collecting: boolean = false; //Collection lockout
 
-    getCapacityById(id) {
-        if (id == 0 || id == 1) { //Help Wanted Objects
-            var capacity = 1;
-            capacity += this._numbers.hiredHelpCapacity();
-            return capacity;
-        }
-    }
-
-    getPercentageById(id) {
-        if (this.isRecruitingById(id)) {
-            return 100 * (1 - (this._player.recruiting[id]['countdown'] / this._player.recruiting[id]['lock']))
-        } else {
-            return 100
-        }
-    }
-
-    getRecruitmentNameById(id) {
-        if (id == 0) { return "Sign Stapled to a Post" }
-        if (id == 1) { return "Newspaper Ad" }
-    }
-
-    getFaById(id) {
-        if (id == 0) { return "fa-user" }
-        if (id == 1) { return "fa-user" }
-    }
-
-    isUnlockedById(id) {
-        if (id == 0 || id == 1) {//Help Wanted Objects
-            return this._numbers.hiredHelpUnlocked(id);
-        }
-    }
-
+    //Used in displaying the training section
     areAnyUnlocked() {
-        for (var _i = 0; _i < this._player.recruiting.length; _i++) {
-            if (this.isUnlockedById(_i)) {
+        for (var _i = 0; _i < this.recruits.length; _i++) {
+            if (this.recruits[_i].isUnlocked) {
                 return true;
             }
         }
         return false;
     }
-
-    isFullById(id) {
-        return this._player.recruiting[id]['currentStore'] == this.getCapacityById(id);
-    }
-
     
+    //ACTIONS
 
+    //Harvesting training objects.
     collectById(id) {
-        if (this._player.recruiting[id]['currentStore'] > 0) {
+        if (this.recruits[id].currentStore > 0) {
             if (!this.collecting) {
                 this.collecting = true;
-                var collectMarker = this._player.recruiting[id]['currentStore'];
+                var collectMarker = this.recruits[id].currentStore;
                 for (var _i = 0; _i < collectMarker; _i++) {
                     if (this._player.currentHenchmen < this._inventory.henchmenCapacity) {
                         this._player.currentHenchmen++;
-                        this._player.recruiting[id]['currentStore']--;
+                        this._player.recruiting[id]['currentStore']--; //Modifies player service
                     }
                 }
-                if (this._player.recruiting[id]['countdown'] == 0) {
+                if (this.recruits[id].countdown == 0) {
                     this.resetCountdownById(id);
                 }
                 this.collecting = false;
@@ -83,9 +49,7 @@ export class RecruitingService {
         }
     }
 
-
-
-
+    //Determinining countdown numbers
     getRecruitingCountdownById(id) {
         if (id == 0 || id == 1) { //Help Wanted Objects
             var rate = 50;
@@ -94,30 +58,20 @@ export class RecruitingService {
         }
     }
 
-    isRecruitingById(id) {
-        if (this.isUnlockedById(id)) {
-
-            if (!this.isFullById(id)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     resetCountdownById(id) {
         this._player.recruiting[id]['countdown'] = this.getRecruitingCountdownById(id);
         this._player.recruiting[id]['lock'] = this.getRecruitingCountdownById(id);
     }
 
-
+    //LOOP
     tickById(id) {
-        if (this._player.recruiting[id]['countdown'] == 0) {
+        if (this.recruits[id].countdown == 0) {
             this.resetCountdownById(id);
         }
         this._player.recruiting[id]['countdown']--;
-        if (this._player.recruiting[id]['countdown'] == 0) {
+        if (this.recruits[id].countdown == 0) {
             this._player.recruiting[id]['currentStore']++;
-            if (!this.isFullById(id)) {
+            if (!this.recruits[id].isFull) {
                 this.resetCountdownById(id);
             }
         }

@@ -19,37 +19,28 @@ export class PrimaryLoopService {
         public _numbers: NumbersService,
         public _training: TrainingService) { }
 
-    //Flow logic is 1. Scheme 2. Recruit
-
     //Ticker set at one minute (@100 ms/s) for now.
     ticker: number = 600
 
     //Duplicate of above for replacement events.
     defaultTicker: number = 600;
 
-
+    //Used for one-off console logs - logging within the loop can be tedious.
     didOnce = false;
     doOnce() {
-        console.log(this._scheming.schemes);
-        console.log(this._player.recruiting);
+        //console.log(this._scheming.schemes);
+        //console.log(this._player.recruiting);
     }
-
-
 
     //Events that occur every tick
     tick() {
-        //console.log(this._recruiting.recruits[0].currentStore);
-        //console.log(this._recruiting.recruits[0].countdown);
-        
-
-        
 
         if (!this.didOnce) {
             this.doOnce();
             this.didOnce = true;
         }
 
-            /* Abandoned 'auto-player' functionality
+        /* In-progress 'auto-player' functionality
         if (!this._scheming.earningSchemePoints) {
             var selectionArray = [];
             for (i = 0; i < 9; i++) {
@@ -77,8 +68,8 @@ export class PrimaryLoopService {
         if (this._player.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
-        for (var i = 0; i < this._player.recruiting.length; i++) {
-            if (this._recruiting.isRecruitingById(i)) {
+        for (var i = 0; i < this._recruiting.recruits.length; i++) {
+            if (this._recruiting.recruits[i].isRecruiting) {
                 this._recruiting.tickById(i);
             }
         }
@@ -92,9 +83,6 @@ export class PrimaryLoopService {
                 this._operating.tickById(i);
             }
         }
-
-        
-
     }
 
     //Events that occur every second
@@ -122,7 +110,6 @@ export class PrimaryLoopService {
 
         if (this.ticker % 10 == 0) {
             this.second();
-
         }
         if (this.ticker % 600 == 0) {
             this.minute();

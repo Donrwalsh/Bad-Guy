@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PlayerService } from '../services/core/player.service';
 import { DataService } from '../data.service';
 import { SchemingService } from '../services/scheming.service'
 
@@ -10,9 +9,7 @@ import { SchemingService } from '../services/scheming.service'
 })
 export class SchemePanelComponent {
 
-    constructor(public _player: PlayerService,
-        public _scheming: SchemingService,
-    ) {}
+    constructor(public _scheming: SchemingService) {}
     
 }
 
