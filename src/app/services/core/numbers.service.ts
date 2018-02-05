@@ -111,6 +111,19 @@ export class NumbersService {
         return reduce;
     }
 
+    guardDutyUnlocked() {
+        return this._player.schemes[4]['level'] > 0;
+    }
+
+    guardDutyCapacity() {
+        var capacity = 0;
+        for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+            if (_i == 2) { capacity += 9; }
+        }
+
+        return capacity;
+    }
+
     //05: Lodging
     lodgingNumbers() {
         var increase = 0

@@ -1,17 +1,17 @@
 <div class="activity-panel">
     <div class="henchmen-column">
         <p class="title" *ngIf="_training.areAnyUnlocked()">Training</p>
-        <div *ngFor="let Training of _player.training; index as i">
-            <div class="left-padding" *ngIf="_training.isUnlockedById(i)"></div>
-            <div class="add-block" *ngIf="_training.isUnlockedById(i)">
+        <div *ngFor="let train of _training.trains; index as i">
+            <div class="left-padding" *ngIf="train.isUnlocked"></div>
+            <div class="add-block" *ngIf="train.isUnlocked">
                 <i class="add-to-queue-icon fa fa-plus" aria-hidden="true" (click)="_training.trainById(i)" [ngStyle]="addToQueueIconStyle(i)"></i>
             </div>
-            <div *ngIf="_training.isUnlockedById(i)" class="progress-with-add">
+            <div *ngIf="train.isUnlocked" class="progress-with-add">
                 <div [ngClass]="containerClass(i, 'training')" (click)="_training.collectById(i)" [ngStyle]="containerStyle(i, 'training')">
                     <div [ngClass]="progressBarClass(i, 'training')" [ngStyle]="styleProgressBar(i, 'training')"></div>
                     <p [ngClass]="displayClass(i, 'training')">
-                        <i class="generation-icon fa faa-slow faa-flash animated {{_training.getFaById(i)}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'training')"></i>
-                        {{_training.getUpgradeNameById(i)}}
+                        <i class="generation-icon fa faa-slow faa-flash animated {{train.fa}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'training')"></i>
+                        {{train.name}}
                         <i class="collection-icon fa faa-slow animated {{_training.getFaById(i)}}" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'training')"
                             [ngClass]="collectionIcon(i, 'training')"></i>
                     </p>

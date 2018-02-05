@@ -16,7 +16,7 @@ webpackEmptyAsyncContext.id = "../../../../../src lazy recursive";
 /***/ "../../../../../src/app/activity-panel/activity-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activity-panel\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let Training of _player.training; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlockedById(i)\"></div>\n            <div class=\"add-block\" *ngIf=\"_training.isUnlockedById(i)\">\n                <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.trainById(i)\" [ngStyle]=\"addToQueueIconStyle(i)\"></i>\n            </div>\n            <div *ngIf=\"_training.isUnlockedById(i)\" class=\"progress-with-add\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectById(i)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{_training.getUpgradeNameById(i)}}\n                        <i class=\"collection-icon fa faa-slow animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let recruit of _recruiting.recruits; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"recruit.isUnlocked\" class=\"progress-no-add\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectById(i)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{recruit.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"operations-column\" *ngIf=\"_operating.areAnyUnlocked()\">\n        <div class=\"padding-short\"></div>\n        <div class=\"operation-tab routine\" [ngStyle]=\"{'visibility': _operating.areRoutineOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-certificate tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operation-tab campaign\" [ngStyle]=\"{'visibility': _operating.areCampaignOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-book tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operation-tab ascension\" [ngStyle]=\"{'visibility': _operating.areAscensionOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-rocket tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"padding-short\"></div>\n        \n        <div class=\"divider-5\" *ngIf=\"_player.schemes[6]['level'] > 0\"></div>\n        <div class=\"routine-row\" *ngIf=\"_player.schemes[6]['level'] > 0\">\n            <div class=\"column\" *ngFor=\"let heist of _player.operating | slice: 0:5; let i = index\" (click)=\"_operating.operationPreview(i)\"\n                [ngStyle]=\"{'cursor': heist['available'] && _operating.isUnlockedById(i) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(i)\" [ngStyle]=\"{'color': _operating.getFaColorById(i)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[6]['level'] > 0\"></div>\n\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[7]['level'] > 0\"></div>\n        <div class=\"routine-row\" *ngIf=\"_player.schemes[7]['level'] > 0\">\n            <div class=\"column\" *ngFor=\"let deal of _player.operating | slice: 5:10; let i = index\" (click)=\"_operating.operationPreview(i+5)\"\n                [ngStyle]=\"{'cursor': deal['available'] && _operating.isUnlockedById(i+5) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(i+5)\" [ngStyle]=\"{'color': _operating.getFaColorById(i+5)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[7]['level'] > 0\"></div>\n\n        \n        <div *ngIf=\"_operating.showPreview\" class=\"operation-flyout\">\n            <div class=\"inner-content\" [ngStyle]=\"{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}\">\n                    <div class=\"operation-result\" [ngStyle]=\"{'visibility': !_operating.operatingNow ? 'hidden' : 'initial'}\">\n                \n                \n                    <p class=\"report\">\n                        <i class=\"operation-icon fa fa-usd\" aria-hidden=\"true\" style=\"margin-right:.2rem;margin-top:.3rem;\"></i>\n                        {{_operating.previewOperation['name']}} was a {{_operating.operateReadout['result']}}</p>\n                    <p *ngIf=\"_operating.operateReadout['lost'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['lost']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i> lost.</p>\n                    <p *ngIf=\"_operating.operateReadout['earned'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['earned']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> earned.</p>\n                    <p *ngIf=\"_operating.operateReadout['notoriety'] > 0\" style=\"margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> earned.</p>\n                    <p (click)=\"_operating.closeCompleteOperation()\" style=\"cursor: pointer;width:75%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>\n                </div>\n\n\n                <p class=\"operation-name\" [ngStyle]=\"hideIfOperating()\">\n                    <i class=\"operation-icon fa\" [ngClass]=\"previewOperationFa()\" aria-hidden=\"true\"></i>\n                    {{_operating.previewOperation['name']}}\n                </p>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\" >Requires:</p></div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\" >\n                    <p class=\"flyout-left\">{{_operating.previewOperation['henchmen']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Risk:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperationRiskDisplay()}}%</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Rewards:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['reward']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Success:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['success']*100}}%</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Notoriety:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"operate-button left\" [ngStyle]=\"operateButtonInPreviewStyle()\" (click)=\"_operating.operate()\"> Operate </p>\n                    <p class=\"operate-button right\" (click)=\"_operating.closeCompleteOperation()\"> Abandon</p>\n                </div>\n            </div>\n        </div>\n        <div *ngFor=\"let Operating of _player.operating; index as i\">\n            <div *ngIf=\"_operating.isUnlockedById(i) && !_player.operating[i]['available']\" style=\"width:90%;display:inline-block;margin-left:5%;margin-right:5%;\">\n                <div style=\"border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;\">\n                    <div style=\"background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;\" [ngStyle]=\"{'width': this._operating.getPercentageById(i) + '%' }\"></div>\n                    <p style=\"color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated fa-usd\" aria-hidden=\"true\" style=\"margin-left:.5rem;margin-right:.5rem\"></i>\n                        Slot {{i+1}} Recharging\n                    </p>\n                </div>\n            </div>\n        </div>\n\n\n    </div>\n\n</div>"
+module.exports = "<div class=\"activity-panel\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let train of _training.trains; index as i\">\n            <div class=\"left-padding\" *ngIf=\"train.isUnlocked\"></div>\n            <div class=\"add-block\" *ngIf=\"train.isUnlocked\">\n                <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.trainById(i)\" [ngStyle]=\"addToQueueIconStyle(i)\"></i>\n            </div>\n            <div *ngIf=\"train.isUnlocked\" class=\"progress-with-add\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectById(i)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{train.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{_training.getFaById(i)}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let recruit of _recruiting.recruits; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"recruit.isUnlocked\" class=\"progress-no-add\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectById(i)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{recruit.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"operations-column\" *ngIf=\"_operating.areAnyUnlocked()\">\n        <div class=\"padding-short\"></div>\n        <div class=\"operation-tab routine\" [ngStyle]=\"{'visibility': _operating.areRoutineOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-certificate tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operation-tab campaign\" [ngStyle]=\"{'visibility': _operating.areCampaignOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-book tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operation-tab ascension\" [ngStyle]=\"{'visibility': _operating.areAscensionOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-rocket tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"padding-short\"></div>\n        \n        <div class=\"divider-5\" *ngIf=\"_player.schemes[6]['level'] > 0\"></div>\n        <div class=\"routine-row\" *ngIf=\"_player.schemes[6]['level'] > 0\">\n            <div class=\"column\" *ngFor=\"let heist of _player.operating | slice: 0:5; let i = index\" (click)=\"_operating.operationPreview(i)\"\n                [ngStyle]=\"{'cursor': heist['available'] && _operating.isUnlockedById(i) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(i)\" [ngStyle]=\"{'color': _operating.getFaColorById(i)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[6]['level'] > 0\"></div>\n\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[7]['level'] > 0\"></div>\n        <div class=\"routine-row\" *ngIf=\"_player.schemes[7]['level'] > 0\">\n            <div class=\"column\" *ngFor=\"let deal of _player.operating | slice: 5:10; let i = index\" (click)=\"_operating.operationPreview(i+5)\"\n                [ngStyle]=\"{'cursor': deal['available'] && _operating.isUnlockedById(i+5) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(i+5)\" [ngStyle]=\"{'color': _operating.getFaColorById(i+5)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[7]['level'] > 0\"></div>\n\n        \n        <div *ngIf=\"_operating.showPreview\" class=\"operation-flyout\">\n            <div class=\"inner-content\" [ngStyle]=\"{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}\">\n                    <div class=\"operation-result\" [ngStyle]=\"{'visibility': !_operating.operatingNow ? 'hidden' : 'initial'}\">\n                \n                \n                    <p class=\"report\">\n                        <i class=\"operation-icon fa fa-usd\" aria-hidden=\"true\" style=\"margin-right:.2rem;margin-top:.3rem;\"></i>\n                        {{_operating.previewOperation['name']}} was a {{_operating.operateReadout['result']}}</p>\n                    <p *ngIf=\"_operating.operateReadout['lost'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['lost']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i> lost.</p>\n                    <p *ngIf=\"_operating.operateReadout['earned'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['earned']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> earned.</p>\n                    <p *ngIf=\"_operating.operateReadout['notoriety'] > 0\" style=\"margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> earned.</p>\n                    <p (click)=\"_operating.closeCompleteOperation()\" style=\"cursor: pointer;width:75%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>\n                </div>\n\n\n                <p class=\"operation-name\" [ngStyle]=\"hideIfOperating()\">\n                    <i class=\"operation-icon fa\" [ngClass]=\"previewOperationFa()\" aria-hidden=\"true\"></i>\n                    {{_operating.previewOperation['name']}}\n                </p>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\" >Requires:</p></div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\" >\n                    <p class=\"flyout-left\">{{_operating.previewOperation['henchmen']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Risk:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperationRiskDisplay()}}%</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Rewards:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['reward']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Success:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['success']*100}}%</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Notoriety:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"operate-button left\" [ngStyle]=\"operateButtonInPreviewStyle()\" (click)=\"_operating.operate()\"> Operate </p>\n                    <p class=\"operate-button right\" (click)=\"_operating.closeCompleteOperation()\"> Abandon</p>\n                </div>\n            </div>\n        </div>\n        <div *ngFor=\"let Operating of _player.operating; index as i\">\n            <div *ngIf=\"_operating.isUnlockedById(i) && !_player.operating[i]['available']\" style=\"width:90%;display:inline-block;margin-left:5%;margin-right:5%;\">\n                <div style=\"border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;\">\n                    <div style=\"background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;\" [ngStyle]=\"{'width': this._operating.getPercentageById(i) + '%' }\"></div>\n                    <p style=\"color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated fa-usd\" aria-hidden=\"true\" style=\"margin-left:.5rem;margin-right:.5rem\"></i>\n                        Slot {{i+1}} Recharging\n                    </p>\n                </div>\n            </div>\n        </div>\n\n\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -362,7 +362,7 @@ var AppComponent = (function () {
             newTrain._numbers = this._numbers;
             TrainData.push(newTrain);
         }
-        console.log(TrainData);
+        this._training.trains = TrainData;
         this._dataService.getOperations()
             .subscribe(function (res) { return _this._operating.operations = res; });
     }
@@ -887,6 +887,26 @@ var Train = (function () {
             this.fa = "fa-shield";
         }
     }
+    Object.defineProperty(Train.prototype, "isUnlocked", {
+        get: function () {
+            if (this.id == 0) {
+                return this._numbers.guardDutyUnlocked;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Train.prototype, "capacity", {
+        get: function () {
+            if (this.id === 0) {
+                var capacity = 1;
+                capacity += this._numbers.guardDutyCapacity();
+                return capacity;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Train;
 }());
 
@@ -1125,6 +1145,18 @@ var NumbersService = (function () {
         }
         return reduce;
     };
+    NumbersService.prototype.guardDutyUnlocked = function () {
+        return this._player.schemes[4]['level'] > 0;
+    };
+    NumbersService.prototype.guardDutyCapacity = function () {
+        var capacity = 0;
+        for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+            if (_i == 2) {
+                capacity += 9;
+            }
+        }
+        return capacity;
+    };
     //05: Lodging
     NumbersService.prototype.lodgingNumbers = function () {
         var increase = 0;
@@ -1221,16 +1253,16 @@ var PlayerService = (function () {
         this.lairLevel = 0;
         //Primary scheme object. Stores level and accumulated exp toward next level by scheme ref.
         this.schemes = [
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 } //9 Starter Lair, not coded.
+            { level: 1, exp: 0 },
+            { level: 1, exp: 0 },
+            { level: 1, exp: 0 },
+            { level: 1, exp: 0 },
+            { level: 1, exp: 0 },
+            { level: 1, exp: 0 },
+            { level: 1, exp: 0 },
+            { level: 1, exp: 0 },
+            { level: 1, exp: 0 },
+            { level: 1, exp: 0 } //9 Starter Lair, not coded.
         ];
         this.earningSchemePoints = false;
         //Henchmen
@@ -1815,6 +1847,7 @@ var PrimaryLoopService = (function () {
         this.didOnce = false;
     }
     PrimaryLoopService.prototype.doOnce = function () {
+        console.log(this._training.trains);
         //console.log(this._scheming.schemes);
         //console.log(this._player.recruiting);
     };
@@ -2134,27 +2167,28 @@ var TrainingService = (function () {
         this.training = false;
         this.collecting = false;
     }
-    TrainingService.prototype.getCapacityById = function (id) {
-        if (id == 0) {
-            //Starting capacity is 1
-            var capacity = 1;
-            //Guard Duty increases capacity by static amounts.
-            for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
-                if (_i == 2) {
-                    capacity += 9;
-                }
-            }
-            return capacity;
+    /*
+    getCapacityById(id) {
+    if (id == 0) { //Guard Training Capacity
+        //Starting capacity is 1
+        var capacity = 1;
+
+        //Guard Duty increases capacity by static amounts.
+        for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+            if (_i == 2) { capacity += 9; }
         }
-    };
-    TrainingService.prototype.isUnlockedById = function (id) {
-        if (id == 0) {
-            return this._player.schemes[4]['level'] > 0;
-        }
-    };
+
+        return capacity;
+    }
+}
+
+ 
+isUnlockedById(id) {
+    if (id == 0) { return this._player.schemes[4]['level'] > 0; }
+}*/
     TrainingService.prototype.areAnyUnlocked = function () {
-        for (var _i = 0; _i < this._player.training.length; _i++) {
-            if (this.isUnlockedById(_i)) {
+        for (var _i = 0; _i < this.trains.length; _i++) {
+            if (this.trains[_i].isUnlocked) {
                 return true;
             }
         }
@@ -2171,10 +2205,10 @@ var TrainingService = (function () {
         }
     };
     TrainingService.prototype.isFullById = function (id) {
-        return this._player.training[id]['currentStore'] == this.getCapacityById(id);
+        return this._player.training[id]['currentStore'] == this.trains[id].capacity;
     };
     TrainingService.prototype.isTrainingById = function (id) {
-        if (this.isUnlockedById(id)) {
+        if (this.trains[id].isUnlocked) {
             if (!this.isFullById(id)) {
                 if (this._player.training[id]['queued'] > 0) {
                     return true;
@@ -2206,7 +2240,7 @@ var TrainingService = (function () {
     });
     TrainingService.prototype.canTrainById = function (id) {
         if (this._player.currentHenchmen > 0) {
-            if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.getCapacityById(id)) {
+            if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.trains[id].capacity) {
                 return true;
             }
         }
@@ -2216,7 +2250,7 @@ var TrainingService = (function () {
         if (id == 0) {
             if (this._player.currentHenchmen > 0) {
                 if (!this.training) {
-                    if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.getCapacityById(id)) {
+                    if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.trains[id].capacity) {
                         this.training = true;
                         this._player.currentHenchmen--;
                         this._player.training[id]['queued']++;

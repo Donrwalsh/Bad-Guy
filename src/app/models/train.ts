@@ -20,6 +20,20 @@ export class Train {
             this.fa = "fa-shield";
         }
     }
+
+    get isUnlocked() {
+        if (this.id == 0) {
+            return this._numbers.guardDutyUnlocked;
+        }
+    }
+
+    get capacity() {
+        if (this.id === 0) { //Guards
+            var capacity = 1;
+            capacity += this._numbers.guardDutyCapacity();
+            return capacity;
+        }
+    }
     /*
 
     //Get basic details from the player service

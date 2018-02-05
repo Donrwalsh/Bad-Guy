@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { PlayerService } from "./core/player.service";
 import { InventoryService } from "./inventory.service";
 import { NumbersService } from "./core/numbers.service";
+import { Train } from "../models/train";
 
 @Injectable()
 export class TrainingService {
@@ -10,27 +11,34 @@ export class TrainingService {
         public _numbers: NumbersService,
         public _inventory: InventoryService) { }
 
+
+    //STRUCTURAL VARIABLES
+    trains: Array<Train>; //Raw Training objects. Constructed by app.component.
+
+    
+    /*
     getCapacityById(id) {
-        if (id == 0) { //Guard Training Capacity
-            //Starting capacity is 1
-            var capacity = 1;
+    if (id == 0) { //Guard Training Capacity
+        //Starting capacity is 1
+        var capacity = 1;
 
-            //Guard Duty increases capacity by static amounts.
-            for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
-                if (_i == 2) { capacity += 9; }
-            }
-
-            return capacity;
+        //Guard Duty increases capacity by static amounts.
+        for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+            if (_i == 2) { capacity += 9; }
         }
-    }
 
-    isUnlockedById(id) {
-        if (id == 0) { return this._player.schemes[4]['level'] > 0; }
+        return capacity;
     }
+}
+
+ 
+isUnlockedById(id) {
+    if (id == 0) { return this._player.schemes[4]['level'] > 0; }
+}*/
 
     areAnyUnlocked() {
-        for (var _i = 0; _i < this._player.training.length; _i++) {
-            if (this.isUnlockedById(_i)) {
+        for (var _i = 0; _i < this.trains.length; _i++) {
+            if (this.trains[_i].isUnlocked) {
                 return true;
             }
         }
@@ -46,11 +54,11 @@ export class TrainingService {
     }
 
     isFullById(id) {
-        return this._player.training[id]['currentStore'] == this.getCapacityById(id);
+        return this._player.training[id]['currentStore'] == this.trains[id].capacity;
     }
 
     isTrainingById(id) {
-        if (this.isUnlockedById(id)) {
+        if (this.trains[id].isUnlocked) {
             if (!this.isFullById(id)) {
                 if (this._player.training[id]['queued'] > 0) {
                     return true;
@@ -76,7 +84,7 @@ export class TrainingService {
 
     canTrainById(id) {
         if (this._player.currentHenchmen > 0) {
-            if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.getCapacityById(id)) {
+            if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.trains[id].capacity) {
                 return true;
             }
         }
@@ -87,7 +95,7 @@ export class TrainingService {
         if (id == 0) { //Guards
             if (this._player.currentHenchmen > 0) {
                 if (!this.training) {
-                    if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.getCapacityById(id)) {
+                    if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.trains[id].capacity) {
                         this.training = true;
                         this._player.currentHenchmen--;
                         this._player.training[id]['queued']++;

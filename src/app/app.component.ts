@@ -64,9 +64,7 @@ export class AppComponent implements OnInit {
       newTrain._numbers = this._numbers;
       TrainData.push(newTrain);
     }
-    console.log(TrainData);
-
-
+    this._training.trains = TrainData;
 
     this._dataService.getOperations()
       .subscribe(res => this._operating.operations = res)
