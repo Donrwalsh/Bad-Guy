@@ -13,6 +13,7 @@ export class Recruit {
         id: number,
     ) {
         this.id = id;
+        
 
         if (this.id === 0) 
         { 
@@ -26,6 +27,8 @@ export class Recruit {
         }
     }
 
+    
+    
     //Get basic details from the player service
     get currentStore() {
         return this._player.recruiting[this.id]['currentStore'];

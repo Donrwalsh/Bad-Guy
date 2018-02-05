@@ -12,7 +12,7 @@
                     <p [ngClass]="displayClass(i, 'training')">
                         <i class="generation-icon fa faa-slow faa-flash animated {{train.fa}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'training')"></i>
                         {{train.name}}
-                        <i class="collection-icon fa faa-slow animated {{_training.getFaById(i)}}" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'training')"
+                        <i class="collection-icon fa faa-slow animated {{train.fa}}" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'training')"
                             [ngClass]="collectionIcon(i, 'training')"></i>
                     </p>
                 </div>

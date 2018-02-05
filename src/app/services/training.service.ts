@@ -15,7 +15,16 @@ export class TrainingService {
     //STRUCTURAL VARIABLES
     trains: Array<Train>; //Raw Training objects. Constructed by app.component.
 
-    
+    //Section displays only if a recruiting object has been unlocked
+    areAnyUnlocked() {
+        for (var _i = 0; _i < this.trains.length; _i++) {
+            if (this.trains[_i].isUnlocked) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /*
     getCapacityById(id) {
     if (id == 0) { //Guard Training Capacity
@@ -30,21 +39,6 @@ export class TrainingService {
         return capacity;
     }
 }
-
- 
-isUnlockedById(id) {
-    if (id == 0) { return this._player.schemes[4]['level'] > 0; }
-}*/
-
-    areAnyUnlocked() {
-        for (var _i = 0; _i < this.trains.length; _i++) {
-            if (this.trains[_i].isUnlocked) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     getUpgradeNameById(id) {
         if (id == 0) { return "Guard" }
     }
@@ -52,14 +46,15 @@ isUnlockedById(id) {
     getFaById(id) {
         if (id == 0) { return "fa-shield" }
     }
+ 
+isUnlockedById(id) {
+    if (id == 0) { return this._player.schemes[4]['level'] > 0; }
+}*/
 
-    isFullById(id) {
-        return this._player.training[id]['currentStore'] == this.trains[id].capacity;
-    }
 
     isTrainingById(id) {
         if (this.trains[id].isUnlocked) {
-            if (!this.isFullById(id)) {
+            if (!this.trains[id].isFull) {
                 if (this._player.training[id]['queued'] > 0) {
                     return true;
                 }
@@ -161,7 +156,7 @@ isUnlockedById(id) {
         if (this._player.training[id]['countdown'] == 0) {
             this._player.training[id]['currentStore']++;
             this._player.training[id]['queued']--;
-            if (!this.isFullById(id) && this._player.training[id]['queued'] > 0) {
+            if (!this.trains[id].isFull && this._player.training[id]['queued'] > 0) {
                 this.resetCountdownById(id);
             }
         }

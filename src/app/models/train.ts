@@ -21,6 +21,10 @@ export class Train {
         }
     }
 
+    get currentStore() {
+        return this._player.training[this.id]['currentStore'];
+    }
+
     get isUnlocked() {
         if (this.id == 0) {
             return this._numbers.guardDutyUnlocked;
@@ -88,4 +92,8 @@ export class Train {
     }
     */
 
+
+    get isFull() {
+        return this.currentStore == this.capacity;
+    }
 }

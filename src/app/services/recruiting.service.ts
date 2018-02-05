@@ -17,7 +17,7 @@ export class RecruitingService {
     recruits: Array<Recruit>; //Raw Recruitment objects. Constructed by app.component.
     collecting: boolean = false; //Collection lockout
 
-    //Used in displaying the training section
+    //Section displays only if a recruiting object has been unlocked
     areAnyUnlocked() {
         for (var _i = 0; _i < this.recruits.length; _i++) {
             if (this.recruits[_i].isUnlocked) {

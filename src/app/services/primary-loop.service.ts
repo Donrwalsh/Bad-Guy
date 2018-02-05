@@ -29,6 +29,7 @@ export class PrimaryLoopService {
     didOnce = false;
     doOnce() {
         console.log(this._training.trains);
+        console.log(this._recruiting.recruits);
         //console.log(this._scheming.schemes);
         //console.log(this._player.recruiting);
     }
