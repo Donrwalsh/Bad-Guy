@@ -6,11 +6,6 @@ import { Recruit } from '../../models/recruit';
 @Injectable()
 export class PlayerService {
 
-    //Everything in this service is saved. All game details can be derived from this service.
-
-    //Not yet implemented, but used for scheme prereqs
-    lairLevel: number = 0;
-
     //Henchmen
     currentHenchmen: number = 0;
     recruiting: Array<Object> = [

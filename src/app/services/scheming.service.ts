@@ -3,10 +3,11 @@ import { PlayerService } from "./core/player.service";
 import { NumbersService } from "./core/numbers.service";
 import { Scheme } from "../models/scheme"
 import { Base } from "../base";
+import { BaseNum } from "../base-num";
 import { BaseService } from "../services/base.service";
 
 @Injectable()
-export class SchemingService extends Base {
+export class SchemingService extends BaseNum {
 
     constructor(public _player: PlayerService,
         public _base: BaseService,
@@ -20,23 +21,23 @@ export class SchemingService extends Base {
     
     //Decide whether to display the "Scheme" button in the flyout
     showSchemeButtonInPreviewScheme() {
-        return !this._base.earningSchemePoints && this.canLearn(this.previewScheme) || ((this.previewScheme != Base.CURRENT_SCHEME) && this.canLearn(this.previewScheme));
+        return !Base.EARNING_SCHEME_POINTS && this.canLearn(this.previewScheme) || ((this.previewScheme != Base.CURRENT_SCHEME) && this.canLearn(this.previewScheme));
     }
 
-    //Only supports lair level currently.
-    learnLair(scheme : Scheme) {
-        return scheme.lairReq[scheme.level] <= this._player.lairLevel;
-    }
-
+    //canLearn() is the aggregate. It consults multiple methods to determine learnability.
     canLearn(scheme: Scheme) {
         return this.learnLair(scheme);
+    }
+
+    learnLair(scheme : Scheme) {
+        return scheme.lairReq[scheme.level] <= Base.lairLevel;
     }
 
     //ACTIONS
 
     //Open the flyout and display preview scheme details.
-    schemePreview(id) {
-        this.previewScheme = Base.SCHEMES[id];
+    schemePreview(scheme : Scheme) {
+        this.previewScheme = scheme;
         this.showPreview = true;
     }
 
@@ -60,28 +61,28 @@ export class SchemingService extends Base {
     //LOOP GETTERS
     get schemePointsHatchedThisTick() {
         var hatched = 0;
-        hatched += this._numbers.quickThinkingNumbers();
+        hatched += this.quickThinkingNumbers; // T0 Scheme
         return hatched;
     }
 
     get schemePointsHatchedThisSecond() {
         var hatched = 1;
-        hatched += this._numbers.mastermindNumbers();
+        hatched += this.mastermindNumbers; // T0 Scheme
         return hatched;
     }
 
     get schemePointsHatchedThisMinute() {
         var hatched = 0;
-        hatched += this._numbers.coldLogicNumbers();
+        hatched += this.coldLogicNumbers; // T0 Scheme
         return hatched;
     }
 
     //All scheme points earned should route through this function.
     earnSchemePoints(num) {
-        Base.SCHEMES[Base.CURRENT_SCHEME.ref].exp += num;
+        Base.CURRENT_SCHEME.exp += num;
         if (Base.CURRENT_SCHEME.exp >= Base.CURRENT_SCHEME.currentExpTarget){
-            Base.SCHEMES[Base.CURRENT_SCHEME.ref]['level']++;
-            Base.SCHEMES[Base.CURRENT_SCHEME.ref]['exp'] = 0;
+            Base.CURRENT_SCHEME.level++;
+            Base.CURRENT_SCHEME.exp = 0;
             Base.EARNING_SCHEME_POINTS = false;
         }
     }

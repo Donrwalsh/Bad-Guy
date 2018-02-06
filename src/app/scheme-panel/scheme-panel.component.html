@@ -16,7 +16,7 @@
     </div>
     <div class="scheme-area" *ngIf="_scheming.selected == 'scheming'">
         <div class="column">
-            <p class="node" *ngFor="let scheme of _base.schemes | slice: 0:3; let i = index" (click)="_scheming.schemePreview(scheme.ref)">
+            <p class="node" *ngFor="let scheme of _base.schemes | slice: 0:3; let i = index" (click)="_scheming.schemePreview(scheme)">
                 <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.canLearn(scheme) ? 'default' : 'grey' } "></i>
             </p>
         </div>
@@ -27,7 +27,7 @@
     </div>
     <div class="hench-area" *ngIf="_scheming.selected == 'henchmen'">
         <div class="column">
-            <p class="node" *ngFor="let scheme of _base.schemes | slice: 3:6; let i = index" (click)="_scheming.schemePreview(scheme.ref)">
+            <p class="node" *ngFor="let scheme of _base.schemes | slice: 3:6; let i = index" (click)="_scheming.schemePreview(scheme)">
                 <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.canLearn(scheme) ? 'default' : 'grey' } "></i>
             </p>
         </div>
@@ -38,7 +38,7 @@
     </div>
     <div class="operate-area" *ngIf="_scheming.selected == 'operations'">
         <div class="column">
-            <p class="node" *ngFor="let scheme of _base.schemes | slice: 6:9; let i = index" (click)="_scheming.schemePreview(scheme.ref)">
+            <p class="node" *ngFor="let scheme of _base.schemes | slice: 6:9; let i = index" (click)="_scheming.schemePreview(scheme)">
                 <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.canLearn(scheme) ? 'default' : 'grey' } "></i>
             </p>
         </div>
@@ -49,7 +49,7 @@
     </div>
     <div class="lair-area" *ngIf="_scheming.selected == 'lairs'">
         <div class="column">
-            <p class="node" *ngFor="let scheme of _base.schemes | slice: 9:10; let i = index" (click)="_scheming.schemePreview(scheme.ref)">
+            <p class="node" *ngFor="let scheme of _base.schemes | slice: 9:10; let i = index" (click)="_scheming.schemePreview(scheme)">
                 <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.canLearn(scheme) ? 'default' : 'grey' } "></i>
             </p>
         </div>

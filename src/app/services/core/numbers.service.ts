@@ -9,70 +9,7 @@ export class NumbersService extends Base {
         super();
     }
 
-    coinFlipChance = 0.5; //Here to be modified later.
-
-    coinFlip(times) {
-        var successes = 0;
-        for (var _i = 0; _i < times; _i++) {
-            if (Math.random() >= this.coinFlipChance) { successes++ }
-        }
-        return successes;
-    }
-
-    standardExpArray: Array<number> = [
-        10, 30, 60, 120, 240, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
-    ]
-
-    specialExpArray: Array<number> = [ 6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000 ]
-
-    standardLairReq: Array<number> = [
-        0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3
-    ]
-
-    schemeLairReq: Array<Array<number>> = [
-        this.standardLairReq, //0: Mastermind
-        this.standardLairReq, //1: Cold Logic
-        this.standardLairReq, //2: Quick Thinking
-        this.standardLairReq, //3: Hired Help
-        this.standardLairReq, //4: Guard Duty
-        this.standardLairReq, //5: Lodging
-        this.standardLairReq, //6: Heists
-        this.standardLairReq, //7: Act I
-        this.standardLairReq, //8: Communications
-        this.standardLairReq //9: Starter Lair 
-    ]
-
-    schemeExp: Array<Array<number>> = [
-        this.standardExpArray, //0: Mastermind
-        this.standardExpArray, //1: Cold Logic
-        this.standardExpArray, //2: Quick Thinking
-        this.standardExpArray, //3: Hired Help
-        this.standardExpArray, //4: Guard Duty
-        this.standardExpArray, //5: Lodging
-        this.standardExpArray, //6: Heists
-        this.standardExpArray, //7: Act I
-        this.standardExpArray, //8: Communications
-        [ 6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000 ] //9: Starter Lair
-    ]   
-
-    //Scheme Modifiers
     
-    //00: Mastermind
-    //1 scheme point per level per second.
-    mastermindNumbers() {
-        return Base.SCHEMES[0]['level'];
-    }
-
-    //01: Cold Logic
-    coldLogicNumbers() {
-        return Base.SCHEMES[1]['level']*60;
-    }
-
-    //02: Quick Thinking
-    quickThinkingNumbers() {
-        var successes = this.coinFlip(6);
-        return successes >= 5 ? Base.SCHEMES[2]['level'] : 0;
-    }
 
     //03: Hired Help
     hiredHelpCapacity() {

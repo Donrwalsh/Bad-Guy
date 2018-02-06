@@ -2,6 +2,10 @@ import {Scheme} from '../app/models/scheme';
 
 export class Base {
 
+    //Lair
+    //Foundational Variables
+    static lairLevel: number = 0;
+    
     //Schemes
 
     //Foundational Variables
@@ -9,6 +13,7 @@ export class Base {
     static EARNING_SCHEME_POINTS: boolean = false;
     static SCHEMES: Array<Scheme>;
     static CURRENT_SCHEME: Scheme;
+    
 
 
     //Array Building Blocks
