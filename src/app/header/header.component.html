@@ -10,14 +10,14 @@
         <p class="main-title">Bad Guy</p>
     </div>
     <div class="scheme-container" [ngStyle]="schemeStyle()" (click)="_scheming.switchToCurrentSchemePreview()">
-        <div *ngIf="_player.earningSchemePoints">
+        <div *ngIf="earningSchemePoints()">
             <p class="scheme-title">Scheming</p>
             <div class="scheme-bar-container {{_player.currentScheme['tree']}}">
                 <i class="scheme-icon fa {{_scheming.schemes[_player.currentScheme['ref']].fa}}" aria-hidden="true"></i>
                 <div class="scheme-progress-bar {{_player.currentScheme['tree']}}" [ngStyle]="schemeProgressBarStyle()"></div>
             </div>
         </div>
-        <div *ngIf="!_player.earningSchemePoints">
+        <div *ngIf="!earningSchemePoints()">
             <p class="scheme-title">Not Scheming</p>
             <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
         </div>

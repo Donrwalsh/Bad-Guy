@@ -13,19 +13,19 @@ export class PlayerService {
 
     //Primary scheme object. Stores level and accumulated exp toward next level by scheme ref.
     schemes: Array<Object> = [
-        { level: 1, exp: 0 }, //0 Mastermind, fully coded.
-        { level: 1, exp: 0 }, //1 Cold Logic, fully coded.
-        { level: 1, exp: 0 }, //2 Quick Thinking, fully coded.
-        { level: 1, exp: 0 }, //3 Hired Help, 0-4 coded.
-        { level: 1, exp: 0 }, //4 Guard Duty, 0-3 coded.
-        { level: 1, exp: 0 }, //5 Henchmen Lodging, 0-4 coded.
-        { level: 1, exp: 0 }, //6 Heists, 0-4 coded.
-        { level: 1, exp: 0 }, //7 Shady Business Deals, not coded.
-        { level: 1, exp: 0 }, //8 Communications, not coded.
-        { level: 1, exp: 0 } //9 Starter Lair, not coded.
+        { level: 0, exp: 0 }, //0 Mastermind, fully coded.
+        { level: 0, exp: 0 }, //1 Cold Logic, fully coded.
+        { level: 0, exp: 0 }, //2 Quick Thinking, fully coded.
+        { level: 0, exp: 0 }, //3 Hired Help, 0-4 coded.
+        { level: 0, exp: 0 }, //4 Guard Duty, 0-3 coded.
+        { level: 0, exp: 0 }, //5 Henchmen Lodging, 0-4 coded.
+        { level: 0, exp: 0 }, //6 Heists, 0-4 coded.
+        { level: 0, exp: 0 }, //7 Shady Business Deals, not coded.
+        { level: 0, exp: 0 }, //8 Communications, not coded.
+        { level: 0, exp: 0 } //9 Starter Lair, not coded.
     ]
 
-    earningSchemePoints: boolean = false;
+    //EARNING_SCHEME_POINTS: boolean = false;
 
     currentScheme: Scheme;
 

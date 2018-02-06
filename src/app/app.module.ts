@@ -15,6 +15,7 @@ import { SchemePanelModule } from './scheme-panel/scheme-panel.module';
 import { ActivityPanelModule } from './activity-panel/activity-panel.module';
 import { NumbersService } from './services/core/numbers.service';
 import { HeroesService } from './services/heroes.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { HeroesService } from './services/heroes.service';
     TrainingService,
     InventoryService,
     PrimaryLoopService,
-    NumbersService
+    NumbersService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

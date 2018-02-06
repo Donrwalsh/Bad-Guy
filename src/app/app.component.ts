@@ -10,6 +10,8 @@ import { OperatingService } from './services/operating.service';
 import { Scheme } from './models/scheme';
 import { Recruit } from './models/recruit';
 import { Train } from './models/train';
+import { CookieService } from 'ngx-cookie-service';
+import { Base } from './base';
 
 // Import the DataService
 import { DataService } from './data.service';
@@ -20,9 +22,10 @@ import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent extends Base implements OnInit {
 
-  constructor(public _player: PlayerService,
+  constructor(public cookieService: CookieService,
+    public _player: PlayerService,
     public _numbers: NumbersService,
     public _loop: PrimaryLoopService,
     public _scheming: SchemingService,
@@ -32,6 +35,55 @@ export class AppComponent implements OnInit {
     public _recruiting: RecruitingService,
     private _dataService: DataService,
   ) {
+    super();
+    if (cookieService.check('save')) {
+      console.log("Save Data Exists")
+      //console.log(cookieService.get('save'));
+
+      Base.EARNING_SCHEME_POINTS = cookieService.get('save')[0] === "1";
+      console.log("Base.EARNING_SCHEME_POINTS set to " + String(cookieService.get('save')[0] === "1"));
+
+      var marker = 0;
+      this._dataService.getSchemes()
+        .subscribe((res) => {
+          var SchemeData = new Array();
+          var level: string = "";
+          var exp: string = "";
+          for (var i = 0; i < res.length; i++) {  
+            while (true) {
+              marker++
+              if (cookieService.get('save')[marker] != "z") { 
+                level = level + cookieService.get('save')[marker]
+              } else {
+                break
+              }
+            }
+            while (true) {
+              marker++
+              if (cookieService.get('save')[marker] != "z") { 
+                exp = exp + cookieService.get('save')[marker]
+              } else {
+                break
+              }
+            }
+            let newScheme = new Scheme(res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree);
+            SchemeData.push(newScheme);
+            console.log(level, exp);
+            level = "";
+            exp = "";
+          }
+          Base.SCHEMES = SchemeData;
+        })
+      
+
+
+      
+
+
+      //console.log(this.EARNING_SCHEME_POINTS);
+    } else {
+      console.log("Save Data Does Not Exist")
+    }
     
     //Construct Scheme data from MongoDB
     this._dataService.getSchemes()
@@ -74,6 +126,6 @@ export class AppComponent implements OnInit {
 
     setInterval(() => {
       this._loop.action();
-    }, 100);
+    }, 10);
   }
 }

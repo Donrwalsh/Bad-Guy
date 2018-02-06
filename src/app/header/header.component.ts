@@ -3,6 +3,7 @@ import { PlayerService } from '../services/core/player.service';
 import { SchemingService } from '../services/scheming.service';
 import { InventoryService } from '../services/inventory.service';
 import { HeroesService } from '../services/heroes.service';
+import { Base } from '../base';
 
 import {
     trigger,
@@ -17,12 +18,13 @@ import {
     templateUrl: './header.component.html',
     styleUrls: ['../app.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent extends Base {
 
     constructor(public _player: PlayerService,
         public _heroes: HeroesService,
         public _scheming: SchemingService,
         public _inventory: InventoryService) {
+            super();
     }
 
     notorietyRotationStyle() {
@@ -31,7 +33,7 @@ export class HeaderComponent {
     }
 
     schemeStyle() {
-        return {'cursor': this._player.earningSchemePoints ? 'pointer' : 'default'}
+        return {'cursor': this.earningSchemePoints() ? 'pointer' : 'default'}
     }
 
     schemeProgressBarStyle() {
