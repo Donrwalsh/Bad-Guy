@@ -9,17 +9,18 @@
     <div>
         <p class="main-title">Bad Guy</p>
     </div>
-    <div class="scheme-container" [ngStyle]="schemeStyle()" (click)="_scheming.switchToCurrentSchemePreview()">
+    <div class="scheme-container" >
+            <i style="position:absolute;top:.1rem;left:.2rem;color:#00804f;font-size:1.2rem;cursor:pointer;" class="fa fa-question" aria-hidden="true"></i>
         <div *ngIf="_base.earningSchemePoints">
             <p class="scheme-title">Scheming</p>
-            <div class="scheme-bar-container {{_base.currentScheme.tree}}">
+            <div class="scheme-bar-container {{_base.currentScheme.tree}}" [ngStyle]="schemeStyle()" (click)="_scheming.switchToCurrentSchemePreview()">
                 <i class="scheme-icon fa {{_base.currentScheme.fa}}" aria-hidden="true"></i>
                 <div class="scheme-progress-bar {{_base.currentScheme.tree}}" [ngStyle]="schemeProgressBarStyle()"></div>
             </div>
         </div>
         <div *ngIf="!_base.earningSchemePoints">
-            <p class="scheme-title">Not Scheming</p>
-            <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+            <p style="padding-bottom:.25rem;" class="scheme-title">Not Scheming</p>
+            <i style="padding-top:.5rem;" class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
         </div>
     </div>
 </div>
