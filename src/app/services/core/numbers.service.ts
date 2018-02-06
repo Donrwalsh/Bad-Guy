@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { PlayerService } from "./player.service";
+import { Base } from '../../base';
 
 @Injectable()
-export class NumbersService {
+export class NumbersService extends Base {
 
     constructor ( public _player: PlayerService) {
-
+        super();
     }
 
     coinFlipChance = 0.5; //Here to be modified later.
@@ -59,24 +60,24 @@ export class NumbersService {
     //00: Mastermind
     //1 scheme point per level per second.
     mastermindNumbers() {
-        return this._player.schemes[0]['level'];
+        return Base.SCHEMES[0]['level'];
     }
 
     //01: Cold Logic
     coldLogicNumbers() {
-        return this._player.schemes[1]['level']*60;
+        return Base.SCHEMES[1]['level']*60;
     }
 
     //02: Quick Thinking
     quickThinkingNumbers() {
         var successes = this.coinFlip(6);
-        return successes >= 5 ? this._player.schemes[2]['level'] : 0;
+        return successes >= 5 ? Base.SCHEMES[2]['level'] : 0;
     }
 
     //03: Hired Help
     hiredHelpCapacity() {
         var space = 0;
-        for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
+        for (var _i = 0; _i < Base.SCHEMES[3]['level']; _i++) {
             if (_i == 1) { space += 4 }
             if (_i == 3) { space += 5 }
         }
@@ -85,9 +86,9 @@ export class NumbersService {
     
     hiredHelpUnlocked(id) {
         if (id == 0) {
-            return this._player.schemes[3]['level'] > 0;
+            return Base.SCHEMES[3]['level'] > 0;
         } else if (id == 1) {
-            return this._player.schemes[3]['level'] >= 4;
+            return Base.SCHEMES[3]['level'] >= 4;
         } else {
             return false;
         }
@@ -95,7 +96,7 @@ export class NumbersService {
 
     hiredHelpRecruitRate() {
         var reduce = 0;
-        for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
+        for (var _i = 0; _i < Base.SCHEMES[3]['level']; _i++) {
             if (_i == 2) { reduce += 30}
         }
         return reduce;
@@ -104,7 +105,7 @@ export class NumbersService {
     //04: Guard Duty
     guardDutyTrainRate() {
         var reduce = 0;
-        for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+        for (var _i = 0; _i < Base.SCHEMES[4]['level']; _i++) {
             if (_i == 1) { reduce += 60}
             if (_i == 3) { reduce += 60}
         }
@@ -112,12 +113,12 @@ export class NumbersService {
     }
 
     guardDutyUnlocked() {
-        return this._player.schemes[4]['level'] > 0;
+        return Base.SCHEMES[4]['level'] > 0;
     }
 
     guardDutyCapacity() {
         var capacity = 0;
-        for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+        for (var _i = 0; _i < Base.SCHEMES[4]['level']; _i++) {
             if (_i == 2) { capacity += 9; }
         }
 
@@ -127,7 +128,7 @@ export class NumbersService {
     //05: Lodging
     lodgingNumbers() {
         var increase = 0
-        for (var i = 0; i < this._player.schemes[5]['level']; i++) {
+        for (var i = 0; i < Base.SCHEMES[5]['level']; i++) {
             if (i < 2) { increase += 5; } 
             else if (i > 1 && i < 4) { increase += 10; }
             else if (i == 4) { increase += 20; } 
@@ -138,24 +139,24 @@ export class NumbersService {
 
     //06: Heists
     heistUnlocked(id) {
-        if (id == 0) return this._player.schemes[6]['level'] > 0;
-        if (id == 1) return this._player.schemes[6]['level'] > 3;
+        if (id == 0) return Base.SCHEMES[6]['level'] > 0;
+        if (id == 1) return Base.SCHEMES[6]['level'] > 3;
     }
 
     heistRarityChancesArray() {
-        if (this._player.schemes[6]['level'] == 1) { 
+        if (Base.SCHEMES[6]['level'] == 1) { 
             return [1, 1.1, 1.1, 1.1, 1.1] 
         }
-        else if (this._player.schemes[6]['level'] >= 1 && this._player.schemes[6]['level'] <= 2) {
+        else if (Base.SCHEMES[6]['level'] >= 1 && Base.SCHEMES[6]['level'] <= 2) {
             return [.9, 1, 1.1, 1.1, 1.1]
-        } else if (this._player.schemes[6]['level'] >= 3 && this._player.schemes[6]['level'] <= 5) {
+        } else if (Base.SCHEMES[6]['level'] >= 3 && Base.SCHEMES[6]['level'] <= 5) {
             return [.8, .95, 1, 1.1, 1.1]
         }
     }
 
     heistRechargeRate() {
         var reduce = 0;
-        for (var _i = 0; _i < this._player.schemes[6]['level']; _i++) {
+        for (var _i = 0; _i < Base.SCHEMES[6]['level']; _i++) {
             if (_i == 2) { reduce += 150}
         }
         return reduce;
@@ -163,17 +164,17 @@ export class NumbersService {
 
     //07: Shady Business Deals
     shadyBusinessDealUnlocked(id) {
-        if (id == 5) return this._player.schemes[7]['level'] > 0;
-        if (id == 6) return this._player.schemes[7]['level'] > 3;
+        if (id == 5) return Base.SCHEMES[7]['level'] > 0;
+        if (id == 6) return Base.SCHEMES[7]['level'] > 3;
     }
 
     shadyBusinessDealRarityChancesArray() {
-        if (this._player.schemes[7]['level'] == 1) { 
+        if (Base.SCHEMES[7]['level'] == 1) { 
             return [1, 1.1, 1.1, 1.1, 1.1] 
         }
-        else if (this._player.schemes[7]['level'] >= 1 && this._player.schemes[7]['level'] <= 2) {
+        else if (Base.SCHEMES[7]['level'] >= 1 && Base.SCHEMES[7]['level'] <= 2) {
             return [.9, 1, 1.1, 1.1, 1.1]
-        } else if (this._player.schemes[7]['level'] >= 3 && this._player.schemes[7]['level'] <= 5) {
+        } else if (Base.SCHEMES[7]['level'] >= 3 && Base.SCHEMES[7]['level'] <= 5) {
             return [.8, .95, 1, 1.1, 1.1]
         }
     }

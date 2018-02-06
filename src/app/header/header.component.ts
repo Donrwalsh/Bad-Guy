@@ -4,6 +4,7 @@ import { SchemingService } from '../services/scheming.service';
 import { InventoryService } from '../services/inventory.service';
 import { HeroesService } from '../services/heroes.service';
 import { Base } from '../base';
+import { BaseService } from '../services/base.service';
 
 import {
     trigger,
@@ -20,7 +21,8 @@ import {
 })
 export class HeaderComponent extends Base {
 
-    constructor(public _player: PlayerService,
+    constructor(public _base: BaseService,
+        public _player: PlayerService,
         public _heroes: HeroesService,
         public _scheming: SchemingService,
         public _inventory: InventoryService) {
@@ -33,11 +35,11 @@ export class HeaderComponent extends Base {
     }
 
     schemeStyle() {
-        return {'cursor': this.earningSchemePoints() ? 'pointer' : 'default'}
+        return {'cursor': this._base.earningSchemePoints ? 'pointer' : 'default'}
     }
 
     schemeProgressBarStyle() {
-        return {'width': this._player.currentScheme.percentage + '%'}
+        return {'width': this._base.currentScheme.percentage + '%'}
     }
 
     notorietyGaugeStyle(id) {

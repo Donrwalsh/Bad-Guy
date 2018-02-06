@@ -16,6 +16,7 @@ import { ActivityPanelModule } from './activity-panel/activity-panel.module';
 import { NumbersService } from './services/core/numbers.service';
 import { HeroesService } from './services/heroes.service';
 import { CookieService } from 'ngx-cookie-service';
+import { BaseService } from './services/base.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CookieService } from 'ngx-cookie-service';
   ],
   providers: [
     DataService,
+    BaseService,
     PlayerService,
     SchemingService,
     HeroesService,

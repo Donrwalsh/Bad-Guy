@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" *ngIf="!_base.initialLoadSchemes">
     <div class="notoriety-container">
         <div class="notoriety-gauge" *ngIf="_player.notoriety > 0">
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -10,14 +10,14 @@
         <p class="main-title">Bad Guy</p>
     </div>
     <div class="scheme-container" [ngStyle]="schemeStyle()" (click)="_scheming.switchToCurrentSchemePreview()">
-        <div *ngIf="earningSchemePoints()">
+        <div *ngIf="_base.earningSchemePoints">
             <p class="scheme-title">Scheming</p>
-            <div class="scheme-bar-container {{_player.currentScheme['tree']}}">
-                <i class="scheme-icon fa {{_scheming.schemes[_player.currentScheme['ref']].fa}}" aria-hidden="true"></i>
-                <div class="scheme-progress-bar {{_player.currentScheme['tree']}}" [ngStyle]="schemeProgressBarStyle()"></div>
+            <div class="scheme-bar-container {{_base.currentScheme.tree}}">
+                <i class="scheme-icon fa {{_base.currentScheme.fa}}" aria-hidden="true"></i>
+                <div class="scheme-progress-bar {{_base.currentScheme.tree}}" [ngStyle]="schemeProgressBarStyle()"></div>
             </div>
         </div>
-        <div *ngIf="!earningSchemePoints()">
+        <div *ngIf="!_base.earningSchemePoints">
             <p class="scheme-title">Not Scheming</p>
             <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
         </div>

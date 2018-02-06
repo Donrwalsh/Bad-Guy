@@ -3,13 +3,16 @@ import { PlayerService } from "./core/player.service";
 import { InventoryService } from "./inventory.service";
 import { NumbersService } from "./core/numbers.service";
 import { Train } from "../models/train";
+import { Base } from "../base";
 
 @Injectable()
-export class TrainingService {
+export class TrainingService extends Base {
 
     constructor(public _player: PlayerService,
         public _numbers: NumbersService,
-        public _inventory: InventoryService) { }
+        public _inventory: InventoryService) {
+            super();
+         }
 
 
     //STRUCTURAL VARIABLES
@@ -32,7 +35,7 @@ export class TrainingService {
         var capacity = 1;
 
         //Guard Duty increases capacity by static amounts.
-        for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+        for (var _i = 0; _i < Base.SCHEMES[4]['level']; _i++) {
             if (_i == 2) { capacity += 9; }
         }
 
@@ -48,7 +51,7 @@ export class TrainingService {
     }
  
 isUnlockedById(id) {
-    if (id == 0) { return this._player.schemes[4]['level'] > 0; }
+    if (id == 0) { return Base.SCHEMES[4]['level'] > 0; }
 }*/
 
 
@@ -64,7 +67,7 @@ isUnlockedById(id) {
     }
 
     get guardTrainingUnlocked() {
-        return this._player.schemes[4]['level'] >= 1;
+        return Base.SCHEMES[4]['level'] >= 1;
     }
 
     get guardCapacity() {

@@ -12,6 +12,8 @@ import { Recruit } from './models/recruit';
 import { Train } from './models/train';
 import { CookieService } from 'ngx-cookie-service';
 import { Base } from './base';
+import { BaseService } from './services/base.service';
+
 
 // Import the DataService
 import { DataService } from './data.service';
@@ -25,6 +27,7 @@ import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 export class AppComponent extends Base implements OnInit {
 
   constructor(public cookieService: CookieService,
+    public _base: BaseService,
     public _player: PlayerService,
     public _numbers: NumbersService,
     public _loop: PrimaryLoopService,
@@ -66,14 +69,41 @@ export class AppComponent extends Base implements OnInit {
                 break
               }
             }
-            let newScheme = new Scheme(res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree);
+            let newScheme = new Scheme(
+              res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, 
+              Number(exp), Number(level), this.schemeLairReq[i], this.schemeExp[i]
+            );
             SchemeData.push(newScheme);
-            console.log(level, exp);
             level = "";
             exp = "";
           }
           Base.SCHEMES = SchemeData;
-        })
+          console.log("Base.SCHEMES populated:");
+          console.log(Base.SCHEMES);
+
+          var currentScheme = "";
+          while (true) {
+            marker++;
+            if (cookieService.get('save')[marker] != "z") {
+              currentScheme = currentScheme + cookieService.get('save')[marker];
+            } else {
+              break
+            }
+          }
+          if (currentScheme != "-1") {
+            Base.CURRENT_SCHEME = Base.SCHEMES[Number(currentScheme)];
+            this._scheming.switchToCurrentSchemePreview();
+            console.log("Set Base.CURRENT_SCHEME and switched the Preview:");
+            console.log(Base.CURRENT_SCHEME);
+          } else {
+            console.log("No Current Scheme to Set")
+          }
+
+
+          Base.INITIAL_LOAD_SCHEMES = false;
+        });
+
+
       
 
 
@@ -83,20 +113,26 @@ export class AppComponent extends Base implements OnInit {
       //console.log(this.EARNING_SCHEME_POINTS);
     } else {
       console.log("Save Data Does Not Exist")
-    }
-    
-    //Construct Scheme data from MongoDB
-    this._dataService.getSchemes()
+      //Construct Scheme data from MongoDB
+      this._dataService.getSchemes()
       .subscribe((res) => {
         var SchemeData = new Array();
         for (var i = 0; i < res.length; i++) {
-          let newScheme = new Scheme(res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree);
+          let newScheme = new Scheme(
+            res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, 
+            0, 0, this.schemeLairReq[i], this.schemeExp[i]
+          );
           newScheme._player = this._player;
           newScheme._numbers = this._numbers;
           SchemeData.push(newScheme);
         }
-        this._scheming.schemes = SchemeData;
+        Base.SCHEMES = SchemeData;
+        Base.INITIAL_LOAD_SCHEMES = false;
       });
+    }
+    
+    
+    
     
     //Construct Recruit data from Angular logic
     var RecruitData = new Array();
@@ -126,6 +162,6 @@ export class AppComponent extends Base implements OnInit {
 
     setInterval(() => {
       this._loop.action();
-    }, 10);
+    }, 100);
   }
 }

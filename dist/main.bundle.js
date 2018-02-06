@@ -597,25 +597,26 @@ var ActivityPanelComponentNgFactory = __WEBPACK_IMPORTED_MODULE_2__angular_core_
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponentNgFactory; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_component_scss_shim_ngstyle__ = __webpack_require__("../../../../../src/$$_gendir/app/app.component.scss.shim.ngstyle.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__header_header_component_ngfactory__ = __webpack_require__("../../../../../src/$$_gendir/app/header/header.component.ngfactory.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_header_header_component__ = __webpack_require__("../../../../../src/app/header/header.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_services_core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__activity_panel_activity_panel_component_ngfactory__ = __webpack_require__("../../../../../src/$$_gendir/app/activity-panel/activity-panel.component.ngfactory.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_activity_panel_activity_panel_component__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__activity_panel_activity_panel_component_ngfactory__ = __webpack_require__("../../../../../src/$$_gendir/app/activity-panel/activity-panel.component.ngfactory.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_activity_panel_activity_panel_component__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__scheme_panel_scheme_panel_component_ngfactory__ = __webpack_require__("../../../../../src/$$_gendir/app/scheme-panel/scheme-panel.component.ngfactory.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_scheme_panel_scheme_panel_component__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__app_app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_ngx_cookie_service_cookie_service_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/cookie-service/cookie.service.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__app_services_core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__scheme_panel_scheme_panel_component_ngfactory__ = __webpack_require__("../../../../../src/$$_gendir/app/scheme-panel/scheme-panel.component.ngfactory.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_scheme_panel_scheme_panel_component__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__header_header_component_ngfactory__ = __webpack_require__("../../../../../src/$$_gendir/app/header/header.component.ngfactory.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_header_header_component__ = __webpack_require__("../../../../../src/app/header/header.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__app_services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_ngx_cookie_service_cookie_service_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/cookie-service/cookie.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_services_core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__app_data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
 /**
  * @fileoverview This file is generated by the Angular template compiler.
  * Do not edit.
@@ -643,10 +644,11 @@ var ActivityPanelComponentNgFactory = __WEBPACK_IMPORTED_MODULE_2__angular_core_
 
 
 
+
 var styles_AppComponent = [__WEBPACK_IMPORTED_MODULE_0__app_component_scss_shim_ngstyle__["a" /* styles */]];
 var RenderType_AppComponent = __WEBPACK_IMPORTED_MODULE_1__angular_core__["_1" /* ɵcrt */]({ encapsulation: 0, styles: styles_AppComponent,
     data: {} });
-function View_AppComponent_1(_l) {
+function View_AppComponent_2(_l) {
     return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 6, 'div', [['class',
                 'resource-tab cash']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n      '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](2, 0, null, null, 0, 'i', [['aria-hidden', 'true'], ['class', 'fa fa-money']], null, null, null, null, null)), (_l()(),
             __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n      '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](4, 0, null, null, 1, 'p', [['class', 'resource-readout']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](5, null, ['', ''])), (_l()(),
@@ -656,7 +658,7 @@ function View_AppComponent_1(_l) {
         _ck(_v, 5, 0, currVal_0);
     });
 }
-function View_AppComponent_2(_l) {
+function View_AppComponent_3(_l) {
     return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 6, 'div', [['class',
                 'resource-tab henchmen']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n      '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](2, 0, null, null, 0, 'i', [['aria-hidden', 'true'], ['class', 'fa fa-users']], null, null, null, null, null)), (_l()(),
             __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n      '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](4, 0, null, null, 1, 'p', [['class', 'resource-readout']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](5, null, ['', '/', ''])),
@@ -667,7 +669,7 @@ function View_AppComponent_2(_l) {
         _ck(_v, 5, 0, currVal_0, currVal_1);
     });
 }
-function View_AppComponent_3(_l) {
+function View_AppComponent_4(_l) {
     return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 6, 'div', [['class',
                 'resource-tab guard']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n      '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](2, 0, null, null, 0, 'i', [['aria-hidden', 'true'], ['class', 'fa fa-shield']], null, null, null, null, null)), (_l()(),
             __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n      '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](4, 0, null, null, 1, 'p', [['class', 'resource-readout']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](5, null, ['', '/', ''])),
@@ -678,44 +680,55 @@ function View_AppComponent_3(_l) {
         _ck(_v, 5, 0, currVal_0, currVal_1);
     });
 }
-function View_AppComponent_0(_l) {
-    return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 1, 'header', [], null, null, null, __WEBPACK_IMPORTED_MODULE_2__header_header_component_ngfactory__["b" /* View_HeaderComponent_0 */], __WEBPACK_IMPORTED_MODULE_2__header_header_component_ngfactory__["a" /* RenderType_HeaderComponent */])),
-        __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](1, 49152, null, 0, __WEBPACK_IMPORTED_MODULE_3__app_header_header_component__["a" /* HeaderComponent */], [__WEBPACK_IMPORTED_MODULE_4__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_5__app_services_heroes_service__["a" /* HeroesService */],
-            __WEBPACK_IMPORTED_MODULE_6__app_services_scheming_service__["a" /* SchemingService */], __WEBPACK_IMPORTED_MODULE_7__app_services_inventory_service__["a" /* InventoryService */]], null, null), (_l()(),
-            __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n'])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](3, 0, null, null, 27, 'div', [['class', 'main-section']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n  '])),
-        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](5, 0, null, null, 18, 'div', [['class', 'resources-bar']], null, null, null, null, null)),
-        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](7, 0, null, null, 6, 'div', [['class', 'resource-tab lair']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n      '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](9, 0, null, null, 0, 'i', [['aria-hidden',
-                'true'], ['class', 'fa fa-home']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n      '])),
-        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](11, 0, null, null, 1, 'p', [['class', 'resource-readout']], null, null, null, null, null)),
-        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['Mom\'s Basement'])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_AppComponent_1)), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](16, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_8__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0,
+function View_AppComponent_1(_l) {
+    return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 27, 'div', [['class',
+                'main-section']], null, null, null, null, null)),
+        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n  '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](2, 0, null, null, 18, 'div', [['class', 'resources-bar']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](4, 0, null, null, 6, 'div', [['class',
+                'resource-tab lair']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n      '])), (_l()(),
+            __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](6, 0, null, null, 0, 'i', [['aria-hidden', 'true'], ['class',
+                    'fa fa-home']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n      '])), (_l()(),
+            __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](8, 0, null, null, 1, 'p', [['class', 'resource-readout']], null, null, null, null, null)),
+        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['Mom\'s Basement'])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_AppComponent_2)), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](13, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0,
                 'ngIf'] }, null), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])),
-        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_AppComponent_2)),
-        __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](19, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_8__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])),
         (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_AppComponent_3)),
-        __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](22, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_8__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n\n\n\n  '])),
-        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n  '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](25, 0, null, null, 1, 'activity-panel', [], null, null, null, __WEBPACK_IMPORTED_MODULE_9__activity_panel_activity_panel_component_ngfactory__["b" /* View_ActivityPanelComponent_0 */], __WEBPACK_IMPORTED_MODULE_9__activity_panel_activity_panel_component_ngfactory__["a" /* RenderType_ActivityPanelComponent */])),
-        __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](26, 49152, null, 0, __WEBPACK_IMPORTED_MODULE_10__app_activity_panel_activity_panel_component__["a" /* ActivityPanelComponent */], [__WEBPACK_IMPORTED_MODULE_4__app_services_core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_11__app_services_recruiting_service__["a" /* RecruitingService */], __WEBPACK_IMPORTED_MODULE_7__app_services_inventory_service__["a" /* InventoryService */], __WEBPACK_IMPORTED_MODULE_12__app_services_operating_service__["a" /* OperatingService */], __WEBPACK_IMPORTED_MODULE_13__app_services_training_service__["a" /* TrainingService */]], null, null), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n  '])),
-        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](28, 0, null, null, 1, 'scheme-panel', [], null, null, null, __WEBPACK_IMPORTED_MODULE_14__scheme_panel_scheme_panel_component_ngfactory__["b" /* View_SchemePanelComponent_0 */], __WEBPACK_IMPORTED_MODULE_14__scheme_panel_scheme_panel_component_ngfactory__["a" /* RenderType_SchemePanelComponent */])), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](29, 49152, null, 0, __WEBPACK_IMPORTED_MODULE_15__app_scheme_panel_scheme_panel_component__["a" /* SchemePanelComponent */], [__WEBPACK_IMPORTED_MODULE_6__app_services_scheming_service__["a" /* SchemingService */]], null, null), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n\n']))], function (_ck, _v) {
+        __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](16, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])),
+        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_AppComponent_4)),
+        __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](19, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n\n\n\n  '])),
+        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n  '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](22, 0, null, null, 1, 'activity-panel', [], null, null, null, __WEBPACK_IMPORTED_MODULE_3__activity_panel_activity_panel_component_ngfactory__["b" /* View_ActivityPanelComponent_0 */], __WEBPACK_IMPORTED_MODULE_3__activity_panel_activity_panel_component_ngfactory__["a" /* RenderType_ActivityPanelComponent */])),
+        __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](23, 49152, null, 0, __WEBPACK_IMPORTED_MODULE_4__app_activity_panel_activity_panel_component__["a" /* ActivityPanelComponent */], [__WEBPACK_IMPORTED_MODULE_5__app_services_core_player_service__["a" /* PlayerService */],
+            __WEBPACK_IMPORTED_MODULE_6__app_services_recruiting_service__["a" /* RecruitingService */], __WEBPACK_IMPORTED_MODULE_7__app_services_inventory_service__["a" /* InventoryService */], __WEBPACK_IMPORTED_MODULE_8__app_services_operating_service__["a" /* OperatingService */], __WEBPACK_IMPORTED_MODULE_9__app_services_training_service__["a" /* TrainingService */]], null, null), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n  '])),
+        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](25, 0, null, null, 1, 'scheme-panel', [], null, null, null, __WEBPACK_IMPORTED_MODULE_10__scheme_panel_scheme_panel_component_ngfactory__["b" /* View_SchemePanelComponent_0 */], __WEBPACK_IMPORTED_MODULE_10__scheme_panel_scheme_panel_component_ngfactory__["a" /* RenderType_SchemePanelComponent */])), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](26, 49152, null, 0, __WEBPACK_IMPORTED_MODULE_11__app_scheme_panel_scheme_panel_component__["a" /* SchemePanelComponent */], [__WEBPACK_IMPORTED_MODULE_12__app_services_scheming_service__["a" /* SchemingService */], __WEBPACK_IMPORTED_MODULE_13__app_services_base_service__["a" /* BaseService */]], null, null), (_l()(),
+            __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n\n']))], function (_ck, _v) {
         var _co = _v.component;
         var currVal_0 = (_co._player.cash > 0);
-        _ck(_v, 16, 0, currVal_0);
+        _ck(_v, 13, 0, currVal_0);
         var currVal_1 = _co._recruiting.areAnyUnlocked();
-        _ck(_v, 19, 0, currVal_1);
+        _ck(_v, 16, 0, currVal_1);
         var currVal_2 = _co._training.guardTrainingUnlocked;
-        _ck(_v, 22, 0, currVal_2);
+        _ck(_v, 19, 0, currVal_2);
+    }, null);
+}
+function View_AppComponent_0(_l) {
+    return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 1, 'header', [], null, null, null, __WEBPACK_IMPORTED_MODULE_14__header_header_component_ngfactory__["b" /* View_HeaderComponent_0 */], __WEBPACK_IMPORTED_MODULE_14__header_header_component_ngfactory__["a" /* RenderType_HeaderComponent */])),
+        __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](1, 49152, null, 0, __WEBPACK_IMPORTED_MODULE_15__app_header_header_component__["a" /* HeaderComponent */], [__WEBPACK_IMPORTED_MODULE_13__app_services_base_service__["a" /* BaseService */], __WEBPACK_IMPORTED_MODULE_5__app_services_core_player_service__["a" /* PlayerService */],
+            __WEBPACK_IMPORTED_MODULE_16__app_services_heroes_service__["a" /* HeroesService */], __WEBPACK_IMPORTED_MODULE_12__app_services_scheming_service__["a" /* SchemingService */], __WEBPACK_IMPORTED_MODULE_7__app_services_inventory_service__["a" /* InventoryService */]], null, null), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n'])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_AppComponent_1)), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](4, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0,
+                'ngIf'] }, null)], function (_ck, _v) {
+        var _co = _v.component;
+        var currVal_0 = !_co._base.initialLoadSchemes;
+        _ck(_v, 4, 0, currVal_0);
     }, null);
 }
 function View_AppComponent_Host_0(_l) {
     return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 1, 'app-root', [], null, null, null, View_AppComponent_0, RenderType_AppComponent)),
-        __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](1, 114688, null, 0, __WEBPACK_IMPORTED_MODULE_16__app_app_component__["a" /* AppComponent */], [__WEBPACK_IMPORTED_MODULE_17_ngx_cookie_service_cookie_service_cookie_service__["a" /* CookieService */], __WEBPACK_IMPORTED_MODULE_4__app_services_core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_18__app_services_core_numbers_service__["a" /* NumbersService */], __WEBPACK_IMPORTED_MODULE_19__app_services_primary_loop_service__["a" /* PrimaryLoopService */], __WEBPACK_IMPORTED_MODULE_6__app_services_scheming_service__["a" /* SchemingService */], __WEBPACK_IMPORTED_MODULE_7__app_services_inventory_service__["a" /* InventoryService */],
-            __WEBPACK_IMPORTED_MODULE_13__app_services_training_service__["a" /* TrainingService */], __WEBPACK_IMPORTED_MODULE_12__app_services_operating_service__["a" /* OperatingService */], __WEBPACK_IMPORTED_MODULE_11__app_services_recruiting_service__["a" /* RecruitingService */], __WEBPACK_IMPORTED_MODULE_20__app_data_service__["a" /* DataService */]], null, null)], function (_ck, _v) {
+        __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](1, 114688, null, 0, __WEBPACK_IMPORTED_MODULE_17__app_app_component__["a" /* AppComponent */], [__WEBPACK_IMPORTED_MODULE_18_ngx_cookie_service_cookie_service_cookie_service__["a" /* CookieService */], __WEBPACK_IMPORTED_MODULE_13__app_services_base_service__["a" /* BaseService */],
+            __WEBPACK_IMPORTED_MODULE_5__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_19__app_services_core_numbers_service__["a" /* NumbersService */], __WEBPACK_IMPORTED_MODULE_20__app_services_primary_loop_service__["a" /* PrimaryLoopService */], __WEBPACK_IMPORTED_MODULE_12__app_services_scheming_service__["a" /* SchemingService */],
+            __WEBPACK_IMPORTED_MODULE_7__app_services_inventory_service__["a" /* InventoryService */], __WEBPACK_IMPORTED_MODULE_9__app_services_training_service__["a" /* TrainingService */], __WEBPACK_IMPORTED_MODULE_8__app_services_operating_service__["a" /* OperatingService */], __WEBPACK_IMPORTED_MODULE_6__app_services_recruiting_service__["a" /* RecruitingService */],
+            __WEBPACK_IMPORTED_MODULE_21__app_data_service__["a" /* DataService */]], null, null)], function (_ck, _v) {
         _ck(_v, 1, 0);
     }, null);
 }
-var AppComponentNgFactory = __WEBPACK_IMPORTED_MODULE_1__angular_core__["Z" /* ɵccf */]('app-root', __WEBPACK_IMPORTED_MODULE_16__app_app_component__["a" /* AppComponent */], View_AppComponent_Host_0, {}, {}, []);
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9hcHAuY29tcG9uZW50Lm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9hcHAuY29tcG9uZW50LnRzIiwibmc6Ly8vVXNlcnMvZG9ubmllL0Rlc2t0b3AvQmFkLUd1eS9zcmMvYXBwL2FwcC5jb21wb25lbnQuaHRtbCIsIm5nOi8vL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9hcHAuY29tcG9uZW50LnRzLkFwcENvbXBvbmVudF9Ib3N0Lmh0bWwiXSwic291cmNlc0NvbnRlbnQiOlsiICIsIjxoZWFkZXI+PC9oZWFkZXI+XG48ZGl2IGNsYXNzPVwibWFpbi1zZWN0aW9uXCI+XG4gIDxkaXYgY2xhc3M9XCJyZXNvdXJjZXMtYmFyXCI+XG4gICAgPGRpdiBjbGFzcz1cInJlc291cmNlLXRhYiBsYWlyXCI+XG4gICAgICA8aSBjbGFzcz1cImZhIGZhLWhvbWVcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2k+XG4gICAgICA8cCBjbGFzcz1cInJlc291cmNlLXJlYWRvdXRcIj5Nb20ncyBCYXNlbWVudDwvcD5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2IGNsYXNzPVwicmVzb3VyY2UtdGFiIGNhc2hcIiAqbmdJZj1cIl9wbGF5ZXIuY2FzaCA+IDBcIj5cbiAgICAgIDxpIGNsYXNzPVwiZmEgZmEtbW9uZXlcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2k+XG4gICAgICA8cCBjbGFzcz1cInJlc291cmNlLXJlYWRvdXRcIj57e19wbGF5ZXIuY2FzaH19PC9wPlxuICAgIDwvZGl2PlxuICAgIDxkaXYgY2xhc3M9XCJyZXNvdXJjZS10YWIgaGVuY2htZW5cIiAqbmdJZj1cIl9yZWNydWl0aW5nLmFyZUFueVVubG9ja2VkKClcIj5cbiAgICAgIDxpIGNsYXNzPVwiZmEgZmEtdXNlcnNcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2k+XG4gICAgICA8cCBjbGFzcz1cInJlc291cmNlLXJlYWRvdXRcIj57e19wbGF5ZXIuY3VycmVudEhlbmNobWVufX0ve3tfaW52ZW50b3J5LmhlbmNobWVuQ2FwYWNpdHl9fTwvcD5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2IGNsYXNzPVwicmVzb3VyY2UtdGFiIGd1YXJkXCIgKm5nSWY9XCJfdHJhaW5pbmcuZ3VhcmRUcmFpbmluZ1VubG9ja2VkXCI+XG4gICAgICA8aSBjbGFzcz1cImZhIGZhLXNoaWVsZFwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiPjwvaT5cbiAgICAgIDxwIGNsYXNzPVwicmVzb3VyY2UtcmVhZG91dFwiPnt7X3BsYXllci5jdXJyZW50R3VhcmRzfX0ve3tfaW52ZW50b3J5Lmd1YXJkQ2FwYWNpdHl9fTwvcD5cbiAgICA8L2Rpdj5cblxuXG5cbiAgPC9kaXY+XG4gIDxhY3Rpdml0eS1wYW5lbD48L2FjdGl2aXR5LXBhbmVsPlxuICA8c2NoZW1lLXBhbmVsPjwvc2NoZW1lLXBhbmVsPlxuXG48L2Rpdj4iLCI8YXBwLXJvb3Q+PC9hcHAtcm9vdD4iXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7b0JDT0k7TUFBQTtNQUFBLGdCQUF3RCxnREFDdEQ7TUFBQTtNQUFBLHdFQUE4QzthQUFBLGlDQUM5QztNQUFBO01BQUEsOEJBQTRCLDBDQUFvQjthQUFBOztJQUFwQjtJQUFBOzs7O29CQUU5QjtNQUFBO01BQUEsZ0JBQXdFLGdEQUN0RTtNQUFBO01BQUEsd0VBQThDO2FBQUEsaUNBQzlDO01BQUE7TUFBQSw4QkFBNEI7TUFBK0Q7O0lBQS9EO0lBQUE7SUFBQTs7OztvQkFFOUI7TUFBQTtNQUFBLGdCQUF3RSxnREFDdEU7TUFBQTtNQUFBLHdFQUErQzthQUFBLGlDQUMvQztNQUFBO01BQUEsOEJBQTRCO01BQTBEOztJQUExRDtJQUFBO0lBQUE7Ozs7b0JBakJsQztNQUFBO2FBQUE7Z0RBQUEsK0JBQWlCO2lCQUFBLDJCQUNqQjtVQUFBO1VBQUEsOEJBQTBCO01BQ3hCO1VBQUE7TUFBMkIsOENBQ3pCO1VBQUE7VUFBQSw0Q0FBK0I7VUFBQSxlQUM3QjtVQUFBO1VBQUEsOEJBQTZDO01BQzdDO1VBQUE7TUFBNEIsdURBQWtCO1VBQUEsYUFDMUMsOENBQ047VUFBQSx5RUFBQTtVQUFBO2NBQUEsd0JBR007TUFDTjthQUFBO1VBQUEsaUNBR007TUFDTjthQUFBO1VBQUEsaUNBR007TUFJRiw0Q0FDTjtVQUFBO1VBQUE7YUFBQTs0RkFBQTtVQUFBLDZCQUFpQztNQUNqQztVQUFBOzZDQUFBLFVBQUE7VUFBQSxrREFBNkI7VUFBQTs7SUFqQkk7SUFBL0IsWUFBK0IsU0FBL0I7SUFJbUM7SUFBbkMsWUFBbUMsU0FBbkM7SUFJZ0M7SUFBaEMsWUFBZ0MsU0FBaEM7Ozs7b0JDZko7TUFBQTthQUFBOzt3RkFBQTtVQUFBO0lBQUE7Ozs7In0=
+var AppComponentNgFactory = __WEBPACK_IMPORTED_MODULE_1__angular_core__["Z" /* ɵccf */]('app-root', __WEBPACK_IMPORTED_MODULE_17__app_app_component__["a" /* AppComponent */], View_AppComponent_Host_0, {}, {}, []);
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9hcHAuY29tcG9uZW50Lm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9hcHAuY29tcG9uZW50LnRzIiwibmc6Ly8vVXNlcnMvZG9ubmllL0Rlc2t0b3AvQmFkLUd1eS9zcmMvYXBwL2FwcC5jb21wb25lbnQuaHRtbCIsIm5nOi8vL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9hcHAuY29tcG9uZW50LnRzLkFwcENvbXBvbmVudF9Ib3N0Lmh0bWwiXSwic291cmNlc0NvbnRlbnQiOlsiICIsIjxoZWFkZXI+PC9oZWFkZXI+XG48ZGl2IGNsYXNzPVwibWFpbi1zZWN0aW9uXCIgKm5nSWY9XCIhX2Jhc2UuaW5pdGlhbExvYWRTY2hlbWVzXCI+XG4gIDxkaXYgY2xhc3M9XCJyZXNvdXJjZXMtYmFyXCI+XG4gICAgPGRpdiBjbGFzcz1cInJlc291cmNlLXRhYiBsYWlyXCI+XG4gICAgICA8aSBjbGFzcz1cImZhIGZhLWhvbWVcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2k+XG4gICAgICA8cCBjbGFzcz1cInJlc291cmNlLXJlYWRvdXRcIj5Nb20ncyBCYXNlbWVudDwvcD5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2IGNsYXNzPVwicmVzb3VyY2UtdGFiIGNhc2hcIiAqbmdJZj1cIl9wbGF5ZXIuY2FzaCA+IDBcIj5cbiAgICAgIDxpIGNsYXNzPVwiZmEgZmEtbW9uZXlcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2k+XG4gICAgICA8cCBjbGFzcz1cInJlc291cmNlLXJlYWRvdXRcIj57e19wbGF5ZXIuY2FzaH19PC9wPlxuICAgIDwvZGl2PlxuICAgIDxkaXYgY2xhc3M9XCJyZXNvdXJjZS10YWIgaGVuY2htZW5cIiAqbmdJZj1cIl9yZWNydWl0aW5nLmFyZUFueVVubG9ja2VkKClcIj5cbiAgICAgIDxpIGNsYXNzPVwiZmEgZmEtdXNlcnNcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2k+XG4gICAgICA8cCBjbGFzcz1cInJlc291cmNlLXJlYWRvdXRcIj57e19wbGF5ZXIuY3VycmVudEhlbmNobWVufX0ve3tfaW52ZW50b3J5LmhlbmNobWVuQ2FwYWNpdHl9fTwvcD5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2IGNsYXNzPVwicmVzb3VyY2UtdGFiIGd1YXJkXCIgKm5nSWY9XCJfdHJhaW5pbmcuZ3VhcmRUcmFpbmluZ1VubG9ja2VkXCI+XG4gICAgICA8aSBjbGFzcz1cImZhIGZhLXNoaWVsZFwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiPjwvaT5cbiAgICAgIDxwIGNsYXNzPVwicmVzb3VyY2UtcmVhZG91dFwiPnt7X3BsYXllci5jdXJyZW50R3VhcmRzfX0ve3tfaW52ZW50b3J5Lmd1YXJkQ2FwYWNpdHl9fTwvcD5cbiAgICA8L2Rpdj5cblxuXG5cbiAgPC9kaXY+XG4gIDxhY3Rpdml0eS1wYW5lbD48L2FjdGl2aXR5LXBhbmVsPlxuICA8c2NoZW1lLXBhbmVsPjwvc2NoZW1lLXBhbmVsPlxuXG48L2Rpdj4iLCI8YXBwLXJvb3Q+PC9hcHAtcm9vdD4iXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O29CQ09JO01BQUE7TUFBQSxnQkFBd0QsZ0RBQ3REO01BQUE7TUFBQSx3RUFBOEM7YUFBQSxpQ0FDOUM7TUFBQTtNQUFBLDhCQUE0QiwwQ0FBb0I7YUFBQTs7SUFBcEI7SUFBQTs7OztvQkFFOUI7TUFBQTtNQUFBLGdCQUF3RSxnREFDdEU7TUFBQTtNQUFBLHdFQUE4QzthQUFBLGlDQUM5QztNQUFBO01BQUEsOEJBQTRCO01BQStEOztJQUEvRDtJQUFBO0lBQUE7Ozs7b0JBRTlCO01BQUE7TUFBQSxnQkFBd0UsZ0RBQ3RFO01BQUE7TUFBQSx3RUFBK0M7YUFBQSxpQ0FDL0M7TUFBQTtNQUFBLDhCQUE0QjtNQUEwRDs7SUFBMUQ7SUFBQTtJQUFBOzs7O29CQWhCbEM7TUFBQTtNQUE0RCw0Q0FDMUQ7VUFBQTtVQUFBLDRDQUEyQjtVQUFBLGFBQ3pCO1VBQUE7VUFBQSxnQkFBK0IsZ0RBQzdCO2lCQUFBO2NBQUE7Y0FBQSxnQkFBNkMsZ0RBQzdDO2lCQUFBO2NBQUE7TUFBNEIsdURBQWtCO1VBQUEsYUFDMUMsOENBQ047VUFBQSx5RUFBQTtVQUFBO2NBQUEsd0JBR007TUFDTjthQUFBO1VBQUEsaUNBR007TUFDTjthQUFBO1VBQUEsaUNBR007TUFJRiw0Q0FDTjtVQUFBO1VBQUE7YUFBQTt5RkFBQTtVQUFBLDZCQUFpQztNQUNqQztVQUFBOzZDQUFBLFVBQUE7VUFBQSxtRUFBNkI7aUJBQUE7O0lBakJJO0lBQS9CLFlBQStCLFNBQS9CO0lBSW1DO0lBQW5DLFlBQW1DLFNBQW5DO0lBSWdDO0lBQWhDLFlBQWdDLFNBQWhDOzs7O29CQWZKO01BQUE7YUFBQTttRUFBQTtVQUFBLGVBQWlCLDBDQUNqQjtVQUFBLHlFQUFBO1VBQUE7Y0FBQTs7SUFBMEI7SUFBMUIsV0FBMEIsU0FBMUI7Ozs7b0JDREE7TUFBQTthQUFBOzs7eUJBQUE7SUFBQTs7OzsifQ==
 //# sourceMappingURL=app.component.ngfactory.js.map
 
 /***/ }),
@@ -759,23 +772,25 @@ var AppComponentNgFactory = __WEBPACK_IMPORTED_MODULE_1__angular_core__["Z" /* �
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__app_services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__app_services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_ngx_cookie_service_cookie_service_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/cookie-service/cookie.service.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__app_header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__app_scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__app_activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__app_services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__app_services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_ngx_cookie_service_cookie_service_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/cookie-service/cookie.service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__app_services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__app_header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__app_scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__app_activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
 /**
  * @fileoverview This file is generated by the Angular template compiler.
  * Do not edit.
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride}
  */
 /* tslint:disable */
+
 
 
 
@@ -818,21 +833,23 @@ var AppModuleNgFactory = __WEBPACK_IMPORTED_MODULE_0__angular_core__["_0" /* ɵc
             __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["b" /* DOCUMENT */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_9__angular_http__["c" /* BrowserXhr */], __WEBPACK_IMPORTED_MODULE_9__angular_http__["c" /* BrowserXhr */], []),
         __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_9__angular_http__["g" /* ResponseOptions */], __WEBPACK_IMPORTED_MODULE_9__angular_http__["b" /* BaseResponseOptions */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](5120, __WEBPACK_IMPORTED_MODULE_9__angular_http__["i" /* XSRFStrategy */], __WEBPACK_IMPORTED_MODULE_9__angular_http__["j" /* ɵb */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_9__angular_http__["h" /* XHRBackend */], __WEBPACK_IMPORTED_MODULE_9__angular_http__["h" /* XHRBackend */], [__WEBPACK_IMPORTED_MODULE_9__angular_http__["c" /* BrowserXhr */], __WEBPACK_IMPORTED_MODULE_9__angular_http__["g" /* ResponseOptions */], __WEBPACK_IMPORTED_MODULE_9__angular_http__["i" /* XSRFStrategy */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_9__angular_http__["f" /* RequestOptions */], __WEBPACK_IMPORTED_MODULE_9__angular_http__["a" /* BaseRequestOptions */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](5120, __WEBPACK_IMPORTED_MODULE_9__angular_http__["d" /* Http */], __WEBPACK_IMPORTED_MODULE_9__angular_http__["k" /* ɵc */], [__WEBPACK_IMPORTED_MODULE_9__angular_http__["h" /* XHRBackend */],
             __WEBPACK_IMPORTED_MODULE_9__angular_http__["f" /* RequestOptions */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_10__app_data_service__["a" /* DataService */], __WEBPACK_IMPORTED_MODULE_10__app_data_service__["a" /* DataService */], [__WEBPACK_IMPORTED_MODULE_9__angular_http__["d" /* Http */]]),
-        __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */], __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_13__app_services_scheming_service__["a" /* SchemingService */], __WEBPACK_IMPORTED_MODULE_13__app_services_scheming_service__["a" /* SchemingService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */]]),
-        __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_14__app_services_operating_service__["a" /* OperatingService */], __WEBPACK_IMPORTED_MODULE_14__app_services_operating_service__["a" /* OperatingService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_15__app_services_inventory_service__["a" /* InventoryService */], __WEBPACK_IMPORTED_MODULE_15__app_services_inventory_service__["a" /* InventoryService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_16__app_services_heroes_service__["a" /* HeroesService */], __WEBPACK_IMPORTED_MODULE_16__app_services_heroes_service__["a" /* HeroesService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */], __WEBPACK_IMPORTED_MODULE_14__app_services_operating_service__["a" /* OperatingService */],
-            __WEBPACK_IMPORTED_MODULE_15__app_services_inventory_service__["a" /* InventoryService */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_17__app_services_recruiting_service__["a" /* RecruitingService */], __WEBPACK_IMPORTED_MODULE_17__app_services_recruiting_service__["a" /* RecruitingService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */], __WEBPACK_IMPORTED_MODULE_14__app_services_operating_service__["a" /* OperatingService */], __WEBPACK_IMPORTED_MODULE_15__app_services_inventory_service__["a" /* InventoryService */]]),
-        __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_18__app_services_training_service__["a" /* TrainingService */], __WEBPACK_IMPORTED_MODULE_18__app_services_training_service__["a" /* TrainingService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */], __WEBPACK_IMPORTED_MODULE_15__app_services_inventory_service__["a" /* InventoryService */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_19_ngx_cookie_service_cookie_service_cookie_service__["a" /* CookieService */], __WEBPACK_IMPORTED_MODULE_19_ngx_cookie_service_cookie_service_cookie_service__["a" /* CookieService */], [__WEBPACK_IMPORTED_MODULE_4__angular_common__["b" /* DOCUMENT */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_20__app_services_primary_loop_service__["a" /* PrimaryLoopService */], __WEBPACK_IMPORTED_MODULE_20__app_services_primary_loop_service__["a" /* PrimaryLoopService */], [__WEBPACK_IMPORTED_MODULE_19_ngx_cookie_service_cookie_service_cookie_service__["a" /* CookieService */], __WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_14__app_services_operating_service__["a" /* OperatingService */],
-            __WEBPACK_IMPORTED_MODULE_13__app_services_scheming_service__["a" /* SchemingService */], __WEBPACK_IMPORTED_MODULE_17__app_services_recruiting_service__["a" /* RecruitingService */], __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */], __WEBPACK_IMPORTED_MODULE_18__app_services_training_service__["a" /* TrainingService */]]),
+        __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */], __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_13__app_services_operating_service__["a" /* OperatingService */], __WEBPACK_IMPORTED_MODULE_13__app_services_operating_service__["a" /* OperatingService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */]]),
+        __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_14__app_services_inventory_service__["a" /* InventoryService */], __WEBPACK_IMPORTED_MODULE_14__app_services_inventory_service__["a" /* InventoryService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */],
+            __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_15__app_services_base_service__["a" /* BaseService */], __WEBPACK_IMPORTED_MODULE_15__app_services_base_service__["a" /* BaseService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */],
+            __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */], __WEBPACK_IMPORTED_MODULE_13__app_services_operating_service__["a" /* OperatingService */], __WEBPACK_IMPORTED_MODULE_14__app_services_inventory_service__["a" /* InventoryService */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_16__app_services_scheming_service__["a" /* SchemingService */], __WEBPACK_IMPORTED_MODULE_16__app_services_scheming_service__["a" /* SchemingService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_15__app_services_base_service__["a" /* BaseService */],
+            __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_17__app_services_heroes_service__["a" /* HeroesService */], __WEBPACK_IMPORTED_MODULE_17__app_services_heroes_service__["a" /* HeroesService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */], __WEBPACK_IMPORTED_MODULE_13__app_services_operating_service__["a" /* OperatingService */], __WEBPACK_IMPORTED_MODULE_14__app_services_inventory_service__["a" /* InventoryService */]]),
+        __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_18__app_services_recruiting_service__["a" /* RecruitingService */], __WEBPACK_IMPORTED_MODULE_18__app_services_recruiting_service__["a" /* RecruitingService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */],
+            __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */], __WEBPACK_IMPORTED_MODULE_13__app_services_operating_service__["a" /* OperatingService */], __WEBPACK_IMPORTED_MODULE_14__app_services_inventory_service__["a" /* InventoryService */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_19__app_services_training_service__["a" /* TrainingService */], __WEBPACK_IMPORTED_MODULE_19__app_services_training_service__["a" /* TrainingService */], [__WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */],
+            __WEBPACK_IMPORTED_MODULE_14__app_services_inventory_service__["a" /* InventoryService */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_20_ngx_cookie_service_cookie_service_cookie_service__["a" /* CookieService */], __WEBPACK_IMPORTED_MODULE_20_ngx_cookie_service_cookie_service_cookie_service__["a" /* CookieService */], [__WEBPACK_IMPORTED_MODULE_4__angular_common__["b" /* DOCUMENT */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](4608, __WEBPACK_IMPORTED_MODULE_21__app_services_primary_loop_service__["a" /* PrimaryLoopService */], __WEBPACK_IMPORTED_MODULE_21__app_services_primary_loop_service__["a" /* PrimaryLoopService */], [__WEBPACK_IMPORTED_MODULE_15__app_services_base_service__["a" /* BaseService */], __WEBPACK_IMPORTED_MODULE_20_ngx_cookie_service_cookie_service_cookie_service__["a" /* CookieService */], __WEBPACK_IMPORTED_MODULE_11__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_13__app_services_operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_16__app_services_scheming_service__["a" /* SchemingService */], __WEBPACK_IMPORTED_MODULE_18__app_services_recruiting_service__["a" /* RecruitingService */], __WEBPACK_IMPORTED_MODULE_12__app_services_core_numbers_service__["a" /* NumbersService */], __WEBPACK_IMPORTED_MODULE_19__app_services_training_service__["a" /* TrainingService */]]),
         __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_4__angular_common__["a" /* CommonModule */], __WEBPACK_IMPORTED_MODULE_4__angular_common__["a" /* CommonModule */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](1024, __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ErrorHandler */], __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["r" /* ɵa */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](1024, __WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* APP_INITIALIZER */], function (p0_0, p0_1) {
             return [__WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["s" /* ɵc */](p0_0, p0_1)];
         }, [[2, __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["i" /* NgProbeToken */]], [2, __WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* NgProbeToken */]]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* ApplicationInitStatus */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* ApplicationInitStatus */], [[2, __WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* APP_INITIALIZER */]]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](131584, __WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* ɵe */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* ɵe */], [__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* NgZone */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["X" /* ɵConsole */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["r" /* Injector */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* ErrorHandler */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["i" /* ComponentFactoryResolver */],
             __WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* ApplicationInitStatus */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](2048, __WEBPACK_IMPORTED_MODULE_0__angular_core__["e" /* ApplicationRef */], null, [__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* ɵe */]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* ApplicationModule */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* ApplicationModule */], [__WEBPACK_IMPORTED_MODULE_0__angular_core__["e" /* ApplicationRef */]]),
         __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["a" /* BrowserModule */], __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["a" /* BrowserModule */], [[3, __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["a" /* BrowserModule */]]]), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */], __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */], []),
-        __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_21__app_header_header_module__["a" /* HeaderModule */], __WEBPACK_IMPORTED_MODULE_21__app_header_header_module__["a" /* HeaderModule */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_22__app_scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */], __WEBPACK_IMPORTED_MODULE_22__app_scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_23__app_activity_panel_activity_panel_module__["a" /* ActivityPanelModule */], __WEBPACK_IMPORTED_MODULE_23__app_activity_panel_activity_panel_module__["a" /* ActivityPanelModule */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_9__angular_http__["e" /* HttpModule */], __WEBPACK_IMPORTED_MODULE_9__angular_http__["e" /* HttpModule */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_1__app_app_module__["a" /* AppModule */], __WEBPACK_IMPORTED_MODULE_1__app_app_module__["a" /* AppModule */], [])]);
+        __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_22__app_header_header_module__["a" /* HeaderModule */], __WEBPACK_IMPORTED_MODULE_22__app_header_header_module__["a" /* HeaderModule */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_23__app_scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */], __WEBPACK_IMPORTED_MODULE_23__app_scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_24__app_activity_panel_activity_panel_module__["a" /* ActivityPanelModule */], __WEBPACK_IMPORTED_MODULE_24__app_activity_panel_activity_panel_module__["a" /* ActivityPanelModule */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_9__angular_http__["e" /* HttpModule */], __WEBPACK_IMPORTED_MODULE_9__angular_http__["e" /* HttpModule */], []), __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* ɵmpd */](512, __WEBPACK_IMPORTED_MODULE_1__app_app_module__["a" /* AppModule */], __WEBPACK_IMPORTED_MODULE_1__app_app_module__["a" /* AppModule */], [])]);
 });
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9hcHAubW9kdWxlLm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9hcHAubW9kdWxlLnRzIl0sInNvdXJjZXNDb250ZW50IjpbIiAiXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OyJ9
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9hcHAubW9kdWxlLm5nZmFjdG9yeS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9hcHAubW9kdWxlLnRzIl0sInNvdXJjZXNDb250ZW50IjpbIiAiXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OyJ9
 //# sourceMappingURL=app.module.ngfactory.js.map
 
 /***/ }),
@@ -849,10 +866,11 @@ var AppModuleNgFactory = __WEBPACK_IMPORTED_MODULE_0__angular_core__["_0" /* ɵc
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_header_header_component__ = __webpack_require__("../../../../../src/app/header/header.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_services_core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
 /**
  * @fileoverview This file is generated by the Angular template compiler.
  * Do not edit.
@@ -867,10 +885,11 @@ var AppModuleNgFactory = __WEBPACK_IMPORTED_MODULE_0__angular_core__["_0" /* ɵc
 
 
 
+
 var styles_HeaderComponent = [__WEBPACK_IMPORTED_MODULE_0__app_component_scss_shim_ngstyle__["a" /* styles */]];
 var RenderType_HeaderComponent = __WEBPACK_IMPORTED_MODULE_1__angular_core__["_1" /* ɵcrt */]({ encapsulation: 0,
     styles: styles_HeaderComponent, data: {} });
-function View_HeaderComponent_1(_l) {
+function View_HeaderComponent_2(_l) {
     return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 6, 'div', [['class',
                 'notoriety-gauge']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n            '])), (_l()(),
             __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](2, 0, null, null, 0, 'i', [['aria-hidden', 'true'], ['class',
@@ -881,7 +900,7 @@ function View_HeaderComponent_1(_l) {
         _ck(_v, 5, 0, currVal_0);
     });
 }
-function View_HeaderComponent_2(_l) {
+function View_HeaderComponent_3(_l) {
     return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 1, 'div', [['class',
                 'notoriety-meter']], null, null, null, null, null)), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](1, 278528, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["h" /* NgStyle */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* KeyValueDiffers */],
             __WEBPACK_IMPORTED_MODULE_1__angular_core__["k" /* ElementRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["E" /* Renderer */]], { ngStyle: [0, 'ngStyle'] }, null)], function (_ck, _v) {
@@ -890,7 +909,7 @@ function View_HeaderComponent_2(_l) {
         _ck(_v, 1, 0, currVal_0);
     }, null);
 }
-function View_HeaderComponent_3(_l) {
+function View_HeaderComponent_4(_l) {
     return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 12, 'div', [], null, null, null, null, null)), (_l()(),
             __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n            '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](2, 0, null, null, 1, 'p', [['class', 'scheme-title']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['Scheming'])),
         (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n            '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](5, 0, null, null, 6, 'div', [], [[8, 'className', 0]], null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n                '])),
@@ -901,24 +920,24 @@ function View_HeaderComponent_3(_l) {
         _ck(_v, 10, 0, currVal_3);
     }, function (_ck, _v) {
         var _co = _v.component;
-        var currVal_0 = __WEBPACK_IMPORTED_MODULE_1__angular_core__["_7" /* ɵinlineInterpolate */](1, 'scheme-bar-container ', _co._player.currentScheme['tree'], '');
+        var currVal_0 = __WEBPACK_IMPORTED_MODULE_1__angular_core__["_7" /* ɵinlineInterpolate */](1, 'scheme-bar-container ', _co._base.currentScheme.tree, '');
         _ck(_v, 5, 0, currVal_0);
-        var currVal_1 = __WEBPACK_IMPORTED_MODULE_1__angular_core__["_7" /* ɵinlineInterpolate */](1, 'scheme-icon fa ', _co._scheming.schemes[_co._player.currentScheme['ref']].fa, '');
+        var currVal_1 = __WEBPACK_IMPORTED_MODULE_1__angular_core__["_7" /* ɵinlineInterpolate */](1, 'scheme-icon fa ', _co._base.currentScheme.fa, '');
         _ck(_v, 7, 0, currVal_1);
-        var currVal_2 = __WEBPACK_IMPORTED_MODULE_1__angular_core__["_7" /* ɵinlineInterpolate */](1, 'scheme-progress-bar ', _co._player.currentScheme['tree'], '');
+        var currVal_2 = __WEBPACK_IMPORTED_MODULE_1__angular_core__["_7" /* ɵinlineInterpolate */](1, 'scheme-progress-bar ', _co._base.currentScheme.tree, '');
         _ck(_v, 9, 0, currVal_2);
     });
 }
-function View_HeaderComponent_4(_l) {
+function View_HeaderComponent_5(_l) {
     return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 6, 'div', [], null, null, null, null, null)), (_l()(),
             __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n            '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](2, 0, null, null, 1, 'p', [['class', 'scheme-title']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['Not Scheming'])),
         (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n            '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](5, 0, null, null, 0, 'i', [['class', 'fa fa-spinner fa-pulse fa-2x fa-fw']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n        ']))], null, null);
 }
-function View_HeaderComponent_0(_l) {
+function View_HeaderComponent_1(_l) {
     return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 26, 'div', [['class',
                 'header']], null, null, null, null, null)),
-        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](2, 0, null, null, 7, 'div', [['class', 'notoriety-container']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n        '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_HeaderComponent_1)), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](5, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null), (_l()(),
-            __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n        '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_HeaderComponent_2)), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](8, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null),
+        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](2, 0, null, null, 7, 'div', [['class', 'notoriety-container']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n        '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_HeaderComponent_2)), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](5, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null), (_l()(),
+            __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n        '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_HeaderComponent_3)), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](8, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null),
         (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](11, 0, null, null, 4, 'div', [], null, null, null, null, null)),
         (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n        '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](13, 0, null, null, 1, 'p', [['class', 'main-title']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['Bad Guy'])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](17, 0, null, null, 8, 'div', [['class', 'scheme-container']], null, [[null, 'click']], function (_v, en, $event) {
             var ad = true;
@@ -929,8 +948,8 @@ function View_HeaderComponent_0(_l) {
             }
             return ad;
         }, null, null)), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](18, 278528, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["h" /* NgStyle */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* KeyValueDiffers */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["k" /* ElementRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["E" /* Renderer */]], { ngStyle: [0, 'ngStyle'] }, null),
-        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n        '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_HeaderComponent_3)), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](21, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n        '])), (_l()(),
-            __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_HeaderComponent_4)),
+        (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n        '])), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_HeaderComponent_4)), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](21, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n        '])), (_l()(),
+            __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_HeaderComponent_5)),
         __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](24, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null), (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n    '])),
         (_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_20" /* ɵted */](-1, null, ['\n']))], function (_ck, _v) {
         var _co = _v.component;
@@ -940,19 +959,27 @@ function View_HeaderComponent_0(_l) {
         _ck(_v, 8, 0, currVal_1);
         var currVal_2 = _co.schemeStyle();
         _ck(_v, 18, 0, currVal_2);
-        var currVal_3 = _co.earningSchemePoints();
+        var currVal_3 = _co._base.earningSchemePoints;
         _ck(_v, 21, 0, currVal_3);
-        var currVal_4 = !_co.earningSchemePoints();
+        var currVal_4 = !_co._base.earningSchemePoints;
         _ck(_v, 24, 0, currVal_4);
+    }, null);
+}
+function View_HeaderComponent_0(_l) {
+    return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_HeaderComponent_1)), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](1, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_1__angular_core__["N" /* ViewContainerRef */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null)], function (_ck, _v) {
+        var _co = _v.component;
+        var currVal_0 = !_co._base.initialLoadSchemes;
+        _ck(_v, 1, 0, currVal_0);
     }, null);
 }
 function View_HeaderComponent_Host_0(_l) {
     return __WEBPACK_IMPORTED_MODULE_1__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_1__angular_core__["_4" /* ɵeld */](0, 0, null, null, 1, 'header', [], null, null, null, View_HeaderComponent_0, RenderType_HeaderComponent)),
-        __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](1, 49152, null, 0, __WEBPACK_IMPORTED_MODULE_3__app_header_header_component__["a" /* HeaderComponent */], [__WEBPACK_IMPORTED_MODULE_4__app_services_core_player_service__["a" /* PlayerService */], __WEBPACK_IMPORTED_MODULE_5__app_services_heroes_service__["a" /* HeroesService */],
-            __WEBPACK_IMPORTED_MODULE_6__app_services_scheming_service__["a" /* SchemingService */], __WEBPACK_IMPORTED_MODULE_7__app_services_inventory_service__["a" /* InventoryService */]], null, null)], null, null);
+        __WEBPACK_IMPORTED_MODULE_1__angular_core__["_2" /* ɵdid */](1, 49152, null, 0, __WEBPACK_IMPORTED_MODULE_3__app_header_header_component__["a" /* HeaderComponent */], [__WEBPACK_IMPORTED_MODULE_4__app_services_base_service__["a" /* BaseService */], __WEBPACK_IMPORTED_MODULE_5__app_services_core_player_service__["a" /* PlayerService */],
+            __WEBPACK_IMPORTED_MODULE_6__app_services_heroes_service__["a" /* HeroesService */], __WEBPACK_IMPORTED_MODULE_7__app_services_scheming_service__["a" /* SchemingService */], __WEBPACK_IMPORTED_MODULE_8__app_services_inventory_service__["a" /* InventoryService */]], null, null)], null, null);
 }
 var HeaderComponentNgFactory = __WEBPACK_IMPORTED_MODULE_1__angular_core__["Z" /* ɵccf */]('header', __WEBPACK_IMPORTED_MODULE_3__app_header_header_component__["a" /* HeaderComponent */], View_HeaderComponent_Host_0, {}, {}, []);
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9oZWFkZXIvaGVhZGVyLmNvbXBvbmVudC5uZ2ZhY3RvcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9Vc2Vycy9kb25uaWUvRGVza3RvcC9CYWQtR3V5L3NyYy9hcHAvaGVhZGVyL2hlYWRlci5jb21wb25lbnQudHMiLCJuZzovLy9Vc2Vycy9kb25uaWUvRGVza3RvcC9CYWQtR3V5L3NyYy9hcHAvaGVhZGVyL2hlYWRlci5jb21wb25lbnQuaHRtbCIsIm5nOi8vL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9oZWFkZXIvaGVhZGVyLmNvbXBvbmVudC50cy5IZWFkZXJDb21wb25lbnRfSG9zdC5odG1sIl0sInNvdXJjZXNDb250ZW50IjpbIiAiLCI8ZGl2IGNsYXNzPVwiaGVhZGVyXCI+XG4gICAgPGRpdiBjbGFzcz1cIm5vdG9yaWV0eS1jb250YWluZXJcIj5cbiAgICAgICAgPGRpdiBjbGFzcz1cIm5vdG9yaWV0eS1nYXVnZVwiICpuZ0lmPVwiX3BsYXllci5ub3RvcmlldHkgPiAwXCI+XG4gICAgICAgICAgICA8aSBjbGFzcz1cImZhIGZhLWV4Y2xhbWF0aW9uLXRyaWFuZ2xlXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9pPlxuICAgICAgICAgICAgPHA+e3tfaGVyb2VzLnByZXR0eU5vdG9yaWV0eX19LzEwPC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiAqbmdJZj1cIl9wbGF5ZXIubm90b3JpZXR5ID4gMFwiIGNsYXNzPVwibm90b3JpZXR5LW1ldGVyXCIgW25nU3R5bGVdPVwibm90b3JpZXR5Um90YXRpb25TdHlsZSgpXCI+PC9kaXY+XG4gICAgPC9kaXY+XG4gICAgPGRpdj5cbiAgICAgICAgPHAgY2xhc3M9XCJtYWluLXRpdGxlXCI+QmFkIEd1eTwvcD5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2IGNsYXNzPVwic2NoZW1lLWNvbnRhaW5lclwiIFtuZ1N0eWxlXT1cInNjaGVtZVN0eWxlKClcIiAoY2xpY2spPVwiX3NjaGVtaW5nLnN3aXRjaFRvQ3VycmVudFNjaGVtZVByZXZpZXcoKVwiPlxuICAgICAgICA8ZGl2ICpuZ0lmPVwiZWFybmluZ1NjaGVtZVBvaW50cygpXCI+XG4gICAgICAgICAgICA8cCBjbGFzcz1cInNjaGVtZS10aXRsZVwiPlNjaGVtaW5nPC9wPlxuICAgICAgICAgICAgPGRpdiBjbGFzcz1cInNjaGVtZS1iYXItY29udGFpbmVyIHt7X3BsYXllci5jdXJyZW50U2NoZW1lWyd0cmVlJ119fVwiPlxuICAgICAgICAgICAgICAgIDxpIGNsYXNzPVwic2NoZW1lLWljb24gZmEge3tfc2NoZW1pbmcuc2NoZW1lc1tfcGxheWVyLmN1cnJlbnRTY2hlbWVbJ3JlZiddXS5mYX19XCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9pPlxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJzY2hlbWUtcHJvZ3Jlc3MtYmFyIHt7X3BsYXllci5jdXJyZW50U2NoZW1lWyd0cmVlJ119fVwiIFtuZ1N0eWxlXT1cInNjaGVtZVByb2dyZXNzQmFyU3R5bGUoKVwiPjwvZGl2PlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2ICpuZ0lmPVwiIWVhcm5pbmdTY2hlbWVQb2ludHMoKVwiPlxuICAgICAgICAgICAgPHAgY2xhc3M9XCJzY2hlbWUtdGl0bGVcIj5Ob3QgU2NoZW1pbmc8L3A+XG4gICAgICAgICAgICA8aSBjbGFzcz1cImZhIGZhLXNwaW5uZXIgZmEtcHVsc2UgZmEtMnggZmEtZndcIj48L2k+XG4gICAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuPC9kaXY+IiwiPGhlYWRlcj48L2hlYWRlcj4iXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7OztvQkNFUTtNQUFBO01BQUEsZ0JBQTJELHNEQUN2RDthQUFBO1VBQUE7VUFBQSw4QkFBNkQ7TUFDN0Q7VUFBQSwwREFBRztVQUFBLDJCQUFrQzs7O1FBQWxDO1FBQUE7Ozs7b0JBRVA7TUFBQTtNQUFBLHVCQUFBOytCQUFBOztJQUEyRDtJQUEzRCxXQUEyRCxTQUEzRDs7OztvQkFNQTtNQUFBLHdFQUFtQzthQUFBLHVDQUMvQjtNQUFBO01BQUEsOEJBQXdCO01BQVksc0RBQ3BDO1VBQUE7VUFBQSw4QkFBb0U7TUFDaEU7VUFBQTtNQUF3RywwREFDeEc7VUFBQTtVQUFBLGlFQUFBO1VBQUE7VUFBQSx1Q0FBOEc7VUFBQSxxQkFDNUc7OztRQURpRTtRQUFuRSxZQUFtRSxTQUFuRTs7O1FBRkM7WUFBQTtRQUFMLFdBQUssU0FBTDtRQUNPO1lBQUE7UUFBSCxXQUFHLFNBQUg7UUFDSztZQUFBO1FBQUwsV0FBSyxTQUFMOzs7O29CQUdSO01BQUEsd0VBQW9DO2FBQUEsdUNBQ2hDO01BQUE7TUFBQSw4QkFBd0I7TUFBZ0Isc0RBQ3hDO1VBQUE7VUFBQSwwREFBa0Q7VUFBQTs7O29CQXJCOUQ7TUFBQTtNQUFvQiw4Q0FDaEI7VUFBQTtVQUFBLDRDQUFpQztVQUFBLGlCQUM3QjtVQUFBLDhDQUFBO1VBQUEsc0VBR007aUJBQUEsbUNBQ047VUFBQSw4REFBQTtVQUFBO01BQXNHLDhDQUNwRztVQUFBLGFBQ047VUFBQTtNQUFLLGtEQUNEO1VBQUE7VUFBQSw0Q0FBc0I7VUFBQSxjQUFXLDhDQUMvQjtVQUFBLDJCQUNOO1VBQUE7VUFBQTtZQUFBO1lBQUE7WUFBd0Q7Y0FBQTtjQUFBO1lBQUE7WUFBeEQ7VUFBQSx1Q0FBQTtVQUFBO01BQTJHLGtEQUN2RztVQUFBLDhEQUFBO1VBQUE7VUFBQSxlQU1NLGtEQUNOO2lCQUFBO2FBQUE7VUFBQSxpQ0FHTTtNQUNKOztJQXJCMkI7SUFBN0IsV0FBNkIsU0FBN0I7SUFJSztJQUFMLFdBQUssU0FBTDtJQUswQjtJQUE5QixZQUE4QixTQUE5QjtJQUNTO0lBQUwsWUFBSyxTQUFMO0lBT0s7SUFBTCxZQUFLLFNBQUw7Ozs7b0JDbkJSO01BQUE7YUFBQTtnREFBQTs7OzsifQ==
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9oZWFkZXIvaGVhZGVyLmNvbXBvbmVudC5uZ2ZhY3RvcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9Vc2Vycy9kb25uaWUvRGVza3RvcC9CYWQtR3V5L3NyYy9hcHAvaGVhZGVyL2hlYWRlci5jb21wb25lbnQudHMiLCJuZzovLy9Vc2Vycy9kb25uaWUvRGVza3RvcC9CYWQtR3V5L3NyYy9hcHAvaGVhZGVyL2hlYWRlci5jb21wb25lbnQuaHRtbCIsIm5nOi8vL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9oZWFkZXIvaGVhZGVyLmNvbXBvbmVudC50cy5IZWFkZXJDb21wb25lbnRfSG9zdC5odG1sIl0sInNvdXJjZXNDb250ZW50IjpbIiAiLCI8ZGl2IGNsYXNzPVwiaGVhZGVyXCIgKm5nSWY9XCIhX2Jhc2UuaW5pdGlhbExvYWRTY2hlbWVzXCI+XG4gICAgPGRpdiBjbGFzcz1cIm5vdG9yaWV0eS1jb250YWluZXJcIj5cbiAgICAgICAgPGRpdiBjbGFzcz1cIm5vdG9yaWV0eS1nYXVnZVwiICpuZ0lmPVwiX3BsYXllci5ub3RvcmlldHkgPiAwXCI+XG4gICAgICAgICAgICA8aSBjbGFzcz1cImZhIGZhLWV4Y2xhbWF0aW9uLXRyaWFuZ2xlXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9pPlxuICAgICAgICAgICAgPHA+e3tfaGVyb2VzLnByZXR0eU5vdG9yaWV0eX19LzEwPC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiAqbmdJZj1cIl9wbGF5ZXIubm90b3JpZXR5ID4gMFwiIGNsYXNzPVwibm90b3JpZXR5LW1ldGVyXCIgW25nU3R5bGVdPVwibm90b3JpZXR5Um90YXRpb25TdHlsZSgpXCI+PC9kaXY+XG4gICAgPC9kaXY+XG4gICAgPGRpdj5cbiAgICAgICAgPHAgY2xhc3M9XCJtYWluLXRpdGxlXCI+QmFkIEd1eTwvcD5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2IGNsYXNzPVwic2NoZW1lLWNvbnRhaW5lclwiIFtuZ1N0eWxlXT1cInNjaGVtZVN0eWxlKClcIiAoY2xpY2spPVwiX3NjaGVtaW5nLnN3aXRjaFRvQ3VycmVudFNjaGVtZVByZXZpZXcoKVwiPlxuICAgICAgICA8ZGl2ICpuZ0lmPVwiX2Jhc2UuZWFybmluZ1NjaGVtZVBvaW50c1wiPlxuICAgICAgICAgICAgPHAgY2xhc3M9XCJzY2hlbWUtdGl0bGVcIj5TY2hlbWluZzwvcD5cbiAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJzY2hlbWUtYmFyLWNvbnRhaW5lciB7e19iYXNlLmN1cnJlbnRTY2hlbWUudHJlZX19XCI+XG4gICAgICAgICAgICAgICAgPGkgY2xhc3M9XCJzY2hlbWUtaWNvbiBmYSB7e19iYXNlLmN1cnJlbnRTY2hlbWUuZmF9fVwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiPjwvaT5cbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPVwic2NoZW1lLXByb2dyZXNzLWJhciB7e19iYXNlLmN1cnJlbnRTY2hlbWUudHJlZX19XCIgW25nU3R5bGVdPVwic2NoZW1lUHJvZ3Jlc3NCYXJTdHlsZSgpXCI+PC9kaXY+XG4gICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgKm5nSWY9XCIhX2Jhc2UuZWFybmluZ1NjaGVtZVBvaW50c1wiPlxuICAgICAgICAgICAgPHAgY2xhc3M9XCJzY2hlbWUtdGl0bGVcIj5Ob3QgU2NoZW1pbmc8L3A+XG4gICAgICAgICAgICA8aSBjbGFzcz1cImZhIGZhLXNwaW5uZXIgZmEtcHVsc2UgZmEtMnggZmEtZndcIj48L2k+XG4gICAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuPC9kaXY+IiwiPGhlYWRlcj48L2hlYWRlcj4iXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7b0JDRVE7TUFBQTtNQUFBLGdCQUEyRCxzREFDdkQ7YUFBQTtVQUFBO1VBQUEsOEJBQTZEO01BQzdEO1VBQUEsMERBQUc7VUFBQSwyQkFBa0M7OztRQUFsQztRQUFBOzs7O29CQUVQO01BQUE7TUFBQSx1QkFBQTsrQkFBQTs7SUFBMkQ7SUFBM0QsV0FBMkQsU0FBM0Q7Ozs7b0JBTUE7TUFBQSx3RUFBdUM7YUFBQSx1Q0FDbkM7TUFBQTtNQUFBLDhCQUF3QjtNQUFZLHNEQUNwQztVQUFBO1VBQUEsOEJBQStEO01BQzNEO1VBQUE7TUFBNEUsMERBQzVFO1VBQUE7VUFBQSxpRUFBQTtVQUFBO1VBQUEsdUNBQXlHO1VBQUEscUJBQ3ZHOzs7UUFENEQ7UUFBOUQsWUFBOEQsU0FBOUQ7OztRQUZDO1lBQUE7UUFBTCxXQUFLLFNBQUw7UUFDTztZQUFBO1FBQUgsV0FBRyxTQUFIO1FBQ0s7WUFBQTtRQUFMLFdBQUssU0FBTDs7OztvQkFHUjtNQUFBLHdFQUF3QzthQUFBLHVDQUNwQztNQUFBO01BQUEsOEJBQXdCO01BQWdCLHNEQUN4QztVQUFBO1VBQUEsMERBQWtEO1VBQUE7OztvQkFyQjlEO01BQUE7TUFBc0QsOENBQ2xEO1VBQUE7VUFBQSw0Q0FBaUM7VUFBQSxpQkFDN0I7VUFBQSw4Q0FBQTtVQUFBLHNFQUdNO2lCQUFBLG1DQUNOO1VBQUEsOERBQUE7VUFBQTtNQUFzRyw4Q0FDcEc7VUFBQSxhQUNOO1VBQUE7TUFBSyxrREFDRDtVQUFBO1VBQUEsNENBQXNCO1VBQUEsY0FBVyw4Q0FDL0I7VUFBQSwyQkFDTjtVQUFBO1VBQUE7WUFBQTtZQUFBO1lBQXdEO2NBQUE7Y0FBQTtZQUFBO1lBQXhEO1VBQUEsdUNBQUE7VUFBQTtNQUEyRyxrREFDdkc7VUFBQSw4REFBQTtVQUFBO1VBQUEsZUFNTSxrREFDTjtpQkFBQTthQUFBO1VBQUEsaUNBR007TUFDSjs7SUFyQjJCO0lBQTdCLFdBQTZCLFNBQTdCO0lBSUs7SUFBTCxXQUFLLFNBQUw7SUFLMEI7SUFBOUIsWUFBOEIsU0FBOUI7SUFDUztJQUFMLFlBQUssU0FBTDtJQU9LO0lBQUwsWUFBSyxTQUFMOzs7O29CQW5CUjtNQUFBLGdDQUFBO29CQUFBOztJQUFvQjtJQUFwQixXQUFvQixTQUFwQjs7OztvQkNBQTtNQUFBO2FBQUE7aUVBQUE7Ozs7In0=
 //# sourceMappingURL=header.component.ngfactory.js.map
 
 /***/ }),
@@ -971,12 +998,14 @@ var HeaderComponentNgFactory = __WEBPACK_IMPORTED_MODULE_1__angular_core__["Z" /
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_scheme_panel_scheme_panel_component__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
 /**
  * @fileoverview This file is generated by the Angular template compiler.
  * Do not edit.
  * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride}
  */
 /* tslint:disable */
+
 
 
 
@@ -1001,7 +1030,8 @@ function View_SchemePanelComponent_3(_l) {
         __WEBPACK_IMPORTED_MODULE_2__angular_core__["_2" /* ɵdid */](3, 278528, null, 0, __WEBPACK_IMPORTED_MODULE_3__angular_common__["h" /* NgStyle */], [__WEBPACK_IMPORTED_MODULE_2__angular_core__["u" /* KeyValueDiffers */], __WEBPACK_IMPORTED_MODULE_2__angular_core__["k" /* ElementRef */],
             __WEBPACK_IMPORTED_MODULE_2__angular_core__["E" /* Renderer */]], { ngStyle: [0, 'ngStyle'] }, null), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_18" /* ɵpod */](4, { 'color': 0 }),
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](-1, null, ['\n            ']))], function (_ck, _v) {
-        var currVal_1 = _ck(_v, 4, 0, (_v.context.$implicit.canBeLearned ? 'default' : 'grey'));
+        var _co = _v.component;
+        var currVal_1 = _ck(_v, 4, 0, (_co._scheming.canLearn(_v.context.$implicit) ? 'default' : 'grey'));
         _ck(_v, 3, 0, currVal_1);
     }, function (_ck, _v) {
         var currVal_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core__["_7" /* ɵinlineInterpolate */](1, 'fa ', _v.context.$implicit.fa, '');
@@ -1021,7 +1051,7 @@ function View_SchemePanelComponent_2(_l) {
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_4" /* ɵeld */](15, 0, null, null, 0, 'div', [['class', 'column']], null, null, null, null, null)),
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](-1, null, ['\n    ']))], function (_ck, _v) {
         var _co = _v.component;
-        var currVal_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core__["_21" /* ɵunv */](_v, 5, 0, __WEBPACK_IMPORTED_MODULE_2__angular_core__["_16" /* ɵnov */](_v, 6).transform(_co._scheming.schemes, 0, 3));
+        var currVal_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core__["_21" /* ɵunv */](_v, 5, 0, __WEBPACK_IMPORTED_MODULE_2__angular_core__["_16" /* ɵnov */](_v, 6).transform(_co._base.schemes, 0, 3));
         _ck(_v, 5, 0, currVal_0);
     }, null);
 }
@@ -1040,7 +1070,8 @@ function View_SchemePanelComponent_5(_l) {
         __WEBPACK_IMPORTED_MODULE_2__angular_core__["_2" /* ɵdid */](3, 278528, null, 0, __WEBPACK_IMPORTED_MODULE_3__angular_common__["h" /* NgStyle */], [__WEBPACK_IMPORTED_MODULE_2__angular_core__["u" /* KeyValueDiffers */], __WEBPACK_IMPORTED_MODULE_2__angular_core__["k" /* ElementRef */],
             __WEBPACK_IMPORTED_MODULE_2__angular_core__["E" /* Renderer */]], { ngStyle: [0, 'ngStyle'] }, null), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_18" /* ɵpod */](4, { 'color': 0 }),
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](-1, null, ['\n            ']))], function (_ck, _v) {
-        var currVal_1 = _ck(_v, 4, 0, (_v.context.$implicit.canBeLearned ? 'default' : 'grey'));
+        var _co = _v.component;
+        var currVal_1 = _ck(_v, 4, 0, (_co._scheming.canLearn(_v.context.$implicit) ? 'default' : 'grey'));
         _ck(_v, 3, 0, currVal_1);
     }, function (_ck, _v) {
         var currVal_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core__["_7" /* ɵinlineInterpolate */](1, 'fa ', _v.context.$implicit.fa, '');
@@ -1060,7 +1091,7 @@ function View_SchemePanelComponent_4(_l) {
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_4" /* ɵeld */](15, 0, null, null, 0, 'div', [['class', 'column']], null, null, null, null, null)),
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](-1, null, ['\n    ']))], function (_ck, _v) {
         var _co = _v.component;
-        var currVal_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core__["_21" /* ɵunv */](_v, 5, 0, __WEBPACK_IMPORTED_MODULE_2__angular_core__["_16" /* ɵnov */](_v, 6).transform(_co._scheming.schemes, 3, 6));
+        var currVal_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core__["_21" /* ɵunv */](_v, 5, 0, __WEBPACK_IMPORTED_MODULE_2__angular_core__["_16" /* ɵnov */](_v, 6).transform(_co._base.schemes, 3, 6));
         _ck(_v, 5, 0, currVal_0);
     }, null);
 }
@@ -1079,7 +1110,8 @@ function View_SchemePanelComponent_7(_l) {
         __WEBPACK_IMPORTED_MODULE_2__angular_core__["_2" /* ɵdid */](3, 278528, null, 0, __WEBPACK_IMPORTED_MODULE_3__angular_common__["h" /* NgStyle */], [__WEBPACK_IMPORTED_MODULE_2__angular_core__["u" /* KeyValueDiffers */], __WEBPACK_IMPORTED_MODULE_2__angular_core__["k" /* ElementRef */],
             __WEBPACK_IMPORTED_MODULE_2__angular_core__["E" /* Renderer */]], { ngStyle: [0, 'ngStyle'] }, null), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_18" /* ɵpod */](4, { 'color': 0 }),
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](-1, null, ['\n            ']))], function (_ck, _v) {
-        var currVal_1 = _ck(_v, 4, 0, (_v.context.$implicit.canBeLearned ? 'default' : 'grey'));
+        var _co = _v.component;
+        var currVal_1 = _ck(_v, 4, 0, (_co._scheming.canLearn(_v.context.$implicit) ? 'default' : 'grey'));
         _ck(_v, 3, 0, currVal_1);
     }, function (_ck, _v) {
         var currVal_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core__["_7" /* ɵinlineInterpolate */](1, 'fa ', _v.context.$implicit.fa, '');
@@ -1099,7 +1131,7 @@ function View_SchemePanelComponent_6(_l) {
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_4" /* ɵeld */](15, 0, null, null, 0, 'div', [['class', 'column']], null, null, null, null, null)),
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](-1, null, ['\n    ']))], function (_ck, _v) {
         var _co = _v.component;
-        var currVal_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core__["_21" /* ɵunv */](_v, 5, 0, __WEBPACK_IMPORTED_MODULE_2__angular_core__["_16" /* ɵnov */](_v, 6).transform(_co._scheming.schemes, 6, 9));
+        var currVal_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core__["_21" /* ɵunv */](_v, 5, 0, __WEBPACK_IMPORTED_MODULE_2__angular_core__["_16" /* ɵnov */](_v, 6).transform(_co._base.schemes, 6, 9));
         _ck(_v, 5, 0, currVal_0);
     }, null);
 }
@@ -1118,7 +1150,8 @@ function View_SchemePanelComponent_9(_l) {
         __WEBPACK_IMPORTED_MODULE_2__angular_core__["_2" /* ɵdid */](3, 278528, null, 0, __WEBPACK_IMPORTED_MODULE_3__angular_common__["h" /* NgStyle */], [__WEBPACK_IMPORTED_MODULE_2__angular_core__["u" /* KeyValueDiffers */], __WEBPACK_IMPORTED_MODULE_2__angular_core__["k" /* ElementRef */],
             __WEBPACK_IMPORTED_MODULE_2__angular_core__["E" /* Renderer */]], { ngStyle: [0, 'ngStyle'] }, null), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_18" /* ɵpod */](4, { 'color': 0 }),
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](-1, null, ['\n            ']))], function (_ck, _v) {
-        var currVal_1 = _ck(_v, 4, 0, (_v.context.$implicit.canBeLearned ? 'default' : 'grey'));
+        var _co = _v.component;
+        var currVal_1 = _ck(_v, 4, 0, (_co._scheming.canLearn(_v.context.$implicit) ? 'default' : 'grey'));
         _ck(_v, 3, 0, currVal_1);
     }, function (_ck, _v) {
         var currVal_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core__["_7" /* ɵinlineInterpolate */](1, 'fa ', _v.context.$implicit.fa, '');
@@ -1138,7 +1171,7 @@ function View_SchemePanelComponent_8(_l) {
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_4" /* ɵeld */](15, 0, null, null, 0, 'div', [['class', 'column']], null, null, null, null, null)),
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](-1, null, ['\n    ']))], function (_ck, _v) {
         var _co = _v.component;
-        var currVal_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core__["_21" /* ɵunv */](_v, 5, 0, __WEBPACK_IMPORTED_MODULE_2__angular_core__["_16" /* ɵnov */](_v, 6).transform(_co._scheming.schemes, 9, 10));
+        var currVal_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core__["_21" /* ɵunv */](_v, 5, 0, __WEBPACK_IMPORTED_MODULE_2__angular_core__["_16" /* ɵnov */](_v, 6).transform(_co._base.schemes, 9, 10));
         _ck(_v, 5, 0, currVal_0);
     }, null);
 }
@@ -1147,7 +1180,7 @@ function View_SchemePanelComponent_11(_l) {
                 'flavor-text']], null, null, null, null, null)),
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](1, null, ['', '']))], null, function (_ck, _v) {
         var _co = _v.component;
-        var currVal_0 = _co._scheming.previewScheme.previewFlavor;
+        var currVal_0 = _co._scheming.previewScheme.currentFlavor;
         _ck(_v, 1, 0, currVal_0);
     });
 }
@@ -1156,7 +1189,7 @@ function View_SchemePanelComponent_12(_l) {
                 'flavor-text'], ['style', 'color:red']], null, null, null, null, null)), (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](1, null, ['Lair Level ',
             ' required.']))], null, function (_ck, _v) {
         var _co = _v.component;
-        var currVal_0 = _co._scheming.previewScheme.previewLairLevel;
+        var currVal_0 = _co._scheming.previewScheme.currentLairLevel;
         _ck(_v, 1, 0, currVal_0);
     });
 }
@@ -1188,9 +1221,9 @@ function View_SchemePanelComponent_10(_l) {
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](19, null, [' ', '/', ''])), (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](-1, null, ['\n            '])), (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_SchemePanelComponent_13)), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_2" /* ɵdid */](22, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_3__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_2__angular_core__["N" /* ViewContainerRef */], __WEBPACK_IMPORTED_MODULE_2__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null),
         (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](-1, null, ['\n        '])), (_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_20" /* ɵted */](-1, null, ['\n\n\n    ']))], function (_ck, _v) {
         var _co = _v.component;
-        var currVal_5 = _co._scheming.previewScheme.canBeLearned;
+        var currVal_5 = _co._scheming.canLearn(_co._scheming.previewScheme);
         _ck(_v, 13, 0, currVal_5);
-        var currVal_6 = !_co._scheming.previewScheme.learnLair;
+        var currVal_6 = !_co._scheming.learnLair(_co._scheming.previewScheme);
         _ck(_v, 16, 0, currVal_6);
         var currVal_9 = _co._scheming.showSchemeButtonInPreviewScheme();
         _ck(_v, 22, 0, currVal_9);
@@ -1203,10 +1236,10 @@ function View_SchemePanelComponent_10(_l) {
         var currVal_2 = _co._scheming.previewScheme.name;
         var currVal_3 = ((_co._scheming.previewScheme.level > 0) ? (_co._scheming.previewScheme.level + 1) : '');
         _ck(_v, 7, 0, currVal_2, currVal_3);
-        var currVal_4 = _co._scheming.previewScheme.previewDescription;
+        var currVal_4 = _co._scheming.previewScheme.currentDescription;
         _ck(_v, 10, 0, currVal_4);
         var currVal_7 = _co._scheming.previewScheme.exp;
-        var currVal_8 = _co._scheming.previewScheme.target;
+        var currVal_8 = _co._scheming.previewScheme.currentExpTarget;
         _ck(_v, 19, 0, currVal_7, currVal_8);
     });
 }
@@ -1295,15 +1328,15 @@ function View_SchemePanelComponent_0(_l) {
     return __WEBPACK_IMPORTED_MODULE_2__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["Y" /* ɵand */](16777216, null, null, 1, null, View_SchemePanelComponent_1)), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_2" /* ɵdid */](1, 16384, null, 0, __WEBPACK_IMPORTED_MODULE_3__angular_common__["e" /* NgIf */], [__WEBPACK_IMPORTED_MODULE_2__angular_core__["N" /* ViewContainerRef */],
             __WEBPACK_IMPORTED_MODULE_2__angular_core__["K" /* TemplateRef */]], { ngIf: [0, 'ngIf'] }, null)], function (_ck, _v) {
         var _co = _v.component;
-        var currVal_0 = _co._scheming.schemes;
+        var currVal_0 = _co._base.schemes;
         _ck(_v, 1, 0, currVal_0);
     }, null);
 }
 function View_SchemePanelComponent_Host_0(_l) {
-    return __WEBPACK_IMPORTED_MODULE_2__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_4" /* ɵeld */](0, 0, null, null, 1, 'scheme-panel', [], null, null, null, View_SchemePanelComponent_0, RenderType_SchemePanelComponent)), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_2" /* ɵdid */](1, 49152, null, 0, __WEBPACK_IMPORTED_MODULE_4__app_scheme_panel_scheme_panel_component__["a" /* SchemePanelComponent */], [__WEBPACK_IMPORTED_MODULE_5__app_services_scheming_service__["a" /* SchemingService */]], null, null)], null, null);
+    return __WEBPACK_IMPORTED_MODULE_2__angular_core__["_22" /* ɵvid */](0, [(_l()(), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_4" /* ɵeld */](0, 0, null, null, 1, 'scheme-panel', [], null, null, null, View_SchemePanelComponent_0, RenderType_SchemePanelComponent)), __WEBPACK_IMPORTED_MODULE_2__angular_core__["_2" /* ɵdid */](1, 49152, null, 0, __WEBPACK_IMPORTED_MODULE_4__app_scheme_panel_scheme_panel_component__["a" /* SchemePanelComponent */], [__WEBPACK_IMPORTED_MODULE_5__app_services_scheming_service__["a" /* SchemingService */], __WEBPACK_IMPORTED_MODULE_6__app_services_base_service__["a" /* BaseService */]], null, null)], null, null);
 }
 var SchemePanelComponentNgFactory = __WEBPACK_IMPORTED_MODULE_2__angular_core__["Z" /* ɵccf */]('scheme-panel', __WEBPACK_IMPORTED_MODULE_4__app_scheme_panel_scheme_panel_component__["a" /* SchemePanelComponent */], View_SchemePanelComponent_Host_0, {}, {}, []);
-//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9zY2hlbWUtcGFuZWwvc2NoZW1lLXBhbmVsLmNvbXBvbmVudC5uZ2ZhY3RvcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9Vc2Vycy9kb25uaWUvRGVza3RvcC9CYWQtR3V5L3NyYy9hcHAvc2NoZW1lLXBhbmVsL3NjaGVtZS1wYW5lbC5jb21wb25lbnQudHMiLCJuZzovLy9Vc2Vycy9kb25uaWUvRGVza3RvcC9CYWQtR3V5L3NyYy9hcHAvc2NoZW1lLXBhbmVsL3NjaGVtZS1wYW5lbC5jb21wb25lbnQuaHRtbCIsIm5nOi8vL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9zY2hlbWUtcGFuZWwvc2NoZW1lLXBhbmVsLmNvbXBvbmVudC50cy5TY2hlbWVQYW5lbENvbXBvbmVudF9Ib3N0Lmh0bWwiXSwic291cmNlc0NvbnRlbnQiOlsiICIsIjxkaXYgY2xhc3M9XCJzY2hlbWUtcGFuZWxcIiAqbmdJZj1cIl9zY2hlbWluZy5zY2hlbWVzXCI+XG4gICAgPGRpdiBjbGFzcz1cInNwYWNlclwiPjwvZGl2PlxuICAgIDxkaXYgY2xhc3M9XCJzZWxlY3QtYmFyXCI+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJzY2hlbWVzIHNlbGVjdFwiIChjbGljayk9XCJfc2NoZW1pbmcuc2VsZWN0ZWQgPSAnc2NoZW1pbmcnOyBfc2NoZW1pbmcuc2hvd1ByZXZpZXcgPSBmYWxzZTtcIj5cbiAgICAgICAgICAgIDxpIGNsYXNzPVwiZmEgZmEtbGlnaHRidWxiLW9cIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2k+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiaGVuY2ggc2VsZWN0XCIgKGNsaWNrKT1cIl9zY2hlbWluZy5zZWxlY3RlZCA9ICdoZW5jaG1lbic7IF9zY2hlbWluZy5zaG93UHJldmlldyA9IGZhbHNlO1wiPlxuICAgICAgICAgICAgPGkgY2xhc3M9XCJmYSBmYS11c2VyXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9pPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cIm9wZXJhdGUgc2VsZWN0XCIgKGNsaWNrKT1cIl9zY2hlbWluZy5zZWxlY3RlZCA9ICdvcGVyYXRpb25zJzsgX3NjaGVtaW5nLnNob3dQcmV2aWV3ID0gZmFsc2U7XCI+XG4gICAgICAgICAgICA8aSBjbGFzcz1cImZhIGZhLWxvY2F0aW9uLWFycm93XCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9pPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImxhaXIgc2VsZWN0XCIgKGNsaWNrKT1cIl9zY2hlbWluZy5zZWxlY3RlZCA9ICdsYWlycyc7IF9zY2hlbWluZy5zaG93UHJldmlldyA9IGZhbHNlO1wiPlxuICAgICAgICAgICAgPGkgY2xhc3M9XCJmYSBmYS1ob21lXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9pPlxuICAgICAgICA8L2Rpdj5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2IGNsYXNzPVwic2NoZW1lLWFyZWFcIiAqbmdJZj1cIl9zY2hlbWluZy5zZWxlY3RlZCA9PSAnc2NoZW1pbmcnXCI+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj5cbiAgICAgICAgICAgIDxwIGNsYXNzPVwibm9kZVwiICpuZ0Zvcj1cImxldCBzY2hlbWUgb2YgX3NjaGVtaW5nLnNjaGVtZXMgfCBzbGljZTogMDozOyBsZXQgaSA9IGluZGV4XCIgKGNsaWNrKT1cIl9zY2hlbWluZy5zY2hlbWVQcmV2aWV3KHNjaGVtZS5yZWYpXCI+XG4gICAgICAgICAgICAgICAgPGkgY2xhc3M9XCJmYSB7e3NjaGVtZS5mYX19XCIgYXJpYS1oaWRkZW49XCJ0cnVlXCIgW25nU3R5bGVdPVwieydjb2xvcicgOiBzY2hlbWUuY2FuQmVMZWFybmVkID8gJ2RlZmF1bHQnIDogJ2dyZXknIH0gXCI+PC9pPlxuICAgICAgICAgICAgPC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPjwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29sdW1uXCI+PC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj48L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPjwvZGl2PlxuICAgIDwvZGl2PlxuICAgIDxkaXYgY2xhc3M9XCJoZW5jaC1hcmVhXCIgKm5nSWY9XCJfc2NoZW1pbmcuc2VsZWN0ZWQgPT0gJ2hlbmNobWVuJ1wiPlxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29sdW1uXCI+XG4gICAgICAgICAgICA8cCBjbGFzcz1cIm5vZGVcIiAqbmdGb3I9XCJsZXQgc2NoZW1lIG9mIF9zY2hlbWluZy5zY2hlbWVzIHwgc2xpY2U6IDM6NjsgbGV0IGkgPSBpbmRleFwiIChjbGljayk9XCJfc2NoZW1pbmcuc2NoZW1lUHJldmlldyhzY2hlbWUucmVmKVwiPlxuICAgICAgICAgICAgICAgIDxpIGNsYXNzPVwiZmEge3tzY2hlbWUuZmF9fVwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiIFtuZ1N0eWxlXT1cInsnY29sb3InIDogc2NoZW1lLmNhbkJlTGVhcm5lZCA/ICdkZWZhdWx0JyA6ICdncmV5JyB9IFwiPjwvaT5cbiAgICAgICAgICAgIDwvcD5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj48L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPjwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29sdW1uXCI+PC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj48L2Rpdj5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2IGNsYXNzPVwib3BlcmF0ZS1hcmVhXCIgKm5nSWY9XCJfc2NoZW1pbmcuc2VsZWN0ZWQgPT0gJ29wZXJhdGlvbnMnXCI+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj5cbiAgICAgICAgICAgIDxwIGNsYXNzPVwibm9kZVwiICpuZ0Zvcj1cImxldCBzY2hlbWUgb2YgX3NjaGVtaW5nLnNjaGVtZXMgfCBzbGljZTogNjo5OyBsZXQgaSA9IGluZGV4XCIgKGNsaWNrKT1cIl9zY2hlbWluZy5zY2hlbWVQcmV2aWV3KHNjaGVtZS5yZWYpXCI+XG4gICAgICAgICAgICAgICAgPGkgY2xhc3M9XCJmYSB7e3NjaGVtZS5mYX19XCIgYXJpYS1oaWRkZW49XCJ0cnVlXCIgW25nU3R5bGVdPVwieydjb2xvcicgOiBzY2hlbWUuY2FuQmVMZWFybmVkID8gJ2RlZmF1bHQnIDogJ2dyZXknIH0gXCI+PC9pPlxuICAgICAgICAgICAgPC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPjwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29sdW1uXCI+PC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj48L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPjwvZGl2PlxuICAgIDwvZGl2PlxuICAgIDxkaXYgY2xhc3M9XCJsYWlyLWFyZWFcIiAqbmdJZj1cIl9zY2hlbWluZy5zZWxlY3RlZCA9PSAnbGFpcnMnXCI+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj5cbiAgICAgICAgICAgIDxwIGNsYXNzPVwibm9kZVwiICpuZ0Zvcj1cImxldCBzY2hlbWUgb2YgX3NjaGVtaW5nLnNjaGVtZXMgfCBzbGljZTogOToxMDsgbGV0IGkgPSBpbmRleFwiIChjbGljayk9XCJfc2NoZW1pbmcuc2NoZW1lUHJldmlldyhzY2hlbWUucmVmKVwiPlxuICAgICAgICAgICAgICAgIDxpIGNsYXNzPVwiZmEge3tzY2hlbWUuZmF9fVwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiIFtuZ1N0eWxlXT1cInsnY29sb3InIDogc2NoZW1lLmNhbkJlTGVhcm5lZCA/ICdkZWZhdWx0JyA6ICdncmV5JyB9IFwiPjwvaT5cbiAgICAgICAgICAgIDwvcD5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj48L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPjwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29sdW1uXCI+PC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj48L2Rpdj5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2ICpuZ0lmPVwiX3NjaGVtaW5nLnNob3dQcmV2aWV3XCIgY2xhc3M9XCJzY2hlbWUtZmx5b3V0IHt7X3NjaGVtaW5nLnByZXZpZXdTY2hlbWUudHJlZX19XCI+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJpbm5lci1jb250ZW50XCI+XG4gICAgICAgICAgICA8aSBjbGFzcz1cInNjaGVtZS1pY29uIGZhIHt7X3NjaGVtaW5nLnByZXZpZXdTY2hlbWUuZmF9fVwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiPjwvaT5cbiAgICAgICAgICAgIDxwIGNsYXNzPVwic2NoZW1lLW5hbWVcIj57e19zY2hlbWluZy5wcmV2aWV3U2NoZW1lLm5hbWV9fSB7e19zY2hlbWluZy5wcmV2aWV3U2NoZW1lLmxldmVsID4gMCA/IF9zY2hlbWluZy5wcmV2aWV3U2NoZW1lLmxldmVsKzEgOiAnJ319PC9wPlxuICAgICAgICAgICAgPHAgY2xhc3M9XCJiZW5lZml0LXRleHRcIj57e19zY2hlbWluZy5wcmV2aWV3U2NoZW1lLnByZXZpZXdEZXNjcmlwdGlvbn19IDwvcD5cbiAgICAgICAgICAgIDxwICpuZ0lmPVwiX3NjaGVtaW5nLnByZXZpZXdTY2hlbWUuY2FuQmVMZWFybmVkXCIgY2xhc3M9XCJmbGF2b3ItdGV4dFwiPnt7X3NjaGVtaW5nLnByZXZpZXdTY2hlbWUucHJldmlld0ZsYXZvcn19PC9wPlxuICAgICAgICAgICAgPHAgKm5nSWY9XCIhX3NjaGVtaW5nLnByZXZpZXdTY2hlbWUubGVhcm5MYWlyXCIgc3R5bGU9XCJjb2xvcjpyZWRcIiBjbGFzcz1cImZsYXZvci10ZXh0XCI+TGFpciBMZXZlbCB7e19zY2hlbWluZy5wcmV2aWV3U2NoZW1lLnByZXZpZXdMYWlyTGV2ZWx9fSByZXF1aXJlZC48L3A+XG4gICAgICAgICAgICA8cCBjbGFzcz1cInNjaGVtZS1leHBcIj4ge3tfc2NoZW1pbmcucHJldmlld1NjaGVtZS5leHB9fS97e19zY2hlbWluZy5wcmV2aWV3U2NoZW1lLnRhcmdldH19PC9wPlxuICAgICAgICAgICAgPHAgY2xhc3M9XCJub2RlIHt7X3NjaGVtaW5nLnByZXZpZXdTY2hlbWUudHJlZX19LXN0cm9uZ1wiIHN0eWxlPVwid2lkdGg6OTAlO21hcmdpbi10b3A6LjVyZW07Zm9udC1mYW1pbHk6J1Byb2Npb25vJztib3JkZXItcmFkaXVzOi41cmVtO2ZvbnQtc2l6ZToxcmVtO2hlaWdodDoxLjNyZW07XCIgXG4gICAgICAgICAgICAqbmdJZj1cIl9zY2hlbWluZy5zaG93U2NoZW1lQnV0dG9uSW5QcmV2aWV3U2NoZW1lKClcIiAoY2xpY2spPVwiX3NjaGVtaW5nLnN0YXJ0U2NoZW1pbmdQcmV2aWV3KClcIj5TY2hlbWU8L3A+XG4gICAgICAgIDwvZGl2PlxuXG5cbiAgICA8L2Rpdj5cblxuPC9kaXY+IiwiPHNjaGVtZS1wYW5lbD48L3NjaGVtZS1wYW5lbD4iXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7b0JDa0JZO01BQUE7SUFBQTtJQUFBO0lBQXFGO01BQUE7TUFBQTtJQUFBO0lBQXJGO0VBQUEsZ0NBQW1JO01BQy9IO1VBQUE7YUFBQTtxQkFBQSxnREFBK0M7TUFBdUU7SUFBdkU7SUFBL0MsV0FBK0MsU0FBL0M7O0lBQUc7SUFBSCxXQUFHLFNBQUg7Ozs7b0JBSFo7TUFBQTtNQUFrRSxrREFDOUQ7VUFBQTtVQUFBLDhCQUFvQjtNQUNoQjthQUFBOzRCQUFBLGdEQUFnQjtVQUFBLGVBRVosa0RBQ0Y7aUJBQUEsbUNBQ047VUFBQTtVQUFBLDhCQUEwQjtNQUMxQjtVQUFBO01BQTBCLGtEQUMxQjtVQUFBO1VBQUEsOEJBQTBCO01BQzFCO1VBQUE7TUFBMEI7O0lBUE47UUFBQTtJQUFoQixXQUFnQixTQUFoQjs7OztvQkFXQTtNQUFBO0lBQUE7SUFBQTtJQUFxRjtNQUFBO01BQUE7SUFBQTtJQUFyRjtFQUFBLGdDQUFtSTtNQUMvSDtVQUFBO2FBQUE7cUJBQUEsZ0RBQStDO01BQXVFO0lBQXZFO0lBQS9DLFdBQStDLFNBQS9DOztJQUFHO0lBQUgsV0FBRyxTQUFIOzs7O29CQUhaO01BQUE7TUFBaUUsa0RBQzdEO1VBQUE7VUFBQSw4QkFBb0I7TUFDaEI7YUFBQTs0QkFBQSxnREFBZ0I7VUFBQSxlQUVaLGtEQUNGO2lCQUFBLG1DQUNOO1VBQUE7VUFBQSw4QkFBMEI7TUFDMUI7VUFBQTtNQUEwQixrREFDMUI7VUFBQTtVQUFBLDhCQUEwQjtNQUMxQjtVQUFBO01BQTBCOztJQVBOO1FBQUE7SUFBaEIsV0FBZ0IsU0FBaEI7Ozs7b0JBV0E7TUFBQTtJQUFBO0lBQUE7SUFBcUY7TUFBQTtNQUFBO0lBQUE7SUFBckY7RUFBQSxnQ0FBbUk7TUFDL0g7VUFBQTthQUFBO3FCQUFBLGdEQUErQztNQUF1RTtJQUF2RTtJQUEvQyxXQUErQyxTQUEvQzs7SUFBRztJQUFILFdBQUcsU0FBSDs7OztvQkFIWjtNQUFBO01BQXFFLGtEQUNqRTtVQUFBO1VBQUEsOEJBQW9CO01BQ2hCO2FBQUE7NEJBQUEsZ0RBQWdCO1VBQUEsZUFFWixrREFDRjtpQkFBQSxtQ0FDTjtVQUFBO1VBQUEsOEJBQTBCO01BQzFCO1VBQUE7TUFBMEIsa0RBQzFCO1VBQUE7VUFBQSw4QkFBMEI7TUFDMUI7VUFBQTtNQUEwQjs7SUFQTjtRQUFBO0lBQWhCLFdBQWdCLFNBQWhCOzs7O29CQVdBO01BQUE7SUFBQTtJQUFBO0lBQXNGO01BQUE7TUFBQTtJQUFBO0lBQXRGO0VBQUEsZ0NBQW9JO01BQ2hJO1VBQUE7YUFBQTtxQkFBQSxnREFBK0M7TUFBdUU7SUFBdkU7SUFBL0MsV0FBK0MsU0FBL0M7O0lBQUc7SUFBSCxXQUFHLFNBQUg7Ozs7b0JBSFo7TUFBQTtNQUE2RCxrREFDekQ7VUFBQTtVQUFBLDhCQUFvQjtNQUNoQjthQUFBOzRCQUFBLGdEQUFnQjtVQUFBLGVBRVosa0RBQ0Y7aUJBQUEsbUNBQ047VUFBQTtVQUFBLDhCQUEwQjtNQUMxQjtVQUFBO01BQTBCLGtEQUMxQjtVQUFBO1VBQUEsOEJBQTBCO01BQzFCO1VBQUE7TUFBMEI7O0lBUE47UUFBQTtJQUFoQixXQUFnQixTQUFoQjs7OztvQkFjQTtNQUFBO01BQW9FOztJQUFBO0lBQUE7Ozs7b0JBQ3BFO01BQUE7TUFBQSw4QkFBb0Y7TUFBQTs7SUFBQTtJQUFBOzs7O29CQUVwRjtNQUFBO01BQUE7UUFBQTtRQUFBO1FBQ29EO1VBQUE7VUFBQTtRQUFBO1FBRHBEO01BQUEsZ0NBQytGOzs7UUFENUY7WUFBQTtRQUFILFdBQUcsU0FBSDs7OztvQkFSUjtNQUFBO01BQTBGLGtEQUN0RjtVQUFBO1VBQUEsNENBQTJCO1VBQUEscUJBQ3ZCO1VBQUE7VUFBQSw4QkFBZ0Y7TUFDaEY7VUFBQTtNQUF1Qiw4Q0FBaUg7VUFBQSxxQkFDeEk7VUFBQTtVQUFBLGdCQUF3Qiw0Q0FBbUQ7VUFBQSxtQ0FDM0U7VUFBQSxvRUFBQTtVQUFBO2NBQUEsd0JBQWlIO01BQ2pIO2FBQUE7VUFBQSxpQ0FBeUo7TUFDeko7VUFBQTtNQUFzQixnREFBdUU7VUFBQSxxQkFDN0Y7VUFBQSxzREFBQTtVQUFBO01BQ3lHLGtEQUN2RztVQUFBOztJQUxDO0lBQUgsWUFBRyxTQUFIO0lBQ0c7SUFBSCxZQUFHLFNBQUg7SUFHQTtJQURBLFlBQ0EsU0FEQTs7O0lBUjJCO1FBQUE7SUFBbkMsV0FBbUMsU0FBbkM7SUFFVztRQUFBO0lBQUgsV0FBRyxTQUFIO0lBQ3VCO0lBQUE7SUFBQTtJQUNDO0lBQUE7SUFHRjtJQUFBO0lBQUE7Ozs7b0JBbkVsQztNQUFBO01BQW9ELDhDQUNoRDtVQUFBO1VBQUEsOEJBQTBCO01BQzFCO1VBQUE7TUFBd0Isa0RBQ3BCO1VBQUE7Y0FBQTtZQUFBO1lBQUE7WUFBNEI7Y0FBQTtjQUFBO2NBQUE7WUFBQTtZQUE1QjtVQUFBLGdDQUFzRztNQUNsRztVQUFBO1VBQUEsOEJBQW9EO01BQ2xELGtEQUNOO1VBQUE7Y0FBQTtZQUFBO1lBQUE7WUFBMEI7Y0FBQTtjQUFBO2NBQUE7WUFBQTtZQUExQjtVQUFBLGdDQUFvRztNQUNoRztVQUFBO1VBQUEsZ0JBQTZDLGtEQUMzQztpQkFBQSxtQ0FDTjtVQUFBO2NBQUE7WUFBQTtZQUFBO1lBQTRCO2NBQUE7Y0FBQTtjQUFBO1lBQUE7WUFBNUI7VUFBQSxnQ0FBd0c7TUFDcEc7VUFBQTtVQUFBLDhCQUF1RDtNQUNyRCxrREFDTjtVQUFBO2NBQUE7WUFBQTtZQUFBO1lBQXlCO2NBQUE7Y0FBQTtjQUFBO1lBQUE7WUFBekI7VUFBQSxnQ0FBZ0c7TUFDNUY7VUFBQTtVQUFBLGdCQUE2QyxrREFDM0M7aUJBQUEsK0JBQ0o7TUFDTjthQUFBO1VBQUEsaUNBVU07TUFDTjthQUFBO1VBQUEsaUNBVU07TUFDTjthQUFBO1VBQUEsaUNBVU07TUFDTjthQUFBO1VBQUEsaUNBVU07TUFDTjthQUFBO1VBQUEsaUNBYU07OztRQXpEbUI7UUFBekIsWUFBeUIsU0FBekI7UUFXd0I7UUFBeEIsWUFBd0IsU0FBeEI7UUFXMEI7UUFBMUIsWUFBMEIsU0FBMUI7UUFXdUI7UUFBdkIsWUFBdUIsU0FBdkI7UUFXSztRQUFMLFlBQUssU0FBTDs7OztvQkE1REo7TUFBQSxxQ0FBQTtvQkFBQTs7SUFBMEI7SUFBMUIsV0FBMEIsU0FBMUI7Ozs7b0JDQUE7TUFBQTtxQ0FBQSxVQUFBO01BQUE7OzsifQ==
+//# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9zY2hlbWUtcGFuZWwvc2NoZW1lLXBhbmVsLmNvbXBvbmVudC5uZ2ZhY3RvcnkudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9Vc2Vycy9kb25uaWUvRGVza3RvcC9CYWQtR3V5L3NyYy9hcHAvc2NoZW1lLXBhbmVsL3NjaGVtZS1wYW5lbC5jb21wb25lbnQudHMiLCJuZzovLy9Vc2Vycy9kb25uaWUvRGVza3RvcC9CYWQtR3V5L3NyYy9hcHAvc2NoZW1lLXBhbmVsL3NjaGVtZS1wYW5lbC5jb21wb25lbnQuaHRtbCIsIm5nOi8vL1VzZXJzL2Rvbm5pZS9EZXNrdG9wL0JhZC1HdXkvc3JjL2FwcC9zY2hlbWUtcGFuZWwvc2NoZW1lLXBhbmVsLmNvbXBvbmVudC50cy5TY2hlbWVQYW5lbENvbXBvbmVudF9Ib3N0Lmh0bWwiXSwic291cmNlc0NvbnRlbnQiOlsiICIsIjxkaXYgY2xhc3M9XCJzY2hlbWUtcGFuZWxcIiAqbmdJZj1cIl9iYXNlLnNjaGVtZXNcIj5cbiAgICA8ZGl2IGNsYXNzPVwic3BhY2VyXCI+PC9kaXY+XG4gICAgPGRpdiBjbGFzcz1cInNlbGVjdC1iYXJcIj5cbiAgICAgICAgPGRpdiBjbGFzcz1cInNjaGVtZXMgc2VsZWN0XCIgKGNsaWNrKT1cIl9zY2hlbWluZy5zZWxlY3RlZCA9ICdzY2hlbWluZyc7IF9zY2hlbWluZy5zaG93UHJldmlldyA9IGZhbHNlO1wiPlxuICAgICAgICAgICAgPGkgY2xhc3M9XCJmYSBmYS1saWdodGJ1bGItb1wiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiPjwvaT5cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJoZW5jaCBzZWxlY3RcIiAoY2xpY2spPVwiX3NjaGVtaW5nLnNlbGVjdGVkID0gJ2hlbmNobWVuJzsgX3NjaGVtaW5nLnNob3dQcmV2aWV3ID0gZmFsc2U7XCI+XG4gICAgICAgICAgICA8aSBjbGFzcz1cImZhIGZhLXVzZXJcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2k+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwib3BlcmF0ZSBzZWxlY3RcIiAoY2xpY2spPVwiX3NjaGVtaW5nLnNlbGVjdGVkID0gJ29wZXJhdGlvbnMnOyBfc2NoZW1pbmcuc2hvd1ByZXZpZXcgPSBmYWxzZTtcIj5cbiAgICAgICAgICAgIDxpIGNsYXNzPVwiZmEgZmEtbG9jYXRpb24tYXJyb3dcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2k+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwibGFpciBzZWxlY3RcIiAoY2xpY2spPVwiX3NjaGVtaW5nLnNlbGVjdGVkID0gJ2xhaXJzJzsgX3NjaGVtaW5nLnNob3dQcmV2aWV3ID0gZmFsc2U7XCI+XG4gICAgICAgICAgICA8aSBjbGFzcz1cImZhIGZhLWhvbWVcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2k+XG4gICAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICAgIDxkaXYgY2xhc3M9XCJzY2hlbWUtYXJlYVwiICpuZ0lmPVwiX3NjaGVtaW5nLnNlbGVjdGVkID09ICdzY2hlbWluZydcIj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPlxuICAgICAgICAgICAgPHAgY2xhc3M9XCJub2RlXCIgKm5nRm9yPVwibGV0IHNjaGVtZSBvZiBfYmFzZS5zY2hlbWVzIHwgc2xpY2U6IDA6MzsgbGV0IGkgPSBpbmRleFwiIChjbGljayk9XCJfc2NoZW1pbmcuc2NoZW1lUHJldmlldyhzY2hlbWUucmVmKVwiPlxuICAgICAgICAgICAgICAgIDxpIGNsYXNzPVwiZmEge3tzY2hlbWUuZmF9fVwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiIFtuZ1N0eWxlXT1cInsnY29sb3InIDogX3NjaGVtaW5nLmNhbkxlYXJuKHNjaGVtZSkgPyAnZGVmYXVsdCcgOiAnZ3JleScgfSBcIj48L2k+XG4gICAgICAgICAgICA8L3A+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29sdW1uXCI+PC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj48L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPjwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29sdW1uXCI+PC9kaXY+XG4gICAgPC9kaXY+XG4gICAgPGRpdiBjbGFzcz1cImhlbmNoLWFyZWFcIiAqbmdJZj1cIl9zY2hlbWluZy5zZWxlY3RlZCA9PSAnaGVuY2htZW4nXCI+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj5cbiAgICAgICAgICAgIDxwIGNsYXNzPVwibm9kZVwiICpuZ0Zvcj1cImxldCBzY2hlbWUgb2YgX2Jhc2Uuc2NoZW1lcyB8IHNsaWNlOiAzOjY7IGxldCBpID0gaW5kZXhcIiAoY2xpY2spPVwiX3NjaGVtaW5nLnNjaGVtZVByZXZpZXcoc2NoZW1lLnJlZilcIj5cbiAgICAgICAgICAgICAgICA8aSBjbGFzcz1cImZhIHt7c2NoZW1lLmZhfX1cIiBhcmlhLWhpZGRlbj1cInRydWVcIiBbbmdTdHlsZV09XCJ7J2NvbG9yJyA6IF9zY2hlbWluZy5jYW5MZWFybihzY2hlbWUpID8gJ2RlZmF1bHQnIDogJ2dyZXknIH0gXCI+PC9pPlxuICAgICAgICAgICAgPC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPjwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29sdW1uXCI+PC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj48L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPjwvZGl2PlxuICAgIDwvZGl2PlxuICAgIDxkaXYgY2xhc3M9XCJvcGVyYXRlLWFyZWFcIiAqbmdJZj1cIl9zY2hlbWluZy5zZWxlY3RlZCA9PSAnb3BlcmF0aW9ucydcIj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPlxuICAgICAgICAgICAgPHAgY2xhc3M9XCJub2RlXCIgKm5nRm9yPVwibGV0IHNjaGVtZSBvZiBfYmFzZS5zY2hlbWVzIHwgc2xpY2U6IDY6OTsgbGV0IGkgPSBpbmRleFwiIChjbGljayk9XCJfc2NoZW1pbmcuc2NoZW1lUHJldmlldyhzY2hlbWUucmVmKVwiPlxuICAgICAgICAgICAgICAgIDxpIGNsYXNzPVwiZmEge3tzY2hlbWUuZmF9fVwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiIFtuZ1N0eWxlXT1cInsnY29sb3InIDogX3NjaGVtaW5nLmNhbkxlYXJuKHNjaGVtZSkgPyAnZGVmYXVsdCcgOiAnZ3JleScgfSBcIj48L2k+XG4gICAgICAgICAgICA8L3A+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29sdW1uXCI+PC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj48L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPjwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29sdW1uXCI+PC9kaXY+XG4gICAgPC9kaXY+XG4gICAgPGRpdiBjbGFzcz1cImxhaXItYXJlYVwiICpuZ0lmPVwiX3NjaGVtaW5nLnNlbGVjdGVkID09ICdsYWlycydcIj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPlxuICAgICAgICAgICAgPHAgY2xhc3M9XCJub2RlXCIgKm5nRm9yPVwibGV0IHNjaGVtZSBvZiBfYmFzZS5zY2hlbWVzIHwgc2xpY2U6IDk6MTA7IGxldCBpID0gaW5kZXhcIiAoY2xpY2spPVwiX3NjaGVtaW5nLnNjaGVtZVByZXZpZXcoc2NoZW1lLnJlZilcIj5cbiAgICAgICAgICAgICAgICA8aSBjbGFzcz1cImZhIHt7c2NoZW1lLmZhfX1cIiBhcmlhLWhpZGRlbj1cInRydWVcIiBbbmdTdHlsZV09XCJ7J2NvbG9yJyA6IF9zY2hlbWluZy5jYW5MZWFybihzY2hlbWUpID8gJ2RlZmF1bHQnIDogJ2dyZXknIH0gXCI+PC9pPlxuICAgICAgICAgICAgPC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPjwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiY29sdW1uXCI+PC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3M9XCJjb2x1bW5cIj48L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImNvbHVtblwiPjwvZGl2PlxuICAgIDwvZGl2PlxuICAgIDxkaXYgKm5nSWY9XCJfc2NoZW1pbmcuc2hvd1ByZXZpZXdcIiBjbGFzcz1cInNjaGVtZS1mbHlvdXQge3tfc2NoZW1pbmcucHJldmlld1NjaGVtZS50cmVlfX1cIj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImlubmVyLWNvbnRlbnRcIj5cbiAgICAgICAgICAgIDxpIGNsYXNzPVwic2NoZW1lLWljb24gZmEge3tfc2NoZW1pbmcucHJldmlld1NjaGVtZS5mYX19XCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9pPlxuICAgICAgICAgICAgPHAgY2xhc3M9XCJzY2hlbWUtbmFtZVwiPnt7X3NjaGVtaW5nLnByZXZpZXdTY2hlbWUubmFtZX19IHt7X3NjaGVtaW5nLnByZXZpZXdTY2hlbWUubGV2ZWwgPiAwID8gX3NjaGVtaW5nLnByZXZpZXdTY2hlbWUubGV2ZWwrMSA6ICcnfX08L3A+XG4gICAgICAgICAgICA8cCBjbGFzcz1cImJlbmVmaXQtdGV4dFwiPnt7X3NjaGVtaW5nLnByZXZpZXdTY2hlbWUuY3VycmVudERlc2NyaXB0aW9ufX0gPC9wPlxuICAgICAgICAgICAgPHAgKm5nSWY9XCJfc2NoZW1pbmcuY2FuTGVhcm4oX3NjaGVtaW5nLnByZXZpZXdTY2hlbWUpXCIgY2xhc3M9XCJmbGF2b3ItdGV4dFwiPnt7X3NjaGVtaW5nLnByZXZpZXdTY2hlbWUuY3VycmVudEZsYXZvcn19PC9wPlxuICAgICAgICAgICAgPHAgKm5nSWY9XCIhX3NjaGVtaW5nLmxlYXJuTGFpcihfc2NoZW1pbmcucHJldmlld1NjaGVtZSlcIiBzdHlsZT1cImNvbG9yOnJlZFwiIGNsYXNzPVwiZmxhdm9yLXRleHRcIj5MYWlyIExldmVsIHt7X3NjaGVtaW5nLnByZXZpZXdTY2hlbWUuY3VycmVudExhaXJMZXZlbH19IHJlcXVpcmVkLjwvcD5cbiAgICAgICAgICAgIDxwIGNsYXNzPVwic2NoZW1lLWV4cFwiPiB7e19zY2hlbWluZy5wcmV2aWV3U2NoZW1lLmV4cH19L3t7X3NjaGVtaW5nLnByZXZpZXdTY2hlbWUuY3VycmVudEV4cFRhcmdldH19PC9wPlxuICAgICAgICAgICAgPHAgY2xhc3M9XCJub2RlIHt7X3NjaGVtaW5nLnByZXZpZXdTY2hlbWUudHJlZX19LXN0cm9uZ1wiIHN0eWxlPVwid2lkdGg6OTAlO21hcmdpbi10b3A6LjVyZW07Zm9udC1mYW1pbHk6J1Byb2Npb25vJztib3JkZXItcmFkaXVzOi41cmVtO2ZvbnQtc2l6ZToxcmVtO2hlaWdodDoxLjNyZW07XCIgXG4gICAgICAgICAgICAqbmdJZj1cIl9zY2hlbWluZy5zaG93U2NoZW1lQnV0dG9uSW5QcmV2aWV3U2NoZW1lKClcIiAoY2xpY2spPVwiX3NjaGVtaW5nLnN0YXJ0U2NoZW1pbmdQcmV2aWV3KClcIj5TY2hlbWU8L3A+XG4gICAgICAgIDwvZGl2PlxuXG5cbiAgICA8L2Rpdj5cblxuPC9kaXY+IiwiPHNjaGVtZS1wYW5lbD48L3NjaGVtZS1wYW5lbD4iXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7O29CQ2tCWTtNQUFBO0lBQUE7SUFBQTtJQUFpRjtNQUFBO01BQUE7SUFBQTtJQUFqRjtFQUFBLGdDQUErSDtNQUMzSDtVQUFBO2FBQUE7cUJBQUEsZ0RBQStDO01BQThFOztJQUE5RTtJQUEvQyxXQUErQyxTQUEvQzs7SUFBRztJQUFILFdBQUcsU0FBSDs7OztvQkFIWjtNQUFBO01BQWtFLGtEQUM5RDtVQUFBO1VBQUEsOEJBQW9CO01BQ2hCO2FBQUE7NEJBQUEsZ0RBQWdCO1VBQUEsZUFFWixrREFDRjtpQkFBQSxtQ0FDTjtVQUFBO1VBQUEsOEJBQTBCO01BQzFCO1VBQUE7TUFBMEIsa0RBQzFCO1VBQUE7VUFBQSw4QkFBMEI7TUFDMUI7VUFBQTtNQUEwQjs7SUFQTjtRQUFBO0lBQWhCLFdBQWdCLFNBQWhCOzs7O29CQVdBO01BQUE7SUFBQTtJQUFBO0lBQWlGO01BQUE7TUFBQTtJQUFBO0lBQWpGO0VBQUEsZ0NBQStIO01BQzNIO1VBQUE7YUFBQTtxQkFBQSxnREFBK0M7TUFBOEU7O0lBQTlFO0lBQS9DLFdBQStDLFNBQS9DOztJQUFHO0lBQUgsV0FBRyxTQUFIOzs7O29CQUhaO01BQUE7TUFBaUUsa0RBQzdEO1VBQUE7VUFBQSw4QkFBb0I7TUFDaEI7YUFBQTs0QkFBQSxnREFBZ0I7VUFBQSxlQUVaLGtEQUNGO2lCQUFBLG1DQUNOO1VBQUE7VUFBQSw4QkFBMEI7TUFDMUI7VUFBQTtNQUEwQixrREFDMUI7VUFBQTtVQUFBLDhCQUEwQjtNQUMxQjtVQUFBO01BQTBCOztJQVBOO1FBQUE7SUFBaEIsV0FBZ0IsU0FBaEI7Ozs7b0JBV0E7TUFBQTtJQUFBO0lBQUE7SUFBaUY7TUFBQTtNQUFBO0lBQUE7SUFBakY7RUFBQSxnQ0FBK0g7TUFDM0g7VUFBQTthQUFBO3FCQUFBLGdEQUErQztNQUE4RTs7SUFBOUU7SUFBL0MsV0FBK0MsU0FBL0M7O0lBQUc7SUFBSCxXQUFHLFNBQUg7Ozs7b0JBSFo7TUFBQTtNQUFxRSxrREFDakU7VUFBQTtVQUFBLDhCQUFvQjtNQUNoQjthQUFBOzRCQUFBLGdEQUFnQjtVQUFBLGVBRVosa0RBQ0Y7aUJBQUEsbUNBQ047VUFBQTtVQUFBLDhCQUEwQjtNQUMxQjtVQUFBO01BQTBCLGtEQUMxQjtVQUFBO1VBQUEsOEJBQTBCO01BQzFCO1VBQUE7TUFBMEI7O0lBUE47UUFBQTtJQUFoQixXQUFnQixTQUFoQjs7OztvQkFXQTtNQUFBO0lBQUE7SUFBQTtJQUFrRjtNQUFBO01BQUE7SUFBQTtJQUFsRjtFQUFBLGdDQUFnSTtNQUM1SDtVQUFBO2FBQUE7cUJBQUEsZ0RBQStDO01BQThFOztJQUE5RTtJQUEvQyxXQUErQyxTQUEvQzs7SUFBRztJQUFILFdBQUcsU0FBSDs7OztvQkFIWjtNQUFBO01BQTZELGtEQUN6RDtVQUFBO1VBQUEsOEJBQW9CO01BQ2hCO2FBQUE7NEJBQUEsZ0RBQWdCO1VBQUEsZUFFWixrREFDRjtpQkFBQSxtQ0FDTjtVQUFBO1VBQUEsOEJBQTBCO01BQzFCO1VBQUE7TUFBMEIsa0RBQzFCO1VBQUE7VUFBQSw4QkFBMEI7TUFDMUI7VUFBQTtNQUEwQjs7SUFQTjtRQUFBO0lBQWhCLFdBQWdCLFNBQWhCOzs7O29CQWNBO01BQUE7TUFBMkU7O0lBQUE7SUFBQTs7OztvQkFDM0U7TUFBQTtNQUFBLDhCQUErRjtNQUFBOztJQUFBO0lBQUE7Ozs7b0JBRS9GO01BQUE7TUFBQTtRQUFBO1FBQUE7UUFDb0Q7VUFBQTtVQUFBO1FBQUE7UUFEcEQ7TUFBQSxnQ0FDK0Y7OztRQUQ1RjtZQUFBO1FBQUgsV0FBRyxTQUFIOzs7O29CQVJSO01BQUE7TUFBMEYsa0RBQ3RGO1VBQUE7VUFBQSw0Q0FBMkI7VUFBQSxxQkFDdkI7VUFBQTtVQUFBLDhCQUFnRjtNQUNoRjtVQUFBO01BQXVCLDhDQUFpSDtVQUFBLHFCQUN4STtVQUFBO1VBQUEsZ0JBQXdCLDRDQUFtRDtVQUFBLG1DQUMzRTtVQUFBLG9FQUFBO1VBQUE7Y0FBQSx3QkFBd0g7TUFDeEg7YUFBQTtVQUFBLGlDQUFvSztNQUNwSztVQUFBO01BQXNCLGdEQUFpRjtVQUFBLHFCQUN2RztVQUFBLHNEQUFBO1VBQUE7TUFDeUcsa0RBQ3ZHO1VBQUE7O0lBTEM7SUFBSCxZQUFHLFNBQUg7SUFDRztJQUFILFlBQUcsU0FBSDtJQUdBO0lBREEsWUFDQSxTQURBOzs7SUFSMkI7UUFBQTtJQUFuQyxXQUFtQyxTQUFuQztJQUVXO1FBQUE7SUFBSCxXQUFHLFNBQUg7SUFDdUI7SUFBQTtJQUFBO0lBQ0M7SUFBQTtJQUdGO0lBQUE7SUFBQTs7OztvQkFuRWxDO01BQUE7TUFBZ0QsOENBQzVDO1VBQUE7VUFBQSw4QkFBMEI7TUFDMUI7VUFBQTtNQUF3QixrREFDcEI7VUFBQTtjQUFBO1lBQUE7WUFBQTtZQUE0QjtjQUFBO2NBQUE7Y0FBQTtZQUFBO1lBQTVCO1VBQUEsZ0NBQXNHO01BQ2xHO1VBQUE7VUFBQSw4QkFBb0Q7TUFDbEQsa0RBQ047VUFBQTtjQUFBO1lBQUE7WUFBQTtZQUEwQjtjQUFBO2NBQUE7Y0FBQTtZQUFBO1lBQTFCO1VBQUEsZ0NBQW9HO01BQ2hHO1VBQUE7VUFBQSxnQkFBNkMsa0RBQzNDO2lCQUFBLG1DQUNOO1VBQUE7Y0FBQTtZQUFBO1lBQUE7WUFBNEI7Y0FBQTtjQUFBO2NBQUE7WUFBQTtZQUE1QjtVQUFBLGdDQUF3RztNQUNwRztVQUFBO1VBQUEsOEJBQXVEO01BQ3JELGtEQUNOO1VBQUE7Y0FBQTtZQUFBO1lBQUE7WUFBeUI7Y0FBQTtjQUFBO2NBQUE7WUFBQTtZQUF6QjtVQUFBLGdDQUFnRztNQUM1RjtVQUFBO1VBQUEsZ0JBQTZDLGtEQUMzQztpQkFBQSwrQkFDSjtNQUNOO2FBQUE7VUFBQSxpQ0FVTTtNQUNOO2FBQUE7VUFBQSxpQ0FVTTtNQUNOO2FBQUE7VUFBQSxpQ0FVTTtNQUNOO2FBQUE7VUFBQSxpQ0FVTTtNQUNOO2FBQUE7VUFBQSxpQ0FhTTs7O1FBekRtQjtRQUF6QixZQUF5QixTQUF6QjtRQVd3QjtRQUF4QixZQUF3QixTQUF4QjtRQVcwQjtRQUExQixZQUEwQixTQUExQjtRQVd1QjtRQUF2QixZQUF1QixTQUF2QjtRQVdLO1FBQUwsWUFBSyxTQUFMOzs7O29CQTVESjtNQUFBLHFDQUFBO29CQUFBOztJQUEwQjtJQUExQixXQUEwQixTQUExQjs7OztvQkNBQTtNQUFBO3FDQUFBLFVBQUE7TUFBQTs7OzsifQ==
 //# sourceMappingURL=scheme-panel.component.ngfactory.js.map
 
 /***/ }),
@@ -1516,7 +1549,8 @@ var ActivityPanelModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_train__ = __webpack_require__("../../../../../src/app/models/train.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -1540,13 +1574,15 @@ var __extends = (this && this.__extends) || (function () {
 
 
 
+
 // Import the DataService
 
 var AppComponent = (function (_super) {
     __extends(AppComponent, _super);
-    function AppComponent(cookieService, _player, _numbers, _loop, _scheming, _inventory, _training, _operating, _recruiting, _dataService) {
+    function AppComponent(cookieService, _base, _player, _numbers, _loop, _scheming, _inventory, _training, _operating, _recruiting, _dataService) {
         var _this = _super.call(this) || this;
         _this.cookieService = cookieService;
+        _this._base = _base;
         _this._player = _player;
         _this._numbers = _numbers;
         _this._loop = _loop;
@@ -1586,31 +1622,53 @@ var AppComponent = (function (_super) {
                             break;
                         }
                     }
-                    var newScheme = new __WEBPACK_IMPORTED_MODULE_8__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree);
+                    var newScheme = new __WEBPACK_IMPORTED_MODULE_8__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, Number(exp), Number(level), _this.schemeLairReq[i], _this.schemeExp[i]);
                     SchemeData.push(newScheme);
-                    console.log(level, exp);
                     level = "";
                     exp = "";
                 }
                 __WEBPACK_IMPORTED_MODULE_12__base__["a" /* Base */].SCHEMES = SchemeData;
+                console.log("Base.SCHEMES populated:");
+                console.log(__WEBPACK_IMPORTED_MODULE_12__base__["a" /* Base */].SCHEMES);
+                var currentScheme = "";
+                while (true) {
+                    marker++;
+                    if (cookieService.get('save')[marker] != "z") {
+                        currentScheme = currentScheme + cookieService.get('save')[marker];
+                    }
+                    else {
+                        break;
+                    }
+                }
+                if (currentScheme != "-1") {
+                    __WEBPACK_IMPORTED_MODULE_12__base__["a" /* Base */].CURRENT_SCHEME = __WEBPACK_IMPORTED_MODULE_12__base__["a" /* Base */].SCHEMES[Number(currentScheme)];
+                    _this._scheming.switchToCurrentSchemePreview();
+                    console.log("Set Base.CURRENT_SCHEME and switched the Preview:");
+                    console.log(__WEBPACK_IMPORTED_MODULE_12__base__["a" /* Base */].CURRENT_SCHEME);
+                }
+                else {
+                    console.log("No Current Scheme to Set");
+                }
+                __WEBPACK_IMPORTED_MODULE_12__base__["a" /* Base */].INITIAL_LOAD_SCHEMES = false;
             });
             //console.log(this.EARNING_SCHEME_POINTS);
         }
         else {
             console.log("Save Data Does Not Exist");
+            //Construct Scheme data from MongoDB
+            _this._dataService.getSchemes()
+                .subscribe(function (res) {
+                var SchemeData = new Array();
+                for (var i = 0; i < res.length; i++) {
+                    var newScheme = new __WEBPACK_IMPORTED_MODULE_8__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, 0, 0, _this.schemeLairReq[i], _this.schemeExp[i]);
+                    newScheme._player = _this._player;
+                    newScheme._numbers = _this._numbers;
+                    SchemeData.push(newScheme);
+                }
+                __WEBPACK_IMPORTED_MODULE_12__base__["a" /* Base */].SCHEMES = SchemeData;
+                __WEBPACK_IMPORTED_MODULE_12__base__["a" /* Base */].INITIAL_LOAD_SCHEMES = false;
+            });
         }
-        //Construct Scheme data from MongoDB
-        _this._dataService.getSchemes()
-            .subscribe(function (res) {
-            var SchemeData = new Array();
-            for (var i = 0; i < res.length; i++) {
-                var newScheme = new __WEBPACK_IMPORTED_MODULE_8__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree);
-                newScheme._player = _this._player;
-                newScheme._numbers = _this._numbers;
-                SchemeData.push(newScheme);
-            }
-            _this._scheming.schemes = SchemeData;
-        });
         //Construct Recruit data from Angular logic
         var RecruitData = new Array();
         for (var i = 0; i < _player.recruiting.length; i++) {
@@ -1637,9 +1695,9 @@ var AppComponent = (function (_super) {
         var _this = this;
         setInterval(function () {
             _this._loop.action();
-        }, 10);
+        }, 100);
     };
-    AppComponent.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_11_ngx_cookie_service__["a" /* CookieService */] }, { type: __WEBPACK_IMPORTED_MODULE_0__services_core_player_service__["a" /* PlayerService */] }, { type: __WEBPACK_IMPORTED_MODULE_3__services_core_numbers_service__["a" /* NumbersService */] }, { type: __WEBPACK_IMPORTED_MODULE_2__services_primary_loop_service__["a" /* PrimaryLoopService */] }, { type: __WEBPACK_IMPORTED_MODULE_1__services_scheming_service__["a" /* SchemingService */] }, { type: __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */] }, { type: __WEBPACK_IMPORTED_MODULE_5__services_training_service__["a" /* TrainingService */] }, { type: __WEBPACK_IMPORTED_MODULE_7__services_operating_service__["a" /* OperatingService */] }, { type: __WEBPACK_IMPORTED_MODULE_6__services_recruiting_service__["a" /* RecruitingService */] }, { type: __WEBPACK_IMPORTED_MODULE_13__data_service__["a" /* DataService */] }]; };
+    AppComponent.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_11_ngx_cookie_service__["a" /* CookieService */] }, { type: __WEBPACK_IMPORTED_MODULE_13__services_base_service__["a" /* BaseService */] }, { type: __WEBPACK_IMPORTED_MODULE_0__services_core_player_service__["a" /* PlayerService */] }, { type: __WEBPACK_IMPORTED_MODULE_3__services_core_numbers_service__["a" /* NumbersService */] }, { type: __WEBPACK_IMPORTED_MODULE_2__services_primary_loop_service__["a" /* PrimaryLoopService */] }, { type: __WEBPACK_IMPORTED_MODULE_1__services_scheming_service__["a" /* SchemingService */] }, { type: __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */] }, { type: __WEBPACK_IMPORTED_MODULE_5__services_training_service__["a" /* TrainingService */] }, { type: __WEBPACK_IMPORTED_MODULE_7__services_operating_service__["a" /* OperatingService */] }, { type: __WEBPACK_IMPORTED_MODULE_6__services_recruiting_service__["a" /* RecruitingService */] }, { type: __WEBPACK_IMPORTED_MODULE_14__data_service__["a" /* DataService */] }]; };
     return AppComponent;
 }(__WEBPACK_IMPORTED_MODULE_12__base__["a" /* Base */]));
 
@@ -1669,13 +1727,46 @@ var AppModule = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Base; });
 var Base = (function () {
     function Base() {
+        //Schemes
+        //Array Building Blocks
+        this.standardExpArray = [
+            10, 45, 120, 180, 240, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
+        ];
+        this.specialExpArray = [6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000];
+        this.standardLairReq = [
+            0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3
+        ];
+        //Arrays for constructing Schemes
+        this.schemeExp = [
+            this.standardExpArray,
+            this.standardExpArray,
+            this.standardExpArray,
+            this.standardExpArray,
+            this.standardExpArray,
+            this.standardExpArray,
+            this.standardExpArray,
+            this.standardExpArray,
+            this.standardExpArray,
+            this.specialExpArray //9: Starter Lair
+        ];
+        this.schemeLairReq = [
+            this.standardLairReq,
+            this.standardLairReq,
+            this.standardLairReq,
+            this.standardLairReq,
+            this.standardLairReq,
+            this.standardLairReq,
+            this.standardLairReq,
+            this.standardLairReq,
+            this.standardLairReq,
+            this.standardLairReq //9: Starter Lair 
+        ];
     }
-    Base.prototype.earningSchemePoints = function () {
-        return Base.EARNING_SCHEME_POINTS;
-    };
     return Base;
 }());
 
+//Foundational Variables
+Base.INITIAL_LOAD_SCHEMES = true;
 Base.EARNING_SCHEME_POINTS = false;
 //# sourceMappingURL=base.js.map
 
@@ -1723,6 +1814,7 @@ var DataService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -1738,10 +1830,12 @@ var __extends = (this && this.__extends) || (function () {
 
 
 
+
 var HeaderComponent = (function (_super) {
     __extends(HeaderComponent, _super);
-    function HeaderComponent(_player, _heroes, _scheming, _inventory) {
+    function HeaderComponent(_base, _player, _heroes, _scheming, _inventory) {
         var _this = _super.call(this) || this;
+        _this._base = _base;
         _this._player = _player;
         _this._heroes = _heroes;
         _this._scheming = _scheming;
@@ -1753,10 +1847,10 @@ var HeaderComponent = (function (_super) {
         return { 'transform': 'rotate(' + degrees + 'deg)' };
     };
     HeaderComponent.prototype.schemeStyle = function () {
-        return { 'cursor': this.earningSchemePoints() ? 'pointer' : 'default' };
+        return { 'cursor': this._base.earningSchemePoints ? 'pointer' : 'default' };
     };
     HeaderComponent.prototype.schemeProgressBarStyle = function () {
-        return { 'width': this._player.currentScheme.percentage + '%' };
+        return { 'width': this._base.currentScheme.percentage + '%' };
     };
     HeaderComponent.prototype.notorietyGaugeStyle = function (id) {
         if (id == 0) {
@@ -1766,7 +1860,7 @@ var HeaderComponent = (function (_super) {
             };
         }
     };
-    HeaderComponent.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_0__services_core_player_service__["a" /* PlayerService */] }, { type: __WEBPACK_IMPORTED_MODULE_3__services_heroes_service__["a" /* HeroesService */] }, { type: __WEBPACK_IMPORTED_MODULE_1__services_scheming_service__["a" /* SchemingService */] }, { type: __WEBPACK_IMPORTED_MODULE_2__services_inventory_service__["a" /* InventoryService */] }]; };
+    HeaderComponent.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_5__services_base_service__["a" /* BaseService */] }, { type: __WEBPACK_IMPORTED_MODULE_0__services_core_player_service__["a" /* PlayerService */] }, { type: __WEBPACK_IMPORTED_MODULE_3__services_heroes_service__["a" /* HeroesService */] }, { type: __WEBPACK_IMPORTED_MODULE_1__services_scheming_service__["a" /* SchemingService */] }, { type: __WEBPACK_IMPORTED_MODULE_2__services_inventory_service__["a" /* InventoryService */] }]; };
     return HeaderComponent;
 }(__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */]));
 
@@ -1898,12 +1992,16 @@ var Recruit = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Scheme; });
 var Scheme = (function () {
-    function Scheme(ref, name, description, flavor, tree) {
+    function Scheme(ref, name, description, flavor, tree, exp, level, lairReq, expTargets) {
         this.ref = ref;
         this.name = name;
         this.description = description;
         this.flavor = flavor;
         this.tree = tree;
+        this.exp = exp;
+        this.level = level;
+        this.lairReq = lairReq;
+        this.expTargets = expTargets;
         if (this.ref == 0) {
             this.fa = 'fa-graduation-cap';
         }
@@ -1935,80 +2033,29 @@ var Scheme = (function () {
             this.fa = 'fa-angle-up';
         }
     }
-    Object.defineProperty(Scheme.prototype, "expTarget", {
-        //Array of exp amounts for level advancement
+    Object.defineProperty(Scheme.prototype, "currentExpTarget", {
+        //Getters for current values from arrays.
         get: function () {
-            return this._numbers.schemeExp[this.ref];
+            return this.expTargets[this.level];
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Scheme.prototype, "lairReq", {
-        //Array of lair level requirements
-        get: function () {
-            return this._numbers.schemeLairReq[this.ref];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Scheme.prototype, "exp", {
-        //Accrued exp so far toward the current level
-        get: function () {
-            return this._player.schemes[this.ref]['exp'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Scheme.prototype, "level", {
-        //Current scheme level (0-19)
-        get: function () {
-            return this._player.schemes[this.ref]['level'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Scheme.prototype, "target", {
-        //Amount of exp to accrue for advancement to next level
-        get: function () {
-            return this.expTarget[this.level];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Scheme.prototype, "canBeLearned", {
-        //Are all prerequisites met to begin scheming?
-        get: function () {
-            return this.learnLair;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Scheme.prototype, "learnLair", {
-        //Does the player satisfy the lair requirement?
-        get: function () {
-            return this.lairReq[this.level + 1] <= this._player.lairLevel;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Scheme.prototype, "previewDescription", {
-        //Getter for preview flyout
+    Object.defineProperty(Scheme.prototype, "currentDescription", {
         get: function () {
             return this.description[this.level];
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Scheme.prototype, "previewFlavor", {
-        //Getter for preview flyout
+    Object.defineProperty(Scheme.prototype, "currentFlavor", {
         get: function () {
             return this.flavor[this.level];
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Scheme.prototype, "previewLairLevel", {
-        //Getter for preview flyout
+    Object.defineProperty(Scheme.prototype, "currentLairLevel", {
         get: function () {
             return this.lairReq[this.level + 1];
         },
@@ -2018,7 +2065,7 @@ var Scheme = (function () {
     Object.defineProperty(Scheme.prototype, "percentage", {
         //Getter for header progress bar
         get: function () {
-            return Math.round((this.exp / this.target) * 100);
+            return Math.round((this.exp / this.currentExpTarget) * 100);
         },
         enumerable: true,
         configurable: true
@@ -2143,14 +2190,32 @@ var Train = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SchemePanelComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 
-var SchemePanelComponent = (function () {
-    function SchemePanelComponent(_scheming) {
-        this._scheming = _scheming;
+
+
+var SchemePanelComponent = (function (_super) {
+    __extends(SchemePanelComponent, _super);
+    function SchemePanelComponent(_scheming, _base) {
+        var _this = _super.call(this) || this;
+        _this._scheming = _scheming;
+        _this._base = _base;
+        return _this;
     }
-    SchemePanelComponent.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_0__services_scheming_service__["a" /* SchemingService */] }]; };
+    SchemePanelComponent.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_0__services_scheming_service__["a" /* SchemingService */] }, { type: __WEBPACK_IMPORTED_MODULE_2__services_base_service__["a" /* BaseService */] }]; };
     return SchemePanelComponent;
-}());
+}(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */]));
 
 //# sourceMappingURL=scheme-panel.component.js.map
 
@@ -2171,48 +2236,135 @@ var SchemePanelModule = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/base.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base__ = __webpack_require__("../../../../../src/app/base.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+var BaseService = (function (_super) {
+    __extends(BaseService, _super);
+    //Serving up Base variables for templates is all this service does.
+    function BaseService(_player, _numbers, _operating, _inventory) {
+        var _this = _super.call(this) || this;
+        _this._player = _player;
+        _this._numbers = _numbers;
+        _this._operating = _operating;
+        _this._inventory = _inventory;
+        return _this;
+    }
+    Object.defineProperty(BaseService.prototype, "earningSchemePoints", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].EARNING_SCHEME_POINTS;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BaseService.prototype, "initialLoadSchemes", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].INITIAL_LOAD_SCHEMES;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BaseService.prototype, "schemes", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].SCHEMES;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BaseService.prototype, "currentScheme", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_SCHEME;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    BaseService.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_0__core_player_service__["a" /* PlayerService */] }, { type: __WEBPACK_IMPORTED_MODULE_2__core_numbers_service__["a" /* NumbersService */] }, { type: __WEBPACK_IMPORTED_MODULE_3__operating_service__["a" /* OperatingService */] }, { type: __WEBPACK_IMPORTED_MODULE_1__inventory_service__["a" /* InventoryService */] }]; };
+    return BaseService;
+}(__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */]));
+
+//# sourceMappingURL=base.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/core/numbers.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NumbersService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("../../../../../src/app/base.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 
-var NumbersService = (function () {
+
+var NumbersService = (function (_super) {
+    __extends(NumbersService, _super);
     function NumbersService(_player) {
-        this._player = _player;
-        this.coinFlipChance = 0.5; //Here to be modified later.
-        this.standardExpArray = [
+        var _this = _super.call(this) || this;
+        _this._player = _player;
+        _this.coinFlipChance = 0.5; //Here to be modified later.
+        _this.standardExpArray = [
             10, 30, 60, 120, 240, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
         ];
-        this.specialExpArray = [6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000];
-        this.standardLairReq = [
+        _this.specialExpArray = [6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000];
+        _this.standardLairReq = [
             0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3
         ];
-        this.schemeLairReq = [
-            this.standardLairReq,
-            this.standardLairReq,
-            this.standardLairReq,
-            this.standardLairReq,
-            this.standardLairReq,
-            this.standardLairReq,
-            this.standardLairReq,
-            this.standardLairReq,
-            this.standardLairReq,
-            this.standardLairReq //9: Starter Lair 
+        _this.schemeLairReq = [
+            _this.standardLairReq,
+            _this.standardLairReq,
+            _this.standardLairReq,
+            _this.standardLairReq,
+            _this.standardLairReq,
+            _this.standardLairReq,
+            _this.standardLairReq,
+            _this.standardLairReq,
+            _this.standardLairReq,
+            _this.standardLairReq //9: Starter Lair 
         ];
-        this.schemeExp = [
-            this.standardExpArray,
-            this.standardExpArray,
-            this.standardExpArray,
-            this.standardExpArray,
-            this.standardExpArray,
-            this.standardExpArray,
-            this.standardExpArray,
-            this.standardExpArray,
-            this.standardExpArray,
+        _this.schemeExp = [
+            _this.standardExpArray,
+            _this.standardExpArray,
+            _this.standardExpArray,
+            _this.standardExpArray,
+            _this.standardExpArray,
+            _this.standardExpArray,
+            _this.standardExpArray,
+            _this.standardExpArray,
+            _this.standardExpArray,
             [6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000] //9: Starter Lair
         ];
+        return _this;
     }
     NumbersService.prototype.coinFlip = function (times) {
         var successes = 0;
@@ -2227,21 +2379,21 @@ var NumbersService = (function () {
     //00: Mastermind
     //1 scheme point per level per second.
     NumbersService.prototype.mastermindNumbers = function () {
-        return this._player.schemes[0]['level'];
+        return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[0]['level'];
     };
     //01: Cold Logic
     NumbersService.prototype.coldLogicNumbers = function () {
-        return this._player.schemes[1]['level'] * 60;
+        return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[1]['level'] * 60;
     };
     //02: Quick Thinking
     NumbersService.prototype.quickThinkingNumbers = function () {
         var successes = this.coinFlip(6);
-        return successes >= 5 ? this._player.schemes[2]['level'] : 0;
+        return successes >= 5 ? __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[2]['level'] : 0;
     };
     //03: Hired Help
     NumbersService.prototype.hiredHelpCapacity = function () {
         var space = 0;
-        for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[3]['level']; _i++) {
             if (_i == 1) {
                 space += 4;
             }
@@ -2253,10 +2405,10 @@ var NumbersService = (function () {
     };
     NumbersService.prototype.hiredHelpUnlocked = function (id) {
         if (id == 0) {
-            return this._player.schemes[3]['level'] > 0;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[3]['level'] > 0;
         }
         else if (id == 1) {
-            return this._player.schemes[3]['level'] >= 4;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[3]['level'] >= 4;
         }
         else {
             return false;
@@ -2264,7 +2416,7 @@ var NumbersService = (function () {
     };
     NumbersService.prototype.hiredHelpRecruitRate = function () {
         var reduce = 0;
-        for (var _i = 0; _i < this._player.schemes[3]['level']; _i++) {
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[3]['level']; _i++) {
             if (_i == 2) {
                 reduce += 30;
             }
@@ -2274,7 +2426,7 @@ var NumbersService = (function () {
     //04: Guard Duty
     NumbersService.prototype.guardDutyTrainRate = function () {
         var reduce = 0;
-        for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[4]['level']; _i++) {
             if (_i == 1) {
                 reduce += 60;
             }
@@ -2285,11 +2437,11 @@ var NumbersService = (function () {
         return reduce;
     };
     NumbersService.prototype.guardDutyUnlocked = function () {
-        return this._player.schemes[4]['level'] > 0;
+        return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[4]['level'] > 0;
     };
     NumbersService.prototype.guardDutyCapacity = function () {
         var capacity = 0;
-        for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[4]['level']; _i++) {
             if (_i == 2) {
                 capacity += 9;
             }
@@ -2299,7 +2451,7 @@ var NumbersService = (function () {
     //05: Lodging
     NumbersService.prototype.lodgingNumbers = function () {
         var increase = 0;
-        for (var i = 0; i < this._player.schemes[5]['level']; i++) {
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[5]['level']; i++) {
             if (i < 2) {
                 increase += 5;
             }
@@ -2318,24 +2470,24 @@ var NumbersService = (function () {
     //06: Heists
     NumbersService.prototype.heistUnlocked = function (id) {
         if (id == 0)
-            return this._player.schemes[6]['level'] > 0;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[6]['level'] > 0;
         if (id == 1)
-            return this._player.schemes[6]['level'] > 3;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[6]['level'] > 3;
     };
     NumbersService.prototype.heistRarityChancesArray = function () {
-        if (this._player.schemes[6]['level'] == 1) {
+        if (__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[6]['level'] == 1) {
             return [1, 1.1, 1.1, 1.1, 1.1];
         }
-        else if (this._player.schemes[6]['level'] >= 1 && this._player.schemes[6]['level'] <= 2) {
+        else if (__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[6]['level'] >= 1 && __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[6]['level'] <= 2) {
             return [.9, 1, 1.1, 1.1, 1.1];
         }
-        else if (this._player.schemes[6]['level'] >= 3 && this._player.schemes[6]['level'] <= 5) {
+        else if (__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[6]['level'] >= 3 && __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[6]['level'] <= 5) {
             return [.8, .95, 1, 1.1, 1.1];
         }
     };
     NumbersService.prototype.heistRechargeRate = function () {
         var reduce = 0;
-        for (var _i = 0; _i < this._player.schemes[6]['level']; _i++) {
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[6]['level']; _i++) {
             if (_i == 2) {
                 reduce += 150;
             }
@@ -2345,24 +2497,24 @@ var NumbersService = (function () {
     //07: Shady Business Deals
     NumbersService.prototype.shadyBusinessDealUnlocked = function (id) {
         if (id == 5)
-            return this._player.schemes[7]['level'] > 0;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[7]['level'] > 0;
         if (id == 6)
-            return this._player.schemes[7]['level'] > 3;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[7]['level'] > 3;
     };
     NumbersService.prototype.shadyBusinessDealRarityChancesArray = function () {
-        if (this._player.schemes[7]['level'] == 1) {
+        if (__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[7]['level'] == 1) {
             return [1, 1.1, 1.1, 1.1, 1.1];
         }
-        else if (this._player.schemes[7]['level'] >= 1 && this._player.schemes[7]['level'] <= 2) {
+        else if (__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[7]['level'] >= 1 && __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[7]['level'] <= 2) {
             return [.9, 1, 1.1, 1.1, 1.1];
         }
-        else if (this._player.schemes[7]['level'] >= 3 && this._player.schemes[7]['level'] <= 5) {
+        else if (__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[7]['level'] >= 3 && __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES[7]['level'] <= 5) {
             return [.8, .95, 1, 1.1, 1.1];
         }
     };
     NumbersService.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_0__player_service__["a" /* PlayerService */] }]; };
     return NumbersService;
-}());
+}(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */]));
 
 //# sourceMappingURL=numbers.service.js.map
 
@@ -2378,19 +2530,6 @@ var PlayerService = (function () {
         //Everything in this service is saved. All game details can be derived from this service.
         //Not yet implemented, but used for scheme prereqs
         this.lairLevel = 0;
-        //Primary scheme object. Stores level and accumulated exp toward next level by scheme ref.
-        this.schemes = [
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 },
-            { level: 0, exp: 0 } //9 Starter Lair, not coded.
-        ];
         //Henchmen
         this.currentHenchmen = 0;
         this.recruiting = [
@@ -2535,31 +2674,46 @@ var InventoryService = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OperatingService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("../../../../../src/app/base.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 
 
-var OperatingService = (function () {
+
+var OperatingService = (function (_super) {
+    __extends(OperatingService, _super);
     function OperatingService(_player, _numbers) {
-        this._player = _player;
-        this._numbers = _numbers;
-        this.showPreview = false;
-        this.operatingNow = false;
-        this.operateReadout = {
+        var _this = _super.call(this) || this;
+        _this._player = _player;
+        _this._numbers = _numbers;
+        _this.showPreview = false;
+        _this.operatingNow = false;
+        _this.operateReadout = {
             result: '',
             lost: 0,
             earned: 0,
             notoriety: 0
         };
+        return _this;
     }
     OperatingService.prototype.areAnyUnlocked = function () {
         return this.areRoutineOpsUnlocked() || this.areCampaignOpsUnlocked();
     };
     OperatingService.prototype.areRoutineOpsUnlocked = function () {
         //Currently only accounts for Heists.
-        return this._player.schemes[6]['level'] > 0 || this._player.schemes[7]['level'] > 0;
+        return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[6]['level'] > 0 || __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[7]['level'] > 0;
     };
     OperatingService.prototype.areCampaignOpsUnlocked = function () {
         //No longer planned for Phase 0
-        //return this._player.schemes[7]['level'] > 0;
+        //return Base.SCHEMES[7]['level'] > 0;
         return false;
     };
     OperatingService.prototype.areAscensionOpsUnlocked = function () {
@@ -2757,7 +2911,7 @@ var OperatingService = (function () {
             rate = .75;
         }
         var multiplier = 1;
-        for (var i = 0; i < this._player.schemes[8]['level']; i++) {
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[8]['level']; i++) {
             multiplier -= .05;
         }
         return rate * multiplier;
@@ -2874,7 +3028,7 @@ var OperatingService = (function () {
     };
     OperatingService.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_0__core_player_service__["a" /* PlayerService */] }, { type: __WEBPACK_IMPORTED_MODULE_1__core_numbers_service__["a" /* NumbersService */] }]; };
     return OperatingService;
-}());
+}(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */]));
 
 //# sourceMappingURL=operating.service.js.map
 
@@ -2893,6 +3047,7 @@ var OperatingService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2911,11 +3066,13 @@ var __extends = (this && this.__extends) || (function () {
 
 
 
+
 //All loop related activities. Called by app.component and nowhere else.
 var PrimaryLoopService = (function (_super) {
     __extends(PrimaryLoopService, _super);
-    function PrimaryLoopService(cookieService, _player, _operating, _scheming, _recruiting, _numbers, _training) {
+    function PrimaryLoopService(_base, cookieService, _player, _operating, _scheming, _recruiting, _numbers, _training) {
         var _this = _super.call(this) || this;
+        _this._base = _base;
         _this.cookieService = cookieService;
         _this._player = _player;
         _this._operating = _operating;
@@ -2932,7 +3089,6 @@ var PrimaryLoopService = (function (_super) {
         return _this;
     }
     PrimaryLoopService.prototype.doOnce = function () {
-        console.log(__WEBPACK_IMPORTED_MODULE_7__base__["a" /* Base */].SCHEMES);
     };
     //Events that occur every tick
     PrimaryLoopService.prototype.tick = function () {
@@ -2950,7 +3106,7 @@ var PrimaryLoopService = (function (_super) {
             }
             if (selectionArray.length > 0) {
                 var schemeSelection = Math.floor(Math.random()*selectionArray.length);
-                this._player.currentScheme = this._scheming.schemes[selectionArray[schemeSelection]];
+                this._base.currentScheme = this._scheming.schemes[selectionArray[schemeSelection]];
                 this._scheming.EARNING_SCHEME_POINTS = true;
             }
             
@@ -2964,7 +3120,7 @@ var PrimaryLoopService = (function (_super) {
 
         }
         */
-        if (this.earningSchemePoints()) {
+        if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
         for (var i = 0; i < this._recruiting.recruits.length; i++) {
@@ -2985,19 +3141,27 @@ var PrimaryLoopService = (function (_super) {
     };
     //Events that occur every second
     PrimaryLoopService.prototype.second = function () {
-        if (this.earningSchemePoints()) {
+        if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisSecond);
         }
     };
     //Events that occur every minute
     PrimaryLoopService.prototype.minute = function () {
-        if (this.earningSchemePoints()) {
+        if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute);
         }
         console.log("I am saving the game");
         var saveString = __WEBPACK_IMPORTED_MODULE_7__base__["a" /* Base */].EARNING_SCHEME_POINTS ? "1" : "0";
-        for (var i = 0; i < this._player.schemes.length; i++) {
-            saveString = saveString + this._player.schemes[i]['level'] + "z" + this._player.schemes[i]['exp'] + "z";
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_7__base__["a" /* Base */].SCHEMES.length; i++) {
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_7__base__["a" /* Base */].SCHEMES[i]['level'] + "z" + __WEBPACK_IMPORTED_MODULE_7__base__["a" /* Base */].SCHEMES[i]['exp'] + "z";
+        }
+        if (__WEBPACK_IMPORTED_MODULE_7__base__["a" /* Base */].CURRENT_SCHEME == null) {
+            console.log("null current scheme");
+            saveString = saveString + "-1z";
+        }
+        else {
+            console.log(__WEBPACK_IMPORTED_MODULE_7__base__["a" /* Base */].CURRENT_SCHEME);
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_7__base__["a" /* Base */].CURRENT_SCHEME.ref + "z";
         }
         console.log(saveString);
         this.cookieService.set('save', saveString, 365);
@@ -3016,7 +3180,7 @@ var PrimaryLoopService = (function (_super) {
             this.minute();
         }
     };
-    PrimaryLoopService.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_6_ngx_cookie_service__["a" /* CookieService */] }, { type: __WEBPACK_IMPORTED_MODULE_0__core_player_service__["a" /* PlayerService */] }, { type: __WEBPACK_IMPORTED_MODULE_4__operating_service__["a" /* OperatingService */] }, { type: __WEBPACK_IMPORTED_MODULE_1__scheming_service__["a" /* SchemingService */] }, { type: __WEBPACK_IMPORTED_MODULE_2__recruiting_service__["a" /* RecruitingService */] }, { type: __WEBPACK_IMPORTED_MODULE_5__core_numbers_service__["a" /* NumbersService */] }, { type: __WEBPACK_IMPORTED_MODULE_3__training_service__["a" /* TrainingService */] }]; };
+    PrimaryLoopService.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_8__services_base_service__["a" /* BaseService */] }, { type: __WEBPACK_IMPORTED_MODULE_6_ngx_cookie_service__["a" /* CookieService */] }, { type: __WEBPACK_IMPORTED_MODULE_0__core_player_service__["a" /* PlayerService */] }, { type: __WEBPACK_IMPORTED_MODULE_4__operating_service__["a" /* OperatingService */] }, { type: __WEBPACK_IMPORTED_MODULE_1__scheming_service__["a" /* SchemingService */] }, { type: __WEBPACK_IMPORTED_MODULE_2__recruiting_service__["a" /* RecruitingService */] }, { type: __WEBPACK_IMPORTED_MODULE_5__core_numbers_service__["a" /* NumbersService */] }, { type: __WEBPACK_IMPORTED_MODULE_3__training_service__["a" /* TrainingService */] }]; };
     return PrimaryLoopService;
 }(__WEBPACK_IMPORTED_MODULE_7__base__["a" /* Base */]));
 
@@ -3115,6 +3279,7 @@ var RecruitingService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -3128,38 +3293,48 @@ var __extends = (this && this.__extends) || (function () {
 
 
 
+
 var SchemingService = (function (_super) {
     __extends(SchemingService, _super);
-    function SchemingService(_player, _numbers) {
+    function SchemingService(_player, _base, _numbers) {
         var _this = _super.call(this) || this;
         _this._player = _player;
+        _this._base = _base;
         _this._numbers = _numbers;
+        //STRUCTURAL VARIABLES
         _this.selected = 'scheming'; //Which scheme tree is currently displayed on the scheme panel
         _this.showPreview = false; //Controls the appearance of the scheme-panel flyout
         return _this;
     }
     //Decide whether to display the "Scheme" button in the flyout
     SchemingService.prototype.showSchemeButtonInPreviewScheme = function () {
-        return !this.earningSchemePoints() && this.previewScheme.canBeLearned || ((this.previewScheme != this._player.currentScheme) && this.previewScheme.canBeLearned);
+        return !this._base.earningSchemePoints && this.canLearn(this.previewScheme) || ((this.previewScheme != __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME) && this.canLearn(this.previewScheme));
+    };
+    //Only supports lair level currently.
+    SchemingService.prototype.learnLair = function (scheme) {
+        return scheme.lairReq[scheme.level] <= this._player.lairLevel;
+    };
+    SchemingService.prototype.canLearn = function (scheme) {
+        return this.learnLair(scheme);
     };
     //ACTIONS
     //Open the flyout and display preview scheme details.
     SchemingService.prototype.schemePreview = function (id) {
-        this.previewScheme = this.schemes[id];
+        this.previewScheme = __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[id];
         this.showPreview = true;
     };
     //Clicking "Scheme" assigns the previewScheme as the currentScheme
     SchemingService.prototype.startSchemingPreview = function () {
-        if (this.previewScheme.canBeLearned) {
-            this._player.currentScheme = this.previewScheme;
+        if (this.canLearn(this.previewScheme)) {
+            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME = this.previewScheme;
             __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].EARNING_SCHEME_POINTS = true;
         }
     };
     //Clicking the currentScheme in the header assigns the currentScheme as the previewScheme
     SchemingService.prototype.switchToCurrentSchemePreview = function () {
-        if (this.earningSchemePoints()) {
-            this.selected = this._player.currentScheme['tree'];
-            this.previewScheme = this._player.currentScheme;
+        if (this._base.earningSchemePoints) {
+            this.selected = __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.tree;
+            this.previewScheme = __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME;
             this.showPreview = true;
         }
     };
@@ -3193,14 +3368,14 @@ var SchemingService = (function (_super) {
     });
     //All scheme points earned should route through this function.
     SchemingService.prototype.earnSchemePoints = function (num) {
-        this._player.schemes[this._player.currentScheme.ref]['exp'] += num;
-        if (this._player.currentScheme.exp >= this._player.currentScheme.target) {
-            this._player.schemes[this._player.currentScheme.ref]['level']++;
-            this._player.schemes[this._player.currentScheme.ref]['exp'] = 0;
+        __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.ref].exp += num;
+        if (__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.exp >= __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.currentExpTarget) {
+            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.ref]['level']++;
+            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.ref]['exp'] = 0;
             __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].EARNING_SCHEME_POINTS = false;
         }
     };
-    SchemingService.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_0__core_player_service__["a" /* PlayerService */] }, { type: __WEBPACK_IMPORTED_MODULE_1__core_numbers_service__["a" /* NumbersService */] }]; };
+    SchemingService.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_0__core_player_service__["a" /* PlayerService */] }, { type: __WEBPACK_IMPORTED_MODULE_3__services_base_service__["a" /* BaseService */] }, { type: __WEBPACK_IMPORTED_MODULE_1__core_numbers_service__["a" /* NumbersService */] }]; };
     return SchemingService;
 }(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */]));
 
@@ -3216,16 +3391,31 @@ var SchemingService = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base__ = __webpack_require__("../../../../../src/app/base.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 
 
 
-var TrainingService = (function () {
+
+var TrainingService = (function (_super) {
+    __extends(TrainingService, _super);
     function TrainingService(_player, _numbers, _inventory) {
-        this._player = _player;
-        this._numbers = _numbers;
-        this._inventory = _inventory;
-        this.training = false;
-        this.collecting = false;
+        var _this = _super.call(this) || this;
+        _this._player = _player;
+        _this._numbers = _numbers;
+        _this._inventory = _inventory;
+        _this.training = false;
+        _this.collecting = false;
+        return _this;
     }
     //Section displays only if a recruiting object has been unlocked
     TrainingService.prototype.areAnyUnlocked = function () {
@@ -3243,7 +3433,7 @@ var TrainingService = (function () {
         var capacity = 1;
 
         //Guard Duty increases capacity by static amounts.
-        for (var _i = 0; _i < this._player.schemes[4]['level']; _i++) {
+        for (var _i = 0; _i < Base.SCHEMES[4]['level']; _i++) {
             if (_i == 2) { capacity += 9; }
         }
 
@@ -3259,7 +3449,7 @@ var TrainingService = (function () {
     }
  
 isUnlockedById(id) {
-    if (id == 0) { return this._player.schemes[4]['level'] > 0; }
+    if (id == 0) { return Base.SCHEMES[4]['level'] > 0; }
 }*/
     TrainingService.prototype.isTrainingById = function (id) {
         if (this.trains[id].isUnlocked) {
@@ -3273,7 +3463,7 @@ isUnlockedById(id) {
     };
     Object.defineProperty(TrainingService.prototype, "guardTrainingUnlocked", {
         get: function () {
-            return this._player.schemes[4]['level'] >= 1;
+            return __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].SCHEMES[4]['level'] >= 1;
         },
         enumerable: true,
         configurable: true
@@ -3372,7 +3562,7 @@ isUnlockedById(id) {
     };
     TrainingService.ctorParameters = function () { return [{ type: __WEBPACK_IMPORTED_MODULE_0__core_player_service__["a" /* PlayerService */] }, { type: __WEBPACK_IMPORTED_MODULE_2__core_numbers_service__["a" /* NumbersService */] }, { type: __WEBPACK_IMPORTED_MODULE_1__inventory_service__["a" /* InventoryService */] }]; };
     return TrainingService;
-}());
+}(__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */]));
 
 //# sourceMappingURL=training.service.js.map
 

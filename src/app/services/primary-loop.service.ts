@@ -9,12 +9,14 @@ import { Scheme } from "../models/scheme";
 import { Recruit } from "../models/recruit";
 import { CookieService } from "ngx-cookie-service";
 import { Base } from "../base";
+import { BaseService } from "../services/base.service";
 
 //All loop related activities. Called by app.component and nowhere else.
 @Injectable()
 export class PrimaryLoopService extends Base {
 
-    constructor(public cookieService: CookieService,
+    constructor(public _base: BaseService,
+        public cookieService: CookieService,
         public _player: PlayerService,
         public _operating: OperatingService,
         public _scheming: SchemingService,
@@ -33,7 +35,7 @@ export class PrimaryLoopService extends Base {
     //Used for one-off console logs - logging within the loop can be tedious.
     didOnce = false;
     doOnce() {
-        console.log(Base.SCHEMES)
+       
     }
 
     //Events that occur every tick
@@ -54,7 +56,7 @@ export class PrimaryLoopService extends Base {
             }
             if (selectionArray.length > 0) {
                 var schemeSelection = Math.floor(Math.random()*selectionArray.length);
-                this._player.currentScheme = this._scheming.schemes[selectionArray[schemeSelection]];
+                this._base.currentScheme = this._scheming.schemes[selectionArray[schemeSelection]];
                 this._scheming.EARNING_SCHEME_POINTS = true;
             }
             
@@ -69,7 +71,7 @@ export class PrimaryLoopService extends Base {
         }
         */
 
-        if (this.earningSchemePoints()) {
+        if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
         for (var i = 0; i < this._recruiting.recruits.length; i++) {
@@ -91,21 +93,29 @@ export class PrimaryLoopService extends Base {
 
     //Events that occur every second
     second() {
-        if (this.earningSchemePoints()) {
+        if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisSecond)
         }
     }
 
     //Events that occur every minute
     minute() {
-        if (this.earningSchemePoints()) {
+        if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute)
         }
         console.log("I am saving the game");
         var saveString = Base.EARNING_SCHEME_POINTS ? "1" : "0";
-        for (var i = 0; i < this._player.schemes.length; i++) {
-            saveString = saveString + this._player.schemes[i]['level'] + "z" + this._player.schemes[i]['exp'] + "z";
+        for (var i = 0; i < Base.SCHEMES.length; i++) {
+            saveString = saveString + Base.SCHEMES[i]['level'] + "z" + Base.SCHEMES[i]['exp'] + "z";
         }
+        if (Base.CURRENT_SCHEME == null) {
+            console.log("null current scheme")
+            saveString = saveString + "-1z";
+        } else {
+            console.log(Base.CURRENT_SCHEME)
+            saveString = saveString + Base.CURRENT_SCHEME.ref + "z";
+        }
+        
         console.log(saveString);
         this.cookieService.set( 'save', saveString, 365 );
 

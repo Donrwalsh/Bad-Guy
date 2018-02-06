@@ -1,12 +1,15 @@
 import { Injectable } from "@angular/core";
 import { PlayerService } from "./core/player.service";
 import { NumbersService } from "./core/numbers.service";
+import { Base } from '../base';
 
 @Injectable()
-export class OperatingService {
+export class OperatingService extends Base {
 
     constructor(public _player: PlayerService,
-        public _numbers: NumbersService) { }
+        public _numbers: NumbersService) {
+            super();
+         }
 
     operations;
 
@@ -16,12 +19,12 @@ export class OperatingService {
 
     areRoutineOpsUnlocked() {
         //Currently only accounts for Heists.
-        return this._player.schemes[6]['level'] > 0 || this._player.schemes[7]['level'] > 0 ;
+        return Base.SCHEMES[6]['level'] > 0 || Base.SCHEMES[7]['level'] > 0 ;
     }
 
     areCampaignOpsUnlocked() {
         //No longer planned for Phase 0
-        //return this._player.schemes[7]['level'] > 0;
+        //return Base.SCHEMES[7]['level'] > 0;
         return false;
     }
 
@@ -187,7 +190,7 @@ export class OperatingService {
         if (rarity == 3) { rate = .7 }
         if (rarity == 4) { rate = .75 }
         var multiplier = 1;
-        for (var i = 0; i < this._player.schemes[8]['level']; i++) {
+        for (var i = 0; i < Base.SCHEMES[8]['level']; i++) {
             multiplier -= .05;
         }
         return rate * multiplier;
