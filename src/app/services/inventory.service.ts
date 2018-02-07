@@ -16,7 +16,7 @@ export class InventoryService extends BaseNum {
     //itself with deriving capacity and other derived inventory values.
 
     get guardCapacity() {
-        return 10 //No modifiers yet.
+        return 1; //to be modified later.
     }
 
     isHenchmenUpgradeFullById(id) {

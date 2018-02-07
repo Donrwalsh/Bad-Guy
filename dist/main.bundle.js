@@ -284,7 +284,7 @@ var ActivityPanelModule = /** @class */ (function () {
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header></header>\n<div class=\"main-section\" *ngIf=\"!_base.initialLoadSchemes\">\n  <div class=\"resources-bar\">\n    <div class=\"resource-tab lair\">\n      <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">Mom's Basement</p>\n    </div>\n    <div class=\"resource-tab cash\" *ngIf=\"_player.cash > 0\">\n      <i class=\"fa fa-money\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_player.cash}}</p>\n    </div>\n    <div class=\"resource-tab henchmen\" *ngIf=\"_recruiting.areAnyUnlocked()\">\n      <i class=\"fa fa-users\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_base.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>\n    </div>\n    <div class=\"resource-tab guard\" *ngIf=\"_training.guardTrainingUnlocked\">\n      <i class=\"fa fa-shield\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_player.currentGuards}}/{{_inventory.guardCapacity}}</p>\n    </div>\n\n\n\n  </div>\n  <activity-panel></activity-panel>\n  <scheme-panel></scheme-panel>\n\n</div>"
+module.exports = "<header></header>\n<div class=\"main-section\" *ngIf=\"!_base.initialLoadSchemes\">\n  <div class=\"resources-bar\">\n    <div class=\"resource-tab lair\" matTooltip=\"click for details\" (click)=\"openLairModal()\">\n      <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_lair.lairName}}</p>\n    </div>\n    <div class=\"resource-tab cash\" *ngIf=\"_player.cash > 0\">\n      <i class=\"fa fa-money\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_player.cash}}</p>\n    </div>\n    <div class=\"resource-tab henchmen\" *ngIf=\"_recruiting.areAnyUnlocked()\">\n      <i class=\"fa fa-users\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_base.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>\n    </div>\n    <div class=\"resource-tab guard\" *ngIf=\"_training.guardTrainingUnlocked\">\n      <i class=\"fa fa-shield\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_player.currentGuards}}/{{_inventory.guardCapacity}}</p>\n    </div>\n\n\n\n  </div>\n  <activity-panel></activity-panel>\n  <scheme-panel></scheme-panel>\n\n</div>"
 
 /***/ }),
 
@@ -296,7 +296,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* Henchmen Colors */\n/*Scheme Tree Colors */\n/* SVG Image Backgrounds */\np {\n  margin: 0 auto; }\n.header {\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E\");\n  height: 4rem; }\n.header .notoriety-container {\n    overflow: hidden;\n    margin-left: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-right: .75px solid; }\n.header .notoriety-container .notoriety-gauge {\n      background-color: #00ff9d;\n      z-index: 2;\n      width: 6rem;\n      position: relative;\n      height: 3rem;\n      margin: 0 auto;\n      margin-top: 1rem;\n      border-radius: 250px 250px 0px 0px;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n.header .notoriety-container .notoriety-gauge .fa {\n        margin-top: .5rem; }\n.header .notoriety-container .notoriety-meter {\n      background-color: #00804f;\n      z-index: 1;\n      position: relative;\n      width: 8rem;\n      height: 4rem;\n      margin: 0 auto;\n      border-radius: 0px 0px 250px 250px;\n      -webkit-transform-origin: center top;\n              transform-origin: center top;\n      -webkit-transition: all 1s ease-in-out;\n      transition: all 1s ease-in-out; }\n.header .main-title {\n    text-align: center;\n    position: absolute;\n    top: .5rem;\n    right: 40%;\n    left: 40%;\n    width: 20%;\n    margin: 0;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    font-size: 2rem; }\n.header .scheme-container {\n    position: absolute;\n    top: 0px;\n    right: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-left: .75px solid; }\n.header .scheme-container .scheme-title {\n      font-size: .8rem;\n      margin-bottom: .2rem;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n.header .scheme-container .scheme-bar-container {\n      margin-top: .25rem;\n      text-align: center;\n      display: inline-block;\n      width: 90%;\n      position: relative;\n      height: 2rem;\n      border-radius: 0 .5rem .5rem 0; }\n.header .scheme-container .scheme-bar-container .scheme-progress-bar {\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        height: 1.9rem;\n        border-radius: 0 .5rem .5rem 0; }\n.header .scheme-container .scheme-bar-container .scheming {\n        background-color: #40ff00; }\n.header .scheme-container .scheme-bar-container .henchmen {\n        background-color: #6699ff; }\n.header .scheme-container .scheme-bar-container .operations {\n        background-color: #ffb366; }\n.header .scheme-container .scheme-bar-container .lairs {\n        background-color: #bf00ff; }\n.header .scheme-container .scheme-bar-container .scheme-icon {\n        font-size: 1.9rem;\n        padding-top: 1px;\n        z-index: 100;\n        position: relative; }\n.header .scheme-container .scheming {\n      border: 1px solid #40ff00; }\n.header .scheme-container .henchmen {\n      border: 1px solid #6699ff; }\n.header .scheme-container .operations {\n      border: 1px solid #ffb366; }\n.header .scheme-container .lairs {\n      border: 1px solid #bf00ff; }\n.main-section {\n  background-color: #ffffff;\n  background-image: url(\"data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M82.42 180h-1.415L0 98.995v-2.827L6.167 90 0 83.833V81.004L81.005 0h2.827L90 6.167 96.167 0H98.996L180 81.005v2.827L173.833 90 180 96.167V98.996L98.995 180h-2.827L90 173.833 83.833 180H82.42zm0-1.414L1.413 97.58 8.994 90l-7.58-7.58L82.42 1.413 90 8.994l7.58-7.58 81.006 81.005-7.58 7.58 7.58 7.58-81.005 81.006-7.58-7.58-7.58 7.58zM175.196 0h-25.832c1.033 2.924 2.616 5.59 4.625 7.868C152.145 9.682 151 12.208 151 15c0 5.523 4.477 10 10 10 1.657 0 3 1.343 3 3v4h16V0h-4.803c.51.883.803 1.907.803 3 0 3.314-2.686 6-6 6s-6-2.686-6-6c0-1.093.292-2.117.803-3h10.394-13.685C161.18.938 161 1.948 161 3v4c-4.418 0-8 3.582-8 8s3.582 8 8 8c2.76 0 5 2.24 5 5v2h4v-4h2v4h4v-4h2v4h2V0h-4.803zm-15.783 0c-.27.954-.414 1.96-.414 3v2.2c-1.25.254-2.414.74-3.447 1.412-1.716-1.93-3.098-4.164-4.054-6.612h7.914zM180 17h-3l2.143-10H180v10zm-30.635 163c-.884-2.502-1.365-5.195-1.365-8 0-13.255 10.748-24 23.99-24H180v32h-30.635zm12.147 0c.5-1.416 1.345-2.67 2.434-3.66l-1.345-1.48c-1.498 1.364-2.62 3.136-3.186 5.14H151.5c-.97-2.48-1.5-5.177-1.5-8 0-12.15 9.84-22 22-22h8v30h-18.488zm13.685 0c-1.037-1.793-2.976-3-5.197-3-2.22 0-4.16 1.207-5.197 3h10.394zM0 148h8.01C21.26 148 32 158.742 32 172c0 2.805-.48 5.498-1.366 8H0v-32zm0 2h8c12.15 0 22 9.847 22 22 0 2.822-.53 5.52-1.5 8h-7.914c-.567-2.004-1.688-3.776-3.187-5.14l-1.346 1.48c1.09.99 1.933 2.244 2.434 3.66H0v-30zm15.197 30c-1.037-1.793-2.976-3-5.197-3-2.22 0-4.16 1.207-5.197 3h10.394zM0 32h16v-4c0-1.657 1.343-3 3-3 5.523 0 10-4.477 10-10 0-2.794-1.145-5.32-2.992-7.134C28.018 5.586 29.6 2.924 30.634 0H0v32zm0-2h2v-4h2v4h4v-4h2v4h4v-2c0-2.76 2.24-5 5-5 4.418 0 8-3.582 8-8s-3.582-8-8-8V3c0-1.052-.18-2.062-.512-3H0v30zM28.5 0c-.954 2.448-2.335 4.683-4.05 6.613-1.035-.672-2.2-1.16-3.45-1.413V3c0-1.04-.144-2.046-.414-3H28.5zM0 17h3L.857 7H0v10zM15.197 0c.51.883.803 1.907.803 3 0 3.314-2.686 6-6 6S4 6.314 4 3c0-1.093.292-2.117.803-3h10.394zM109 115c-1.657 0-3 1.343-3 3v4H74v-4c0-1.657-1.343-3-3-3-5.523 0-10-4.477-10-10 0-2.793 1.145-5.318 2.99-7.132C60.262 93.638 58 88.084 58 82c0-13.255 10.748-24 23.99-24h16.02C111.26 58 122 68.742 122 82c0 6.082-2.263 11.636-5.992 15.866C117.855 99.68 119 102.206 119 105c0 5.523-4.477 10-10 10zm0-2c-2.76 0-5 2.24-5 5v2h-4v-4h-2v4h-4v-4h-2v4h-4v-4h-2v4h-4v-4h-2v4h-4v-2c0-2.76-2.24-5-5-5-4.418 0-8-3.582-8-8s3.582-8 8-8v-4c0-2.64 1.136-5.013 2.946-6.66L72.6 84.86C70.39 86.874 69 89.775 69 93v2.2c-1.25.254-2.414.74-3.447 1.412C62.098 92.727 60 87.61 60 82c0-12.15 9.84-22 22-22h16c12.15 0 22 9.847 22 22 0 5.61-2.097 10.728-5.55 14.613-1.035-.672-2.2-1.16-3.45-1.413V93c0-3.226-1.39-6.127-3.6-8.14l-1.346 1.48C107.864 87.987 109 90.36 109 93v4c4.418 0 8 3.582 8 8s-3.582 8-8 8zM90.857 97L93 107h-6l2.143-10h1.714zM80 99c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm20 0c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z' fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\");\n  height: 80vh;\n  position: absolute;\n  width: 100%;\n  z-index: 10; }\n.main-section .resources-bar {\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    height: 2rem;\n    border-top: solid .75px; }\n.main-section .resources-bar .resource-tab {\n      margin-left: 0.1rem;\n      display: inline-block;\n      border-radius: 0 0 .5rem .5rem;\n      padding-right: .2rem;\n      padding-bottom: .2rem;\n      padding-left: .2rem;\n      border-top: none; }\n.main-section .resources-bar .resource-tab .resource-readout {\n        display: inline-block; }\n.main-section .resources-bar .lair {\n      margin-left: 0.5rem;\n      border: 1px solid #f2ccff;\n      color: #bf00ff; }\n.main-section .resources-bar .cash {\n      border: 1px solid #d6f7d4;\n      color: #30d52a; }\n.main-section .resources-bar .henchmen {\n      border: 1px solid #ccddff;\n      color: #6699ff; }\n.main-section .resources-bar .guard {\n      border: 1px solid #ccccff;\n      color: #000099; }\n.activity-panel {\n  display: inline-block;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n.activity-panel .henchmen-column {\n    width: 50%;\n    display: inline-block; }\n.activity-panel .henchmen-column .title {\n      padding-bottom: .5rem;\n      padding-top: .5rem;\n      text-align: center; }\n.activity-panel .henchmen-column .left-padding {\n      width: 5%;\n      display: inline-block;\n      height: 1.2rem; }\n.activity-panel .henchmen-column .add-block {\n      width: 5%;\n      vertical-align: middle;\n      display: inline-block;\n      height: 1.2rem; }\n.activity-panel .henchmen-column .progress-with-add {\n      width: 75%;\n      display: inline-block; }\n.activity-panel .henchmen-column .progress-with-add .training-container {\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        display: inline-block;\n        position: relative; }\n.activity-panel .henchmen-column .progress-with-add .training-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display {\n          font-size: .8em;\n          width: 100%;\n          position: relative;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          height: 1.2rem; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: .5em; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container {\n        border: 1px solid #ccccff; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container .guard-progress-bar {\n          background-color: #ccccff; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container .guard-training-display {\n          color: #000099; }\n.activity-panel .henchmen-column .progress-no-add {\n      width: 82%;\n      display: inline-block; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container {\n        margin-top: .5rem;\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        position: relative; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2rem; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display {\n          font-size: .8rem;\n          width: 100%;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          position: relative; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container {\n        border: 1px solid #ccddff; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container .help-wanted-progress-bar {\n          background-color: #ccddff; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container .help-wanted-display {\n          color: #003399; }\n.activity-panel .operations-column {\n    width: 50%;\n    float: right; }\n.activity-panel .operations-column .padding-short {\n      width: 5%;\n      height: 2rem;\n      float: left; }\n.activity-panel .operations-column .divider-5 {\n      width: 5%;\n      height: 3rem;\n      float: left; }\n.activity-panel .operations-column .operation-tab {\n      text-align: center;\n      border-radius: 2rem 2rem 0 0;\n      width: 30%;\n      height: 2rem;\n      float: left; }\n.activity-panel .operations-column .routine {\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .campaign {\n      background-color: #cceaff; }\n.activity-panel .operations-column .ascension {\n      background-color: #fffecc; }\n.activity-panel .operations-column .routine-row {\n      width: 90%;\n      height: 3rem;\n      float: left;\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .routine-row .column {\n        text-align: center;\n        border-radius: .5rem;\n        border: 1px solid;\n        margin-left: 3%;\n        margin-top: .5rem;\n        float: left;\n        height: 2rem;\n        width: 15%; }\n.activity-panel .operations-column .routine-row .column .fa {\n          font-size: 1.25rem;\n          margin-top: .375rem; }\n.activity-panel .operations-column .operation-flyout {\n      text-align: center;\n      float: right;\n      margin-right: 5%;\n      width: 90%;\n      border-radius: 0 0 3rem 3rem;\n      cursor: default;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none;\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .operation-flyout .inner-content {\n        position: relative;\n        min-height: 9rem;\n        margin: 0 0 1rem 0; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result {\n          position: absolute;\n          width: 100%;\n          height: 9rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result .report {\n            margin-right: .3rem;\n            margin-top: .3rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-name {\n          margin: .1rem;\n          margin-bottom: .5rem;\n          font-size: 1rem;\n          display: block;\n          width: 95%; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-name .operation-icon {\n            margin-right: .2rem;\n            position: relative;\n            font-size: 1rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split {\n          display: inline-block;\n          width: 48%; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-left {\n            float: left;\n            margin: 0;\n            font-size: .8rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-right {\n            float: right;\n            margin: 0;\n            font-size: .8rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-right .flyout-icon {\n              position: relative;\n              font-size: .8rem;\n              margin-top: .3rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .operate-button {\n          width: 40%;\n          margin-top: .5rem;\n          border-radius: .5rem;\n          border: 1px solid;\n          display: inline-block; }\n.activity-panel .operations-column .operation-flyout .inner-content .left {\n          margin-left: 6%;\n          margin-right: 2%; }\n.activity-panel .operations-column .operation-flyout .inner-content .right {\n          margin-left: 2%;\n          margin-right: 6%;\n          cursor: pointer; }\n.scheme-panel {\n  float: right;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n.scheme-panel .spacer {\n    width: 2.5%;\n    height: 50vh;\n    float: left; }\n.scheme-panel .select-bar {\n    width: 5%;\n    height: 15em;\n    padding: 0;\n    margin: 0;\n    float: left;\n    text-align: center; }\n.scheme-panel .select-bar .schemes {\n      background-color: #d9ffcc; }\n.scheme-panel .select-bar .hench {\n      background-color: #ccddff; }\n.scheme-panel .select-bar .operate {\n      background-color: #ffe6cc; }\n.scheme-panel .select-bar .lair {\n      background-color: #f2ccff; }\n.scheme-panel .select-bar .select {\n      cursor: pointer;\n      border-radius: 1rem 0 0 1rem;\n      height: 3rem; }\n.scheme-panel .select-bar .fa {\n      padding-top: 1rem; }\n.scheme-panel .scheme-area {\n    background-color: #d9ffcc;\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 304 304' width='304' height='304'%3E%3Cpath fill='%23e8a50c' fill-opacity='0.4' d='M44.1 224a5 5 0 1 1 0 2H0v-2h44.1zm160 48a5 5 0 1 1 0 2H82v-2h122.1zm57.8-46a5 5 0 1 1 0-2H304v2h-42.1zm0 16a5 5 0 1 1 0-2H304v2h-42.1zm6.2-114a5 5 0 1 1 0 2h-86.2a5 5 0 1 1 0-2h86.2zm-256-48a5 5 0 1 1 0 2H0v-2h12.1zm185.8 34a5 5 0 1 1 0-2h86.2a5 5 0 1 1 0 2h-86.2zM258 12.1a5 5 0 1 1-2 0V0h2v12.1zm-64 208a5 5 0 1 1-2 0v-54.2a5 5 0 1 1 2 0v54.2zm48-198.2V80h62v2h-64V21.9a5 5 0 1 1 2 0zm16 16V64h46v2h-48V37.9a5 5 0 1 1 2 0zm-128 96V208h16v12.1a5 5 0 1 1-2 0V210h-16v-76.1a5 5 0 1 1 2 0zm-5.9-21.9a5 5 0 1 1 0 2H114v48H85.9a5 5 0 1 1 0-2H112v-48h12.1zm-6.2 130a5 5 0 1 1 0-2H176v-74.1a5 5 0 1 1 2 0V242h-60.1zm-16-64a5 5 0 1 1 0-2H114v48h10.1a5 5 0 1 1 0 2H112v-48h-10.1zM66 284.1a5 5 0 1 1-2 0V274H50v30h-2v-32h18v12.1zM236.1 176a5 5 0 1 1 0 2H226v94h48v32h-2v-30h-48v-98h12.1zm25.8-30a5 5 0 1 1 0-2H274v44.1a5 5 0 1 1-2 0V146h-10.1zm-64 96a5 5 0 1 1 0-2H208v-80h16v-14h-42.1a5 5 0 1 1 0-2H226v18h-16v80h-12.1zm86.2-210a5 5 0 1 1 0 2H272V0h2v32h10.1zM98 101.9V146H53.9a5 5 0 1 1 0-2H96v-42.1a5 5 0 1 1 2 0zM53.9 34a5 5 0 1 1 0-2H80V0h2v34H53.9zm60.1 3.9V66H82v64H69.9a5 5 0 1 1 0-2H80V64h32V37.9a5 5 0 1 1 2 0zM101.9 82a5 5 0 1 1 0-2H128V37.9a5 5 0 1 1 2 0V82h-28.1zm16-64a5 5 0 1 1 0-2H146v44.1a5 5 0 1 1-2 0V18h-26.1zm102.2 270a5 5 0 1 1 0 2H98v14h-2v-16h124.1zM242 149.9V160h16v34h-16v62h48v48h-2v-46h-48v-66h16v-30h-16v-12.1a5 5 0 1 1 2 0zM53.9 18a5 5 0 1 1 0-2H64V2H48V0h18v18H53.9zm112 32a5 5 0 1 1 0-2H192V0h50v2h-48v48h-28.1zm-48-48a5 5 0 0 1-9.8-2h2.07a3 3 0 1 0 5.66 0H178v34h-18V21.9a5 5 0 1 1 2 0V32h14V2h-58.1zm0 96a5 5 0 1 1 0-2H137l32-32h39V21.9a5 5 0 1 1 2 0V66h-40.17l-32 32H117.9zm28.1 90.1a5 5 0 1 1-2 0v-76.51L175.59 80H224V21.9a5 5 0 1 1 2 0V82h-49.59L146 112.41v75.69zm16 32a5 5 0 1 1-2 0v-99.51L184.59 96H300.1a5 5 0 0 1 3.9-3.9v2.07a3 3 0 0 0 0 5.66v2.07a5 5 0 0 1-3.9-3.9H185.41L162 121.41v98.69zm-144-64a5 5 0 1 1-2 0v-3.51l48-48V48h32V0h2v50H66v55.41l-48 48v2.69zM50 53.9v43.51l-48 48V208h26.1a5 5 0 1 1 0 2H0v-65.41l48-48V53.9a5 5 0 1 1 2 0zm-16 16V89.41l-34 34v-2.82l32-32V69.9a5 5 0 1 1 2 0zM12.1 32a5 5 0 1 1 0 2H9.41L0 43.41V40.6L8.59 32h3.51zm265.8 18a5 5 0 1 1 0-2h18.69l7.41-7.41v2.82L297.41 50H277.9zm-16 160a5 5 0 1 1 0-2H288v-71.41l16-16v2.82l-14 14V210h-28.1zm-208 32a5 5 0 1 1 0-2H64v-22.59L40.59 194H21.9a5 5 0 1 1 0-2H41.41L66 216.59V242H53.9zm150.2 14a5 5 0 1 1 0 2H96v-56.6L56.6 162H37.9a5 5 0 1 1 0-2h19.5L98 200.6V256h106.1zm-150.2 2a5 5 0 1 1 0-2H80v-46.59L48.59 178H21.9a5 5 0 1 1 0-2H49.41L82 208.59V258H53.9zM34 39.8v1.61L9.41 66H0v-2h8.59L32 40.59V0h2v39.8zM2 300.1a5 5 0 0 1 3.9 3.9H3.83A3 3 0 0 0 0 302.17V256h18v48h-2v-46H2v42.1zM34 241v63h-2v-62H0v-2h34v1zM17 18H0v-2h16V0h2v18h-1zm273-2h14v2h-16V0h2v16zm-32 273v15h-2v-14h-14v14h-2v-16h18v1zM0 92.1A5.02 5.02 0 0 1 6 97a5 5 0 0 1-6 4.9v-2.07a3 3 0 1 0 0-5.66V92.1zM80 272h2v32h-2v-32zm37.9 32h-2.07a3 3 0 0 0-5.66 0h-2.07a5 5 0 0 1 9.8 0zM5.9 0A5.02 5.02 0 0 1 0 5.9V3.83A3 3 0 0 0 3.83 0H5.9zm294.2 0h2.07A3 3 0 0 0 304 3.83V5.9a5 5 0 0 1-3.9-5.9zm3.9 300.1v2.07a3 3 0 0 0-1.83 1.83h-2.07a5 5 0 0 1 3.9-3.9zM97 100a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-48 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 96a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-144a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM49 36a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM33 68a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 240a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm80-176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm112 176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 180a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 84a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'%3E%3C/path%3E%3C/svg%3E\");\n    border-radius: 0 3rem;\n    width: 90%;\n    height: 15em;\n    padding: 0;\n    margin: 0;\n    float: left; }\n.scheme-panel .scheme-area .node {\n      background-color: #9fff80; }\n", ""]);
+exports.push([module.i, "/* Henchmen Colors */\n/*Scheme Tree Colors */\n/* SVG Image Backgrounds */\np {\n  margin: 0 auto; }\n.header {\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E\");\n  height: 4rem; }\n.header .notoriety-container {\n    overflow: hidden;\n    margin-left: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-right: .75px solid; }\n.header .notoriety-container .notoriety-gauge {\n      background-color: #00ff9d;\n      z-index: 2;\n      width: 6rem;\n      position: relative;\n      height: 3rem;\n      margin: 0 auto;\n      margin-top: 1rem;\n      border-radius: 250px 250px 0px 0px;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n.header .notoriety-container .notoriety-gauge .fa {\n        margin-top: .5rem; }\n.header .notoriety-container .notoriety-meter {\n      background-color: #00804f;\n      z-index: 1;\n      position: relative;\n      width: 8rem;\n      height: 4rem;\n      margin: 0 auto;\n      border-radius: 0px 0px 250px 250px;\n      -webkit-transform-origin: center top;\n              transform-origin: center top;\n      -webkit-transition: all 1s ease-in-out;\n      transition: all 1s ease-in-out; }\n.header .main-title {\n    text-align: center;\n    position: absolute;\n    top: .5rem;\n    right: 40%;\n    left: 40%;\n    width: 20%;\n    margin: 0;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    font-size: 2rem; }\n.header .scheme-container {\n    position: absolute;\n    top: 0px;\n    right: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-left: .75px solid; }\n.header .scheme-container .scheme-title {\n      font-size: .8rem;\n      margin-bottom: .2rem;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n.header .scheme-container .scheme-bar-container {\n      margin-top: .25rem;\n      text-align: center;\n      display: inline-block;\n      width: 90%;\n      position: relative;\n      height: 2rem;\n      border-radius: 0 .5rem .5rem 0; }\n.header .scheme-container .scheme-bar-container .scheme-progress-bar {\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        height: 1.9rem;\n        border-radius: 0 .5rem .5rem 0; }\n.header .scheme-container .scheme-bar-container .scheming {\n        background-color: #40ff00; }\n.header .scheme-container .scheme-bar-container .henchmen {\n        background-color: #6699ff; }\n.header .scheme-container .scheme-bar-container .operations {\n        background-color: #ffb366; }\n.header .scheme-container .scheme-bar-container .lairs {\n        background-color: #bf00ff; }\n.header .scheme-container .scheme-bar-container .scheme-icon {\n        font-size: 1.9rem;\n        padding-top: 1px;\n        z-index: 100;\n        position: relative; }\n.header .scheme-container .scheming {\n      border: 1px solid #40ff00; }\n.header .scheme-container .henchmen {\n      border: 1px solid #6699ff; }\n.header .scheme-container .operations {\n      border: 1px solid #ffb366; }\n.header .scheme-container .lairs {\n      border: 1px solid #bf00ff; }\n.main-section {\n  background-color: #ffffff;\n  background-image: url(\"data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M82.42 180h-1.415L0 98.995v-2.827L6.167 90 0 83.833V81.004L81.005 0h2.827L90 6.167 96.167 0H98.996L180 81.005v2.827L173.833 90 180 96.167V98.996L98.995 180h-2.827L90 173.833 83.833 180H82.42zm0-1.414L1.413 97.58 8.994 90l-7.58-7.58L82.42 1.413 90 8.994l7.58-7.58 81.006 81.005-7.58 7.58 7.58 7.58-81.005 81.006-7.58-7.58-7.58 7.58zM175.196 0h-25.832c1.033 2.924 2.616 5.59 4.625 7.868C152.145 9.682 151 12.208 151 15c0 5.523 4.477 10 10 10 1.657 0 3 1.343 3 3v4h16V0h-4.803c.51.883.803 1.907.803 3 0 3.314-2.686 6-6 6s-6-2.686-6-6c0-1.093.292-2.117.803-3h10.394-13.685C161.18.938 161 1.948 161 3v4c-4.418 0-8 3.582-8 8s3.582 8 8 8c2.76 0 5 2.24 5 5v2h4v-4h2v4h4v-4h2v4h2V0h-4.803zm-15.783 0c-.27.954-.414 1.96-.414 3v2.2c-1.25.254-2.414.74-3.447 1.412-1.716-1.93-3.098-4.164-4.054-6.612h7.914zM180 17h-3l2.143-10H180v10zm-30.635 163c-.884-2.502-1.365-5.195-1.365-8 0-13.255 10.748-24 23.99-24H180v32h-30.635zm12.147 0c.5-1.416 1.345-2.67 2.434-3.66l-1.345-1.48c-1.498 1.364-2.62 3.136-3.186 5.14H151.5c-.97-2.48-1.5-5.177-1.5-8 0-12.15 9.84-22 22-22h8v30h-18.488zm13.685 0c-1.037-1.793-2.976-3-5.197-3-2.22 0-4.16 1.207-5.197 3h10.394zM0 148h8.01C21.26 148 32 158.742 32 172c0 2.805-.48 5.498-1.366 8H0v-32zm0 2h8c12.15 0 22 9.847 22 22 0 2.822-.53 5.52-1.5 8h-7.914c-.567-2.004-1.688-3.776-3.187-5.14l-1.346 1.48c1.09.99 1.933 2.244 2.434 3.66H0v-30zm15.197 30c-1.037-1.793-2.976-3-5.197-3-2.22 0-4.16 1.207-5.197 3h10.394zM0 32h16v-4c0-1.657 1.343-3 3-3 5.523 0 10-4.477 10-10 0-2.794-1.145-5.32-2.992-7.134C28.018 5.586 29.6 2.924 30.634 0H0v32zm0-2h2v-4h2v4h4v-4h2v4h4v-2c0-2.76 2.24-5 5-5 4.418 0 8-3.582 8-8s-3.582-8-8-8V3c0-1.052-.18-2.062-.512-3H0v30zM28.5 0c-.954 2.448-2.335 4.683-4.05 6.613-1.035-.672-2.2-1.16-3.45-1.413V3c0-1.04-.144-2.046-.414-3H28.5zM0 17h3L.857 7H0v10zM15.197 0c.51.883.803 1.907.803 3 0 3.314-2.686 6-6 6S4 6.314 4 3c0-1.093.292-2.117.803-3h10.394zM109 115c-1.657 0-3 1.343-3 3v4H74v-4c0-1.657-1.343-3-3-3-5.523 0-10-4.477-10-10 0-2.793 1.145-5.318 2.99-7.132C60.262 93.638 58 88.084 58 82c0-13.255 10.748-24 23.99-24h16.02C111.26 58 122 68.742 122 82c0 6.082-2.263 11.636-5.992 15.866C117.855 99.68 119 102.206 119 105c0 5.523-4.477 10-10 10zm0-2c-2.76 0-5 2.24-5 5v2h-4v-4h-2v4h-4v-4h-2v4h-4v-4h-2v4h-4v-4h-2v4h-4v-2c0-2.76-2.24-5-5-5-4.418 0-8-3.582-8-8s3.582-8 8-8v-4c0-2.64 1.136-5.013 2.946-6.66L72.6 84.86C70.39 86.874 69 89.775 69 93v2.2c-1.25.254-2.414.74-3.447 1.412C62.098 92.727 60 87.61 60 82c0-12.15 9.84-22 22-22h16c12.15 0 22 9.847 22 22 0 5.61-2.097 10.728-5.55 14.613-1.035-.672-2.2-1.16-3.45-1.413V93c0-3.226-1.39-6.127-3.6-8.14l-1.346 1.48C107.864 87.987 109 90.36 109 93v4c4.418 0 8 3.582 8 8s-3.582 8-8 8zM90.857 97L93 107h-6l2.143-10h1.714zM80 99c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm20 0c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z' fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\");\n  height: 80vh;\n  position: absolute;\n  width: 100%;\n  z-index: 10; }\n.main-section .resources-bar {\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    height: 2rem;\n    border-top: solid .75px; }\n.main-section .resources-bar .resource-tab {\n      margin-left: 0.1rem;\n      display: inline-block;\n      border-radius: 0 0 .5rem .5rem;\n      padding-right: .2rem;\n      padding-bottom: .2rem;\n      padding-left: .2rem;\n      border-top: none; }\n.main-section .resources-bar .resource-tab .resource-readout {\n        display: inline-block; }\n.main-section .resources-bar .lair {\n      margin-left: 0.5rem;\n      border: 1px solid #f2ccff;\n      color: #bf00ff;\n      cursor: pointer; }\n.main-section .resources-bar .cash {\n      border: 1px solid #d6f7d4;\n      color: #30d52a; }\n.main-section .resources-bar .henchmen {\n      border: 1px solid #ccddff;\n      color: #6699ff; }\n.main-section .resources-bar .guard {\n      border: 1px solid #ccccff;\n      color: #000099; }\n.activity-panel {\n  display: inline-block;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n.activity-panel .henchmen-column {\n    width: 50%;\n    display: inline-block; }\n.activity-panel .henchmen-column .title {\n      padding-bottom: .5rem;\n      padding-top: .5rem;\n      text-align: center; }\n.activity-panel .henchmen-column .left-padding {\n      width: 5%;\n      display: inline-block;\n      height: 1.2rem; }\n.activity-panel .henchmen-column .add-block {\n      width: 5%;\n      vertical-align: middle;\n      display: inline-block;\n      height: 1.2rem; }\n.activity-panel .henchmen-column .progress-with-add {\n      width: 75%;\n      display: inline-block; }\n.activity-panel .henchmen-column .progress-with-add .training-container {\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        display: inline-block;\n        position: relative; }\n.activity-panel .henchmen-column .progress-with-add .training-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display {\n          font-size: .8em;\n          width: 100%;\n          position: relative;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          height: 1.2rem; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: .5em; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container {\n        border: 1px solid #ccccff; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container .guard-progress-bar {\n          background-color: #ccccff; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container .guard-training-display {\n          color: #000099; }\n.activity-panel .henchmen-column .progress-no-add {\n      width: 82%;\n      display: inline-block; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container {\n        margin-top: .5rem;\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        position: relative; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2rem; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display {\n          font-size: .8rem;\n          width: 100%;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          position: relative; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container {\n        border: 1px solid #ccddff; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container .help-wanted-progress-bar {\n          background-color: #ccddff; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container .help-wanted-display {\n          color: #003399; }\n.activity-panel .operations-column {\n    width: 50%;\n    float: right; }\n.activity-panel .operations-column .padding-short {\n      width: 5%;\n      height: 2rem;\n      float: left; }\n.activity-panel .operations-column .divider-5 {\n      width: 5%;\n      height: 3rem;\n      float: left; }\n.activity-panel .operations-column .operation-tab {\n      text-align: center;\n      border-radius: 2rem 2rem 0 0;\n      width: 30%;\n      height: 2rem;\n      float: left; }\n.activity-panel .operations-column .routine {\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .campaign {\n      background-color: #cceaff; }\n.activity-panel .operations-column .ascension {\n      background-color: #fffecc; }\n.activity-panel .operations-column .routine-row {\n      width: 90%;\n      height: 3rem;\n      float: left;\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .routine-row .column {\n        text-align: center;\n        border-radius: .5rem;\n        border: 1px solid;\n        margin-left: 3%;\n        margin-top: .5rem;\n        float: left;\n        height: 2rem;\n        width: 15%; }\n.activity-panel .operations-column .routine-row .column .fa {\n          font-size: 1.25rem;\n          margin-top: .375rem; }\n.activity-panel .operations-column .operation-flyout {\n      text-align: center;\n      float: right;\n      margin-right: 5%;\n      width: 90%;\n      border-radius: 0 0 3rem 3rem;\n      cursor: default;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none;\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .operation-flyout .inner-content {\n        position: relative;\n        min-height: 9rem;\n        margin: 0 0 1rem 0; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result {\n          position: absolute;\n          width: 100%;\n          height: 9rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result .report {\n            margin-right: .3rem;\n            margin-top: .3rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-name {\n          margin: .1rem;\n          margin-bottom: .5rem;\n          font-size: 1rem;\n          display: block;\n          width: 95%; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-name .operation-icon {\n            margin-right: .2rem;\n            position: relative;\n            font-size: 1rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split {\n          display: inline-block;\n          width: 48%; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-left {\n            float: left;\n            margin: 0;\n            font-size: .8rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-right {\n            float: right;\n            margin: 0;\n            font-size: .8rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-right .flyout-icon {\n              position: relative;\n              font-size: .8rem;\n              margin-top: .3rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .operate-button {\n          width: 40%;\n          margin-top: .5rem;\n          border-radius: .5rem;\n          border: 1px solid;\n          display: inline-block; }\n.activity-panel .operations-column .operation-flyout .inner-content .left {\n          margin-left: 6%;\n          margin-right: 2%; }\n.activity-panel .operations-column .operation-flyout .inner-content .right {\n          margin-left: 2%;\n          margin-right: 6%;\n          cursor: pointer; }\n.scheme-panel {\n  float: right;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n.scheme-panel .spacer {\n    width: 2.5%;\n    height: 50vh;\n    float: left; }\n.scheme-panel .select-bar {\n    width: 5%;\n    height: 15em;\n    padding: 0;\n    margin: 0;\n    float: left;\n    text-align: center; }\n.scheme-panel .select-bar .schemes {\n      background-color: #d9ffcc; }\n.scheme-panel .select-bar .hench {\n      background-color: #ccddff; }\n.scheme-panel .select-bar .operate {\n      background-color: #ffe6cc; }\n.scheme-panel .select-bar .lair {\n      background-color: #f2ccff; }\n.scheme-panel .select-bar .select {\n      cursor: pointer;\n      border-radius: 1rem 0 0 1rem;\n      height: 3rem; }\n.scheme-panel .select-bar .fa {\n      padding-top: 1rem; }\n.scheme-panel .scheme-area {\n    background-color: #d9ffcc;\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 304 304' width='304' height='304'%3E%3Cpath fill='%23e8a50c' fill-opacity='0.4' d='M44.1 224a5 5 0 1 1 0 2H0v-2h44.1zm160 48a5 5 0 1 1 0 2H82v-2h122.1zm57.8-46a5 5 0 1 1 0-2H304v2h-42.1zm0 16a5 5 0 1 1 0-2H304v2h-42.1zm6.2-114a5 5 0 1 1 0 2h-86.2a5 5 0 1 1 0-2h86.2zm-256-48a5 5 0 1 1 0 2H0v-2h12.1zm185.8 34a5 5 0 1 1 0-2h86.2a5 5 0 1 1 0 2h-86.2zM258 12.1a5 5 0 1 1-2 0V0h2v12.1zm-64 208a5 5 0 1 1-2 0v-54.2a5 5 0 1 1 2 0v54.2zm48-198.2V80h62v2h-64V21.9a5 5 0 1 1 2 0zm16 16V64h46v2h-48V37.9a5 5 0 1 1 2 0zm-128 96V208h16v12.1a5 5 0 1 1-2 0V210h-16v-76.1a5 5 0 1 1 2 0zm-5.9-21.9a5 5 0 1 1 0 2H114v48H85.9a5 5 0 1 1 0-2H112v-48h12.1zm-6.2 130a5 5 0 1 1 0-2H176v-74.1a5 5 0 1 1 2 0V242h-60.1zm-16-64a5 5 0 1 1 0-2H114v48h10.1a5 5 0 1 1 0 2H112v-48h-10.1zM66 284.1a5 5 0 1 1-2 0V274H50v30h-2v-32h18v12.1zM236.1 176a5 5 0 1 1 0 2H226v94h48v32h-2v-30h-48v-98h12.1zm25.8-30a5 5 0 1 1 0-2H274v44.1a5 5 0 1 1-2 0V146h-10.1zm-64 96a5 5 0 1 1 0-2H208v-80h16v-14h-42.1a5 5 0 1 1 0-2H226v18h-16v80h-12.1zm86.2-210a5 5 0 1 1 0 2H272V0h2v32h10.1zM98 101.9V146H53.9a5 5 0 1 1 0-2H96v-42.1a5 5 0 1 1 2 0zM53.9 34a5 5 0 1 1 0-2H80V0h2v34H53.9zm60.1 3.9V66H82v64H69.9a5 5 0 1 1 0-2H80V64h32V37.9a5 5 0 1 1 2 0zM101.9 82a5 5 0 1 1 0-2H128V37.9a5 5 0 1 1 2 0V82h-28.1zm16-64a5 5 0 1 1 0-2H146v44.1a5 5 0 1 1-2 0V18h-26.1zm102.2 270a5 5 0 1 1 0 2H98v14h-2v-16h124.1zM242 149.9V160h16v34h-16v62h48v48h-2v-46h-48v-66h16v-30h-16v-12.1a5 5 0 1 1 2 0zM53.9 18a5 5 0 1 1 0-2H64V2H48V0h18v18H53.9zm112 32a5 5 0 1 1 0-2H192V0h50v2h-48v48h-28.1zm-48-48a5 5 0 0 1-9.8-2h2.07a3 3 0 1 0 5.66 0H178v34h-18V21.9a5 5 0 1 1 2 0V32h14V2h-58.1zm0 96a5 5 0 1 1 0-2H137l32-32h39V21.9a5 5 0 1 1 2 0V66h-40.17l-32 32H117.9zm28.1 90.1a5 5 0 1 1-2 0v-76.51L175.59 80H224V21.9a5 5 0 1 1 2 0V82h-49.59L146 112.41v75.69zm16 32a5 5 0 1 1-2 0v-99.51L184.59 96H300.1a5 5 0 0 1 3.9-3.9v2.07a3 3 0 0 0 0 5.66v2.07a5 5 0 0 1-3.9-3.9H185.41L162 121.41v98.69zm-144-64a5 5 0 1 1-2 0v-3.51l48-48V48h32V0h2v50H66v55.41l-48 48v2.69zM50 53.9v43.51l-48 48V208h26.1a5 5 0 1 1 0 2H0v-65.41l48-48V53.9a5 5 0 1 1 2 0zm-16 16V89.41l-34 34v-2.82l32-32V69.9a5 5 0 1 1 2 0zM12.1 32a5 5 0 1 1 0 2H9.41L0 43.41V40.6L8.59 32h3.51zm265.8 18a5 5 0 1 1 0-2h18.69l7.41-7.41v2.82L297.41 50H277.9zm-16 160a5 5 0 1 1 0-2H288v-71.41l16-16v2.82l-14 14V210h-28.1zm-208 32a5 5 0 1 1 0-2H64v-22.59L40.59 194H21.9a5 5 0 1 1 0-2H41.41L66 216.59V242H53.9zm150.2 14a5 5 0 1 1 0 2H96v-56.6L56.6 162H37.9a5 5 0 1 1 0-2h19.5L98 200.6V256h106.1zm-150.2 2a5 5 0 1 1 0-2H80v-46.59L48.59 178H21.9a5 5 0 1 1 0-2H49.41L82 208.59V258H53.9zM34 39.8v1.61L9.41 66H0v-2h8.59L32 40.59V0h2v39.8zM2 300.1a5 5 0 0 1 3.9 3.9H3.83A3 3 0 0 0 0 302.17V256h18v48h-2v-46H2v42.1zM34 241v63h-2v-62H0v-2h34v1zM17 18H0v-2h16V0h2v18h-1zm273-2h14v2h-16V0h2v16zm-32 273v15h-2v-14h-14v14h-2v-16h18v1zM0 92.1A5.02 5.02 0 0 1 6 97a5 5 0 0 1-6 4.9v-2.07a3 3 0 1 0 0-5.66V92.1zM80 272h2v32h-2v-32zm37.9 32h-2.07a3 3 0 0 0-5.66 0h-2.07a5 5 0 0 1 9.8 0zM5.9 0A5.02 5.02 0 0 1 0 5.9V3.83A3 3 0 0 0 3.83 0H5.9zm294.2 0h2.07A3 3 0 0 0 304 3.83V5.9a5 5 0 0 1-3.9-5.9zm3.9 300.1v2.07a3 3 0 0 0-1.83 1.83h-2.07a5 5 0 0 1 3.9-3.9zM97 100a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-48 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 96a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-144a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM49 36a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM33 68a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 240a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm80-176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm112 176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 180a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 84a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'%3E%3C/path%3E%3C/svg%3E\");\n    border-radius: 0 3rem;\n    width: 90%;\n    height: 15em;\n    padding: 0;\n    margin: 0;\n    float: left; }\n.scheme-panel .scheme-area .node {\n      background-color: #9fff80; }\n", ""]);
 
 // exports
 
@@ -318,16 +318,19 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_scheme__ = __webpack_require__("../../../../../src/app/models/scheme.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_recruit__ = __webpack_require__("../../../../../src/app/models/recruit.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_train__ = __webpack_require__("../../../../../src/app/models/train.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_scheme__ = __webpack_require__("../../../../../src/app/models/scheme.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_recruit__ = __webpack_require__("../../../../../src/app/models/recruit.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_train__ = __webpack_require__("../../../../../src/app/models/train.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modal_lair_modal_lair_modal_component__ = __webpack_require__("../../../../../src/app/modal/lair-modal/lair-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__data_service__ = __webpack_require__("../../../../../src/app/data.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -363,15 +366,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 // Import the DataService
 
 var AppComponent = /** @class */ (function (_super) {
     __extends(AppComponent, _super);
-    function AppComponent(cookieService, _base, _player, _numbers, _loop, _scheming, _inventory, _training, _operating, _recruiting, _dataService) {
+    function AppComponent(cookieService, _base, dialog, _player, _lair, _numbers, _loop, _scheming, _inventory, _training, _operating, _recruiting, _dataService) {
         var _this = _super.call(this) || this;
         _this.cookieService = cookieService;
         _this._base = _base;
+        _this.dialog = dialog;
         _this._player = _player;
+        _this._lair = _lair;
         _this._numbers = _numbers;
         _this._loop = _loop;
         _this._scheming = _scheming;
@@ -383,7 +391,7 @@ var AppComponent = /** @class */ (function (_super) {
         if (cookieService.check('save')) {
             console.log("Save Data Exists");
             //console.log(cookieService.get('save'));
-            __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].EARNING_SCHEME_POINTS = cookieService.get('save')[0] === "1";
+            __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].EARNING_SCHEME_POINTS = cookieService.get('save')[0] === "1";
             console.log("Base.EARNING_SCHEME_POINTS set to " + String(cookieService.get('save')[0] === "1"));
             var marker = 0;
             _this._dataService.getSchemes()
@@ -410,14 +418,14 @@ var AppComponent = /** @class */ (function (_super) {
                             break;
                         }
                     }
-                    var newScheme = new __WEBPACK_IMPORTED_MODULE_9__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, Number(exp), Number(level), _this.schemeLairReq[i], _this.schemeExp[i]);
+                    var newScheme = new __WEBPACK_IMPORTED_MODULE_10__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, Number(exp), Number(level), _this.schemeLairReq[i], _this.schemeExp[i]);
                     SchemeData.push(newScheme);
                     level = "";
                     exp = "";
                 }
-                __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].SCHEMES = SchemeData;
+                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].SCHEMES = SchemeData;
                 console.log("Base.SCHEMES populated:");
-                console.log(__WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].SCHEMES);
+                console.log(__WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].SCHEMES);
                 var currentScheme = "";
                 while (true) {
                     marker++;
@@ -429,17 +437,17 @@ var AppComponent = /** @class */ (function (_super) {
                     }
                 }
                 if (currentScheme != "-1") {
-                    __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].CURRENT_SCHEME = __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].SCHEMES[Number(currentScheme)];
-                    _this._scheming.selected = __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].CURRENT_SCHEME.tree;
-                    _this._scheming.previewScheme = __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].CURRENT_SCHEME;
+                    __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].CURRENT_SCHEME = __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].SCHEMES[Number(currentScheme)];
+                    _this._scheming.selected = __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].CURRENT_SCHEME.tree;
+                    _this._scheming.previewScheme = __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].CURRENT_SCHEME;
                     _this._scheming.showPreview = true;
                     console.log("Set Base.CURRENT_SCHEME and switched the Preview:");
-                    console.log(__WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].CURRENT_SCHEME);
+                    console.log(__WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].CURRENT_SCHEME);
                 }
                 else {
                     console.log("No Current Scheme to Set");
                 }
-                __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].INITIAL_LOAD_SCHEMES = false;
+                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].INITIAL_LOAD_SCHEMES = false;
                 var currentHench = "";
                 while (true) {
                     marker++;
@@ -450,7 +458,7 @@ var AppComponent = /** @class */ (function (_super) {
                         break;
                     }
                 }
-                __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].CURRENT_HENCHMEN = Number(currentHench);
+                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].CURRENT_HENCHMEN = Number(currentHench);
                 console.log("Current henchmen set to " + currentHench + ".");
                 var RecruitData = new Array();
                 for (var i = 0; i < 5; i++) {
@@ -484,13 +492,25 @@ var AppComponent = /** @class */ (function (_super) {
                             break;
                         }
                     }
-                    var newRecruit = new __WEBPACK_IMPORTED_MODULE_10__models_recruit__["a" /* Recruit */](i, Number(RAMcurrentStore), Number(RAMcountdown), Number(RAMlock));
+                    var newRecruit = new __WEBPACK_IMPORTED_MODULE_11__models_recruit__["a" /* Recruit */](i, Number(RAMcurrentStore), Number(RAMcountdown), Number(RAMlock));
                     RecruitData.push(newRecruit);
                 }
-                __WEBPACK_IMPORTED_MODULE_14__base_num__["a" /* BaseNum */].RECRUITS = RecruitData;
+                __WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */].RECRUITS = RecruitData;
                 console.log("BaseNum.RECRUITS populated:");
-                console.log(__WEBPACK_IMPORTED_MODULE_14__base_num__["a" /* BaseNum */].RECRUITS);
-                __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].INITIAL_LOAD_RECRUITS = false;
+                console.log(__WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */].RECRUITS);
+                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].INITIAL_LOAD_RECRUITS = false;
+                var lairHp = "";
+                while (true) {
+                    marker++;
+                    if (cookieService.get('save')[marker] != "z") {
+                        lairHp = lairHp + cookieService.get('save')[marker];
+                    }
+                    else {
+                        break;
+                    }
+                }
+                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].CURRENT_LAIR_HP = Number(lairHp);
+                console.log("Base.CURRENT_LAIR_HP set to " + lairHp + ".");
             });
             //console.log(this.EARNING_SCHEME_POINTS);
         }
@@ -501,34 +521,36 @@ var AppComponent = /** @class */ (function (_super) {
                 .subscribe(function (res) {
                 var SchemeData = new Array();
                 for (var i = 0; i < res.length; i++) {
-                    var newScheme = new __WEBPACK_IMPORTED_MODULE_9__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, 0, 0, _this.schemeLairReq[i], _this.schemeExp[i]);
+                    var newScheme = new __WEBPACK_IMPORTED_MODULE_10__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, 0, 0, _this.schemeLairReq[i], _this.schemeExp[i]);
                     SchemeData.push(newScheme);
                 }
-                __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].SCHEMES = SchemeData;
+                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].SCHEMES = SchemeData;
                 console.log("Base.SCHEMES populated:");
-                console.log(__WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].SCHEMES);
+                console.log(__WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].SCHEMES);
                 console.log("No Current Scheme to Set");
-                __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].CURRENT_HENCHMEN = 0;
+                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].CURRENT_HENCHMEN = 0;
                 console.log("Current henchmen set to 0.");
-                __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].INITIAL_LOAD_SCHEMES = false;
+                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].INITIAL_LOAD_SCHEMES = false;
                 //Construct Recruit data from Angular logic
                 var RecruitData = new Array();
                 for (var i = 0; i < 5; i++) {
-                    var newRecruit = new __WEBPACK_IMPORTED_MODULE_10__models_recruit__["a" /* Recruit */](i, 0, 0, 0);
+                    var newRecruit = new __WEBPACK_IMPORTED_MODULE_11__models_recruit__["a" /* Recruit */](i, 0, 0, 0);
                     newRecruit._player = _this._player;
                     newRecruit._numbers = _this._numbers;
                     RecruitData.push(newRecruit);
                 }
-                __WEBPACK_IMPORTED_MODULE_14__base_num__["a" /* BaseNum */].RECRUITS = RecruitData;
+                __WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */].RECRUITS = RecruitData;
                 console.log("BaseNum.RECRUITS populated:");
-                console.log(__WEBPACK_IMPORTED_MODULE_14__base_num__["a" /* BaseNum */].RECRUITS);
-                __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].INITIAL_LOAD_RECRUITS = false;
+                console.log(__WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */].RECRUITS);
+                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].INITIAL_LOAD_RECRUITS = false;
+                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].CURRENT_LAIR_HP = 10;
+                console.log("Base.CURRENT_LAIR_HP set to 10.");
             });
         }
         //Construct Train data from Angular logic
         var TrainData = new Array();
         for (var i = 0; i < _player.training.length; i++) {
-            var newTrain = new __WEBPACK_IMPORTED_MODULE_11__models_train__["a" /* Train */](i);
+            var newTrain = new __WEBPACK_IMPORTED_MODULE_12__models_train__["a" /* Train */](i);
             newTrain._player = _this._player;
             newTrain._numbers = _this._numbers;
             TrainData.push(newTrain);
@@ -538,6 +560,14 @@ var AppComponent = /** @class */ (function (_super) {
             .subscribe(function (res) { return _this._operating.operations = res; });
         return _this;
     }
+    AppComponent.prototype.openLairModal = function () {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_18__modal_lair_modal_lair_modal_component__["a" /* LairModal */], {
+            width: '75%',
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed');
+        });
+    };
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         setInterval(function () {
@@ -550,20 +580,22 @@ var AppComponent = /** @class */ (function (_super) {
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_12_ngx_cookie_service__["a" /* CookieService */],
-            __WEBPACK_IMPORTED_MODULE_15__services_base_service__["a" /* BaseService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_13_ngx_cookie_service__["a" /* CookieService */],
+            __WEBPACK_IMPORTED_MODULE_16__services_base_service__["a" /* BaseService */],
+            __WEBPACK_IMPORTED_MODULE_17__angular_material__["b" /* MatDialog */],
             __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */],
+            __WEBPACK_IMPORTED_MODULE_7__services_lair_service__["a" /* LairService */],
             __WEBPACK_IMPORTED_MODULE_4__services_core_numbers_service__["a" /* NumbersService */],
             __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */],
             __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */],
             __WEBPACK_IMPORTED_MODULE_5__services_inventory_service__["a" /* InventoryService */],
             __WEBPACK_IMPORTED_MODULE_6__services_training_service__["a" /* TrainingService */],
-            __WEBPACK_IMPORTED_MODULE_8__services_operating_service__["a" /* OperatingService */],
-            __WEBPACK_IMPORTED_MODULE_7__services_recruiting_service__["a" /* RecruitingService */],
-            __WEBPACK_IMPORTED_MODULE_16__data_service__["a" /* DataService */]])
+            __WEBPACK_IMPORTED_MODULE_9__services_operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_8__services_recruiting_service__["a" /* RecruitingService */],
+            __WEBPACK_IMPORTED_MODULE_19__data_service__["a" /* DataService */]])
     ], AppComponent);
     return AppComponent;
-}(__WEBPACK_IMPORTED_MODULE_14__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */]));
 
 
 
@@ -594,12 +626,18 @@ var AppComponent = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modal_modal_module__ = __webpack_require__("../../../../../src/app/modal/modal.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_material_tooltip__ = __webpack_require__("../../../material/esm5/tooltip.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modal_lair_modal_lair_modal_component__ = __webpack_require__("../../../../../src/app/modal/lair-modal/lair-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -633,7 +671,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_13__scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */],
                 __WEBPACK_IMPORTED_MODULE_14__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */]
+                __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_20__angular_material_tooltip__["a" /* MatTooltipModule */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__data_service__["a" /* DataService */],
@@ -643,14 +682,17 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_16__services_heroes_service__["a" /* HeroesService */],
                 __WEBPACK_IMPORTED_MODULE_11__services_operating_service__["a" /* OperatingService */],
                 __WEBPACK_IMPORTED_MODULE_10__services_recruiting_service__["a" /* RecruitingService */],
+                __WEBPACK_IMPORTED_MODULE_22__services_lair_service__["a" /* LairService */],
                 __WEBPACK_IMPORTED_MODULE_9__services_training_service__["a" /* TrainingService */],
                 __WEBPACK_IMPORTED_MODULE_8__services_inventory_service__["a" /* InventoryService */],
                 __WEBPACK_IMPORTED_MODULE_6__services_primary_loop_service__["a" /* PrimaryLoopService */],
                 __WEBPACK_IMPORTED_MODULE_15__services_core_numbers_service__["a" /* NumbersService */],
                 __WEBPACK_IMPORTED_MODULE_17_ngx_cookie_service__["a" /* CookieService */],
-                __WEBPACK_IMPORTED_MODULE_19__modal_modal_module__["a" /* ModalModule */]
+                __WEBPACK_IMPORTED_MODULE_19__modal_modal_module__["a" /* ModalModule */],
+                __WEBPACK_IMPORTED_MODULE_20__angular_material_tooltip__["a" /* MatTooltipModule */]
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]],
+            entryComponents: [__WEBPACK_IMPORTED_MODULE_21__modal_lair_modal_lair_modal_component__["a" /* LairModal */]]
         })
     ], AppModule);
     return AppModule;
@@ -684,6 +726,32 @@ var BaseNum = /** @class */ (function (_super) {
         _this.coinFlipChance = 0.5; //Here to be modified later.
         return _this;
     }
+    Object.defineProperty(BaseNum.prototype, "LAIR_LEVEL", {
+        //Derived Structural Variables: Lairs
+        get: function () {
+            if (__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[9].level > 0) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BaseNum.prototype, "LAIR_HP_MAX", {
+        get: function () {
+            if (this.LAIR_LEVEL === 0) {
+                return 10;
+            }
+            else if (this.LAIR_LEVEL === 1) {
+                return 100;
+            }
+            return 10; //Expand later.
+        },
+        enumerable: true,
+        configurable: true
+    });
     BaseNum.prototype.coinFlip = function (times) {
         var successes = 0;
         for (var _i = 0; _i < times; _i++) {
@@ -750,7 +818,7 @@ var BaseNum = /** @class */ (function (_super) {
     };
     BaseNum.prototype.hiredHelpRecruitRate = function () {
         var reduce = 0;
-        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[3]['level']; _i++) {
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[3].level; _i++) {
             if (_i == 2) {
                 reduce += 30;
             }
@@ -828,8 +896,6 @@ var Base = /** @class */ (function () {
             this.standardLairReq //9: Starter Lair 
         ];
     }
-    //Lair
-    Base.lairLevel = 0;
     //Schemes
     Base.INITIAL_LOAD_SCHEMES = true;
     Base.EARNING_SCHEME_POINTS = false;
@@ -1076,6 +1142,80 @@ var HeaderModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/modal/lair-modal/lair-modal.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LairModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var LairModal = /** @class */ (function (_super) {
+    __extends(LairModal, _super);
+    function LairModal(dialogRef, _lair, _base
+        //@Inject(MAT_DIALOG_DATA) public data: any
+    ) {
+        var _this = _super.call(this) || this;
+        _this.dialogRef = dialogRef;
+        _this._lair = _lair;
+        _this._base = _base;
+        return _this;
+    }
+    LairModal.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    LairModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'lair-modal',
+            template: __webpack_require__("../../../../../src/app/modal/lair-modal/lair-modal.html"),
+            styles: [__webpack_require__("../../../../../src/app/app.component.scss")],
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__angular_material__["c" /* MatDialogRef */],
+            __WEBPACK_IMPORTED_MODULE_2__services_lair_service__["a" /* LairService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_base_service__["a" /* BaseService */]
+            //@Inject(MAT_DIALOG_DATA) public data: any
+        ])
+    ], LairModal);
+    return LairModal;
+}(__WEBPACK_IMPORTED_MODULE_1__base_num__["a" /* BaseNum */]));
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/modal/lair-modal/lair-modal.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h1 style=\"color:#bf00ff;text-align:center;margin:0;margin-bottom:.75rem;\">Lair: {{_lair.lairName}}</h1>\n<h3 style=\"width:100%;text-align:center;margin:0;\">Lair Stats:</h3>\n<div style=\"width:100%;height:1rem;float:left;\"></div>\n<div style=\"width:10%;height:1.5rem;padding-top:.5rem;float:left;text-align:center;\">\n    <strong>HP:</strong>\n</div>\n<div style=\"width:90%;height:2rem;float:left;\">\n    <div style=\"width:100%;height:2rem;border-radius: 0px 1rem 1rem 0px;position:relative;text-align:center;\">\n        <div style=\"border-radius: 0px 1rem 1rem 0px;position:absolute;height:2rem;background-color:#30d52a;\" [ngStyle]=\"{'width': _lair.percentageHP + '%'}\"></div>\n        <p style=\"position:relative;font-size:1.5rem;margin-top:.125rem;\">{{_base.currentLairHP}} / {{_base.lairMaxHP}}</p>\n    </div>\n</div>\n<div style=\"width:100%;height:1rem;float:left;\"></div>\n<div style=\"width:25%;text-align:center;height:2rem;float:left;\">\n    <p>ATK</p>\n    <p>1</p>\n</div>\n<div style=\"width:25%;text-align:center;height:2rem;float:left;\">\n    <p>DEF</p>\n    <p>0</p>\n</div>\n<div style=\"width:25%;text-align:center;height:2rem;float:left;\">\n    <p>M.ATK</p>\n    <p>0</p>\n</div>\n<div style=\"width:25%;text-align:center;height:2rem;float:left;\">\n    <p>M.DEF</p>\n    <p>0</p>\n</div>\n<div style=\"width:100%;height:.5rem;float:left;margin:0;\"></div>\n<h3 style=\"width:100%;text-align:center\">Guard Stats:</h3>\n\n<div style=\"width:33.33%;height:2rem;float:left;text-align:center;\">\n    <i class=\"fa fa-shield\" aria-hidden=\"true\"></i>\n    <!--<p>{{_player.currentGuards}}/{{_inventory.guardCapacity}}</p>-->\n    <p>1/1</p>\n</div>\n<div style=\"width:33.33%;height:2rem;float:left;text-align:center;\">\n    <p>HP</p>\n    <!--<p>{{_player.currentGuards}}/{{_inventory.guardCapacity}}</p>-->\n    <p>3</p>\n</div>\n<div style=\"width:33.33%;height:2rem;float:left;text-align:center;\">\n    <p>ATK+</p>\n    <!--<p>{{_player.currentGuards}}/{{_inventory.guardCapacity}}</p>-->\n    <p>1</p>\n</div>"
+
+/***/ }),
+
 /***/ "../../../../../src/app/modal/modal.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1083,9 +1223,10 @@ var HeaderModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scheming_modal_scheming_modal_component__ = __webpack_require__("../../../../../src/app/modal/scheming-modal/scheming-modal.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm5/animations.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lair_modal_lair_modal_component__ = __webpack_require__("../../../../../src/app/modal/lair-modal/lair-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm5/animations.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1097,22 +1238,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var ModalModule = /** @class */ (function () {
     function ModalModule() {
     }
     ModalModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["H" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_1__scheming_modal_scheming_modal_component__["a" /* SchemingModal */]
+                __WEBPACK_IMPORTED_MODULE_1__scheming_modal_scheming_modal_component__["a" /* SchemingModal */],
+                __WEBPACK_IMPORTED_MODULE_2__lair_modal_lair_modal_component__["a" /* LairModal */]
             ],
             exports: [
                 __WEBPACK_IMPORTED_MODULE_1__scheming_modal_scheming_modal_component__["a" /* SchemingModal */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_material_dialog__["c" /* MatDialogModule */]
+                __WEBPACK_IMPORTED_MODULE_5__angular_material_dialog__["c" /* MatDialogModule */],
+                __WEBPACK_IMPORTED_MODULE_2__lair_modal_lair_modal_component__["a" /* LairModal */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_material_dialog__["c" /* MatDialogModule */]
+                __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material_dialog__["c" /* MatDialogModule */]
             ],
             providers: [],
             entryComponents: []
@@ -1570,6 +1714,13 @@ var BaseService = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(BaseService.prototype, "currentLairHP", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].CURRENT_LAIR_HP;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(BaseService.prototype, "recruits", {
         //BaseNum
         get: function () {
@@ -1581,6 +1732,13 @@ var BaseService = /** @class */ (function (_super) {
     Object.defineProperty(BaseService.prototype, "initialLoadRecruits", {
         get: function () {
             return __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].INITIAL_LOAD_RECRUITS;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BaseService.prototype, "lairMaxHP", {
+        get: function () {
+            return this.LAIR_HP_MAX;
         },
         enumerable: true,
         configurable: true
@@ -1641,10 +1799,10 @@ var NumbersService = /** @class */ (function (_super) {
         var reduce = 0;
         for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[4]['level']; _i++) {
             if (_i == 1) {
-                reduce += 60;
+                reduce += 30;
             }
             if (_i == 3) {
-                reduce += 60;
+                reduce += 30;
             }
         }
         return reduce;
@@ -1870,7 +2028,7 @@ var InventoryService = /** @class */ (function (_super) {
         //While the player service holds the current inventory variables, this service busies
         //itself with deriving capacity and other derived inventory values.
         get: function () {
-            return 10; //No modifiers yet.
+            return 1; //to be modified later.
         },
         enumerable: true,
         configurable: true
@@ -1910,6 +2068,87 @@ var InventoryService = /** @class */ (function (_super) {
     ], InventoryService);
     return InventoryService;
 }(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */]));
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/lair.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LairService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base__ = __webpack_require__("../../../../../src/app/base.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var LairService = /** @class */ (function (_super) {
+    __extends(LairService, _super);
+    function LairService(_player, _numbers, _operating, _inventory) {
+        var _this = _super.call(this) || this;
+        _this._player = _player;
+        _this._numbers = _numbers;
+        _this._operating = _operating;
+        _this._inventory = _inventory;
+        return _this;
+    }
+    Object.defineProperty(LairService.prototype, "lairName", {
+        get: function () {
+            if (this.LAIR_LEVEL == 0) {
+                return "Mom's Basement";
+            }
+            else if (this.LAIR_LEVEL == 1) {
+                return "Run-Down Rental";
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LairService.prototype, "percentageHP", {
+        get: function () {
+            return 100 * (__WEBPACK_IMPORTED_MODULE_6__base__["a" /* Base */].CURRENT_LAIR_HP / this.LAIR_HP_MAX);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    LairService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
+            __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */],
+            __WEBPACK_IMPORTED_MODULE_4__operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]])
+    ], LairService);
+    return LairService;
+}(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */]));
 
 
 
@@ -2308,11 +2547,12 @@ var OperatingService = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2343,10 +2583,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 //All loop related activities. Called by app.component and nowhere else.
 var PrimaryLoopService = /** @class */ (function (_super) {
     __extends(PrimaryLoopService, _super);
-    function PrimaryLoopService(_base, cookieService, _player, _operating, _scheming, _recruiting, _numbers, _training) {
+    function PrimaryLoopService(_base, cookieService, _player, _operating, _scheming, _recruiting, _numbers, _lair, _training) {
         var _this = _super.call(this) || this;
         _this._base = _base;
         _this.cookieService = cookieService;
@@ -2355,6 +2596,7 @@ var PrimaryLoopService = /** @class */ (function (_super) {
         _this._scheming = _scheming;
         _this._recruiting = _recruiting;
         _this._numbers = _numbers;
+        _this._lair = _lair;
         _this._training = _training;
         //Ticker set at one minute (@100 ms/s) for now.
         _this.ticker = 600;
@@ -2365,6 +2607,8 @@ var PrimaryLoopService = /** @class */ (function (_super) {
         return _this;
     }
     PrimaryLoopService.prototype.doOnce = function () {
+        console.log("100 * (1 - (" + __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].CURRENT_LAIR_HP + " / " + this.LAIR_HP_MAX + "));");
+        console.log(this._lair.percentageHP);
     };
     //Events that occur every tick
     PrimaryLoopService.prototype.tick = function () {
@@ -2399,8 +2643,8 @@ var PrimaryLoopService = /** @class */ (function (_super) {
         if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
-        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS.length; i++) {
-            if (this._recruiting.isRecruiting(__WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS[i])) {
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].RECRUITS.length; i++) {
+            if (this._recruiting.isRecruiting(__WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].RECRUITS[i])) {
                 this._recruiting.tickById(i);
             }
         }
@@ -2427,24 +2671,25 @@ var PrimaryLoopService = /** @class */ (function (_super) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute);
         }
         console.log("I am saving the game");
-        var saveString = __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].EARNING_SCHEME_POINTS ? "1" : "0";
-        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].SCHEMES.length; i++) {
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].SCHEMES[i].level + "z" + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].SCHEMES[i].exp + "z";
+        var saveString = __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].EARNING_SCHEME_POINTS ? "1" : "0";
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].SCHEMES.length; i++) {
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].SCHEMES[i].level + "z" + __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].SCHEMES[i].exp + "z";
         }
-        if (__WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CURRENT_SCHEME == null) {
+        if (__WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].CURRENT_SCHEME == null) {
             console.log("null current scheme");
             saveString = saveString + "-1z";
         }
         else {
-            console.log(__WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CURRENT_SCHEME);
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CURRENT_SCHEME.ref + "z";
+            console.log(__WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].CURRENT_SCHEME);
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].CURRENT_SCHEME.ref + "z";
         }
-        saveString = saveString + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CURRENT_HENCHMEN + "z";
-        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS.length; i++) {
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS[i].currentStore + "z";
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS[i].countdown + "z";
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS[i].lock + "z";
+        saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].CURRENT_HENCHMEN + "z";
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].RECRUITS.length; i++) {
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].RECRUITS[i].currentStore + "z";
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].RECRUITS[i].countdown + "z";
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].RECRUITS[i].lock + "z";
         }
+        saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].CURRENT_LAIR_HP + "z";
         console.log(saveString);
         this.cookieService.set('save', saveString, 365);
     };
@@ -2464,17 +2709,18 @@ var PrimaryLoopService = /** @class */ (function (_super) {
     };
     PrimaryLoopService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_10__services_base_service__["a" /* BaseService */],
-            __WEBPACK_IMPORTED_MODULE_7_ngx_cookie_service__["a" /* CookieService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_11__services_base_service__["a" /* BaseService */],
+            __WEBPACK_IMPORTED_MODULE_8_ngx_cookie_service__["a" /* CookieService */],
             __WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
             __WEBPACK_IMPORTED_MODULE_5__operating_service__["a" /* OperatingService */],
             __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */],
             __WEBPACK_IMPORTED_MODULE_3__recruiting_service__["a" /* RecruitingService */],
-            __WEBPACK_IMPORTED_MODULE_6__core_numbers_service__["a" /* NumbersService */],
+            __WEBPACK_IMPORTED_MODULE_7__core_numbers_service__["a" /* NumbersService */],
+            __WEBPACK_IMPORTED_MODULE_6__lair_service__["a" /* LairService */],
             __WEBPACK_IMPORTED_MODULE_4__training_service__["a" /* TrainingService */]])
     ], PrimaryLoopService);
     return PrimaryLoopService;
-}(__WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */]));
 
 
 
@@ -2682,7 +2928,7 @@ var SchemingService = /** @class */ (function (_super) {
         return this.learnLair(scheme);
     };
     SchemingService.prototype.learnLair = function (scheme) {
-        return scheme.lairReq[scheme.level] <= __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].lairLevel;
+        return scheme.lairReq[scheme.level] <= this.LAIR_LEVEL;
     };
     //ACTIONS
     //Open the flyout and display preview scheme details.

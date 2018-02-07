@@ -3,9 +3,6 @@ import {Scheme} from '../app/models/scheme';
 export class Base {
 
     // Foundational Variables
-
-    //Lair
-    static lairLevel: number = 0;
     
     //Schemes
     static INITIAL_LOAD_SCHEMES: boolean = true;
@@ -16,6 +13,10 @@ export class Base {
     //Recruiting
     static INITIAL_LOAD_RECRUITS: boolean = true;
     static CURRENT_HENCHMEN: number = 0;
+
+    //Lairs
+    static LAIR_LEVEL: number;
+    static CURRENT_LAIR_HP: number;
     
     
     

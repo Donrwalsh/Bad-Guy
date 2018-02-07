@@ -5,6 +5,7 @@ import { PrimaryLoopService } from './services/primary-loop.service';
 import { NumbersService } from './services/core/numbers.service';
 import { InventoryService } from './services/inventory.service';
 import { TrainingService } from './services/training.service';
+import { LairService } from './services/lair.service';
 import { RecruitingService } from './services/recruiting.service';
 import { OperatingService } from './services/operating.service';
 import { Scheme } from './models/scheme';
@@ -15,6 +16,7 @@ import { Base } from './base';
 import { BaseNum } from './base-num';
 import { BaseService } from './services/base.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { LairModal } from './modal/lair-modal/lair-modal.component';
 
 // Import the DataService
 import { DataService } from './data.service';
@@ -29,7 +31,9 @@ export class AppComponent extends BaseNum implements OnInit {
 
   constructor(public cookieService: CookieService,
     public _base: BaseService,
+    public dialog: MatDialog,
     public _player: PlayerService,
+    public _lair: LairService,
     public _numbers: NumbersService,
     public _loop: PrimaryLoopService,
     public _scheming: SchemingService,
@@ -156,6 +160,19 @@ export class AppComponent extends BaseNum implements OnInit {
 
 
           Base.INITIAL_LOAD_RECRUITS = false;
+
+          var lairHp = "";
+          while(true) {
+            marker++;
+            if (cookieService.get('save')[marker] != "z") {
+              lairHp = lairHp + cookieService.get('save')[marker];
+            } else {
+              break
+            }
+          }
+
+          Base.CURRENT_LAIR_HP = Number(lairHp);
+          console.log("Base.CURRENT_LAIR_HP set to " + lairHp + ".");
           
         });
 
@@ -204,6 +221,11 @@ export class AppComponent extends BaseNum implements OnInit {
 
           Base.INITIAL_LOAD_RECRUITS = false;
 
+          Base.CURRENT_LAIR_HP = 10;
+          console.log("Base.CURRENT_LAIR_HP set to 10.");
+
+          
+
         });
     }
 
@@ -226,6 +248,17 @@ export class AppComponent extends BaseNum implements OnInit {
     this._dataService.getOperations()
       .subscribe(res => this._operating.operations = res)
   }
+
+  openLairModal(): void {
+    let dialogRef = this.dialog.open(LairModal, {
+        width: '75%',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+    });
+}
+
 
   ngOnInit() {
 

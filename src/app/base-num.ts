@@ -10,6 +10,24 @@ export class BaseNum extends Base {
     //Foundational Variables
     static RECRUITS: Array<Recruit>;
 
+    //Derived Structural Variables: Lairs
+    get LAIR_LEVEL() {
+        if (Base.SCHEMES[9].level > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    get LAIR_HP_MAX() {
+        if (this.LAIR_LEVEL === 0) {
+            return 10;
+        } else if (this.LAIR_LEVEL === 1) {
+            return 100;
+        }
+        return 10; //Expand later.
+    }
+
 
     
 
@@ -64,7 +82,7 @@ export class BaseNum extends Base {
 
     hiredHelpRecruitRate() {
         var reduce = 0;
-        for (var _i = 0; _i < Base.SCHEMES[3]['level']; _i++) {
+        for (var _i = 0; _i < Base.SCHEMES[3].level; _i++) {
             if (_i == 2) { reduce += 30}
         }
         return reduce;
@@ -82,6 +100,8 @@ export class BaseNum extends Base {
         }
         return increase;
     }
+
+
 
 
 

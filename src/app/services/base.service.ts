@@ -37,6 +37,10 @@ export class BaseService extends BaseNum {
     get currentHenchmen() {
         return Base.CURRENT_HENCHMEN;
     }
+    
+    get currentLairHP() {
+        return Base.CURRENT_LAIR_HP;
+    }
 
     //BaseNum
     get recruits() {
@@ -46,4 +50,9 @@ export class BaseService extends BaseNum {
     get initialLoadRecruits() {
         return Base.INITIAL_LOAD_RECRUITS;
     }
+
+    get lairMaxHP() {
+        return this.LAIR_HP_MAX;
+    }
+
 }

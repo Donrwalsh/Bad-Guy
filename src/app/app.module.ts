@@ -18,6 +18,9 @@ import { HeroesService } from './services/heroes.service';
 import { CookieService } from 'ngx-cookie-service';
 import { BaseService } from './services/base.service';
 import { ModalModule } from './modal/modal.module';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {LairModal} from './modal/lair-modal/lair-modal.component';
+import {LairService} from './services/lair.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { ModalModule } from './modal/modal.module';
     SchemePanelModule,
     ActivityPanelModule,
     BrowserModule,
-    HttpModule
+    HttpModule,
+    MatTooltipModule
   ],
   providers: [
     DataService,
@@ -38,13 +42,16 @@ import { ModalModule } from './modal/modal.module';
     HeroesService,
     OperatingService,
     RecruitingService,
+    LairService,
     TrainingService,
     InventoryService,
     PrimaryLoopService,
     NumbersService,
     CookieService,
-    ModalModule
+    ModalModule,
+    MatTooltipModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LairModal]
 })
 export class AppModule { }

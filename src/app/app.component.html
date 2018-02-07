@@ -1,9 +1,9 @@
 <header></header>
 <div class="main-section" *ngIf="!_base.initialLoadSchemes">
   <div class="resources-bar">
-    <div class="resource-tab lair">
+    <div class="resource-tab lair" matTooltip="click for details" (click)="openLairModal()">
       <i class="fa fa-home" aria-hidden="true"></i>
-      <p class="resource-readout">Mom's Basement</p>
+      <p class="resource-readout">{{_lair.lairName}}</p>
     </div>
     <div class="resource-tab cash" *ngIf="_player.cash > 0">
       <i class="fa fa-money" aria-hidden="true"></i>

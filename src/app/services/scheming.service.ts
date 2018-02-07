@@ -30,7 +30,7 @@ export class SchemingService extends BaseNum {
     }
 
     learnLair(scheme : Scheme) {
-        return scheme.lairReq[scheme.level] <= Base.lairLevel;
+        return scheme.lairReq[scheme.level] <= this.LAIR_LEVEL;
     }
 
     //ACTIONS

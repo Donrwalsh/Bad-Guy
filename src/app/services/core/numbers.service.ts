@@ -14,8 +14,8 @@ export class NumbersService extends Base {
     guardDutyTrainRate() {
         var reduce = 0;
         for (var _i = 0; _i < Base.SCHEMES[4]['level']; _i++) {
-            if (_i == 1) { reduce += 60}
-            if (_i == 3) { reduce += 60}
+            if (_i == 1) { reduce += 30}
+            if (_i == 3) { reduce += 30}
         }
         return reduce;
     }

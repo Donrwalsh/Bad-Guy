@@ -4,6 +4,7 @@ import { SchemingService } from "./scheming.service";
 import { RecruitingService } from "./recruiting.service";
 import { TrainingService } from "./training.service";
 import { OperatingService } from "./operating.service";
+import { LairService } from './lair.service';
 import { NumbersService } from "./core/numbers.service";
 import { Scheme } from "../models/scheme";
 import { Recruit } from "../models/recruit";
@@ -23,6 +24,7 @@ export class PrimaryLoopService extends BaseNum {
         public _scheming: SchemingService,
         public _recruiting: RecruitingService,
         public _numbers: NumbersService,
+        public _lair: LairService,
         public _training: TrainingService) {
             super();
          }
@@ -36,7 +38,9 @@ export class PrimaryLoopService extends BaseNum {
     //Used for one-off console logs - logging within the loop can be tedious.
     didOnce = false;
     doOnce() {
-       
+        console.log("100 * (1 - (" + Base.CURRENT_LAIR_HP + " / " + this.LAIR_HP_MAX + "));");
+        console.log(this._lair.percentageHP);
+        
     }
 
     //Events that occur every tick
@@ -122,9 +126,11 @@ export class PrimaryLoopService extends BaseNum {
             saveString = saveString + BaseNum.RECRUITS[i].countdown + "z";
             saveString = saveString + BaseNum.RECRUITS[i].lock + "z";
         }
+        saveString = saveString + Base.CURRENT_LAIR_HP + "z";
         
         console.log(saveString);
         this.cookieService.set( 'save', saveString, 365 );
+
 
     }
 
