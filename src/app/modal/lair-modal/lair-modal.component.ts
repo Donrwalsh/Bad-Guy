@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BaseNum } from '../../base-num';
 import { LairService } from '../../services/lair.service';
+import { TrainingService } from '../../services/training.service';
 import { BaseService } from '../../services/base.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -16,6 +17,7 @@ export class LairModal extends BaseNum {
     constructor(
         public dialogRef: MatDialogRef<LairModal>,
         public _lair: LairService,
+        public _training: TrainingService,
         public _base: BaseService
         //@Inject(MAT_DIALOG_DATA) public data: any
     ) 

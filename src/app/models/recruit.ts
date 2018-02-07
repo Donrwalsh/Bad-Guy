@@ -11,9 +11,6 @@ export class Recruit {
     type: string;
     
 
-    public _player: PlayerService;
-    public _numbers: NumbersService;
-
     constructor(
         id: number,
         currentStore: number,
@@ -40,40 +37,6 @@ export class Recruit {
             this.type = "help-wanted";
         }
     }
-
-    
-    /*
-
-    get capacity() {
-        if (this.type == 'help-wanted') {
-            var capacity = 1;
-            capacity += this._numbers.hiredHelpCapacity();
-            return capacity;
-        }
-    }
-        get isUnlocked() {
-        if (this.type == 'help-wanted') {
-            return this._numbers.hiredHelpUnlocked(this.id);
-        }
-    }
-
-    get isFull() {
-        return this.currentStore == this.capacity;
-    }
-
-    get isRecruiting() {
-        return this.isUnlocked && !this.isFull;
-    }
-    */
-
-    //Other structural details, not necessarily coming from the player service.
-   
-
-    
-
-    
-
-    //Activity properties of this recruitment object. Used extensively by the view.
 
 
 }

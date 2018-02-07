@@ -5,14 +5,23 @@ export class Train {
     id: number;
     name: string;
     fa: string;
-
-    public _player: PlayerService;
-    public _numbers: NumbersService;
+    currentStore: number;
+    countdown: number;
+    lock: number;
+    queued: number;
 
     constructor(
         id: number,
+        currentStore: number,
+        countdown: number,
+        lock: number,
+        queued: number
     ) {
         this.id = id;
+        this.currentStore = currentStore;
+        this.queued = queued;
+        this.countdown = countdown;
+        this.lock = lock;
 
         if (this.id === 0) 
         { 
@@ -21,25 +30,4 @@ export class Train {
         }
     }
 
-    get currentStore() {
-        return this._player.training[this.id]['currentStore'];
-    }
-
-    get isUnlocked() {
-        if (this.id == 0) {
-            return this._numbers.guardDutyUnlocked;
-        }
-    }
-
-    get capacity() {
-        if (this.id === 0) { //Guards
-            var capacity = 1;
-            capacity += this._numbers.guardDutyCapacity();
-            return capacity;
-        }
-    }
-
-    get isFull() {
-        return this.currentStore == this.capacity;
-    }
 }

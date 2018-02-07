@@ -17,8 +17,6 @@ export class RecruitingService extends BaseNum {
         super();
     }
 
-    //STRUCTURAL VARIABLES
-    //recruits: Array<Recruit>; //Raw Recruitment objects. Constructed by app.component.
     collecting: boolean = false; //Collection lockout
 
     isUnlocked(recruit: Recruit) {
@@ -64,19 +62,19 @@ export class RecruitingService extends BaseNum {
     //ACTIONS
 
     //Harvesting training objects.
-    collectById(id) {
-        if (BaseNum.RECRUITS[id].currentStore > 0) {
+    collectRecruit(recruit: Recruit) {
+        if (recruit.currentStore > 0) {
             if (!this.collecting) {
                 this.collecting = true;
-                var collectMarker = BaseNum.RECRUITS[id].currentStore;
+                var collectMarker = recruit.currentStore;
                 for (var _i = 0; _i < collectMarker; _i++) {
                     if (Base.CURRENT_HENCHMEN < this._inventory.henchmenCapacity) {
                         Base.CURRENT_HENCHMEN++;
-                        BaseNum.RECRUITS[id].currentStore--;
+                        recruit.currentStore--;
                     }
                 }
-                if (BaseNum.RECRUITS[id].countdown == 0) {
-                    this.resetCountdownById(id);
+                if (recruit.countdown == 0) {
+                    this.resetRecruitCountdown(recruit);
                 }
                 this.collecting = false;
             }
@@ -84,29 +82,29 @@ export class RecruitingService extends BaseNum {
     }
 
     //Determinining countdown numbers
-    getRecruitingCountdownById(id) {
-        if (id == 0 || id == 1) { //Help Wanted Objects
+    recruitCountdown(recruit: Recruit) {
+        if (recruit.id == 0 || recruit.id == 1) { //Help Wanted Objects
             var rate = 300;
             rate -= this.hiredHelpRecruitRate()
             return rate;
         }
     }
 
-    resetCountdownById(id) {
-        BaseNum.RECRUITS[id].countdown = this.getRecruitingCountdownById(id);
-        BaseNum.RECRUITS[id].lock = this.getRecruitingCountdownById(id);
+    resetRecruitCountdown(recruit: Recruit) {
+        recruit.countdown = this.recruitCountdown(recruit);
+        recruit.lock = this.recruitCountdown(recruit);
     }
 
     //LOOP
-    tickById(id) {
-        if (BaseNum.RECRUITS[id].countdown == 0) {
-            this.resetCountdownById(id);
+    recruitTick(recruit: Recruit) {
+        if (recruit.countdown == 0) {
+            this.resetRecruitCountdown(recruit);
         }
-        BaseNum.RECRUITS[id].countdown--;
-        if (BaseNum.RECRUITS[id].countdown == 0) {
-            BaseNum.RECRUITS[id].currentStore++;
-            if (!this.isFull(BaseNum.RECRUITS[id])) {
-                this.resetCountdownById(id);
+        recruit.countdown--;
+        if (recruit.countdown == 0) {
+            recruit.currentStore++;
+            if (!this.isFull(recruit)) {
+                this.resetRecruitCountdown(recruit);
             }
         }
     }

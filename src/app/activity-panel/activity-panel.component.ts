@@ -6,6 +6,7 @@ import { InventoryService } from '../services/inventory.service';
 import { OperatingService } from '../services/operating.service';
 import { BaseNum } from '../base-num';
 import { BaseService } from '../services/base.service';
+import { Train } from '../models/train';
 
 @Component({
     selector: 'activity-panel',
@@ -44,7 +45,7 @@ export class ActivityPanelComponent extends BaseNum {
     //This will break if more than 2 types are used.
     styleProgressBar(id, type) {
         return {
-            'width': type == 'recruiting' ? this._recruiting.percentage(BaseNum.RECRUITS[id]) + '%' : this._training.getPercentageById(id) + '%'
+            'width': type == 'recruiting' ? this._recruiting.percentage(BaseNum.RECRUITS[id]) + '%' : this._training.percentage(BaseNum.TRAINS[id]) + '%'
         }
     }
 
@@ -57,16 +58,16 @@ export class ActivityPanelComponent extends BaseNum {
         }
     }
 
-    addToQueueIconStyle(id) {
+    addToQueueIconStyle(train: Train) {
         return {
-            'visibility': this._training.canTrainById(id) ? 'initial' : 'hidden',
-            'cursor': this._training.canTrainById(id) ? 'pointer' : 'default'
+            'visibility': this._training.canTrain(train) ? 'initial' : 'hidden',
+            'cursor': this._training.canTrain(train) ? 'pointer' : 'default'
         }
     }
 
     collectingIconStyle(id, type) {
         if (type == "training") {
-            return { 'visibility': this._training.isTrainingById(0) ? 'initial' : 'hidden' }
+            return { 'visibility': this._training.isTraining(BaseNum.TRAINS[id]) ? 'initial' : 'hidden' }
         } else {
             return { 'visibility': this._recruiting.isRecruiting(BaseNum.RECRUITS[id]) ? 'initial' : 'hidden' }
         }
@@ -76,7 +77,7 @@ export class ActivityPanelComponent extends BaseNum {
 
     containerStyle(id, type) {
         if (type == "training") {
-            return { 'cursor': this._player.training[id]['currentStore'] > 0 ? 'pointer' : 'default' }
+            return { 'cursor': BaseNum.TRAINS[id].currentStore > 0 ? 'pointer' : 'default' }
         } else {
             return { 'cursor': BaseNum.RECRUITS[id].currentStore > 0 ? 'pointer' : 'default' }
         }
@@ -99,7 +100,7 @@ export class ActivityPanelComponent extends BaseNum {
     collectionIconStyle(id, type) {
         if (type == "training") {
             return {
-                'display': this._player.training[id]['currentStore'] > 0 ? 'inline-block' : 'none'
+                'display': BaseNum.TRAINS[id].currentStore > 0 ? 'inline-block' : 'none'
             }
         } else {
             return {

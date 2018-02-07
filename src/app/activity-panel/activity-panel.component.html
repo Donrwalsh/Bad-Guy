@@ -1,13 +1,13 @@
 <div class="activity-panel" *ngIf="!_base.INITIAL_LOAD_RECRUITS">
     <div class="henchmen-column">
         <p class="title" *ngIf="_training.areAnyUnlocked()">Training</p>
-        <div *ngFor="let train of _training.trains; index as i">
-            <div class="left-padding" *ngIf="train.isUnlocked"></div>
-            <div class="add-block" *ngIf="train.isUnlocked">
-                <i class="add-to-queue-icon fa fa-plus" aria-hidden="true" (click)="_training.trainById(i)" [ngStyle]="addToQueueIconStyle(i)"></i>
+        <div *ngFor="let train of _base.trains; index as i">
+            <div class="left-padding" *ngIf="_training.isUnlocked(train)"></div>
+            <div class="add-block" *ngIf="_training.isUnlocked(train)">
+                <i class="add-to-queue-icon fa fa-plus" aria-hidden="true" (click)="_training.queueTrain(train)" [ngStyle]="addToQueueIconStyle(train)"></i>
             </div>
-            <div *ngIf="train.isUnlocked" class="progress-with-add">
-                <div [ngClass]="containerClass(i, 'training')" (click)="_training.collectById(i)" [ngStyle]="containerStyle(i, 'training')">
+            <div *ngIf="_training.isUnlocked(train)" class="progress-with-add">
+                <div [ngClass]="containerClass(i, 'training')" (click)="_training.collectTrain(train)" [ngStyle]="containerStyle(i, 'training')">
                     <div [ngClass]="progressBarClass(i, 'training')" [ngStyle]="styleProgressBar(i, 'training')"></div>
                     <p [ngClass]="displayClass(i, 'training')">
                         <i class="generation-icon fa faa-slow faa-flash animated {{train.fa}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'training')"></i>
@@ -22,7 +22,7 @@
         <div *ngFor="let recruit of _base.recruits; index as i">
             <div class="left-padding"></div>
             <div *ngIf="_recruiting.isUnlocked(recruit)" class="progress-no-add">
-                <div [ngClass]="containerClass(i, 'recruiting')" (click)="_recruiting.collectById(i)" [ngStyle]="containerStyle(i, 'recruiting')">
+                <div [ngClass]="containerClass(i, 'recruiting')" (click)="_recruiting.collectRecruit(recruit)" [ngStyle]="containerStyle(i, 'recruiting')">
                     <div [ngClass]="progressBarClass(i, 'recruiting')" [ngStyle]="styleProgressBar(i, 'recruiting')"></div>
                     <p [ngClass]="displayClass(i, 'recruiting')" class="help-wanted-display">
                         <i class="generation-icon fa faa-slow faa-flash animated {{recruit.fa}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'recruiting')"></i>

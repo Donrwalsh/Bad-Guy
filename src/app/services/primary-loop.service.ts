@@ -38,8 +38,7 @@ export class PrimaryLoopService extends BaseNum {
     //Used for one-off console logs - logging within the loop can be tedious.
     didOnce = false;
     doOnce() {
-        console.log("100 * (1 - (" + Base.CURRENT_LAIR_HP + " / " + this.LAIR_HP_MAX + "));");
-        console.log(this._lair.percentageHP);
+       
         
     }
 
@@ -51,44 +50,19 @@ export class PrimaryLoopService extends BaseNum {
             this.didOnce = true;
         }
 
-        /* In-progress 'auto-player' functionality
-        if (!this._scheming.EARNING_SCHEME_POINTS) {
-            var selectionArray = [];
-            for (i = 0; i < 9; i++) {
-                if (this._scheming.canSchemeBeLearned(i)) {
-                    selectionArray.push(i);
-                }
-            }
-            if (selectionArray.length > 0) {
-                var schemeSelection = Math.floor(Math.random()*selectionArray.length);
-                this._base.currentScheme = this._scheming.schemes[selectionArray[schemeSelection]];
-                this._scheming.EARNING_SCHEME_POINTS = true;
-            }
-            
-        }
-
-                for (var i = 0; i < this._player.recruiting.length; i++) {
-            this._recruiting.collectById(i);
-        }
-
-        for (var i = 0; i < this._player.operating.length; i++) {
-
-        }
-        */
-
-        if (this._base.earningSchemePoints) {
+        if (Base.EARNING_SCHEME_POINTS) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
-        for (var i = 0; i < BaseNum.RECRUITS.length; i++) {
-            if (this._recruiting.isRecruiting(BaseNum.RECRUITS[i])) {
-                this._recruiting.tickById(i);
+        BaseNum.RECRUITS.forEach( (recruit) => {
+            if(this._recruiting.isRecruiting(recruit)) {
+                this._recruiting.recruitTick(recruit);
             }
-        }
-        for (var i = 0; i < this._player.training.length; i++) {
-            if (this._training.isTrainingById(i)) {
-                this._training.tickById(i);
+        });
+        BaseNum.TRAINS.forEach( (train) => {
+            if(this._training.isTraining(train)) {
+                this._training.trainTick(train);
             }
-        }
+        });
         for (var i = 0; i < this._player.operating.length; i++) {
             if (this._operating.isUnlockedById(i)) {
                 this._operating.tickById(i);
@@ -114,10 +88,8 @@ export class PrimaryLoopService extends BaseNum {
             saveString = saveString + Base.SCHEMES[i].level + "z" + Base.SCHEMES[i].exp + "z";
         }
         if (Base.CURRENT_SCHEME == null) {
-            console.log("null current scheme")
             saveString = saveString + "-1z";
         } else {
-            console.log(Base.CURRENT_SCHEME)
             saveString = saveString + Base.CURRENT_SCHEME.ref + "z";
         }
         saveString = saveString + Base.CURRENT_HENCHMEN + "z";
@@ -127,6 +99,14 @@ export class PrimaryLoopService extends BaseNum {
             saveString = saveString + BaseNum.RECRUITS[i].lock + "z";
         }
         saveString = saveString + Base.CURRENT_LAIR_HP + "z";
+        saveString = saveString + Base.CURRENT_GUARDS + "z";
+
+        for (var i = 0; i < BaseNum.TRAINS.length; i++) {
+            saveString = saveString + BaseNum.TRAINS[i].currentStore + "z";
+            saveString = saveString + BaseNum.TRAINS[i].countdown + "z";
+            saveString = saveString + BaseNum.TRAINS[i].lock + "z";
+            saveString = saveString + BaseNum.TRAINS[i].queued + "z";
+        }
         
         console.log(saveString);
         this.cookieService.set( 'save', saveString, 365 );

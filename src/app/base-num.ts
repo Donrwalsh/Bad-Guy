@@ -1,5 +1,6 @@
 import { Base } from './base';
 import { Recruit } from './models/recruit';
+import { Train } from './models/train';
 
 export class BaseNum extends Base {
 
@@ -9,6 +10,7 @@ export class BaseNum extends Base {
 
     //Foundational Variables
     static RECRUITS: Array<Recruit>;
+    static TRAINS: Array<Train>;
 
     //Derived Structural Variables: Lairs
     get LAIR_LEVEL() {
@@ -86,6 +88,29 @@ export class BaseNum extends Base {
             if (_i == 2) { reduce += 30}
         }
         return reduce;
+    }
+
+    //04: Guard Duty
+    guardDutyTrainRate() {
+        var reduce = 0;
+        for (var _i = 0; _i < Base.SCHEMES[4]['level']; _i++) {
+            if (_i == 1) { reduce += 30}
+            if (_i == 3) { reduce += 30}
+        }
+        return reduce;
+    }
+
+    guardDutyUnlocked() {
+        return Base.SCHEMES[4]['level'] > 0;
+    }
+
+    guardDutyCapacity() {
+        var capacity = 0;
+        for (var _i = 0; _i < Base.SCHEMES[4]['level']; _i++) {
+            if (_i == 2) { capacity += 2; }
+        }
+
+        return capacity;
     }
 
     //05: Lodging

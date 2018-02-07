@@ -118,7 +118,7 @@ export class AppComponent extends BaseNum implements OnInit {
             }
           }
           Base.CURRENT_HENCHMEN = Number(currentHench);
-          console.log("Current henchmen set to " + currentHench + ".")
+          console.log("Base.CURRENT_HENCHMEN set to " + currentHench + ".")
 
           var RecruitData = new Array();
           for (var i = 0; i < 5; i++) { //Note the magic number 5.
@@ -173,6 +173,64 @@ export class AppComponent extends BaseNum implements OnInit {
 
           Base.CURRENT_LAIR_HP = Number(lairHp);
           console.log("Base.CURRENT_LAIR_HP set to " + lairHp + ".");
+
+          var guards = "";
+          while(true) {
+            marker++;
+            if (cookieService.get('save')[marker] != "z") {
+              guards = guards + cookieService.get('save')[marker];
+            } else {
+              break
+            }
+          }
+          Base.CURRENT_GUARDS = Number(guards);
+          console.log("Base.CURRENT_GUARDS set to " + guards + ".");
+
+          var TrainData = new Array();
+          for (var i = 0; i < 5; i++) { //Note the magic number 5.
+            var RAMcurrentStore = "";
+            var RAMcountdown = "";
+            var RAMlock = "";
+            var RAMqueued = "";
+            while(true) {
+              marker++;
+              if (cookieService.get('save')[marker] != "z") {
+                RAMcurrentStore = RAMcurrentStore + cookieService.get('save')[marker];
+              } else {
+                break
+              }
+            }
+            while(true) {
+              marker++;
+              if (cookieService.get('save')[marker] != "z") {
+                RAMcountdown = RAMcountdown + cookieService.get('save')[marker];
+              } else {
+                break
+              }
+            }
+            while(true) {
+              marker++;
+              if (cookieService.get('save')[marker] != "z") {
+                RAMlock = RAMlock + cookieService.get('save')[marker];
+              } else {
+                break
+              }
+            }
+            while(true) {
+              marker++;
+              if (cookieService.get('save')[marker] != "z") {
+                RAMqueued = RAMqueued + cookieService.get('save')[marker];
+              } else {
+                break
+              }
+            }
+            let newTrain = new Train(i, Number(RAMcurrentStore), Number(RAMcountdown), Number(RAMlock), Number(RAMqueued));
+            TrainData.push(newTrain);
+          }
+          
+          BaseNum.TRAINS = TrainData;
+          console.log("BaseNum.TRAINS populated:");
+          console.log(BaseNum.TRAINS);
           
         });
 
@@ -202,7 +260,7 @@ export class AppComponent extends BaseNum implements OnInit {
           console.log(Base.SCHEMES);
           console.log("No Current Scheme to Set")
           Base.CURRENT_HENCHMEN = 0;
-          console.log("Current henchmen set to 0.")
+          console.log("Base.CURRENT_HENCHMEN set to 0.")
 
 
           Base.INITIAL_LOAD_SCHEMES = false;
@@ -211,8 +269,6 @@ export class AppComponent extends BaseNum implements OnInit {
           var RecruitData = new Array();
           for (var i = 0; i < 5; i++) { //Note the magic number 5.
             let newRecruit = new Recruit(i, 0, 0, 0);
-            newRecruit._player = this._player;
-            newRecruit._numbers = this._numbers;
             RecruitData.push(newRecruit);
           }
           BaseNum.RECRUITS = RecruitData;
@@ -223,6 +279,18 @@ export class AppComponent extends BaseNum implements OnInit {
 
           Base.CURRENT_LAIR_HP = 10;
           console.log("Base.CURRENT_LAIR_HP set to 10.");
+          Base.CURRENT_GUARDS = 0;
+          console.log("Base.CURRENT_GUARDS set to 0.");
+
+          //Construct Train data from Angular logic
+          var TrainData = new Array();
+          for (var i = 0; i < 5; i++) { //Note the magic number 5.
+            let newTrain = new Train(i, 0, 0, 0, 0);
+            TrainData.push(newTrain);
+          }
+          BaseNum.TRAINS = TrainData;
+          console.log("BaseNum.TRAINS populated:");
+          console.log(BaseNum.TRAINS);
 
           
 
@@ -235,15 +303,6 @@ export class AppComponent extends BaseNum implements OnInit {
 
 
 
-    //Construct Train data from Angular logic
-    var TrainData = new Array();
-    for (var i = 0; i < _player.training.length; i++) {
-      let newTrain = new Train(i);
-      newTrain._player = this._player;
-      newTrain._numbers = this._numbers;
-      TrainData.push(newTrain);
-    }
-    this._training.trains = TrainData;
 
     this._dataService.getOperations()
       .subscribe(res => this._operating.operations = res)

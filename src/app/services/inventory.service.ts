@@ -24,7 +24,7 @@ export class InventoryService extends BaseNum {
     }
 
     get isGuardCapacityFull() {
-        return this._player.currentGuards == this.guardCapacity;
+        return Base.CURRENT_GUARDS == this.guardCapacity;
     }
 
     get henchmenCapacity() {

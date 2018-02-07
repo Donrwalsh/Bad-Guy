@@ -10,13 +10,16 @@ export class Base {
     static SCHEMES: Array<Scheme>;
     static CURRENT_SCHEME: Scheme;
 
-    //Recruiting
+    //Henchmen
     static INITIAL_LOAD_RECRUITS: boolean = true;
-    static CURRENT_HENCHMEN: number = 0;
+    static CURRENT_HENCHMEN: number;
+    static CURRENT_GUARDS: number;
 
     //Lairs
     static LAIR_LEVEL: number;
     static CURRENT_LAIR_HP: number;
+
+    
     
     
     

@@ -42,9 +42,17 @@ export class BaseService extends BaseNum {
         return Base.CURRENT_LAIR_HP;
     }
 
+    get currentGuards() {
+        return Base.CURRENT_GUARDS;
+    }
+
     //BaseNum
     get recruits() {
         return BaseNum.RECRUITS;
+    }
+
+    get trains() {
+        return BaseNum.TRAINS;
     }
 
     get initialLoadRecruits() {

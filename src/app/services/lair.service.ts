@@ -28,4 +28,15 @@ export class LairService extends BaseNum {
         return 100 * (Base.CURRENT_LAIR_HP / this.LAIR_HP_MAX);
     }
 
+    get hpPerGuard() {
+        return 3; //expand later.
+    }
+
+    get atkPerGuard() {
+        return 1; // expand later.
+    }
+
+
+
+
 }
