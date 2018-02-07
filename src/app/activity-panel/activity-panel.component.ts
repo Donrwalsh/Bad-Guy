@@ -4,19 +4,23 @@ import { RecruitingService } from '../services/recruiting.service';
 import { TrainingService } from '../services/training.service';
 import { InventoryService } from '../services/inventory.service';
 import { OperatingService } from '../services/operating.service';
+import { BaseNum } from '../base-num';
+import { BaseService } from '../services/base.service';
 
 @Component({
     selector: 'activity-panel',
     templateUrl: './activity-panel.component.html',
     styleUrls: ['./activity-panel.component.scss', '../app.component.scss'],
 })
-export class ActivityPanelComponent {
+export class ActivityPanelComponent extends BaseNum {
 
     constructor(public _player: PlayerService,
+        public _base: BaseService,
         public _recruiting: RecruitingService,
         public _inventory: InventoryService,
         public _operating: OperatingService,
         public _training: TrainingService) {
+        super();
     }
 
     containerClass(id, type) {
@@ -24,8 +28,8 @@ export class ActivityPanelComponent {
             'recruiting-container': type == "recruiting",
             'training-container': type == "training",
             'help-wanted-container': type == "recruiting" && (id == 0 || id == 1),
-            'guard-training-container' : type == "training" && id == 0,
-            'heist-recharge-container' : type == "operating" && id <= 4 && id >= 0
+            'guard-training-container': type == "training" && id == 0,
+            'heist-recharge-container': type == "operating" && id <= 4 && id >= 0
         }
     }
 
@@ -40,7 +44,7 @@ export class ActivityPanelComponent {
     //This will break if more than 2 types are used.
     styleProgressBar(id, type) {
         return {
-            'width': type == 'recruiting' ? this._recruiting.recruits[id].percentage + '%' : this._training.getPercentageById(id) + '%' 
+            'width': type == 'recruiting' ? this._recruiting.percentage(BaseNum.RECRUITS[id]) + '%' : this._training.getPercentageById(id) + '%'
         }
     }
 
@@ -49,7 +53,7 @@ export class ActivityPanelComponent {
             'recruiting-display': type == "recruiting",
             'training-display': type == "training",
             'help-wanted-display': type == "recruiting" && (id == 0 || id == 1),
-            'guard-training-display' : type == "training" && id == 0
+            'guard-training-display': type == "training" && id == 0
         }
     }
 
@@ -62,25 +66,25 @@ export class ActivityPanelComponent {
 
     collectingIconStyle(id, type) {
         if (type == "training") {
-            return {'visibility': this._training.isTrainingById(0) ? 'initial' : 'hidden' }
+            return { 'visibility': this._training.isTrainingById(0) ? 'initial' : 'hidden' }
         } else {
-            return {'visibility': this._recruiting.recruits[id].isRecruiting ? 'initial' : 'hidden' }
+            return { 'visibility': this._recruiting.isRecruiting(BaseNum.RECRUITS[id]) ? 'initial' : 'hidden' }
         }
-        
-            
+
+
     }
 
     containerStyle(id, type) {
         if (type == "training") {
-            return { 'cursor': this._player.training[id]['currentStore'] > 0 ? 'pointer' : 'default'}
+            return { 'cursor': this._player.training[id]['currentStore'] > 0 ? 'pointer' : 'default' }
         } else {
-            return { 'cursor': this._player.recruiting[id]['currentStore'] > 0 ? 'pointer' : 'default'}
+            return { 'cursor': BaseNum.RECRUITS[id].currentStore > 0 ? 'pointer' : 'default' }
         }
     }
 
     collectionIcon(id, type) {
         if (type == "training") {
-            return { 
+            return {
                 'faa-tada': !this._inventory.isHenchmenUpgradeFullById(id),
                 'faa-horizontal': this._inventory.isHenchmenUpgradeFullById(id)
             }
@@ -95,17 +99,17 @@ export class ActivityPanelComponent {
     collectionIconStyle(id, type) {
         if (type == "training") {
             return {
-                'display': this._player.training[id]['currentStore'] > 0 ? 'inline-block' : 'none' 
+                'display': this._player.training[id]['currentStore'] > 0 ? 'inline-block' : 'none'
             }
         } else {
             return {
-                'display': this._player.recruiting[id]['currentStore'] > 0 ? 'inline-block' : 'none' 
+                'display': BaseNum.RECRUITS[id].currentStore > 0 ? 'inline-block' : 'none'
             }
         }
     }
 
     hideIfOperating() {
-        return {'visibility': this._operating.operatingNow ? 'hidden' : 'initial'}
+        return { 'visibility': this._operating.operatingNow ? 'hidden' : 'initial' }
     }
 
     operateButtonInPreviewStyle() {
@@ -118,39 +122,39 @@ export class ActivityPanelComponent {
     operationIconClass(id) {
         var object = {}
         if (!this._operating.isUnlockedById(id)) {
-            return {'fa-lock': true};
+            return { 'fa-lock': true };
         }
         if (this._player.operating[id]['available'] && this._player.operating[id] == this._operating.previewOperation) {
             if (id >= 0 && id < 5) {
-                return {'fa-usd': true, 'faa-tada' : true, 'faa-slow' : true, 'animated' : true }    
+                return { 'fa-usd': true, 'faa-tada': true, 'faa-slow': true, 'animated': true }
             } else if (id > 4 && id < 10) {
-                return {'fa-suitcase': true, 'faa-tada' : true, 'faa-slow' : true, 'animated' : true }    
+                return { 'fa-suitcase': true, 'faa-tada': true, 'faa-slow': true, 'animated': true }
             }
-            
+
         }
         if (!this._player.operating[id]['available']) {
             if (id > 0 && id < 5) {
-                return {'fa-usd': true, 'faa-slow' : true, 'faa-flash' : true, 'animated' : true}
+                return { 'fa-usd': true, 'faa-slow': true, 'faa-flash': true, 'animated': true }
             } else if (id > 4 && id < 10) {
-                return {'fa-suitcase': true, 'faa-slow' : true, 'faa-flash' : true, 'animated' : true}
+                return { 'fa-suitcase': true, 'faa-slow': true, 'faa-flash': true, 'animated': true }
             }
-            
+
         }
-        if ( id >= 0 && id < 5) {
-            return {'fa-usd': true }
+        if (id >= 0 && id < 5) {
+            return { 'fa-usd': true }
         } else if (id > 4 && id < 10) {
-            return {'fa-suitcase': true}
+            return { 'fa-suitcase': true }
         }
-    
-        
+
+
     }
 
     previewOperationFa() {
         if (this._operating.previewOperationId >= 0 && this._operating.previewOperationId <= 4) {
-            return {'fa-usd': true}
+            return { 'fa-usd': true }
         } else if (this._operating.previewOperationId >= 5 && this._operating.previewOperationId <= 9) {
-            return {'fa-suitcase': true}
+            return { 'fa-suitcase': true }
         }
     }
-    
+
 }

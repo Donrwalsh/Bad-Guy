@@ -29,7 +29,7 @@ export class InventoryService extends BaseNum {
 
     get henchmenCapacity() {
         var capacity = 10;
-        capacity += this._numbers.lodgingNumbers();
+        capacity += this.lodgingNumbers();
         return capacity;
     }
 

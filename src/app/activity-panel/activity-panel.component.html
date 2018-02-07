@@ -1,4 +1,4 @@
-<div class="activity-panel">
+<div class="activity-panel" *ngIf="!_base.INITIAL_LOAD_RECRUITS">
     <div class="henchmen-column">
         <p class="title" *ngIf="_training.areAnyUnlocked()">Training</p>
         <div *ngFor="let train of _training.trains; index as i">
@@ -19,9 +19,9 @@
             </div>
         </div>
         <p class="title" *ngIf="_recruiting.areAnyUnlocked()">Recruitment</p>
-        <div *ngFor="let recruit of _recruiting.recruits; index as i">
+        <div *ngFor="let recruit of _base.recruits; index as i">
             <div class="left-padding"></div>
-            <div *ngIf="recruit.isUnlocked" class="progress-no-add">
+            <div *ngIf="_recruiting.isUnlocked(recruit)" class="progress-no-add">
                 <div [ngClass]="containerClass(i, 'recruiting')" (click)="_recruiting.collectById(i)" [ngStyle]="containerStyle(i, 'recruiting')">
                     <div [ngClass]="progressBarClass(i, 'recruiting')" [ngStyle]="styleProgressBar(i, 'recruiting')"></div>
                     <p [ngClass]="displayClass(i, 'recruiting')" class="help-wanted-display">

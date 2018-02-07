@@ -14,7 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Base } from './base';
 import { BaseNum } from './base-num';
 import { BaseService } from './services/base.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 // Import the DataService
 import { DataService } from './data.service';
@@ -93,12 +93,16 @@ export class AppComponent extends BaseNum implements OnInit {
           }
           if (currentScheme != "-1") {
             Base.CURRENT_SCHEME = Base.SCHEMES[Number(currentScheme)];
-            this._scheming.switchToCurrentSchemePreview();
+            this._scheming.selected = Base.CURRENT_SCHEME.tree;
+            this._scheming.previewScheme = Base.CURRENT_SCHEME;
+            this._scheming.showPreview = true;
             console.log("Set Base.CURRENT_SCHEME and switched the Preview:");
             console.log(Base.CURRENT_SCHEME);
           } else {
             console.log("No Current Scheme to Set")
           }
+
+          Base.INITIAL_LOAD_SCHEMES = false;
 
           var currentHench = "";
           while (true) {
@@ -112,7 +116,47 @@ export class AppComponent extends BaseNum implements OnInit {
           Base.CURRENT_HENCHMEN = Number(currentHench);
           console.log("Current henchmen set to " + currentHench + ".")
 
-          Base.INITIAL_LOAD_SCHEMES = false;
+          var RecruitData = new Array();
+          for (var i = 0; i < 5; i++) { //Note the magic number 5.
+            var RAMcurrentStore = "";
+            var RAMcountdown = "";
+            var RAMlock = "";
+            while(true) {
+              marker++;
+              if (cookieService.get('save')[marker] != "z") {
+                RAMcurrentStore = RAMcurrentStore + cookieService.get('save')[marker];
+              } else {
+                break
+              }
+            }
+            while(true) {
+              marker++;
+              if (cookieService.get('save')[marker] != "z") {
+                RAMcountdown = RAMcountdown + cookieService.get('save')[marker];
+              } else {
+                break
+              }
+            }
+            while(true) {
+              marker++;
+              if (cookieService.get('save')[marker] != "z") {
+                RAMlock = RAMlock + cookieService.get('save')[marker];
+              } else {
+                break
+              }
+            }
+            let newRecruit = new Recruit(i, Number(RAMcurrentStore), Number(RAMcountdown), Number(RAMlock));
+            RecruitData.push(newRecruit);
+          }
+          
+          BaseNum.RECRUITS = RecruitData;
+          console.log("BaseNum.RECRUITS populated:");
+          console.log(BaseNum.RECRUITS);
+
+
+
+          Base.INITIAL_LOAD_RECRUITS = false;
+          
         });
 
 
@@ -146,6 +190,19 @@ export class AppComponent extends BaseNum implements OnInit {
 
           Base.INITIAL_LOAD_SCHEMES = false;
 
+          //Construct Recruit data from Angular logic
+          var RecruitData = new Array();
+          for (var i = 0; i < 5; i++) { //Note the magic number 5.
+            let newRecruit = new Recruit(i, 0, 0, 0);
+            newRecruit._player = this._player;
+            newRecruit._numbers = this._numbers;
+            RecruitData.push(newRecruit);
+          }
+          BaseNum.RECRUITS = RecruitData;
+          console.log("BaseNum.RECRUITS populated:");
+          console.log(BaseNum.RECRUITS);
+
+          Base.INITIAL_LOAD_RECRUITS = false;
 
         });
     }
@@ -153,15 +210,8 @@ export class AppComponent extends BaseNum implements OnInit {
 
 
 
-    //Construct Recruit data from Angular logic
-    var RecruitData = new Array();
-    for (var i = 0; i < _player.recruiting.length; i++) {
-      let newRecruit = new Recruit(i);
-      newRecruit._player = this._player;
-      newRecruit._numbers = this._numbers;
-      RecruitData.push(newRecruit);
-    }
-    this._recruiting.recruits = RecruitData;
+
+
 
     //Construct Train data from Angular logic
     var TrainData = new Array();

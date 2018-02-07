@@ -5,49 +5,44 @@ export class Recruit {
     id: number;
     name: string;
     fa: string;
+    currentStore: number;
+    countdown: number;
+    lock: number;
+    type: string;
+    
 
     public _player: PlayerService;
     public _numbers: NumbersService;
 
     constructor(
         id: number,
+        currentStore: number,
+        countdown: number,
+        lock: number
     ) {
         this.id = id;
+        this.currentStore = currentStore;
+        this.countdown = countdown;
+        this.lock = lock;
+
         
 
         if (this.id === 0) 
         { 
             this.name = "Sign Stapled to a Post";
             this.fa = "fa-user";
+            this.type = "help-wanted";
         }
         if (this.id === 1)
         {
             this.name = "Newspaper Ad";
             this.fa = "fa-user";
+            this.type = "help-wanted";
         }
     }
 
     
-    
-    //Get basic details from the player service
-    get currentStore() {
-        return this._player.recruiting[this.id]['currentStore'];
-    }
-
-    get countdown() {
-        return this._player.recruiting[this.id]['countdown'];
-    }
-
-    get lock() {
-        return this._player.recruiting[this.id]['lock'];
-    }
-
-    //Other structural details, not necessarily coming from the player service.
-    get type() {
-        if (this.id == 0 || this.id == 1) {
-            return 'help-wanted';
-        }
-    }
+    /*
 
     get capacity() {
         if (this.type == 'help-wanted') {
@@ -56,17 +51,7 @@ export class Recruit {
             return capacity;
         }
     }
-
-    get percentage() {
-        if (this.isRecruiting) {
-            return 100 * (1 - (this.countdown / this.lock))
-        } else {
-            return 100
-        }
-    }
-
-    //Activity properties of this recruitment object. Used extensively by the view.
-    get isUnlocked() {
+        get isUnlocked() {
         if (this.type == 'help-wanted') {
             return this._numbers.hiredHelpUnlocked(this.id);
         }
@@ -79,5 +64,16 @@ export class Recruit {
     get isRecruiting() {
         return this.isUnlocked && !this.isFull;
     }
+    */
+
+    //Other structural details, not necessarily coming from the player service.
+   
+
+    
+
+    
+
+    //Activity properties of this recruitment object. Used extensively by the view.
+
 
 }

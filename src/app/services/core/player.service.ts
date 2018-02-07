@@ -6,12 +6,6 @@ import { Recruit } from '../../models/recruit';
 @Injectable()
 export class PlayerService {
 
-    //Henchmen
-    recruiting: Array<Object> = [
-        {id: 0, currentStore: 0, countdown: 0, lock: 0 }, //Help Wanted 1
-        {id: 1, currentStore: 0, countdown: 0, lock: 0 } //Help Wanted 2
-    ]
-
     //Improved Henchmen
     currentGuards: number = 0;
     training: Array<Object> = [

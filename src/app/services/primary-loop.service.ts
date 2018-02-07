@@ -9,11 +9,12 @@ import { Scheme } from "../models/scheme";
 import { Recruit } from "../models/recruit";
 import { CookieService } from "ngx-cookie-service";
 import { Base } from "../base";
+import { BaseNum } from "../base-num";
 import { BaseService } from "../services/base.service";
 
 //All loop related activities. Called by app.component and nowhere else.
 @Injectable()
-export class PrimaryLoopService extends Base {
+export class PrimaryLoopService extends BaseNum {
 
     constructor(public _base: BaseService,
         public cookieService: CookieService,
@@ -74,8 +75,8 @@ export class PrimaryLoopService extends Base {
         if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
-        for (var i = 0; i < this._recruiting.recruits.length; i++) {
-            if (this._recruiting.recruits[i].isRecruiting) {
+        for (var i = 0; i < BaseNum.RECRUITS.length; i++) {
+            if (this._recruiting.isRecruiting(BaseNum.RECRUITS[i])) {
                 this._recruiting.tickById(i);
             }
         }
@@ -106,7 +107,7 @@ export class PrimaryLoopService extends Base {
         console.log("I am saving the game");
         var saveString = Base.EARNING_SCHEME_POINTS ? "1" : "0";
         for (var i = 0; i < Base.SCHEMES.length; i++) {
-            saveString = saveString + Base.SCHEMES[i]['level'] + "z" + Base.SCHEMES[i]['exp'] + "z";
+            saveString = saveString + Base.SCHEMES[i].level + "z" + Base.SCHEMES[i].exp + "z";
         }
         if (Base.CURRENT_SCHEME == null) {
             console.log("null current scheme")
@@ -116,6 +117,11 @@ export class PrimaryLoopService extends Base {
             saveString = saveString + Base.CURRENT_SCHEME.ref + "z";
         }
         saveString = saveString + Base.CURRENT_HENCHMEN + "z";
+        for (var i = 0; i < BaseNum.RECRUITS.length; i++) {
+            saveString = saveString + BaseNum.RECRUITS[i].currentStore + "z";
+            saveString = saveString + BaseNum.RECRUITS[i].countdown + "z";
+            saveString = saveString + BaseNum.RECRUITS[i].lock + "z";
+        }
         
         console.log(saveString);
         this.cookieService.set( 'save', saveString, 365 );

@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/activity-panel/activity-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activity-panel\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let train of _training.trains; index as i\">\n            <div class=\"left-padding\" *ngIf=\"train.isUnlocked\"></div>\n            <div class=\"add-block\" *ngIf=\"train.isUnlocked\">\n                <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.trainById(i)\" [ngStyle]=\"addToQueueIconStyle(i)\"></i>\n            </div>\n            <div *ngIf=\"train.isUnlocked\" class=\"progress-with-add\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectById(i)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{train.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let recruit of _recruiting.recruits; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"recruit.isUnlocked\" class=\"progress-no-add\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectById(i)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{recruit.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"operations-column\" *ngIf=\"_operating.areAnyUnlocked()\">\n        <div class=\"padding-short\"></div>\n        <div class=\"operation-tab routine\" [ngStyle]=\"{'visibility': _operating.areRoutineOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-certificate tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operation-tab campaign\" [ngStyle]=\"{'visibility': _operating.areCampaignOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-book tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operation-tab ascension\" [ngStyle]=\"{'visibility': _operating.areAscensionOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-rocket tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"padding-short\"></div>\n        \n        <div class=\"divider-5\" *ngIf=\"_player.schemes[6]['level'] > 0\"></div>\n        <div class=\"routine-row\" *ngIf=\"_player.schemes[6]['level'] > 0\">\n            <div class=\"column\" *ngFor=\"let heist of _player.operating | slice: 0:5; let i = index\" (click)=\"_operating.operationPreview(i)\"\n                [ngStyle]=\"{'cursor': heist['available'] && _operating.isUnlockedById(i) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(i)\" [ngStyle]=\"{'color': _operating.getFaColorById(i)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[6]['level'] > 0\"></div>\n\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[7]['level'] > 0\"></div>\n        <div class=\"routine-row\" *ngIf=\"_player.schemes[7]['level'] > 0\">\n            <div class=\"column\" *ngFor=\"let deal of _player.operating | slice: 5:10; let i = index\" (click)=\"_operating.operationPreview(i+5)\"\n                [ngStyle]=\"{'cursor': deal['available'] && _operating.isUnlockedById(i+5) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(i+5)\" [ngStyle]=\"{'color': _operating.getFaColorById(i+5)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[7]['level'] > 0\"></div>\n\n        \n        <div *ngIf=\"_operating.showPreview\" class=\"operation-flyout\">\n            <div class=\"inner-content\" [ngStyle]=\"{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}\">\n                    <div class=\"operation-result\" [ngStyle]=\"{'visibility': !_operating.operatingNow ? 'hidden' : 'initial'}\">\n                \n                \n                    <p class=\"report\">\n                        <i class=\"operation-icon fa fa-usd\" aria-hidden=\"true\" style=\"margin-right:.2rem;margin-top:.3rem;\"></i>\n                        {{_operating.previewOperation['name']}} was a {{_operating.operateReadout['result']}}</p>\n                    <p *ngIf=\"_operating.operateReadout['lost'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['lost']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i> lost.</p>\n                    <p *ngIf=\"_operating.operateReadout['earned'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['earned']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> earned.</p>\n                    <p *ngIf=\"_operating.operateReadout['notoriety'] > 0\" style=\"margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> earned.</p>\n                    <p (click)=\"_operating.closeCompleteOperation()\" style=\"cursor: pointer;width:75%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>\n                </div>\n\n\n                <p class=\"operation-name\" [ngStyle]=\"hideIfOperating()\">\n                    <i class=\"operation-icon fa\" [ngClass]=\"previewOperationFa()\" aria-hidden=\"true\"></i>\n                    {{_operating.previewOperation['name']}}\n                </p>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\" >Requires:</p></div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\" >\n                    <p class=\"flyout-left\">{{_operating.previewOperation['henchmen']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Risk:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperationRiskDisplay()}}%</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Rewards:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['reward']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Success:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['success']*100}}%</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Notoriety:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"operate-button left\" [ngStyle]=\"operateButtonInPreviewStyle()\" (click)=\"_operating.operate()\"> Operate </p>\n                    <p class=\"operate-button right\" (click)=\"_operating.closeCompleteOperation()\"> Abandon</p>\n                </div>\n            </div>\n        </div>\n        <div *ngFor=\"let Operating of _player.operating; index as i\">\n            <div *ngIf=\"_operating.isUnlockedById(i) && !_player.operating[i]['available']\" style=\"width:90%;display:inline-block;margin-left:5%;margin-right:5%;\">\n                <div style=\"border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;\">\n                    <div style=\"background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;\" [ngStyle]=\"{'width': this._operating.getPercentageById(i) + '%' }\"></div>\n                    <p style=\"color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated fa-usd\" aria-hidden=\"true\" style=\"margin-left:.5rem;margin-right:.5rem\"></i>\n                        Slot {{i+1}} Recharging\n                    </p>\n                </div>\n            </div>\n        </div>\n\n\n    </div>\n\n</div>"
+module.exports = "<div class=\"activity-panel\" *ngIf=\"!_base.INITIAL_LOAD_RECRUITS\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let train of _training.trains; index as i\">\n            <div class=\"left-padding\" *ngIf=\"train.isUnlocked\"></div>\n            <div class=\"add-block\" *ngIf=\"train.isUnlocked\">\n                <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.trainById(i)\" [ngStyle]=\"addToQueueIconStyle(i)\"></i>\n            </div>\n            <div *ngIf=\"train.isUnlocked\" class=\"progress-with-add\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectById(i)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{train.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let recruit of _base.recruits; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlocked(recruit)\" class=\"progress-no-add\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectById(i)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{recruit.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"operations-column\" *ngIf=\"_operating.areAnyUnlocked()\">\n        <div class=\"padding-short\"></div>\n        <div class=\"operation-tab routine\" [ngStyle]=\"{'visibility': _operating.areRoutineOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-certificate tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operation-tab campaign\" [ngStyle]=\"{'visibility': _operating.areCampaignOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-book tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operation-tab ascension\" [ngStyle]=\"{'visibility': _operating.areAscensionOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-rocket tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"padding-short\"></div>\n        \n        <div class=\"divider-5\" *ngIf=\"_player.schemes[6]['level'] > 0\"></div>\n        <div class=\"routine-row\" *ngIf=\"_player.schemes[6]['level'] > 0\">\n            <div class=\"column\" *ngFor=\"let heist of _player.operating | slice: 0:5; let i = index\" (click)=\"_operating.operationPreview(i)\"\n                [ngStyle]=\"{'cursor': heist['available'] && _operating.isUnlockedById(i) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(i)\" [ngStyle]=\"{'color': _operating.getFaColorById(i)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[6]['level'] > 0\"></div>\n\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[7]['level'] > 0\"></div>\n        <div class=\"routine-row\" *ngIf=\"_player.schemes[7]['level'] > 0\">\n            <div class=\"column\" *ngFor=\"let deal of _player.operating | slice: 5:10; let i = index\" (click)=\"_operating.operationPreview(i+5)\"\n                [ngStyle]=\"{'cursor': deal['available'] && _operating.isUnlockedById(i+5) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(i+5)\" [ngStyle]=\"{'color': _operating.getFaColorById(i+5)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[7]['level'] > 0\"></div>\n\n        \n        <div *ngIf=\"_operating.showPreview\" class=\"operation-flyout\">\n            <div class=\"inner-content\" [ngStyle]=\"{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}\">\n                    <div class=\"operation-result\" [ngStyle]=\"{'visibility': !_operating.operatingNow ? 'hidden' : 'initial'}\">\n                \n                \n                    <p class=\"report\">\n                        <i class=\"operation-icon fa fa-usd\" aria-hidden=\"true\" style=\"margin-right:.2rem;margin-top:.3rem;\"></i>\n                        {{_operating.previewOperation['name']}} was a {{_operating.operateReadout['result']}}</p>\n                    <p *ngIf=\"_operating.operateReadout['lost'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['lost']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i> lost.</p>\n                    <p *ngIf=\"_operating.operateReadout['earned'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['earned']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> earned.</p>\n                    <p *ngIf=\"_operating.operateReadout['notoriety'] > 0\" style=\"margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> earned.</p>\n                    <p (click)=\"_operating.closeCompleteOperation()\" style=\"cursor: pointer;width:75%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>\n                </div>\n\n\n                <p class=\"operation-name\" [ngStyle]=\"hideIfOperating()\">\n                    <i class=\"operation-icon fa\" [ngClass]=\"previewOperationFa()\" aria-hidden=\"true\"></i>\n                    {{_operating.previewOperation['name']}}\n                </p>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\" >Requires:</p></div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\" >\n                    <p class=\"flyout-left\">{{_operating.previewOperation['henchmen']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Risk:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperationRiskDisplay()}}%</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Rewards:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['reward']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Success:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['success']*100}}%</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Notoriety:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"operate-button left\" [ngStyle]=\"operateButtonInPreviewStyle()\" (click)=\"_operating.operate()\"> Operate </p>\n                    <p class=\"operate-button right\" (click)=\"_operating.closeCompleteOperation()\"> Abandon</p>\n                </div>\n            </div>\n        </div>\n        <div *ngFor=\"let Operating of _player.operating; index as i\">\n            <div *ngIf=\"_operating.isUnlockedById(i) && !_player.operating[i]['available']\" style=\"width:90%;display:inline-block;margin-left:5%;margin-right:5%;\">\n                <div style=\"border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;\">\n                    <div style=\"background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;\" [ngStyle]=\"{'width': this._operating.getPercentageById(i) + '%' }\"></div>\n                    <p style=\"color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated fa-usd\" aria-hidden=\"true\" style=\"margin-left:.5rem;margin-right:.5rem\"></i>\n                        Slot {{i+1}} Recharging\n                    </p>\n                </div>\n            </div>\n        </div>\n\n\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -53,6 +53,18 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -68,13 +80,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ActivityPanelComponent = /** @class */ (function () {
-    function ActivityPanelComponent(_player, _recruiting, _inventory, _operating, _training) {
-        this._player = _player;
-        this._recruiting = _recruiting;
-        this._inventory = _inventory;
-        this._operating = _operating;
-        this._training = _training;
+
+
+var ActivityPanelComponent = /** @class */ (function (_super) {
+    __extends(ActivityPanelComponent, _super);
+    function ActivityPanelComponent(_player, _base, _recruiting, _inventory, _operating, _training) {
+        var _this = _super.call(this) || this;
+        _this._player = _player;
+        _this._base = _base;
+        _this._recruiting = _recruiting;
+        _this._inventory = _inventory;
+        _this._operating = _operating;
+        _this._training = _training;
+        return _this;
     }
     ActivityPanelComponent.prototype.containerClass = function (id, type) {
         return {
@@ -95,7 +113,7 @@ var ActivityPanelComponent = /** @class */ (function () {
     //This will break if more than 2 types are used.
     ActivityPanelComponent.prototype.styleProgressBar = function (id, type) {
         return {
-            'width': type == 'recruiting' ? this._recruiting.recruits[id].percentage + '%' : this._training.getPercentageById(id) + '%'
+            'width': type == 'recruiting' ? this._recruiting.percentage(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id]) + '%' : this._training.getPercentageById(id) + '%'
         };
     };
     ActivityPanelComponent.prototype.displayClass = function (id, type) {
@@ -117,7 +135,7 @@ var ActivityPanelComponent = /** @class */ (function () {
             return { 'visibility': this._training.isTrainingById(0) ? 'initial' : 'hidden' };
         }
         else {
-            return { 'visibility': this._recruiting.recruits[id].isRecruiting ? 'initial' : 'hidden' };
+            return { 'visibility': this._recruiting.isRecruiting(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id]) ? 'initial' : 'hidden' };
         }
     };
     ActivityPanelComponent.prototype.containerStyle = function (id, type) {
@@ -125,7 +143,7 @@ var ActivityPanelComponent = /** @class */ (function () {
             return { 'cursor': this._player.training[id]['currentStore'] > 0 ? 'pointer' : 'default' };
         }
         else {
-            return { 'cursor': this._player.recruiting[id]['currentStore'] > 0 ? 'pointer' : 'default' };
+            return { 'cursor': __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].currentStore > 0 ? 'pointer' : 'default' };
         }
     };
     ActivityPanelComponent.prototype.collectionIcon = function (id, type) {
@@ -150,7 +168,7 @@ var ActivityPanelComponent = /** @class */ (function () {
         }
         else {
             return {
-                'display': this._player.recruiting[id]['currentStore'] > 0 ? 'inline-block' : 'none'
+                'display': __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].currentStore > 0 ? 'inline-block' : 'none'
             };
         }
     };
@@ -206,13 +224,14 @@ var ActivityPanelComponent = /** @class */ (function () {
             styles: [__webpack_require__("../../../../../src/app/activity-panel/activity-panel.component.scss"), __webpack_require__("../../../../../src/app/app.component.scss")],
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */],
+            __WEBPACK_IMPORTED_MODULE_7__services_base_service__["a" /* BaseService */],
             __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__["a" /* RecruitingService */],
             __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */],
             __WEBPACK_IMPORTED_MODULE_5__services_operating_service__["a" /* OperatingService */],
             __WEBPACK_IMPORTED_MODULE_3__services_training_service__["a" /* TrainingService */]])
     ], ActivityPanelComponent);
     return ActivityPanelComponent;
-}());
+}(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */]));
 
 
 
@@ -411,13 +430,16 @@ var AppComponent = /** @class */ (function (_super) {
                 }
                 if (currentScheme != "-1") {
                     __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].CURRENT_SCHEME = __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].SCHEMES[Number(currentScheme)];
-                    _this._scheming.switchToCurrentSchemePreview();
+                    _this._scheming.selected = __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].CURRENT_SCHEME.tree;
+                    _this._scheming.previewScheme = __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].CURRENT_SCHEME;
+                    _this._scheming.showPreview = true;
                     console.log("Set Base.CURRENT_SCHEME and switched the Preview:");
                     console.log(__WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].CURRENT_SCHEME);
                 }
                 else {
                     console.log("No Current Scheme to Set");
                 }
+                __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].INITIAL_LOAD_SCHEMES = false;
                 var currentHench = "";
                 while (true) {
                     marker++;
@@ -430,7 +452,45 @@ var AppComponent = /** @class */ (function (_super) {
                 }
                 __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].CURRENT_HENCHMEN = Number(currentHench);
                 console.log("Current henchmen set to " + currentHench + ".");
-                __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].INITIAL_LOAD_SCHEMES = false;
+                var RecruitData = new Array();
+                for (var i = 0; i < 5; i++) {
+                    var RAMcurrentStore = "";
+                    var RAMcountdown = "";
+                    var RAMlock = "";
+                    while (true) {
+                        marker++;
+                        if (cookieService.get('save')[marker] != "z") {
+                            RAMcurrentStore = RAMcurrentStore + cookieService.get('save')[marker];
+                        }
+                        else {
+                            break;
+                        }
+                    }
+                    while (true) {
+                        marker++;
+                        if (cookieService.get('save')[marker] != "z") {
+                            RAMcountdown = RAMcountdown + cookieService.get('save')[marker];
+                        }
+                        else {
+                            break;
+                        }
+                    }
+                    while (true) {
+                        marker++;
+                        if (cookieService.get('save')[marker] != "z") {
+                            RAMlock = RAMlock + cookieService.get('save')[marker];
+                        }
+                        else {
+                            break;
+                        }
+                    }
+                    var newRecruit = new __WEBPACK_IMPORTED_MODULE_10__models_recruit__["a" /* Recruit */](i, Number(RAMcurrentStore), Number(RAMcountdown), Number(RAMlock));
+                    RecruitData.push(newRecruit);
+                }
+                __WEBPACK_IMPORTED_MODULE_14__base_num__["a" /* BaseNum */].RECRUITS = RecruitData;
+                console.log("BaseNum.RECRUITS populated:");
+                console.log(__WEBPACK_IMPORTED_MODULE_14__base_num__["a" /* BaseNum */].RECRUITS);
+                __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].INITIAL_LOAD_RECRUITS = false;
             });
             //console.log(this.EARNING_SCHEME_POINTS);
         }
@@ -451,17 +511,20 @@ var AppComponent = /** @class */ (function (_super) {
                 __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].CURRENT_HENCHMEN = 0;
                 console.log("Current henchmen set to 0.");
                 __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].INITIAL_LOAD_SCHEMES = false;
+                //Construct Recruit data from Angular logic
+                var RecruitData = new Array();
+                for (var i = 0; i < 5; i++) {
+                    var newRecruit = new __WEBPACK_IMPORTED_MODULE_10__models_recruit__["a" /* Recruit */](i, 0, 0, 0);
+                    newRecruit._player = _this._player;
+                    newRecruit._numbers = _this._numbers;
+                    RecruitData.push(newRecruit);
+                }
+                __WEBPACK_IMPORTED_MODULE_14__base_num__["a" /* BaseNum */].RECRUITS = RecruitData;
+                console.log("BaseNum.RECRUITS populated:");
+                console.log(__WEBPACK_IMPORTED_MODULE_14__base_num__["a" /* BaseNum */].RECRUITS);
+                __WEBPACK_IMPORTED_MODULE_13__base__["a" /* Base */].INITIAL_LOAD_RECRUITS = false;
             });
         }
-        //Construct Recruit data from Angular logic
-        var RecruitData = new Array();
-        for (var i = 0; i < _player.recruiting.length; i++) {
-            var newRecruit = new __WEBPACK_IMPORTED_MODULE_10__models_recruit__["a" /* Recruit */](i);
-            newRecruit._player = _this._player;
-            newRecruit._numbers = _this._numbers;
-            RecruitData.push(newRecruit);
-        }
-        _this._recruiting.recruits = RecruitData;
         //Construct Train data from Angular logic
         var TrainData = new Array();
         for (var i = 0; i < _player.training.length; i++) {
@@ -657,6 +720,65 @@ var BaseNum = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(BaseNum.prototype, "hiredHelpCapacity", {
+        //03: Hired Help
+        get: function () {
+            var space = 0;
+            for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[3]['level']; _i++) {
+                if (_i == 1) {
+                    space += 4;
+                }
+                if (_i == 3) {
+                    space += 5;
+                }
+            }
+            return space;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    BaseNum.prototype.hiredHelpUnlocked = function (id) {
+        if (id == 0) {
+            return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[3].level > 0;
+        }
+        else if (id == 1) {
+            return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[3]['level'] >= 5;
+        }
+        else {
+            return false;
+        }
+    };
+    BaseNum.prototype.hiredHelpRecruitRate = function () {
+        var reduce = 0;
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[3]['level']; _i++) {
+            if (_i == 2) {
+                reduce += 30;
+            }
+        }
+        return reduce;
+    };
+    //05: Lodging
+    BaseNum.prototype.lodgingNumbers = function () {
+        var increase = 0;
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[5]['level']; i++) {
+            if (i === 0) {
+                increase += 10;
+            }
+            if (i === 1) {
+                increase += 20;
+            }
+            if (i === 2) {
+                increase += 60;
+            }
+            if (i === 3) {
+                increase += 100;
+            }
+            if (i === 4) {
+                increase += 200;
+            }
+        }
+        return increase;
+    };
     return BaseNum;
 }(__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */]));
 
@@ -712,6 +834,7 @@ var Base = /** @class */ (function () {
     Base.INITIAL_LOAD_SCHEMES = true;
     Base.EARNING_SCHEME_POINTS = false;
     //Recruiting
+    Base.INITIAL_LOAD_RECRUITS = true;
     Base.CURRENT_HENCHMEN = 0;
     return Base;
 }());
@@ -1070,96 +1193,22 @@ module.exports = "<h1 style=\"margin:0;margin-bottom:.5rem;text-align:center;col
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Recruit; });
 var Recruit = /** @class */ (function () {
-    function Recruit(id) {
+    function Recruit(id, currentStore, countdown, lock) {
         this.id = id;
+        this.currentStore = currentStore;
+        this.countdown = countdown;
+        this.lock = lock;
         if (this.id === 0) {
             this.name = "Sign Stapled to a Post";
             this.fa = "fa-user";
+            this.type = "help-wanted";
         }
         if (this.id === 1) {
             this.name = "Newspaper Ad";
             this.fa = "fa-user";
+            this.type = "help-wanted";
         }
     }
-    Object.defineProperty(Recruit.prototype, "currentStore", {
-        //Get basic details from the player service
-        get: function () {
-            return this._player.recruiting[this.id]['currentStore'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Recruit.prototype, "countdown", {
-        get: function () {
-            return this._player.recruiting[this.id]['countdown'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Recruit.prototype, "lock", {
-        get: function () {
-            return this._player.recruiting[this.id]['lock'];
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Recruit.prototype, "type", {
-        //Other structural details, not necessarily coming from the player service.
-        get: function () {
-            if (this.id == 0 || this.id == 1) {
-                return 'help-wanted';
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Recruit.prototype, "capacity", {
-        get: function () {
-            if (this.type == 'help-wanted') {
-                var capacity = 1;
-                capacity += this._numbers.hiredHelpCapacity();
-                return capacity;
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Recruit.prototype, "percentage", {
-        get: function () {
-            if (this.isRecruiting) {
-                return 100 * (1 - (this.countdown / this.lock));
-            }
-            else {
-                return 100;
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Recruit.prototype, "isUnlocked", {
-        //Activity properties of this recruitment object. Used extensively by the view.
-        get: function () {
-            if (this.type == 'help-wanted') {
-                return this._numbers.hiredHelpUnlocked(this.id);
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Recruit.prototype, "isFull", {
-        get: function () {
-            return this.currentStore == this.capacity;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Recruit.prototype, "isRecruiting", {
-        get: function () {
-            return this.isUnlocked && !this.isFull;
-        },
-        enumerable: true,
-        configurable: true
-    });
     return Recruit;
 }());
 
@@ -1299,59 +1348,6 @@ var Train = /** @class */ (function () {
         configurable: true
     });
     Object.defineProperty(Train.prototype, "isFull", {
-        /*
-    
-        //Get basic details from the player service
-        get currentStore() {
-            return this._player.recruiting[this.id]['currentStore'];
-        }
-    
-        get countdown() {
-            return this._player.recruiting[this.id]['countdown'];
-        }
-    
-        get lock() {
-            return this._player.recruiting[this.id]['lock'];
-        }
-    
-        //Other structural details, not necessarily coming from the player service.
-        get type() {
-            if (this.id == 0 || this.id == 1) {
-                return 'help-wanted';
-            }
-        }
-    
-        get capacity() {
-            if (this.type == 'help-wanted') {
-                var capacity = 1;
-                capacity += this._numbers.hiredHelpCapacity();
-                return capacity;
-            }
-        }
-    
-        get percentage() {
-            if (this.isRecruiting) {
-                return 100 * (1 - (this.countdown / this.lock))
-            } else {
-                return 100
-            }
-        }
-    
-        //Activity properties of this recruitment object. Used extensively by the view.
-        get isUnlocked() {
-            if (this.type == 'help-wanted') {
-                return this._numbers.hiredHelpUnlocked(this.id);
-            }
-        }
-    
-        get isFull() {
-            return this.currentStore == this.capacity;
-        }
-    
-        get isRecruiting() {
-            return this.isUnlocked && !this.isFull;
-        }
-        */
         get: function () {
             return this.currentStore == this.capacity;
         },
@@ -1501,6 +1497,7 @@ var SchemePanelModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -1520,6 +1517,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1572,6 +1570,21 @@ var BaseService = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(BaseService.prototype, "recruits", {
+        //BaseNum
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BaseService.prototype, "initialLoadRecruits", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].INITIAL_LOAD_RECRUITS;
+        },
+        enumerable: true,
+        configurable: true
+    });
     BaseService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
@@ -1580,7 +1593,7 @@ var BaseService = /** @class */ (function (_super) {
             __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]])
     ], BaseService);
     return BaseService;
-}(__WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */]));
+}(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */]));
 
 
 
@@ -1623,39 +1636,6 @@ var NumbersService = /** @class */ (function (_super) {
         _this._player = _player;
         return _this;
     }
-    //03: Hired Help
-    NumbersService.prototype.hiredHelpCapacity = function () {
-        var space = 0;
-        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[3]['level']; _i++) {
-            if (_i == 1) {
-                space += 4;
-            }
-            if (_i == 3) {
-                space += 5;
-            }
-        }
-        return space;
-    };
-    NumbersService.prototype.hiredHelpUnlocked = function (id) {
-        if (id == 0) {
-            return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[3]['level'] > 0;
-        }
-        else if (id == 1) {
-            return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[3]['level'] >= 4;
-        }
-        else {
-            return false;
-        }
-    };
-    NumbersService.prototype.hiredHelpRecruitRate = function () {
-        var reduce = 0;
-        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[3]['level']; _i++) {
-            if (_i == 2) {
-                reduce += 30;
-            }
-        }
-        return reduce;
-    };
     //04: Guard Duty
     NumbersService.prototype.guardDutyTrainRate = function () {
         var reduce = 0;
@@ -1680,25 +1660,6 @@ var NumbersService = /** @class */ (function (_super) {
             }
         }
         return capacity;
-    };
-    //05: Lodging
-    NumbersService.prototype.lodgingNumbers = function () {
-        var increase = 0;
-        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[5]['level']; i++) {
-            if (i < 2) {
-                increase += 5;
-            }
-            else if (i > 1 && i < 4) {
-                increase += 10;
-            }
-            else if (i == 4) {
-                increase += 20;
-            }
-            else if (i == 5) {
-                increase += 50;
-            }
-        }
-        return increase;
     };
     //06: Heists
     NumbersService.prototype.heistUnlocked = function (id) {
@@ -1771,11 +1732,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 var PlayerService = /** @class */ (function () {
     function PlayerService() {
-        //Henchmen
-        this.recruiting = [
-            { id: 0, currentStore: 0, countdown: 0, lock: 0 },
-            { id: 1, currentStore: 0, countdown: 0, lock: 0 } //Help Wanted 2
-        ];
         //Improved Henchmen
         this.currentGuards = 0;
         this.training = [
@@ -1934,7 +1890,7 @@ var InventoryService = /** @class */ (function (_super) {
     Object.defineProperty(InventoryService.prototype, "henchmenCapacity", {
         get: function () {
             var capacity = 10;
-            capacity += this._numbers.lodgingNumbers();
+            capacity += this.lodgingNumbers();
             return capacity;
         },
         enumerable: true,
@@ -2355,7 +2311,8 @@ var OperatingService = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2375,6 +2332,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2441,8 +2399,8 @@ var PrimaryLoopService = /** @class */ (function (_super) {
         if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
-        for (var i = 0; i < this._recruiting.recruits.length; i++) {
-            if (this._recruiting.recruits[i].isRecruiting) {
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS.length; i++) {
+            if (this._recruiting.isRecruiting(__WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS[i])) {
                 this._recruiting.tickById(i);
             }
         }
@@ -2471,7 +2429,7 @@ var PrimaryLoopService = /** @class */ (function (_super) {
         console.log("I am saving the game");
         var saveString = __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].EARNING_SCHEME_POINTS ? "1" : "0";
         for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].SCHEMES.length; i++) {
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].SCHEMES[i]['level'] + "z" + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].SCHEMES[i]['exp'] + "z";
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].SCHEMES[i].level + "z" + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].SCHEMES[i].exp + "z";
         }
         if (__WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CURRENT_SCHEME == null) {
             console.log("null current scheme");
@@ -2482,6 +2440,11 @@ var PrimaryLoopService = /** @class */ (function (_super) {
             saveString = saveString + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CURRENT_SCHEME.ref + "z";
         }
         saveString = saveString + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CURRENT_HENCHMEN + "z";
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS.length; i++) {
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS[i].currentStore + "z";
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS[i].countdown + "z";
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS[i].lock + "z";
+        }
         console.log(saveString);
         this.cookieService.set('save', saveString, 365);
     };
@@ -2501,7 +2464,7 @@ var PrimaryLoopService = /** @class */ (function (_super) {
     };
     PrimaryLoopService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_9__services_base_service__["a" /* BaseService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_10__services_base_service__["a" /* BaseService */],
             __WEBPACK_IMPORTED_MODULE_7_ngx_cookie_service__["a" /* CookieService */],
             __WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
             __WEBPACK_IMPORTED_MODULE_5__operating_service__["a" /* OperatingService */],
@@ -2511,7 +2474,7 @@ var PrimaryLoopService = /** @class */ (function (_super) {
             __WEBPACK_IMPORTED_MODULE_4__training_service__["a" /* TrainingService */]])
     ], PrimaryLoopService);
     return PrimaryLoopService;
-}(__WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */]));
+}(__WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */]));
 
 
 
@@ -2563,13 +2526,41 @@ var RecruitingService = /** @class */ (function (_super) {
         _this._numbers = _numbers;
         _this._operating = _operating;
         _this._inventory = _inventory;
+        //STRUCTURAL VARIABLES
+        //recruits: Array<Recruit>; //Raw Recruitment objects. Constructed by app.component.
         _this.collecting = false; //Collection lockout
         return _this;
     }
+    RecruitingService.prototype.isUnlocked = function (recruit) {
+        if (recruit.type == "help-wanted") {
+            return this.hiredHelpUnlocked(recruit.id);
+        }
+    };
+    RecruitingService.prototype.capacity = function (recruit) {
+        if (recruit.type == 'help-wanted') {
+            var capacity = 1;
+            capacity += this.hiredHelpCapacity;
+            return capacity;
+        }
+    };
+    RecruitingService.prototype.isFull = function (recruit) {
+        return recruit.currentStore == this.capacity(recruit);
+    };
+    RecruitingService.prototype.isRecruiting = function (recruit) {
+        return this.isUnlocked(recruit) && !this.isFull(recruit);
+    };
+    RecruitingService.prototype.percentage = function (recruit) {
+        if (this.isRecruiting(recruit)) {
+            return 100 * (1 - (recruit.countdown / recruit.lock));
+        }
+        else {
+            return 100;
+        }
+    };
     //Section displays only if a recruiting object has been unlocked
     RecruitingService.prototype.areAnyUnlocked = function () {
-        for (var _i = 0; _i < this.recruits.length; _i++) {
-            if (this.recruits[_i].isUnlocked) {
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS.length; _i++) {
+            if (this.isUnlocked(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[_i])) {
                 return true;
             }
         }
@@ -2578,17 +2569,17 @@ var RecruitingService = /** @class */ (function (_super) {
     //ACTIONS
     //Harvesting training objects.
     RecruitingService.prototype.collectById = function (id) {
-        if (this.recruits[id].currentStore > 0) {
+        if (__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].currentStore > 0) {
             if (!this.collecting) {
                 this.collecting = true;
-                var collectMarker = this.recruits[id].currentStore;
+                var collectMarker = __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].currentStore;
                 for (var _i = 0; _i < collectMarker; _i++) {
                     if (__WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].CURRENT_HENCHMEN < this._inventory.henchmenCapacity) {
                         __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].CURRENT_HENCHMEN++;
-                        this._player.recruiting[id]['currentStore']--; //Modifies player service
+                        __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].currentStore--;
                     }
                 }
-                if (this.recruits[id].countdown == 0) {
+                if (__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].countdown == 0) {
                     this.resetCountdownById(id);
                 }
                 this.collecting = false;
@@ -2598,24 +2589,24 @@ var RecruitingService = /** @class */ (function (_super) {
     //Determinining countdown numbers
     RecruitingService.prototype.getRecruitingCountdownById = function (id) {
         if (id == 0 || id == 1) {
-            var rate = 90;
-            rate -= this._numbers.hiredHelpRecruitRate();
+            var rate = 300;
+            rate -= this.hiredHelpRecruitRate();
             return rate;
         }
     };
     RecruitingService.prototype.resetCountdownById = function (id) {
-        this._player.recruiting[id]['countdown'] = this.getRecruitingCountdownById(id);
-        this._player.recruiting[id]['lock'] = this.getRecruitingCountdownById(id);
+        __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].countdown = this.getRecruitingCountdownById(id);
+        __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].lock = this.getRecruitingCountdownById(id);
     };
     //LOOP
     RecruitingService.prototype.tickById = function (id) {
-        if (this.recruits[id].countdown == 0) {
+        if (__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].countdown == 0) {
             this.resetCountdownById(id);
         }
-        this._player.recruiting[id]['countdown']--;
-        if (this.recruits[id].countdown == 0) {
-            this._player.recruiting[id]['currentStore']++;
-            if (!this.recruits[id].isFull) {
+        __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].countdown--;
+        if (__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].countdown == 0) {
+            __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].currentStore++;
+            if (!this.isFull(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id])) {
                 this.resetCountdownById(id);
             }
         }

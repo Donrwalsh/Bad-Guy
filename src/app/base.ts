@@ -14,6 +14,7 @@ export class Base {
     static CURRENT_SCHEME: Scheme;
 
     //Recruiting
+    static INITIAL_LOAD_RECRUITS: boolean = true;
     static CURRENT_HENCHMEN: number = 0;
     
     

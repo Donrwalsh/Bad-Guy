@@ -4,9 +4,10 @@ import { InventoryService } from "./inventory.service";
 import { NumbersService } from './core/numbers.service';
 import { OperatingService } from './operating.service';
 import { Base } from '../base';
+import { BaseNum } from '../base-num';
 
 @Injectable()
-export class BaseService extends Base {
+export class BaseService extends BaseNum {
 
     //Serving up Base variables for templates is all this service does.
 
@@ -35,5 +36,14 @@ export class BaseService extends Base {
 
     get currentHenchmen() {
         return Base.CURRENT_HENCHMEN;
+    }
+
+    //BaseNum
+    get recruits() {
+        return BaseNum.RECRUITS;
+    }
+
+    get initialLoadRecruits() {
+        return Base.INITIAL_LOAD_RECRUITS;
     }
 }
