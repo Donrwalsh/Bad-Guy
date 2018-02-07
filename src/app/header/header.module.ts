@@ -1,20 +1,28 @@
 import {NgModule} from "@angular/core";
-import {HeaderComponent} from "./header.component";
+import {HeaderComponent, DialogOverviewExampleDialog} from "./header.component";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import {SchemingModal} from '../modal/scheming-modal/scheming-modal.component';
+import {ModalModule} from '../modal/modal.module';
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    DialogOverviewExampleDialog
   ],
   exports: [
     HeaderComponent,
+    MatDialogModule
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+    ModalModule
   ],
-  providers: []
+  providers: [],
+  entryComponents: [SchemingModal]
 })
 export class HeaderModule {
 

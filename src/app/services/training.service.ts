@@ -4,9 +4,10 @@ import { InventoryService } from "./inventory.service";
 import { NumbersService } from "./core/numbers.service";
 import { Train } from "../models/train";
 import { Base } from "../base";
+import { BaseNum } from "../base-num";
 
 @Injectable()
-export class TrainingService extends Base {
+export class TrainingService extends BaseNum {
 
     constructor(public _player: PlayerService,
         public _numbers: NumbersService,
@@ -81,7 +82,7 @@ isUnlockedById(id) {
     training: boolean = false;
 
     canTrainById(id) {
-        if (this._player.currentHenchmen > 0) {
+        if (Base.CURRENT_HENCHMEN > 0) {
             if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.trains[id].capacity) {
                 return true;
             }
@@ -91,11 +92,11 @@ isUnlockedById(id) {
 
     trainById(id) {
         if (id == 0) { //Guards
-            if (this._player.currentHenchmen > 0) {
+            if (Base.CURRENT_HENCHMEN > 0) {
                 if (!this.training) {
                     if (this._player.training[id]['queued'] + this._player.training[id]['currentStore'] < this.trains[id].capacity) {
                         this.training = true;
-                        this._player.currentHenchmen--;
+                        Base.CURRENT_HENCHMEN--;
                         this._player.training[id]['queued']++;
                         this.training = false;
                     }

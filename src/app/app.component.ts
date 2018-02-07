@@ -14,7 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Base } from './base';
 import { BaseNum } from './base-num';
 import { BaseService } from './services/base.service';
-
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 // Import the DataService
 import { DataService } from './data.service';
@@ -100,6 +100,17 @@ export class AppComponent extends BaseNum implements OnInit {
             console.log("No Current Scheme to Set")
           }
 
+          var currentHench = "";
+          while (true) {
+            marker++;
+            if (cookieService.get('save')[marker] != "z") {
+              currentHench = currentHench + cookieService.get('save')[marker];
+            } else {
+              break
+            }
+          }
+          Base.CURRENT_HENCHMEN = Number(currentHench);
+          console.log("Current henchmen set to " + currentHench + ".")
 
           Base.INITIAL_LOAD_SCHEMES = false;
         });
@@ -123,14 +134,14 @@ export class AppComponent extends BaseNum implements OnInit {
               res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree,
               0, 0, this.schemeLairReq[i], this.schemeExp[i]
             );
-            newScheme._player = this._player;
-            newScheme._numbers = this._numbers;
             SchemeData.push(newScheme);
           }
           Base.SCHEMES = SchemeData;
           console.log("Base.SCHEMES populated:");
           console.log(Base.SCHEMES);
           console.log("No Current Scheme to Set")
+          Base.CURRENT_HENCHMEN = 0;
+          console.log("Current henchmen set to 0.")
 
 
           Base.INITIAL_LOAD_SCHEMES = false;

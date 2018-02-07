@@ -4,6 +4,8 @@ $fa-font-path: "~font-awesome/fonts";
  @import url('https://fonts.googleapis.com/css?family=Prociono');
  @import '../node_modules/font-awesome-animation/dist/font-awesome-animation.css';
 
+ @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
  body {
     margin: 0;
     font-family: 'Prociono';

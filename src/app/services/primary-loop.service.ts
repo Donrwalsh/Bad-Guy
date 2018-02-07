@@ -115,6 +115,7 @@ export class PrimaryLoopService extends Base {
             console.log(Base.CURRENT_SCHEME)
             saveString = saveString + Base.CURRENT_SCHEME.ref + "z";
         }
+        saveString = saveString + Base.CURRENT_HENCHMEN + "z";
         
         console.log(saveString);
         this.cookieService.set( 'save', saveString, 365 );

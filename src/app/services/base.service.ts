@@ -32,4 +32,8 @@ export class BaseService extends Base {
     get currentScheme() {
         return Base.CURRENT_SCHEME;
     }
+
+    get currentHenchmen() {
+        return Base.CURRENT_HENCHMEN;
+    }
 }

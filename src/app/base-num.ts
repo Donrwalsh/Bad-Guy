@@ -1,10 +1,17 @@
 import { Base } from './base';
+import { Recruit } from './models/recruit';
 
 export class BaseNum extends Base {
 
     constructor() {
         super();
     }
+
+    //Foundational Variables
+    static RECRUITS: Array<Recruit>;
+
+    
+    
 
     coinFlipChance = 0.5; //Here to be modified later.
 

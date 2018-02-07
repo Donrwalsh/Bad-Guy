@@ -11,7 +11,7 @@
     </div>
     <div class="resource-tab henchmen" *ngIf="_recruiting.areAnyUnlocked()">
       <i class="fa fa-users" aria-hidden="true"></i>
-      <p class="resource-readout">{{_player.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>
+      <p class="resource-readout">{{_base.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>
     </div>
     <div class="resource-tab guard" *ngIf="_training.guardTrainingUnlocked">
       <i class="fa fa-shield" aria-hidden="true"></i>

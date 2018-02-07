@@ -2,17 +2,21 @@ import {Scheme} from '../app/models/scheme';
 
 export class Base {
 
+    // Foundational Variables
+
     //Lair
-    //Foundational Variables
     static lairLevel: number = 0;
     
     //Schemes
-
-    //Foundational Variables
     static INITIAL_LOAD_SCHEMES: boolean = true;
     static EARNING_SCHEME_POINTS: boolean = false;
     static SCHEMES: Array<Scheme>;
     static CURRENT_SCHEME: Scheme;
+
+    //Recruiting
+    static CURRENT_HENCHMEN: number = 0;
+    
+    
     
 
 

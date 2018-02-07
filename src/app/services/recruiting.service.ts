@@ -4,14 +4,18 @@ import { InventoryService } from "./inventory.service";
 import { NumbersService } from './core/numbers.service';
 import { OperatingService } from './operating.service';
 import { Recruit } from '../models/recruit';
+import { Base } from '../base';
+import { BaseNum } from '../base-num';
 
 @Injectable()
-export class RecruitingService {
+export class RecruitingService extends BaseNum {
 
     constructor(public _player: PlayerService,
         public _numbers: NumbersService,
         public _operating: OperatingService,
-        public _inventory: InventoryService) { }
+        public _inventory: InventoryService) { 
+            super();
+        }
 
     //STRUCTURAL VARIABLES
     recruits: Array<Recruit>; //Raw Recruitment objects. Constructed by app.component.
@@ -36,8 +40,8 @@ export class RecruitingService {
                 this.collecting = true;
                 var collectMarker = this.recruits[id].currentStore;
                 for (var _i = 0; _i < collectMarker; _i++) {
-                    if (this._player.currentHenchmen < this._inventory.henchmenCapacity) {
-                        this._player.currentHenchmen++;
+                    if (Base.CURRENT_HENCHMEN < this._inventory.henchmenCapacity) {
+                        Base.CURRENT_HENCHMEN++;
                         this._player.recruiting[id]['currentStore']--; //Modifies player service
                     }
                 }

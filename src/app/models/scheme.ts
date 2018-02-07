@@ -13,9 +13,6 @@ export class Scheme {
     lairReq: Array<number>;
     expTargets: Array<number>;
 
-    public _player: PlayerService;
-    public _numbers: NumbersService;
-
     constructor(
         ref: number,
         name: string,

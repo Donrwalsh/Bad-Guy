@@ -136,7 +136,7 @@ export class OperatingService extends Base {
                 lost = this.previewOperation['henchmen']
             }
             this.operateReadout['lost'] = lost;
-            this._player.currentHenchmen -= lost;
+            Base.CURRENT_HENCHMEN -= lost;
             this.operateReadout['notoriety'] = this.previewOperation['notoriety'];
             this._player.notoriety += this.operateReadout['notoriety']*10;
         }
@@ -266,7 +266,7 @@ export class OperatingService extends Base {
     }
 
     get canPreviewBeOperated() {
-        return this._player.currentHenchmen >= this.previewOperation['henchmen'];
+        return Base.CURRENT_HENCHMEN >= this.previewOperation['henchmen'];
     }
 
     //Heists specifically

@@ -7,7 +7,6 @@ import { Recruit } from '../../models/recruit';
 export class PlayerService {
 
     //Henchmen
-    currentHenchmen: number = 0;
     recruiting: Array<Object> = [
         {id: 0, currentStore: 0, countdown: 0, lock: 0 }, //Help Wanted 1
         {id: 1, currentStore: 0, countdown: 0, lock: 0 } //Help Wanted 2

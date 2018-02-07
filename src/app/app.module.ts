@@ -17,6 +17,7 @@ import { NumbersService } from './services/core/numbers.service';
 import { HeroesService } from './services/heroes.service';
 import { CookieService } from 'ngx-cookie-service';
 import { BaseService } from './services/base.service';
+import { ModalModule } from './modal/modal.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { BaseService } from './services/base.service';
     InventoryService,
     PrimaryLoopService,
     NumbersService,
-    CookieService
+    CookieService,
+    ModalModule
   ],
   bootstrap: [AppComponent]
 })
