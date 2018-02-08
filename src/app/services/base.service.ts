@@ -49,6 +49,10 @@ export class BaseService extends BaseNum {
         return BaseNum.TRAINS;
     }
 
+    get operations() {
+        return BaseNum.OPERATIONS;
+    }
+
     get initialLoadRecruits() {
         return Base.INITIAL_LOAD_RECRUITS;
     }

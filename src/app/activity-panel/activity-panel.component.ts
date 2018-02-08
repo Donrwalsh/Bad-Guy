@@ -120,30 +120,29 @@ export class ActivityPanelComponent extends BaseNum {
         }
     }
 
-    operationIconClass(id) {
-        var object = {}
-        if (!this._operating.isUnlockedById(id)) {
+    operationIconClass(operation) {
+        if (!this._operating.isUnlocked(operation)) {
             return { 'fa-lock': true };
         }
-        if (this._player.operating[id]['available'] && this._player.operating[id] == this._operating.previewOperation) {
-            if (id >= 0 && id < 5) {
+        if (operation.available && operation === this._operating.previewOperation) {
+            if (operation.type === "heist") {
                 return { 'fa-usd': true, 'faa-tada': true, 'faa-slow': true, 'animated': true }
-            } else if (id > 4 && id < 10) {
+            } else if (operation.type === "shady-business-deal") {
                 return { 'fa-suitcase': true, 'faa-tada': true, 'faa-slow': true, 'animated': true }
             }
 
         }
-        if (!this._player.operating[id]['available']) {
-            if (id > 0 && id < 5) {
+        if (!operation.available) {
+            if (operation.type === "heist") {
                 return { 'fa-usd': true, 'faa-slow': true, 'faa-flash': true, 'animated': true }
-            } else if (id > 4 && id < 10) {
+            } else if (operation.type === "shady-business-deal") {
                 return { 'fa-suitcase': true, 'faa-slow': true, 'faa-flash': true, 'animated': true }
             }
 
         }
-        if (id >= 0 && id < 5) {
+        if (operation.type === "heist") {
             return { 'fa-usd': true }
-        } else if (id > 4 && id < 10) {
+        } else if (operation.type === "shady-business-deals") {
             return { 'fa-suitcase': true }
         }
 
@@ -151,9 +150,9 @@ export class ActivityPanelComponent extends BaseNum {
     }
 
     previewOperationFa() {
-        if (this._operating.previewOperationId >= 0 && this._operating.previewOperationId <= 4) {
+        if (this._operating.previewOperation.id >= 0 && this._operating.previewOperation.id <= 4) {
             return { 'fa-usd': true }
-        } else if (this._operating.previewOperationId >= 5 && this._operating.previewOperationId <= 9) {
+        } else if (this._operating.previewOperation.id >= 5 && this._operating.previewOperation.id <= 9) {
             return { 'fa-suitcase': true }
         }
     }

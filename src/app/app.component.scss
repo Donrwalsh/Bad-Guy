@@ -427,8 +427,8 @@ p {
                 }
 
                 .split {
-                    display: inline-block;
-                    width: 48%;
+                    float: left;
+                    width: 50%;
 
                     .flyout-left {
                         float: left;

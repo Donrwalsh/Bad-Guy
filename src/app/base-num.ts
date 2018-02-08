@@ -32,6 +32,13 @@ export class BaseNum extends Base {
         return 10; //Expand later.
     }
 
+    FaColor(rarity) {
+        if (rarity == 0) { return 'black' }
+        if (rarity == 1) { return 'green' }
+        if (rarity == 2) { return 'blue' }
+        if (rarity == 3) { return 'purple' }
+        if (rarity == 4) { return 'orange' }
+    }
 
 
 
@@ -134,31 +141,42 @@ export class BaseNum extends Base {
         if (id === 1) return Base.SCHEMES[6].level > 3;
     }
 
-     //07: Shady Business Deals
-     shadyBusinessDealUnlocked(id) {
+    heistRarityChancesArray() {
+        var matrix = [
+            [1, 1, 1, 1, 1],
+            [.95, 1, 1, 1, 1],
+            [.89, 1, 1, 1, 1],
+            [.82, 1, 1, 1, 1],
+            [.74, .96, 1, 1, 1]
+        ]
+        return matrix[Base.SCHEMES[6].level]
+    }
+
+    //07: Shady Business Deals
+    shadyBusinessDealUnlocked(id) {
         if (id === 5) return Base.SCHEMES[7].level > 0;
         if (id === 6) return Base.SCHEMES[7].level > 3;
     }
 
-
-
-
-
-
-
-
-
-
-    heistRarityChancesArray() {
-        if (Base.SCHEMES[6]['level'] == 1) {
-            return [1, 1.1, 1.1, 1.1, 1.1]
+    //08: Communications
+    communicationsMultiplier() {
+        var multiplier = 1;
+        for (var _i = 0; _i < Base.SCHEMES[8].level; _i++) {
+            multiplier -= .05;
         }
-        else if (Base.SCHEMES[6]['level'] >= 1 && Base.SCHEMES[6]['level'] <= 2) {
-            return [.9, 1, 1.1, 1.1, 1.1]
-        } else if (Base.SCHEMES[6]['level'] >= 3 && Base.SCHEMES[6]['level'] <= 5) {
-            return [.8, .95, 1, 1.1, 1.1]
-        }
+        return multiplier;
     }
+
+
+
+
+
+
+
+
+
+
+
 
     heistRechargeRate() {
         var reduce = 0;
@@ -168,7 +186,7 @@ export class BaseNum extends Base {
         return reduce;
     }
 
-   
+
 
     shadyBusinessDealRarityChancesArray() {
         if (Base.SCHEMES[7]['level'] == 1) {

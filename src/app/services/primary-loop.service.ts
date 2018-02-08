@@ -42,6 +42,7 @@ export class PrimaryLoopService extends BaseNum {
 
     //Events that occur every tick
     tick() {
+        
 
         if (!this.didOnce) {
             this.doOnce();
@@ -61,11 +62,11 @@ export class PrimaryLoopService extends BaseNum {
                 this._training.trainTick(train);
             }
         });
-        for (var i = 0; i < this._player.operating.length; i++) {
-            if (this._operating.isUnlockedById(i)) {
-                this._operating.tickById(i);
+        BaseNum.OPERATIONS.forEach( (operation) => {
+            if (this._operating.isUnlocked(operation)) {
+                this._operating.operateTick(operation);
             }
-        }
+        })
     }
 
     //Events that occur every second

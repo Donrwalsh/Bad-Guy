@@ -294,7 +294,7 @@ export class AppComponent extends BaseNum implements OnInit {
 
           var OperationData = new Array();
           for (var i = 0; i < 10; i++) {// Magic number 10.
-            let newOperation = new Operation(i, -1, -1)
+            let newOperation = new Operation(i, -1, -1, -1, true, 0, 0)
             OperationData.push(newOperation);
           }
           BaseNum.OPERATIONS = OperationData;
