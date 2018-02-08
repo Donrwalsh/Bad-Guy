@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { PlayerService } from "./core/player.service";
-import { NumbersService } from "./core/numbers.service";
 import { Scheme } from "../models/scheme"
 import { Base } from "../base";
 import { BaseNum } from "../base-num";
@@ -10,8 +9,8 @@ import { BaseService } from "../services/base.service";
 export class SchemingService extends BaseNum {
 
     constructor(public _player: PlayerService,
-        public _base: BaseService,
-        public _numbers: NumbersService) { super(); }
+        public _base: BaseService) 
+        { super(); }
 
     //STRUCTURAL VARIABLES
     

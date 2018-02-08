@@ -1,6 +1,3 @@
-import { NumbersService } from "../services/core/numbers.service"
-import { PlayerService } from "../services/core/player.service"
-
 export class Recruit {
     id: number;
     name: string;

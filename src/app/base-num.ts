@@ -1,6 +1,7 @@
 import { Base } from './base';
 import { Recruit } from './models/recruit';
 import { Train } from './models/train';
+import { Operation } from './models/operation';
 
 export class BaseNum extends Base {
 
@@ -11,6 +12,7 @@ export class BaseNum extends Base {
     //Foundational Variables
     static RECRUITS: Array<Recruit>;
     static TRAINS: Array<Train>;
+    static OPERATIONS: Array<Operation>;
 
     //Derived Structural Variables: Lairs
     get LAIR_LEVEL() {
@@ -31,7 +33,7 @@ export class BaseNum extends Base {
     }
 
 
-    
+
 
     coinFlipChance = 0.5; //Here to be modified later.
 
@@ -44,7 +46,7 @@ export class BaseNum extends Base {
     }
 
     //Scheme Modifiers
-    
+
     //00: Mastermind
     //1 scheme point per level per second.
     get mastermindNumbers() {
@@ -53,7 +55,7 @@ export class BaseNum extends Base {
 
     //01: Cold Logic
     get coldLogicNumbers() {
-        return Base.SCHEMES[1].level*60;
+        return Base.SCHEMES[1].level * 60;
     }
 
     //02: Quick Thinking
@@ -65,18 +67,18 @@ export class BaseNum extends Base {
     //03: Hired Help
     get hiredHelpCapacity() {
         var space = 0;
-        for (var _i = 0; _i < Base.SCHEMES[3]['level']; _i++) {
+        for (var _i = 0; _i < Base.SCHEMES[3].level; _i++) {
             if (_i == 1) { space += 4 }
             if (_i == 3) { space += 5 }
         }
         return space;
     }
-    
+
     hiredHelpUnlocked(id) {
         if (id == 0) {
             return Base.SCHEMES[3].level > 0;
         } else if (id == 1) {
-            return Base.SCHEMES[3]['level'] >= 5;
+            return Base.SCHEMES[3].level >= 5;
         } else {
             return false;
         }
@@ -85,7 +87,7 @@ export class BaseNum extends Base {
     hiredHelpRecruitRate() {
         var reduce = 0;
         for (var _i = 0; _i < Base.SCHEMES[3].level; _i++) {
-            if (_i == 2) { reduce += 30}
+            if (_i == 2) { reduce += 30 }
         }
         return reduce;
     }
@@ -93,20 +95,20 @@ export class BaseNum extends Base {
     //04: Guard Duty
     guardDutyTrainRate() {
         var reduce = 0;
-        for (var _i = 0; _i < Base.SCHEMES[4]['level']; _i++) {
-            if (_i == 1) { reduce += 30}
-            if (_i == 3) { reduce += 30}
+        for (var _i = 0; _i < Base.SCHEMES[4].level; _i++) {
+            if (_i == 1) { reduce += 30 }
+            if (_i == 3) { reduce += 30 }
         }
         return reduce;
     }
 
     guardDutyUnlocked() {
-        return Base.SCHEMES[4]['level'] > 0;
+        return Base.SCHEMES[4].level > 0;
     }
 
     guardDutyCapacity() {
         var capacity = 0;
-        for (var _i = 0; _i < Base.SCHEMES[4]['level']; _i++) {
+        for (var _i = 0; _i < Base.SCHEMES[4].level; _i++) {
             if (_i == 2) { capacity += 2; }
         }
 
@@ -116,15 +118,69 @@ export class BaseNum extends Base {
     //05: Lodging
     lodgingNumbers() {
         var increase = 0
-        for (var i = 0; i < Base.SCHEMES[5]['level']; i++) {
-            if (i === 0) {increase += 10; }
-            if (i === 1) {increase += 20; }
-            if (i === 2) {increase += 60; }
-            if (i === 3) {increase += 100; }
-            if (i === 4) {increase += 200; }
+        for (var i = 0; i < Base.SCHEMES[5].level; i++) {
+            if (i === 0) { increase += 10; }
+            if (i === 1) { increase += 20; }
+            if (i === 2) { increase += 60; }
+            if (i === 3) { increase += 100; }
+            if (i === 4) { increase += 200; }
         }
         return increase;
     }
+
+    //06: Heists
+    heistUnlocked(id) {
+        if (id === 0) return Base.SCHEMES[6].level > 0;
+        if (id === 1) return Base.SCHEMES[6].level > 3;
+    }
+
+     //07: Shady Business Deals
+     shadyBusinessDealUnlocked(id) {
+        if (id === 5) return Base.SCHEMES[7].level > 0;
+        if (id === 6) return Base.SCHEMES[7].level > 3;
+    }
+
+
+
+
+
+
+
+
+
+
+    heistRarityChancesArray() {
+        if (Base.SCHEMES[6]['level'] == 1) {
+            return [1, 1.1, 1.1, 1.1, 1.1]
+        }
+        else if (Base.SCHEMES[6]['level'] >= 1 && Base.SCHEMES[6]['level'] <= 2) {
+            return [.9, 1, 1.1, 1.1, 1.1]
+        } else if (Base.SCHEMES[6]['level'] >= 3 && Base.SCHEMES[6]['level'] <= 5) {
+            return [.8, .95, 1, 1.1, 1.1]
+        }
+    }
+
+    heistRechargeRate() {
+        var reduce = 0;
+        for (var _i = 0; _i < Base.SCHEMES[6]['level']; _i++) {
+            if (_i == 2) { reduce += 150 }
+        }
+        return reduce;
+    }
+
+   
+
+    shadyBusinessDealRarityChancesArray() {
+        if (Base.SCHEMES[7]['level'] == 1) {
+            return [1, 1.1, 1.1, 1.1, 1.1]
+        }
+        else if (Base.SCHEMES[7]['level'] >= 1 && Base.SCHEMES[7]['level'] <= 2) {
+            return [.9, 1, 1.1, 1.1, 1.1]
+        } else if (Base.SCHEMES[7]['level'] >= 3 && Base.SCHEMES[7]['level'] <= 5) {
+            return [.8, .95, 1, 1.1, 1.1]
+        }
+    }
+
 
 
 

@@ -5,7 +5,6 @@ import { RecruitingService } from "./recruiting.service";
 import { TrainingService } from "./training.service";
 import { OperatingService } from "./operating.service";
 import { LairService } from './lair.service';
-import { NumbersService } from "./core/numbers.service";
 import { Scheme } from "../models/scheme";
 import { Recruit } from "../models/recruit";
 import { CookieService } from "ngx-cookie-service";
@@ -23,7 +22,6 @@ export class PrimaryLoopService extends BaseNum {
         public _operating: OperatingService,
         public _scheming: SchemingService,
         public _recruiting: RecruitingService,
-        public _numbers: NumbersService,
         public _lair: LairService,
         public _training: TrainingService) {
             super();

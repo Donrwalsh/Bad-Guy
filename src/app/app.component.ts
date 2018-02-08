@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PlayerService } from './services/core/player.service';
 import { SchemingService } from './services/scheming.service';
 import { PrimaryLoopService } from './services/primary-loop.service';
-import { NumbersService } from './services/core/numbers.service';
 import { InventoryService } from './services/inventory.service';
 import { TrainingService } from './services/training.service';
 import { LairService } from './services/lair.service';
@@ -11,6 +10,7 @@ import { OperatingService } from './services/operating.service';
 import { Scheme } from './models/scheme';
 import { Recruit } from './models/recruit';
 import { Train } from './models/train';
+import { Operation } from './models/operation';
 import { CookieService } from 'ngx-cookie-service';
 import { Base } from './base';
 import { BaseNum } from './base-num';
@@ -34,7 +34,6 @@ export class AppComponent extends BaseNum implements OnInit {
     public dialog: MatDialog,
     public _player: PlayerService,
     public _lair: LairService,
-    public _numbers: NumbersService,
     public _loop: PrimaryLoopService,
     public _scheming: SchemingService,
     public _inventory: InventoryService,
@@ -44,6 +43,7 @@ export class AppComponent extends BaseNum implements OnInit {
     private _dataService: DataService,
   ) {
     super();
+    cookieService.deleteAll();
     if (cookieService.check('save')) {
       console.log("Save Data Exists")
       //console.log(cookieService.get('save'));
@@ -292,7 +292,14 @@ export class AppComponent extends BaseNum implements OnInit {
           console.log("BaseNum.TRAINS populated:");
           console.log(BaseNum.TRAINS);
 
-          
+          var OperationData = new Array();
+          for (var i = 0; i < 10; i++) {// Magic number 10.
+            let newOperation = new Operation(i, -1, -1)
+            OperationData.push(newOperation);
+          }
+          BaseNum.OPERATIONS = OperationData;
+          console.log("BaseNum.OPERATIONS populated:");
+          console.log(BaseNum.OPERATIONS);
 
         });
     }

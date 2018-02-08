@@ -13,7 +13,6 @@ import { OperatingService } from './services/operating.service';
 import { HeaderModule } from './header/header.module';
 import { SchemePanelModule } from './scheme-panel/scheme-panel.module';
 import { ActivityPanelModule } from './activity-panel/activity-panel.module';
-import { NumbersService } from './services/core/numbers.service';
 import { HeroesService } from './services/heroes.service';
 import { CookieService } from 'ngx-cookie-service';
 import { BaseService } from './services/base.service';
@@ -46,7 +45,6 @@ import {LairService} from './services/lair.service';
     TrainingService,
     InventoryService,
     PrimaryLoopService,
-    NumbersService,
     CookieService,
     ModalModule,
     MatTooltipModule

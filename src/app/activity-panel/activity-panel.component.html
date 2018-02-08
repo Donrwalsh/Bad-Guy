@@ -37,18 +37,19 @@
 
     <div class="operations-column" *ngIf="_operating.areAnyUnlocked()">
         <div class="padding-short"></div>
-        <div class="operation-tab routine" [ngStyle]="{'visibility': _operating.areRoutineOpsUnlocked() ? 'initial' : 'hidden'}">
+        <!-- Currently only the routine tab is pegged to the same areAnyUnlocked() -->
+        <div class="operation-tab routine" [ngStyle]="{'visibility': _operating.areAnyUnlocked() ? 'initial' : 'hidden'}">
             <i class="fa fa-certificate tab-icon" aria-hidden="true"></i>
         </div>
-        <div class="operation-tab campaign" [ngStyle]="{'visibility': _operating.areCampaignOpsUnlocked() ? 'initial' : 'hidden'}">
+        <div class="operation-tab campaign" [ngStyle]="{'visibility': false ? 'initial' : 'hidden'}">
             <i class="fa fa-book tab-icon" aria-hidden="true"></i>
         </div>
-        <div class="operation-tab ascension" [ngStyle]="{'visibility': _operating.areAscensionOpsUnlocked() ? 'initial' : 'hidden'}">
+        <div class="operation-tab ascension" [ngStyle]="{'visibility': false ? 'initial' : 'hidden'}">
             <i class="fa fa-rocket tab-icon" aria-hidden="true"></i>
         </div>
         <div class="padding-short"></div>
         
-        <div class="divider-5" *ngIf="_player.schemes[6]['level'] > 0"></div>
+        <div class="divider-5" *ngIf="_base.heistsUnlocked()"></div>
         <div class="routine-row" *ngIf="_player.schemes[6]['level'] > 0">
             <div class="column" *ngFor="let heist of _player.operating | slice: 0:5; let i = index" (click)="_operating.operationPreview(i)"
                 [ngStyle]="{'cursor': heist['available'] && _operating.isUnlockedById(i) ? 'pointer' : 'initial' }">

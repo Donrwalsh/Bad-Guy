@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { NumbersService } from "./core/numbers.service";
 import { PlayerService } from "./core/player.service";
 import { Base } from '../base';
 import { BaseNum } from '../base-num';
@@ -7,8 +6,7 @@ import { BaseNum } from '../base-num';
 @Injectable()
 export class InventoryService extends BaseNum {
 
-    constructor(public _player: PlayerService,
-        public _numbers: NumbersService) {
+    constructor(public _player: PlayerService) {
             super();
     }
 

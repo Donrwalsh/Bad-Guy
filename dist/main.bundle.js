@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/activity-panel/activity-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activity-panel\" *ngIf=\"!_base.INITIAL_LOAD_RECRUITS\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let train of _base.trains; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlocked(train)\"></div>\n            <div class=\"add-block\" *ngIf=\"_training.isUnlocked(train)\">\n                <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.queueTrain(train)\" [ngStyle]=\"addToQueueIconStyle(train)\"></i>\n            </div>\n            <div *ngIf=\"_training.isUnlocked(train)\" class=\"progress-with-add\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectTrain(train)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{train.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let recruit of _base.recruits; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlocked(recruit)\" class=\"progress-no-add\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectRecruit(recruit)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{recruit.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"operations-column\" *ngIf=\"_operating.areAnyUnlocked()\">\n        <div class=\"padding-short\"></div>\n        <div class=\"operation-tab routine\" [ngStyle]=\"{'visibility': _operating.areRoutineOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-certificate tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operation-tab campaign\" [ngStyle]=\"{'visibility': _operating.areCampaignOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-book tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operation-tab ascension\" [ngStyle]=\"{'visibility': _operating.areAscensionOpsUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-rocket tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"padding-short\"></div>\n        \n        <div class=\"divider-5\" *ngIf=\"_player.schemes[6]['level'] > 0\"></div>\n        <div class=\"routine-row\" *ngIf=\"_player.schemes[6]['level'] > 0\">\n            <div class=\"column\" *ngFor=\"let heist of _player.operating | slice: 0:5; let i = index\" (click)=\"_operating.operationPreview(i)\"\n                [ngStyle]=\"{'cursor': heist['available'] && _operating.isUnlockedById(i) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(i)\" [ngStyle]=\"{'color': _operating.getFaColorById(i)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[6]['level'] > 0\"></div>\n\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[7]['level'] > 0\"></div>\n        <div class=\"routine-row\" *ngIf=\"_player.schemes[7]['level'] > 0\">\n            <div class=\"column\" *ngFor=\"let deal of _player.operating | slice: 5:10; let i = index\" (click)=\"_operating.operationPreview(i+5)\"\n                [ngStyle]=\"{'cursor': deal['available'] && _operating.isUnlockedById(i+5) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(i+5)\" [ngStyle]=\"{'color': _operating.getFaColorById(i+5)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[7]['level'] > 0\"></div>\n\n        \n        <div *ngIf=\"_operating.showPreview\" class=\"operation-flyout\">\n            <div class=\"inner-content\" [ngStyle]=\"{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}\">\n                    <div class=\"operation-result\" [ngStyle]=\"{'visibility': !_operating.operatingNow ? 'hidden' : 'initial'}\">\n                \n                \n                    <p class=\"report\">\n                        <i class=\"operation-icon fa fa-usd\" aria-hidden=\"true\" style=\"margin-right:.2rem;margin-top:.3rem;\"></i>\n                        {{_operating.previewOperation['name']}} was a {{_operating.operateReadout['result']}}</p>\n                    <p *ngIf=\"_operating.operateReadout['lost'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['lost']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i> lost.</p>\n                    <p *ngIf=\"_operating.operateReadout['earned'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['earned']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> earned.</p>\n                    <p *ngIf=\"_operating.operateReadout['notoriety'] > 0\" style=\"margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> earned.</p>\n                    <p (click)=\"_operating.closeCompleteOperation()\" style=\"cursor: pointer;width:75%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>\n                </div>\n\n\n                <p class=\"operation-name\" [ngStyle]=\"hideIfOperating()\">\n                    <i class=\"operation-icon fa\" [ngClass]=\"previewOperationFa()\" aria-hidden=\"true\"></i>\n                    {{_operating.previewOperation['name']}}\n                </p>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\" >Requires:</p></div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\" >\n                    <p class=\"flyout-left\">{{_operating.previewOperation['henchmen']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Risk:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperationRiskDisplay()}}%</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Rewards:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['reward']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Success:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['success']*100}}%</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Notoriety:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"operate-button left\" [ngStyle]=\"operateButtonInPreviewStyle()\" (click)=\"_operating.operate()\"> Operate </p>\n                    <p class=\"operate-button right\" (click)=\"_operating.closeCompleteOperation()\"> Abandon</p>\n                </div>\n            </div>\n        </div>\n        <div *ngFor=\"let Operating of _player.operating; index as i\">\n            <div *ngIf=\"_operating.isUnlockedById(i) && !_player.operating[i]['available']\" style=\"width:90%;display:inline-block;margin-left:5%;margin-right:5%;\">\n                <div style=\"border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;\">\n                    <div style=\"background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;\" [ngStyle]=\"{'width': this._operating.getPercentageById(i) + '%' }\"></div>\n                    <p style=\"color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated fa-usd\" aria-hidden=\"true\" style=\"margin-left:.5rem;margin-right:.5rem\"></i>\n                        Slot {{i+1}} Recharging\n                    </p>\n                </div>\n            </div>\n        </div>\n\n\n    </div>\n\n</div>"
+module.exports = "<div class=\"activity-panel\" *ngIf=\"!_base.INITIAL_LOAD_RECRUITS\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let train of _base.trains; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlocked(train)\"></div>\n            <div class=\"add-block\" *ngIf=\"_training.isUnlocked(train)\">\n                <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.queueTrain(train)\" [ngStyle]=\"addToQueueIconStyle(train)\"></i>\n            </div>\n            <div *ngIf=\"_training.isUnlocked(train)\" class=\"progress-with-add\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectTrain(train)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{train.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let recruit of _base.recruits; index as i\">\n            <div class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlocked(recruit)\" class=\"progress-no-add\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectRecruit(recruit)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{recruit.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"operations-column\" *ngIf=\"_operating.areAnyUnlocked()\">\n        <div class=\"padding-short\"></div>\n        <!-- Currently only the routine tab is pegged to the same areAnyUnlocked() -->\n        <div class=\"operation-tab routine\" [ngStyle]=\"{'visibility': _operating.areAnyUnlocked() ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-certificate tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operation-tab campaign\" [ngStyle]=\"{'visibility': false ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-book tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operation-tab ascension\" [ngStyle]=\"{'visibility': false ? 'initial' : 'hidden'}\">\n            <i class=\"fa fa-rocket tab-icon\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"padding-short\"></div>\n        \n        <div class=\"divider-5\" *ngIf=\"_base.heistsUnlocked()\"></div>\n        <div class=\"routine-row\" *ngIf=\"_player.schemes[6]['level'] > 0\">\n            <div class=\"column\" *ngFor=\"let heist of _player.operating | slice: 0:5; let i = index\" (click)=\"_operating.operationPreview(i)\"\n                [ngStyle]=\"{'cursor': heist['available'] && _operating.isUnlockedById(i) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(i)\" [ngStyle]=\"{'color': _operating.getFaColorById(i)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[6]['level'] > 0\"></div>\n\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[7]['level'] > 0\"></div>\n        <div class=\"routine-row\" *ngIf=\"_player.schemes[7]['level'] > 0\">\n            <div class=\"column\" *ngFor=\"let deal of _player.operating | slice: 5:10; let i = index\" (click)=\"_operating.operationPreview(i+5)\"\n                [ngStyle]=\"{'cursor': deal['available'] && _operating.isUnlockedById(i+5) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(i+5)\" [ngStyle]=\"{'color': _operating.getFaColorById(i+5)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_player.schemes[7]['level'] > 0\"></div>\n\n        \n        <div *ngIf=\"_operating.showPreview\" class=\"operation-flyout\">\n            <div class=\"inner-content\" [ngStyle]=\"{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}\">\n                    <div class=\"operation-result\" [ngStyle]=\"{'visibility': !_operating.operatingNow ? 'hidden' : 'initial'}\">\n                \n                \n                    <p class=\"report\">\n                        <i class=\"operation-icon fa fa-usd\" aria-hidden=\"true\" style=\"margin-right:.2rem;margin-top:.3rem;\"></i>\n                        {{_operating.previewOperation['name']}} was a {{_operating.operateReadout['result']}}</p>\n                    <p *ngIf=\"_operating.operateReadout['lost'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['lost']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i> lost.</p>\n                    <p *ngIf=\"_operating.operateReadout['earned'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['earned']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> earned.</p>\n                    <p *ngIf=\"_operating.operateReadout['notoriety'] > 0\" style=\"margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> earned.</p>\n                    <p (click)=\"_operating.closeCompleteOperation()\" style=\"cursor: pointer;width:75%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>\n                </div>\n\n\n                <p class=\"operation-name\" [ngStyle]=\"hideIfOperating()\">\n                    <i class=\"operation-icon fa\" [ngClass]=\"previewOperationFa()\" aria-hidden=\"true\"></i>\n                    {{_operating.previewOperation['name']}}\n                </p>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\" >Requires:</p></div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\" >\n                    <p class=\"flyout-left\">{{_operating.previewOperation['henchmen']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Risk:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperationRiskDisplay()}}%</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Rewards:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['reward']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Success:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['success']*100}}%</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-right\">Notoriety:</p>\n                </div>\n                <div class=\"split\" [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"flyout-left\">{{_operating.previewOperation['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>\n                    </p>\n                </div>\n                <div [ngStyle]=\"hideIfOperating()\">\n                    <p class=\"operate-button left\" [ngStyle]=\"operateButtonInPreviewStyle()\" (click)=\"_operating.operate()\"> Operate </p>\n                    <p class=\"operate-button right\" (click)=\"_operating.closeCompleteOperation()\"> Abandon</p>\n                </div>\n            </div>\n        </div>\n        <div *ngFor=\"let Operating of _player.operating; index as i\">\n            <div *ngIf=\"_operating.isUnlockedById(i) && !_player.operating[i]['available']\" style=\"width:90%;display:inline-block;margin-left:5%;margin-right:5%;\">\n                <div style=\"border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;\">\n                    <div style=\"background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;\" [ngStyle]=\"{'width': this._operating.getPercentageById(i) + '%' }\"></div>\n                    <p style=\"color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated fa-usd\" aria-hidden=\"true\" style=\"margin-left:.5rem;margin-right:.5rem\"></i>\n                        Slot {{i+1}} Recharging\n                    </p>\n                </div>\n            </div>\n        </div>\n\n\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -315,15 +315,15 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_scheme__ = __webpack_require__("../../../../../src/app/models/scheme.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_recruit__ = __webpack_require__("../../../../../src/app/models/recruit.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_train__ = __webpack_require__("../../../../../src/app/models/train.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_scheme__ = __webpack_require__("../../../../../src/app/models/scheme.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_recruit__ = __webpack_require__("../../../../../src/app/models/recruit.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_train__ = __webpack_require__("../../../../../src/app/models/train.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_operation__ = __webpack_require__("../../../../../src/app/models/operation.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__base__ = __webpack_require__("../../../../../src/app/base.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
@@ -373,14 +373,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var AppComponent = /** @class */ (function (_super) {
     __extends(AppComponent, _super);
-    function AppComponent(cookieService, _base, dialog, _player, _lair, _numbers, _loop, _scheming, _inventory, _training, _operating, _recruiting, _dataService) {
+    function AppComponent(cookieService, _base, dialog, _player, _lair, _loop, _scheming, _inventory, _training, _operating, _recruiting, _dataService) {
         var _this = _super.call(this) || this;
         _this.cookieService = cookieService;
         _this._base = _base;
         _this.dialog = dialog;
         _this._player = _player;
         _this._lair = _lair;
-        _this._numbers = _numbers;
         _this._loop = _loop;
         _this._scheming = _scheming;
         _this._inventory = _inventory;
@@ -388,6 +387,7 @@ var AppComponent = /** @class */ (function (_super) {
         _this._operating = _operating;
         _this._recruiting = _recruiting;
         _this._dataService = _dataService;
+        cookieService.deleteAll();
         if (cookieService.check('save')) {
             console.log("Save Data Exists");
             //console.log(cookieService.get('save'));
@@ -418,7 +418,7 @@ var AppComponent = /** @class */ (function (_super) {
                             break;
                         }
                     }
-                    var newScheme = new __WEBPACK_IMPORTED_MODULE_10__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, Number(exp), Number(level), _this.schemeLairReq[i], _this.schemeExp[i]);
+                    var newScheme = new __WEBPACK_IMPORTED_MODULE_9__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, Number(exp), Number(level), _this.schemeLairReq[i], _this.schemeExp[i]);
                     SchemeData.push(newScheme);
                     level = "";
                     exp = "";
@@ -492,7 +492,7 @@ var AppComponent = /** @class */ (function (_super) {
                             break;
                         }
                     }
-                    var newRecruit = new __WEBPACK_IMPORTED_MODULE_11__models_recruit__["a" /* Recruit */](i, Number(RAMcurrentStore), Number(RAMcountdown), Number(RAMlock));
+                    var newRecruit = new __WEBPACK_IMPORTED_MODULE_10__models_recruit__["a" /* Recruit */](i, Number(RAMcurrentStore), Number(RAMcountdown), Number(RAMlock));
                     RecruitData.push(newRecruit);
                 }
                 __WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */].RECRUITS = RecruitData;
@@ -565,7 +565,7 @@ var AppComponent = /** @class */ (function (_super) {
                             break;
                         }
                     }
-                    var newTrain = new __WEBPACK_IMPORTED_MODULE_12__models_train__["a" /* Train */](i, Number(RAMcurrentStore), Number(RAMcountdown), Number(RAMlock), Number(RAMqueued));
+                    var newTrain = new __WEBPACK_IMPORTED_MODULE_11__models_train__["a" /* Train */](i, Number(RAMcurrentStore), Number(RAMcountdown), Number(RAMlock), Number(RAMqueued));
                     TrainData.push(newTrain);
                 }
                 __WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */].TRAINS = TrainData;
@@ -581,7 +581,7 @@ var AppComponent = /** @class */ (function (_super) {
                 .subscribe(function (res) {
                 var SchemeData = new Array();
                 for (var i = 0; i < res.length; i++) {
-                    var newScheme = new __WEBPACK_IMPORTED_MODULE_10__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, 0, 0, _this.schemeLairReq[i], _this.schemeExp[i]);
+                    var newScheme = new __WEBPACK_IMPORTED_MODULE_9__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, 0, 0, _this.schemeLairReq[i], _this.schemeExp[i]);
                     SchemeData.push(newScheme);
                 }
                 __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].SCHEMES = SchemeData;
@@ -594,7 +594,7 @@ var AppComponent = /** @class */ (function (_super) {
                 //Construct Recruit data from Angular logic
                 var RecruitData = new Array();
                 for (var i = 0; i < 5; i++) {
-                    var newRecruit = new __WEBPACK_IMPORTED_MODULE_11__models_recruit__["a" /* Recruit */](i, 0, 0, 0);
+                    var newRecruit = new __WEBPACK_IMPORTED_MODULE_10__models_recruit__["a" /* Recruit */](i, 0, 0, 0);
                     RecruitData.push(newRecruit);
                 }
                 __WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */].RECRUITS = RecruitData;
@@ -608,12 +608,20 @@ var AppComponent = /** @class */ (function (_super) {
                 //Construct Train data from Angular logic
                 var TrainData = new Array();
                 for (var i = 0; i < 5; i++) {
-                    var newTrain = new __WEBPACK_IMPORTED_MODULE_12__models_train__["a" /* Train */](i, 0, 0, 0, 0);
+                    var newTrain = new __WEBPACK_IMPORTED_MODULE_11__models_train__["a" /* Train */](i, 0, 0, 0, 0);
                     TrainData.push(newTrain);
                 }
                 __WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */].TRAINS = TrainData;
                 console.log("BaseNum.TRAINS populated:");
                 console.log(__WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */].TRAINS);
+                var OperationData = new Array();
+                for (var i = 0; i < 10; i++) {
+                    var newOperation = new __WEBPACK_IMPORTED_MODULE_12__models_operation__["a" /* Operation */](i, -1, -1);
+                    OperationData.push(newOperation);
+                }
+                __WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */].OPERATIONS = OperationData;
+                console.log("BaseNum.OPERATIONS populated:");
+                console.log(__WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */].OPERATIONS);
             });
         }
         _this._dataService.getOperations()
@@ -644,14 +652,13 @@ var AppComponent = /** @class */ (function (_super) {
             __WEBPACK_IMPORTED_MODULE_16__services_base_service__["a" /* BaseService */],
             __WEBPACK_IMPORTED_MODULE_17__angular_material__["b" /* MatDialog */],
             __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_7__services_lair_service__["a" /* LairService */],
-            __WEBPACK_IMPORTED_MODULE_4__services_core_numbers_service__["a" /* NumbersService */],
+            __WEBPACK_IMPORTED_MODULE_6__services_lair_service__["a" /* LairService */],
             __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */],
             __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */],
-            __WEBPACK_IMPORTED_MODULE_5__services_inventory_service__["a" /* InventoryService */],
-            __WEBPACK_IMPORTED_MODULE_6__services_training_service__["a" /* TrainingService */],
-            __WEBPACK_IMPORTED_MODULE_9__services_operating_service__["a" /* OperatingService */],
-            __WEBPACK_IMPORTED_MODULE_8__services_recruiting_service__["a" /* RecruitingService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */],
+            __WEBPACK_IMPORTED_MODULE_5__services_training_service__["a" /* TrainingService */],
+            __WEBPACK_IMPORTED_MODULE_8__services_operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_7__services_recruiting_service__["a" /* RecruitingService */],
             __WEBPACK_IMPORTED_MODULE_19__data_service__["a" /* DataService */]])
     ], AppComponent);
     return AppComponent;
@@ -681,21 +688,19 @@ var AppComponent = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modal_modal_module__ = __webpack_require__("../../../../../src/app/modal/modal.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_material_tooltip__ = __webpack_require__("../../../material/esm5/tooltip.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modal_lair_modal_lair_modal_component__ = __webpack_require__("../../../../../src/app/modal/lair-modal/lair-modal.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modal_modal_module__ = __webpack_require__("../../../../../src/app/modal/modal.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__angular_material_tooltip__ = __webpack_require__("../../../material/esm5/tooltip.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modal_lair_modal_lair_modal_component__ = __webpack_require__("../../../../../src/app/modal/lair-modal/lair-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -732,27 +737,26 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_14__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_20__angular_material_tooltip__["a" /* MatTooltipModule */]
+                __WEBPACK_IMPORTED_MODULE_19__angular_material_tooltip__["a" /* MatTooltipModule */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__data_service__["a" /* DataService */],
-                __WEBPACK_IMPORTED_MODULE_18__services_base_service__["a" /* BaseService */],
+                __WEBPACK_IMPORTED_MODULE_17__services_base_service__["a" /* BaseService */],
                 __WEBPACK_IMPORTED_MODULE_5__services_core_player_service__["a" /* PlayerService */],
                 __WEBPACK_IMPORTED_MODULE_7__services_scheming_service__["a" /* SchemingService */],
-                __WEBPACK_IMPORTED_MODULE_16__services_heroes_service__["a" /* HeroesService */],
+                __WEBPACK_IMPORTED_MODULE_15__services_heroes_service__["a" /* HeroesService */],
                 __WEBPACK_IMPORTED_MODULE_11__services_operating_service__["a" /* OperatingService */],
                 __WEBPACK_IMPORTED_MODULE_10__services_recruiting_service__["a" /* RecruitingService */],
-                __WEBPACK_IMPORTED_MODULE_22__services_lair_service__["a" /* LairService */],
+                __WEBPACK_IMPORTED_MODULE_21__services_lair_service__["a" /* LairService */],
                 __WEBPACK_IMPORTED_MODULE_9__services_training_service__["a" /* TrainingService */],
                 __WEBPACK_IMPORTED_MODULE_8__services_inventory_service__["a" /* InventoryService */],
                 __WEBPACK_IMPORTED_MODULE_6__services_primary_loop_service__["a" /* PrimaryLoopService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_core_numbers_service__["a" /* NumbersService */],
-                __WEBPACK_IMPORTED_MODULE_17_ngx_cookie_service__["a" /* CookieService */],
-                __WEBPACK_IMPORTED_MODULE_19__modal_modal_module__["a" /* ModalModule */],
-                __WEBPACK_IMPORTED_MODULE_20__angular_material_tooltip__["a" /* MatTooltipModule */]
+                __WEBPACK_IMPORTED_MODULE_16_ngx_cookie_service__["a" /* CookieService */],
+                __WEBPACK_IMPORTED_MODULE_18__modal_modal_module__["a" /* ModalModule */],
+                __WEBPACK_IMPORTED_MODULE_19__angular_material_tooltip__["a" /* MatTooltipModule */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]],
-            entryComponents: [__WEBPACK_IMPORTED_MODULE_21__modal_lair_modal_lair_modal_component__["a" /* LairModal */]]
+            entryComponents: [__WEBPACK_IMPORTED_MODULE_20__modal_lair_modal_lair_modal_component__["a" /* LairModal */]]
         })
     ], AppModule);
     return AppModule;
@@ -852,7 +856,7 @@ var BaseNum = /** @class */ (function (_super) {
         //03: Hired Help
         get: function () {
             var space = 0;
-            for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[3]['level']; _i++) {
+            for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[3].level; _i++) {
                 if (_i == 1) {
                     space += 4;
                 }
@@ -870,7 +874,7 @@ var BaseNum = /** @class */ (function (_super) {
             return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[3].level > 0;
         }
         else if (id == 1) {
-            return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[3]['level'] >= 5;
+            return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[3].level >= 5;
         }
         else {
             return false;
@@ -888,7 +892,7 @@ var BaseNum = /** @class */ (function (_super) {
     //04: Guard Duty
     BaseNum.prototype.guardDutyTrainRate = function () {
         var reduce = 0;
-        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[4]['level']; _i++) {
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[4].level; _i++) {
             if (_i == 1) {
                 reduce += 30;
             }
@@ -899,11 +903,11 @@ var BaseNum = /** @class */ (function (_super) {
         return reduce;
     };
     BaseNum.prototype.guardDutyUnlocked = function () {
-        return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[4]['level'] > 0;
+        return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[4].level > 0;
     };
     BaseNum.prototype.guardDutyCapacity = function () {
         var capacity = 0;
-        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[4]['level']; _i++) {
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[4].level; _i++) {
             if (_i == 2) {
                 capacity += 2;
             }
@@ -913,7 +917,7 @@ var BaseNum = /** @class */ (function (_super) {
     //05: Lodging
     BaseNum.prototype.lodgingNumbers = function () {
         var increase = 0;
-        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[5]['level']; i++) {
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[5].level; i++) {
             if (i === 0) {
                 increase += 10;
             }
@@ -931,6 +935,51 @@ var BaseNum = /** @class */ (function (_super) {
             }
         }
         return increase;
+    };
+    //06: Heists
+    BaseNum.prototype.heistUnlocked = function (id) {
+        if (id === 0)
+            return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6].level > 0;
+        if (id === 1)
+            return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6].level > 3;
+    };
+    //07: Shady Business Deals
+    BaseNum.prototype.shadyBusinessDealUnlocked = function (id) {
+        if (id === 5)
+            return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[7].level > 0;
+        if (id === 6)
+            return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[7].level > 3;
+    };
+    BaseNum.prototype.heistRarityChancesArray = function () {
+        if (__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6]['level'] == 1) {
+            return [1, 1.1, 1.1, 1.1, 1.1];
+        }
+        else if (__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6]['level'] >= 1 && __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6]['level'] <= 2) {
+            return [.9, 1, 1.1, 1.1, 1.1];
+        }
+        else if (__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6]['level'] >= 3 && __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6]['level'] <= 5) {
+            return [.8, .95, 1, 1.1, 1.1];
+        }
+    };
+    BaseNum.prototype.heistRechargeRate = function () {
+        var reduce = 0;
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6]['level']; _i++) {
+            if (_i == 2) {
+                reduce += 150;
+            }
+        }
+        return reduce;
+    };
+    BaseNum.prototype.shadyBusinessDealRarityChancesArray = function () {
+        if (__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[7]['level'] == 1) {
+            return [1, 1.1, 1.1, 1.1, 1.1];
+        }
+        else if (__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[7]['level'] >= 1 && __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[7]['level'] <= 2) {
+            return [.9, 1, 1.1, 1.1, 1.1];
+        }
+        else if (__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[7]['level'] >= 3 && __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[7]['level'] <= 5) {
+            return [.8, .95, 1, 1.1, 1.1];
+        }
     };
     return BaseNum;
 }(__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */]));
@@ -1419,6 +1468,30 @@ module.exports = "<h1 style=\"margin:0;margin-bottom:.5rem;text-align:center;col
 
 /***/ }),
 
+/***/ "../../../../../src/app/models/operation.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Operation; });
+var Operation = /** @class */ (function () {
+    function Operation(id, rarity, henchmenCost) {
+        this.id = id;
+        this.rarity = rarity;
+        this.henchmenCost = henchmenCost;
+        if (this.id >= 0 && this.id <= 4) {
+            this.type = "heist";
+        }
+        else if (this.id >= 5 && this.id <= 9) {
+            this.type = "shady-business-deal";
+        }
+    }
+    return Operation;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/models/recruit.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1694,12 +1767,8 @@ var SchemePanelModule = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -1722,66 +1791,58 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-
-
 var BaseService = /** @class */ (function (_super) {
     __extends(BaseService, _super);
     //Serving up Base variables for templates is all this service does.
-    function BaseService(_player, _numbers, _operating, _inventory) {
-        var _this = _super.call(this) || this;
-        _this._player = _player;
-        _this._numbers = _numbers;
-        _this._operating = _operating;
-        _this._inventory = _inventory;
-        return _this;
+    function BaseService() {
+        return _super.call(this) || this;
     }
     Object.defineProperty(BaseService.prototype, "earningSchemePoints", {
+        //Base
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].EARNING_SCHEME_POINTS;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].EARNING_SCHEME_POINTS;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(BaseService.prototype, "initialLoadSchemes", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].INITIAL_LOAD_SCHEMES;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].INITIAL_LOAD_SCHEMES;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(BaseService.prototype, "schemes", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].SCHEMES;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].SCHEMES;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(BaseService.prototype, "currentScheme", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].CURRENT_SCHEME;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(BaseService.prototype, "currentHenchmen", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].CURRENT_HENCHMEN;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_HENCHMEN;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(BaseService.prototype, "currentLairHP", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].CURRENT_LAIR_HP;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_LAIR_HP;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(BaseService.prototype, "currentGuards", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].CURRENT_GUARDS;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_GUARDS;
         },
         enumerable: true,
         configurable: true
@@ -1789,21 +1850,21 @@ var BaseService = /** @class */ (function (_super) {
     Object.defineProperty(BaseService.prototype, "recruits", {
         //BaseNum
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS;
+            return __WEBPACK_IMPORTED_MODULE_2__base_num__["a" /* BaseNum */].RECRUITS;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(BaseService.prototype, "trains", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].TRAINS;
+            return __WEBPACK_IMPORTED_MODULE_2__base_num__["a" /* BaseNum */].TRAINS;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(BaseService.prototype, "initialLoadRecruits", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].INITIAL_LOAD_RECRUITS;
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].INITIAL_LOAD_RECRUITS;
         },
         enumerable: true,
         configurable: true
@@ -1815,133 +1876,19 @@ var BaseService = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(BaseService.prototype, "heistsUnlocked", {
+        get: function () {
+            return this.heistUnlocked(0);
+        },
+        enumerable: true,
+        configurable: true
+    });
     BaseService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */],
-            __WEBPACK_IMPORTED_MODULE_4__operating_service__["a" /* OperatingService */],
-            __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]])
+        __metadata("design:paramtypes", [])
     ], BaseService);
     return BaseService;
-}(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */]));
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/services/core/numbers.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NumbersService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("../../../../../src/app/base.ts");
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var NumbersService = /** @class */ (function (_super) {
-    __extends(NumbersService, _super);
-    function NumbersService(_player) {
-        var _this = _super.call(this) || this;
-        _this._player = _player;
-        return _this;
-    }
-    //04: Guard Duty
-    NumbersService.prototype.guardDutyTrainRate = function () {
-        var reduce = 0;
-        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[4]['level']; _i++) {
-            if (_i == 1) {
-                reduce += 30;
-            }
-            if (_i == 3) {
-                reduce += 30;
-            }
-        }
-        return reduce;
-    };
-    NumbersService.prototype.guardDutyUnlocked = function () {
-        return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[4]['level'] > 0;
-    };
-    NumbersService.prototype.guardDutyCapacity = function () {
-        var capacity = 0;
-        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[4]['level']; _i++) {
-            if (_i == 2) {
-                capacity += 9;
-            }
-        }
-        return capacity;
-    };
-    //06: Heists
-    NumbersService.prototype.heistUnlocked = function (id) {
-        if (id == 0)
-            return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[6]['level'] > 0;
-        if (id == 1)
-            return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[6]['level'] > 3;
-    };
-    NumbersService.prototype.heistRarityChancesArray = function () {
-        if (__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[6]['level'] == 1) {
-            return [1, 1.1, 1.1, 1.1, 1.1];
-        }
-        else if (__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[6]['level'] >= 1 && __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[6]['level'] <= 2) {
-            return [.9, 1, 1.1, 1.1, 1.1];
-        }
-        else if (__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[6]['level'] >= 3 && __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[6]['level'] <= 5) {
-            return [.8, .95, 1, 1.1, 1.1];
-        }
-    };
-    NumbersService.prototype.heistRechargeRate = function () {
-        var reduce = 0;
-        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[6]['level']; _i++) {
-            if (_i == 2) {
-                reduce += 150;
-            }
-        }
-        return reduce;
-    };
-    //07: Shady Business Deals
-    NumbersService.prototype.shadyBusinessDealUnlocked = function (id) {
-        if (id == 5)
-            return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[7]['level'] > 0;
-        if (id == 6)
-            return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[7]['level'] > 3;
-    };
-    NumbersService.prototype.shadyBusinessDealRarityChancesArray = function () {
-        if (__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[7]['level'] == 1) {
-            return [1, 1.1, 1.1, 1.1, 1.1];
-        }
-        else if (__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[7]['level'] >= 1 && __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[7]['level'] <= 2) {
-            return [.9, 1, 1.1, 1.1, 1.1];
-        }
-        else if (__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[7]['level'] >= 3 && __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[7]['level'] <= 5) {
-            return [.8, .95, 1, 1.1, 1.1];
-        }
-    };
-    NumbersService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__player_service__["a" /* PlayerService */]])
-    ], NumbersService);
-    return NumbersService;
-}(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */]));
+}(__WEBPACK_IMPORTED_MODULE_2__base_num__["a" /* BaseNum */]));
 
 
 
@@ -1996,8 +1943,7 @@ var PlayerService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2011,11 +1957,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var HeroesService = /** @class */ (function () {
-    function HeroesService(_player, _numbers, _operating, _inventory) {
+    function HeroesService(_player, _operating, _inventory) {
         this._player = _player;
-        this._numbers = _numbers;
         this._operating = _operating;
         this._inventory = _inventory;
     }
@@ -2038,8 +1982,7 @@ var HeroesService = /** @class */ (function () {
     HeroesService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */],
-            __WEBPACK_IMPORTED_MODULE_4__operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_3__operating_service__["a" /* OperatingService */],
             __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]])
     ], HeroesService);
     return HeroesService;
@@ -2055,10 +1998,9 @@ var HeroesService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InventoryService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2082,13 +2024,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var InventoryService = /** @class */ (function (_super) {
     __extends(InventoryService, _super);
-    function InventoryService(_player, _numbers) {
+    function InventoryService(_player) {
         var _this = _super.call(this) || this;
         _this._player = _player;
-        _this._numbers = _numbers;
         return _this;
     }
     Object.defineProperty(InventoryService.prototype, "guardCapacity", {
@@ -2107,7 +2047,7 @@ var InventoryService = /** @class */ (function (_super) {
     };
     Object.defineProperty(InventoryService.prototype, "isGuardCapacityFull", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_GUARDS == this.guardCapacity;
+            return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_GUARDS == this.guardCapacity;
         },
         enumerable: true,
         configurable: true
@@ -2123,18 +2063,17 @@ var InventoryService = /** @class */ (function (_super) {
     });
     Object.defineProperty(InventoryService.prototype, "isHenchmenCapacityFull", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN == this.henchmenCapacity;
+            return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_HENCHMEN == this.henchmenCapacity;
         },
         enumerable: true,
         configurable: true
     });
     InventoryService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_1__core_numbers_service__["a" /* NumbersService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */]])
     ], InventoryService);
     return InventoryService;
-}(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */]));
 
 
 
@@ -2148,10 +2087,9 @@ var InventoryService = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base__ = __webpack_require__("../../../../../src/app/base.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2177,13 +2115,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var LairService = /** @class */ (function (_super) {
     __extends(LairService, _super);
-    function LairService(_player, _numbers, _operating, _inventory) {
+    function LairService(_player, _operating, _inventory) {
         var _this = _super.call(this) || this;
         _this._player = _player;
-        _this._numbers = _numbers;
         _this._operating = _operating;
         _this._inventory = _inventory;
         return _this;
@@ -2202,7 +2138,7 @@ var LairService = /** @class */ (function (_super) {
     });
     Object.defineProperty(LairService.prototype, "percentageHP", {
         get: function () {
-            return 100 * (__WEBPACK_IMPORTED_MODULE_6__base__["a" /* Base */].CURRENT_LAIR_HP / this.LAIR_HP_MAX);
+            return 100 * (__WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].CURRENT_LAIR_HP / this.LAIR_HP_MAX);
         },
         enumerable: true,
         configurable: true
@@ -2224,12 +2160,11 @@ var LairService = /** @class */ (function (_super) {
     LairService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */],
-            __WEBPACK_IMPORTED_MODULE_4__operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_3__operating_service__["a" /* OperatingService */],
             __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]])
     ], LairService);
     return LairService;
-}(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */]));
 
 
 
@@ -2242,8 +2177,8 @@ var LairService = /** @class */ (function (_super) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OperatingService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2269,10 +2204,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var OperatingService = /** @class */ (function (_super) {
     __extends(OperatingService, _super);
-    function OperatingService(_player, _numbers) {
+    function OperatingService(_player) {
         var _this = _super.call(this) || this;
         _this._player = _player;
-        _this._numbers = _numbers;
         _this.showPreview = false;
         _this.operatingNow = false;
         _this.operateReadout = {
@@ -2284,34 +2218,53 @@ var OperatingService = /** @class */ (function (_super) {
         return _this;
     }
     OperatingService.prototype.areAnyUnlocked = function () {
-        return this.areRoutineOpsUnlocked() || this.areCampaignOpsUnlocked();
+        return this.areHeistsUnlocked() || this.areShadyBusinessDealsUnlocked();
     };
-    OperatingService.prototype.areRoutineOpsUnlocked = function () {
-        //Currently only accounts for Heists.
-        return __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].SCHEMES[6]['level'] > 0 || __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].SCHEMES[7]['level'] > 0;
-    };
-    OperatingService.prototype.areCampaignOpsUnlocked = function () {
-        //No longer planned for Phase 0
-        //return Base.SCHEMES[7]['level'] > 0;
+    OperatingService.prototype.areHeistsUnlocked = function () {
+        for (var _i = 0; _i < 5; _i++) {
+            if (this.isUnlocked(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */].OPERATIONS[_i])) {
+                return true;
+            }
+        }
         return false;
     };
-    OperatingService.prototype.areAscensionOpsUnlocked = function () {
+    OperatingService.prototype.areShadyBusinessDealsUnlocked = function () {
+        for (var _i = 5; _i < 10; _i++) {
+            if (this.isUnlocked(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */].OPERATIONS[_i])) {
+                return true;
+            }
+        }
         return false;
     };
+    OperatingService.prototype.isUnlocked = function (operation) {
+        if (operation.type == "heist") {
+            return this.heistUnlocked(operation.id);
+        }
+        if (operation.type == "shady-business-deal") {
+            return this.shadyBusinessDealUnlocked(operation.id);
+        }
+    };
+    /*
+    
+    
+        areAnyUnlocked() {
+            return this.areRoutineOpsUnlocked() || this.areCampaignOpsUnlocked();
+        }
+    */
     OperatingService.prototype.getRoutineOperationCountdownById = function (id) {
         if (id >= 0 && id <= 4) {
             var rate = 600;
-            rate -= this._numbers.heistRechargeRate();
+            rate -= this.heistRechargeRate();
             return rate;
         }
     };
     OperatingService.prototype.isUnlockedById = function (id) {
         if (id >= 0 && id <= 4) {
-            return this._numbers.heistUnlocked(id);
+            return this.heistUnlocked(id);
         }
         ;
         if (id >= 5 && id <= 9) {
-            return this._numbers.shadyBusinessDealUnlocked(id);
+            return this.shadyBusinessDealUnlocked(id);
         }
         ;
     };
@@ -2391,7 +2344,7 @@ var OperatingService = /** @class */ (function (_super) {
                 lost = this.previewOperation['henchmen'];
             }
             this.operateReadout['lost'] = lost;
-            __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN -= lost;
+            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_HENCHMEN -= lost;
             this.operateReadout['notoriety'] = this.previewOperation['notoriety'];
             this._player.notoriety += this.operateReadout['notoriety'] * 10;
         }
@@ -2490,7 +2443,7 @@ var OperatingService = /** @class */ (function (_super) {
             rate = .75;
         }
         var multiplier = 1;
-        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].SCHEMES[8]['level']; i++) {
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].SCHEMES[8]['level']; i++) {
             multiplier -= .05;
         }
         return rate * multiplier;
@@ -2557,14 +2510,14 @@ var OperatingService = /** @class */ (function (_super) {
     };
     Object.defineProperty(OperatingService.prototype, "heistRarityChances", {
         get: function () {
-            return this._numbers.heistRarityChancesArray;
+            return this.heistRarityChancesArray;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(OperatingService.prototype, "canPreviewBeOperated", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN >= this.previewOperation['henchmen'];
+            return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_HENCHMEN >= this.previewOperation['henchmen'];
         },
         enumerable: true,
         configurable: true
@@ -2572,7 +2525,7 @@ var OperatingService = /** @class */ (function (_super) {
     //Heists specifically
     OperatingService.prototype.rollHeistRarity = function () {
         var roll = Math.random();
-        var heistRarityChances = this._numbers.heistRarityChancesArray();
+        var heistRarityChances = this.heistRarityChancesArray();
         if (roll <= heistRarityChances[0]) {
             return 0;
         }
@@ -2591,7 +2544,7 @@ var OperatingService = /** @class */ (function (_super) {
     };
     OperatingService.prototype.rollShadyBusinessDealRarity = function () {
         var roll = Math.random();
-        var dealRarityChances = this._numbers.shadyBusinessDealRarityChancesArray();
+        var dealRarityChances = this.shadyBusinessDealRarityChancesArray();
         if (roll >= dealRarityChances[0] && roll <= dealRarityChances[1]) {
             return 1;
         }
@@ -2607,11 +2560,10 @@ var OperatingService = /** @class */ (function (_super) {
     };
     OperatingService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_2__core_numbers_service__["a" /* NumbersService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */]])
     ], OperatingService);
     return OperatingService;
-}(__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */]));
+}(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */]));
 
 
 
@@ -2629,11 +2581,10 @@ var OperatingService = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2664,11 +2615,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 //All loop related activities. Called by app.component and nowhere else.
 var PrimaryLoopService = /** @class */ (function (_super) {
     __extends(PrimaryLoopService, _super);
-    function PrimaryLoopService(_base, cookieService, _player, _operating, _scheming, _recruiting, _numbers, _lair, _training) {
+    function PrimaryLoopService(_base, cookieService, _player, _operating, _scheming, _recruiting, _lair, _training) {
         var _this = _super.call(this) || this;
         _this._base = _base;
         _this.cookieService = cookieService;
@@ -2676,7 +2626,6 @@ var PrimaryLoopService = /** @class */ (function (_super) {
         _this._operating = _operating;
         _this._scheming = _scheming;
         _this._recruiting = _recruiting;
-        _this._numbers = _numbers;
         _this._lair = _lair;
         _this._training = _training;
         //Ticker set at one minute (@100 ms/s) for now.
@@ -2696,15 +2645,15 @@ var PrimaryLoopService = /** @class */ (function (_super) {
             this.doOnce();
             this.didOnce = true;
         }
-        if (__WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].EARNING_SCHEME_POINTS) {
+        if (__WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].EARNING_SCHEME_POINTS) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
-        __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].RECRUITS.forEach(function (recruit) {
+        __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS.forEach(function (recruit) {
             if (_this._recruiting.isRecruiting(recruit)) {
                 _this._recruiting.recruitTick(recruit);
             }
         });
-        __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].TRAINS.forEach(function (train) {
+        __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].TRAINS.forEach(function (train) {
             if (_this._training.isTraining(train)) {
                 _this._training.trainTick(train);
             }
@@ -2727,29 +2676,29 @@ var PrimaryLoopService = /** @class */ (function (_super) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute);
         }
         console.log("I am saving the game");
-        var saveString = __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].EARNING_SCHEME_POINTS ? "1" : "0";
-        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].SCHEMES.length; i++) {
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].SCHEMES[i].level + "z" + __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].SCHEMES[i].exp + "z";
+        var saveString = __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].EARNING_SCHEME_POINTS ? "1" : "0";
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].SCHEMES.length; i++) {
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].SCHEMES[i].level + "z" + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].SCHEMES[i].exp + "z";
         }
-        if (__WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].CURRENT_SCHEME == null) {
+        if (__WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CURRENT_SCHEME == null) {
             saveString = saveString + "-1z";
         }
         else {
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].CURRENT_SCHEME.ref + "z";
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CURRENT_SCHEME.ref + "z";
         }
-        saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].CURRENT_HENCHMEN + "z";
-        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].RECRUITS.length; i++) {
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].RECRUITS[i].currentStore + "z";
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].RECRUITS[i].countdown + "z";
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].RECRUITS[i].lock + "z";
+        saveString = saveString + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CURRENT_HENCHMEN + "z";
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS.length; i++) {
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS[i].currentStore + "z";
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS[i].countdown + "z";
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS[i].lock + "z";
         }
-        saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].CURRENT_LAIR_HP + "z";
-        saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base__["a" /* Base */].CURRENT_GUARDS + "z";
-        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].TRAINS.length; i++) {
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].TRAINS[i].currentStore + "z";
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].TRAINS[i].countdown + "z";
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].TRAINS[i].lock + "z";
-            saveString = saveString + __WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */].TRAINS[i].queued + "z";
+        saveString = saveString + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CURRENT_LAIR_HP + "z";
+        saveString = saveString + __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CURRENT_GUARDS + "z";
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].TRAINS.length; i++) {
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].TRAINS[i].currentStore + "z";
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].TRAINS[i].countdown + "z";
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].TRAINS[i].lock + "z";
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].TRAINS[i].queued + "z";
         }
         console.log(saveString);
         this.cookieService.set('save', saveString, 365);
@@ -2770,18 +2719,17 @@ var PrimaryLoopService = /** @class */ (function (_super) {
     };
     PrimaryLoopService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_11__services_base_service__["a" /* BaseService */],
-            __WEBPACK_IMPORTED_MODULE_8_ngx_cookie_service__["a" /* CookieService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_10__services_base_service__["a" /* BaseService */],
+            __WEBPACK_IMPORTED_MODULE_7_ngx_cookie_service__["a" /* CookieService */],
             __WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
             __WEBPACK_IMPORTED_MODULE_5__operating_service__["a" /* OperatingService */],
             __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */],
             __WEBPACK_IMPORTED_MODULE_3__recruiting_service__["a" /* RecruitingService */],
-            __WEBPACK_IMPORTED_MODULE_7__core_numbers_service__["a" /* NumbersService */],
             __WEBPACK_IMPORTED_MODULE_6__lair_service__["a" /* LairService */],
             __WEBPACK_IMPORTED_MODULE_4__training_service__["a" /* TrainingService */]])
     ], PrimaryLoopService);
     return PrimaryLoopService;
-}(__WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */]));
 
 
 
@@ -2795,10 +2743,9 @@ var PrimaryLoopService = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2824,13 +2771,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var RecruitingService = /** @class */ (function (_super) {
     __extends(RecruitingService, _super);
-    function RecruitingService(_player, _numbers, _operating, _inventory) {
+    function RecruitingService(_player, _operating, _inventory) {
         var _this = _super.call(this) || this;
         _this._player = _player;
-        _this._numbers = _numbers;
         _this._operating = _operating;
         _this._inventory = _inventory;
         _this.collecting = false; //Collection lockout
@@ -2864,8 +2809,8 @@ var RecruitingService = /** @class */ (function (_super) {
     };
     //Section displays only if a recruiting object has been unlocked
     RecruitingService.prototype.areAnyUnlocked = function () {
-        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS.length; _i++) {
-            if (this.isUnlocked(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[_i])) {
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].RECRUITS.length; _i++) {
+            if (this.isUnlocked(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].RECRUITS[_i])) {
                 return true;
             }
         }
@@ -2879,8 +2824,8 @@ var RecruitingService = /** @class */ (function (_super) {
                 this.collecting = true;
                 var collectMarker = recruit.currentStore;
                 for (var _i = 0; _i < collectMarker; _i++) {
-                    if (__WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].CURRENT_HENCHMEN < this._inventory.henchmenCapacity) {
-                        __WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].CURRENT_HENCHMEN++;
+                    if (__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN < this._inventory.henchmenCapacity) {
+                        __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN++;
                         recruit.currentStore--;
                     }
                 }
@@ -2919,12 +2864,11 @@ var RecruitingService = /** @class */ (function (_super) {
     RecruitingService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */],
-            __WEBPACK_IMPORTED_MODULE_4__operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_3__operating_service__["a" /* OperatingService */],
             __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]])
     ], RecruitingService);
     return RecruitingService;
-}(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */]));
 
 
 
@@ -2937,10 +2881,9 @@ var RecruitingService = /** @class */ (function (_super) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SchemingService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2965,14 +2908,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var SchemingService = /** @class */ (function (_super) {
     __extends(SchemingService, _super);
-    function SchemingService(_player, _base, _numbers) {
+    function SchemingService(_player, _base) {
         var _this = _super.call(this) || this;
         _this._player = _player;
         _this._base = _base;
-        _this._numbers = _numbers;
         //STRUCTURAL VARIABLES
         _this.selected = 'scheming'; //Which scheme tree is currently displayed on the scheme panel
         _this.showPreview = false; //Controls the appearance of the scheme-panel flyout
@@ -2980,7 +2921,7 @@ var SchemingService = /** @class */ (function (_super) {
     }
     //Decide whether to display the "Scheme" button in the flyout
     SchemingService.prototype.showSchemeButtonInPreviewScheme = function () {
-        return !__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].EARNING_SCHEME_POINTS && this.canLearn(this.previewScheme) || ((this.previewScheme != __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_SCHEME) && this.canLearn(this.previewScheme));
+        return !__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].EARNING_SCHEME_POINTS && this.canLearn(this.previewScheme) || ((this.previewScheme != __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME) && this.canLearn(this.previewScheme));
     };
     //canLearn() is the aggregate. It consults multiple methods to determine learnability.
     SchemingService.prototype.canLearn = function (scheme) {
@@ -2998,15 +2939,15 @@ var SchemingService = /** @class */ (function (_super) {
     //Clicking "Scheme" assigns the previewScheme as the currentScheme
     SchemingService.prototype.startSchemingPreview = function () {
         if (this.canLearn(this.previewScheme)) {
-            __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_SCHEME = this.previewScheme;
-            __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].EARNING_SCHEME_POINTS = true;
+            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME = this.previewScheme;
+            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].EARNING_SCHEME_POINTS = true;
         }
     };
     //Clicking the currentScheme in the header assigns the currentScheme as the previewScheme
     SchemingService.prototype.switchToCurrentSchemePreview = function () {
         if (this._base.earningSchemePoints) {
-            this.selected = __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_SCHEME.tree;
-            this.previewScheme = __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_SCHEME;
+            this.selected = __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.tree;
+            this.previewScheme = __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME;
             this.showPreview = true;
         }
     };
@@ -3040,21 +2981,20 @@ var SchemingService = /** @class */ (function (_super) {
     });
     //All scheme points earned should route through this function.
     SchemingService.prototype.earnSchemePoints = function (num) {
-        __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_SCHEME.exp += num;
-        if (__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_SCHEME.exp >= __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_SCHEME.currentExpTarget) {
-            __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_SCHEME.level++;
-            __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_SCHEME.exp = 0;
-            __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].EARNING_SCHEME_POINTS = false;
+        __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.exp += num;
+        if (__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.exp >= __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.currentExpTarget) {
+            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.level++;
+            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.exp = 0;
+            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].EARNING_SCHEME_POINTS = false;
         }
     };
     SchemingService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_5__services_base_service__["a" /* BaseService */],
-            __WEBPACK_IMPORTED_MODULE_2__core_numbers_service__["a" /* NumbersService */]])
+            __WEBPACK_IMPORTED_MODULE_4__services_base_service__["a" /* BaseService */]])
     ], SchemingService);
     return SchemingService;
-}(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */]));
 
 
 
@@ -3068,9 +3008,8 @@ var SchemingService = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__ = __webpack_require__("../../../../../src/app/services/core/numbers.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -3095,13 +3034,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var TrainingService = /** @class */ (function (_super) {
     __extends(TrainingService, _super);
-    function TrainingService(_player, _numbers, _inventory) {
+    function TrainingService(_player, _inventory) {
         var _this = _super.call(this) || this;
         _this._player = _player;
-        _this._numbers = _numbers;
         _this._inventory = _inventory;
         //Lockouts
         _this.training = false;
@@ -3109,11 +3046,11 @@ var TrainingService = /** @class */ (function (_super) {
         return _this;
     }
     TrainingService.prototype.areAnyUnlocked = function () {
-        return this.isUnlocked(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].TRAINS[0]) || this.isUnlocked(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].TRAINS[1]); //etc.
+        return this.isUnlocked(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].TRAINS[0]) || this.isUnlocked(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].TRAINS[1]); //etc.
     };
     Object.defineProperty(TrainingService.prototype, "guardTrainingUnlocked", {
         get: function () {
-            return this.isUnlocked(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].TRAINS[0]);
+            return this.isUnlocked(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].TRAINS[0]);
         },
         enumerable: true,
         configurable: true
@@ -3146,7 +3083,7 @@ var TrainingService = /** @class */ (function (_super) {
     TrainingService.prototype.trainCountdown = function (train) {
         if (train.id == 0) {
             var rate = 600;
-            rate -= this._numbers.guardDutyTrainRate();
+            rate -= this.guardDutyTrainRate();
             return rate;
         }
     };
@@ -3168,7 +3105,7 @@ var TrainingService = /** @class */ (function (_super) {
         }
     };
     TrainingService.prototype.canTrain = function (train) {
-        if (__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN > 0) {
+        if (__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN > 0) {
             if (train.queued + train.currentStore < this.capacity(train)) {
                 return true;
             }
@@ -3178,11 +3115,11 @@ var TrainingService = /** @class */ (function (_super) {
     //Actions
     TrainingService.prototype.queueTrain = function (train) {
         if (train.id == 0) {
-            if (__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN > 0) {
+            if (__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN > 0) {
                 if (!this.training) {
                     if (train.queued + train.currentStore < this.capacity(train)) {
                         this.training = true;
-                        __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN--;
+                        __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN--;
                         train.queued++;
                         this.training = false;
                     }
@@ -3195,8 +3132,8 @@ var TrainingService = /** @class */ (function (_super) {
             if (!this.collecting) {
                 this.collecting = true;
                 for (var _i = 0; _i < train.currentStore; _i++) {
-                    if (__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_GUARDS < this._inventory.guardCapacity) {
-                        __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_GUARDS++;
+                    if (__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_GUARDS < this._inventory.guardCapacity) {
+                        __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_GUARDS++;
                         train.currentStore--;
                     }
                 }
@@ -3225,11 +3162,10 @@ var TrainingService = /** @class */ (function (_super) {
     TrainingService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_3__core_numbers_service__["a" /* NumbersService */],
             __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]])
     ], TrainingService);
     return TrainingService;
-}(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */]));
 
 
 

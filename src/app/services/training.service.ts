@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { PlayerService } from "./core/player.service";
 import { InventoryService } from "./inventory.service";
-import { NumbersService } from "./core/numbers.service";
 import { Train } from "../models/train";
 import { Base } from "../base";
 import { BaseNum } from "../base-num";
@@ -10,7 +9,6 @@ import { BaseNum } from "../base-num";
 export class TrainingService extends BaseNum {
 
     constructor(public _player: PlayerService,
-        public _numbers: NumbersService,
         public _inventory: InventoryService) {
         super();
     }
@@ -59,7 +57,7 @@ export class TrainingService extends BaseNum {
     trainCountdown(train: Train) {
         if (train.id == 0) { //Guard Training
             var rate = 600;
-            rate -= this._numbers.guardDutyTrainRate();
+            rate -= this.guardDutyTrainRate();
             return rate;
         }
     }
