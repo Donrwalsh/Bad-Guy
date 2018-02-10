@@ -21,6 +21,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {LairModal} from './modal/lair-modal/lair-modal.component';
 import {LairService} from './services/lair.service';
 
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -30,8 +32,7 @@ import {LairService} from './services/lair.service';
     SchemePanelModule,
     ActivityPanelModule,
     BrowserModule,
-    HttpModule,
-    MatTooltipModule
+    HttpModule
   ],
   providers: [
     DataService,

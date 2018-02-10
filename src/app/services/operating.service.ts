@@ -85,6 +85,15 @@ export class OperatingService extends BaseNum {
         return 1200;
     }
 
+    realSuccessRate(henchmen, target, rarity, type) {
+        switch (type) {
+            case "heist": {
+                var base = this.getHeistSuccessRate(rarity);
+            }
+        }
+        return (base / target) * henchmen;
+    }
+
     
     //Template Logic Handlers
     areAnyUnlocked() {

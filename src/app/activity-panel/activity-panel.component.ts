@@ -11,7 +11,7 @@ import { Train } from '../models/train';
 @Component({
     selector: 'activity-panel',
     templateUrl: './activity-panel.component.html',
-    styleUrls: ['./activity-panel.component.scss', '../app.component.scss'],
+    styleUrls: ['./activity-panel.component.scss', '../app.component.scss']
 })
 export class ActivityPanelComponent extends BaseNum {
 
@@ -23,6 +23,18 @@ export class ActivityPanelComponent extends BaseNum {
         public _training: TrainingService) {
         super();
     }
+
+    henchAssign: number = 0;
+
+    get success() {
+        return this._operating.realSuccessRate(this.henchAssign, this._operating.previewOperation.henchmenCost, this._operating.previewOperation.rarity, this._operating.previewOperation.type);
+    }
+
+    onInputChange(event: any) {
+        this.henchAssign = event.value;
+        console.log(this.henchAssign + ", " + this._operating.previewOperation.henchmenCost + ", " + this._operating.previewOperation.rarity + ", " + this._operating.previewOperation.type)
+        console.log(this._operating.realSuccessRate(this.henchAssign, this._operating.previewOperation.henchmenCost, this._operating.previewOperation.rarity, this._operating.previewOperation.type) )
+      }
 
     containerClass(id, type) {
         return {

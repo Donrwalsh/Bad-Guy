@@ -367,6 +367,7 @@ p {
             width: 90%;
             height: 3rem;
             float: left;
+            margin-left: 5%;
             background-color: $routine-background;
 
             .column {
@@ -388,17 +389,17 @@ p {
 
         .operation-flyout {
             text-align: center;
-            float: right;
-            margin-right: 5%;
+            float: left;
+            margin-left: 5%;
             width: 90%;
-            border-radius: 0 0 3rem 3rem;
+            border-radius: 1rem 1rem 0 0;
             cursor: default;
             user-select: none;
             background-color: $routine-background;
 
             .inner-content { 
                 position: relative;
-                min-height: 9rem;
+                min-height: 13rem;
                 margin: 0 0 1rem 0;
 
                 .operation-result {
@@ -414,6 +415,8 @@ p {
 
                 .operation-name {
                     margin: .1rem;
+                    margin-top: .5rem;
+                    min-height: 2rem;
                     margin-bottom: .5rem;
                     font-size: 1rem;
                     display: block;
@@ -450,8 +453,8 @@ p {
                 }
 
                 .operate-button {
-                    width: 40%;
-                    margin-top: .5rem; 
+                    width: 90%;
+                    padding: .2rem;
                     border-radius: .5rem; 
                     border: 1px solid; 
                     display:inline-block;
@@ -467,6 +470,8 @@ p {
                     margin-right: 6%;
                     cursor: pointer;
                 }
+
+                
             }
 
 

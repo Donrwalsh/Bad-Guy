@@ -251,7 +251,7 @@ export class AppComponent extends BaseNum implements OnInit {
           for (var i = 0; i < res.length; i++) {
             let newScheme = new Scheme(
               res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree,
-              0, 0, this.schemeLairReq[i], this.schemeExp[i]
+              0, 1, this.schemeLairReq[i], this.schemeExp[i]
             );
             SchemeData.push(newScheme);
           }
