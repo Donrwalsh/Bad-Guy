@@ -36,12 +36,13 @@ export class PrimaryLoopService extends BaseNum {
     //Used for one-off console logs - logging within the loop can be tedious.
     didOnce = false;
     doOnce() {
-       
+       console.log(this._operating.operations)
         
     }
 
     //Events that occur every tick
     tick() {
+        //console.log(this._operating.operationResult);
         
 
         if (!this.didOnce) {

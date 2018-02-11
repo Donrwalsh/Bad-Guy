@@ -5,9 +5,9 @@
       <i class="fa fa-home" aria-hidden="true"></i>
       <p class="resource-readout">{{_lair.lairName}}</p>
     </div>
-    <div class="resource-tab cash" *ngIf="_player.cash > 0">
+    <div class="resource-tab cash" *ngIf="_base.cash > 0">
       <i class="fa fa-money" aria-hidden="true"></i>
-      <p class="resource-readout">{{_player.cash}}</p>
+      <p class="resource-readout">{{_base.cash}}</p>
     </div>
     <div class="resource-tab henchmen" *ngIf="_recruiting.areAnyUnlocked()">
       <i class="fa fa-user" aria-hidden="true"></i>

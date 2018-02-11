@@ -19,6 +19,9 @@ export class Base {
     static LAIR_LEVEL: number;
     static CURRENT_LAIR_HP: number;
 
+    //Currency
+    static CASH: number;
+
     
     
     

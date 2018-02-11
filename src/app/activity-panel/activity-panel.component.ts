@@ -7,9 +7,20 @@ import { OperatingService } from '../services/operating.service';
 import { BaseNum } from '../base-num';
 import { BaseService } from '../services/base.service';
 import { Train } from '../models/train';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
     selector: 'activity-panel',
+    animations: [
+        trigger(
+            'enterAnimation', [
+                transition(':enter', [
+                    style({ opacity: 0 }),
+                    animate('2000ms', style({ opacity: 1 }))
+                ])
+            ]
+        )
+    ],
     templateUrl: './activity-panel.component.html',
     styleUrls: ['./activity-panel.component.scss', '../app.component.scss']
 })
@@ -33,8 +44,8 @@ export class ActivityPanelComponent extends BaseNum {
     onInputChange(event: any) {
         this.henchAssign = event.value;
         console.log(this.henchAssign + ", " + this._operating.previewOperation.henchmenCost + ", " + this._operating.previewOperation.rarity + ", " + this._operating.previewOperation.type)
-        console.log(this._operating.realSuccessRate(this.henchAssign, this._operating.previewOperation.henchmenCost, this._operating.previewOperation.rarity, this._operating.previewOperation.type) )
-      }
+        console.log(this._operating.realSuccessRate(this.henchAssign, this._operating.previewOperation.henchmenCost, this._operating.previewOperation.rarity, this._operating.previewOperation.type))
+    }
 
     containerClass(id, type) {
         return {
@@ -127,8 +138,8 @@ export class ActivityPanelComponent extends BaseNum {
 
     operateButtonInPreviewStyle() {
         return {
-            'color': !this._operating.canPreviewBeOperated ? 'red' : this._operating.getFaColorByRarity(this._operating.previewOperation['rarity']),
-            'cursor': !this._operating.canPreviewBeOperated ? 'initial' : 'pointer'
+            'color': this.henchAssign == 0 ? 'red' : this._operating.getFaColorByRarity(this._operating.previewOperation['rarity']),
+            'cursor': this.henchAssign > 0 ? 'initial' : 'pointer'
         }
     }
 
@@ -154,7 +165,7 @@ export class ActivityPanelComponent extends BaseNum {
         }
         if (operation.type === "heist") {
             return { 'fa-usd': true }
-        } else if (operation.type === "shady-business-deals") {
+        } else if (operation.type === "shady-business-deal") {
             return { 'fa-suitcase': true }
         }
 

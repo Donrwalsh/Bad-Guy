@@ -143,6 +143,7 @@ export class BaseNum extends Base {
 
     heistRarityChancesArray() {
         var matrix = [
+            [1, 1, 1, 1, 1], //dummy, 1st level is below:
             [1, 1, 1, 1, 1],
             [.95, 1, 1, 1, 1],
             [.89, 1, 1, 1, 1],
@@ -156,6 +157,18 @@ export class BaseNum extends Base {
     shadyBusinessDealUnlocked(id) {
         if (id === 5) return Base.SCHEMES[7].level > 0;
         if (id === 6) return Base.SCHEMES[7].level > 3;
+    }
+
+    shadyBusinessDealRarityChancesArray() {
+        var matrix = [
+            [1, 1, 1, 1, 1], //dummy, 1st level is below:
+            [1, 1, 1, 1, 1],
+            [.95, 1, 1, 1, 1],
+            [.89, 1, 1, 1, 1],
+            [.82, 1, 1, 1, 1],
+            [.74, .96, 1, 1, 1]
+        ]
+        return matrix[Base.SCHEMES[6].level]
     }
 
     //08: Communications
@@ -188,16 +201,7 @@ export class BaseNum extends Base {
 
 
 
-    shadyBusinessDealRarityChancesArray() {
-        if (Base.SCHEMES[7]['level'] == 1) {
-            return [1, 1.1, 1.1, 1.1, 1.1]
-        }
-        else if (Base.SCHEMES[7]['level'] >= 1 && Base.SCHEMES[7]['level'] <= 2) {
-            return [.9, 1, 1.1, 1.1, 1.1]
-        } else if (Base.SCHEMES[7]['level'] >= 3 && Base.SCHEMES[7]['level'] <= 5) {
-            return [.8, .95, 1, 1.1, 1.1]
-        }
-    }
+    
 
 
 

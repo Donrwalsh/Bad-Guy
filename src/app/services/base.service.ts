@@ -40,6 +40,10 @@ export class BaseService extends BaseNum {
         return Base.CURRENT_GUARDS;
     }
 
+    get cash() {
+        return Base.CASH;
+    }
+
     //BaseNum
     get recruits() {
         return BaseNum.RECRUITS;

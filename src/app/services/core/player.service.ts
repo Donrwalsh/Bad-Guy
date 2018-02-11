@@ -21,8 +21,6 @@ export class PlayerService {
         {name: '', rarity: -1, henchmen : -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0} 
     ]
 
-    cash = 0;
-
     notoriety : number = 0;
     
 }
