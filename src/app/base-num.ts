@@ -94,7 +94,7 @@ export class BaseNum extends Base {
     hiredHelpRecruitRate() {
         var reduce = 0;
         for (var _i = 0; _i < Base.SCHEMES[3].level; _i++) {
-            if (_i == 2) { reduce += 30 }
+            if (_i == 2) { reduce += 90 }
         }
         return reduce;
     }
@@ -138,37 +138,73 @@ export class BaseNum extends Base {
     //06: Heists
     heistUnlocked(id) {
         if (id === 0) return Base.SCHEMES[6].level > 0;
-        if (id === 1) return Base.SCHEMES[6].level > 3;
+        if (id === 1) return Base.SCHEMES[6].level >= 3;
+    }
+
+    heistCountdown() {
+        var countdown = 600
+        if (Base.SCHEMES[6].level >= 1) {
+            countdown -= 150;
+        }
+        return countdown;
+    }
+
+    heistCost(rarity) {
+        var base = [0, 10, 100, 1000, 10000];
+        var maxArray = [5, 50, 500, 5000, 500000];
+        if (rarity === 0 && Base.SCHEMES[6].level >= 2) {
+            var max = maxArray[rarity]*2;
+        } else {
+            var max = maxArray[rarity]
+        }
+        return base[rarity] + Math.ceil(Math.random() * max)
     }
 
     heistRarityChancesArray() {
         var matrix = [
-            [1, 1, 1, 1, 1], //dummy, 1st level is below:
-            [1, 1, 1, 1, 1],
-            [.95, 1, 1, 1, 1],
-            [.89, 1, 1, 1, 1],
-            [.82, 1, 1, 1, 1],
-            [.74, .96, 1, 1, 1]
+            [1, 1, 1, 1, 1], //1
+            [1, 1, 1, 1, 1], //2
+            [1, 1, 1, 1, 1], //3
+            [1, 1, 1, 1, 1], //4 
+            [.9, 1, 1, 1, 1], //5 - occasionally plot advanced (10%)
         ]
-        return matrix[Base.SCHEMES[6].level]
+        return matrix[Base.SCHEMES[6].level-1]
     }
 
     //07: Shady Business Deals
-    shadyBusinessDealUnlocked(id) {
+    shadyBusinessDealsUnlocked(id) {
         if (id === 5) return Base.SCHEMES[7].level > 0;
         if (id === 6) return Base.SCHEMES[7].level > 3;
     }
 
     shadyBusinessDealRarityChancesArray() {
         var matrix = [
-            [1, 1, 1, 1, 1], //dummy, 1st level is below:
-            [1, 1, 1, 1, 1],
-            [.95, 1, 1, 1, 1],
-            [.89, 1, 1, 1, 1],
-            [.82, 1, 1, 1, 1],
-            [.74, .96, 1, 1, 1]
+            [1, 1, 1, 1, 1], //1
+            [1, 1, 1, 1, 1], //2
+            [1, 1, 1, 1, 1], //3
+            [1, 1, 1, 1, 1], //4 
+            [.9, 1, 1, 1, 1], //5 - occasionally plot advanced (10%)
         ]
-        return matrix[Base.SCHEMES[6].level]
+        return matrix[Base.SCHEMES[7].level-1]
+    }
+
+    shadyBusinessDealCost(rarity) {
+        var base = [0, 10, 100, 1000, 10000];
+        var maxArray = [5, 50, 500, 5000, 500000];
+        if (rarity === 0 && Base.SCHEMES[7].level >= 2) {
+            var max = maxArray[rarity]*2;
+        } else {
+            var max = maxArray[rarity]
+        }
+        return (base[rarity] + Math.ceil(Math.random() * max))*10;
+    }
+
+    shadyBusinessDealCountdown() {
+        var countdown = 1200
+        if (Base.SCHEMES[7].level >= 1) {
+            countdown -= 300;
+        }
+        return countdown;
     }
 
     //08: Communications
@@ -191,13 +227,7 @@ export class BaseNum extends Base {
 
 
 
-    heistRechargeRate() {
-        var reduce = 0;
-        for (var _i = 0; _i < Base.SCHEMES[6]['level']; _i++) {
-            if (_i == 2) { reduce += 150 }
-        }
-        return reduce;
-    }
+
 
 
 

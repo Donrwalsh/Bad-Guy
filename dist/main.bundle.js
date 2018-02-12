@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/activity-panel/activity-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activity-panel\" *ngIf=\"!_base.initialLoadRecruits\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let train of _base.trains; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlocked(train)\"></div>\n            <div class=\"add-block\" *ngIf=\"_training.isUnlocked(train)\">\n                <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.queueTrain(train)\" [ngStyle]=\"addToQueueIconStyle(train)\"></i>\n            </div>\n            <div *ngIf=\"_training.isUnlocked(train)\" class=\"progress-with-add\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectTrain(train)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{train.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let recruit of _base.recruits; index as i\">\n            <div *ngIf=\"_recruiting.isUnlocked(recruit)\" class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlocked(recruit)\" class=\"progress-no-add\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectRecruit(recruit)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{recruit.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_operating.areAnyUnlocked()\">Operations (recharge)</p>\n        <div *ngFor=\"let operation of _base.operations\">\n                <div *ngIf=\"_operating.isUnlocked(operation) && !operation.available\" class=\"left-padding\"></div>\n                <div *ngIf=\"_operating.isUnlocked(operation) && !operation.available\" class=\"progress-no-add\">\n                        <div style=\"border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;\">\n                                <div style=\"background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;\" [ngStyle]=\"{'width': this._operating.percentage(operation) + '%' }\"></div>\n                                <p style=\"color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;\">\n                                    <i class=\"generation-icon fa faa-slow faa-flash animated fa-usd\" aria-hidden=\"true\" style=\"margin-left:.5rem;margin-right:.5rem\"></i>\n                                    Slot {{operation.id+1}} Recharging\n                                </p>\n                            </div>\n                </div>\n            </div>\n\n\n\n    </div>\n\n    <div class=\"operations-column\" *ngIf=\"_operating.areAnyUnlocked()\">\n\n        <div *ngIf=\"!_operating.showPreview\" style=\"width:100%;min-height:14.5rem;font-family:FontAwesome;\"></div>\n        <div *ngIf=\"_operating.showPreview\" class=\"operation-flyout\">\n            <div class=\"inner-content\" [ngStyle]=\"{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}\">\n                <p class=\"operation-name\">\n                    <i class=\"operation-icon fa\" [ngClass]=\"previewOperationFa()\" aria-hidden=\"true\"></i>\n                    {{_operating.showAnOperationName(_operating.previewOperation)}}\n                </p>\n                <div *ngIf=\"_operating.operationResult\" class=\"operation-result\" [@enterAnimation]>\n                    <p class=\"report-line\">has {{_operating.operateReadout['result'] == \"success!\" ? 'succeeded!' : 'failed.'}}</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['lost'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['lost']}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i> lost</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['lost'] == 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">No\n                                <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i> lost</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['earned'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['earned']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> earned</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['earned'] == 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">No\n                                <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> earned</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['notoriety'] > 0\" style=\"margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> earned</p>\n                    <p (click)=\"_operating.closeCompleteOperation()\" style=\"cursor: pointer;width:75%;margin:0 auto; margin-top: 1.5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>\n                </div>\n\n                <div [ngClass]=\"{'fade-out': _operating.operatingNow}\">\n                    <div class=\"split\" style=\"margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Requires:</strong>\n                        </p>\n                        <i *ngFor=\"let fa of _operating.showOperationCost(_operating.previewOperation)\" class=\"flyout-icon fa fa-{{fa}}\" style=\"margin-right:.25rem;\" aria-hidden=\"true\"></i>\n                    </div>\n                    <div class=\"split\" style=\"margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Risk:</strong>\n                        </p>\n                        <p>{{_operating.displayRisk(_operating.previewOperation)}}%</p>\n                    </div>\n                    <div class=\"split\" style=\"margin: 0;text-align:center;line-height:1.25rem;\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Rewards:</strong>\n                        </p>\n                        <p>\n                            d2\n                            <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> /\n                            <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n\n                        </p>\n                    </div>\n                    <div class=\"split\" style=\"margin: 0;text-align:center;line-height:1.25rem;\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Success:</strong>\n                        </p>\n\n                        <p *ngIf=\"success === 0\" style=\"color:#FF0000\">Impossible</p>\n                        <p *ngIf=\"success < .2 && success > 0\" style=\"color:#FF1500\">Remote</p>\n                        <p *ngIf=\"success < .4 && success > .2\" style=\"color:#FF2A00\">Unlikely</p>\n                        <p *ngIf=\"success < .6 && success > .4\" style=\"color:#FF3F00\">Conceivable</p>\n                        <p *ngIf=\"success < .8 && success > .6\" style=\"color:#FF5400\">Reasonable</p>\n                        <p *ngIf=\"success < 1 && success > .8\" style=\"color:#FF6900\">Likely</p>\n                        <p *ngIf=\"success === 1\" style=\"color:#FF7F00\">Guaranteed</p>\n\n                    </div>\n                    <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n                    <mat-slider (input)=\"onInputChange($event)\" min=\"0\" step=\"1\" [max]=\"_operating.previewOperation.henchmenCost < _base.currentHenchmen ? _operating.previewOperation.henchmenCost : _base.currentHenchmen\" [value]=\"henchAssign\" style=\"width:85%;background-color:#e6e6e6;\"></mat-slider>\n\n                    <p class=\"operate-button\" [ngStyle]=\"{ 'cursor': _operating.operatingNow ? 'initial' : 'pointer'}\" *ngIf=\"henchAssign > 0\" (click)=\"_operating.operate(henchAssign, _operating.previewOperation)\">Commit {{henchAssign}}\n                        <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i> to Operate </p>\n                </div>\n            </div>\n        </div>\n\n\n\n        <div class=\"routine-row\" *ngIf=\"_operating.areHeistsUnlocked()\">\n            <div class=\"column\" *ngFor=\"let heist of _base.operations | slice: 0:5;\" (click)=\"_operating.operationPreview(heist); henchAssign = 0;\"\n                [ngStyle]=\"{'cursor': heist.available && _operating.isUnlocked(heist) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(heist)\" [ngStyle]=\"{'color': _operating.nodeColor(heist)}\"></i>\n            </div>\n        </div>\n\n        <div class=\"routine-row\" *ngIf=\"_operating.areShadyBusinessDealsUnlocked()\">\n            <div class=\"column\" *ngFor=\"let deal of _base.operations | slice: 5:10;\" (click)=\"_operating.operationPreview(deal); henchAssign = 0;\"\n                [ngStyle]=\"{'cursor': deal.available && _operating.isUnlocked(deal) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(deal)\" [ngStyle]=\"{'color': _operating.nodeColor(deal)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_operating.areShadyBusinessDealsUnlocked()\"></div>\n\n\n\n        \n\n\n    </div>\n\n</div>"
+module.exports = "<div class=\"activity-panel\" *ngIf=\"!_base.initialLoadRecruits\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let train of _base.trains; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlocked(train)\"></div>\n            <div class=\"add-block\" *ngIf=\"_training.isUnlocked(train)\">\n                <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.queueTrain(train)\" [ngStyle]=\"addToQueueIconStyle(train)\"></i>\n            </div>\n            <div *ngIf=\"_training.isUnlocked(train)\" class=\"progress-with-add\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectTrain(train)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{train.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let recruit of _base.recruits; index as i\">\n            <div *ngIf=\"_recruiting.isUnlocked(recruit)\" class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlocked(recruit)\" class=\"progress-no-add\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectRecruit(recruit)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{recruit.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_operating.areAnyUnlocked()\">Plotting</p>\n        <div *ngFor=\"let operation of _base.operations\">\n                <div *ngIf=\"_operating.isUnlocked(operation) && !operation.available\" class=\"left-padding\"></div>\n                <div *ngIf=\"_operating.isUnlocked(operation) && !operation.available\" class=\"progress-no-add\">\n                        <div style=\"border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;\">\n                                <div style=\"background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;\" [ngStyle]=\"{'width': this._operating.percentage(operation) + '%' }\"></div>\n                                <p style=\"color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;\">\n                                    <i class=\"generation-icon fa faa-slow faa-flash animated fa-{{operation.fa}}\" aria-hidden=\"true\" style=\"margin-left:.5rem;margin-right:.5rem\"></i>\n                                    Slot {{operation.id+1}} \n                                </p>\n                            </div>\n                </div>\n            </div>\n\n\n\n    </div>\n\n    <div class=\"operations-column\" *ngIf=\"_operating.areAnyUnlocked()\">\n\n        <div *ngIf=\"!_operating.showPreview\" style=\"width:100%;min-height:14.5rem;font-family:FontAwesome;\"></div>\n        <div *ngIf=\"_operating.showPreview\" class=\"operation-flyout\">\n            <div class=\"inner-content\" [ngStyle]=\"{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}\">\n                <p class=\"operation-name\">\n                    <i class=\"operation-icon fa\" [ngClass]=\"previewOperationFa()\" aria-hidden=\"true\"></i>\n                    {{_operating.showAnOperationName(_operating.previewOperation)}}\n                </p>\n                <div *ngIf=\"_operating.operationResult\" class=\"operation-result\" [@enterAnimation]>\n                    <p class=\"report-line\">has {{_operating.operateReadout['result'] == \"success!\" ? 'succeeded!' : 'failed.'}}</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['lost'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['lost']}}\n                        <i class=\"flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}\" aria-hidden=\"true\"></i> lost</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['lost'] == 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">No\n                                <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i> lost</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['earned'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['earned']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> {{ _operating.previewOperation.type == \"heist\" ? \"earned\" : \"/min earned\" }}</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['earned'] == 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">No\n                                <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> earned</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['notoriety'] > 0\" style=\"margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> earned</p>\n                    <p (click)=\"_operating.closeCompleteOperation()\" style=\"cursor: pointer;width:75%;margin:0 auto; margin-top: 1.5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>\n                </div>\n\n                <div [ngClass]=\"{'fade-out': _operating.operatingNow}\">\n                    <div class=\"split\" style=\"margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;\" matTooltip=\"All operations require resources\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Requires:</strong>\n                        </p>\n                        <i *ngFor=\"let fa of _operating.showOperationCost(_operating.previewOperation)\" class=\"flyout-icon fa fa-{{fa}}\" style=\"margin-right:.25rem;\" aria-hidden=\"true\"></i>\n                    </div>\n                    <div class=\"split\" style=\"margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;\" matTooltip=\"Resources are at risk even when operations succeed\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Risk:</strong>\n                        </p>\n                        <p>{{_operating.showRisk(_operating.previewOperation)}}%</p>\n                    </div>\n                    <div *ngIf=\"_operating.previewOperation.type === 'heist'\" class=\"split\" style=\"margin: 0;text-align:center;line-height:1.25rem;\" matTooltip=\"You receive nothing if an operation fails\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Rewards:</strong>\n                        </p>\n                        <p>\n                            d2\n                            <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> /\n                            <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n\n                        </p>\n                    </div>\n                    <div *ngIf=\"_operating.previewOperation.type === 'shady-business-deal'\" class=\"split\" style=\"margin: 0;text-align:center;line-height:1.25rem;\" matTooltip=\"You receive nothing if an operation fails\">\n                            <p style=\"font-size:.75rem;\">\n                                <strong>Rewards:</strong>\n                            </p>\n                            <p>\n                                {{_operating.previewOperation.cost01/10}}\n                                <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> /\n                                min\n    \n                            </p>\n                        </div>\n                    <div class=\"split\" style=\"margin: 0;text-align:center;line-height:1.25rem;\" matTooltip=\"More resources mean higher chance of success\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Success:</strong>\n                        </p>\n\n                        <p *ngIf=\"success === 0\" style=\"color:#FF0000\">Impossible</p>\n                        <p *ngIf=\"success < .2 && success > 0\" style=\"color:#FF1500\">Remote</p>\n                        <p *ngIf=\"success < .4 && success > .2\" style=\"color:#FF2A00\">Unlikely</p>\n                        <p *ngIf=\"success < .6 && success > .4\" style=\"color:#FF3F00\">Conceivable</p>\n                        <p *ngIf=\"success < .8 && success > .6\" style=\"color:#FF5400\">Reasonable</p>\n                        <p *ngIf=\"success < 1 && success > .8\" style=\"color:#FF6900\">Likely</p>\n                        <p *ngIf=\"success === 1\" style=\"color:#FF7F00\">Guaranteed</p>\n\n                    </div>\n                    <i class=\"flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}\" aria-hidden=\"true\"></i>\n                    <mat-slider *ngIf=\"_operating.previewOperation.type === 'heist'\" (input)=\"onInputChange($event)\" min=\"0\" step=\"1\" [max]=\"_operating.previewOperation.cost01 < _base.currentHenchmen ? _operating.previewOperation.cost01 : _base.currentHenchmen\" [value]=\"operateAssign\" style=\"width:85%;background-color:#e6e6e6;\"></mat-slider>\n                    <mat-slider *ngIf=\"_operating.previewOperation.type === 'shady-business-deal'\" (input)=\"onInputChange($event)\" min=\"0\" step=\"1\" [max]=\"_operating.previewOperation.cost01 < _base.cash ? _operating.previewOperation.cost01 : _base.cash\" [value]=\"operateAssign\" style=\"width:85%;background-color:#e6e6e6;\"></mat-slider>\n                    <p class=\"operate-button\" [ngStyle]=\"{ 'cursor': _operating.operatingNow ? 'initial' : 'pointer'}\" *ngIf=\"operateAssign > 0\" (click)=\"_operating.operate(operateAssign, _operating.previewOperation)\">Commit {{operateAssign}}\n                        <i class=\"flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}\" aria-hidden=\"true\"></i> to Operate </p>\n                </div>\n            </div>\n        </div>\n\n\n\n        <div class=\"routine-row\" *ngIf=\"_operating.areHeistsUnlocked()\">\n            <div class=\"column\" *ngFor=\"let heist of _base.operations | slice: 0:5;\" (click)=\"_operating.operationPreview(heist); operateAssign = 0;\"\n                [ngStyle]=\"{'cursor': heist.available && _operating.isUnlocked(heist) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(heist)\" [ngStyle]=\"{'color': _operating.nodeColor(heist)}\"></i>\n            </div>\n        </div>\n\n        <div class=\"routine-row\" *ngIf=\"_operating.areShadyBusinessDealsUnlocked()\">\n            <div class=\"column\" *ngFor=\"let deal of _base.operations | slice: 5:10;\" (click)=\"_operating.operationPreview(deal); operateAssign = 0;\"\n                [ngStyle]=\"{'cursor': deal.available && _operating.isUnlocked(deal) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(deal)\" [ngStyle]=\"{'color': _operating.nodeColor(deal)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_operating.areShadyBusinessDealsUnlocked()\"></div>\n\n\n\n        \n\n\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -94,20 +94,20 @@ var ActivityPanelComponent = /** @class */ (function (_super) {
         _this._inventory = _inventory;
         _this._operating = _operating;
         _this._training = _training;
-        _this.henchAssign = 0;
+        _this.operateAssign = 0;
         return _this;
     }
     Object.defineProperty(ActivityPanelComponent.prototype, "success", {
         get: function () {
-            return this._operating.realSuccessRate(this.henchAssign, this._operating.previewOperation.henchmenCost, this._operating.previewOperation.rarity, this._operating.previewOperation.type);
+            return this._operating.realSuccessRate(this.operateAssign, this._operating.previewOperation.cost01, this._operating.previewOperation.rarity, this._operating.previewOperation.type);
         },
         enumerable: true,
         configurable: true
     });
     ActivityPanelComponent.prototype.onInputChange = function (event) {
-        this.henchAssign = event.value;
-        console.log(this.henchAssign + ", " + this._operating.previewOperation.henchmenCost + ", " + this._operating.previewOperation.rarity + ", " + this._operating.previewOperation.type);
-        console.log(this._operating.realSuccessRate(this.henchAssign, this._operating.previewOperation.henchmenCost, this._operating.previewOperation.rarity, this._operating.previewOperation.type));
+        this.operateAssign = event.value;
+        console.log(this.operateAssign + ", " + this._operating.previewOperation.cost01 + ", " + this._operating.previewOperation.rarity + ", " + this._operating.previewOperation.type);
+        console.log(this._operating.realSuccessRate(this.operateAssign, this._operating.previewOperation.cost01, this._operating.previewOperation.rarity, this._operating.previewOperation.type));
     };
     ActivityPanelComponent.prototype.containerClass = function (id, type) {
         return {
@@ -192,8 +192,8 @@ var ActivityPanelComponent = /** @class */ (function (_super) {
     };
     ActivityPanelComponent.prototype.operateButtonInPreviewStyle = function () {
         return {
-            'color': this.henchAssign == 0 ? 'red' : this._operating.getFaColorByRarity(this._operating.previewOperation['rarity']),
-            'cursor': this.henchAssign > 0 ? 'initial' : 'pointer'
+            'color': this.operateAssign == 0 ? 'red' : this._operating.getFaColorByRarity(this._operating.previewOperation['rarity']),
+            'cursor': this.operateAssign > 0 ? 'initial' : 'pointer'
         };
     };
     ActivityPanelComponent.prototype.operationIconClass = function (operation) {
@@ -269,12 +269,14 @@ var ActivityPanelComponent = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm5/animations.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material_slider__ = __webpack_require__("../../../material/esm5/slider.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material_tooltip__ = __webpack_require__("../../../material/esm5/tooltip.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -295,10 +297,11 @@ var ActivityPanelModule = /** @class */ (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_material_slider__["a" /* MatSliderModule */]
+                __WEBPACK_IMPORTED_MODULE_4__angular_material_slider__["a" /* MatSliderModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material_tooltip__["a" /* MatTooltipModule */]
             ],
             schemas: [__WEBPACK_IMPORTED_MODULE_0__angular_core__["i" /* CUSTOM_ELEMENTS_SCHEMA */]],
-            providers: [__WEBPACK_IMPORTED_MODULE_4__angular_material_slider__["a" /* MatSliderModule */]]
+            providers: [__WEBPACK_IMPORTED_MODULE_4__angular_material_slider__["a" /* MatSliderModule */], __WEBPACK_IMPORTED_MODULE_5__angular_material_tooltip__["a" /* MatTooltipModule */]]
         })
     ], ActivityPanelModule);
     return ActivityPanelModule;
@@ -323,7 +326,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* Henchmen Colors */\n/*Scheme Tree Colors */\n/* SVG Image Backgrounds */\np {\n  margin: 0 auto; }\n.header {\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E\");\n  height: 4rem; }\n.header .notoriety-container {\n    overflow: hidden;\n    margin-left: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-right: .75px solid; }\n.header .notoriety-container .notoriety-gauge {\n      background-color: #00ff9d;\n      z-index: 2;\n      width: 6rem;\n      position: relative;\n      height: 3rem;\n      margin: 0 auto;\n      margin-top: 1rem;\n      border-radius: 250px 250px 0px 0px;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n.header .notoriety-container .notoriety-gauge .fa {\n        margin-top: .5rem; }\n.header .notoriety-container .notoriety-meter {\n      background-color: #00804f;\n      z-index: 1;\n      position: relative;\n      width: 8rem;\n      height: 4rem;\n      margin: 0 auto;\n      border-radius: 0px 0px 250px 250px;\n      -webkit-transform-origin: center top;\n              transform-origin: center top;\n      -webkit-transition: all 1s ease-in-out;\n      transition: all 1s ease-in-out; }\n.header .main-title {\n    text-align: center;\n    position: absolute;\n    top: .5rem;\n    right: 40%;\n    left: 40%;\n    width: 20%;\n    margin: 0;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    font-size: 2rem; }\n.header .scheme-container {\n    position: absolute;\n    top: 0px;\n    right: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-left: .75px solid; }\n.header .scheme-container .scheme-title {\n      font-size: .8rem;\n      margin-bottom: .2rem;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n.header .scheme-container .scheme-bar-container {\n      margin-top: .25rem;\n      text-align: center;\n      display: inline-block;\n      width: 90%;\n      position: relative;\n      height: 2rem;\n      border-radius: 0 .5rem .5rem 0; }\n.header .scheme-container .scheme-bar-container .scheme-progress-bar {\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        height: 1.9rem;\n        border-radius: 0 .5rem .5rem 0; }\n.header .scheme-container .scheme-bar-container .scheming {\n        background-color: #40ff00; }\n.header .scheme-container .scheme-bar-container .henchmen {\n        background-color: #6699ff; }\n.header .scheme-container .scheme-bar-container .operations {\n        background-color: #ffb366; }\n.header .scheme-container .scheme-bar-container .lairs {\n        background-color: #bf00ff; }\n.header .scheme-container .scheme-bar-container .scheme-icon {\n        font-size: 1.9rem;\n        padding-top: 1px;\n        z-index: 100;\n        position: relative; }\n.header .scheme-container .scheming {\n      border: 1px solid #40ff00; }\n.header .scheme-container .henchmen {\n      border: 1px solid #6699ff; }\n.header .scheme-container .operations {\n      border: 1px solid #ffb366; }\n.header .scheme-container .lairs {\n      border: 1px solid #bf00ff; }\n.main-section {\n  background-color: #ffffff;\n  background-image: url(\"data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M82.42 180h-1.415L0 98.995v-2.827L6.167 90 0 83.833V81.004L81.005 0h2.827L90 6.167 96.167 0H98.996L180 81.005v2.827L173.833 90 180 96.167V98.996L98.995 180h-2.827L90 173.833 83.833 180H82.42zm0-1.414L1.413 97.58 8.994 90l-7.58-7.58L82.42 1.413 90 8.994l7.58-7.58 81.006 81.005-7.58 7.58 7.58 7.58-81.005 81.006-7.58-7.58-7.58 7.58zM175.196 0h-25.832c1.033 2.924 2.616 5.59 4.625 7.868C152.145 9.682 151 12.208 151 15c0 5.523 4.477 10 10 10 1.657 0 3 1.343 3 3v4h16V0h-4.803c.51.883.803 1.907.803 3 0 3.314-2.686 6-6 6s-6-2.686-6-6c0-1.093.292-2.117.803-3h10.394-13.685C161.18.938 161 1.948 161 3v4c-4.418 0-8 3.582-8 8s3.582 8 8 8c2.76 0 5 2.24 5 5v2h4v-4h2v4h4v-4h2v4h2V0h-4.803zm-15.783 0c-.27.954-.414 1.96-.414 3v2.2c-1.25.254-2.414.74-3.447 1.412-1.716-1.93-3.098-4.164-4.054-6.612h7.914zM180 17h-3l2.143-10H180v10zm-30.635 163c-.884-2.502-1.365-5.195-1.365-8 0-13.255 10.748-24 23.99-24H180v32h-30.635zm12.147 0c.5-1.416 1.345-2.67 2.434-3.66l-1.345-1.48c-1.498 1.364-2.62 3.136-3.186 5.14H151.5c-.97-2.48-1.5-5.177-1.5-8 0-12.15 9.84-22 22-22h8v30h-18.488zm13.685 0c-1.037-1.793-2.976-3-5.197-3-2.22 0-4.16 1.207-5.197 3h10.394zM0 148h8.01C21.26 148 32 158.742 32 172c0 2.805-.48 5.498-1.366 8H0v-32zm0 2h8c12.15 0 22 9.847 22 22 0 2.822-.53 5.52-1.5 8h-7.914c-.567-2.004-1.688-3.776-3.187-5.14l-1.346 1.48c1.09.99 1.933 2.244 2.434 3.66H0v-30zm15.197 30c-1.037-1.793-2.976-3-5.197-3-2.22 0-4.16 1.207-5.197 3h10.394zM0 32h16v-4c0-1.657 1.343-3 3-3 5.523 0 10-4.477 10-10 0-2.794-1.145-5.32-2.992-7.134C28.018 5.586 29.6 2.924 30.634 0H0v32zm0-2h2v-4h2v4h4v-4h2v4h4v-2c0-2.76 2.24-5 5-5 4.418 0 8-3.582 8-8s-3.582-8-8-8V3c0-1.052-.18-2.062-.512-3H0v30zM28.5 0c-.954 2.448-2.335 4.683-4.05 6.613-1.035-.672-2.2-1.16-3.45-1.413V3c0-1.04-.144-2.046-.414-3H28.5zM0 17h3L.857 7H0v10zM15.197 0c.51.883.803 1.907.803 3 0 3.314-2.686 6-6 6S4 6.314 4 3c0-1.093.292-2.117.803-3h10.394zM109 115c-1.657 0-3 1.343-3 3v4H74v-4c0-1.657-1.343-3-3-3-5.523 0-10-4.477-10-10 0-2.793 1.145-5.318 2.99-7.132C60.262 93.638 58 88.084 58 82c0-13.255 10.748-24 23.99-24h16.02C111.26 58 122 68.742 122 82c0 6.082-2.263 11.636-5.992 15.866C117.855 99.68 119 102.206 119 105c0 5.523-4.477 10-10 10zm0-2c-2.76 0-5 2.24-5 5v2h-4v-4h-2v4h-4v-4h-2v4h-4v-4h-2v4h-4v-4h-2v4h-4v-2c0-2.76-2.24-5-5-5-4.418 0-8-3.582-8-8s3.582-8 8-8v-4c0-2.64 1.136-5.013 2.946-6.66L72.6 84.86C70.39 86.874 69 89.775 69 93v2.2c-1.25.254-2.414.74-3.447 1.412C62.098 92.727 60 87.61 60 82c0-12.15 9.84-22 22-22h16c12.15 0 22 9.847 22 22 0 5.61-2.097 10.728-5.55 14.613-1.035-.672-2.2-1.16-3.45-1.413V93c0-3.226-1.39-6.127-3.6-8.14l-1.346 1.48C107.864 87.987 109 90.36 109 93v4c4.418 0 8 3.582 8 8s-3.582 8-8 8zM90.857 97L93 107h-6l2.143-10h1.714zM80 99c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm20 0c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z' fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\");\n  height: 80vh;\n  position: absolute;\n  width: 100%;\n  z-index: 10; }\n.main-section .resources-bar {\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    height: 2rem;\n    border-top: solid .75px; }\n.main-section .resources-bar .resource-tab {\n      margin-left: 0.1rem;\n      display: inline-block;\n      border-radius: 0 0 .5rem .5rem;\n      padding-right: .2rem;\n      padding-bottom: .2rem;\n      padding-left: .2rem;\n      border-top: none; }\n.main-section .resources-bar .resource-tab .resource-readout {\n        display: inline-block; }\n.main-section .resources-bar .lair {\n      margin-left: 0.5rem;\n      border: 1px solid #f2ccff;\n      color: #bf00ff;\n      cursor: pointer; }\n.main-section .resources-bar .cash {\n      border: 1px solid #d6f7d4;\n      color: #30d52a; }\n.main-section .resources-bar .henchmen {\n      border: 1px solid #ccddff;\n      color: #6699ff; }\n.main-section .resources-bar .guard {\n      border: 1px solid #ccccff;\n      color: #000099; }\n.activity-panel {\n  display: inline-block;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n.activity-panel .henchmen-column {\n    width: 50%;\n    display: inline-block; }\n.activity-panel .henchmen-column .title {\n      padding-bottom: .5rem;\n      padding-top: .5rem;\n      text-align: center; }\n.activity-panel .henchmen-column .left-padding {\n      width: 5%;\n      display: inline-block;\n      height: 1.2rem; }\n.activity-panel .henchmen-column .add-block {\n      width: 5%;\n      vertical-align: middle;\n      display: inline-block;\n      height: 1.2rem; }\n.activity-panel .henchmen-column .progress-with-add {\n      width: 75%;\n      display: inline-block; }\n.activity-panel .henchmen-column .progress-with-add .training-container {\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        display: inline-block;\n        position: relative; }\n.activity-panel .henchmen-column .progress-with-add .training-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display {\n          font-size: .8em;\n          width: 100%;\n          position: relative;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          height: 1.2rem; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: .5em; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container {\n        border: 1px solid #ccccff; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container .guard-progress-bar {\n          background-color: #ccccff; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container .guard-training-display {\n          color: #000099; }\n.activity-panel .henchmen-column .progress-no-add {\n      width: 82%;\n      display: inline-block; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container {\n        margin-top: .5rem;\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        position: relative; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2rem; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display {\n          font-size: .8rem;\n          width: 100%;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          position: relative; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container {\n        border: 1px solid #ccddff; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container .help-wanted-progress-bar {\n          background-color: #ccddff; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container .help-wanted-display {\n          color: #003399; }\n.activity-panel .operations-column {\n    width: 50%;\n    float: right; }\n.activity-panel .operations-column .padding-short {\n      width: 5%;\n      height: 2rem;\n      float: left; }\n.activity-panel .operations-column .divider-5 {\n      width: 5%;\n      height: 3rem;\n      float: left; }\n.activity-panel .operations-column .operation-tab {\n      text-align: center;\n      border-radius: 2rem 2rem 0 0;\n      width: 30%;\n      height: 2rem;\n      float: left; }\n.activity-panel .operations-column .routine {\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .campaign {\n      background-color: #cceaff; }\n.activity-panel .operations-column .ascension {\n      background-color: #fffecc; }\n.activity-panel .operations-column .routine-row {\n      width: 90%;\n      height: 3rem;\n      float: left;\n      margin-left: 5%;\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .routine-row .column {\n        text-align: center;\n        border-radius: .5rem;\n        border: 1px solid;\n        margin-left: 3%;\n        margin-top: .5rem;\n        float: left;\n        height: 2rem;\n        width: 15%; }\n.activity-panel .operations-column .routine-row .column .fa {\n          font-size: 1.25rem;\n          margin-top: .375rem; }\n.activity-panel .operations-column .operation-flyout {\n      text-align: center;\n      float: left;\n      margin-left: 5%;\n      width: 90%;\n      border-radius: 1rem 1rem 0 0;\n      cursor: default;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none;\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .operation-flyout .inner-content {\n        position: relative;\n        min-height: 13.5rem;\n        margin: 0 0 .5rem 0; }\n.activity-panel .operations-column .operation-flyout .inner-content .result-hidden {\n          display: none; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result {\n          position: absolute;\n          display: block;\n          width: 100%;\n          height: 9rem;\n          visibility: visible; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result .report-line {\n            margin: .1rem;\n            min-height: 1rem;\n            margin-bottom: .5rem;\n            margin-top: .5rem;\n            font-size: 1rem;\n            display: block;\n            width: 95%; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result .report-line .operation-icon {\n              margin-right: .2rem;\n              position: relative;\n              font-size: 1rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .fade-out {\n          visibility: hidden;\n          opacity: 0;\n          -webkit-transition: visibility 0s 2s, opacity 2s linear;\n          transition: visibility 0s 2s, opacity 2s linear; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-name {\n          margin: .1rem;\n          margin-top: .5rem;\n          min-height: 2rem;\n          margin-bottom: .5rem;\n          font-size: 1rem;\n          display: block;\n          width: 95%; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-name .operation-icon {\n            margin-right: .2rem;\n            position: relative;\n            font-size: 1rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split {\n          float: left;\n          width: 50%; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-left {\n            float: left;\n            margin: 0;\n            font-size: .8rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-right {\n            float: right;\n            margin: 0;\n            font-size: .8rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-right .flyout-icon {\n              position: relative;\n              font-size: .8rem;\n              margin-top: .3rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .operate-button {\n          width: 90%;\n          padding: .2rem;\n          border-radius: .5rem;\n          border: 1px solid;\n          display: inline-block; }\n.activity-panel .operations-column .operation-flyout .inner-content .left {\n          margin-left: 6%;\n          margin-right: 2%; }\n.activity-panel .operations-column .operation-flyout .inner-content .right {\n          margin-left: 2%;\n          margin-right: 6%;\n          cursor: pointer; }\n.scheme-panel {\n  float: right;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n.scheme-panel .spacer {\n    width: 2.5%;\n    height: 50vh;\n    float: left; }\n.scheme-panel .select-bar {\n    width: 5%;\n    height: 15em;\n    padding: 0;\n    margin: 0;\n    float: left;\n    text-align: center; }\n.scheme-panel .select-bar .schemes {\n      background-color: #d9ffcc; }\n.scheme-panel .select-bar .hench {\n      background-color: #ccddff; }\n.scheme-panel .select-bar .operate {\n      background-color: #ffe6cc; }\n.scheme-panel .select-bar .lair {\n      background-color: #f2ccff; }\n.scheme-panel .select-bar .select {\n      cursor: pointer;\n      border-radius: 1rem 0 0 1rem;\n      height: 3rem; }\n.scheme-panel .select-bar .fa {\n      padding-top: 1rem; }\n.scheme-panel .scheme-area {\n    background-color: #d9ffcc;\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 304 304' width='304' height='304'%3E%3Cpath fill='%23e8a50c' fill-opacity='0.4' d='M44.1 224a5 5 0 1 1 0 2H0v-2h44.1zm160 48a5 5 0 1 1 0 2H82v-2h122.1zm57.8-46a5 5 0 1 1 0-2H304v2h-42.1zm0 16a5 5 0 1 1 0-2H304v2h-42.1zm6.2-114a5 5 0 1 1 0 2h-86.2a5 5 0 1 1 0-2h86.2zm-256-48a5 5 0 1 1 0 2H0v-2h12.1zm185.8 34a5 5 0 1 1 0-2h86.2a5 5 0 1 1 0 2h-86.2zM258 12.1a5 5 0 1 1-2 0V0h2v12.1zm-64 208a5 5 0 1 1-2 0v-54.2a5 5 0 1 1 2 0v54.2zm48-198.2V80h62v2h-64V21.9a5 5 0 1 1 2 0zm16 16V64h46v2h-48V37.9a5 5 0 1 1 2 0zm-128 96V208h16v12.1a5 5 0 1 1-2 0V210h-16v-76.1a5 5 0 1 1 2 0zm-5.9-21.9a5 5 0 1 1 0 2H114v48H85.9a5 5 0 1 1 0-2H112v-48h12.1zm-6.2 130a5 5 0 1 1 0-2H176v-74.1a5 5 0 1 1 2 0V242h-60.1zm-16-64a5 5 0 1 1 0-2H114v48h10.1a5 5 0 1 1 0 2H112v-48h-10.1zM66 284.1a5 5 0 1 1-2 0V274H50v30h-2v-32h18v12.1zM236.1 176a5 5 0 1 1 0 2H226v94h48v32h-2v-30h-48v-98h12.1zm25.8-30a5 5 0 1 1 0-2H274v44.1a5 5 0 1 1-2 0V146h-10.1zm-64 96a5 5 0 1 1 0-2H208v-80h16v-14h-42.1a5 5 0 1 1 0-2H226v18h-16v80h-12.1zm86.2-210a5 5 0 1 1 0 2H272V0h2v32h10.1zM98 101.9V146H53.9a5 5 0 1 1 0-2H96v-42.1a5 5 0 1 1 2 0zM53.9 34a5 5 0 1 1 0-2H80V0h2v34H53.9zm60.1 3.9V66H82v64H69.9a5 5 0 1 1 0-2H80V64h32V37.9a5 5 0 1 1 2 0zM101.9 82a5 5 0 1 1 0-2H128V37.9a5 5 0 1 1 2 0V82h-28.1zm16-64a5 5 0 1 1 0-2H146v44.1a5 5 0 1 1-2 0V18h-26.1zm102.2 270a5 5 0 1 1 0 2H98v14h-2v-16h124.1zM242 149.9V160h16v34h-16v62h48v48h-2v-46h-48v-66h16v-30h-16v-12.1a5 5 0 1 1 2 0zM53.9 18a5 5 0 1 1 0-2H64V2H48V0h18v18H53.9zm112 32a5 5 0 1 1 0-2H192V0h50v2h-48v48h-28.1zm-48-48a5 5 0 0 1-9.8-2h2.07a3 3 0 1 0 5.66 0H178v34h-18V21.9a5 5 0 1 1 2 0V32h14V2h-58.1zm0 96a5 5 0 1 1 0-2H137l32-32h39V21.9a5 5 0 1 1 2 0V66h-40.17l-32 32H117.9zm28.1 90.1a5 5 0 1 1-2 0v-76.51L175.59 80H224V21.9a5 5 0 1 1 2 0V82h-49.59L146 112.41v75.69zm16 32a5 5 0 1 1-2 0v-99.51L184.59 96H300.1a5 5 0 0 1 3.9-3.9v2.07a3 3 0 0 0 0 5.66v2.07a5 5 0 0 1-3.9-3.9H185.41L162 121.41v98.69zm-144-64a5 5 0 1 1-2 0v-3.51l48-48V48h32V0h2v50H66v55.41l-48 48v2.69zM50 53.9v43.51l-48 48V208h26.1a5 5 0 1 1 0 2H0v-65.41l48-48V53.9a5 5 0 1 1 2 0zm-16 16V89.41l-34 34v-2.82l32-32V69.9a5 5 0 1 1 2 0zM12.1 32a5 5 0 1 1 0 2H9.41L0 43.41V40.6L8.59 32h3.51zm265.8 18a5 5 0 1 1 0-2h18.69l7.41-7.41v2.82L297.41 50H277.9zm-16 160a5 5 0 1 1 0-2H288v-71.41l16-16v2.82l-14 14V210h-28.1zm-208 32a5 5 0 1 1 0-2H64v-22.59L40.59 194H21.9a5 5 0 1 1 0-2H41.41L66 216.59V242H53.9zm150.2 14a5 5 0 1 1 0 2H96v-56.6L56.6 162H37.9a5 5 0 1 1 0-2h19.5L98 200.6V256h106.1zm-150.2 2a5 5 0 1 1 0-2H80v-46.59L48.59 178H21.9a5 5 0 1 1 0-2H49.41L82 208.59V258H53.9zM34 39.8v1.61L9.41 66H0v-2h8.59L32 40.59V0h2v39.8zM2 300.1a5 5 0 0 1 3.9 3.9H3.83A3 3 0 0 0 0 302.17V256h18v48h-2v-46H2v42.1zM34 241v63h-2v-62H0v-2h34v1zM17 18H0v-2h16V0h2v18h-1zm273-2h14v2h-16V0h2v16zm-32 273v15h-2v-14h-14v14h-2v-16h18v1zM0 92.1A5.02 5.02 0 0 1 6 97a5 5 0 0 1-6 4.9v-2.07a3 3 0 1 0 0-5.66V92.1zM80 272h2v32h-2v-32zm37.9 32h-2.07a3 3 0 0 0-5.66 0h-2.07a5 5 0 0 1 9.8 0zM5.9 0A5.02 5.02 0 0 1 0 5.9V3.83A3 3 0 0 0 3.83 0H5.9zm294.2 0h2.07A3 3 0 0 0 304 3.83V5.9a5 5 0 0 1-3.9-5.9zm3.9 300.1v2.07a3 3 0 0 0-1.83 1.83h-2.07a5 5 0 0 1 3.9-3.9zM97 100a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-48 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 96a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-144a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM49 36a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM33 68a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 240a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm80-176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm112 176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 180a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 84a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'%3E%3C/path%3E%3C/svg%3E\");\n    border-radius: 0 3rem;\n    width: 90%;\n    height: 15em;\n    padding: 0;\n    margin: 0;\n    float: left; }\n.scheme-panel .scheme-area .node {\n      background-color: #9fff80; }\n", ""]);
+exports.push([module.i, "/* Henchmen Colors */\n/*Scheme Tree Colors */\n/* SVG Image Backgrounds */\np {\n  margin: 0 auto; }\n.header {\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E\");\n  height: 4rem; }\n.header .notoriety-container {\n    overflow: hidden;\n    margin-left: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-right: .75px solid; }\n.header .notoriety-container .notoriety-gauge {\n      background-color: #00ff9d;\n      z-index: 2;\n      width: 6rem;\n      position: relative;\n      height: 3rem;\n      margin: 0 auto;\n      margin-top: 1rem;\n      border-radius: 250px 250px 0px 0px;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n.header .notoriety-container .notoriety-gauge .fa {\n        margin-top: .5rem; }\n.header .notoriety-container .notoriety-meter {\n      background-color: #00804f;\n      z-index: 1;\n      position: relative;\n      width: 8rem;\n      height: 4rem;\n      margin: 0 auto;\n      border-radius: 0px 0px 250px 250px;\n      -webkit-transform-origin: center top;\n              transform-origin: center top;\n      -webkit-transition: all 1s ease-in-out;\n      transition: all 1s ease-in-out; }\n.header .main-title {\n    text-align: center;\n    position: absolute;\n    top: .5rem;\n    right: 40%;\n    left: 40%;\n    width: 20%;\n    margin: 0;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    font-size: 2rem; }\n.header .scheme-container {\n    position: absolute;\n    top: 0px;\n    right: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-left: .75px solid; }\n.header .scheme-container .scheme-title {\n      font-size: .8rem;\n      margin-bottom: .2rem;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n.header .scheme-container .scheme-bar-container {\n      margin-top: .25rem;\n      text-align: center;\n      display: inline-block;\n      width: 90%;\n      position: relative;\n      height: 2rem;\n      border-radius: 0 .5rem .5rem 0; }\n.header .scheme-container .scheme-bar-container .scheme-progress-bar {\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        height: 1.9rem;\n        border-radius: 0 .5rem .5rem 0; }\n.header .scheme-container .scheme-bar-container .scheming {\n        background-color: #40ff00; }\n.header .scheme-container .scheme-bar-container .henchmen {\n        background-color: #6699ff; }\n.header .scheme-container .scheme-bar-container .operations {\n        background-color: #ffb366; }\n.header .scheme-container .scheme-bar-container .lairs {\n        background-color: #bf00ff; }\n.header .scheme-container .scheme-bar-container .scheme-icon {\n        font-size: 1.9rem;\n        padding-top: 1px;\n        z-index: 100;\n        position: relative; }\n.header .scheme-container .scheming {\n      border: 1px solid #40ff00; }\n.header .scheme-container .henchmen {\n      border: 1px solid #6699ff; }\n.header .scheme-container .operations {\n      border: 1px solid #ffb366; }\n.header .scheme-container .lairs {\n      border: 1px solid #bf00ff; }\n.main-section {\n  background-color: #ffffff;\n  background-image: url(\"data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M82.42 180h-1.415L0 98.995v-2.827L6.167 90 0 83.833V81.004L81.005 0h2.827L90 6.167 96.167 0H98.996L180 81.005v2.827L173.833 90 180 96.167V98.996L98.995 180h-2.827L90 173.833 83.833 180H82.42zm0-1.414L1.413 97.58 8.994 90l-7.58-7.58L82.42 1.413 90 8.994l7.58-7.58 81.006 81.005-7.58 7.58 7.58 7.58-81.005 81.006-7.58-7.58-7.58 7.58zM175.196 0h-25.832c1.033 2.924 2.616 5.59 4.625 7.868C152.145 9.682 151 12.208 151 15c0 5.523 4.477 10 10 10 1.657 0 3 1.343 3 3v4h16V0h-4.803c.51.883.803 1.907.803 3 0 3.314-2.686 6-6 6s-6-2.686-6-6c0-1.093.292-2.117.803-3h10.394-13.685C161.18.938 161 1.948 161 3v4c-4.418 0-8 3.582-8 8s3.582 8 8 8c2.76 0 5 2.24 5 5v2h4v-4h2v4h4v-4h2v4h2V0h-4.803zm-15.783 0c-.27.954-.414 1.96-.414 3v2.2c-1.25.254-2.414.74-3.447 1.412-1.716-1.93-3.098-4.164-4.054-6.612h7.914zM180 17h-3l2.143-10H180v10zm-30.635 163c-.884-2.502-1.365-5.195-1.365-8 0-13.255 10.748-24 23.99-24H180v32h-30.635zm12.147 0c.5-1.416 1.345-2.67 2.434-3.66l-1.345-1.48c-1.498 1.364-2.62 3.136-3.186 5.14H151.5c-.97-2.48-1.5-5.177-1.5-8 0-12.15 9.84-22 22-22h8v30h-18.488zm13.685 0c-1.037-1.793-2.976-3-5.197-3-2.22 0-4.16 1.207-5.197 3h10.394zM0 148h8.01C21.26 148 32 158.742 32 172c0 2.805-.48 5.498-1.366 8H0v-32zm0 2h8c12.15 0 22 9.847 22 22 0 2.822-.53 5.52-1.5 8h-7.914c-.567-2.004-1.688-3.776-3.187-5.14l-1.346 1.48c1.09.99 1.933 2.244 2.434 3.66H0v-30zm15.197 30c-1.037-1.793-2.976-3-5.197-3-2.22 0-4.16 1.207-5.197 3h10.394zM0 32h16v-4c0-1.657 1.343-3 3-3 5.523 0 10-4.477 10-10 0-2.794-1.145-5.32-2.992-7.134C28.018 5.586 29.6 2.924 30.634 0H0v32zm0-2h2v-4h2v4h4v-4h2v4h4v-2c0-2.76 2.24-5 5-5 4.418 0 8-3.582 8-8s-3.582-8-8-8V3c0-1.052-.18-2.062-.512-3H0v30zM28.5 0c-.954 2.448-2.335 4.683-4.05 6.613-1.035-.672-2.2-1.16-3.45-1.413V3c0-1.04-.144-2.046-.414-3H28.5zM0 17h3L.857 7H0v10zM15.197 0c.51.883.803 1.907.803 3 0 3.314-2.686 6-6 6S4 6.314 4 3c0-1.093.292-2.117.803-3h10.394zM109 115c-1.657 0-3 1.343-3 3v4H74v-4c0-1.657-1.343-3-3-3-5.523 0-10-4.477-10-10 0-2.793 1.145-5.318 2.99-7.132C60.262 93.638 58 88.084 58 82c0-13.255 10.748-24 23.99-24h16.02C111.26 58 122 68.742 122 82c0 6.082-2.263 11.636-5.992 15.866C117.855 99.68 119 102.206 119 105c0 5.523-4.477 10-10 10zm0-2c-2.76 0-5 2.24-5 5v2h-4v-4h-2v4h-4v-4h-2v4h-4v-4h-2v4h-4v-4h-2v4h-4v-2c0-2.76-2.24-5-5-5-4.418 0-8-3.582-8-8s3.582-8 8-8v-4c0-2.64 1.136-5.013 2.946-6.66L72.6 84.86C70.39 86.874 69 89.775 69 93v2.2c-1.25.254-2.414.74-3.447 1.412C62.098 92.727 60 87.61 60 82c0-12.15 9.84-22 22-22h16c12.15 0 22 9.847 22 22 0 5.61-2.097 10.728-5.55 14.613-1.035-.672-2.2-1.16-3.45-1.413V93c0-3.226-1.39-6.127-3.6-8.14l-1.346 1.48C107.864 87.987 109 90.36 109 93v4c4.418 0 8 3.582 8 8s-3.582 8-8 8zM90.857 97L93 107h-6l2.143-10h1.714zM80 99c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm20 0c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z' fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\");\n  height: 80vh;\n  position: absolute;\n  width: 100%;\n  z-index: 10; }\n.main-section .resources-bar {\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    height: 2rem;\n    border-top: solid .75px; }\n.main-section .resources-bar .resource-tab {\n      margin-left: 0.1rem;\n      display: inline-block;\n      border-radius: 0 0 .5rem .5rem;\n      padding-right: .2rem;\n      padding-bottom: .2rem;\n      padding-left: .2rem;\n      border-top: none; }\n.main-section .resources-bar .resource-tab .resource-readout {\n        display: inline-block; }\n.main-section .resources-bar .lair {\n      margin-left: 0.5rem;\n      border: 1px solid #f2ccff;\n      color: #bf00ff;\n      cursor: pointer; }\n.main-section .resources-bar .cash {\n      border: 1px solid #d6f7d4;\n      color: #30d52a; }\n.main-section .resources-bar .henchmen {\n      border: 1px solid #ccddff;\n      color: #6699ff; }\n.main-section .resources-bar .guard {\n      border: 1px solid #ccccff;\n      color: #000099; }\n.activity-panel {\n  display: inline-block;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n.activity-panel .henchmen-column {\n    width: 50%;\n    display: inline-block; }\n.activity-panel .henchmen-column .title {\n      padding-bottom: .5rem;\n      padding-top: .5rem;\n      text-align: center; }\n.activity-panel .henchmen-column .left-padding {\n      width: 5%;\n      display: inline-block;\n      height: 1.2rem; }\n.activity-panel .henchmen-column .add-block {\n      width: 5%;\n      vertical-align: middle;\n      display: inline-block;\n      height: 1.2rem; }\n.activity-panel .henchmen-column .progress-with-add {\n      width: 75%;\n      display: inline-block; }\n.activity-panel .henchmen-column .progress-with-add .training-container {\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        display: inline-block;\n        position: relative; }\n.activity-panel .henchmen-column .progress-with-add .training-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display {\n          font-size: .8em;\n          width: 100%;\n          position: relative;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          height: 1.2rem; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: .5em; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container {\n        border: 1px solid #ccccff; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container .guard-progress-bar {\n          background-color: #ccccff; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container .guard-training-display {\n          color: #000099; }\n.activity-panel .henchmen-column .progress-no-add {\n      width: 82%;\n      display: inline-block; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container {\n        margin-top: .5rem;\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        position: relative; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2rem; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display {\n          font-size: .8rem;\n          width: 100%;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          position: relative; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container {\n        border: 1px solid #ccddff; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container .help-wanted-progress-bar {\n          background-color: #ccddff; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container .help-wanted-display {\n          color: #003399; }\n.activity-panel .operations-column {\n    width: 50%;\n    float: right; }\n.activity-panel .operations-column .padding-short {\n      width: 5%;\n      height: 2rem;\n      float: left; }\n.activity-panel .operations-column .divider-5 {\n      width: 5%;\n      height: 3rem;\n      float: left; }\n.activity-panel .operations-column .operation-tab {\n      text-align: center;\n      border-radius: 2rem 2rem 0 0;\n      width: 30%;\n      height: 2rem;\n      float: left; }\n.activity-panel .operations-column .routine {\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .campaign {\n      background-color: #cceaff; }\n.activity-panel .operations-column .ascension {\n      background-color: #fffecc; }\n.activity-panel .operations-column .routine-row {\n      width: 90%;\n      height: 3rem;\n      float: left;\n      margin-left: 5%;\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .routine-row .column {\n        text-align: center;\n        border-radius: .5rem;\n        border: 1px solid;\n        margin-left: 3%;\n        margin-top: .5rem;\n        float: left;\n        height: 2rem;\n        width: 15%; }\n.activity-panel .operations-column .routine-row .column .fa {\n          font-size: 1.25rem;\n          margin-top: .375rem; }\n.activity-panel .operations-column .operation-flyout {\n      text-align: center;\n      float: left;\n      margin-left: 5%;\n      width: 90%;\n      border-radius: 1rem 1rem 0 0;\n      cursor: default;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none;\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .operation-flyout .inner-content {\n        position: relative;\n        min-height: 13.5rem;\n        margin: 0 0 .5rem 0; }\n.activity-panel .operations-column .operation-flyout .inner-content .result-hidden {\n          display: none; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result {\n          position: absolute;\n          display: block;\n          width: 100%;\n          height: 9rem;\n          visibility: visible; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result .report-line {\n            margin: .1rem;\n            min-height: 1rem;\n            margin-bottom: .5rem;\n            margin-top: .5rem;\n            font-size: 1rem;\n            display: block;\n            width: 95%; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result .report-line .operation-icon {\n              margin-right: .2rem;\n              position: relative;\n              font-size: 1rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .fade-out {\n          visibility: hidden;\n          opacity: 0;\n          -webkit-transition: visibility 0s 1s, opacity 1s linear;\n          transition: visibility 0s 1s, opacity 1s linear; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-name {\n          margin: .1rem;\n          margin-top: .5rem;\n          min-height: 2rem;\n          margin-bottom: .5rem;\n          font-size: 1rem;\n          display: block;\n          width: 95%; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-name .operation-icon {\n            margin-right: .2rem;\n            position: relative;\n            font-size: 1rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split {\n          float: left;\n          width: 50%; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-left {\n            float: left;\n            margin: 0;\n            font-size: .8rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-right {\n            float: right;\n            margin: 0;\n            font-size: .8rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-right .flyout-icon {\n              position: relative;\n              font-size: .8rem;\n              margin-top: .3rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .operate-button {\n          width: 90%;\n          padding: .2rem;\n          border-radius: .5rem;\n          border: 1px solid;\n          display: inline-block; }\n.activity-panel .operations-column .operation-flyout .inner-content .left {\n          margin-left: 6%;\n          margin-right: 2%; }\n.activity-panel .operations-column .operation-flyout .inner-content .right {\n          margin-left: 2%;\n          margin-right: 6%;\n          cursor: pointer; }\n.scheme-panel {\n  float: right;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n.scheme-panel .spacer {\n    width: 2.5%;\n    height: 50vh;\n    float: left; }\n.scheme-panel .select-bar {\n    width: 5%;\n    height: 15em;\n    padding: 0;\n    margin: 0;\n    float: left;\n    text-align: center; }\n.scheme-panel .select-bar .schemes {\n      background-color: #d9ffcc; }\n.scheme-panel .select-bar .hench {\n      background-color: #ccddff; }\n.scheme-panel .select-bar .operate {\n      background-color: #ffe6cc; }\n.scheme-panel .select-bar .lair {\n      background-color: #f2ccff; }\n.scheme-panel .select-bar .select {\n      cursor: pointer;\n      border-radius: 1rem 0 0 1rem;\n      height: 3rem; }\n.scheme-panel .select-bar .fa {\n      padding-top: 1rem; }\n.scheme-panel .scheme-area {\n    background-color: #d9ffcc;\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 304 304' width='304' height='304'%3E%3Cpath fill='%23e8a50c' fill-opacity='0.4' d='M44.1 224a5 5 0 1 1 0 2H0v-2h44.1zm160 48a5 5 0 1 1 0 2H82v-2h122.1zm57.8-46a5 5 0 1 1 0-2H304v2h-42.1zm0 16a5 5 0 1 1 0-2H304v2h-42.1zm6.2-114a5 5 0 1 1 0 2h-86.2a5 5 0 1 1 0-2h86.2zm-256-48a5 5 0 1 1 0 2H0v-2h12.1zm185.8 34a5 5 0 1 1 0-2h86.2a5 5 0 1 1 0 2h-86.2zM258 12.1a5 5 0 1 1-2 0V0h2v12.1zm-64 208a5 5 0 1 1-2 0v-54.2a5 5 0 1 1 2 0v54.2zm48-198.2V80h62v2h-64V21.9a5 5 0 1 1 2 0zm16 16V64h46v2h-48V37.9a5 5 0 1 1 2 0zm-128 96V208h16v12.1a5 5 0 1 1-2 0V210h-16v-76.1a5 5 0 1 1 2 0zm-5.9-21.9a5 5 0 1 1 0 2H114v48H85.9a5 5 0 1 1 0-2H112v-48h12.1zm-6.2 130a5 5 0 1 1 0-2H176v-74.1a5 5 0 1 1 2 0V242h-60.1zm-16-64a5 5 0 1 1 0-2H114v48h10.1a5 5 0 1 1 0 2H112v-48h-10.1zM66 284.1a5 5 0 1 1-2 0V274H50v30h-2v-32h18v12.1zM236.1 176a5 5 0 1 1 0 2H226v94h48v32h-2v-30h-48v-98h12.1zm25.8-30a5 5 0 1 1 0-2H274v44.1a5 5 0 1 1-2 0V146h-10.1zm-64 96a5 5 0 1 1 0-2H208v-80h16v-14h-42.1a5 5 0 1 1 0-2H226v18h-16v80h-12.1zm86.2-210a5 5 0 1 1 0 2H272V0h2v32h10.1zM98 101.9V146H53.9a5 5 0 1 1 0-2H96v-42.1a5 5 0 1 1 2 0zM53.9 34a5 5 0 1 1 0-2H80V0h2v34H53.9zm60.1 3.9V66H82v64H69.9a5 5 0 1 1 0-2H80V64h32V37.9a5 5 0 1 1 2 0zM101.9 82a5 5 0 1 1 0-2H128V37.9a5 5 0 1 1 2 0V82h-28.1zm16-64a5 5 0 1 1 0-2H146v44.1a5 5 0 1 1-2 0V18h-26.1zm102.2 270a5 5 0 1 1 0 2H98v14h-2v-16h124.1zM242 149.9V160h16v34h-16v62h48v48h-2v-46h-48v-66h16v-30h-16v-12.1a5 5 0 1 1 2 0zM53.9 18a5 5 0 1 1 0-2H64V2H48V0h18v18H53.9zm112 32a5 5 0 1 1 0-2H192V0h50v2h-48v48h-28.1zm-48-48a5 5 0 0 1-9.8-2h2.07a3 3 0 1 0 5.66 0H178v34h-18V21.9a5 5 0 1 1 2 0V32h14V2h-58.1zm0 96a5 5 0 1 1 0-2H137l32-32h39V21.9a5 5 0 1 1 2 0V66h-40.17l-32 32H117.9zm28.1 90.1a5 5 0 1 1-2 0v-76.51L175.59 80H224V21.9a5 5 0 1 1 2 0V82h-49.59L146 112.41v75.69zm16 32a5 5 0 1 1-2 0v-99.51L184.59 96H300.1a5 5 0 0 1 3.9-3.9v2.07a3 3 0 0 0 0 5.66v2.07a5 5 0 0 1-3.9-3.9H185.41L162 121.41v98.69zm-144-64a5 5 0 1 1-2 0v-3.51l48-48V48h32V0h2v50H66v55.41l-48 48v2.69zM50 53.9v43.51l-48 48V208h26.1a5 5 0 1 1 0 2H0v-65.41l48-48V53.9a5 5 0 1 1 2 0zm-16 16V89.41l-34 34v-2.82l32-32V69.9a5 5 0 1 1 2 0zM12.1 32a5 5 0 1 1 0 2H9.41L0 43.41V40.6L8.59 32h3.51zm265.8 18a5 5 0 1 1 0-2h18.69l7.41-7.41v2.82L297.41 50H277.9zm-16 160a5 5 0 1 1 0-2H288v-71.41l16-16v2.82l-14 14V210h-28.1zm-208 32a5 5 0 1 1 0-2H64v-22.59L40.59 194H21.9a5 5 0 1 1 0-2H41.41L66 216.59V242H53.9zm150.2 14a5 5 0 1 1 0 2H96v-56.6L56.6 162H37.9a5 5 0 1 1 0-2h19.5L98 200.6V256h106.1zm-150.2 2a5 5 0 1 1 0-2H80v-46.59L48.59 178H21.9a5 5 0 1 1 0-2H49.41L82 208.59V258H53.9zM34 39.8v1.61L9.41 66H0v-2h8.59L32 40.59V0h2v39.8zM2 300.1a5 5 0 0 1 3.9 3.9H3.83A3 3 0 0 0 0 302.17V256h18v48h-2v-46H2v42.1zM34 241v63h-2v-62H0v-2h34v1zM17 18H0v-2h16V0h2v18h-1zm273-2h14v2h-16V0h2v16zm-32 273v15h-2v-14h-14v14h-2v-16h18v1zM0 92.1A5.02 5.02 0 0 1 6 97a5 5 0 0 1-6 4.9v-2.07a3 3 0 1 0 0-5.66V92.1zM80 272h2v32h-2v-32zm37.9 32h-2.07a3 3 0 0 0-5.66 0h-2.07a5 5 0 0 1 9.8 0zM5.9 0A5.02 5.02 0 0 1 0 5.9V3.83A3 3 0 0 0 3.83 0H5.9zm294.2 0h2.07A3 3 0 0 0 304 3.83V5.9a5 5 0 0 1-3.9-5.9zm3.9 300.1v2.07a3 3 0 0 0-1.83 1.83h-2.07a5 5 0 0 1 3.9-3.9zM97 100a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-48 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 96a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-144a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM49 36a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM33 68a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 240a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm80-176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm112 176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 180a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 84a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'%3E%3C/path%3E%3C/svg%3E\");\n    border-radius: 0 3rem;\n    width: 90%;\n    height: 15em;\n    padding: 0;\n    margin: 0;\n    float: left; }\n.scheme-panel .scheme-area .node {\n      background-color: #9fff80; }\n", ""]);
 
 // exports
 
@@ -608,15 +611,15 @@ var AppComponent = /** @class */ (function (_super) {
                 .subscribe(function (res) {
                 var SchemeData = new Array();
                 for (var i = 0; i < res.length; i++) {
-                    var newScheme = new __WEBPACK_IMPORTED_MODULE_9__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, 0, 4, _this.schemeLairReq[i], _this.schemeExp[i]);
+                    var newScheme = new __WEBPACK_IMPORTED_MODULE_9__models_scheme__["a" /* Scheme */](res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree, 0, 0, _this.schemeLairReq[i], _this.schemeExp[i]);
                     SchemeData.push(newScheme);
                 }
                 __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].SCHEMES = SchemeData;
-                console.log("Base.SCHEMES populated (All are level 4):");
+                console.log("Base.SCHEMES populated (All are level 0):");
                 console.log(__WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].SCHEMES);
                 console.log("No Current Scheme to Set");
-                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].CURRENT_HENCHMEN = 5;
-                console.log("Base.CURRENT_HENCHMEN set to 5.");
+                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].CURRENT_HENCHMEN = 0;
+                console.log("Base.CURRENT_HENCHMEN set to 0.");
                 __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].INITIAL_LOAD_SCHEMES = false;
                 //Construct Recruit data from Angular logic
                 var RecruitData = new Array();
@@ -650,7 +653,9 @@ var AppComponent = /** @class */ (function (_super) {
                 console.log("BaseNum.OPERATIONS populated:");
                 console.log(__WEBPACK_IMPORTED_MODULE_15__base_num__["a" /* BaseNum */].OPERATIONS);
                 __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].CASH = 0;
-                console.log("Base.CASH set to 0.");
+                console.log("Base.CASH set to 10000.");
+                __WEBPACK_IMPORTED_MODULE_14__base__["a" /* Base */].PASSIVE_CASH = [0, 0, 0, 0, 0];
+                console.log("Base.PASSIVE_CASH set to 0s.");
             });
         }
         _this._dataService.getOperations()
@@ -765,7 +770,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_13__scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */],
                 __WEBPACK_IMPORTED_MODULE_14__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */]
+                __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_19__angular_material_tooltip__["a" /* MatTooltipModule */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__data_service__["a" /* DataService */],
@@ -929,7 +935,7 @@ var BaseNum = /** @class */ (function (_super) {
         var reduce = 0;
         for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[3].level; _i++) {
             if (_i == 2) {
-                reduce += 30;
+                reduce += 90;
             }
         }
         return reduce;
@@ -986,21 +992,38 @@ var BaseNum = /** @class */ (function (_super) {
         if (id === 0)
             return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6].level > 0;
         if (id === 1)
-            return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6].level > 3;
+            return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6].level >= 3;
+    };
+    BaseNum.prototype.heistCountdown = function () {
+        var countdown = 1200;
+        if (__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6].level >= 1) {
+            countdown -= 300;
+        }
+        return countdown;
+    };
+    BaseNum.prototype.heistCost = function (rarity) {
+        var base = [0, 10, 100, 1000, 10000];
+        var maxArray = [5, 50, 500, 5000, 500000];
+        if (rarity === 0 && __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6].level >= 2) {
+            var max = maxArray[rarity] * 2;
+        }
+        else {
+            var max = maxArray[rarity];
+        }
+        return base[rarity] + Math.ceil(Math.random() * max);
     };
     BaseNum.prototype.heistRarityChancesArray = function () {
         var matrix = [
             [1, 1, 1, 1, 1],
             [1, 1, 1, 1, 1],
-            [.95, 1, 1, 1, 1],
-            [.89, 1, 1, 1, 1],
-            [.82, 1, 1, 1, 1],
-            [.74, .96, 1, 1, 1]
+            [1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1],
+            [.9, 1, 1, 1, 1],
         ];
-        return matrix[__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6].level];
+        return matrix[__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6].level - 1];
     };
     //07: Shady Business Deals
-    BaseNum.prototype.shadyBusinessDealUnlocked = function (id) {
+    BaseNum.prototype.shadyBusinessDealsUnlocked = function (id) {
         if (id === 5)
             return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[7].level > 0;
         if (id === 6)
@@ -1010,12 +1033,29 @@ var BaseNum = /** @class */ (function (_super) {
         var matrix = [
             [1, 1, 1, 1, 1],
             [1, 1, 1, 1, 1],
-            [.95, 1, 1, 1, 1],
-            [.89, 1, 1, 1, 1],
-            [.82, 1, 1, 1, 1],
-            [.74, .96, 1, 1, 1]
+            [1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1],
+            [.9, 1, 1, 1, 1],
         ];
-        return matrix[__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6].level];
+        return matrix[__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[7].level - 1];
+    };
+    BaseNum.prototype.shadyBusinessDealCost = function (rarity) {
+        var base = [0, 10, 100, 1000, 10000];
+        var maxArray = [5, 50, 500, 5000, 500000];
+        if (rarity === 0 && __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[7].level >= 2) {
+            var max = maxArray[rarity] * 2;
+        }
+        else {
+            var max = maxArray[rarity];
+        }
+        return (base[rarity] + Math.ceil(Math.random() * max)) * 10;
+    };
+    BaseNum.prototype.shadyBusinessDealCountdown = function () {
+        var countdown = 1200;
+        if (__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[7].level >= 1) {
+            countdown -= 300;
+        }
+        return countdown;
     };
     //08: Communications
     BaseNum.prototype.communicationsMultiplier = function () {
@@ -1024,15 +1064,6 @@ var BaseNum = /** @class */ (function (_super) {
             multiplier -= .05;
         }
         return multiplier;
-    };
-    BaseNum.prototype.heistRechargeRate = function () {
-        var reduce = 0;
-        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[6]['level']; _i++) {
-            if (_i == 2) {
-                reduce += 150;
-            }
-        }
-        return reduce;
     };
     return BaseNum;
 }(__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */]));
@@ -1527,19 +1558,21 @@ module.exports = "<h1 style=\"margin:0;margin-bottom:.5rem;text-align:center;col
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Operation; });
 var Operation = /** @class */ (function () {
-    function Operation(id, name, rarity, henchmenCost, available, countdown, lock) {
+    function Operation(id, name, rarity, cost01, available, countdown, lock) {
         this.id = id;
         this.name = name;
         this.rarity = rarity;
-        this.henchmenCost = henchmenCost;
+        this.cost01 = cost01;
         this.available = available;
         this.countdown = countdown;
         this.lock = lock;
         if (this.id >= 0 && this.id <= 4) {
             this.type = "heist";
+            this.fa = "usd";
         }
         else if (this.id >= 5 && this.id <= 9) {
             this.type = "shady-business-deal";
+            this.fa = "suitcase";
         }
     }
     return Operation;
@@ -1980,19 +2013,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 var PlayerService = /** @class */ (function () {
     function PlayerService() {
-        //Operations
-        this.operating = [
-            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 },
-            { name: '', rarity: -1, henchmen: -1, available: true, reward: -1, success: -1, risk: -1, notoriety: -1, countdown: 0, lock: 0 }
-        ];
         this.notoriety = 0;
     }
     PlayerService = __decorate([
@@ -2279,60 +2299,22 @@ var OperatingService = /** @class */ (function (_super) {
     function OperatingService(_player) {
         var _this = _super.call(this) || this;
         _this._player = _player;
-        _this.operatingNow = false; //Lockout, not implemented yet
+        _this.operatingNow = false; //operate action lockout
+        _this.operationResult = false; //operate action lockout part 2 (will not fire if fade doesn't complete)
+        _this.showPreview = false; //handler for whether to show the flyout
         _this.operateReadout = {
             result: '',
             lost: 0,
             earned: 0,
             notoriety: 0
         };
-        _this.operationResult = false;
-        _this.showPreview = false;
         return _this;
     }
-    //Perform the Operation
-    OperatingService.prototype.operate = function (henchmenQueued, operation) {
-        var _this = this;
-        if (henchmenQueued > 0) {
-            setTimeout(function () { _this.operationResult = true; }, 2000);
-            this.operatingNow = true;
-            this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
-            var roll = Math.random() <= this.realSuccessRate(henchmenQueued, this.previewOperation.henchmenCost, this.previewOperation.rarity, this.previewOperation.type);
-            this.operateReadout['result'] = roll ? 'success!' : 'failure.';
-            var lost = 0;
-            if (roll) {
-                var heistDice = [2, 4, 6, 8, 10];
-                var earned = 0;
-                for (var _i = 0; _i < henchmenQueued; _i++) {
-                    earned += Math.floor(Math.random() * heistDice[operation.rarity]) + 1;
-                }
-                this.operateReadout['earned'] = earned;
-                __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CASH += earned;
-                for (var _i = 0; _i < henchmenQueued; _i++) {
-                    lost += Math.random() <= this.previewOperation['risk'] ? 1 : 0;
-                }
-            }
-            else {
-                lost = henchmenQueued;
-            }
-            this.operateReadout['lost'] = lost;
-            __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN -= lost;
-        }
-    };
     //Generate an operation
     OperatingService.prototype.operationSpawn = function (operation) {
-        switch (operation.type) {
-            case "heist": {
-                var rarity = this.rollOperationRarity(operation);
-                break;
-            }
-            case "shady-business-deal": {
-                var rarity = this.rollOperationRarity(operation);
-                break;
-            }
-        }
+        var rarity = this.rollOperationRarity(operation);
         operation.rarity = rarity;
-        operation.henchmenCost = this.rollOperationHenchmenCost(rarity, operation.type);
+        operation.cost01 = this.rollOperationCost01(rarity, operation.type);
         operation.available = true;
         operation.name = this.pickAnOperationName(rarity, operation.type);
         operation.lock = this.operationCountdown(operation.type);
@@ -2357,20 +2339,27 @@ var OperatingService = /** @class */ (function (_super) {
         });
         return result.length;
     };
-    OperatingService.prototype.rollOperationHenchmenCost = function (rarity, type) {
+    //Building blocks and routine logic
+    OperatingService.prototype.isUnlocked = function (operation) {
+        if (operation.type == "heist") {
+            return this.heistUnlocked(operation.id);
+        }
+        if (operation.type == "shady-business-deal") {
+            return this.shadyBusinessDealsUnlocked(operation.id);
+        }
+    };
+    OperatingService.prototype.rollOperationCost01 = function (rarity, type) {
         switch (type) {
             case "heist": {
-                var base = [0, 10, 100, 1000, 10000];
-                var multiplier = [10, 100, 1000, 10000, 1000000];
+                var cost = this.heistCost(rarity);
                 break;
             }
             case "shady-business-deal": {
-                var base = [4, 40, 400, 4000, 40000];
-                var multiplier = [10, 100, 1000, 10000, 1000000];
+                var cost = this.shadyBusinessDealCost(rarity);
                 break;
             }
         }
-        return base[rarity] + Math.ceil(Math.random() * multiplier[rarity]);
+        return cost;
     };
     OperatingService.prototype.pickAnOperationName = function (rarity, type) {
         var tiers = ['Tier0', 'Tier1', 'Tier2', 'Tier3', 'Tier4'];
@@ -2393,11 +2382,11 @@ var OperatingService = /** @class */ (function (_super) {
         var countdown;
         switch (type) {
             case "heist": {
-                countdown = 1200;
+                countdown = this.heistCountdown();
                 break;
             }
-            case "shady-business-deals": {
-                countdown = 1200;
+            case "shady-business-deal": {
+                countdown = this.shadyBusinessDealCountdown();
                 break;
             }
         }
@@ -2416,19 +2405,32 @@ var OperatingService = /** @class */ (function (_super) {
         }
         return array[rarity];
     };
+    OperatingService.prototype.realSuccessRate = function (resource01, target, rarity, type) {
+        var base = this.operationSuccessRate(rarity, type);
+        return (base / target) * resource01;
+    };
+    OperatingService.prototype.operationRiskRate = function (rarity, type) {
+        switch (type) {
+            case "heist": {
+                var array = [.3, .35, .4, .45, .5];
+                break;
+            }
+            case "shady-business-deal": {
+                var array = [.25, .275, .3, .325, .35];
+                break;
+            }
+        }
+        return array[rarity] * this.communicationsMultiplier();
+    };
     //Reset Methods for after an Operation is complete
     OperatingService.prototype.resetCountdown = function (operation) {
-        operation.countdown = this.getOperationRecharge(operation);
-        operation.lock = this.getOperationRecharge(operation);
-    };
-    OperatingService.prototype.getOperationRecharge = function (operation) {
-        if (operation.type == "heist") {
-            var rate = 600;
-            rate -= this.heistRechargeRate();
-            return rate;
-        }
+        operation.countdown = this.operationCountdown(operation.type);
+        operation.lock = this.operationCountdown(operation.type);
     };
     //Methods for the template; Display Methods
+    OperatingService.prototype.showRisk = function (operation) {
+        return Math.floor(operation.risk * 10000) / 100;
+    };
     OperatingService.prototype.showAnOperationName = function (operation) {
         var tiers = ['Tier0', 'Tier1', 'Tier2', 'Tier3', 'Tier4'];
         var id;
@@ -2452,47 +2454,122 @@ var OperatingService = /** @class */ (function (_super) {
                 break;
             }
             case "shady-business-deal": {
-                array = ['user', 'money'];
+                array = ['money'];
                 break;
             }
         }
         return array;
-    };
-    //Heist Generation
-    OperatingService.prototype.getHeistRiskRate = function (rarity) {
-        return [.3, .35, .4, .45, .5][rarity] * this.communicationsMultiplier();
-    };
-    OperatingService.prototype.realSuccessRate = function (henchmen, target, rarity, type) {
-        var base = this.operationSuccessRate(rarity, type);
-        return (base / target) * henchmen;
     };
     //Template Logic Handlers
     OperatingService.prototype.areAnyUnlocked = function () {
         return this.areHeistsUnlocked() || this.areShadyBusinessDealsUnlocked();
     };
     OperatingService.prototype.areHeistsUnlocked = function () {
-        for (var _i = 0; _i < 5; _i++) {
-            if (this.isUnlocked(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].OPERATIONS[_i])) {
-                return true;
-            }
-        }
-        return false;
+        return this.heistUnlocked(0);
     };
     OperatingService.prototype.areShadyBusinessDealsUnlocked = function () {
-        for (var _i = 5; _i < 10; _i++) {
-            if (this.isUnlocked(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].OPERATIONS[_i])) {
-                return true;
+        return this.shadyBusinessDealsUnlocked(5);
+    };
+    OperatingService.prototype.percentage = function (operation) {
+        return 100 * (1 - (operation.countdown / operation.lock));
+    };
+    //Tick function for Primary Loop
+    OperatingService.prototype.operateTick = function (operation) {
+        if (this.isUnlocked(operation)) {
+            if (operation.lock === 0 && operation.countdown === 0) {
+                this.operationSpawn(operation);
+            }
+            //If the operation is available, recheck certain values that may have changed:
+            if (operation.available) {
+                operation.risk = this.operationRiskRate(operation.rarity, operation.type);
+            }
+            else {
+                operation.countdown--;
+                if (operation.countdown === 0) {
+                    this.operationSpawn(operation);
+                }
             }
         }
-        return false;
     };
-    //Operation methods
-    OperatingService.prototype.isUnlocked = function (operation) {
-        if (operation.type == "heist") {
-            return this.heistUnlocked(operation.id);
+    //Actions
+    OperatingService.prototype.operate = function (resource01, operation) {
+        var _this = this;
+        if (!this.operatingNow) {
+            var lost = 0;
+            switch (operation.type) {
+                case "heist": {
+                    if (resource01 > 0) {
+                        setTimeout(function () { if (_this.operatingNow) {
+                            _this.operationResult = true;
+                        } }, 1000);
+                        this.operatingNow = true;
+                        this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
+                        var roll = Math.random() <= this.realSuccessRate(resource01, this.previewOperation.cost01, this.previewOperation.rarity, this.previewOperation.type);
+                        this.operateReadout['result'] = roll ? 'success!' : 'failure.';
+                        if (roll) {
+                            var heistDice = [2, 4, 6, 8, 10];
+                            var earned = 0;
+                            for (var _i = 0; _i < resource01; _i++) {
+                                earned += Math.floor(Math.random() * heistDice[operation.rarity]) + 1;
+                            }
+                            this.operateReadout['earned'] = earned;
+                            for (var _i = 0; _i < resource01; _i++) {
+                                lost += Math.random() <= this.previewOperation['risk'] ? 1 : 0;
+                            }
+                        }
+                        else {
+                            lost = resource01;
+                        }
+                        this.operateReadout['lost'] = lost;
+                    }
+                    break;
+                }
+                case "shady-business-deal": {
+                    if (resource01 > 0) {
+                        setTimeout(function () { if (_this.operatingNow) {
+                            _this.operationResult = true;
+                        } }, 1000);
+                        this.operatingNow = true;
+                        this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
+                        var roll = Math.random() <= this.realSuccessRate(resource01, this.previewOperation.cost01, this.previewOperation.rarity, this.previewOperation.type);
+                        this.operateReadout['result'] = roll ? 'success!' : 'failure.';
+                        if (roll) {
+                            this.operateReadout['earned'] = operation.cost01 / 10;
+                            for (var _i = 0; _i < resource01; _i++) {
+                                lost += Math.random() <= this.previewOperation['risk'] ? 1 : 0;
+                            }
+                        }
+                        else {
+                            lost = resource01;
+                        }
+                        this.operateReadout['lost'] = lost;
+                    }
+                    break;
+                }
+            }
         }
-        if (operation.type == "shady-business-deal") {
-            return this.shadyBusinessDealUnlocked(operation.id);
+    };
+    //Complete the operate action.
+    OperatingService.prototype.closeCompleteOperation = function () {
+        if (this.operatingNow) {
+            switch (this.previewOperation.type) {
+                case "heist": {
+                    __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CASH += this.operateReadout['earned'];
+                    __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN -= this.operateReadout['lost'];
+                    break;
+                }
+                case "shady-business-deal": {
+                    __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].PASSIVE_CASH[this.previewOperation.rarity] += this.operateReadout['earned'];
+                    console.log(__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CASH + " -= " + this.operateReadout['lost']);
+                    __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CASH -= this.operateReadout['lost'];
+                    break;
+                }
+            }
+            this.showPreview = false;
+            __WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].OPERATIONS[this.previewOperation.id] = new __WEBPACK_IMPORTED_MODULE_2__models_operation__["a" /* Operation */](this.previewOperation.id, -1, -1, -1, false, 0, 0);
+            this.resetCountdown(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].OPERATIONS[this.previewOperation.id]);
+            this.operationResult = false;
+            this.operatingNow = false;
         }
     };
     OperatingService.prototype.operationPreview = function (operation) {
@@ -2516,35 +2593,6 @@ var OperatingService = /** @class */ (function (_super) {
             return 'white';
         }
     };
-    OperatingService.prototype.operateTick = function (operation) {
-        if (this.isUnlocked(operation)) {
-            if (operation.lock === 0 && operation.countdown === 0) {
-                //console.log("I'm spawning an operation");
-                this.operationSpawn(operation);
-            }
-            //If the operation is available, recheck certain values that may have changed:
-            if (operation.available) {
-                operation.risk = this.getHeistRiskRate(operation.rarity);
-            }
-            else {
-                operation.countdown--;
-                if (operation.countdown === 0) {
-                    this.operationSpawn(operation);
-                }
-            }
-        }
-    };
-    //Display methods
-    OperatingService.prototype.displayRisk = function (operation) {
-        return Math.floor(operation.risk * 10000) / 100;
-    };
-    /*
-     
-     
-        areAnyUnlocked() {
-            return this.areRoutineOpsUnlocked() || this.areCampaignOpsUnlocked();
-        }
-    */
     OperatingService.prototype.getFaColorByRarity = function (rarity) {
         if (rarity == 0) {
             return 'black';
@@ -2560,84 +2608,6 @@ var OperatingService = /** @class */ (function (_super) {
         }
         if (rarity == 4) {
             return 'orange';
-        }
-    };
-    OperatingService.prototype.closeCompleteOperation = function () {
-        if (this.operatingNow) {
-            this.showPreview = false;
-            __WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].OPERATIONS[this.previewOperation.id] = new __WEBPACK_IMPORTED_MODULE_2__models_operation__["a" /* Operation */](this.previewOperation.id, -1, -1, -1, false, 0, 0);
-            this.resetCountdown(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].OPERATIONS[this.previewOperation.id]);
-            this.operationResult = false;
-            this.previewOperation = undefined;
-            this.operatingNow = false;
-        }
-    };
-    OperatingService.prototype.getDealHenchmenCost = function (rarity) {
-        var multiplier;
-        if (rarity == 0) {
-            multiplier = 10;
-        }
-        if (rarity == 1) {
-            multiplier = 20;
-        }
-        if (rarity == 2) {
-            multiplier = 50;
-        }
-        if (rarity == 3) {
-            multiplier = 100;
-        }
-        if (rarity == 4) {
-            multiplier = 200;
-        }
-        return Math.ceil(Math.random() * multiplier);
-    };
-    OperatingService.prototype.getHeistCashOutput = function (rarity, henchmen) {
-        var multiplier;
-        if (rarity == 0) {
-            multiplier = 1;
-        }
-        if (rarity == 1) {
-            multiplier = 1.2;
-        }
-        if (rarity == 2) {
-            multiplier = 1.5;
-        }
-        if (rarity == 3) {
-            multiplier = 1.7;
-        }
-        if (rarity == 4) {
-            multiplier = 2;
-        }
-        return Math.floor(henchmen * multiplier);
-    };
-    OperatingService.prototype.getHeistNotoriety = function (rarity) {
-        return Math.floor((rarity * .1) * 100) / 100;
-    };
-    OperatingService.prototype.percentage = function (operation) {
-        return 100 * (1 - (operation.countdown / operation.lock));
-    };
-    Object.defineProperty(OperatingService.prototype, "heistRarityChances", {
-        get: function () {
-            return this.heistRarityChancesArray;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    //Heists specifically
-    OperatingService.prototype.rollShadyBusinessDealRarity = function () {
-        var roll = Math.random();
-        var dealRarityChances = this.shadyBusinessDealRarityChancesArray();
-        if (roll >= dealRarityChances[0] && roll <= dealRarityChances[1]) {
-            return 1;
-        }
-        if (roll >= dealRarityChances[1] && roll <= dealRarityChances[2]) {
-            return 2;
-        }
-        if (roll >= dealRarityChances[2] && roll <= dealRarityChances[3]) {
-            return 3;
-        }
-        if (roll >= dealRarityChances[3] && roll <= dealRarityChances[4]) {
-            return 4;
         }
     };
     OperatingService = __decorate([
@@ -2719,7 +2689,7 @@ var PrimaryLoopService = /** @class */ (function (_super) {
         return _this;
     }
     PrimaryLoopService.prototype.doOnce = function () {
-        console.log(this._operating.operations);
+        console.log(this._operating.operationCountdown("heist"));
     };
     //Events that occur every tick
     PrimaryLoopService.prototype.tick = function () {
@@ -2756,6 +2726,7 @@ var PrimaryLoopService = /** @class */ (function (_super) {
     };
     //Events that occur every minute
     PrimaryLoopService.prototype.minute = function () {
+        __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CASH += __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].PASSIVE_CASH[0];
         if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute);
         }

@@ -32,7 +32,8 @@ import {LairService} from './services/lair.service';
     SchemePanelModule,
     ActivityPanelModule,
     BrowserModule,
-    HttpModule
+    HttpModule,
+    MatTooltipModule
   ],
   providers: [
     DataService,

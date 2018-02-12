@@ -33,15 +33,15 @@
                 </div>
             </div>
         </div>
-        <p class="title" *ngIf="_operating.areAnyUnlocked()">Operations (recharge)</p>
+        <p class="title" *ngIf="_operating.areAnyUnlocked()">Plotting</p>
         <div *ngFor="let operation of _base.operations">
                 <div *ngIf="_operating.isUnlocked(operation) && !operation.available" class="left-padding"></div>
                 <div *ngIf="_operating.isUnlocked(operation) && !operation.available" class="progress-no-add">
                         <div style="border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;">
                                 <div style="background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;" [ngStyle]="{'width': this._operating.percentage(operation) + '%' }"></div>
                                 <p style="color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;">
-                                    <i class="generation-icon fa faa-slow faa-flash animated fa-usd" aria-hidden="true" style="margin-left:.5rem;margin-right:.5rem"></i>
-                                    Slot {{operation.id+1}} Recharging
+                                    <i class="generation-icon fa faa-slow faa-flash animated fa-{{operation.fa}}" aria-hidden="true" style="margin-left:.5rem;margin-right:.5rem"></i>
+                                    Slot {{operation.id+1}} 
                                 </p>
                             </div>
                 </div>
@@ -63,11 +63,11 @@
                 <div *ngIf="_operating.operationResult" class="operation-result" [@enterAnimation]>
                     <p class="report-line">has {{_operating.operateReadout['result'] == "success!" ? 'succeeded!' : 'failed.'}}</p>
                     <p class="report-line" *ngIf="_operating.operateReadout['lost'] > 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.6rem;">{{_operating.operateReadout['lost']}}
-                        <i class="flyout-icon fa fa-user" aria-hidden="true"></i> lost</p>
+                        <i class="flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}" aria-hidden="true"></i> lost</p>
                     <p class="report-line" *ngIf="_operating.operateReadout['lost'] == 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.6rem;">No
                                 <i class="flyout-icon fa fa-user" aria-hidden="true"></i> lost</p>
                     <p class="report-line" *ngIf="_operating.operateReadout['earned'] > 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.6rem;">{{_operating.operateReadout['earned']}}
-                        <i class="flyout-icon fa fa-money" aria-hidden="true"></i> earned</p>
+                        <i class="flyout-icon fa fa-money" aria-hidden="true"></i> {{ _operating.previewOperation.type == "heist" ? "earned" : "/min earned" }}</p>
                     <p class="report-line" *ngIf="_operating.operateReadout['earned'] == 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.6rem;">No
                                 <i class="flyout-icon fa fa-money" aria-hidden="true"></i> earned</p>
                     <p class="report-line" *ngIf="_operating.operateReadout['notoriety'] > 0" style="margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;">{{_operating.operateReadout['notoriety']}}
@@ -76,19 +76,19 @@
                 </div>
 
                 <div [ngClass]="{'fade-out': _operating.operatingNow}">
-                    <div class="split" style="margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;">
+                    <div class="split" style="margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;" matTooltip="All operations require resources">
                         <p style="font-size:.75rem;">
                             <strong>Requires:</strong>
                         </p>
                         <i *ngFor="let fa of _operating.showOperationCost(_operating.previewOperation)" class="flyout-icon fa fa-{{fa}}" style="margin-right:.25rem;" aria-hidden="true"></i>
                     </div>
-                    <div class="split" style="margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;">
+                    <div class="split" style="margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;" matTooltip="Resources are at risk even when operations succeed">
                         <p style="font-size:.75rem;">
                             <strong>Risk:</strong>
                         </p>
-                        <p>{{_operating.displayRisk(_operating.previewOperation)}}%</p>
+                        <p>{{_operating.showRisk(_operating.previewOperation)}}%</p>
                     </div>
-                    <div class="split" style="margin: 0;text-align:center;line-height:1.25rem;">
+                    <div *ngIf="_operating.previewOperation.type === 'heist'" class="split" style="margin: 0;text-align:center;line-height:1.25rem;" matTooltip="You receive nothing if an operation fails">
                         <p style="font-size:.75rem;">
                             <strong>Rewards:</strong>
                         </p>
@@ -99,7 +99,18 @@
 
                         </p>
                     </div>
-                    <div class="split" style="margin: 0;text-align:center;line-height:1.25rem;">
+                    <div *ngIf="_operating.previewOperation.type === 'shady-business-deal'" class="split" style="margin: 0;text-align:center;line-height:1.25rem;" matTooltip="You receive nothing if an operation fails">
+                            <p style="font-size:.75rem;">
+                                <strong>Rewards:</strong>
+                            </p>
+                            <p>
+                                {{_operating.previewOperation.cost01/10}}
+                                <i class="flyout-icon fa fa-money" aria-hidden="true"></i> /
+                                min
+    
+                            </p>
+                        </div>
+                    <div class="split" style="margin: 0;text-align:center;line-height:1.25rem;" matTooltip="More resources mean higher chance of success">
                         <p style="font-size:.75rem;">
                             <strong>Success:</strong>
                         </p>
@@ -113,11 +124,11 @@
                         <p *ngIf="success === 1" style="color:#FF7F00">Guaranteed</p>
 
                     </div>
-                    <i class="flyout-icon fa fa-user" aria-hidden="true"></i>
-                    <mat-slider (input)="onInputChange($event)" min="0" step="1" [max]="_operating.previewOperation.henchmenCost < _base.currentHenchmen ? _operating.previewOperation.henchmenCost : _base.currentHenchmen" [value]="henchAssign" style="width:85%;background-color:#e6e6e6;"></mat-slider>
-
-                    <p class="operate-button" [ngStyle]="{ 'cursor': _operating.operatingNow ? 'initial' : 'pointer'}" *ngIf="henchAssign > 0" (click)="_operating.operate(henchAssign, _operating.previewOperation)">Commit {{henchAssign}}
-                        <i class="flyout-icon fa fa-user" aria-hidden="true"></i> to Operate </p>
+                    <i class="flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}" aria-hidden="true"></i>
+                    <mat-slider *ngIf="_operating.previewOperation.type === 'heist'" (input)="onInputChange($event)" min="0" step="1" [max]="_operating.previewOperation.cost01 < _base.currentHenchmen ? _operating.previewOperation.cost01 : _base.currentHenchmen" [value]="operateAssign" style="width:85%;background-color:#e6e6e6;"></mat-slider>
+                    <mat-slider *ngIf="_operating.previewOperation.type === 'shady-business-deal'" (input)="onInputChange($event)" min="0" step="1" [max]="_operating.previewOperation.cost01 < _base.cash ? _operating.previewOperation.cost01 : _base.cash" [value]="operateAssign" style="width:85%;background-color:#e6e6e6;"></mat-slider>
+                    <p class="operate-button" [ngStyle]="{ 'cursor': _operating.operatingNow ? 'initial' : 'pointer'}" *ngIf="operateAssign > 0" (click)="_operating.operate(operateAssign, _operating.previewOperation)">Commit {{operateAssign}}
+                        <i class="flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}" aria-hidden="true"></i> to Operate </p>
                 </div>
             </div>
         </div>
@@ -125,14 +136,14 @@
 
 
         <div class="routine-row" *ngIf="_operating.areHeistsUnlocked()">
-            <div class="column" *ngFor="let heist of _base.operations | slice: 0:5;" (click)="_operating.operationPreview(heist); henchAssign = 0;"
+            <div class="column" *ngFor="let heist of _base.operations | slice: 0:5;" (click)="_operating.operationPreview(heist); operateAssign = 0;"
                 [ngStyle]="{'cursor': heist.available && _operating.isUnlocked(heist) ? 'pointer' : 'initial' }">
                 <i class="fa" aria-hidden="true" [ngClass]="operationIconClass(heist)" [ngStyle]="{'color': _operating.nodeColor(heist)}"></i>
             </div>
         </div>
 
         <div class="routine-row" *ngIf="_operating.areShadyBusinessDealsUnlocked()">
-            <div class="column" *ngFor="let deal of _base.operations | slice: 5:10;" (click)="_operating.operationPreview(deal); henchAssign = 0;"
+            <div class="column" *ngFor="let deal of _base.operations | slice: 5:10;" (click)="_operating.operationPreview(deal); operateAssign = 0;"
                 [ngStyle]="{'cursor': deal.available && _operating.isUnlocked(deal) ? 'pointer' : 'initial' }">
                 <i class="fa" aria-hidden="true" [ngClass]="operationIconClass(deal)" [ngStyle]="{'color': _operating.nodeColor(deal)}"></i>
             </div>

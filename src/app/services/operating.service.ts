@@ -11,7 +11,11 @@ export class OperatingService extends BaseNum {
         super();
     }
 
-    operatingNow = false; //Lockout, not implemented yet
+    operations; //Name arrays, pulled in by app.component.ts
+    operatingNow = false; //operate action lockout
+    operationResult = false; //operate action lockout part 2 (will not fire if fade doesn't complete)
+    previewOperation: Operation; //Storage for active preview operation
+    showPreview = false; //handler for whether to show the flyout
     operateReadout = { //Used to store data on result
         result: '',
         lost: 0,
@@ -19,42 +23,11 @@ export class OperatingService extends BaseNum {
         notoriety: 0
     };
 
-    //Perform the Operation
-    operate(henchmenQueued, operation: Operation) {
-        if (henchmenQueued > 0) {
-            setTimeout(() => { this.operationResult = true }, 2000);
-            this.operatingNow = true;
-            this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
-            var roll = Math.random() <= this.realSuccessRate(henchmenQueued, this.previewOperation.henchmenCost, this.previewOperation.rarity, this.previewOperation.type)
-            this.operateReadout['result'] = roll ? 'success!' : 'failure.';
-            var lost = 0;
-            if (roll) {
-                var heistDice = [2, 4, 6, 8, 10]
-                var earned = 0;
-                for (var _i = 0; _i < henchmenQueued; _i++) {
-                    earned += Math.floor(Math.random() * heistDice[operation.rarity]) + 1
-                }
-                this.operateReadout['earned'] = earned;
-                Base.CASH += earned;
-                for (var _i = 0; _i < henchmenQueued; _i++) {
-                    lost += Math.random() <= this.previewOperation['risk'] ? 1 : 0;
-                }
-            } else {
-                lost = henchmenQueued;
-            }
-            this.operateReadout['lost'] = lost;
-            Base.CURRENT_HENCHMEN -= lost;
-        }
-    }
-
     //Generate an operation
     operationSpawn(operation: Operation) {
-        switch (operation.type) {
-            case "heist": { var rarity = this.rollOperationRarity(operation); break; }
-            case "shady-business-deal": { var rarity = this.rollOperationRarity(operation); break; }
-        }
+        var rarity = this.rollOperationRarity(operation);
         operation.rarity = rarity;
-        operation.henchmenCost = this.rollOperationHenchmenCost(rarity, operation.type);
+        operation.cost01 = this.rollOperationCost01(rarity, operation.type);
         operation.available = true;
         operation.name = this.pickAnOperationName(rarity, operation.type);
         operation.lock = this.operationCountdown(operation.type);
@@ -76,20 +49,28 @@ export class OperatingService extends BaseNum {
         return result.length;
     }
 
-    rollOperationHenchmenCost(rarity, type) {
+    //Building blocks and routine logic
+    isUnlocked(operation: Operation) {
+        if (operation.type == "heist") {
+            return this.heistUnlocked(operation.id);
+        }
+        if (operation.type == "shady-business-deal") {
+            return this.shadyBusinessDealsUnlocked(operation.id);
+        }
+    }
+
+    rollOperationCost01(rarity, type) {
         switch (type) {
-            case "heist": {
-                var base = [0, 10, 100, 1000, 10000];
-                var multiplier = [10, 100, 1000, 10000, 1000000];
+            case "heist": {  //Henchmen
+                var cost = this.heistCost(rarity);
                 break;
             }
-            case "shady-business-deal": {
-                var base = [4, 40, 400, 4000, 40000];
-                var multiplier = [10, 100, 1000, 10000, 1000000];
+            case "shady-business-deal": {//Cash
+                var cost = this.shadyBusinessDealCost(rarity);
                 break;
             }
         }
-        return base[rarity] + Math.ceil(Math.random() * multiplier[rarity])
+        return cost;
     }
 
     pickAnOperationName(rarity, type) {
@@ -113,8 +94,8 @@ export class OperatingService extends BaseNum {
     operationCountdown(type) {
         var countdown;
         switch (type) {
-            case "heist": { countdown = 1200; break; }
-            case "shady-business-deals": { countdown = 1200; break; }
+            case "heist": { countdown = this.heistCountdown(); break; }
+            case "shady-business-deal": { countdown = this.shadyBusinessDealCountdown(); break; }
         }
         return countdown;
     }
@@ -127,27 +108,36 @@ export class OperatingService extends BaseNum {
         return array[rarity]
     }
 
-    //Reset Methods for after an Operation is complete
-    resetCountdown(operation: Operation) {
-        operation.countdown = this.getOperationRecharge(operation)
-        operation.lock = this.getOperationRecharge(operation)
+    realSuccessRate(resource01, target, rarity, type) {
+        var base = this.operationSuccessRate(rarity, type);
+        return (base / target) * resource01;
     }
 
-    getOperationRecharge(operation: Operation) {
-        if (operation.type == "heist") { //Heists
-            var rate = 600;
-            rate -= this.heistRechargeRate()
-            return rate;
+    operationRiskRate(rarity, type) {
+        switch (type) {
+            case "heist": { var array = [.3, .35, .4, .45, .5]; break; }
+            case "shady-business-deal": { var array = [.25, .275, .3, .325, .35]; break; }
         }
+        return array[rarity] * this.communicationsMultiplier();
+    }
+
+    //Reset Methods for after an Operation is complete
+    resetCountdown(operation: Operation) {
+        operation.countdown = this.operationCountdown(operation.type);
+        operation.lock = this.operationCountdown(operation.type);
     }
 
     //Methods for the template; Display Methods
+    showRisk(operation: Operation) {
+        return Math.floor(operation.risk * 10000) / 100;
+    }
+
     showAnOperationName(operation: Operation) {
         var tiers = ['Tier0', 'Tier1', 'Tier2', 'Tier3', 'Tier4'];
         var id: number;
         switch (operation.type) {
-            case "heist" : { id = 0; break;}
-            case "shady-business-deal" : {id = 1; break;}
+            case "heist": { id = 0; break; }
+            case "shady-business-deal": { id = 1; break; }
         }
         return this.operations[id][tiers[operation.rarity]][operation.name];
     }
@@ -155,39 +145,11 @@ export class OperatingService extends BaseNum {
     showOperationCost(operation: Operation) {
         var array: Array<string>;
         switch (operation.type) {
-            case "heist" : {array = ['user']; break;}
-            case "shady-business-deal" : {array = ['user', 'money']; break;}
+            case "heist": { array = ['user']; break; }
+            case "shady-business-deal": { array = ['money']; break; }
         }
         return array;
     }
-
-
-
-
-
-
-    //Heist Generation
-
-
-
-
-    getHeistRiskRate(rarity) {
-        return [.3, .35, .4, .45, .5][rarity] * this.communicationsMultiplier();
-    }
-
-
-
-
-
-    
-
-
-
-    realSuccessRate(henchmen, target, rarity, type) {
-        var base = this.operationSuccessRate(rarity, type);
-        return (base / target) * henchmen;
-    }
-
 
     //Template Logic Handlers
     areAnyUnlocked() {
@@ -195,30 +157,108 @@ export class OperatingService extends BaseNum {
     }
 
     areHeistsUnlocked() {
-        for (var _i = 0; _i < 5; _i++) {
-            if (this.isUnlocked(BaseNum.OPERATIONS[_i])) {
-                return true;
-            }
-        }
-        return false;
+        return this.heistUnlocked(0);
     }
 
     areShadyBusinessDealsUnlocked() {
-        for (var _i = 5; _i < 10; _i++) {
-            if (this.isUnlocked(BaseNum.OPERATIONS[_i])) {
-                return true;
-            }
-        }
-        return false;
+        return this.shadyBusinessDealsUnlocked(5);
     }
 
-    //Operation methods
-    isUnlocked(operation: Operation) {
-        if (operation.type == "heist") {
-            return this.heistUnlocked(operation.id);
+    percentage(operation: Operation) {
+        return 100 * (1 - (operation.countdown / operation.lock))
+    }
+
+    //Tick function for Primary Loop
+    operateTick(operation: Operation) {
+        if (this.isUnlocked(operation)) {
+            if (operation.lock === 0 && operation.countdown === 0) {
+                this.operationSpawn(operation);
+            }
+            //If the operation is available, recheck certain values that may have changed:
+            if (operation.available) {
+                operation.risk = this.operationRiskRate(operation.rarity, operation.type);
+            } else {
+                operation.countdown--;
+                if (operation.countdown === 0) {
+                    this.operationSpawn(operation);
+                }
+            }
         }
-        if (operation.type == "shady-business-deal") {
-            return this.shadyBusinessDealUnlocked(operation.id);
+    }
+
+    //Actions
+    operate(resource01, operation: Operation) {
+        if (!this.operatingNow) {
+            var lost = 0;
+            switch (operation.type) {
+                case "heist": {
+                    if (resource01 > 0) {
+                        setTimeout(() => { if (this.operatingNow) { this.operationResult = true } }, 1000);
+                        this.operatingNow = true;
+                        this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
+                        var roll = Math.random() <= this.realSuccessRate(resource01, this.previewOperation.cost01, this.previewOperation.rarity, this.previewOperation.type)
+                        this.operateReadout['result'] = roll ? 'success!' : 'failure.';
+                        if (roll) {
+                            var heistDice = [2, 4, 6, 8, 10]
+                            var earned = 0;
+                            for (var _i = 0; _i < resource01; _i++) {
+                                earned += Math.floor(Math.random() * heistDice[operation.rarity]) + 1
+                            }
+                            this.operateReadout['earned'] = earned;
+                            for (var _i = 0; _i < resource01; _i++) {
+                                lost += Math.random() <= this.previewOperation['risk'] ? 1 : 0;
+                            }
+                        } else {
+                            lost = resource01;
+                        }
+                        this.operateReadout['lost'] = lost;
+                    }
+                    break;
+                }
+                case "shady-business-deal": {
+                    if (resource01 > 0) {
+                        setTimeout(() => { if (this.operatingNow) { this.operationResult = true } }, 1000);
+                        this.operatingNow = true;
+                        this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
+                        var roll = Math.random() <= this.realSuccessRate(resource01, this.previewOperation.cost01, this.previewOperation.rarity, this.previewOperation.type)
+                        this.operateReadout['result'] = roll ? 'success!' : 'failure.';
+                        if (roll) {
+                            this.operateReadout['earned'] = operation.cost01 / 10;
+                            for (var _i = 0; _i < resource01; _i++) {
+                                lost += Math.random() <= this.previewOperation['risk'] ? 1 : 0;
+                            }
+                        } else {
+                            lost = resource01;
+                        }
+                        this.operateReadout['lost'] = lost;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    //Complete the operate action.
+    closeCompleteOperation() {
+        if (this.operatingNow) {
+            switch (this.previewOperation.type) {
+                case "heist": {
+                    Base.CASH += this.operateReadout['earned'];
+                    Base.CURRENT_HENCHMEN -= this.operateReadout['lost'];
+                    break;
+                }
+                case "shady-business-deal": {
+                    Base.PASSIVE_CASH[this.previewOperation.rarity] += this.operateReadout['earned'];
+                    console.log(Base.CASH + " -= " + this.operateReadout['lost']);
+                    Base.CASH -= this.operateReadout['lost'];
+                    break;
+                }
+            }
+            this.showPreview = false;
+            BaseNum.OPERATIONS[this.previewOperation.id] = new Operation(this.previewOperation.id, -1, -1, -1, false, 0, 0)
+            this.resetCountdown(BaseNum.OPERATIONS[this.previewOperation.id])
+            this.operationResult = false;
+            this.operatingNow = false;
         }
     }
 
@@ -243,158 +283,12 @@ export class OperatingService extends BaseNum {
         }
     }
 
-    operateTick(operation: Operation) {
-        if (this.isUnlocked(operation)) {
-            if (operation.lock === 0 && operation.countdown === 0) {
-                //console.log("I'm spawning an operation");
-                this.operationSpawn(operation);
-            }
-            //If the operation is available, recheck certain values that may have changed:
-            if (operation.available) {
-                operation.risk = this.getHeistRiskRate(operation.rarity)
-            } else {
-                operation.countdown--;
-                if (operation.countdown === 0) {
-                    this.operationSpawn(operation);
-                }
-            }
-
-        }
-
-    }
-
-    //Display methods
-
-    displayRisk(operation: Operation) {
-        return Math.floor(operation.risk * 10000) / 100;
-    }
-
-
-
-
-
-
-
-
-    operations;
-
-    operationResult = false;
-
-
-
-    /*
-     
-     
-        areAnyUnlocked() {
-            return this.areRoutineOpsUnlocked() || this.areCampaignOpsUnlocked();
-        }
-    */
-
-
-
-
-
-
-
-
-
     getFaColorByRarity(rarity) {
         if (rarity == 0) { return 'black' }
         if (rarity == 1) { return 'green' }
         if (rarity == 2) { return 'blue' }
         if (rarity == 3) { return 'purple' }
         if (rarity == 4) { return 'orange' }
-    }
-
-    previewOperation: Operation;
-    showPreview = false;
-
-
-
-
-
-    closeCompleteOperation() {
-        if (this.operatingNow) {
-
-
-            this.showPreview = false;
-            BaseNum.OPERATIONS[this.previewOperation.id] = new Operation(this.previewOperation.id, -1, -1, -1, false, 0, 0)
-            this.resetCountdown(BaseNum.OPERATIONS[this.previewOperation.id])
-            this.operationResult = false;
-            this.previewOperation = undefined;
-            this.operatingNow = false;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    getDealHenchmenCost(rarity) {
-        var multiplier;
-        if (rarity == 0) { multiplier = 10 }
-        if (rarity == 1) { multiplier = 20 }
-        if (rarity == 2) { multiplier = 50 }
-        if (rarity == 3) { multiplier = 100 }
-        if (rarity == 4) { multiplier = 200 }
-        return Math.ceil(Math.random() * multiplier)
-    }
-
-    getHeistCashOutput(rarity, henchmen) {
-        var multiplier;
-        if (rarity == 0) { multiplier = 1 }
-        if (rarity == 1) { multiplier = 1.2 }
-        if (rarity == 2) { multiplier = 1.5 }
-        if (rarity == 3) { multiplier = 1.7 }
-        if (rarity == 4) { multiplier = 2 }
-        return Math.floor(henchmen * multiplier)
-    }
-
-
-
-
-
-
-
-    getHeistNotoriety(rarity) {
-        return Math.floor((rarity * .1) * 100) / 100;
-    }
-
-    percentage(operation: Operation) {
-        return 100 * (1 - (operation.countdown / operation.lock))
-    }
-
-
-
-
-
-
-
-
-
-    get heistRarityChances() {
-        return this.heistRarityChancesArray;
-    }
-
-
-
-    //Heists specifically
-
-
-    rollShadyBusinessDealRarity() {
-        var roll = Math.random();
-        var dealRarityChances = this.shadyBusinessDealRarityChancesArray();
-        if (roll >= dealRarityChances[0] && roll <= dealRarityChances[1]) { return 1 }
-        if (roll >= dealRarityChances[1] && roll <= dealRarityChances[2]) { return 2 }
-        if (roll >= dealRarityChances[2] && roll <= dealRarityChances[3]) { return 3 }
-        if (roll >= dealRarityChances[3] && roll <= dealRarityChances[4]) { return 4 }
     }
 
 }

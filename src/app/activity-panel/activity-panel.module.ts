@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -15,10 +16,11 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    MatTooltipModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [MatSliderModule]
+  providers: [MatSliderModule, MatTooltipModule]
 })
 export class ActivityPanelModule {
 

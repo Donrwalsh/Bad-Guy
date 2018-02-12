@@ -21,6 +21,7 @@ export class Base {
 
     //Currency
     static CASH: number;
+    static PASSIVE_CASH: Array<number>;
 
     
     

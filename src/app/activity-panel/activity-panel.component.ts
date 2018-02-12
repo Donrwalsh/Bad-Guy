@@ -35,16 +35,17 @@ export class ActivityPanelComponent extends BaseNum {
         super();
     }
 
-    henchAssign: number = 0;
+
+    operateAssign: number = 0;
 
     get success() {
-        return this._operating.realSuccessRate(this.henchAssign, this._operating.previewOperation.henchmenCost, this._operating.previewOperation.rarity, this._operating.previewOperation.type);
+        return this._operating.realSuccessRate(this.operateAssign, this._operating.previewOperation.cost01, this._operating.previewOperation.rarity, this._operating.previewOperation.type);
     }
 
     onInputChange(event: any) {
-        this.henchAssign = event.value;
-        console.log(this.henchAssign + ", " + this._operating.previewOperation.henchmenCost + ", " + this._operating.previewOperation.rarity + ", " + this._operating.previewOperation.type)
-        console.log(this._operating.realSuccessRate(this.henchAssign, this._operating.previewOperation.henchmenCost, this._operating.previewOperation.rarity, this._operating.previewOperation.type))
+        this.operateAssign = event.value;
+        console.log(this.operateAssign + ", " + this._operating.previewOperation.cost01 + ", " + this._operating.previewOperation.rarity + ", " + this._operating.previewOperation.type)
+        console.log(this._operating.realSuccessRate(this.operateAssign, this._operating.previewOperation.cost01, this._operating.previewOperation.rarity, this._operating.previewOperation.type))
     }
 
     containerClass(id, type) {
@@ -138,8 +139,8 @@ export class ActivityPanelComponent extends BaseNum {
 
     operateButtonInPreviewStyle() {
         return {
-            'color': this.henchAssign == 0 ? 'red' : this._operating.getFaColorByRarity(this._operating.previewOperation['rarity']),
-            'cursor': this.henchAssign > 0 ? 'initial' : 'pointer'
+            'color': this.operateAssign == 0 ? 'red' : this._operating.getFaColorByRarity(this._operating.previewOperation['rarity']),
+            'cursor': this.operateAssign > 0 ? 'initial' : 'pointer'
         }
     }
 

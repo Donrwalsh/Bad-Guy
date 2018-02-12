@@ -251,16 +251,16 @@ export class AppComponent extends BaseNum implements OnInit {
           for (var i = 0; i < res.length; i++) {
             let newScheme = new Scheme(
               res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree,
-              0, 4, this.schemeLairReq[i], this.schemeExp[i]
+              0, 0, this.schemeLairReq[i], this.schemeExp[i]
             );
             SchemeData.push(newScheme);
           }
           Base.SCHEMES = SchemeData;
-          console.log("Base.SCHEMES populated (All are level 4):");
+          console.log("Base.SCHEMES populated (All are level 0):");
           console.log(Base.SCHEMES);
           console.log("No Current Scheme to Set")
-          Base.CURRENT_HENCHMEN = 5;
-          console.log("Base.CURRENT_HENCHMEN set to 5.")
+          Base.CURRENT_HENCHMEN = 0;
+          console.log("Base.CURRENT_HENCHMEN set to 0.")
 
 
           Base.INITIAL_LOAD_SCHEMES = false;
@@ -302,7 +302,10 @@ export class AppComponent extends BaseNum implements OnInit {
           console.log(BaseNum.OPERATIONS);
 
           Base.CASH = 0;
-          console.log("Base.CASH set to 0.")
+          console.log("Base.CASH set to 10000.")
+
+          Base.PASSIVE_CASH = [0, 0, 0, 0, 0];
+          console.log("Base.PASSIVE_CASH set to 0s.")
 
         });
     }

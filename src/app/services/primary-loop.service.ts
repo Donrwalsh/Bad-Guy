@@ -36,7 +36,7 @@ export class PrimaryLoopService extends BaseNum {
     //Used for one-off console logs - logging within the loop can be tedious.
     didOnce = false;
     doOnce() {
-       console.log(this._operating.operations)
+       console.log(this._operating.operationCountdown("heist"))
         
     }
 
@@ -79,6 +79,7 @@ export class PrimaryLoopService extends BaseNum {
 
     //Events that occur every minute
     minute() {
+        Base.CASH += Base.PASSIVE_CASH[0];
         if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute)
         }
