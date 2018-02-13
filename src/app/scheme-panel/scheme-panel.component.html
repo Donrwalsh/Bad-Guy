@@ -17,7 +17,7 @@
     <div class="scheme-area" *ngIf="_scheming.selected == 'scheming'">
         <div class="column">
             <p class="node" *ngFor="let scheme of _base.schemes | slice: 0:3; let i = index" (click)="_scheming.schemePreview(scheme)">
-                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.canLearn(scheme) ? 'default' : 'grey' } "></i>
+                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } "></i>
             </p>
         </div>
         <div class="column"></div>
@@ -28,7 +28,7 @@
     <div class="hench-area" *ngIf="_scheming.selected == 'henchmen'">
         <div class="column">
             <p class="node" *ngFor="let scheme of _base.schemes | slice: 3:6; let i = index" (click)="_scheming.schemePreview(scheme)">
-                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.canLearn(scheme) ? 'default' : 'grey' } "></i>
+                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } "></i>
             </p>
         </div>
         <div class="column"></div>
@@ -39,7 +39,7 @@
     <div class="operate-area" *ngIf="_scheming.selected == 'operations'">
         <div class="column">
             <p class="node" *ngFor="let scheme of _base.schemes | slice: 6:9; let i = index" (click)="_scheming.schemePreview(scheme)">
-                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.canLearn(scheme) ? 'default' : 'grey' } "></i>
+                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } "></i>
             </p>
         </div>
         <div class="column"></div>
@@ -50,7 +50,7 @@
     <div class="lair-area" *ngIf="_scheming.selected == 'lairs'">
         <div class="column">
             <p class="node" *ngFor="let scheme of _base.schemes | slice: 9:10; let i = index" (click)="_scheming.schemePreview(scheme)">
-                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.canLearn(scheme) ? 'default' : 'grey' } "></i>
+                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } "></i>
             </p>
         </div>
         <div class="column"></div>
@@ -65,7 +65,27 @@
             <p class="benefit-text">{{_scheming.previewScheme.currentDescription}} </p>
             <p *ngIf="_scheming.canLearn(_scheming.previewScheme)" class="flavor-text">{{_scheming.previewScheme.currentFlavor}}</p>
             <p *ngIf="!_scheming.learnLair(_scheming.previewScheme)" style="color:red" class="flavor-text">Lair Level {{_scheming.previewScheme.currentLairLevel}} required.</p>
-            <p class="scheme-exp"> {{_scheming.previewScheme.exp}}<i class="fa fa-lightbulb-o" aria-hidden="true"></i>/{{_scheming.previewScheme.currentExpTarget}}<i class="fa fa-lightbulb-o" aria-hidden="true"></i></p>
+            <p *ngIf="!_scheming.learnCash(_scheming.previewScheme)" style="color:red" class="flavor-text">{{_scheming.previewScheme.currentCashCost - _scheming.previewScheme.cash}} <i class="fa fa-money" aria-hidden="true"></i> investment required.</p>
+            <div style="width:30%;text-align:center;margin:0 auto;margin-top:1rem;display: inline-block;">
+                <p><i class="fa fa-lightbulb-o" aria-hidden="true"></i></p>
+                <p class="scheme-exp" style="margin-top:0; margin-bottom:0;"> {{_scheming.previewScheme.exp}}/{{_scheming.previewScheme.currentExpTarget}}</p>
+            </div>
+            <div *ngIf="_scheming.previewScheme.currentCashCost > 0" style="width:30%;text-align:center;margin:0 auto;margin-top:1rem;display: inline-block;">
+                    <p><i class="fa fa-money" aria-hidden="true"></i></p>
+                    <p class="scheme-exp" style="margin-top:0; margin-bottom:0;"> {{_scheming.previewScheme.cash}}/{{_scheming.previewScheme.currentCashCost}}</p>
+            </div>
+
+            <div *ngIf="_scheming.previewScheme.cash < _scheming.previewScheme.currentCashCost">
+                    <i class="fa fa-money" aria-hidden="true"></i>
+                    <mat-slider (input)="onInputChange($event)" min="0" step="1" [max]="_base.cash < _scheming.previewScheme.currentCashCost ? _base.cash : _scheming.previewScheme.currentCashCost" [value]="schemeCashAssign" style="width:85%;"></mat-slider>
+                    <p *ngIf="schemeCashAssign > 0" class="node {{_scheming.previewScheme.tree}}-strong" style="width:90%;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;margin-top:0;" 
+            (click)="investCash()">Invest {{schemeCashAssign}} <i style="margin-top:0;" class="fa fa-money" aria-hidden="true"></i> </p>
+            </div>
+            
+
+            
+            
+            
             <p class="node {{_scheming.previewScheme.tree}}-strong" style="width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;" 
             *ngIf="_scheming.showSchemeButtonInPreviewScheme()" (click)="_scheming.startSchemingPreview()">Scheme</p>
         </div>

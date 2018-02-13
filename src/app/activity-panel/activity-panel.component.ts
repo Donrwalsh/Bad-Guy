@@ -44,8 +44,6 @@ export class ActivityPanelComponent extends BaseNum {
 
     onInputChange(event: any) {
         this.operateAssign = event.value;
-        console.log(this.operateAssign + ", " + this._operating.previewOperation.cost01 + ", " + this._operating.previewOperation.rarity + ", " + this._operating.previewOperation.type)
-        console.log(this._operating.realSuccessRate(this.operateAssign, this._operating.previewOperation.cost01, this._operating.previewOperation.rarity, this._operating.previewOperation.type))
     }
 
     containerClass(id, type) {

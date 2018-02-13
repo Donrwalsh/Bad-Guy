@@ -51,11 +51,11 @@ export class Base {
 
     standardCashArray: Array<number> = [ 
         0, 0, 0, 0, 0,
-        20, 40, 60, 80, 100
+        100, 200, 300, 400, 500
     ]
 
     beginnerLairCashArray: Array<number> = [
-        10, 20, 30, 40, 50
+        100, 200, 300, 400, 500
     ]
 
     

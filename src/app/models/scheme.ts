@@ -66,6 +66,10 @@ export class Scheme {
         return this.lairReq[this.level+1]
     }
 
+    get currentCashCost() {
+        return this.cashCosts[this.level];
+    }
+
     //Getter for header progress bar
     get percentage() {
         return Math.round((this.exp / this.currentExpTarget) * 100);

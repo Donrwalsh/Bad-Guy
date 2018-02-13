@@ -15,5 +15,24 @@ export class SchemePanelComponent extends Base {
         super();
     }
     
+    schemeCashAssign: number = 0;
+    investingCash: boolean = false;
+
+    onInputChange(event: any) {
+        this.schemeCashAssign = event.value;
+    }
+
+    investCash() {
+        if (!this.investingCash) {
+            this.investingCash = true;
+            if (this.schemeCashAssign <= Base.CASH) {
+                Base.CASH -= this.schemeCashAssign;
+                this._scheming.previewScheme.cash += this.schemeCashAssign;
+                this.schemeCashAssign = 0;
+            }
+            this.investingCash = false;
+        }
+    }
+
 }
 

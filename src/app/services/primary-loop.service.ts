@@ -85,35 +85,6 @@ export class PrimaryLoopService extends BaseNum {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute)
         }
         this._system.save();
-        /*
-        var saveString = Base.EARNING_SCHEME_POINTS ? "1" : "0";
-        for (var i = 0; i < Base.SCHEMES.length; i++) {
-            saveString = saveString + Base.SCHEMES[i].level + "z" + Base.SCHEMES[i].exp + "z" + Base.SCHEMES[i].cash;
-        }
-        if (Base.CURRENT_SCHEME == null) {
-            saveString = saveString + "-1z";
-        } else {
-            saveString = saveString + Base.CURRENT_SCHEME.ref + "z";
-        }
-        saveString = saveString + Base.CURRENT_HENCHMEN + "z";
-        for (var i = 0; i < BaseNum.RECRUITS.length; i++) {
-            saveString = saveString + BaseNum.RECRUITS[i].currentStore + "z";
-            saveString = saveString + BaseNum.RECRUITS[i].countdown + "z";
-            saveString = saveString + BaseNum.RECRUITS[i].lock + "z";
-        }
-        saveString = saveString + Base.CURRENT_LAIR_HP + "z";
-        saveString = saveString + Base.CURRENT_GUARDS + "z";
-
-        for (var i = 0; i < BaseNum.TRAINS.length; i++) {
-            saveString = saveString + BaseNum.TRAINS[i].currentStore + "z";
-            saveString = saveString + BaseNum.TRAINS[i].countdown + "z";
-            saveString = saveString + BaseNum.TRAINS[i].lock + "z";
-            saveString = saveString + BaseNum.TRAINS[i].queued + "z";
-        }
-        
-        console.log(saveString);
-        this.cookieService.set( 'save', saveString, 365 );
-*/
 
     }
 

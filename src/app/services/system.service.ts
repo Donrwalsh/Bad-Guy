@@ -4,7 +4,10 @@ import { DataService } from '../services/data.service';
 import {SchemingService } from '../services/scheming.service';
 import { Base } from '../base';
 import { BaseNum } from '../base-num';
-import { Scheme } from '../models/scheme'
+import { Scheme } from '../models/scheme';
+import { Recruit } from '../models/recruit';
+import { Train } from '../models/train';
+import { Operation } from '../models/operation';
 
 @Injectable()
 export class SystemService extends BaseNum {
@@ -27,6 +30,23 @@ export class SystemService extends BaseNum {
         + '0z0z0z' 
         //Current Scheme. Only the id is stored. An empty entry means none is selected.
         + 'z'
+        //Current henchmen.
+        + '0z'
+        //RECRUITS numbers. currentStore, countdown, lock in order by help-wanted ref.
+        + '0z0z0z' + '0z0z0z' + '0z0z0z' + '0z0z0z' + '0z0z0z'
+        //Lair Hp. Raw number, newGame value is 10.
+        + '10z'
+        //Current guards.
+        + '0z'
+        //TRAINS numbers. currentStore, countdown, lock, queued in order by help-wanted ref.
+        + '0z0z0z0z' + '0z0z0z0z' + '0z0z0z0z' + '0z0z0z0z' + '0z0z0z0z'
+        //OPERATIONS numbers. name, rarity, cost01, available, countdown, lock in order by id. 10 ops so far.
+        + 'zzz1z0z0z' + 'zzz1z0z0z' + 'zzz1z0z0z' + 'zzz1z0z0z' + 'zzz1z0z0z'
+        + 'zzz1z0z0z' + 'zzz1z0z0z' + 'zzz1z0z0z' + 'zzz1z0z0z' + 'zzz1z0z0z'
+        //Raw Cash
+        + '0z'
+        //Passive Cash. 5 values for different tiers.
+        + '0z0z0z0z0z'
     }
     
     //+ '0'
@@ -58,20 +78,16 @@ export class SystemService extends BaseNum {
     }
 
     load(data: string) {
-        console.log(data.length);
         Base.EARNING_SCHEME_POINTS = data[0] === "1";
         this.devLog("Base.EARNING_SCHEME_POINTS set to " + Base.EARNING_SCHEME_POINTS);
         this.marker = 0;
         this._data.getSchemes()
             .subscribe((res) => {
                 var SchemeData = new Array();
-                var level: string = "";
-                var exp: string = "";
-                var cash: string = "";
                 res.forEach( (scheme) => {
-                    level = this.saveReader(data);
-                    exp = this.saveReader(data);
-                    cash = this.saveReader(data);
+                    var exp = this.saveReader(data);
+                    var cash = this.saveReader(data);
+                    var level = this.saveReader(data);
 
                     let newScheme = new Scheme(
                         scheme.ref,
@@ -87,9 +103,6 @@ export class SystemService extends BaseNum {
                         this.schemeCashCost[scheme.ref]
                     );
                     SchemeData.push(newScheme);
-                    level = "";
-                    exp = "";
-                    cash = "";
                 });
                 Base.SCHEMES = SchemeData;
                 this.devLog("Base.SCHEMES populated:");
@@ -106,16 +119,149 @@ export class SystemService extends BaseNum {
                 } else {
                     this.devLog("no current scheme to set");
                 }
+
+                Base.INITIAL_LOAD_SCHEMES = false; //Toggle the lockout for visible elements that rely on scheme data.
+
+                Base.CURRENT_HENCHMEN = Number(this.saveReader(data));
+                this.devLog("Base.CURRENT_HENCHMEN set to " + Base.CURRENT_HENCHMEN)
+
+                var RecruitData = new Array();
+                for (var i = 0; i < 5; i++) { //magic number 5 for 5 planned help-wanted objects
+                    var currentStore = this.saveReader(data);
+                    var countdown = this.saveReader(data);
+                    var lock = this.saveReader(data);
+                    let newRecruit = new Recruit(
+                        i,
+                        Number(currentStore),
+                        Number(countdown),
+                        Number(lock)
+                    )
+                    RecruitData.push(newRecruit);
+                }
+
+                BaseNum.RECRUITS = RecruitData;
+                this.devLog("BaseNum.RECRUITS populated:");
+                this.devLog(BaseNum.RECRUITS);
+                Base.INITIAL_LOAD_RECRUITS = false;
+
+                Base.CURRENT_LAIR_HP = Number(this.saveReader(data));
+                this.devLog("Base.CURRENT_LAIR_HP set to " + Base.CURRENT_LAIR_HP)
+
+                Base.CURRENT_GUARDS = Number(this.saveReader(data));
+                this.devLog("Base.CURRENT_GUARDS set to " + Base.CURRENT_GUARDS)
+
+                var TrainData = new Array();
+                for (var i = 0; i < 5; i++) { //magic number 5 for 5 henchmen upgrades
+                    var currentStore = this.saveReader(data);
+                    var countdown = this.saveReader(data);
+                    var lock = this.saveReader(data);
+                    var queued = this.saveReader(data);
+                    let newTrain = new Train(
+                        i,
+                        Number(currentStore),
+                        Number(countdown),
+                        Number(lock),
+                        Number(queued)
+                    )
+                    TrainData.push(newTrain);
+                }
+                BaseNum.TRAINS = TrainData;
+                this.devLog("BaseNum.TRAINS populated:");
+                this.devLog(BaseNum.TRAINS);
+
+                var OperationData = new Array();
+                for (var i = 0; i < 10; i++) {//Magic number 10 for existing operations.
+                    var name = this.saveReader(data);
+                    var rarity = this.saveReader(data);
+                    var cost01 = this.saveReader(data);
+                    var available = this.saveReader(data);
+                    var countdown = this.saveReader(data);
+                    var lock = this.saveReader(data);
+                    let newOperation = new Operation(
+                        i,
+                        name.length > 0 ? Number(name) : -1,
+                        rarity.length > 0 ? Number(rarity) : -1,
+                        cost01.length > 0 ? Number(cost01) : -1,
+                        available == "1",
+                        Number(countdown),
+                        Number(lock)
+                    );
+                    OperationData.push(newOperation);
+                }
+                BaseNum.OPERATIONS = OperationData;
+                this.devLog("BaseNum.OPERATIONS populated:");
+                this.devLog(BaseNum.OPERATIONS);
+
+                Base.CASH = Number(this.saveReader(data));
+                this.devLog("Base.CASH set to " + Base.CASH);
+
+                var PassiveCash = new Array();
+                for (var i = 0; i < 5; i++) {//Magic number 5 for passive cash array.
+                    PassiveCash[i] = Number(this.saveReader(data));
+                }
+                Base.PASSIVE_CASH = PassiveCash;
+                this.devLog("Base.PASSIVE_CASH populated:")
+                this.devLog(Base.PASSIVE_CASH);
             });
     }
 
     save() {
         this.devLog("saving game");
         var saveString: string = '';
+        
+        this.devLog("capturing Base.EARNING_SCHEME_POINTS:");
         saveString += Base.EARNING_SCHEME_POINTS ? "1" : "0";
+        this.devLog(saveString);
+        
+        this.devLog("capturing Base.SCHEMES: (exp, cash, level)");
         Base.SCHEMES.forEach( (scheme) => {
-            saveString += scheme.level + "z" + scheme.exp + "z" + scheme.cash + "z";
+            var addToString = scheme.exp + "z" + scheme.cash + "z" + scheme.level + "z" ;
+            this.devLog("id " + scheme.ref + ": " + addToString)
+            saveString += addToString;
         });
+
+        this.devLog("capturing Base.CURRENT_SCHEME:")
+        if (Base.CURRENT_SCHEME == null) {
+            saveString = saveString + "z";
+            this.devLog("null");
+        } else {
+            saveString = saveString + Base.CURRENT_SCHEME.ref + "z";
+            this.devLog(Base.CURRENT_SCHEME.ref + "z")
+        }
+
+        this.devLog("capturing Base.CURRENT_HENCHMEN:")
+        saveString = saveString + Base.CURRENT_HENCHMEN + "z";
+        this.devLog(Base.CURRENT_HENCHMEN + "z");
+
+        this.devLog("capturing Base.RECRUITS: (currentStore, countdown, lock)");
+        BaseNum.RECRUITS.forEach( (recruit) => {
+            var addToString = recruit.currentStore + "z" + recruit.countdown + "z" + recruit.lock + "z";
+            this.devLog("id " + recruit.id + ":" + addToString)
+            saveString += addToString;
+        });
+
+        saveString = saveString + Base.CURRENT_LAIR_HP + "z";
+        saveString = saveString + Base.CURRENT_GUARDS + "z";
+
+        BaseNum.TRAINS.forEach( (train) =>  {
+            saveString += train.currentStore + 'z' + train.countdown + "z" + train.lock + "z" + train.queued + "z";
+        });
+
+        BaseNum.OPERATIONS.forEach( (operate) => {
+            saveString += operate.name == -1 ? 'z' : operate.name + 'z';
+            saveString += operate.rarity == -1 ? 'z' : operate.rarity + 'z';
+            saveString += operate.cost01 == -1 ? 'z' : operate.cost01 + 'z';
+            saveString += operate.available ? '1z' : '0z';
+            saveString += operate.countdown + 'z' + operate.lock + 'z';
+        })
+
+        saveString += Base.CASH + 'z';
+
+        Base.PASSIVE_CASH.forEach( (passive) =>{
+            saveString += passive + 'z';
+        })
+
+
         this.devLog(saveString);
 
 

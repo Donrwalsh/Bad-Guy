@@ -20,16 +20,22 @@ export class SchemingService extends BaseNum {
     
     //Decide whether to display the "Scheme" button in the flyout
     showSchemeButtonInPreviewScheme() {
-        return !Base.EARNING_SCHEME_POINTS && this.canLearn(this.previewScheme) || ((this.previewScheme != Base.CURRENT_SCHEME) && this.canLearn(this.previewScheme));
+        return !Base.EARNING_SCHEME_POINTS && this.canLearn(this.previewScheme) 
+        || 
+        ((this.previewScheme != Base.CURRENT_SCHEME) && this.canLearn(this.previewScheme));
     }
 
     //canLearn() is the aggregate. It consults multiple methods to determine learnability.
     canLearn(scheme: Scheme) {
-        return this.learnLair(scheme);
+        return this.learnLair(scheme) && this.learnCash(scheme);
     }
 
     learnLair(scheme : Scheme) {
         return scheme.lairReq[scheme.level] <= this.LAIR_LEVEL;
+    }
+
+    learnCash(scheme: Scheme) {
+        return scheme.cash == scheme.currentCashCost;
     }
 
     //ACTIONS

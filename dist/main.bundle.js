@@ -106,8 +106,6 @@ var ActivityPanelComponent = /** @class */ (function (_super) {
     });
     ActivityPanelComponent.prototype.onInputChange = function (event) {
         this.operateAssign = event.value;
-        console.log(this.operateAssign + ", " + this._operating.previewOperation.cost01 + ", " + this._operating.previewOperation.rarity + ", " + this._operating.previewOperation.type);
-        console.log(this._operating.realSuccessRate(this.operateAssign, this._operating.previewOperation.cost01, this._operating.previewOperation.rarity, this._operating.previewOperation.type));
     };
     ActivityPanelComponent.prototype.containerClass = function (id, type) {
         return {
@@ -314,7 +312,7 @@ var ActivityPanelModule = /** @class */ (function () {
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header></header>\n<div class=\"main-section\" *ngIf=\"!_base.initialLoadSchemes\">\n  <div class=\"resources-bar\">\n    <div class=\"resource-tab lair\" matTooltip=\"click for details\" (click)=\"openLairModal()\">\n      <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_lair.lairName}}</p>\n    </div>\n    <div class=\"resource-tab cash\" *ngIf=\"_base.cash > 0\">\n      <i class=\"fa fa-money\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_base.cash}}</p>\n    </div>\n    <div class=\"resource-tab henchmen\" *ngIf=\"_recruiting.areAnyUnlocked()\">\n      <i class=\"fa fa-user\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_base.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>\n    </div>\n    <div class=\"resource-tab guard\" *ngIf=\"_training.guardTrainingUnlocked\">\n      <i class=\"fa fa-shield\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_base.currentGuards}}/{{_inventory.guardCapacity}}</p>\n    </div>\n\n\n\n  </div>\n  <activity-panel></activity-panel>\n  <scheme-panel></scheme-panel>\n\n</div>"
+module.exports = "<header></header>\n<div class=\"main-section\" *ngIf=\"!_base.initialLoadSchemes\">\n  <div class=\"resources-bar\">\n    <div class=\"resource-tab lair\" matTooltip=\"click for details\" (click)=\"openLairModal()\">\n      <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_lair.lairName}}</p>\n    </div>\n    <div class=\"resource-tab cash\">\n      <i class=\"fa fa-money\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_base.cash}}</p>\n    </div>\n    <div class=\"resource-tab henchmen\" *ngIf=\"_recruiting.areAnyUnlocked()\">\n      <i class=\"fa fa-user\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_base.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>\n    </div>\n    <div class=\"resource-tab guard\" *ngIf=\"_training.guardTrainingUnlocked\">\n      <i class=\"fa fa-shield\" aria-hidden=\"true\"></i>\n      <p class=\"resource-readout\">{{_base.currentGuards}}/{{_inventory.guardCapacity}}</p>\n    </div>\n\n\n\n  </div>\n  <activity-panel></activity-panel>\n  <scheme-panel></scheme-panel>\n\n</div>"
 
 /***/ }),
 
@@ -419,283 +417,6 @@ var AppComponent = /** @class */ (function (_super) {
             console.log(_this._system.freshGame);
             _system.load(_this._system.freshGame);
         }
-        /*
-        cookieService.deleteAll();
-        if (cookieService.check('save')) {
-          console.log("Save Data Exists")
-          //console.log(cookieService.get('save'));
-    
-          Base.EARNING_SCHEME_POINTS = cookieService.get('save')[0] === "1";
-          console.log("Base.EARNING_SCHEME_POINTS set to " + String(cookieService.get('save')[0] === "1"));
-    
-          var marker = 0;
-          this._dataService.getSchemes()
-            .subscribe((res) => {
-              var SchemeData = new Array();
-              var level: string = "";
-              var exp: string = "";
-              var cash: string = "";
-              for (var i = 0; i < res.length; i++) {
-                while (true) {
-                  marker++;
-                  if (cookieService.get('save')[marker] != "z") {
-                    level = level + cookieService.get('save')[marker]
-                  } else {
-                    break;
-                  }
-                }
-                while (true) {
-                  marker++;
-                  if (cookieService.get('save')[marker] != "z") {
-                    cash = cash + cookieService.get('save')[marker]
-                  } else {
-                    break;
-                  }
-                }
-                while (true) {
-                  marker++;
-                  if (cookieService.get('save')[marker] != "z") {
-                    exp = exp + cookieService.get('save')[marker]
-                  } else {
-                    break;
-                  }
-                }
-                let newScheme = new Scheme(
-                  res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree,
-                  Number(exp), Number(cash), Number(level), this.schemeLairReq[i], this.schemeExp[i], this.schemeCashCost[i]
-                );
-                SchemeData.push(newScheme);
-                level = "";
-                exp = "";
-              }
-              Base.SCHEMES = SchemeData;
-              console.log("Base.SCHEMES populated:");
-              console.log(Base.SCHEMES);
-    
-              var currentScheme = "";
-              while (true) {
-                marker++;
-                if (cookieService.get('save')[marker] != "z") {
-                  currentScheme = currentScheme + cookieService.get('save')[marker];
-                } else {
-                  break
-                }
-              }
-              if (currentScheme != "-1") {
-                Base.CURRENT_SCHEME = Base.SCHEMES[Number(currentScheme)];
-                this._scheming.selected = Base.CURRENT_SCHEME.tree;
-                this._scheming.previewScheme = Base.CURRENT_SCHEME;
-                this._scheming.showPreview = true;
-                console.log("Set Base.CURRENT_SCHEME and switched the Preview:");
-                console.log(Base.CURRENT_SCHEME);
-              } else {
-                console.log("No Current Scheme to Set")
-              }
-    
-              Base.INITIAL_LOAD_SCHEMES = false;
-    
-              var currentHench = "";
-              while (true) {
-                marker++;
-                if (cookieService.get('save')[marker] != "z") {
-                  currentHench = currentHench + cookieService.get('save')[marker];
-                } else {
-                  break
-                }
-              }
-              Base.CURRENT_HENCHMEN = Number(currentHench);
-              console.log("Base.CURRENT_HENCHMEN set to " + currentHench + ".")
-    
-              var RecruitData = new Array();
-              for (var i = 0; i < 5; i++) { //Note the magic number 5.
-                var RAMcurrentStore = "";
-                var RAMcountdown = "";
-                var RAMlock = "";
-                while(true) {
-                  marker++;
-                  if (cookieService.get('save')[marker] != "z") {
-                    RAMcurrentStore = RAMcurrentStore + cookieService.get('save')[marker];
-                  } else {
-                    break
-                  }
-                }
-                while(true) {
-                  marker++;
-                  if (cookieService.get('save')[marker] != "z") {
-                    RAMcountdown = RAMcountdown + cookieService.get('save')[marker];
-                  } else {
-                    break
-                  }
-                }
-                while(true) {
-                  marker++;
-                  if (cookieService.get('save')[marker] != "z") {
-                    RAMlock = RAMlock + cookieService.get('save')[marker];
-                  } else {
-                    break
-                  }
-                }
-                let newRecruit = new Recruit(i, Number(RAMcurrentStore), Number(RAMcountdown), Number(RAMlock));
-                RecruitData.push(newRecruit);
-              }
-              
-              BaseNum.RECRUITS = RecruitData;
-              console.log("BaseNum.RECRUITS populated:");
-              console.log(BaseNum.RECRUITS);
-    
-    
-    
-              Base.INITIAL_LOAD_RECRUITS = false;
-    
-              var lairHp = "";
-              while(true) {
-                marker++;
-                if (cookieService.get('save')[marker] != "z") {
-                  lairHp = lairHp + cookieService.get('save')[marker];
-                } else {
-                  break
-                }
-              }
-    
-              Base.CURRENT_LAIR_HP = Number(lairHp);
-              console.log("Base.CURRENT_LAIR_HP set to " + lairHp + ".");
-    
-              var guards = "";
-              while(true) {
-                marker++;
-                if (cookieService.get('save')[marker] != "z") {
-                  guards = guards + cookieService.get('save')[marker];
-                } else {
-                  break
-                }
-              }
-              Base.CURRENT_GUARDS = Number(guards);
-              console.log("Base.CURRENT_GUARDS set to " + guards + ".");
-    
-              var TrainData = new Array();
-              for (var i = 0; i < 5; i++) { //Note the magic number 5.
-                var RAMcurrentStore = "";
-                var RAMcountdown = "";
-                var RAMlock = "";
-                var RAMqueued = "";
-                while(true) {
-                  marker++;
-                  if (cookieService.get('save')[marker] != "z") {
-                    RAMcurrentStore = RAMcurrentStore + cookieService.get('save')[marker];
-                  } else {
-                    break
-                  }
-                }
-                while(true) {
-                  marker++;
-                  if (cookieService.get('save')[marker] != "z") {
-                    RAMcountdown = RAMcountdown + cookieService.get('save')[marker];
-                  } else {
-                    break
-                  }
-                }
-                while(true) {
-                  marker++;
-                  if (cookieService.get('save')[marker] != "z") {
-                    RAMlock = RAMlock + cookieService.get('save')[marker];
-                  } else {
-                    break
-                  }
-                }
-                while(true) {
-                  marker++;
-                  if (cookieService.get('save')[marker] != "z") {
-                    RAMqueued = RAMqueued + cookieService.get('save')[marker];
-                  } else {
-                    break
-                  }
-                }
-                let newTrain = new Train(i, Number(RAMcurrentStore), Number(RAMcountdown), Number(RAMlock), Number(RAMqueued));
-                TrainData.push(newTrain);
-              }
-              
-              BaseNum.TRAINS = TrainData;
-              console.log("BaseNum.TRAINS populated:");
-              console.log(BaseNum.TRAINS);
-              
-            });
-    
-    
-    
-    
-    
-    
-    
-    
-          //console.log(this.EARNING_SCHEME_POINTS);
-        } else {
-          console.log("Save Data Does Not Exist")
-          //Construct Scheme data from MongoDB
-          this._dataService.getSchemes()
-            .subscribe((res) => {
-              var SchemeData = new Array();
-              for (var i = 0; i < res.length; i++) {
-                let newScheme = new Scheme(
-                  res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree,
-                  0, 0, 0, this.schemeLairReq[i], this.schemeExp[i], this.schemeCashCost[i]
-                );
-                SchemeData.push(newScheme);
-              }
-              Base.SCHEMES = SchemeData;
-              console.log("Base.SCHEMES populated (All are level 0):");
-              console.log(Base.SCHEMES);
-              console.log("No Current Scheme to Set")
-              Base.CURRENT_HENCHMEN = 0;
-              console.log("Base.CURRENT_HENCHMEN set to 0.")
-    
-    
-              Base.INITIAL_LOAD_SCHEMES = false;
-    
-              //Construct Recruit data from Angular logic
-              var RecruitData = new Array();
-              for (var i = 0; i < 5; i++) { //Note the magic number 5.
-                let newRecruit = new Recruit(i, 0, 0, 0);
-                RecruitData.push(newRecruit);
-              }
-              BaseNum.RECRUITS = RecruitData;
-              console.log("BaseNum.RECRUITS populated:");
-              console.log(BaseNum.RECRUITS);
-    
-              Base.INITIAL_LOAD_RECRUITS = false;
-    
-              Base.CURRENT_LAIR_HP = 10;
-              console.log("Base.CURRENT_LAIR_HP set to 10.");
-              Base.CURRENT_GUARDS = 0;
-              console.log("Base.CURRENT_GUARDS set to 0.");
-    
-              //Construct Train data from Angular logic
-              var TrainData = new Array();
-              for (var i = 0; i < 5; i++) { //Note the magic number 5.
-                let newTrain = new Train(i, 0, 0, 0, 0);
-                TrainData.push(newTrain);
-              }
-              BaseNum.TRAINS = TrainData;
-              console.log("BaseNum.TRAINS populated:");
-              console.log(BaseNum.TRAINS);
-    
-              var OperationData = new Array();
-              for (var i = 0; i < 10; i++) {// Magic number 10.
-                let newOperation = new Operation(i, -1, -1, -1, true, 0, 0)
-                OperationData.push(newOperation);
-              }
-              BaseNum.OPERATIONS = OperationData;
-              console.log("BaseNum.OPERATIONS populated:");
-              console.log(BaseNum.OPERATIONS);
-    
-              Base.CASH = 0;
-              console.log("Base.CASH set to 10000.")
-    
-              Base.PASSIVE_CASH = [0, 0, 0, 0, 0];
-              console.log("Base.PASSIVE_CASH set to 0s.")
-    
-            });
-        }
-    */
         _this._dataService.getOperations()
             .subscribe(function (res) { return _this._operating.operations = res; });
         return _this;
@@ -1141,10 +862,10 @@ var Base = /** @class */ (function () {
         ];
         this.standardCashArray = [
             0, 0, 0, 0, 0,
-            20, 40, 60, 80, 100
+            100, 200, 300, 400, 500
         ];
         this.beginnerLairCashArray = [
-            10, 20, 30, 40, 50
+            100, 200, 300, 400, 500
         ];
         //Arrays for constructing Schemes
         this.schemeExp = [
@@ -1615,6 +1336,35 @@ var Operation = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/models/recruit.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Recruit; });
+var Recruit = /** @class */ (function () {
+    function Recruit(id, currentStore, countdown, lock) {
+        this.id = id;
+        this.currentStore = currentStore;
+        this.countdown = countdown;
+        this.lock = lock;
+        if (this.id === 0) {
+            this.name = "Sign Stapled to a Post";
+            this.fa = "fa-user";
+            this.type = "help-wanted";
+        }
+        if (this.id === 1) {
+            this.name = "Newspaper Ad";
+            this.fa = "fa-user";
+            this.type = "help-wanted";
+        }
+    }
+    return Recruit;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/models/scheme.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1693,6 +1443,13 @@ var Scheme = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Scheme.prototype, "currentCashCost", {
+        get: function () {
+            return this.cashCosts[this.level];
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Scheme.prototype, "percentage", {
         //Getter for header progress bar
         get: function () {
@@ -1708,10 +1465,34 @@ var Scheme = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/models/train.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Train; });
+var Train = /** @class */ (function () {
+    function Train(id, currentStore, countdown, lock, queued) {
+        this.id = id;
+        this.currentStore = currentStore;
+        this.queued = queued;
+        this.countdown = countdown;
+        this.lock = lock;
+        if (this.id === 0) {
+            this.name = "Guard";
+            this.fa = "fa-shield";
+        }
+    }
+    return Train;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/scheme-panel/scheme-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"scheme-panel\" *ngIf=\"_base.schemes\">\n    <div class=\"spacer\"></div>\n    <div class=\"select-bar\">\n        <div class=\"schemes select\" (click)=\"_scheming.selected = 'scheming'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"hench select\" (click)=\"_scheming.selected = 'henchmen'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-user\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operate select\" (click)=\"_scheming.selected = 'operations'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"lair select\" (click)=\"_scheming.selected = 'lairs'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n        </div>\n    </div>\n    <div class=\"scheme-area\" *ngIf=\"_scheming.selected == 'scheming'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 0:3; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canLearn(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"hench-area\" *ngIf=\"_scheming.selected == 'henchmen'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 3:6; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canLearn(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"operate-area\" *ngIf=\"_scheming.selected == 'operations'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 6:9; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canLearn(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"lair-area\" *ngIf=\"_scheming.selected == 'lairs'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 9:10; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.canLearn(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div *ngIf=\"_scheming.showPreview\" class=\"scheme-flyout {{_scheming.previewScheme.tree}}\">\n        <div class=\"inner-content\">\n            <i class=\"scheme-icon fa {{_scheming.previewScheme.fa}}\" aria-hidden=\"true\"></i>\n            <p class=\"scheme-name\">{{_scheming.previewScheme.name}} {{_scheming.previewScheme.level > 0 ? _scheming.previewScheme.level+1 : ''}}</p>\n            <p class=\"benefit-text\">{{_scheming.previewScheme.currentDescription}} </p>\n            <p *ngIf=\"_scheming.canLearn(_scheming.previewScheme)\" class=\"flavor-text\">{{_scheming.previewScheme.currentFlavor}}</p>\n            <p *ngIf=\"!_scheming.learnLair(_scheming.previewScheme)\" style=\"color:red\" class=\"flavor-text\">Lair Level {{_scheming.previewScheme.currentLairLevel}} required.</p>\n            <p class=\"scheme-exp\"> {{_scheming.previewScheme.exp}}<i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i>/{{_scheming.previewScheme.currentExpTarget}}<i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i></p>\n            <p class=\"node {{_scheming.previewScheme.tree}}-strong\" style=\"width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;\" \n            *ngIf=\"_scheming.showSchemeButtonInPreviewScheme()\" (click)=\"_scheming.startSchemingPreview()\">Scheme</p>\n        </div>\n\n\n    </div>\n\n</div>"
+module.exports = "<div class=\"scheme-panel\" *ngIf=\"_base.schemes\">\n    <div class=\"spacer\"></div>\n    <div class=\"select-bar\">\n        <div class=\"schemes select\" (click)=\"_scheming.selected = 'scheming'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"hench select\" (click)=\"_scheming.selected = 'henchmen'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-user\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operate select\" (click)=\"_scheming.selected = 'operations'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"lair select\" (click)=\"_scheming.selected = 'lairs'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n        </div>\n    </div>\n    <div class=\"scheme-area\" *ngIf=\"_scheming.selected == 'scheming'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 0:3; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"hench-area\" *ngIf=\"_scheming.selected == 'henchmen'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 3:6; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"operate-area\" *ngIf=\"_scheming.selected == 'operations'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 6:9; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"lair-area\" *ngIf=\"_scheming.selected == 'lairs'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 9:10; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div *ngIf=\"_scheming.showPreview\" class=\"scheme-flyout {{_scheming.previewScheme.tree}}\">\n        <div class=\"inner-content\">\n            <i class=\"scheme-icon fa {{_scheming.previewScheme.fa}}\" aria-hidden=\"true\"></i>\n            <p class=\"scheme-name\">{{_scheming.previewScheme.name}} {{_scheming.previewScheme.level > 0 ? _scheming.previewScheme.level+1 : ''}}</p>\n            <p class=\"benefit-text\">{{_scheming.previewScheme.currentDescription}} </p>\n            <p *ngIf=\"_scheming.canLearn(_scheming.previewScheme)\" class=\"flavor-text\">{{_scheming.previewScheme.currentFlavor}}</p>\n            <p *ngIf=\"!_scheming.learnLair(_scheming.previewScheme)\" style=\"color:red\" class=\"flavor-text\">Lair Level {{_scheming.previewScheme.currentLairLevel}} required.</p>\n            <p *ngIf=\"!_scheming.learnCash(_scheming.previewScheme)\" style=\"color:red\" class=\"flavor-text\">{{_scheming.previewScheme.currentCashCost - _scheming.previewScheme.cash}} <i class=\"fa fa-money\" aria-hidden=\"true\"></i> investment required.</p>\n            <div style=\"width:30%;text-align:center;margin:0 auto;margin-top:1rem;display: inline-block;\">\n                <p><i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i></p>\n                <p class=\"scheme-exp\" style=\"margin-top:0; margin-bottom:0;\"> {{_scheming.previewScheme.exp}}/{{_scheming.previewScheme.currentExpTarget}}</p>\n            </div>\n            <div *ngIf=\"_scheming.previewScheme.currentCashCost > 0\" style=\"width:30%;text-align:center;margin:0 auto;margin-top:1rem;display: inline-block;\">\n                    <p><i class=\"fa fa-money\" aria-hidden=\"true\"></i></p>\n                    <p class=\"scheme-exp\" style=\"margin-top:0; margin-bottom:0;\"> {{_scheming.previewScheme.cash}}/{{_scheming.previewScheme.currentCashCost}}</p>\n            </div>\n\n            <div *ngIf=\"_scheming.previewScheme.cash < _scheming.previewScheme.currentCashCost\">\n                    <i class=\"fa fa-money\" aria-hidden=\"true\"></i>\n                    <mat-slider (input)=\"onInputChange($event)\" min=\"0\" step=\"1\" [max]=\"_base.cash < _scheming.previewScheme.currentCashCost ? _base.cash : _scheming.previewScheme.currentCashCost\" [value]=\"schemeCashAssign\" style=\"width:85%;\"></mat-slider>\n                    <p *ngIf=\"schemeCashAssign > 0\" class=\"node {{_scheming.previewScheme.tree}}-strong\" style=\"width:90%;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;margin-top:0;\" \n            (click)=\"investCash()\">Invest {{schemeCashAssign}} <i style=\"margin-top:0;\" class=\"fa fa-money\" aria-hidden=\"true\"></i> </p>\n            </div>\n            \n\n            \n            \n            \n            <p class=\"node {{_scheming.previewScheme.tree}}-strong\" style=\"width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;\" \n            *ngIf=\"_scheming.showSchemeButtonInPreviewScheme()\" (click)=\"_scheming.startSchemingPreview()\">Scheme</p>\n        </div>\n\n\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -1771,8 +1552,24 @@ var SchemePanelComponent = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this._scheming = _scheming;
         _this._base = _base;
+        _this.schemeCashAssign = 0;
+        _this.investingCash = false;
         return _this;
     }
+    SchemePanelComponent.prototype.onInputChange = function (event) {
+        this.schemeCashAssign = event.value;
+    };
+    SchemePanelComponent.prototype.investCash = function () {
+        if (!this.investingCash) {
+            this.investingCash = true;
+            if (this.schemeCashAssign <= __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CASH) {
+                __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CASH -= this.schemeCashAssign;
+                this._scheming.previewScheme.cash += this.schemeCashAssign;
+                this.schemeCashAssign = 0;
+            }
+            this.investingCash = false;
+        }
+    };
     SchemePanelComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'scheme-panel',
@@ -1798,12 +1595,17 @@ var SchemePanelComponent = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scheme_panel_component__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm5/animations.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material_slider__ = __webpack_require__("../../../material/esm5/slider.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material_tooltip__ = __webpack_require__("../../../material/esm5/tooltip.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -1821,9 +1623,12 @@ var SchemePanelModule = /** @class */ (function () {
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */]
+                __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_material_slider__["a" /* MatSliderModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material_tooltip__["a" /* MatTooltipModule */]
             ],
-            providers: []
+            schemas: [__WEBPACK_IMPORTED_MODULE_0__angular_core__["i" /* CUSTOM_ELEMENTS_SCHEMA */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_4__angular_material_slider__["a" /* MatSliderModule */], __WEBPACK_IMPORTED_MODULE_5__angular_material_tooltip__["a" /* MatTooltipModule */]]
         })
     ], SchemePanelModule);
     return SchemePanelModule;
@@ -2760,35 +2565,6 @@ var PrimaryLoopService = /** @class */ (function (_super) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute);
         }
         this._system.save();
-        /*
-        var saveString = Base.EARNING_SCHEME_POINTS ? "1" : "0";
-        for (var i = 0; i < Base.SCHEMES.length; i++) {
-            saveString = saveString + Base.SCHEMES[i].level + "z" + Base.SCHEMES[i].exp + "z" + Base.SCHEMES[i].cash;
-        }
-        if (Base.CURRENT_SCHEME == null) {
-            saveString = saveString + "-1z";
-        } else {
-            saveString = saveString + Base.CURRENT_SCHEME.ref + "z";
-        }
-        saveString = saveString + Base.CURRENT_HENCHMEN + "z";
-        for (var i = 0; i < BaseNum.RECRUITS.length; i++) {
-            saveString = saveString + BaseNum.RECRUITS[i].currentStore + "z";
-            saveString = saveString + BaseNum.RECRUITS[i].countdown + "z";
-            saveString = saveString + BaseNum.RECRUITS[i].lock + "z";
-        }
-        saveString = saveString + Base.CURRENT_LAIR_HP + "z";
-        saveString = saveString + Base.CURRENT_GUARDS + "z";
-
-        for (var i = 0; i < BaseNum.TRAINS.length; i++) {
-            saveString = saveString + BaseNum.TRAINS[i].currentStore + "z";
-            saveString = saveString + BaseNum.TRAINS[i].countdown + "z";
-            saveString = saveString + BaseNum.TRAINS[i].lock + "z";
-            saveString = saveString + BaseNum.TRAINS[i].queued + "z";
-        }
-        
-        console.log(saveString);
-        this.cookieService.set( 'save', saveString, 365 );
-*/
     };
     //This event happens at every iteration of the main loop.
     PrimaryLoopService.prototype.action = function () {
@@ -3009,14 +2785,19 @@ var SchemingService = /** @class */ (function (_super) {
     }
     //Decide whether to display the "Scheme" button in the flyout
     SchemingService.prototype.showSchemeButtonInPreviewScheme = function () {
-        return !__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].EARNING_SCHEME_POINTS && this.canLearn(this.previewScheme) || ((this.previewScheme != __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME) && this.canLearn(this.previewScheme));
+        return !__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].EARNING_SCHEME_POINTS && this.canLearn(this.previewScheme)
+            ||
+                ((this.previewScheme != __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME) && this.canLearn(this.previewScheme));
     };
     //canLearn() is the aggregate. It consults multiple methods to determine learnability.
     SchemingService.prototype.canLearn = function (scheme) {
-        return this.learnLair(scheme);
+        return this.learnLair(scheme) && this.learnCash(scheme);
     };
     SchemingService.prototype.learnLair = function (scheme) {
         return scheme.lairReq[scheme.level] <= this.LAIR_LEVEL;
+    };
+    SchemingService.prototype.learnCash = function (scheme) {
+        return scheme.cash == scheme.currentCashCost;
     };
     //ACTIONS
     //Open the flyout and display preview scheme details.
@@ -3100,6 +2881,9 @@ var SchemingService = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base__ = __webpack_require__("../../../../../src/app/base.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_scheme__ = __webpack_require__("../../../../../src/app/models/scheme.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_recruit__ = __webpack_require__("../../../../../src/app/models/recruit.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_train__ = __webpack_require__("../../../../../src/app/models/train.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_operation__ = __webpack_require__("../../../../../src/app/models/operation.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -3119,6 +2903,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
+
 
 
 
@@ -3147,7 +2934,24 @@ var SystemService = /** @class */ (function (_super) {
                 + '0z0z0z' + '0z0z0z' + '0z0z0z'
                 + '0z0z0z'
                 //Current Scheme. Only the id is stored. An empty entry means none is selected.
-                + 'z';
+                + 'z'
+                //Current henchmen.
+                + '0z'
+                //RECRUITS numbers. currentStore, countdown, lock in order by help-wanted ref.
+                + '0z0z0z' + '0z0z0z' + '0z0z0z' + '0z0z0z' + '0z0z0z'
+                //Lair Hp. Raw number, newGame value is 10.
+                + '10z'
+                //Current guards.
+                + '0z'
+                //TRAINS numbers. currentStore, countdown, lock, queued in order by help-wanted ref.
+                + '0z0z0z0z' + '0z0z0z0z' + '0z0z0z0z' + '0z0z0z0z' + '0z0z0z0z'
+                //OPERATIONS numbers. name, rarity, cost01, available, countdown, lock in order by id. 10 ops so far.
+                + 'zzz1z0z0z' + 'zzz1z0z0z' + 'zzz1z0z0z' + 'zzz1z0z0z' + 'zzz1z0z0z'
+                + 'zzz1z0z0z' + 'zzz1z0z0z' + 'zzz1z0z0z' + 'zzz1z0z0z' + 'zzz1z0z0z'
+                //Raw Cash
+                + '0z'
+                //Passive Cash. 5 values for different tiers.
+                + '0z0z0z0z0z';
         },
         enumerable: true,
         configurable: true
@@ -3169,8 +2973,8 @@ var SystemService = /** @class */ (function (_super) {
             else {
                 break;
             }
-            if (count == 100) {
-                console.log("Loop is fucked. Breaking");
+            if (count == 50) {
+                console.log("Something is wrong with the save reader. Breaking");
                 break;
             }
         }
@@ -3178,25 +2982,18 @@ var SystemService = /** @class */ (function (_super) {
     };
     SystemService.prototype.load = function (data) {
         var _this = this;
-        console.log(data.length);
         __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].EARNING_SCHEME_POINTS = data[0] === "1";
         this.devLog("Base.EARNING_SCHEME_POINTS set to " + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].EARNING_SCHEME_POINTS);
         this.marker = 0;
         this._data.getSchemes()
             .subscribe(function (res) {
             var SchemeData = new Array();
-            var level = "";
-            var exp = "";
-            var cash = "";
             res.forEach(function (scheme) {
-                level = _this.saveReader(data);
-                exp = _this.saveReader(data);
-                cash = _this.saveReader(data);
+                var exp = _this.saveReader(data);
+                var cash = _this.saveReader(data);
+                var level = _this.saveReader(data);
                 var newScheme = new __WEBPACK_IMPORTED_MODULE_6__models_scheme__["a" /* Scheme */](scheme.ref, scheme.name, scheme.description, scheme.flavor, scheme.tree, Number(exp), Number(cash), Number(level), _this.schemeLairReq[scheme.ref], _this.schemeExp[scheme.ref], _this.schemeCashCost[scheme.ref]);
                 SchemeData.push(newScheme);
-                level = "";
-                exp = "";
-                cash = "";
             });
             __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].SCHEMES = SchemeData;
             _this.devLog("Base.SCHEMES populated:");
@@ -3213,14 +3010,108 @@ var SystemService = /** @class */ (function (_super) {
             else {
                 _this.devLog("no current scheme to set");
             }
+            __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].INITIAL_LOAD_SCHEMES = false; //Toggle the lockout for visible elements that rely on scheme data.
+            __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN = Number(_this.saveReader(data));
+            _this.devLog("Base.CURRENT_HENCHMEN set to " + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN);
+            var RecruitData = new Array();
+            for (var i = 0; i < 5; i++) {
+                var currentStore = _this.saveReader(data);
+                var countdown = _this.saveReader(data);
+                var lock = _this.saveReader(data);
+                var newRecruit = new __WEBPACK_IMPORTED_MODULE_7__models_recruit__["a" /* Recruit */](i, Number(currentStore), Number(countdown), Number(lock));
+                RecruitData.push(newRecruit);
+            }
+            __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].RECRUITS = RecruitData;
+            _this.devLog("BaseNum.RECRUITS populated:");
+            _this.devLog(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].RECRUITS);
+            __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].INITIAL_LOAD_RECRUITS = false;
+            __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_LAIR_HP = Number(_this.saveReader(data));
+            _this.devLog("Base.CURRENT_LAIR_HP set to " + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_LAIR_HP);
+            __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_GUARDS = Number(_this.saveReader(data));
+            _this.devLog("Base.CURRENT_GUARDS set to " + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_GUARDS);
+            var TrainData = new Array();
+            for (var i = 0; i < 5; i++) {
+                var currentStore = _this.saveReader(data);
+                var countdown = _this.saveReader(data);
+                var lock = _this.saveReader(data);
+                var queued = _this.saveReader(data);
+                var newTrain = new __WEBPACK_IMPORTED_MODULE_8__models_train__["a" /* Train */](i, Number(currentStore), Number(countdown), Number(lock), Number(queued));
+                TrainData.push(newTrain);
+            }
+            __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].TRAINS = TrainData;
+            _this.devLog("BaseNum.TRAINS populated:");
+            _this.devLog(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].TRAINS);
+            var OperationData = new Array();
+            for (var i = 0; i < 10; i++) {
+                var name = _this.saveReader(data);
+                var rarity = _this.saveReader(data);
+                var cost01 = _this.saveReader(data);
+                var available = _this.saveReader(data);
+                var countdown = _this.saveReader(data);
+                var lock = _this.saveReader(data);
+                var newOperation = new __WEBPACK_IMPORTED_MODULE_9__models_operation__["a" /* Operation */](i, name.length > 0 ? Number(name) : -1, rarity.length > 0 ? Number(rarity) : -1, cost01.length > 0 ? Number(cost01) : -1, available == "1", Number(countdown), Number(lock));
+                OperationData.push(newOperation);
+            }
+            __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].OPERATIONS = OperationData;
+            _this.devLog("BaseNum.OPERATIONS populated:");
+            _this.devLog(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].OPERATIONS);
+            __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CASH = Number(_this.saveReader(data));
+            _this.devLog("Base.CASH set to " + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CASH);
+            var PassiveCash = new Array();
+            for (var i = 0; i < 5; i++) {
+                PassiveCash[i] = Number(_this.saveReader(data));
+            }
+            __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].PASSIVE_CASH = PassiveCash;
+            _this.devLog("Base.PASSIVE_CASH populated:");
+            _this.devLog(__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].PASSIVE_CASH);
         });
     };
     SystemService.prototype.save = function () {
+        var _this = this;
         this.devLog("saving game");
         var saveString = '';
+        this.devLog("capturing Base.EARNING_SCHEME_POINTS:");
         saveString += __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].EARNING_SCHEME_POINTS ? "1" : "0";
+        this.devLog(saveString);
+        this.devLog("capturing Base.SCHEMES: (exp, cash, level)");
         __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].SCHEMES.forEach(function (scheme) {
-            saveString += scheme.level + "z" + scheme.exp + "z" + scheme.cash + "z";
+            var addToString = scheme.exp + "z" + scheme.cash + "z" + scheme.level + "z";
+            _this.devLog("id " + scheme.ref + ": " + addToString);
+            saveString += addToString;
+        });
+        this.devLog("capturing Base.CURRENT_SCHEME:");
+        if (__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_SCHEME == null) {
+            saveString = saveString + "z";
+            this.devLog("null");
+        }
+        else {
+            saveString = saveString + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_SCHEME.ref + "z";
+            this.devLog(__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_SCHEME.ref + "z");
+        }
+        this.devLog("capturing Base.CURRENT_HENCHMEN:");
+        saveString = saveString + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN + "z";
+        this.devLog(__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN + "z");
+        this.devLog("capturing Base.RECRUITS: (currentStore, countdown, lock)");
+        __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].RECRUITS.forEach(function (recruit) {
+            var addToString = recruit.currentStore + "z" + recruit.countdown + "z" + recruit.lock + "z";
+            _this.devLog("id " + recruit.id + ":" + addToString);
+            saveString += addToString;
+        });
+        saveString = saveString + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_LAIR_HP + "z";
+        saveString = saveString + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_GUARDS + "z";
+        __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].TRAINS.forEach(function (train) {
+            saveString += train.currentStore + 'z' + train.countdown + "z" + train.lock + "z" + train.queued + "z";
+        });
+        __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].OPERATIONS.forEach(function (operate) {
+            saveString += operate.name == -1 ? 'z' : operate.name + 'z';
+            saveString += operate.rarity == -1 ? 'z' : operate.rarity + 'z';
+            saveString += operate.cost01 == -1 ? 'z' : operate.cost01 + 'z';
+            saveString += operate.available ? '1z' : '0z';
+            saveString += operate.countdown + 'z' + operate.lock + 'z';
+        });
+        saveString += __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CASH + 'z';
+        __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].PASSIVE_CASH.forEach(function (passive) {
+            saveString += passive + 'z';
         });
         this.devLog(saveString);
         this.cookieService.set('save', saveString, 365);
