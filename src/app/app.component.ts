@@ -17,9 +17,10 @@ import { BaseNum } from './base-num';
 import { BaseService } from './services/base.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { LairModal } from './modal/lair-modal/lair-modal.component';
+import { SystemService } from './services/system.service';
 
 // Import the DataService
-import { DataService } from './data.service';
+import { DataService } from './services/data.service';
 import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 
 @Component({
@@ -30,6 +31,7 @@ import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 export class AppComponent extends BaseNum implements OnInit {
 
   constructor(public cookieService: CookieService,
+    public _system: SystemService,
     public _base: BaseService,
     public dialog: MatDialog,
     public _player: PlayerService,
@@ -43,6 +45,16 @@ export class AppComponent extends BaseNum implements OnInit {
     private _dataService: DataService,
   ) {
     super();
+
+    if (cookieService.check('save')) {
+      _system.devLog("save data exists");
+      _system.load(this.cookieService.get('save'));
+    }   else {
+      _system.devLog("save data does not exist")
+      console.log(this._system.freshGame);
+      _system.load(this._system.freshGame);
+    }
+    /*
     cookieService.deleteAll();
     if (cookieService.check('save')) {
       console.log("Save Data Exists")
@@ -57,26 +69,35 @@ export class AppComponent extends BaseNum implements OnInit {
           var SchemeData = new Array();
           var level: string = "";
           var exp: string = "";
+          var cash: string = "";
           for (var i = 0; i < res.length; i++) {
             while (true) {
-              marker++
+              marker++;
               if (cookieService.get('save')[marker] != "z") {
                 level = level + cookieService.get('save')[marker]
               } else {
-                break
+                break;
               }
             }
             while (true) {
-              marker++
+              marker++;
+              if (cookieService.get('save')[marker] != "z") {
+                cash = cash + cookieService.get('save')[marker]
+              } else {
+                break;
+              }
+            }
+            while (true) {
+              marker++;
               if (cookieService.get('save')[marker] != "z") {
                 exp = exp + cookieService.get('save')[marker]
               } else {
-                break
+                break;
               }
             }
             let newScheme = new Scheme(
               res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree,
-              Number(exp), Number(level), this.schemeLairReq[i], this.schemeExp[i]
+              Number(exp), Number(cash), Number(level), this.schemeLairReq[i], this.schemeExp[i], this.schemeCashCost[i]
             );
             SchemeData.push(newScheme);
             level = "";
@@ -251,7 +272,7 @@ export class AppComponent extends BaseNum implements OnInit {
           for (var i = 0; i < res.length; i++) {
             let newScheme = new Scheme(
               res[i].ref, res[i].name, res[i].description, res[i].flavor, res[i].tree,
-              0, 0, this.schemeLairReq[i], this.schemeExp[i]
+              0, 0, 0, this.schemeLairReq[i], this.schemeExp[i], this.schemeCashCost[i]
             );
             SchemeData.push(newScheme);
           }
@@ -309,7 +330,7 @@ export class AppComponent extends BaseNum implements OnInit {
 
         });
     }
-
+*/
 
 
 

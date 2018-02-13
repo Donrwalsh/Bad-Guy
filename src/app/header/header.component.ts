@@ -7,6 +7,8 @@ import { Base } from '../base';
 import { BaseService } from '../services/base.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {SchemingModal} from '../modal/scheming-modal/scheming-modal.component';
+import { SystemService } from '../services/system.service';
+import { CookieService } from 'ngx-cookie-service';
 
 import {
     trigger,
@@ -24,6 +26,8 @@ import {
 export class HeaderComponent extends Base {
 
     constructor(public _base: BaseService,
+        public cookieService: CookieService,
+        public _system: SystemService,
         public _player: PlayerService,
         public _heroes: HeroesService,
         public _scheming: SchemingService,

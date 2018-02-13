@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DataService } from '../data.service';
 import { SchemingService } from '../services/scheming.service'
 import { Base } from '../base';
 import { BaseService } from "../services/base.service";

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
-import { DataService } from './data.service';
+import { DataService } from './services/data.service';
 import { PlayerService } from './services/core/player.service';
 import { PrimaryLoopService } from './services/primary-loop.service';
 import { SchemingService } from './services/scheming.service';
@@ -20,6 +20,7 @@ import { ModalModule } from './modal/modal.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {LairModal} from './modal/lair-modal/lair-modal.component';
 import {LairService} from './services/lair.service';
+import { SystemService } from './services/system.service';
 
 
 
@@ -49,7 +50,8 @@ import {LairService} from './services/lair.service';
     PrimaryLoopService,
     CookieService,
     ModalModule,
-    MatTooltipModule
+    MatTooltipModule,
+    SystemService
   ],
   bootstrap: [AppComponent],
   entryComponents: [LairModal]

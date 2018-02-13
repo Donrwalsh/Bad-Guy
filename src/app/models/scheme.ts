@@ -6,9 +6,11 @@ export class Scheme {
     tree: string;
     fa: string;
     exp: number;
+    cash: number;
     level: number;
     lairReq: Array<number>;
     expTargets: Array<number>;
+    cashCosts: Array<number>;
 
     constructor(
         ref: number,
@@ -17,9 +19,11 @@ export class Scheme {
         flavor: Array<string>,
         tree: string,
         exp: number,
+        cash: number,
         level: number,
         lairReq: Array<number>,
-        expTargets: Array<number>
+        expTargets: Array<number>,
+        cashCosts: Array<number>
     ) {
         this.ref = ref;
         this.name = name;
@@ -27,9 +31,11 @@ export class Scheme {
         this.flavor = flavor;
         this.tree = tree;
         this.exp = exp;
+        this.cash = cash;
         this.level = level;
         this.lairReq = lairReq;
         this.expTargets = expTargets;
+        this.cashCosts = cashCosts;
 
         if (this.ref == 0) { this.fa = 'fa-graduation-cap'}
         if (this.ref == 1) { this.fa = 'fa-hand-spock-o'}

@@ -143,7 +143,7 @@ export class BaseNum extends Base {
 
     heistCountdown() {
         var countdown = 600
-        if (Base.SCHEMES[6].level >= 1) {
+        if (Base.SCHEMES[6].level >= 2) {
             countdown -= 150;
         }
         return countdown;

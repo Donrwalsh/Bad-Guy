@@ -11,12 +11,14 @@ import { CookieService } from "ngx-cookie-service";
 import { Base } from "../base";
 import { BaseNum } from "../base-num";
 import { BaseService } from "../services/base.service";
+import { SystemService } from "../services/system.service";
 
 //All loop related activities. Called by app.component and nowhere else.
 @Injectable()
 export class PrimaryLoopService extends BaseNum {
 
     constructor(public _base: BaseService,
+        public _system: SystemService,
         public cookieService: CookieService,
         public _player: PlayerService,
         public _operating: OperatingService,
@@ -36,7 +38,6 @@ export class PrimaryLoopService extends BaseNum {
     //Used for one-off console logs - logging within the loop can be tedious.
     didOnce = false;
     doOnce() {
-       console.log(this._operating.operationCountdown("heist"))
         
     }
 
@@ -83,10 +84,11 @@ export class PrimaryLoopService extends BaseNum {
         if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute)
         }
-        console.log("I am saving the game");
+        this._system.save();
+        /*
         var saveString = Base.EARNING_SCHEME_POINTS ? "1" : "0";
         for (var i = 0; i < Base.SCHEMES.length; i++) {
-            saveString = saveString + Base.SCHEMES[i].level + "z" + Base.SCHEMES[i].exp + "z";
+            saveString = saveString + Base.SCHEMES[i].level + "z" + Base.SCHEMES[i].exp + "z" + Base.SCHEMES[i].cash;
         }
         if (Base.CURRENT_SCHEME == null) {
             saveString = saveString + "-1z";
@@ -111,7 +113,7 @@ export class PrimaryLoopService extends BaseNum {
         
         console.log(saveString);
         this.cookieService.set( 'save', saveString, 365 );
-
+*/
 
     }
 

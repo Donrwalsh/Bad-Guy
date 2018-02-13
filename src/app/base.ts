@@ -31,15 +31,34 @@ export class Base {
 
     //Array Building Blocks
     standardExpArray: Array<number> = [
-        10, 45, 120, 180, 240, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
+        10, 45, 120, 180, 240, 
+        600, 1500, 3000, 6000, 18000, 
+        6000, 15000, 30000, 60000, 180000, 
+        60000, 150000, 300000, 600000, 1800000
     ]
 
-    specialExpArray: Array<number> = [ 6000, 150, 300, 600, 1800, 600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000 ]
+    beginnerLairExpArray: Array<number> = [ 
+        600, 900, 1500, 2400, 3900, 
+        600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000 ]
 
 
     standardLairReq: Array<number> = [
-        0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3
+        0, 0, 0, 0, 0, 
+        1, 1, 1, 1, 1, 
+        2, 2, 2, 2, 2, 
+        3, 3, 3, 3, 3
     ]
+
+    standardCashArray: Array<number> = [ 
+        0, 0, 0, 0, 0,
+        20, 40, 60, 80, 100
+    ]
+
+    beginnerLairCashArray: Array<number> = [
+        10, 20, 30, 40, 50
+    ]
+
+    
 
     //Arrays for constructing Schemes
     schemeExp: Array<Array<number>> = [
@@ -52,7 +71,7 @@ export class Base {
         this.standardExpArray, //6: Heists
         this.standardExpArray, //7: Act I
         this.standardExpArray, //8: Communications
-        this.specialExpArray //9: Starter Lair
+        this.beginnerLairExpArray //9: Starter Lair
     ]   
 
     schemeLairReq: Array<Array<number>> = [
@@ -66,6 +85,19 @@ export class Base {
         this.standardLairReq, //7: Act I
         this.standardLairReq, //8: Communications
         this.standardLairReq //9: Starter Lair 
+    ]
+
+    schemeCashCost: Array<Array<number>> = [
+        this.standardCashArray, //0: Mastermind
+        this.standardCashArray, //1: Cold Logic
+        this.standardCashArray, //2: Quick Thinking
+        this.standardCashArray, //3: Hired Help
+        this.standardCashArray, //4: Guard Duty
+        this.standardCashArray, //5: Lodging
+        this.standardCashArray, //6: Heists
+        this.standardCashArray, //7: Act I
+        this.standardCashArray, //8: Communications
+        this.beginnerLairCashArray //9: Beginner Lair
     ]
 
 
