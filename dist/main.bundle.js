@@ -840,9 +840,11 @@ var BaseNum = /** @class */ (function (_super) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Base; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+
 var Base = /** @class */ (function () {
     function Base() {
-        // Foundational Variables
+        this.ENV_NAME = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].envName;
         //Array Building Blocks
         this.standardExpArray = [
             10, 45, 120, 180, 240,
@@ -852,7 +854,9 @@ var Base = /** @class */ (function () {
         ];
         this.beginnerLairExpArray = [
             600, 900, 1500, 2400, 3900,
-            600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000
+            600, 1500, 3000, 6000, 18000,
+            6000, 15000, 30000, 60000, 180000,
+            60000, 150000, 300000, 600000, 1800000
         ];
         this.standardLairReq = [
             0, 0, 0, 0, 0,
@@ -905,6 +909,7 @@ var Base = /** @class */ (function () {
             this.beginnerLairCashArray //9: Beginner Lair
         ];
     }
+    // Foundational Variables
     //Schemes
     Base.INITIAL_LOAD_SCHEMES = true;
     Base.EARNING_SCHEME_POINTS = false;
@@ -1152,7 +1157,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var LairModal = /** @class */ (function (_super) {
     __extends(LairModal, _super);
     function LairModal(dialogRef, _lair, _training, _base
-        //@Inject(MAT_DIALOG_DATA) public data: any
+    //@Inject(MAT_DIALOG_DATA) public data: any
     ) {
         var _this = _super.call(this) || this;
         _this.dialogRef = dialogRef;
@@ -2524,6 +2529,7 @@ var PrimaryLoopService = /** @class */ (function (_super) {
         return _this;
     }
     PrimaryLoopService.prototype.doOnce = function () {
+        console.log(this.ENV_NAME);
     };
     //Events that occur every tick
     PrimaryLoopService.prototype.tick = function () {
@@ -3091,30 +3097,49 @@ var SystemService = /** @class */ (function (_super) {
         this.devLog("capturing Base.CURRENT_HENCHMEN:");
         saveString = saveString + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN + "z";
         this.devLog(__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN + "z");
-        this.devLog("capturing Base.RECRUITS: (currentStore, countdown, lock)");
+        this.devLog("capturing BaseNum.RECRUITS: (currentStore, countdown, lock)");
         __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].RECRUITS.forEach(function (recruit) {
             var addToString = recruit.currentStore + "z" + recruit.countdown + "z" + recruit.lock + "z";
             _this.devLog("id " + recruit.id + ":" + addToString);
             saveString += addToString;
         });
+        this.devLog("capturing Base.CURRENT_LAIR_HP:");
         saveString = saveString + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_LAIR_HP + "z";
+        this.devLog(__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_LAIR_HP + 'z');
+        this.devLog("capturing Base.CURRENT_GUARDS:");
         saveString = saveString + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_GUARDS + "z";
+        this.devLog(__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_GUARDS + 'z');
+        this.devLog("capturing BaseNum.TRAINS:");
         __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].TRAINS.forEach(function (train) {
-            saveString += train.currentStore + 'z' + train.countdown + "z" + train.lock + "z" + train.queued + "z";
+            var addToString = train.currentStore + 'z' + train.countdown + "z" + train.lock + "z" + train.queued + "z";
+            _this.devLog("id " + train.id + ":" + addToString);
+            saveString += addToString;
         });
+        this.devLog("capturing BaseNum.OPERATIONS:");
         __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].OPERATIONS.forEach(function (operate) {
-            saveString += operate.name == -1 ? 'z' : operate.name + 'z';
-            saveString += operate.rarity == -1 ? 'z' : operate.rarity + 'z';
-            saveString += operate.cost01 == -1 ? 'z' : operate.cost01 + 'z';
-            saveString += operate.available ? '1z' : '0z';
-            saveString += operate.countdown + 'z' + operate.lock + 'z';
+            var addToString = '';
+            addToString += operate.name == -1 ? 'z' : operate.name + 'z';
+            addToString += operate.rarity == -1 ? 'z' : operate.rarity + 'z';
+            addToString += operate.cost01 == -1 ? 'z' : operate.cost01 + 'z';
+            addToString += operate.available ? '1z' : '0z';
+            addToString += operate.countdown + 'z' + operate.lock + 'z';
+            _this.devLog("id " + operate.id + ":" + addToString);
+            saveString += addToString;
         });
+        this.devLog("capturing Base.CASH:");
         saveString += __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CASH + 'z';
+        this.devLog(__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CASH + 'z');
+        this.devLog("capturing Base.PASSIVE_CASH");
+        var passiveString = '';
         __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].PASSIVE_CASH.forEach(function (passive) {
-            saveString += passive + 'z';
+            passiveString += passive + 'z';
         });
+        saveString += passiveString;
+        this.devLog(passiveString);
+        this.devLog("save string constructed:");
         this.devLog(saveString);
         this.cookieService.set('save', saveString, 365);
+        this.devLog("saving game complete");
     };
     SystemService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
@@ -3305,12 +3330,9 @@ var TrainingService = /** @class */ (function (_super) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
-    production: false
+    production: false,
+    envName: 'dev'
 };
 
 

@@ -233,39 +233,59 @@ export class SystemService extends BaseNum {
         saveString = saveString + Base.CURRENT_HENCHMEN + "z";
         this.devLog(Base.CURRENT_HENCHMEN + "z");
 
-        this.devLog("capturing Base.RECRUITS: (currentStore, countdown, lock)");
+        this.devLog("capturing BaseNum.RECRUITS: (currentStore, countdown, lock)");
         BaseNum.RECRUITS.forEach( (recruit) => {
             var addToString = recruit.currentStore + "z" + recruit.countdown + "z" + recruit.lock + "z";
-            this.devLog("id " + recruit.id + ":" + addToString)
+            this.devLog("id " + recruit.id + ":" + addToString);
             saveString += addToString;
         });
 
+        this.devLog("capturing Base.CURRENT_LAIR_HP:");
         saveString = saveString + Base.CURRENT_LAIR_HP + "z";
-        saveString = saveString + Base.CURRENT_GUARDS + "z";
+        this.devLog(Base.CURRENT_LAIR_HP + 'z');
 
+        this.devLog("capturing Base.CURRENT_GUARDS:");
+        saveString = saveString + Base.CURRENT_GUARDS + "z";
+        this.devLog(Base.CURRENT_GUARDS + 'z');
+
+        this.devLog("capturing BaseNum.TRAINS:");
         BaseNum.TRAINS.forEach( (train) =>  {
-            saveString += train.currentStore + 'z' + train.countdown + "z" + train.lock + "z" + train.queued + "z";
+            var addToString = train.currentStore + 'z' + train.countdown + "z" + train.lock + "z" + train.queued + "z";
+            this.devLog("id " + train.id + ":" + addToString);
+            saveString += addToString;
+
         });
 
+        this.devLog("capturing BaseNum.OPERATIONS:");
         BaseNum.OPERATIONS.forEach( (operate) => {
-            saveString += operate.name == -1 ? 'z' : operate.name + 'z';
-            saveString += operate.rarity == -1 ? 'z' : operate.rarity + 'z';
-            saveString += operate.cost01 == -1 ? 'z' : operate.cost01 + 'z';
-            saveString += operate.available ? '1z' : '0z';
-            saveString += operate.countdown + 'z' + operate.lock + 'z';
+            var addToString = '';
+            addToString += operate.name == -1 ? 'z' : operate.name + 'z';
+            addToString += operate.rarity == -1 ? 'z' : operate.rarity + 'z';
+            addToString += operate.cost01 == -1 ? 'z' : operate.cost01 + 'z';
+            addToString += operate.available ? '1z' : '0z';
+            addToString += operate.countdown + 'z' + operate.lock + 'z';
+            this.devLog("id " + operate.id + ":" + addToString);
+            saveString += addToString;
         })
 
+        this.devLog("capturing Base.CASH:");
         saveString += Base.CASH + 'z';
+        this.devLog(Base.CASH + 'z')
 
+        this.devLog("capturing Base.PASSIVE_CASH")
+        var passiveString = '';
         Base.PASSIVE_CASH.forEach( (passive) =>{
-            saveString += passive + 'z';
+            passiveString += passive + 'z';
         })
-
-
+        saveString += passiveString;
+        this.devLog(passiveString);
+        
+        this.devLog("save string constructed:")
         this.devLog(saveString);
 
-
         this.cookieService.set( 'save', saveString, 365 );
+        this.devLog("saving game complete")
+        
     }
 
 

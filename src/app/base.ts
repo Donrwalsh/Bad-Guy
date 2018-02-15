@@ -1,6 +1,9 @@
 import {Scheme} from '../app/models/scheme';
+import {environment} from '../environments/environment';
 
 export class Base {
+
+    ENV_NAME = environment.envName;
 
     // Foundational Variables
     
@@ -23,12 +26,6 @@ export class Base {
     static CASH: number;
     static PASSIVE_CASH: Array<number>;
 
-    
-    
-    
-    
-
-
     //Array Building Blocks
     standardExpArray: Array<number> = [
         10, 45, 120, 180, 240, 
@@ -39,8 +36,9 @@ export class Base {
 
     beginnerLairExpArray: Array<number> = [ 
         600, 900, 1500, 2400, 3900, 
-        600, 1500, 3000, 6000, 18000, 6000, 15000, 30000, 60000, 180000, 60000, 150000, 300000, 600000, 1800000 ]
-
+        600, 1500, 3000, 6000, 18000, 
+        6000, 15000, 30000, 60000, 180000, 
+        60000, 150000, 300000, 600000, 1800000 ]
 
     standardLairReq: Array<number> = [
         0, 0, 0, 0, 0, 
@@ -56,9 +54,7 @@ export class Base {
 
     beginnerLairCashArray: Array<number> = [
         100, 200, 300, 400, 500
-    ]
-
-    
+    ]    
 
     //Arrays for constructing Schemes
     schemeExp: Array<Array<number>> = [
