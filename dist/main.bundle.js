@@ -3396,8 +3396,8 @@ var TrainingService = /** @class */ (function (_super) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
 var environment = {
-    production: false,
-    envName: 'dev'
+    production: true,
+    envName: 'prod'
 };
 
 
