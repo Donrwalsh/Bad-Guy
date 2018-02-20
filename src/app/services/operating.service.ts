@@ -194,9 +194,10 @@ export class OperatingService extends BaseNum {
                     if (resource01 > 0) {
                         setTimeout(() => { if (this.operatingNow) { this.operationResult = true } }, 1000);
                         this.operatingNow = true;
-                        this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0.5 };
+                        this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
                         var roll = Math.random() <= this.realSuccessRate(resource01, this.previewOperation.cost01, this.previewOperation.rarity, this.previewOperation.type)
                         this.operateReadout['result'] = roll ? 'success!' : 'failure.';
+                        this.operateReadout['notoriety'] = .1 * (this.previewOperation.rarity+1);
                         if (roll) {
                             var heistDice = [2, 4, 6, 8, 10]
                             var earned = 0;
@@ -221,6 +222,7 @@ export class OperatingService extends BaseNum {
                         this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
                         var roll = Math.random() <= this.realSuccessRate(resource01, this.previewOperation.cost01, this.previewOperation.rarity, this.previewOperation.type)
                         this.operateReadout['result'] = roll ? 'success!' : 'failure.';
+                        this.operateReadout['notoriety'] = .1 * (this.previewOperation.rarity + 1);
                         if (roll) {
                             this.operateReadout['earned'] = operation.cost01 / 10;
                             for (var _i = 0; _i < resource01; _i++) {

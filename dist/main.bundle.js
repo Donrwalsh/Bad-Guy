@@ -951,7 +951,7 @@ var Base = /** @class */ (function () {
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\" *ngIf=\"!_base.initialLoadSchemes\">\n    <div class=\"notoriety-container\">\n        <p style=\"position:absolute;font-size:.8rem;\">Notoriety {{_heroes.notorietyTier}}</p>\n        <p style=\"position:absolute;font-size:.8rem;right:65%;\">{{_heroes.notorietyTierName}}</p>\n        <div class=\"notoriety-gauge\">\n            <i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> \n            <p>{{_base.notoriety}}</p>\n        </div>\n        <div class=\"notoriety-meter\" [ngStyle]=\"notorietyRotationStyle()\"></div>\n    </div>\n    <div>\n        <p style=\"cursor:pointer;\" (click)=\"_system.save()\" class=\"main-title\">Bad Guy</p>\n        <i (click)=\"_base.notorietyPlus()\" style=\"position:absolute;top:3rem;left:37%;cursor:pointer;\" class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n    </div>\n    <div class=\"scheme-container\" >\n            <i (click)=\"cookieService.deleteAll()\" style=\"position:absolute;top:.1rem;left:.2rem;color:#00804f;font-size:1.2rem;cursor:pointer;\" class=\"fa fa-question\" aria-hidden=\"true\"></i>\n        <div *ngIf=\"_base.earningSchemePoints\">\n            <p class=\"scheme-title\">Scheming</p>\n            <div class=\"scheme-bar-container {{_base.currentScheme.tree}}\" [ngStyle]=\"schemeStyle()\" (click)=\"_scheming.switchToCurrentSchemePreview()\">\n                <i class=\"scheme-icon fa {{_base.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n                <div class=\"scheme-progress-bar {{_base.currentScheme.tree}}\" [ngStyle]=\"schemeProgressBarStyle()\"></div>\n            </div>\n        </div>\n        <div *ngIf=\"!_base.earningSchemePoints\">\n            <p style=\"padding-bottom:.25rem;\" class=\"scheme-title\">Not Scheming</p>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"header\" *ngIf=\"!_base.initialLoadSchemes\">\n    <div class=\"notoriety-container\">\n        <p style=\"position:absolute;font-size:.8rem;\">Notoriety {{_heroes.notorietyTier}}</p>\n        <p style=\"position:absolute;font-size:.8rem;right:65%;\">{{_heroes.notorietyTierName}}</p>\n        <div class=\"notoriety-gauge\">\n            <i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> \n            <p>{{_base.notoriety}}</p>\n        </div>\n        <div class=\"notoriety-meter\" [ngStyle]=\"notorietyRotationStyle()\"></div>\n    </div>\n    <div>\n        <p style=\"cursor:pointer;\" (click)=\"_system.save()\" class=\"main-title\">Bad Guy</p>\n    </div>\n    <div class=\"scheme-container\" >\n            <i (click)=\"cookieService.deleteAll()\" style=\"position:absolute;top:.1rem;left:.2rem;color:#00804f;font-size:1.2rem;cursor:pointer;\" class=\"fa fa-question\" aria-hidden=\"true\"></i>\n        <div *ngIf=\"_base.earningSchemePoints\">\n            <p class=\"scheme-title\">Scheming</p>\n            <div class=\"scheme-bar-container {{_base.currentScheme.tree}}\" [ngStyle]=\"schemeStyle()\" (click)=\"_scheming.switchToCurrentSchemePreview()\">\n                <i class=\"scheme-icon fa {{_base.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n                <div class=\"scheme-progress-bar {{_base.currentScheme.tree}}\" [ngStyle]=\"schemeProgressBarStyle()\"></div>\n            </div>\n        </div>\n        <div *ngIf=\"!_base.earningSchemePoints\">\n            <p style=\"padding-bottom:.25rem;\" class=\"scheme-title\">Not Scheming</p>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -1806,14 +1806,6 @@ var BaseService = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    BaseService.prototype.notorietyPlus = function () {
-        if (__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].NOTORIETY == 0) {
-            this.notorietyAdd(.5);
-        }
-        else {
-            this.notorietyAdd(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].NOTORIETY);
-        }
-    };
     BaseService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [])
@@ -2419,9 +2411,10 @@ var OperatingService = /** @class */ (function (_super) {
                             _this.operationResult = true;
                         } }, 1000);
                         this.operatingNow = true;
-                        this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0.5 };
+                        this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
                         var roll = Math.random() <= this.realSuccessRate(resource01, this.previewOperation.cost01, this.previewOperation.rarity, this.previewOperation.type);
                         this.operateReadout['result'] = roll ? 'success!' : 'failure.';
+                        this.operateReadout['notoriety'] = .1 * (this.previewOperation.rarity + 1);
                         if (roll) {
                             var heistDice = [2, 4, 6, 8, 10];
                             var earned = 0;
@@ -2449,6 +2442,7 @@ var OperatingService = /** @class */ (function (_super) {
                         this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
                         var roll = Math.random() <= this.realSuccessRate(resource01, this.previewOperation.cost01, this.previewOperation.rarity, this.previewOperation.type);
                         this.operateReadout['result'] = roll ? 'success!' : 'failure.';
+                        this.operateReadout['notoriety'] = .1 * (this.previewOperation.rarity + 1);
                         if (roll) {
                             this.operateReadout['earned'] = operation.cost01 / 10;
                             for (var _i = 0; _i < resource01; _i++) {

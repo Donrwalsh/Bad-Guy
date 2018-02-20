@@ -73,17 +73,4 @@ export class BaseService extends BaseNum {
         return this.heistUnlocked(0);
     }
 
-
-
-
-
-
-    notorietyPlus() {
-        if (Base.NOTORIETY == 0) {
-            this.notorietyAdd(.5);
-        } else {
-            this.notorietyAdd(Base.NOTORIETY);
-        }
-    }
-
 }
