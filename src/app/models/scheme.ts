@@ -1,6 +1,3 @@
-import { NumbersService } from "../services/core/numbers.service"
-import { PlayerService } from "../services/core/player.service"
-
 export class Scheme {
     ref: number;
     name: string;
@@ -8,9 +5,12 @@ export class Scheme {
     flavor: Array<string>;
     tree: string;
     fa: string;
-
-    public _player: PlayerService;
-    public _numbers: NumbersService;
+    exp: number;
+    cash: number;
+    level: number;
+    lairReq: Array<number>;
+    expTargets: Array<number>;
+    cashCosts: Array<number>;
 
     constructor(
         ref: number,
@@ -18,12 +18,24 @@ export class Scheme {
         description: Array<string>,
         flavor: Array<string>,
         tree: string,
+        exp: number,
+        cash: number,
+        level: number,
+        lairReq: Array<number>,
+        expTargets: Array<number>,
+        cashCosts: Array<number>
     ) {
         this.ref = ref;
         this.name = name;
         this.description = description;
         this.flavor = flavor;
         this.tree = tree;
+        this.exp = exp;
+        this.cash = cash;
+        this.level = level;
+        this.lairReq = lairReq;
+        this.expTargets = expTargets;
+        this.cashCosts = cashCosts;
 
         if (this.ref == 0) { this.fa = 'fa-graduation-cap'}
         if (this.ref == 1) { this.fa = 'fa-hand-spock-o'}
@@ -35,64 +47,34 @@ export class Scheme {
         if (this.ref == 7) { this.fa = 'fa-suitcase'}
         if (this.ref == 8) { this.fa = 'fa-microphone'}
         if (this.ref == 9) { this.fa = 'fa-angle-up'}
+        if (this.ref == 10) { this.fa = 'fa-fort-awesome'}
+        if (this.ref == 11) { this.fa = 'fa-wrench'}
     }   
 
-    //Array of exp amounts for level advancement
-    get expTarget() {
-        return this._numbers.schemeExp[this.ref];
+    //Getters for current values from arrays.
+    get currentExpTarget() {
+        return this.expTargets[this.level];
     }
-
-    //Array of lair level requirements
-    get lairReq() {
-        return this._numbers.schemeLairReq[this.ref];
-    }
-
-    //Accrued exp so far toward the current level
-    get exp() {
-        return this._player.schemes[this.ref]['exp'];
-    }
-
-    //Current scheme level (0-19)
-    get level() {
-        return this._player.schemes[this.ref]['level'];
-    }
-
-    //Amount of exp to accrue for advancement to next level
-    get target() {
-        return this.expTarget[this.level]
-    }
-
-    //Are all prerequisites met to begin scheming?
-    get canBeLearned() {
-        return this.learnLair;
-    }
-
-    //Does the player satisfy the lair requirement?
-    get learnLair() {
-        return this.lairReq[this.level + 1] <= this._player.lairLevel;
-    }
-
-    //Getter for preview flyout
-    get previewDescription() {
+    
+    get currentDescription() {
         return this.description[this.level]
     }
 
-    //Getter for preview flyout
-    get previewFlavor() {
+    get currentFlavor() {
         return this.flavor[this.level]
     }
 
-    //Getter for preview flyout
-    get previewLairLevel() {
+    get currentLairLevel() {
         return this.lairReq[this.level+1]
+    }
+
+    get currentCashCost() {
+        return this.cashCosts[this.level];
     }
 
     //Getter for header progress bar
     get percentage() {
-        return Math.round((this.exp / this.target) * 100);
+        return Math.round((this.exp / this.currentExpTarget) * 100);
     }
-
-    
-    
 
 }

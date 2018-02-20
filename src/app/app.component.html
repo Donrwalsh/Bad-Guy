@@ -1,21 +1,21 @@
 <header></header>
-<div class="main-section">
+<div class="main-section" *ngIf="!_base.initialLoadSchemes">
   <div class="resources-bar">
-    <div class="resource-tab lair">
+    <div class="resource-tab lair" matTooltip="click for details" (click)="openLairModal()">
       <i class="fa fa-home" aria-hidden="true"></i>
-      <p class="resource-readout">Mom's Basement</p>
+      <p class="resource-readout">{{_lair.lairName}}</p>
     </div>
-    <div class="resource-tab cash" *ngIf="_player.cash > 0">
+    <div class="resource-tab cash">
       <i class="fa fa-money" aria-hidden="true"></i>
-      <p class="resource-readout">{{_player.cash}}</p>
+      <p class="resource-readout">{{_base.cash}}</p>
     </div>
     <div class="resource-tab henchmen" *ngIf="_recruiting.areAnyUnlocked()">
-      <i class="fa fa-users" aria-hidden="true"></i>
-      <p class="resource-readout">{{_player.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <p class="resource-readout">{{_base.currentHenchmen}}/{{_inventory.henchmenCapacity}}</p>
     </div>
     <div class="resource-tab guard" *ngIf="_training.guardTrainingUnlocked">
       <i class="fa fa-shield" aria-hidden="true"></i>
-      <p class="resource-readout">{{_player.currentGuards}}/{{_inventory.guardCapacity}}</p>
+      <p class="resource-readout">{{_base.currentGuards}}/{{_inventory.guardCapacity}}</p>
     </div>
 
 

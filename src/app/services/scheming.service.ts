@@ -1,46 +1,62 @@
 import { Injectable } from "@angular/core";
-import { PlayerService } from "./core/player.service";
-import { NumbersService } from "./core/numbers.service";
 import { Scheme } from "../models/scheme"
+import { Base } from "../base";
+import { BaseNum } from "../base-num";
+import { BaseService } from "../services/base.service";
 
 @Injectable()
-export class SchemingService {
+export class SchemingService extends BaseNum {
 
-    constructor(public _player: PlayerService,
-        public _numbers: NumbersService) { }
+    constructor(public _base: BaseService) 
+        { super(); }
 
     //STRUCTURAL VARIABLES
-    schemes: Array<Scheme>; //Raw schemes. Provided by app.component.ts
+    
     selected = 'scheming'; //Which scheme tree is currently displayed on the scheme panel
     previewScheme: Scheme; //Scheme being previewed
     showPreview: boolean = false; //Controls the appearance of the scheme-panel flyout
     
     //Decide whether to display the "Scheme" button in the flyout
     showSchemeButtonInPreviewScheme() {
-        return !this._player.earningSchemePoints && this.previewScheme.canBeLearned || ((this.previewScheme != this._player.currentScheme) && this.previewScheme.canBeLearned);
+        return !Base.EARNING_SCHEME_POINTS && this.canLearn(this.previewScheme) 
+        || 
+        ((this.previewScheme != Base.CURRENT_SCHEME) && this.canLearn(this.previewScheme));
+    }
+
+    //canLearn() is the aggregate. It consults multiple methods to determine learnability.
+    canLearn(scheme: Scheme) {
+        return this.learnLair(scheme) && this.learnCash(scheme);
+    }
+
+    learnLair(scheme : Scheme) {
+        return scheme.lairReq[scheme.level] <= this.LAIR_LEVEL;
+    }
+
+    learnCash(scheme: Scheme) {
+        return scheme.cash == scheme.currentCashCost;
     }
 
     //ACTIONS
 
     //Open the flyout and display preview scheme details.
-    schemePreview(id) {
-        this.previewScheme = this.schemes[id];
+    schemePreview(scheme : Scheme) {
+        this.previewScheme = scheme;
         this.showPreview = true;
     }
 
     //Clicking "Scheme" assigns the previewScheme as the currentScheme
     startSchemingPreview() {
-        if (this.previewScheme.canBeLearned) {
-            this._player.currentScheme = this.previewScheme;
-            this._player.earningSchemePoints = true;
+        if (this.canLearn(this.previewScheme)) {
+            Base.CURRENT_SCHEME = this.previewScheme;
+            Base.EARNING_SCHEME_POINTS = true;
         }
     }
 
     //Clicking the currentScheme in the header assigns the currentScheme as the previewScheme
     switchToCurrentSchemePreview() {
-        if (this._player.earningSchemePoints) {
-            this.selected = this._player.currentScheme['tree'];
-            this.previewScheme = this._player.currentScheme;
+        if (this._base.earningSchemePoints) {
+            this.selected = Base.CURRENT_SCHEME.tree;
+            this.previewScheme = Base.CURRENT_SCHEME;
             this.showPreview = true;
         }
     }
@@ -48,29 +64,29 @@ export class SchemingService {
     //LOOP GETTERS
     get schemePointsHatchedThisTick() {
         var hatched = 0;
-        hatched += this._numbers.quickThinkingNumbers();
+        hatched += this.quickThinkingNumbers; // T0 Scheme
         return hatched;
     }
 
     get schemePointsHatchedThisSecond() {
         var hatched = 1;
-        hatched += this._numbers.mastermindNumbers();
+        hatched += this.mastermindNumbers; // T0 Scheme
         return hatched;
     }
 
     get schemePointsHatchedThisMinute() {
         var hatched = 0;
-        hatched += this._numbers.coldLogicNumbers();
+        hatched += this.coldLogicNumbers; // T0 Scheme
         return hatched;
     }
 
     //All scheme points earned should route through this function.
     earnSchemePoints(num) {
-        this._player.schemes[this._player.currentScheme.ref]['exp'] += num;
-        if (this._player.currentScheme.exp >= this._player.currentScheme.target){
-            this._player.schemes[this._player.currentScheme.ref]['level']++;
-            this._player.schemes[this._player.currentScheme.ref]['exp'] = 0;
-            this._player.earningSchemePoints = false;
+        Base.CURRENT_SCHEME.exp += num;
+        if (Base.CURRENT_SCHEME.exp >= Base.CURRENT_SCHEME.currentExpTarget){
+            Base.CURRENT_SCHEME.level++;
+            Base.CURRENT_SCHEME.exp = 0;
+            Base.EARNING_SCHEME_POINTS = false;
         }
     }
 

@@ -1,0 +1,47 @@
+<h1 style="color:#bf00ff;text-align:center;margin:0;margin-bottom:.75rem;">Lair: {{_lair.lairName}}</h1>
+<div style="width:100%;height:1rem;float:left;"></div>
+<div style="width:10%;height:1.5rem;padding-top:.5rem;float:left;text-align:center;">
+    <strong>HP:</strong>
+</div>
+<div style="width:90%;height:2rem;float:left;">
+    <div style="width:100%;height:2rem;border-radius: 0px 1rem 1rem 0px;position:relative;text-align:center;">
+        <div style="border-radius: 0px 1rem 1rem 0px;position:absolute;height:2rem;background-color:#30d52a;" [ngStyle]="{'width': _lair.percentageHP + '%'}"></div>
+        <p style="position:relative;font-size:1.5rem;margin-top:.125rem;">{{_base.currentLairHP}} / {{_base.lairMaxHP}}</p>
+    </div>
+</div>
+<div style="width:100%;height:1rem;float:left;"></div>
+<div style="width:25%;text-align:center;height:2rem;float:left;">
+    <p>Danger</p>
+    <p>{{_lair.danger}}</p>
+</div>
+<div style="width:25%;text-align:center;height:2rem;float:left;">
+    <p>Fortification</p>
+    <p>{{_lair.fortification}}</p>
+</div>
+<div style="width:25%;text-align:center;height:2rem;float:left;">
+    <p>Hazard</p>
+    <p>0</p>
+</div>
+<div style="width:25%;text-align:center;height:2rem;float:left;">
+    <p>Ward</p>
+    <p>0</p>
+</div>
+<div style="width:100%;height:1rem;float:left;margin:0;" ></div>
+<div *ngIf="_training.guardTrainingUnlocked" style="color:#000099">
+    <div style="width:10%;height:1.5rem;float:left;text-align:center;">
+        <i class="fa fa-shield" aria-hidden="true"></i>
+        <p>Bonuses</p>
+    </div>
+    <div style="width:30%;height:2rem;float:left;text-align:center;">
+        <p>Danger</p>
+        <p>+{{_base.currentGuards}}</p>
+    </div>
+    <div style="width:30%;height:2rem;float:left;text-align:center;">
+        <p>Hazard</p>
+        <p>+{{_base.currentGuards}}</p>
+    </div>
+    <div style="width:30%;height:2rem;float:left;text-align:center;">
+        <p>HP</p>
+        <p>+{{_base.currentGuards*3}}</p>
+    </div>
+</div>

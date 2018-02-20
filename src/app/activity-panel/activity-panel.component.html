@@ -1,146 +1,158 @@
-<div class="activity-panel">
+<div class="activity-panel" *ngIf="!_base.initialLoadRecruits">
     <div class="henchmen-column">
         <p class="title" *ngIf="_training.areAnyUnlocked()">Training</p>
-        <div *ngFor="let Training of _player.training; index as i">
-            <div class="left-padding" *ngIf="_training.isUnlockedById(i)"></div>
-            <div class="add-block" *ngIf="_training.isUnlockedById(i)">
-                <i class="add-to-queue-icon fa fa-plus" aria-hidden="true" (click)="_training.trainById(i)" [ngStyle]="addToQueueIconStyle(i)"></i>
+        <div *ngFor="let train of _base.trains; index as i">
+            <div class="left-padding" *ngIf="_training.isUnlocked(train)"></div>
+            <div class="add-block" *ngIf="_training.isUnlocked(train)">
+                <i class="add-to-queue-icon fa fa-plus" aria-hidden="true" (click)="_training.queueTrain(train)" [ngStyle]="addToQueueIconStyle(train)"></i>
             </div>
-            <div *ngIf="_training.isUnlockedById(i)" class="progress-with-add">
-                <div [ngClass]="containerClass(i, 'training')" (click)="_training.collectById(i)" [ngStyle]="containerStyle(i, 'training')">
+            <div *ngIf="_training.isUnlocked(train)" class="progress-with-add">
+                <div [ngClass]="containerClass(i, 'training')" (click)="_training.collectTrain(train)" [ngStyle]="containerStyle(i, 'training')">
                     <div [ngClass]="progressBarClass(i, 'training')" [ngStyle]="styleProgressBar(i, 'training')"></div>
                     <p [ngClass]="displayClass(i, 'training')">
-                        <i class="generation-icon fa faa-slow faa-flash animated {{_training.getFaById(i)}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'training')"></i>
-                        {{_training.getUpgradeNameById(i)}}
-                        <i class="collection-icon fa faa-slow animated {{_training.getFaById(i)}}" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'training')"
+                        <i class="generation-icon fa faa-slow faa-flash animated {{train.fa}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'training')"></i>
+                        {{train.name}}
+                        <i class="collection-icon fa faa-slow animated {{train.fa}}" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'training')"
                             [ngClass]="collectionIcon(i, 'training')"></i>
                     </p>
                 </div>
             </div>
         </div>
         <p class="title" *ngIf="_recruiting.areAnyUnlocked()">Recruitment</p>
-        <div *ngFor="let Recruiting of _player.recruiting; index as i">
-            <div class="left-padding"></div>
-            <div *ngIf="_recruiting.isUnlockedById(i)" class="progress-no-add">
-                <div [ngClass]="containerClass(i, 'recruiting')" (click)="_recruiting.collectById(i)" [ngStyle]="containerStyle(i, 'recruiting')">
+        <div *ngFor="let recruit of _base.recruits; index as i">
+            <div *ngIf="_recruiting.isUnlocked(recruit)" class="left-padding"></div>
+            <div *ngIf="_recruiting.isUnlocked(recruit)" class="progress-no-add">
+                <div [ngClass]="containerClass(i, 'recruiting')" (click)="_recruiting.collectRecruit(recruit)" [ngStyle]="containerStyle(i, 'recruiting')">
                     <div [ngClass]="progressBarClass(i, 'recruiting')" [ngStyle]="styleProgressBar(i, 'recruiting')"></div>
                     <p [ngClass]="displayClass(i, 'recruiting')" class="help-wanted-display">
-                        <i class="generation-icon fa faa-slow faa-flash animated {{_recruiting.getFaById(i)}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'recruiting')"></i>
-                        {{_recruiting.getRecruitmentNameById(i)}}
-                        <i class="collection-icon fa faa-slow animated {{_recruiting.getFaById(i)}}" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'recruiting')"
+                        <i class="generation-icon fa faa-slow faa-flash animated {{recruit.fa}}" aria-hidden="true" [ngStyle]="collectingIconStyle(i, 'recruiting')"></i>
+                        {{recruit.name}}
+                        <i class="collection-icon fa faa-slow animated {{recruit.fa}}" aria-hidden="true" [ngStyle]="collectionIconStyle(i, 'recruiting')"
                             [ngClass]="collectionIcon(i, 'recruiting')"></i>
                     </p>
                 </div>
             </div>
         </div>
+        <p class="title" *ngIf="_operating.areAnyUnlocked()">Plotting</p>
+        <div *ngFor="let operation of _base.operations">
+                <div *ngIf="_operating.isUnlocked(operation) && !operation.available" class="left-padding"></div>
+                <div *ngIf="_operating.isUnlocked(operation) && !operation.available" class="progress-no-add">
+                        <div style="border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;">
+                                <div style="background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;" [ngStyle]="{'width': this._operating.percentage(operation) + '%' }"></div>
+                                <p style="color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;">
+                                    <i class="generation-icon fa faa-slow faa-flash animated fa-{{operation.fa}}" aria-hidden="true" style="margin-left:.5rem;margin-right:.5rem"></i>
+                                    Slot {{operation.id+1}} 
+                                </p>
+                            </div>
+                </div>
+            </div>
+
+
+
     </div>
 
     <div class="operations-column" *ngIf="_operating.areAnyUnlocked()">
-        <div class="padding-short"></div>
-        <div class="operation-tab routine" [ngStyle]="{'visibility': _operating.areRoutineOpsUnlocked() ? 'initial' : 'hidden'}">
-            <i class="fa fa-certificate tab-icon" aria-hidden="true"></i>
-        </div>
-        <div class="operation-tab campaign" [ngStyle]="{'visibility': _operating.areCampaignOpsUnlocked() ? 'initial' : 'hidden'}">
-            <i class="fa fa-book tab-icon" aria-hidden="true"></i>
-        </div>
-        <div class="operation-tab ascension" [ngStyle]="{'visibility': _operating.areAscensionOpsUnlocked() ? 'initial' : 'hidden'}">
-            <i class="fa fa-rocket tab-icon" aria-hidden="true"></i>
-        </div>
-        <div class="padding-short"></div>
-        
-        <div class="divider-5" *ngIf="_player.schemes[6]['level'] > 0"></div>
-        <div class="routine-row" *ngIf="_player.schemes[6]['level'] > 0">
-            <div class="column" *ngFor="let heist of _player.operating | slice: 0:5; let i = index" (click)="_operating.operationPreview(i)"
-                [ngStyle]="{'cursor': heist['available'] && _operating.isUnlockedById(i) ? 'pointer' : 'initial' }">
-                <i class="fa" aria-hidden="true" [ngClass]="operationIconClass(i)" [ngStyle]="{'color': _operating.getFaColorById(i)}"></i>
-            </div>
-        </div>
-        <div class="divider-5" *ngIf="_player.schemes[6]['level'] > 0"></div>
 
-        <div class="divider-5" *ngIf="_player.schemes[7]['level'] > 0"></div>
-        <div class="routine-row" *ngIf="_player.schemes[7]['level'] > 0">
-            <div class="column" *ngFor="let deal of _player.operating | slice: 5:10; let i = index" (click)="_operating.operationPreview(i+5)"
-                [ngStyle]="{'cursor': deal['available'] && _operating.isUnlockedById(i+5) ? 'pointer' : 'initial' }">
-                <i class="fa" aria-hidden="true" [ngClass]="operationIconClass(i+5)" [ngStyle]="{'color': _operating.getFaColorById(i+5)}"></i>
-            </div>
-        </div>
-        <div class="divider-5" *ngIf="_player.schemes[7]['level'] > 0"></div>
-
-        
+        <div *ngIf="!_operating.showPreview" style="width:100%;min-height:14.5rem;font-family:FontAwesome;"></div>
         <div *ngIf="_operating.showPreview" class="operation-flyout">
             <div class="inner-content" [ngStyle]="{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}">
-                    <div class="operation-result" [ngStyle]="{'visibility': !_operating.operatingNow ? 'hidden' : 'initial'}">
-                
-                
-                    <p class="report">
-                        <i class="operation-icon fa fa-usd" aria-hidden="true" style="margin-right:.2rem;margin-top:.3rem;"></i>
-                        {{_operating.previewOperation['name']}} was a {{_operating.operateReadout['result']}}</p>
-                    <p *ngIf="_operating.operateReadout['lost'] > 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.6rem;">{{_operating.operateReadout['lost']}}
-                        <i class="flyout-icon fa fa-user" aria-hidden="true"></i> lost.</p>
-                    <p *ngIf="_operating.operateReadout['earned'] > 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.6rem;">{{_operating.operateReadout['earned']}}
-                        <i class="flyout-icon fa fa-money" aria-hidden="true"></i> earned.</p>
-                    <p *ngIf="_operating.operateReadout['notoriety'] > 0" style="margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;">{{_operating.operateReadout['notoriety']}}
-                        <i class="flyout-icon fa fa-exclamation-triangle" aria-hidden="true"></i> earned.</p>
-                    <p (click)="_operating.closeCompleteOperation()" style="cursor: pointer;width:75%;margin:0 auto; margin-top: .5rem; border-radius: .5rem; border: 1px solid; display:inline-block;">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>
-                </div>
-
-
-                <p class="operation-name" [ngStyle]="hideIfOperating()">
+                <p class="operation-name">
                     <i class="operation-icon fa" [ngClass]="previewOperationFa()" aria-hidden="true"></i>
-                    {{_operating.previewOperation['name']}}
+                    {{_operating.showAnOperationName(_operating.previewOperation)}}
                 </p>
-                <div class="split" [ngStyle]="hideIfOperating()">
-                    <p class="flyout-right" >Requires:</p></div>
-                <div class="split" [ngStyle]="hideIfOperating()" >
-                    <p class="flyout-left">{{_operating.previewOperation['henchmen']}}
-                        <i class="flyout-icon fa fa-user" aria-hidden="true"></i>
-                    </p>
+                <div *ngIf="_operating.operationResult" class="operation-result" [@enterAnimation]>
+                    <p class="report-line">has {{_operating.operateReadout['result'] == "success!" ? 'succeeded!' : 'failed.'}}</p>
+                    <p class="report-line" *ngIf="_operating.operateReadout['lost'] > 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.6rem;">{{_operating.operateReadout['lost']}}
+                        <i class="flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}" aria-hidden="true"></i> lost</p>
+                    <p class="report-line" *ngIf="_operating.operateReadout['lost'] == 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.6rem;">No
+                                <i class="flyout-icon fa fa-user" aria-hidden="true"></i> lost</p>
+                    <p class="report-line" *ngIf="_operating.operateReadout['earned'] > 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.6rem;">{{_operating.operateReadout['earned']}}
+                        <i class="flyout-icon fa fa-money" aria-hidden="true"></i> {{ _operating.previewOperation.type == "heist" ? "earned" : "/min earned" }}</p>
+                    <p class="report-line" *ngIf="_operating.operateReadout['earned'] == 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.6rem;">No
+                                <i class="flyout-icon fa fa-money" aria-hidden="true"></i> earned</p>
+                    <p class="report-line" *ngIf="_operating.operateReadout['notoriety'] > 0" style="margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;">
+                            <i class="flyout-icon fa fa-exclamation-triangle" aria-hidden="true"></i> increased by {{_operating.operateReadout['notoriety']}}</p>
+                    <p (click)="_operating.closeCompleteOperation()" style="cursor: pointer;width:75%;margin:0 auto; margin-top: 1.5rem; border-radius: .5rem; border: 1px solid; display:inline-block;">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>
                 </div>
-                <div class="split" [ngStyle]="hideIfOperating()">
-                    <p class="flyout-right">Risk:</p>
-                </div>
-                <div class="split" [ngStyle]="hideIfOperating()">
-                    <p class="flyout-left">{{_operating.previewOperationRiskDisplay()}}%</p>
-                </div>
-                <div class="split" [ngStyle]="hideIfOperating()">
-                    <p class="flyout-right">Rewards:</p>
-                </div>
-                <div class="split" [ngStyle]="hideIfOperating()">
-                    <p class="flyout-left">{{_operating.previewOperation['reward']}}
-                        <i class="flyout-icon fa fa-money" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="split" [ngStyle]="hideIfOperating()">
-                    <p class="flyout-right">Success:</p>
-                </div>
-                <div class="split" [ngStyle]="hideIfOperating()">
-                    <p class="flyout-left">{{_operating.previewOperation['success']*100}}%</p>
-                </div>
-                <div class="split" [ngStyle]="hideIfOperating()">
-                    <p class="flyout-right">Notoriety:</p>
-                </div>
-                <div class="split" [ngStyle]="hideIfOperating()">
-                    <p class="flyout-left">{{_operating.previewOperation['notoriety']}}
-                        <i class="flyout-icon fa fa-exclamation-triangle" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div [ngStyle]="hideIfOperating()">
-                    <p class="operate-button left" [ngStyle]="operateButtonInPreviewStyle()" (click)="_operating.operate()"> Operate </p>
-                    <p class="operate-button right" (click)="_operating.closeCompleteOperation()"> Abandon</p>
+
+                <div [ngClass]="{'fade-out': _operating.operatingNow}">
+                    <div class="split" style="margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;" matTooltip="All operations require resources">
+                        <p style="font-size:.75rem;">
+                            <strong>Requires:</strong>
+                        </p>
+                        <i *ngFor="let fa of _operating.showOperationCost(_operating.previewOperation)" class="flyout-icon fa fa-{{fa}}" style="margin-right:.25rem;" aria-hidden="true"></i>
+                    </div>
+                    <div class="split" style="margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;" matTooltip="Resources are at risk even when operations succeed">
+                        <p style="font-size:.75rem;">
+                            <strong>Risk:</strong>
+                        </p>
+                        <p>{{_operating.showRisk(_operating.previewOperation)}}%</p>
+                    </div>
+                    <div *ngIf="_operating.previewOperation.type === 'heist'" class="split" style="margin: 0;text-align:center;line-height:1.25rem;" matTooltip="You receive nothing if an operation fails">
+                        <p style="font-size:.75rem;">
+                            <strong>Rewards:</strong>
+                        </p>
+                        <p>
+                            d2
+                            <i class="flyout-icon fa fa-money" aria-hidden="true"></i> /
+                            <i class="flyout-icon fa fa-user" aria-hidden="true"></i>
+
+                        </p>
+                    </div>
+                    <div *ngIf="_operating.previewOperation.type === 'shady-business-deal'" class="split" style="margin: 0;text-align:center;line-height:1.25rem;" matTooltip="You receive nothing if an operation fails">
+                            <p style="font-size:.75rem;">
+                                <strong>Rewards:</strong>
+                            </p>
+                            <p>
+                                {{_operating.previewOperation.cost01/10}}
+                                <i class="flyout-icon fa fa-money" aria-hidden="true"></i> /
+                                min
+    
+                            </p>
+                        </div>
+                    <div class="split" style="margin: 0;text-align:center;line-height:1.25rem;" matTooltip="More resources mean higher chance of success">
+                        <p style="font-size:.75rem;">
+                            <strong>Success:</strong>
+                        </p>
+
+                        <p *ngIf="success === 0" style="color:#FF0000">Impossible</p>
+                        <p *ngIf="success < .2 && success > 0" style="color:#FF1500">Remote</p>
+                        <p *ngIf="success < .4 && success > .2" style="color:#FF2A00">Unlikely</p>
+                        <p *ngIf="success < .6 && success > .4" style="color:#FF3F00">Conceivable</p>
+                        <p *ngIf="success < .8 && success > .6" style="color:#FF5400">Reasonable</p>
+                        <p *ngIf="success < 1 && success > .8" style="color:#FF6900">Likely</p>
+                        <p *ngIf="success === 1" style="color:#FF7F00">Guaranteed</p>
+
+                    </div>
+                    <i class="flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}" aria-hidden="true"></i>
+                    <mat-slider *ngIf="_operating.previewOperation.type === 'heist'" (input)="onInputChange($event)" min="0" step="1" [max]="_operating.previewOperation.cost01 < _base.currentHenchmen ? _operating.previewOperation.cost01 : _base.currentHenchmen" [value]="operateAssign" style="width:85%;background-color:#e6e6e6;"></mat-slider>
+                    <mat-slider *ngIf="_operating.previewOperation.type === 'shady-business-deal'" (input)="onInputChange($event)" min="0" step="1" [max]="_operating.previewOperation.cost01 < _base.cash ? _operating.previewOperation.cost01 : _base.cash" [value]="operateAssign" style="width:85%;background-color:#e6e6e6;"></mat-slider>
+                    <p class="operate-button" [ngStyle]="{ 'cursor': _operating.operatingNow ? 'initial' : 'pointer'}" *ngIf="operateAssign > 0" (click)="_operating.operate(operateAssign, _operating.previewOperation)">Commit {{operateAssign}}
+                        <i class="flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}" aria-hidden="true"></i> to Operate </p>
                 </div>
             </div>
         </div>
-        <div *ngFor="let Operating of _player.operating; index as i">
-            <div *ngIf="_operating.isUnlockedById(i) && !_player.operating[i]['available']" style="width:90%;display:inline-block;margin-left:5%;margin-right:5%;">
-                <div style="border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;">
-                    <div style="background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;" [ngStyle]="{'width': this._operating.getPercentageById(i) + '%' }"></div>
-                    <p style="color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;">
-                        <i class="generation-icon fa faa-slow faa-flash animated fa-usd" aria-hidden="true" style="margin-left:.5rem;margin-right:.5rem"></i>
-                        Slot {{i+1}} Recharging
-                    </p>
-                </div>
+
+
+
+        <div class="routine-row" *ngIf="_operating.areHeistsUnlocked()">
+            <div class="column" *ngFor="let heist of _base.operations | slice: 0:5;" (click)="_operating.operationPreview(heist); operateAssign = 0;"
+                [ngStyle]="{'cursor': heist.available && _operating.isUnlocked(heist) ? 'pointer' : 'initial' }">
+                <i class="fa" aria-hidden="true" [ngClass]="operationIconClass(heist)" [ngStyle]="{'color': _operating.nodeColor(heist)}"></i>
             </div>
         </div>
+
+        <div class="routine-row" *ngIf="_operating.areShadyBusinessDealsUnlocked()">
+            <div class="column" *ngFor="let deal of _base.operations | slice: 5:10;" (click)="_operating.operationPreview(deal); operateAssign = 0;"
+                [ngStyle]="{'cursor': deal.available && _operating.isUnlocked(deal) ? 'pointer' : 'initial' }">
+                <i class="fa" aria-hidden="true" [ngClass]="operationIconClass(deal)" [ngStyle]="{'color': _operating.nodeColor(deal)}"></i>
+            </div>
+        </div>
+        <div class="divider-5" *ngIf="_operating.areShadyBusinessDealsUnlocked()"></div>
+
+
+
+        
 
 
     </div>

@@ -1,24 +1,27 @@
-<div class="header">
+<div class="header" *ngIf="!_base.initialLoadSchemes">
     <div class="notoriety-container">
-        <div class="notoriety-gauge" *ngIf="_player.notoriety > 0">
-            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-            <p>{{_heroes.prettyNotoriety}}/10</p>
+        <p style="position:absolute;font-size:.8rem;">Notoriety {{_heroes.notorietyTier}}</p>
+        <p style="position:absolute;font-size:.8rem;right:65%;">{{_heroes.notorietyTierName}}</p>
+        <div class="notoriety-gauge">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 
+            <p>{{_base.notoriety}}</p>
         </div>
-        <div *ngIf="_player.notoriety > 0" class="notoriety-meter" [ngStyle]="notorietyRotationStyle()"></div>
+        <div class="notoriety-meter" [ngStyle]="notorietyRotationStyle()"></div>
     </div>
     <div>
-        <p class="main-title">Bad Guy</p>
+        <p style="cursor:pointer;" (click)="_system.save()" class="main-title">Bad Guy</p>
     </div>
-    <div class="scheme-container" [ngStyle]="schemeStyle()" (click)="_scheming.switchToCurrentSchemePreview()">
-        <div *ngIf="_player.earningSchemePoints">
+    <div class="scheme-container" >
+            <i (click)="cookieService.deleteAll()" style="position:absolute;top:.1rem;left:.2rem;color:#00804f;font-size:1.2rem;cursor:pointer;" class="fa fa-question" aria-hidden="true"></i>
+        <div *ngIf="_base.earningSchemePoints">
             <p class="scheme-title">Scheming</p>
-            <div class="scheme-bar-container {{_player.currentScheme['tree']}}">
-                <i class="scheme-icon fa {{_scheming.schemes[_player.currentScheme['ref']].fa}}" aria-hidden="true"></i>
-                <div class="scheme-progress-bar {{_player.currentScheme['tree']}}" [ngStyle]="schemeProgressBarStyle()"></div>
+            <div class="scheme-bar-container {{_base.currentScheme.tree}}" [ngStyle]="schemeStyle()" (click)="_scheming.switchToCurrentSchemePreview()">
+                <i class="scheme-icon fa {{_base.currentScheme.fa}}" aria-hidden="true"></i>
+                <div class="scheme-progress-bar {{_base.currentScheme.tree}}" [ngStyle]="schemeProgressBarStyle()"></div>
             </div>
         </div>
-        <div *ngIf="!_player.earningSchemePoints">
-            <p class="scheme-title">Not Scheming</p>
+        <div *ngIf="!_base.earningSchemePoints">
+            <p style="padding-bottom:.25rem;" class="scheme-title">Not Scheming</p>
             <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
         </div>
     </div>
