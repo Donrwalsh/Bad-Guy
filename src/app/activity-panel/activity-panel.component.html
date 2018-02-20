@@ -70,8 +70,8 @@
                         <i class="flyout-icon fa fa-money" aria-hidden="true"></i> {{ _operating.previewOperation.type == "heist" ? "earned" : "/min earned" }}</p>
                     <p class="report-line" *ngIf="_operating.operateReadout['earned'] == 0" style="margin-bottom:0;margin-right:.2rem;margin-top:.6rem;">No
                                 <i class="flyout-icon fa fa-money" aria-hidden="true"></i> earned</p>
-                    <p class="report-line" *ngIf="_operating.operateReadout['notoriety'] > 0" style="margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;">{{_operating.operateReadout['notoriety']}}
-                        <i class="flyout-icon fa fa-exclamation-triangle" aria-hidden="true"></i> earned</p>
+                    <p class="report-line" *ngIf="_operating.operateReadout['notoriety'] > 0" style="margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;">
+                            <i class="flyout-icon fa fa-exclamation-triangle" aria-hidden="true"></i> increased by {{_operating.operateReadout['notoriety']}}</p>
                     <p (click)="_operating.closeCompleteOperation()" style="cursor: pointer;width:75%;margin:0 auto; margin-top: 1.5rem; border-radius: .5rem; border: 1px solid; display:inline-block;">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>
                 </div>
 

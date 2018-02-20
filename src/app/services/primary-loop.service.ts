@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { PlayerService } from "./core/player.service";
 import { SchemingService } from "./scheming.service";
 import { RecruitingService } from "./recruiting.service";
 import { TrainingService } from "./training.service";
@@ -20,7 +19,6 @@ export class PrimaryLoopService extends BaseNum {
     constructor(public _base: BaseService,
         public _system: SystemService,
         public cookieService: CookieService,
-        public _player: PlayerService,
         public _operating: OperatingService,
         public _scheming: SchemingService,
         public _recruiting: RecruitingService,

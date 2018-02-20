@@ -23,19 +23,21 @@ export class SystemService extends BaseNum {
         //The construction of a Save String:
         //Character 0: boolean register for earning scheme points
         '0'
+        //Notoriety.
+        + '0z'
         //Scheme numbers. level, exp, cash in order by scheme ref. (10 schemes so far
         + '0z0z0z' + '0z0z0z' + '0z0z0z' 
         + '0z0z0z' + '0z0z0z' + '0z0z0z' 
         + '0z0z0z' + '0z0z0z' + '0z0z0z'
-        + '0z0z0z' 
+        + '0z0z0z' + '0z0z0z' + '0z0z0z'
         //Current Scheme. Only the id is stored. An empty entry means none is selected.
         + 'z'
         //Current henchmen.
         + '0z'
         //RECRUITS numbers. currentStore, countdown, lock in order by help-wanted ref.
         + '0z0z0z' + '0z0z0z' + '0z0z0z' + '0z0z0z' + '0z0z0z'
-        //Lair Hp. Raw number, newGame value is 10.
-        + '10z'
+        //Lair Hp. Raw number, newGame value is 1.
+        + '1z'
         //Current guards.
         + '0z'
         //TRAINS numbers. currentStore, countdown, lock, queued in order by help-wanted ref.
@@ -48,10 +50,6 @@ export class SystemService extends BaseNum {
         //Passive Cash. 5 values for different tiers.
         + '0z0z0z0z0z'
     }
-    
-    //+ '0'
-    
-    
 
     devLog(object: Object) {
         //This wrapper will be used to only display save/load console logs in the dev environment.
@@ -81,6 +79,9 @@ export class SystemService extends BaseNum {
         Base.EARNING_SCHEME_POINTS = data[0] === "1";
         this.devLog("Base.EARNING_SCHEME_POINTS set to " + Base.EARNING_SCHEME_POINTS);
         this.marker = 0;
+        var notoriety = this.saveReader(data);
+        Base.NOTORIETY = Number(notoriety);
+        this.devLog("Base.NOTORIETY set to " + Base.NOTORIETY);
         this._data.getSchemes()
             .subscribe((res) => {
                 var SchemeData = new Array();
@@ -213,6 +214,10 @@ export class SystemService extends BaseNum {
         saveString += Base.EARNING_SCHEME_POINTS ? "1" : "0";
         this.devLog(saveString);
         
+        this.devLog("capturing Base.NOTORIETY:");
+        saveString += Base.NOTORIETY + 'z';
+        this.devLog(Base.NOTORIETY);
+
         this.devLog("capturing Base.SCHEMES: (exp, cash, level)");
         Base.SCHEMES.forEach( (scheme) => {
             var addToString = scheme.exp + "z" + scheme.cash + "z" + scheme.level + "z" ;

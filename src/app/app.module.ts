@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { DataService } from './services/data.service';
-import { PlayerService } from './services/core/player.service';
 import { PrimaryLoopService } from './services/primary-loop.service';
 import { SchemingService } from './services/scheming.service';
 import { InventoryService } from './services/inventory.service';
@@ -39,7 +38,6 @@ import { SystemService } from './services/system.service';
   providers: [
     DataService,
     BaseService,
-    PlayerService,
     SchemingService,
     HeroesService,
     OperatingService,

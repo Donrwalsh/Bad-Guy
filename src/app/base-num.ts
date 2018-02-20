@@ -25,9 +25,9 @@ export class BaseNum extends Base {
 
     get LAIR_HP_MAX() {
         if (this.LAIR_LEVEL === 0) {
-            return 10;
+            return 1;
         } else if (this.LAIR_LEVEL === 1) {
-            return 100;
+            return 10;
         }
         return 10; //Expand later.
     }
@@ -215,6 +215,37 @@ export class BaseNum extends Base {
         }
         return multiplier;
     }
+
+    //09: Beginner Lair
+    beginnerLairDanger() {
+        var danger = 0;
+        for (var _i = 0; _i < Base.SCHEMES[9].level; _i++) {
+            danger++;
+        }
+        return danger;
+    }
+
+    //10: King's Castle
+    kingsCastleFortification() {
+        var fortification = 0;
+        for (var _i = 0; _i < Base.SCHEMES[10].level; _i++) {
+            fortification++;
+        }
+        return fortification;
+    }
+
+    kingsCastleGuardCapacity() {
+        var capacity = 0;
+        capacity += Base.SCHEMES[11].level;
+        return capacity;
+    }
+
+    //11: Maintenance
+    //Nothing done with this yet, still deciding how it should heal.
+
+    //12: Advanced Research
+    //This will bank scheme points earned while not 
+
 
 
 

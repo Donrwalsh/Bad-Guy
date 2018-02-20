@@ -1,13 +1,16 @@
 <div class="header" *ngIf="!_base.initialLoadSchemes">
     <div class="notoriety-container">
-        <div class="notoriety-gauge" *ngIf="_player.notoriety > 0">
-            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-            <p>{{_heroes.prettyNotoriety}}/10</p>
+        <p style="position:absolute;font-size:.8rem;">Notoriety {{_heroes.notorietyTier}}</p>
+        <p style="position:absolute;font-size:.8rem;right:65%;">{{_heroes.notorietyTierName}}</p>
+        <div class="notoriety-gauge">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 
+            <p>{{_base.notoriety}}</p>
         </div>
-        <div *ngIf="_player.notoriety > 0" class="notoriety-meter" [ngStyle]="notorietyRotationStyle()"></div>
+        <div class="notoriety-meter" [ngStyle]="notorietyRotationStyle()"></div>
     </div>
     <div>
         <p style="cursor:pointer;" (click)="_system.save()" class="main-title">Bad Guy</p>
+        <i (click)="_base.notorietyPlus()" style="position:absolute;top:3rem;left:37%;cursor:pointer;" class="fa fa-plus" aria-hidden="true"></i>
     </div>
     <div class="scheme-container" >
             <i (click)="cookieService.deleteAll()" style="position:absolute;top:.1rem;left:.2rem;color:#00804f;font-size:1.2rem;cursor:pointer;" class="fa fa-question" aria-hidden="true"></i>

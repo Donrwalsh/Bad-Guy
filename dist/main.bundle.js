@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /***/ "../../../../../src/app/activity-panel/activity-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"activity-panel\" *ngIf=\"!_base.initialLoadRecruits\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let train of _base.trains; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlocked(train)\"></div>\n            <div class=\"add-block\" *ngIf=\"_training.isUnlocked(train)\">\n                <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.queueTrain(train)\" [ngStyle]=\"addToQueueIconStyle(train)\"></i>\n            </div>\n            <div *ngIf=\"_training.isUnlocked(train)\" class=\"progress-with-add\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectTrain(train)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{train.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let recruit of _base.recruits; index as i\">\n            <div *ngIf=\"_recruiting.isUnlocked(recruit)\" class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlocked(recruit)\" class=\"progress-no-add\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectRecruit(recruit)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{recruit.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_operating.areAnyUnlocked()\">Plotting</p>\n        <div *ngFor=\"let operation of _base.operations\">\n                <div *ngIf=\"_operating.isUnlocked(operation) && !operation.available\" class=\"left-padding\"></div>\n                <div *ngIf=\"_operating.isUnlocked(operation) && !operation.available\" class=\"progress-no-add\">\n                        <div style=\"border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;\">\n                                <div style=\"background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;\" [ngStyle]=\"{'width': this._operating.percentage(operation) + '%' }\"></div>\n                                <p style=\"color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;\">\n                                    <i class=\"generation-icon fa faa-slow faa-flash animated fa-{{operation.fa}}\" aria-hidden=\"true\" style=\"margin-left:.5rem;margin-right:.5rem\"></i>\n                                    Slot {{operation.id+1}} \n                                </p>\n                            </div>\n                </div>\n            </div>\n\n\n\n    </div>\n\n    <div class=\"operations-column\" *ngIf=\"_operating.areAnyUnlocked()\">\n\n        <div *ngIf=\"!_operating.showPreview\" style=\"width:100%;min-height:14.5rem;font-family:FontAwesome;\"></div>\n        <div *ngIf=\"_operating.showPreview\" class=\"operation-flyout\">\n            <div class=\"inner-content\" [ngStyle]=\"{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}\">\n                <p class=\"operation-name\">\n                    <i class=\"operation-icon fa\" [ngClass]=\"previewOperationFa()\" aria-hidden=\"true\"></i>\n                    {{_operating.showAnOperationName(_operating.previewOperation)}}\n                </p>\n                <div *ngIf=\"_operating.operationResult\" class=\"operation-result\" [@enterAnimation]>\n                    <p class=\"report-line\">has {{_operating.operateReadout['result'] == \"success!\" ? 'succeeded!' : 'failed.'}}</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['lost'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['lost']}}\n                        <i class=\"flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}\" aria-hidden=\"true\"></i> lost</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['lost'] == 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">No\n                                <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i> lost</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['earned'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['earned']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> {{ _operating.previewOperation.type == \"heist\" ? \"earned\" : \"/min earned\" }}</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['earned'] == 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">No\n                                <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> earned</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['notoriety'] > 0\" style=\"margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['notoriety']}}\n                        <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> earned</p>\n                    <p (click)=\"_operating.closeCompleteOperation()\" style=\"cursor: pointer;width:75%;margin:0 auto; margin-top: 1.5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>\n                </div>\n\n                <div [ngClass]=\"{'fade-out': _operating.operatingNow}\">\n                    <div class=\"split\" style=\"margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;\" matTooltip=\"All operations require resources\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Requires:</strong>\n                        </p>\n                        <i *ngFor=\"let fa of _operating.showOperationCost(_operating.previewOperation)\" class=\"flyout-icon fa fa-{{fa}}\" style=\"margin-right:.25rem;\" aria-hidden=\"true\"></i>\n                    </div>\n                    <div class=\"split\" style=\"margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;\" matTooltip=\"Resources are at risk even when operations succeed\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Risk:</strong>\n                        </p>\n                        <p>{{_operating.showRisk(_operating.previewOperation)}}%</p>\n                    </div>\n                    <div *ngIf=\"_operating.previewOperation.type === 'heist'\" class=\"split\" style=\"margin: 0;text-align:center;line-height:1.25rem;\" matTooltip=\"You receive nothing if an operation fails\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Rewards:</strong>\n                        </p>\n                        <p>\n                            d2\n                            <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> /\n                            <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n\n                        </p>\n                    </div>\n                    <div *ngIf=\"_operating.previewOperation.type === 'shady-business-deal'\" class=\"split\" style=\"margin: 0;text-align:center;line-height:1.25rem;\" matTooltip=\"You receive nothing if an operation fails\">\n                            <p style=\"font-size:.75rem;\">\n                                <strong>Rewards:</strong>\n                            </p>\n                            <p>\n                                {{_operating.previewOperation.cost01/10}}\n                                <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> /\n                                min\n    \n                            </p>\n                        </div>\n                    <div class=\"split\" style=\"margin: 0;text-align:center;line-height:1.25rem;\" matTooltip=\"More resources mean higher chance of success\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Success:</strong>\n                        </p>\n\n                        <p *ngIf=\"success === 0\" style=\"color:#FF0000\">Impossible</p>\n                        <p *ngIf=\"success < .2 && success > 0\" style=\"color:#FF1500\">Remote</p>\n                        <p *ngIf=\"success < .4 && success > .2\" style=\"color:#FF2A00\">Unlikely</p>\n                        <p *ngIf=\"success < .6 && success > .4\" style=\"color:#FF3F00\">Conceivable</p>\n                        <p *ngIf=\"success < .8 && success > .6\" style=\"color:#FF5400\">Reasonable</p>\n                        <p *ngIf=\"success < 1 && success > .8\" style=\"color:#FF6900\">Likely</p>\n                        <p *ngIf=\"success === 1\" style=\"color:#FF7F00\">Guaranteed</p>\n\n                    </div>\n                    <i class=\"flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}\" aria-hidden=\"true\"></i>\n                    <mat-slider *ngIf=\"_operating.previewOperation.type === 'heist'\" (input)=\"onInputChange($event)\" min=\"0\" step=\"1\" [max]=\"_operating.previewOperation.cost01 < _base.currentHenchmen ? _operating.previewOperation.cost01 : _base.currentHenchmen\" [value]=\"operateAssign\" style=\"width:85%;background-color:#e6e6e6;\"></mat-slider>\n                    <mat-slider *ngIf=\"_operating.previewOperation.type === 'shady-business-deal'\" (input)=\"onInputChange($event)\" min=\"0\" step=\"1\" [max]=\"_operating.previewOperation.cost01 < _base.cash ? _operating.previewOperation.cost01 : _base.cash\" [value]=\"operateAssign\" style=\"width:85%;background-color:#e6e6e6;\"></mat-slider>\n                    <p class=\"operate-button\" [ngStyle]=\"{ 'cursor': _operating.operatingNow ? 'initial' : 'pointer'}\" *ngIf=\"operateAssign > 0\" (click)=\"_operating.operate(operateAssign, _operating.previewOperation)\">Commit {{operateAssign}}\n                        <i class=\"flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}\" aria-hidden=\"true\"></i> to Operate </p>\n                </div>\n            </div>\n        </div>\n\n\n\n        <div class=\"routine-row\" *ngIf=\"_operating.areHeistsUnlocked()\">\n            <div class=\"column\" *ngFor=\"let heist of _base.operations | slice: 0:5;\" (click)=\"_operating.operationPreview(heist); operateAssign = 0;\"\n                [ngStyle]=\"{'cursor': heist.available && _operating.isUnlocked(heist) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(heist)\" [ngStyle]=\"{'color': _operating.nodeColor(heist)}\"></i>\n            </div>\n        </div>\n\n        <div class=\"routine-row\" *ngIf=\"_operating.areShadyBusinessDealsUnlocked()\">\n            <div class=\"column\" *ngFor=\"let deal of _base.operations | slice: 5:10;\" (click)=\"_operating.operationPreview(deal); operateAssign = 0;\"\n                [ngStyle]=\"{'cursor': deal.available && _operating.isUnlocked(deal) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(deal)\" [ngStyle]=\"{'color': _operating.nodeColor(deal)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_operating.areShadyBusinessDealsUnlocked()\"></div>\n\n\n\n        \n\n\n    </div>\n\n</div>"
+module.exports = "<div class=\"activity-panel\" *ngIf=\"!_base.initialLoadRecruits\">\n    <div class=\"henchmen-column\">\n        <p class=\"title\" *ngIf=\"_training.areAnyUnlocked()\">Training</p>\n        <div *ngFor=\"let train of _base.trains; index as i\">\n            <div class=\"left-padding\" *ngIf=\"_training.isUnlocked(train)\"></div>\n            <div class=\"add-block\" *ngIf=\"_training.isUnlocked(train)\">\n                <i class=\"add-to-queue-icon fa fa-plus\" aria-hidden=\"true\" (click)=\"_training.queueTrain(train)\" [ngStyle]=\"addToQueueIconStyle(train)\"></i>\n            </div>\n            <div *ngIf=\"_training.isUnlocked(train)\" class=\"progress-with-add\">\n                <div [ngClass]=\"containerClass(i, 'training')\" (click)=\"_training.collectTrain(train)\" [ngStyle]=\"containerStyle(i, 'training')\">\n                    <div [ngClass]=\"progressBarClass(i, 'training')\" [ngStyle]=\"styleProgressBar(i, 'training')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'training')\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'training')\"></i>\n                        {{train.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{train.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'training')\"\n                            [ngClass]=\"collectionIcon(i, 'training')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_recruiting.areAnyUnlocked()\">Recruitment</p>\n        <div *ngFor=\"let recruit of _base.recruits; index as i\">\n            <div *ngIf=\"_recruiting.isUnlocked(recruit)\" class=\"left-padding\"></div>\n            <div *ngIf=\"_recruiting.isUnlocked(recruit)\" class=\"progress-no-add\">\n                <div [ngClass]=\"containerClass(i, 'recruiting')\" (click)=\"_recruiting.collectRecruit(recruit)\" [ngStyle]=\"containerStyle(i, 'recruiting')\">\n                    <div [ngClass]=\"progressBarClass(i, 'recruiting')\" [ngStyle]=\"styleProgressBar(i, 'recruiting')\"></div>\n                    <p [ngClass]=\"displayClass(i, 'recruiting')\" class=\"help-wanted-display\">\n                        <i class=\"generation-icon fa faa-slow faa-flash animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectingIconStyle(i, 'recruiting')\"></i>\n                        {{recruit.name}}\n                        <i class=\"collection-icon fa faa-slow animated {{recruit.fa}}\" aria-hidden=\"true\" [ngStyle]=\"collectionIconStyle(i, 'recruiting')\"\n                            [ngClass]=\"collectionIcon(i, 'recruiting')\"></i>\n                    </p>\n                </div>\n            </div>\n        </div>\n        <p class=\"title\" *ngIf=\"_operating.areAnyUnlocked()\">Plotting</p>\n        <div *ngFor=\"let operation of _base.operations\">\n                <div *ngIf=\"_operating.isUnlocked(operation) && !operation.available\" class=\"left-padding\"></div>\n                <div *ngIf=\"_operating.isUnlocked(operation) && !operation.available\" class=\"progress-no-add\">\n                        <div style=\"border: 1px solid #ffe6cc;margin-top: .5rem; width: 100%;height:1.2em;border-radius:0px 15px 15px 0px;position:relative;\">\n                                <div style=\"background-color:#ffe6cc;border-radius: 0px 1rem 1rem 0px;position: absolute;height: 1.2em;\" [ngStyle]=\"{'width': this._operating.percentage(operation) + '%' }\"></div>\n                                <p style=\"color:black;font-size: .8em;width: 100%;margin-top: .1em;margin: 0;user-select: none;position: relative;\">\n                                    <i class=\"generation-icon fa faa-slow faa-flash animated fa-{{operation.fa}}\" aria-hidden=\"true\" style=\"margin-left:.5rem;margin-right:.5rem\"></i>\n                                    Slot {{operation.id+1}} \n                                </p>\n                            </div>\n                </div>\n            </div>\n\n\n\n    </div>\n\n    <div class=\"operations-column\" *ngIf=\"_operating.areAnyUnlocked()\">\n\n        <div *ngIf=\"!_operating.showPreview\" style=\"width:100%;min-height:14.5rem;font-family:FontAwesome;\"></div>\n        <div *ngIf=\"_operating.showPreview\" class=\"operation-flyout\">\n            <div class=\"inner-content\" [ngStyle]=\"{'color': _operating.getFaColorByRarity(_operating.previewOperation['rarity'])}\">\n                <p class=\"operation-name\">\n                    <i class=\"operation-icon fa\" [ngClass]=\"previewOperationFa()\" aria-hidden=\"true\"></i>\n                    {{_operating.showAnOperationName(_operating.previewOperation)}}\n                </p>\n                <div *ngIf=\"_operating.operationResult\" class=\"operation-result\" [@enterAnimation]>\n                    <p class=\"report-line\">has {{_operating.operateReadout['result'] == \"success!\" ? 'succeeded!' : 'failed.'}}</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['lost'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['lost']}}\n                        <i class=\"flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}\" aria-hidden=\"true\"></i> lost</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['lost'] == 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">No\n                                <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i> lost</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['earned'] > 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">{{_operating.operateReadout['earned']}}\n                        <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> {{ _operating.previewOperation.type == \"heist\" ? \"earned\" : \"/min earned\" }}</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['earned'] == 0\" style=\"margin-bottom:0;margin-right:.2rem;margin-top:.6rem;\">No\n                                <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> earned</p>\n                    <p class=\"report-line\" *ngIf=\"_operating.operateReadout['notoriety'] > 0\" style=\"margin-bottom:.5rem;margin-right:.2rem;margin-top:.6rem;\">\n                            <i class=\"flyout-icon fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> increased by {{_operating.operateReadout['notoriety']}}</p>\n                    <p (click)=\"_operating.closeCompleteOperation()\" style=\"cursor: pointer;width:75%;margin:0 auto; margin-top: 1.5rem; border-radius: .5rem; border: 1px solid; display:inline-block;\">{{_operating.operateReadout['result'] == 'success!' ? 'Excellent' : 'Curses!'}}</p>\n                </div>\n\n                <div [ngClass]=\"{'fade-out': _operating.operatingNow}\">\n                    <div class=\"split\" style=\"margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;\" matTooltip=\"All operations require resources\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Requires:</strong>\n                        </p>\n                        <i *ngFor=\"let fa of _operating.showOperationCost(_operating.previewOperation)\" class=\"flyout-icon fa fa-{{fa}}\" style=\"margin-right:.25rem;\" aria-hidden=\"true\"></i>\n                    </div>\n                    <div class=\"split\" style=\"margin: 0;margin-bottom:.75rem;text-align:center;line-height:1.25rem;\" matTooltip=\"Resources are at risk even when operations succeed\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Risk:</strong>\n                        </p>\n                        <p>{{_operating.showRisk(_operating.previewOperation)}}%</p>\n                    </div>\n                    <div *ngIf=\"_operating.previewOperation.type === 'heist'\" class=\"split\" style=\"margin: 0;text-align:center;line-height:1.25rem;\" matTooltip=\"You receive nothing if an operation fails\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Rewards:</strong>\n                        </p>\n                        <p>\n                            d2\n                            <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> /\n                            <i class=\"flyout-icon fa fa-user\" aria-hidden=\"true\"></i>\n\n                        </p>\n                    </div>\n                    <div *ngIf=\"_operating.previewOperation.type === 'shady-business-deal'\" class=\"split\" style=\"margin: 0;text-align:center;line-height:1.25rem;\" matTooltip=\"You receive nothing if an operation fails\">\n                            <p style=\"font-size:.75rem;\">\n                                <strong>Rewards:</strong>\n                            </p>\n                            <p>\n                                {{_operating.previewOperation.cost01/10}}\n                                <i class=\"flyout-icon fa fa-money\" aria-hidden=\"true\"></i> /\n                                min\n    \n                            </p>\n                        </div>\n                    <div class=\"split\" style=\"margin: 0;text-align:center;line-height:1.25rem;\" matTooltip=\"More resources mean higher chance of success\">\n                        <p style=\"font-size:.75rem;\">\n                            <strong>Success:</strong>\n                        </p>\n\n                        <p *ngIf=\"success === 0\" style=\"color:#FF0000\">Impossible</p>\n                        <p *ngIf=\"success < .2 && success > 0\" style=\"color:#FF1500\">Remote</p>\n                        <p *ngIf=\"success < .4 && success > .2\" style=\"color:#FF2A00\">Unlikely</p>\n                        <p *ngIf=\"success < .6 && success > .4\" style=\"color:#FF3F00\">Conceivable</p>\n                        <p *ngIf=\"success < .8 && success > .6\" style=\"color:#FF5400\">Reasonable</p>\n                        <p *ngIf=\"success < 1 && success > .8\" style=\"color:#FF6900\">Likely</p>\n                        <p *ngIf=\"success === 1\" style=\"color:#FF7F00\">Guaranteed</p>\n\n                    </div>\n                    <i class=\"flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}\" aria-hidden=\"true\"></i>\n                    <mat-slider *ngIf=\"_operating.previewOperation.type === 'heist'\" (input)=\"onInputChange($event)\" min=\"0\" step=\"1\" [max]=\"_operating.previewOperation.cost01 < _base.currentHenchmen ? _operating.previewOperation.cost01 : _base.currentHenchmen\" [value]=\"operateAssign\" style=\"width:85%;background-color:#e6e6e6;\"></mat-slider>\n                    <mat-slider *ngIf=\"_operating.previewOperation.type === 'shady-business-deal'\" (input)=\"onInputChange($event)\" min=\"0\" step=\"1\" [max]=\"_operating.previewOperation.cost01 < _base.cash ? _operating.previewOperation.cost01 : _base.cash\" [value]=\"operateAssign\" style=\"width:85%;background-color:#e6e6e6;\"></mat-slider>\n                    <p class=\"operate-button\" [ngStyle]=\"{ 'cursor': _operating.operatingNow ? 'initial' : 'pointer'}\" *ngIf=\"operateAssign > 0\" (click)=\"_operating.operate(operateAssign, _operating.previewOperation)\">Commit {{operateAssign}}\n                        <i class=\"flyout-icon fa fa-{{_operating.showOperationCost(_operating.previewOperation)[0]}}\" aria-hidden=\"true\"></i> to Operate </p>\n                </div>\n            </div>\n        </div>\n\n\n\n        <div class=\"routine-row\" *ngIf=\"_operating.areHeistsUnlocked()\">\n            <div class=\"column\" *ngFor=\"let heist of _base.operations | slice: 0:5;\" (click)=\"_operating.operationPreview(heist); operateAssign = 0;\"\n                [ngStyle]=\"{'cursor': heist.available && _operating.isUnlocked(heist) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(heist)\" [ngStyle]=\"{'color': _operating.nodeColor(heist)}\"></i>\n            </div>\n        </div>\n\n        <div class=\"routine-row\" *ngIf=\"_operating.areShadyBusinessDealsUnlocked()\">\n            <div class=\"column\" *ngFor=\"let deal of _base.operations | slice: 5:10;\" (click)=\"_operating.operationPreview(deal); operateAssign = 0;\"\n                [ngStyle]=\"{'cursor': deal.available && _operating.isUnlocked(deal) ? 'pointer' : 'initial' }\">\n                <i class=\"fa\" aria-hidden=\"true\" [ngClass]=\"operationIconClass(deal)\" [ngStyle]=\"{'color': _operating.nodeColor(deal)}\"></i>\n            </div>\n        </div>\n        <div class=\"divider-5\" *ngIf=\"_operating.areShadyBusinessDealsUnlocked()\"></div>\n\n\n\n        \n\n\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -48,14 +48,13 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivityPanelComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_animations__ = __webpack_require__("../../../animations/esm5/animations.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_animations__ = __webpack_require__("../../../animations/esm5/animations.js");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -83,12 +82,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var ActivityPanelComponent = /** @class */ (function (_super) {
     __extends(ActivityPanelComponent, _super);
-    function ActivityPanelComponent(_player, _base, _recruiting, _inventory, _operating, _training) {
+    function ActivityPanelComponent(_base, _recruiting, _inventory, _operating, _training) {
         var _this = _super.call(this) || this;
-        _this._player = _player;
         _this._base = _base;
         _this._recruiting = _recruiting;
         _this._inventory = _inventory;
@@ -126,7 +123,7 @@ var ActivityPanelComponent = /** @class */ (function (_super) {
     //This will break if more than 2 types are used.
     ActivityPanelComponent.prototype.styleProgressBar = function (id, type) {
         return {
-            'width': type == 'recruiting' ? this._recruiting.percentage(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id]) + '%' : this._training.percentage(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].TRAINS[id]) + '%'
+            'width': type == 'recruiting' ? this._recruiting.percentage(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].RECRUITS[id]) + '%' : this._training.percentage(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].TRAINS[id]) + '%'
         };
     };
     ActivityPanelComponent.prototype.displayClass = function (id, type) {
@@ -145,18 +142,18 @@ var ActivityPanelComponent = /** @class */ (function (_super) {
     };
     ActivityPanelComponent.prototype.collectingIconStyle = function (id, type) {
         if (type == "training") {
-            return { 'visibility': this._training.isTraining(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].TRAINS[id]) ? 'initial' : 'hidden' };
+            return { 'visibility': this._training.isTraining(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].TRAINS[id]) ? 'initial' : 'hidden' };
         }
         else {
-            return { 'visibility': this._recruiting.isRecruiting(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id]) ? 'initial' : 'hidden' };
+            return { 'visibility': this._recruiting.isRecruiting(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].RECRUITS[id]) ? 'initial' : 'hidden' };
         }
     };
     ActivityPanelComponent.prototype.containerStyle = function (id, type) {
         if (type == "training") {
-            return { 'cursor': __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].TRAINS[id].currentStore > 0 ? 'pointer' : 'default' };
+            return { 'cursor': __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].TRAINS[id].currentStore > 0 ? 'pointer' : 'default' };
         }
         else {
-            return { 'cursor': __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].currentStore > 0 ? 'pointer' : 'default' };
+            return { 'cursor': __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].RECRUITS[id].currentStore > 0 ? 'pointer' : 'default' };
         }
     };
     ActivityPanelComponent.prototype.collectionIcon = function (id, type) {
@@ -176,12 +173,12 @@ var ActivityPanelComponent = /** @class */ (function (_super) {
     ActivityPanelComponent.prototype.collectionIconStyle = function (id, type) {
         if (type == "training") {
             return {
-                'display': __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].TRAINS[id].currentStore > 0 ? 'inline-block' : 'none'
+                'display': __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].TRAINS[id].currentStore > 0 ? 'inline-block' : 'none'
             };
         }
         else {
             return {
-                'display': __WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */].RECRUITS[id].currentStore > 0 ? 'inline-block' : 'none'
+                'display': __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].RECRUITS[id].currentStore > 0 ? 'inline-block' : 'none'
             };
         }
     };
@@ -233,25 +230,24 @@ var ActivityPanelComponent = /** @class */ (function (_super) {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'activity-panel',
             animations: [
-                Object(__WEBPACK_IMPORTED_MODULE_8__angular_animations__["m" /* trigger */])('enterAnimation', [
-                    Object(__WEBPACK_IMPORTED_MODULE_8__angular_animations__["l" /* transition */])(':enter', [
-                        Object(__WEBPACK_IMPORTED_MODULE_8__angular_animations__["k" /* style */])({ opacity: 0 }),
-                        Object(__WEBPACK_IMPORTED_MODULE_8__angular_animations__["e" /* animate */])('2000ms', Object(__WEBPACK_IMPORTED_MODULE_8__angular_animations__["k" /* style */])({ opacity: 1 }))
+                Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["m" /* trigger */])('enterAnimation', [
+                    Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["l" /* transition */])(':enter', [
+                        Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["k" /* style */])({ opacity: 0 }),
+                        Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["e" /* animate */])('2000ms', Object(__WEBPACK_IMPORTED_MODULE_7__angular_animations__["k" /* style */])({ opacity: 1 }))
                     ])
                 ])
             ],
             template: __webpack_require__("../../../../../src/app/activity-panel/activity-panel.component.html"),
             styles: [__webpack_require__("../../../../../src/app/activity-panel/activity-panel.component.scss"), __webpack_require__("../../../../../src/app/app.component.scss")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_7__services_base_service__["a" /* BaseService */],
-            __WEBPACK_IMPORTED_MODULE_2__services_recruiting_service__["a" /* RecruitingService */],
-            __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */],
-            __WEBPACK_IMPORTED_MODULE_5__services_operating_service__["a" /* OperatingService */],
-            __WEBPACK_IMPORTED_MODULE_3__services_training_service__["a" /* TrainingService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__services_base_service__["a" /* BaseService */],
+            __WEBPACK_IMPORTED_MODULE_1__services_recruiting_service__["a" /* RecruitingService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__["a" /* InventoryService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_training_service__["a" /* TrainingService */]])
     ], ActivityPanelComponent);
     return ActivityPanelComponent;
-}(__WEBPACK_IMPORTED_MODULE_6__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */]));
 
 
 
@@ -324,7 +320,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* Henchmen Colors */\n/*Scheme Tree Colors */\n/* SVG Image Backgrounds */\np {\n  margin: 0 auto; }\n.header {\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E\");\n  height: 4rem; }\n.header .notoriety-container {\n    overflow: hidden;\n    margin-left: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-right: .75px solid; }\n.header .notoriety-container .notoriety-gauge {\n      background-color: #00ff9d;\n      z-index: 2;\n      width: 6rem;\n      position: relative;\n      height: 3rem;\n      margin: 0 auto;\n      margin-top: 1rem;\n      border-radius: 250px 250px 0px 0px;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n.header .notoriety-container .notoriety-gauge .fa {\n        margin-top: .5rem; }\n.header .notoriety-container .notoriety-meter {\n      background-color: #00804f;\n      z-index: 1;\n      position: relative;\n      width: 8rem;\n      height: 4rem;\n      margin: 0 auto;\n      border-radius: 0px 0px 250px 250px;\n      -webkit-transform-origin: center top;\n              transform-origin: center top;\n      -webkit-transition: all 1s ease-in-out;\n      transition: all 1s ease-in-out; }\n.header .main-title {\n    text-align: center;\n    position: absolute;\n    top: .5rem;\n    right: 40%;\n    left: 40%;\n    width: 20%;\n    margin: 0;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    font-size: 2rem; }\n.header .scheme-container {\n    position: absolute;\n    top: 0px;\n    right: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-left: .75px solid; }\n.header .scheme-container .scheme-title {\n      font-size: .8rem;\n      margin-bottom: .2rem;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n.header .scheme-container .scheme-bar-container {\n      margin-top: .25rem;\n      text-align: center;\n      display: inline-block;\n      width: 90%;\n      position: relative;\n      height: 2rem;\n      border-radius: 0 .5rem .5rem 0; }\n.header .scheme-container .scheme-bar-container .scheme-progress-bar {\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        height: 1.9rem;\n        border-radius: 0 .5rem .5rem 0; }\n.header .scheme-container .scheme-bar-container .scheming {\n        background-color: #40ff00; }\n.header .scheme-container .scheme-bar-container .henchmen {\n        background-color: #6699ff; }\n.header .scheme-container .scheme-bar-container .operations {\n        background-color: #ffb366; }\n.header .scheme-container .scheme-bar-container .lairs {\n        background-color: #bf00ff; }\n.header .scheme-container .scheme-bar-container .scheme-icon {\n        font-size: 1.9rem;\n        padding-top: 1px;\n        z-index: 100;\n        position: relative; }\n.header .scheme-container .scheming {\n      border: 1px solid #40ff00; }\n.header .scheme-container .henchmen {\n      border: 1px solid #6699ff; }\n.header .scheme-container .operations {\n      border: 1px solid #ffb366; }\n.header .scheme-container .lairs {\n      border: 1px solid #bf00ff; }\n.main-section {\n  background-color: #ffffff;\n  background-image: url(\"data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M82.42 180h-1.415L0 98.995v-2.827L6.167 90 0 83.833V81.004L81.005 0h2.827L90 6.167 96.167 0H98.996L180 81.005v2.827L173.833 90 180 96.167V98.996L98.995 180h-2.827L90 173.833 83.833 180H82.42zm0-1.414L1.413 97.58 8.994 90l-7.58-7.58L82.42 1.413 90 8.994l7.58-7.58 81.006 81.005-7.58 7.58 7.58 7.58-81.005 81.006-7.58-7.58-7.58 7.58zM175.196 0h-25.832c1.033 2.924 2.616 5.59 4.625 7.868C152.145 9.682 151 12.208 151 15c0 5.523 4.477 10 10 10 1.657 0 3 1.343 3 3v4h16V0h-4.803c.51.883.803 1.907.803 3 0 3.314-2.686 6-6 6s-6-2.686-6-6c0-1.093.292-2.117.803-3h10.394-13.685C161.18.938 161 1.948 161 3v4c-4.418 0-8 3.582-8 8s3.582 8 8 8c2.76 0 5 2.24 5 5v2h4v-4h2v4h4v-4h2v4h2V0h-4.803zm-15.783 0c-.27.954-.414 1.96-.414 3v2.2c-1.25.254-2.414.74-3.447 1.412-1.716-1.93-3.098-4.164-4.054-6.612h7.914zM180 17h-3l2.143-10H180v10zm-30.635 163c-.884-2.502-1.365-5.195-1.365-8 0-13.255 10.748-24 23.99-24H180v32h-30.635zm12.147 0c.5-1.416 1.345-2.67 2.434-3.66l-1.345-1.48c-1.498 1.364-2.62 3.136-3.186 5.14H151.5c-.97-2.48-1.5-5.177-1.5-8 0-12.15 9.84-22 22-22h8v30h-18.488zm13.685 0c-1.037-1.793-2.976-3-5.197-3-2.22 0-4.16 1.207-5.197 3h10.394zM0 148h8.01C21.26 148 32 158.742 32 172c0 2.805-.48 5.498-1.366 8H0v-32zm0 2h8c12.15 0 22 9.847 22 22 0 2.822-.53 5.52-1.5 8h-7.914c-.567-2.004-1.688-3.776-3.187-5.14l-1.346 1.48c1.09.99 1.933 2.244 2.434 3.66H0v-30zm15.197 30c-1.037-1.793-2.976-3-5.197-3-2.22 0-4.16 1.207-5.197 3h10.394zM0 32h16v-4c0-1.657 1.343-3 3-3 5.523 0 10-4.477 10-10 0-2.794-1.145-5.32-2.992-7.134C28.018 5.586 29.6 2.924 30.634 0H0v32zm0-2h2v-4h2v4h4v-4h2v4h4v-2c0-2.76 2.24-5 5-5 4.418 0 8-3.582 8-8s-3.582-8-8-8V3c0-1.052-.18-2.062-.512-3H0v30zM28.5 0c-.954 2.448-2.335 4.683-4.05 6.613-1.035-.672-2.2-1.16-3.45-1.413V3c0-1.04-.144-2.046-.414-3H28.5zM0 17h3L.857 7H0v10zM15.197 0c.51.883.803 1.907.803 3 0 3.314-2.686 6-6 6S4 6.314 4 3c0-1.093.292-2.117.803-3h10.394zM109 115c-1.657 0-3 1.343-3 3v4H74v-4c0-1.657-1.343-3-3-3-5.523 0-10-4.477-10-10 0-2.793 1.145-5.318 2.99-7.132C60.262 93.638 58 88.084 58 82c0-13.255 10.748-24 23.99-24h16.02C111.26 58 122 68.742 122 82c0 6.082-2.263 11.636-5.992 15.866C117.855 99.68 119 102.206 119 105c0 5.523-4.477 10-10 10zm0-2c-2.76 0-5 2.24-5 5v2h-4v-4h-2v4h-4v-4h-2v4h-4v-4h-2v4h-4v-4h-2v4h-4v-2c0-2.76-2.24-5-5-5-4.418 0-8-3.582-8-8s3.582-8 8-8v-4c0-2.64 1.136-5.013 2.946-6.66L72.6 84.86C70.39 86.874 69 89.775 69 93v2.2c-1.25.254-2.414.74-3.447 1.412C62.098 92.727 60 87.61 60 82c0-12.15 9.84-22 22-22h16c12.15 0 22 9.847 22 22 0 5.61-2.097 10.728-5.55 14.613-1.035-.672-2.2-1.16-3.45-1.413V93c0-3.226-1.39-6.127-3.6-8.14l-1.346 1.48C107.864 87.987 109 90.36 109 93v4c4.418 0 8 3.582 8 8s-3.582 8-8 8zM90.857 97L93 107h-6l2.143-10h1.714zM80 99c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm20 0c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z' fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\");\n  height: 80vh;\n  position: absolute;\n  width: 100%;\n  z-index: 10; }\n.main-section .resources-bar {\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    height: 2rem;\n    border-top: solid .75px; }\n.main-section .resources-bar .resource-tab {\n      margin-left: 0.1rem;\n      display: inline-block;\n      border-radius: 0 0 .5rem .5rem;\n      padding-right: .2rem;\n      padding-bottom: .2rem;\n      padding-left: .2rem;\n      border-top: none; }\n.main-section .resources-bar .resource-tab .resource-readout {\n        display: inline-block; }\n.main-section .resources-bar .lair {\n      margin-left: 0.5rem;\n      border: 1px solid #f2ccff;\n      color: #bf00ff;\n      cursor: pointer; }\n.main-section .resources-bar .cash {\n      border: 1px solid #d6f7d4;\n      color: #30d52a; }\n.main-section .resources-bar .henchmen {\n      border: 1px solid #ccddff;\n      color: #6699ff; }\n.main-section .resources-bar .guard {\n      border: 1px solid #ccccff;\n      color: #000099; }\n.activity-panel {\n  display: inline-block;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n.activity-panel .henchmen-column {\n    width: 50%;\n    display: inline-block; }\n.activity-panel .henchmen-column .title {\n      padding-bottom: .5rem;\n      padding-top: .5rem;\n      text-align: center; }\n.activity-panel .henchmen-column .left-padding {\n      width: 5%;\n      display: inline-block;\n      height: 1.2rem; }\n.activity-panel .henchmen-column .add-block {\n      width: 5%;\n      vertical-align: middle;\n      display: inline-block;\n      height: 1.2rem; }\n.activity-panel .henchmen-column .progress-with-add {\n      width: 75%;\n      display: inline-block; }\n.activity-panel .henchmen-column .progress-with-add .training-container {\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        display: inline-block;\n        position: relative; }\n.activity-panel .henchmen-column .progress-with-add .training-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display {\n          font-size: .8em;\n          width: 100%;\n          position: relative;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          height: 1.2rem; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: .5em; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container {\n        border: 1px solid #ccccff; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container .guard-progress-bar {\n          background-color: #ccccff; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container .guard-training-display {\n          color: #000099; }\n.activity-panel .henchmen-column .progress-no-add {\n      width: 82%;\n      display: inline-block; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container {\n        margin-top: .5rem;\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        position: relative; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2rem; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display {\n          font-size: .8rem;\n          width: 100%;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          position: relative; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container {\n        border: 1px solid #ccddff; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container .help-wanted-progress-bar {\n          background-color: #ccddff; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container .help-wanted-display {\n          color: #003399; }\n.activity-panel .operations-column {\n    width: 50%;\n    float: right; }\n.activity-panel .operations-column .padding-short {\n      width: 5%;\n      height: 2rem;\n      float: left; }\n.activity-panel .operations-column .divider-5 {\n      width: 5%;\n      height: 3rem;\n      float: left; }\n.activity-panel .operations-column .operation-tab {\n      text-align: center;\n      border-radius: 2rem 2rem 0 0;\n      width: 30%;\n      height: 2rem;\n      float: left; }\n.activity-panel .operations-column .routine {\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .campaign {\n      background-color: #cceaff; }\n.activity-panel .operations-column .ascension {\n      background-color: #fffecc; }\n.activity-panel .operations-column .routine-row {\n      width: 90%;\n      height: 3rem;\n      float: left;\n      margin-left: 5%;\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .routine-row .column {\n        text-align: center;\n        border-radius: .5rem;\n        border: 1px solid;\n        margin-left: 3%;\n        margin-top: .5rem;\n        float: left;\n        height: 2rem;\n        width: 15%; }\n.activity-panel .operations-column .routine-row .column .fa {\n          font-size: 1.25rem;\n          margin-top: .375rem; }\n.activity-panel .operations-column .operation-flyout {\n      text-align: center;\n      float: left;\n      margin-left: 5%;\n      width: 90%;\n      border-radius: 1rem 1rem 0 0;\n      cursor: default;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none;\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .operation-flyout .inner-content {\n        position: relative;\n        min-height: 13.5rem;\n        margin: 0 0 .5rem 0; }\n.activity-panel .operations-column .operation-flyout .inner-content .result-hidden {\n          display: none; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result {\n          position: absolute;\n          display: block;\n          width: 100%;\n          height: 9rem;\n          visibility: visible; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result .report-line {\n            margin: .1rem;\n            min-height: 1rem;\n            margin-bottom: .5rem;\n            margin-top: .5rem;\n            font-size: 1rem;\n            display: block;\n            width: 95%; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result .report-line .operation-icon {\n              margin-right: .2rem;\n              position: relative;\n              font-size: 1rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .fade-out {\n          visibility: hidden;\n          opacity: 0;\n          -webkit-transition: visibility 0s 1s, opacity 1s linear;\n          transition: visibility 0s 1s, opacity 1s linear; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-name {\n          margin: .1rem;\n          margin-top: .5rem;\n          min-height: 2rem;\n          margin-bottom: .5rem;\n          font-size: 1rem;\n          display: block;\n          width: 95%; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-name .operation-icon {\n            margin-right: .2rem;\n            position: relative;\n            font-size: 1rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split {\n          float: left;\n          width: 50%; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-left {\n            float: left;\n            margin: 0;\n            font-size: .8rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-right {\n            float: right;\n            margin: 0;\n            font-size: .8rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-right .flyout-icon {\n              position: relative;\n              font-size: .8rem;\n              margin-top: .3rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .operate-button {\n          width: 90%;\n          padding: .2rem;\n          border-radius: .5rem;\n          border: 1px solid;\n          display: inline-block; }\n.activity-panel .operations-column .operation-flyout .inner-content .left {\n          margin-left: 6%;\n          margin-right: 2%; }\n.activity-panel .operations-column .operation-flyout .inner-content .right {\n          margin-left: 2%;\n          margin-right: 6%;\n          cursor: pointer; }\n.scheme-panel {\n  float: right;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n.scheme-panel .spacer {\n    width: 2.5%;\n    height: 50vh;\n    float: left; }\n.scheme-panel .select-bar {\n    width: 5%;\n    height: 15em;\n    padding: 0;\n    margin: 0;\n    float: left;\n    text-align: center; }\n.scheme-panel .select-bar .schemes {\n      background-color: #d9ffcc; }\n.scheme-panel .select-bar .hench {\n      background-color: #ccddff; }\n.scheme-panel .select-bar .operate {\n      background-color: #ffe6cc; }\n.scheme-panel .select-bar .lair {\n      background-color: #f2ccff; }\n.scheme-panel .select-bar .select {\n      cursor: pointer;\n      border-radius: 1rem 0 0 1rem;\n      height: 3rem; }\n.scheme-panel .select-bar .fa {\n      padding-top: 1rem; }\n.scheme-panel .scheme-area {\n    background-color: #d9ffcc;\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 304 304' width='304' height='304'%3E%3Cpath fill='%23e8a50c' fill-opacity='0.4' d='M44.1 224a5 5 0 1 1 0 2H0v-2h44.1zm160 48a5 5 0 1 1 0 2H82v-2h122.1zm57.8-46a5 5 0 1 1 0-2H304v2h-42.1zm0 16a5 5 0 1 1 0-2H304v2h-42.1zm6.2-114a5 5 0 1 1 0 2h-86.2a5 5 0 1 1 0-2h86.2zm-256-48a5 5 0 1 1 0 2H0v-2h12.1zm185.8 34a5 5 0 1 1 0-2h86.2a5 5 0 1 1 0 2h-86.2zM258 12.1a5 5 0 1 1-2 0V0h2v12.1zm-64 208a5 5 0 1 1-2 0v-54.2a5 5 0 1 1 2 0v54.2zm48-198.2V80h62v2h-64V21.9a5 5 0 1 1 2 0zm16 16V64h46v2h-48V37.9a5 5 0 1 1 2 0zm-128 96V208h16v12.1a5 5 0 1 1-2 0V210h-16v-76.1a5 5 0 1 1 2 0zm-5.9-21.9a5 5 0 1 1 0 2H114v48H85.9a5 5 0 1 1 0-2H112v-48h12.1zm-6.2 130a5 5 0 1 1 0-2H176v-74.1a5 5 0 1 1 2 0V242h-60.1zm-16-64a5 5 0 1 1 0-2H114v48h10.1a5 5 0 1 1 0 2H112v-48h-10.1zM66 284.1a5 5 0 1 1-2 0V274H50v30h-2v-32h18v12.1zM236.1 176a5 5 0 1 1 0 2H226v94h48v32h-2v-30h-48v-98h12.1zm25.8-30a5 5 0 1 1 0-2H274v44.1a5 5 0 1 1-2 0V146h-10.1zm-64 96a5 5 0 1 1 0-2H208v-80h16v-14h-42.1a5 5 0 1 1 0-2H226v18h-16v80h-12.1zm86.2-210a5 5 0 1 1 0 2H272V0h2v32h10.1zM98 101.9V146H53.9a5 5 0 1 1 0-2H96v-42.1a5 5 0 1 1 2 0zM53.9 34a5 5 0 1 1 0-2H80V0h2v34H53.9zm60.1 3.9V66H82v64H69.9a5 5 0 1 1 0-2H80V64h32V37.9a5 5 0 1 1 2 0zM101.9 82a5 5 0 1 1 0-2H128V37.9a5 5 0 1 1 2 0V82h-28.1zm16-64a5 5 0 1 1 0-2H146v44.1a5 5 0 1 1-2 0V18h-26.1zm102.2 270a5 5 0 1 1 0 2H98v14h-2v-16h124.1zM242 149.9V160h16v34h-16v62h48v48h-2v-46h-48v-66h16v-30h-16v-12.1a5 5 0 1 1 2 0zM53.9 18a5 5 0 1 1 0-2H64V2H48V0h18v18H53.9zm112 32a5 5 0 1 1 0-2H192V0h50v2h-48v48h-28.1zm-48-48a5 5 0 0 1-9.8-2h2.07a3 3 0 1 0 5.66 0H178v34h-18V21.9a5 5 0 1 1 2 0V32h14V2h-58.1zm0 96a5 5 0 1 1 0-2H137l32-32h39V21.9a5 5 0 1 1 2 0V66h-40.17l-32 32H117.9zm28.1 90.1a5 5 0 1 1-2 0v-76.51L175.59 80H224V21.9a5 5 0 1 1 2 0V82h-49.59L146 112.41v75.69zm16 32a5 5 0 1 1-2 0v-99.51L184.59 96H300.1a5 5 0 0 1 3.9-3.9v2.07a3 3 0 0 0 0 5.66v2.07a5 5 0 0 1-3.9-3.9H185.41L162 121.41v98.69zm-144-64a5 5 0 1 1-2 0v-3.51l48-48V48h32V0h2v50H66v55.41l-48 48v2.69zM50 53.9v43.51l-48 48V208h26.1a5 5 0 1 1 0 2H0v-65.41l48-48V53.9a5 5 0 1 1 2 0zm-16 16V89.41l-34 34v-2.82l32-32V69.9a5 5 0 1 1 2 0zM12.1 32a5 5 0 1 1 0 2H9.41L0 43.41V40.6L8.59 32h3.51zm265.8 18a5 5 0 1 1 0-2h18.69l7.41-7.41v2.82L297.41 50H277.9zm-16 160a5 5 0 1 1 0-2H288v-71.41l16-16v2.82l-14 14V210h-28.1zm-208 32a5 5 0 1 1 0-2H64v-22.59L40.59 194H21.9a5 5 0 1 1 0-2H41.41L66 216.59V242H53.9zm150.2 14a5 5 0 1 1 0 2H96v-56.6L56.6 162H37.9a5 5 0 1 1 0-2h19.5L98 200.6V256h106.1zm-150.2 2a5 5 0 1 1 0-2H80v-46.59L48.59 178H21.9a5 5 0 1 1 0-2H49.41L82 208.59V258H53.9zM34 39.8v1.61L9.41 66H0v-2h8.59L32 40.59V0h2v39.8zM2 300.1a5 5 0 0 1 3.9 3.9H3.83A3 3 0 0 0 0 302.17V256h18v48h-2v-46H2v42.1zM34 241v63h-2v-62H0v-2h34v1zM17 18H0v-2h16V0h2v18h-1zm273-2h14v2h-16V0h2v16zm-32 273v15h-2v-14h-14v14h-2v-16h18v1zM0 92.1A5.02 5.02 0 0 1 6 97a5 5 0 0 1-6 4.9v-2.07a3 3 0 1 0 0-5.66V92.1zM80 272h2v32h-2v-32zm37.9 32h-2.07a3 3 0 0 0-5.66 0h-2.07a5 5 0 0 1 9.8 0zM5.9 0A5.02 5.02 0 0 1 0 5.9V3.83A3 3 0 0 0 3.83 0H5.9zm294.2 0h2.07A3 3 0 0 0 304 3.83V5.9a5 5 0 0 1-3.9-5.9zm3.9 300.1v2.07a3 3 0 0 0-1.83 1.83h-2.07a5 5 0 0 1 3.9-3.9zM97 100a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-48 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 96a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-144a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM49 36a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM33 68a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 240a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm80-176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm112 176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 180a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 84a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'%3E%3C/path%3E%3C/svg%3E\");\n    border-radius: 0 3rem;\n    width: 90%;\n    height: 15em;\n    padding: 0;\n    margin: 0;\n    float: left; }\n.scheme-panel .scheme-area .node {\n      background-color: #9fff80; }\n", ""]);
+exports.push([module.i, "/* Henchmen Colors */\n/*Scheme Tree Colors */\n/* SVG Image Backgrounds */\np {\n  margin: 0 auto; }\n.header {\n  background-image: url(\"data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E\");\n  height: 4rem; }\n.header .notoriety-container {\n    overflow: hidden;\n    margin-left: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-right: .75px solid; }\n.header .notoriety-container .notoriety-gauge {\n      background-color: #ff0000;\n      z-index: 2;\n      width: 6rem;\n      position: relative;\n      height: 3rem;\n      margin: 0 auto;\n      margin-top: 1rem;\n      border-radius: 250px 250px 0px 0px;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n.header .notoriety-container .notoriety-gauge .fa {\n        margin-top: .5rem; }\n.header .notoriety-container .notoriety-meter {\n      background-color: #800000;\n      z-index: 1;\n      position: relative;\n      width: 8rem;\n      height: 4rem;\n      margin: 0 auto;\n      border-radius: 0px 0px 250px 250px;\n      -webkit-transform-origin: center top;\n              transform-origin: center top;\n      -webkit-transition: all 1s ease-in-out;\n      transition: all 1s ease-in-out; }\n.header .main-title {\n    text-align: center;\n    position: absolute;\n    top: .5rem;\n    right: 40%;\n    left: 40%;\n    width: 20%;\n    margin: 0;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    font-size: 2rem; }\n.header .scheme-container {\n    position: absolute;\n    top: 0px;\n    right: .5rem;\n    height: 4rem;\n    width: 35%;\n    text-align: center;\n    border-left: .75px solid; }\n.header .scheme-container .scheme-title {\n      font-size: .8rem;\n      margin-bottom: .2rem;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n.header .scheme-container .scheme-bar-container {\n      margin-top: .25rem;\n      text-align: center;\n      display: inline-block;\n      width: 90%;\n      position: relative;\n      height: 2rem;\n      border-radius: 0 .5rem .5rem 0; }\n.header .scheme-container .scheme-bar-container .scheme-progress-bar {\n        position: absolute;\n        top: 0px;\n        left: 0px;\n        height: 1.9rem;\n        border-radius: 0 .5rem .5rem 0; }\n.header .scheme-container .scheme-bar-container .scheming {\n        background-color: #40ff00; }\n.header .scheme-container .scheme-bar-container .henchmen {\n        background-color: #6699ff; }\n.header .scheme-container .scheme-bar-container .operations {\n        background-color: #ffb366; }\n.header .scheme-container .scheme-bar-container .lairs {\n        background-color: #bf00ff; }\n.header .scheme-container .scheme-bar-container .scheme-icon {\n        font-size: 1.9rem;\n        padding-top: 1px;\n        z-index: 100;\n        position: relative; }\n.header .scheme-container .scheming {\n      border: 1px solid #40ff00; }\n.header .scheme-container .henchmen {\n      border: 1px solid #6699ff; }\n.header .scheme-container .operations {\n      border: 1px solid #ffb366; }\n.header .scheme-container .lairs {\n      border: 1px solid #bf00ff; }\n.main-section {\n  background-color: #ffffff;\n  background-image: url(\"data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M82.42 180h-1.415L0 98.995v-2.827L6.167 90 0 83.833V81.004L81.005 0h2.827L90 6.167 96.167 0H98.996L180 81.005v2.827L173.833 90 180 96.167V98.996L98.995 180h-2.827L90 173.833 83.833 180H82.42zm0-1.414L1.413 97.58 8.994 90l-7.58-7.58L82.42 1.413 90 8.994l7.58-7.58 81.006 81.005-7.58 7.58 7.58 7.58-81.005 81.006-7.58-7.58-7.58 7.58zM175.196 0h-25.832c1.033 2.924 2.616 5.59 4.625 7.868C152.145 9.682 151 12.208 151 15c0 5.523 4.477 10 10 10 1.657 0 3 1.343 3 3v4h16V0h-4.803c.51.883.803 1.907.803 3 0 3.314-2.686 6-6 6s-6-2.686-6-6c0-1.093.292-2.117.803-3h10.394-13.685C161.18.938 161 1.948 161 3v4c-4.418 0-8 3.582-8 8s3.582 8 8 8c2.76 0 5 2.24 5 5v2h4v-4h2v4h4v-4h2v4h2V0h-4.803zm-15.783 0c-.27.954-.414 1.96-.414 3v2.2c-1.25.254-2.414.74-3.447 1.412-1.716-1.93-3.098-4.164-4.054-6.612h7.914zM180 17h-3l2.143-10H180v10zm-30.635 163c-.884-2.502-1.365-5.195-1.365-8 0-13.255 10.748-24 23.99-24H180v32h-30.635zm12.147 0c.5-1.416 1.345-2.67 2.434-3.66l-1.345-1.48c-1.498 1.364-2.62 3.136-3.186 5.14H151.5c-.97-2.48-1.5-5.177-1.5-8 0-12.15 9.84-22 22-22h8v30h-18.488zm13.685 0c-1.037-1.793-2.976-3-5.197-3-2.22 0-4.16 1.207-5.197 3h10.394zM0 148h8.01C21.26 148 32 158.742 32 172c0 2.805-.48 5.498-1.366 8H0v-32zm0 2h8c12.15 0 22 9.847 22 22 0 2.822-.53 5.52-1.5 8h-7.914c-.567-2.004-1.688-3.776-3.187-5.14l-1.346 1.48c1.09.99 1.933 2.244 2.434 3.66H0v-30zm15.197 30c-1.037-1.793-2.976-3-5.197-3-2.22 0-4.16 1.207-5.197 3h10.394zM0 32h16v-4c0-1.657 1.343-3 3-3 5.523 0 10-4.477 10-10 0-2.794-1.145-5.32-2.992-7.134C28.018 5.586 29.6 2.924 30.634 0H0v32zm0-2h2v-4h2v4h4v-4h2v4h4v-2c0-2.76 2.24-5 5-5 4.418 0 8-3.582 8-8s-3.582-8-8-8V3c0-1.052-.18-2.062-.512-3H0v30zM28.5 0c-.954 2.448-2.335 4.683-4.05 6.613-1.035-.672-2.2-1.16-3.45-1.413V3c0-1.04-.144-2.046-.414-3H28.5zM0 17h3L.857 7H0v10zM15.197 0c.51.883.803 1.907.803 3 0 3.314-2.686 6-6 6S4 6.314 4 3c0-1.093.292-2.117.803-3h10.394zM109 115c-1.657 0-3 1.343-3 3v4H74v-4c0-1.657-1.343-3-3-3-5.523 0-10-4.477-10-10 0-2.793 1.145-5.318 2.99-7.132C60.262 93.638 58 88.084 58 82c0-13.255 10.748-24 23.99-24h16.02C111.26 58 122 68.742 122 82c0 6.082-2.263 11.636-5.992 15.866C117.855 99.68 119 102.206 119 105c0 5.523-4.477 10-10 10zm0-2c-2.76 0-5 2.24-5 5v2h-4v-4h-2v4h-4v-4h-2v4h-4v-4h-2v4h-4v-4h-2v4h-4v-2c0-2.76-2.24-5-5-5-4.418 0-8-3.582-8-8s3.582-8 8-8v-4c0-2.64 1.136-5.013 2.946-6.66L72.6 84.86C70.39 86.874 69 89.775 69 93v2.2c-1.25.254-2.414.74-3.447 1.412C62.098 92.727 60 87.61 60 82c0-12.15 9.84-22 22-22h16c12.15 0 22 9.847 22 22 0 5.61-2.097 10.728-5.55 14.613-1.035-.672-2.2-1.16-3.45-1.413V93c0-3.226-1.39-6.127-3.6-8.14l-1.346 1.48C107.864 87.987 109 90.36 109 93v4c4.418 0 8 3.582 8 8s-3.582 8-8 8zM90.857 97L93 107h-6l2.143-10h1.714zM80 99c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm20 0c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z' fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\");\n  height: 80vh;\n  position: absolute;\n  width: 100%;\n  z-index: 10; }\n.main-section .resources-bar {\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    height: 2rem;\n    border-top: solid .75px; }\n.main-section .resources-bar .resource-tab {\n      margin-left: 0.1rem;\n      display: inline-block;\n      border-radius: 0 0 .5rem .5rem;\n      padding-right: .2rem;\n      padding-bottom: .2rem;\n      padding-left: .2rem;\n      border-top: none; }\n.main-section .resources-bar .resource-tab .resource-readout {\n        display: inline-block; }\n.main-section .resources-bar .lair {\n      margin-left: 0.5rem;\n      border: 1px solid #f2ccff;\n      color: #bf00ff;\n      cursor: pointer; }\n.main-section .resources-bar .cash {\n      border: 1px solid #d6f7d4;\n      color: #30d52a; }\n.main-section .resources-bar .henchmen {\n      border: 1px solid #ccddff;\n      color: #6699ff; }\n.main-section .resources-bar .guard {\n      border: 1px solid #ccccff;\n      color: #000099; }\n.activity-panel {\n  display: inline-block;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n.activity-panel .henchmen-column {\n    width: 50%;\n    display: inline-block; }\n.activity-panel .henchmen-column .title {\n      padding-bottom: .5rem;\n      padding-top: .5rem;\n      text-align: center; }\n.activity-panel .henchmen-column .left-padding {\n      width: 5%;\n      display: inline-block;\n      height: 1.2rem; }\n.activity-panel .henchmen-column .add-block {\n      width: 5%;\n      vertical-align: middle;\n      display: inline-block;\n      height: 1.2rem; }\n.activity-panel .henchmen-column .progress-with-add {\n      width: 75%;\n      display: inline-block; }\n.activity-panel .henchmen-column .progress-with-add .training-container {\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        display: inline-block;\n        position: relative; }\n.activity-panel .henchmen-column .progress-with-add .training-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2em; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display {\n          font-size: .8em;\n          width: 100%;\n          position: relative;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          height: 1.2rem; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: .5em; }\n.activity-panel .henchmen-column .progress-with-add .training-container .training-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container {\n        border: 1px solid #ccccff; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container .guard-progress-bar {\n          background-color: #ccccff; }\n.activity-panel .henchmen-column .progress-with-add .guard-training-container .guard-training-display {\n          color: #000099; }\n.activity-panel .henchmen-column .progress-no-add {\n      width: 82%;\n      display: inline-block; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container {\n        margin-top: .5rem;\n        width: 100%;\n        height: 1.2rem;\n        border-radius: 0px 1rem 1rem 0px;\n        position: relative; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .progress-bar {\n          border-radius: 0px 1rem 1rem 0px;\n          position: absolute;\n          height: 1.2rem; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display {\n          font-size: .8rem;\n          width: 100%;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none;\n          position: relative; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display .generation-icon {\n            min-width: 10px;\n            float: left;\n            margin-left: .5em;\n            margin-top: .3em;\n            margin-right: 1em; }\n.activity-panel .henchmen-column .progress-no-add .recruiting-container .recruiting-display .collection-icon {\n            float: right;\n            margin-right: .5em;\n            margin-top: .3em; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container {\n        border: 1px solid #ccddff; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container .help-wanted-progress-bar {\n          background-color: #ccddff; }\n.activity-panel .henchmen-column .progress-no-add .help-wanted-container .help-wanted-display {\n          color: #003399; }\n.activity-panel .operations-column {\n    width: 50%;\n    float: right; }\n.activity-panel .operations-column .padding-short {\n      width: 5%;\n      height: 2rem;\n      float: left; }\n.activity-panel .operations-column .divider-5 {\n      width: 5%;\n      height: 3rem;\n      float: left; }\n.activity-panel .operations-column .operation-tab {\n      text-align: center;\n      border-radius: 2rem 2rem 0 0;\n      width: 30%;\n      height: 2rem;\n      float: left; }\n.activity-panel .operations-column .routine {\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .campaign {\n      background-color: #cceaff; }\n.activity-panel .operations-column .ascension {\n      background-color: #fffecc; }\n.activity-panel .operations-column .routine-row {\n      width: 90%;\n      height: 3rem;\n      float: left;\n      margin-left: 5%;\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .routine-row .column {\n        text-align: center;\n        border-radius: .5rem;\n        border: 1px solid;\n        margin-left: 3%;\n        margin-top: .5rem;\n        float: left;\n        height: 2rem;\n        width: 15%; }\n.activity-panel .operations-column .routine-row .column .fa {\n          font-size: 1.25rem;\n          margin-top: .375rem; }\n.activity-panel .operations-column .operation-flyout {\n      text-align: center;\n      float: left;\n      margin-left: 5%;\n      width: 90%;\n      border-radius: 1rem 1rem 0 0;\n      cursor: default;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none;\n      background-color: #e6e6e6; }\n.activity-panel .operations-column .operation-flyout .inner-content {\n        position: relative;\n        min-height: 13.5rem;\n        margin: 0 0 .5rem 0; }\n.activity-panel .operations-column .operation-flyout .inner-content .result-hidden {\n          display: none; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result {\n          position: absolute;\n          display: block;\n          width: 100%;\n          height: 9rem;\n          visibility: visible; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result .report-line {\n            margin: .1rem;\n            min-height: 1rem;\n            margin-bottom: .5rem;\n            margin-top: .5rem;\n            font-size: 1rem;\n            display: block;\n            width: 95%; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-result .report-line .operation-icon {\n              margin-right: .2rem;\n              position: relative;\n              font-size: 1rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .fade-out {\n          visibility: hidden;\n          opacity: 0;\n          -webkit-transition: visibility 0s 1s, opacity 1s linear;\n          transition: visibility 0s 1s, opacity 1s linear; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-name {\n          margin: .1rem;\n          margin-top: .5rem;\n          min-height: 2rem;\n          margin-bottom: .5rem;\n          font-size: 1rem;\n          display: block;\n          width: 95%; }\n.activity-panel .operations-column .operation-flyout .inner-content .operation-name .operation-icon {\n            margin-right: .2rem;\n            position: relative;\n            font-size: 1rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split {\n          float: left;\n          width: 50%; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-left {\n            float: left;\n            margin: 0;\n            font-size: .8rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-right {\n            float: right;\n            margin: 0;\n            font-size: .8rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .split .flyout-right .flyout-icon {\n              position: relative;\n              font-size: .8rem;\n              margin-top: .3rem; }\n.activity-panel .operations-column .operation-flyout .inner-content .operate-button {\n          width: 90%;\n          padding: .2rem;\n          border-radius: .5rem;\n          border: 1px solid;\n          display: inline-block; }\n.activity-panel .operations-column .operation-flyout .inner-content .left {\n          margin-left: 6%;\n          margin-right: 2%; }\n.activity-panel .operations-column .operation-flyout .inner-content .right {\n          margin-left: 2%;\n          margin-right: 6%;\n          cursor: pointer; }\n.scheme-panel {\n  float: right;\n  width: 50%;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n.scheme-panel .spacer {\n    width: 2.5%;\n    height: 50vh;\n    float: left; }\n.scheme-panel .select-bar {\n    width: 5%;\n    height: 15em;\n    padding: 0;\n    margin: 0;\n    float: left;\n    text-align: center; }\n.scheme-panel .select-bar .schemes {\n      background-color: #d9ffcc; }\n.scheme-panel .select-bar .hench {\n      background-color: #ccddff; }\n.scheme-panel .select-bar .operate {\n      background-color: #ffe6cc; }\n.scheme-panel .select-bar .lair {\n      background-color: #f2ccff; }\n.scheme-panel .select-bar .select {\n      cursor: pointer;\n      border-radius: 1rem 0 0 1rem;\n      height: 3rem; }\n.scheme-panel .select-bar .fa {\n      padding-top: 1rem; }\n.scheme-panel .scheme-area {\n    background-color: #d9ffcc;\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 304 304' width='304' height='304'%3E%3Cpath fill='%23e8a50c' fill-opacity='0.4' d='M44.1 224a5 5 0 1 1 0 2H0v-2h44.1zm160 48a5 5 0 1 1 0 2H82v-2h122.1zm57.8-46a5 5 0 1 1 0-2H304v2h-42.1zm0 16a5 5 0 1 1 0-2H304v2h-42.1zm6.2-114a5 5 0 1 1 0 2h-86.2a5 5 0 1 1 0-2h86.2zm-256-48a5 5 0 1 1 0 2H0v-2h12.1zm185.8 34a5 5 0 1 1 0-2h86.2a5 5 0 1 1 0 2h-86.2zM258 12.1a5 5 0 1 1-2 0V0h2v12.1zm-64 208a5 5 0 1 1-2 0v-54.2a5 5 0 1 1 2 0v54.2zm48-198.2V80h62v2h-64V21.9a5 5 0 1 1 2 0zm16 16V64h46v2h-48V37.9a5 5 0 1 1 2 0zm-128 96V208h16v12.1a5 5 0 1 1-2 0V210h-16v-76.1a5 5 0 1 1 2 0zm-5.9-21.9a5 5 0 1 1 0 2H114v48H85.9a5 5 0 1 1 0-2H112v-48h12.1zm-6.2 130a5 5 0 1 1 0-2H176v-74.1a5 5 0 1 1 2 0V242h-60.1zm-16-64a5 5 0 1 1 0-2H114v48h10.1a5 5 0 1 1 0 2H112v-48h-10.1zM66 284.1a5 5 0 1 1-2 0V274H50v30h-2v-32h18v12.1zM236.1 176a5 5 0 1 1 0 2H226v94h48v32h-2v-30h-48v-98h12.1zm25.8-30a5 5 0 1 1 0-2H274v44.1a5 5 0 1 1-2 0V146h-10.1zm-64 96a5 5 0 1 1 0-2H208v-80h16v-14h-42.1a5 5 0 1 1 0-2H226v18h-16v80h-12.1zm86.2-210a5 5 0 1 1 0 2H272V0h2v32h10.1zM98 101.9V146H53.9a5 5 0 1 1 0-2H96v-42.1a5 5 0 1 1 2 0zM53.9 34a5 5 0 1 1 0-2H80V0h2v34H53.9zm60.1 3.9V66H82v64H69.9a5 5 0 1 1 0-2H80V64h32V37.9a5 5 0 1 1 2 0zM101.9 82a5 5 0 1 1 0-2H128V37.9a5 5 0 1 1 2 0V82h-28.1zm16-64a5 5 0 1 1 0-2H146v44.1a5 5 0 1 1-2 0V18h-26.1zm102.2 270a5 5 0 1 1 0 2H98v14h-2v-16h124.1zM242 149.9V160h16v34h-16v62h48v48h-2v-46h-48v-66h16v-30h-16v-12.1a5 5 0 1 1 2 0zM53.9 18a5 5 0 1 1 0-2H64V2H48V0h18v18H53.9zm112 32a5 5 0 1 1 0-2H192V0h50v2h-48v48h-28.1zm-48-48a5 5 0 0 1-9.8-2h2.07a3 3 0 1 0 5.66 0H178v34h-18V21.9a5 5 0 1 1 2 0V32h14V2h-58.1zm0 96a5 5 0 1 1 0-2H137l32-32h39V21.9a5 5 0 1 1 2 0V66h-40.17l-32 32H117.9zm28.1 90.1a5 5 0 1 1-2 0v-76.51L175.59 80H224V21.9a5 5 0 1 1 2 0V82h-49.59L146 112.41v75.69zm16 32a5 5 0 1 1-2 0v-99.51L184.59 96H300.1a5 5 0 0 1 3.9-3.9v2.07a3 3 0 0 0 0 5.66v2.07a5 5 0 0 1-3.9-3.9H185.41L162 121.41v98.69zm-144-64a5 5 0 1 1-2 0v-3.51l48-48V48h32V0h2v50H66v55.41l-48 48v2.69zM50 53.9v43.51l-48 48V208h26.1a5 5 0 1 1 0 2H0v-65.41l48-48V53.9a5 5 0 1 1 2 0zm-16 16V89.41l-34 34v-2.82l32-32V69.9a5 5 0 1 1 2 0zM12.1 32a5 5 0 1 1 0 2H9.41L0 43.41V40.6L8.59 32h3.51zm265.8 18a5 5 0 1 1 0-2h18.69l7.41-7.41v2.82L297.41 50H277.9zm-16 160a5 5 0 1 1 0-2H288v-71.41l16-16v2.82l-14 14V210h-28.1zm-208 32a5 5 0 1 1 0-2H64v-22.59L40.59 194H21.9a5 5 0 1 1 0-2H41.41L66 216.59V242H53.9zm150.2 14a5 5 0 1 1 0 2H96v-56.6L56.6 162H37.9a5 5 0 1 1 0-2h19.5L98 200.6V256h106.1zm-150.2 2a5 5 0 1 1 0-2H80v-46.59L48.59 178H21.9a5 5 0 1 1 0-2H49.41L82 208.59V258H53.9zM34 39.8v1.61L9.41 66H0v-2h8.59L32 40.59V0h2v39.8zM2 300.1a5 5 0 0 1 3.9 3.9H3.83A3 3 0 0 0 0 302.17V256h18v48h-2v-46H2v42.1zM34 241v63h-2v-62H0v-2h34v1zM17 18H0v-2h16V0h2v18h-1zm273-2h14v2h-16V0h2v16zm-32 273v15h-2v-14h-14v14h-2v-16h18v1zM0 92.1A5.02 5.02 0 0 1 6 97a5 5 0 0 1-6 4.9v-2.07a3 3 0 1 0 0-5.66V92.1zM80 272h2v32h-2v-32zm37.9 32h-2.07a3 3 0 0 0-5.66 0h-2.07a5 5 0 0 1 9.8 0zM5.9 0A5.02 5.02 0 0 1 0 5.9V3.83A3 3 0 0 0 3.83 0H5.9zm294.2 0h2.07A3 3 0 0 0 304 3.83V5.9a5 5 0 0 1-3.9-5.9zm3.9 300.1v2.07a3 3 0 0 0-1.83 1.83h-2.07a5 5 0 0 1 3.9-3.9zM97 100a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-48 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 96a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-144a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm96 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM49 36a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-32 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM33 68a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 240a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm80-176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 48a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm112 176a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-16 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 180a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0-32a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM17 84a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm32 64a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm16-16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'%3E%3C/path%3E%3C/svg%3E\");\n    border-radius: 0 3rem;\n    width: 90%;\n    height: 15em;\n    padding: 0;\n    margin: 0;\n    float: left; }\n.scheme-panel .scheme-area .node {\n      background-color: #9fff80; }\n", ""]);
 
 // exports
 
@@ -340,21 +336,20 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modal_lair_modal_lair_modal_component__ = __webpack_require__("../../../../../src/app/modal/lair-modal/lair-modal.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_system_service__ = __webpack_require__("../../../../../src/app/services/system.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modal_lair_modal_lair_modal_component__ = __webpack_require__("../../../../../src/app/modal/lair-modal/lair-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_system_service__ = __webpack_require__("../../../../../src/app/services/system.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -388,18 +383,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 // Import the DataService
 
 var AppComponent = /** @class */ (function (_super) {
     __extends(AppComponent, _super);
-    function AppComponent(cookieService, _system, _base, dialog, _player, _lair, _loop, _scheming, _inventory, _training, _operating, _recruiting, _dataService) {
+    function AppComponent(cookieService, _system, _base, dialog, _lair, _loop, _scheming, _inventory, _training, _operating, _recruiting, _dataService) {
         var _this = _super.call(this) || this;
         _this.cookieService = cookieService;
         _this._system = _system;
         _this._base = _base;
         _this.dialog = dialog;
-        _this._player = _player;
         _this._lair = _lair;
         _this._loop = _loop;
         _this._scheming = _scheming;
@@ -422,7 +415,7 @@ var AppComponent = /** @class */ (function (_super) {
         return _this;
     }
     AppComponent.prototype.openLairModal = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_13__modal_lair_modal_lair_modal_component__["a" /* LairModal */], {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_12__modal_lair_modal_lair_modal_component__["a" /* LairModal */], {
             width: '75%',
         });
         dialogRef.afterClosed().subscribe(function (result) {
@@ -441,22 +434,21 @@ var AppComponent = /** @class */ (function (_super) {
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_9_ngx_cookie_service__["a" /* CookieService */],
-            __WEBPACK_IMPORTED_MODULE_14__services_system_service__["a" /* SystemService */],
-            __WEBPACK_IMPORTED_MODULE_11__services_base_service__["a" /* BaseService */],
-            __WEBPACK_IMPORTED_MODULE_12__angular_material__["b" /* MatDialog */],
-            __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_6__services_lair_service__["a" /* LairService */],
-            __WEBPACK_IMPORTED_MODULE_3__services_primary_loop_service__["a" /* PrimaryLoopService */],
-            __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */],
-            __WEBPACK_IMPORTED_MODULE_4__services_inventory_service__["a" /* InventoryService */],
-            __WEBPACK_IMPORTED_MODULE_5__services_training_service__["a" /* TrainingService */],
-            __WEBPACK_IMPORTED_MODULE_8__services_operating_service__["a" /* OperatingService */],
-            __WEBPACK_IMPORTED_MODULE_7__services_recruiting_service__["a" /* RecruitingService */],
-            __WEBPACK_IMPORTED_MODULE_15__services_data_service__["a" /* DataService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_8_ngx_cookie_service__["a" /* CookieService */],
+            __WEBPACK_IMPORTED_MODULE_13__services_system_service__["a" /* SystemService */],
+            __WEBPACK_IMPORTED_MODULE_10__services_base_service__["a" /* BaseService */],
+            __WEBPACK_IMPORTED_MODULE_11__angular_material__["b" /* MatDialog */],
+            __WEBPACK_IMPORTED_MODULE_5__services_lair_service__["a" /* LairService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_primary_loop_service__["a" /* PrimaryLoopService */],
+            __WEBPACK_IMPORTED_MODULE_1__services_scheming_service__["a" /* SchemingService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__["a" /* InventoryService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_training_service__["a" /* TrainingService */],
+            __WEBPACK_IMPORTED_MODULE_7__services_operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_6__services_recruiting_service__["a" /* RecruitingService */],
+            __WEBPACK_IMPORTED_MODULE_14__services_data_service__["a" /* DataService */]])
     ], AppComponent);
     return AppComponent;
-}(__WEBPACK_IMPORTED_MODULE_10__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */]));
 
 
 
@@ -472,31 +464,29 @@ var AppComponent = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modal_modal_module__ = __webpack_require__("../../../../../src/app/modal/modal.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__angular_material_tooltip__ = __webpack_require__("../../../material/esm5/tooltip.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modal_lair_modal_lair_modal_component__ = __webpack_require__("../../../../../src/app/modal/lair-modal/lair-modal.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_system_service__ = __webpack_require__("../../../../../src/app/services/system.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_primary_loop_service__ = __webpack_require__("../../../../../src/app/services/primary-loop.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__header_header_module__ = __webpack_require__("../../../../../src/app/header/header.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__scheme_panel_scheme_panel_module__ = __webpack_require__("../../../../../src/app/scheme-panel/scheme-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__activity_panel_activity_panel_module__ = __webpack_require__("../../../../../src/app/activity-panel/activity-panel.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__modal_modal_module__ = __webpack_require__("../../../../../src/app/modal/modal.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__angular_material_tooltip__ = __webpack_require__("../../../material/esm5/tooltip.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modal_lair_modal_lair_modal_component__ = __webpack_require__("../../../../../src/app/modal/lair-modal/lair-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_system_service__ = __webpack_require__("../../../../../src/app/services/system.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -528,32 +518,31 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_12__header_header_module__["a" /* HeaderModule */],
-                __WEBPACK_IMPORTED_MODULE_13__scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */],
-                __WEBPACK_IMPORTED_MODULE_14__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
+                __WEBPACK_IMPORTED_MODULE_11__header_header_module__["a" /* HeaderModule */],
+                __WEBPACK_IMPORTED_MODULE_12__scheme_panel_scheme_panel_module__["a" /* SchemePanelModule */],
+                __WEBPACK_IMPORTED_MODULE_13__activity_panel_activity_panel_module__["a" /* ActivityPanelModule */],
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_19__angular_material_tooltip__["a" /* MatTooltipModule */]
+                __WEBPACK_IMPORTED_MODULE_18__angular_material_tooltip__["a" /* MatTooltipModule */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_4__services_data_service__["a" /* DataService */],
-                __WEBPACK_IMPORTED_MODULE_17__services_base_service__["a" /* BaseService */],
-                __WEBPACK_IMPORTED_MODULE_5__services_core_player_service__["a" /* PlayerService */],
-                __WEBPACK_IMPORTED_MODULE_7__services_scheming_service__["a" /* SchemingService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_heroes_service__["a" /* HeroesService */],
-                __WEBPACK_IMPORTED_MODULE_11__services_operating_service__["a" /* OperatingService */],
-                __WEBPACK_IMPORTED_MODULE_10__services_recruiting_service__["a" /* RecruitingService */],
-                __WEBPACK_IMPORTED_MODULE_21__services_lair_service__["a" /* LairService */],
-                __WEBPACK_IMPORTED_MODULE_9__services_training_service__["a" /* TrainingService */],
-                __WEBPACK_IMPORTED_MODULE_8__services_inventory_service__["a" /* InventoryService */],
-                __WEBPACK_IMPORTED_MODULE_6__services_primary_loop_service__["a" /* PrimaryLoopService */],
-                __WEBPACK_IMPORTED_MODULE_16_ngx_cookie_service__["a" /* CookieService */],
-                __WEBPACK_IMPORTED_MODULE_18__modal_modal_module__["a" /* ModalModule */],
-                __WEBPACK_IMPORTED_MODULE_19__angular_material_tooltip__["a" /* MatTooltipModule */],
-                __WEBPACK_IMPORTED_MODULE_22__services_system_service__["a" /* SystemService */]
+                __WEBPACK_IMPORTED_MODULE_16__services_base_service__["a" /* BaseService */],
+                __WEBPACK_IMPORTED_MODULE_6__services_scheming_service__["a" /* SchemingService */],
+                __WEBPACK_IMPORTED_MODULE_14__services_heroes_service__["a" /* HeroesService */],
+                __WEBPACK_IMPORTED_MODULE_10__services_operating_service__["a" /* OperatingService */],
+                __WEBPACK_IMPORTED_MODULE_9__services_recruiting_service__["a" /* RecruitingService */],
+                __WEBPACK_IMPORTED_MODULE_20__services_lair_service__["a" /* LairService */],
+                __WEBPACK_IMPORTED_MODULE_8__services_training_service__["a" /* TrainingService */],
+                __WEBPACK_IMPORTED_MODULE_7__services_inventory_service__["a" /* InventoryService */],
+                __WEBPACK_IMPORTED_MODULE_5__services_primary_loop_service__["a" /* PrimaryLoopService */],
+                __WEBPACK_IMPORTED_MODULE_15_ngx_cookie_service__["a" /* CookieService */],
+                __WEBPACK_IMPORTED_MODULE_17__modal_modal_module__["a" /* ModalModule */],
+                __WEBPACK_IMPORTED_MODULE_18__angular_material_tooltip__["a" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_21__services_system_service__["a" /* SystemService */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]],
-            entryComponents: [__WEBPACK_IMPORTED_MODULE_20__modal_lair_modal_lair_modal_component__["a" /* LairModal */]]
+            entryComponents: [__WEBPACK_IMPORTED_MODULE_19__modal_lair_modal_lair_modal_component__["a" /* LairModal */]]
         })
     ], AppModule);
     return AppModule;
@@ -603,10 +592,10 @@ var BaseNum = /** @class */ (function (_super) {
     Object.defineProperty(BaseNum.prototype, "LAIR_HP_MAX", {
         get: function () {
             if (this.LAIR_LEVEL === 0) {
-                return 10;
+                return 1;
             }
             else if (this.LAIR_LEVEL === 1) {
-                return 100;
+                return 10;
             }
             return 10; //Expand later.
         },
@@ -828,6 +817,27 @@ var BaseNum = /** @class */ (function (_super) {
         }
         return multiplier;
     };
+    //09: Beginner Lair
+    BaseNum.prototype.beginnerLairDanger = function () {
+        var danger = 0;
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[9].level; _i++) {
+            danger++;
+        }
+        return danger;
+    };
+    //10: King's Castle
+    BaseNum.prototype.kingsCastleFortification = function () {
+        var fortification = 0;
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[10].level; _i++) {
+            fortification++;
+        }
+        return fortification;
+    };
+    BaseNum.prototype.kingsCastleGuardCapacity = function () {
+        var capacity = 0;
+        capacity += __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[11].level;
+        return capacity;
+    };
     return BaseNum;
 }(__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */]));
 
@@ -864,6 +874,12 @@ var Base = /** @class */ (function () {
             2, 2, 2, 2, 2,
             3, 3, 3, 3, 3
         ];
+        this.phaseOneLairReq = [
+            1, 1, 1, 1, 1,
+            2, 2, 2, 2, 2,
+            3, 3, 3, 3, 3,
+            4, 4, 4, 4, 4
+        ];
         this.standardCashArray = [
             0, 0, 0, 0, 0,
             100, 200, 300, 400, 500
@@ -882,7 +898,9 @@ var Base = /** @class */ (function () {
             this.standardExpArray,
             this.standardExpArray,
             this.standardExpArray,
-            this.beginnerLairExpArray //9: Starter Lair
+            this.beginnerLairExpArray,
+            this.beginnerLairExpArray,
+            this.beginnerLairExpArray //11: Maintenance
         ];
         this.schemeLairReq = [
             this.standardLairReq,
@@ -894,7 +912,9 @@ var Base = /** @class */ (function () {
             this.standardLairReq,
             this.standardLairReq,
             this.standardLairReq,
-            this.standardLairReq //9: Starter Lair 
+            this.standardLairReq,
+            this.phaseOneLairReq,
+            this.phaseOneLairReq //11: Maintenance
         ];
         this.schemeCashCost = [
             this.standardCashArray,
@@ -906,9 +926,15 @@ var Base = /** @class */ (function () {
             this.standardCashArray,
             this.standardCashArray,
             this.standardCashArray,
-            this.beginnerLairCashArray //9: Beginner Lair
+            this.beginnerLairCashArray,
+            this.beginnerLairCashArray,
+            this.beginnerLairCashArray //11: Maintenance
         ];
     }
+    Base.prototype.notorietyAdd = function (value) {
+        Base.NOTORIETY += value;
+        Base.NOTORIETY = Math.round(Base.NOTORIETY * 10) / 10;
+    };
     // Foundational Variables
     //Schemes
     Base.INITIAL_LOAD_SCHEMES = true;
@@ -925,7 +951,7 @@ var Base = /** @class */ (function () {
 /***/ "../../../../../src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\" *ngIf=\"!_base.initialLoadSchemes\">\n    <div class=\"notoriety-container\">\n        <div class=\"notoriety-gauge\" *ngIf=\"_player.notoriety > 0\">\n            <i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>\n            <p>{{_heroes.prettyNotoriety}}/10</p>\n        </div>\n        <div *ngIf=\"_player.notoriety > 0\" class=\"notoriety-meter\" [ngStyle]=\"notorietyRotationStyle()\"></div>\n    </div>\n    <div>\n        <p style=\"cursor:pointer;\" (click)=\"_system.save()\" class=\"main-title\">Bad Guy</p>\n    </div>\n    <div class=\"scheme-container\" >\n            <i (click)=\"cookieService.deleteAll()\" style=\"position:absolute;top:.1rem;left:.2rem;color:#00804f;font-size:1.2rem;cursor:pointer;\" class=\"fa fa-question\" aria-hidden=\"true\"></i>\n        <div *ngIf=\"_base.earningSchemePoints\">\n            <p class=\"scheme-title\">Scheming</p>\n            <div class=\"scheme-bar-container {{_base.currentScheme.tree}}\" [ngStyle]=\"schemeStyle()\" (click)=\"_scheming.switchToCurrentSchemePreview()\">\n                <i class=\"scheme-icon fa {{_base.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n                <div class=\"scheme-progress-bar {{_base.currentScheme.tree}}\" [ngStyle]=\"schemeProgressBarStyle()\"></div>\n            </div>\n        </div>\n        <div *ngIf=\"!_base.earningSchemePoints\">\n            <p style=\"padding-bottom:.25rem;\" class=\"scheme-title\">Not Scheming</p>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"header\" *ngIf=\"!_base.initialLoadSchemes\">\n    <div class=\"notoriety-container\">\n        <p style=\"position:absolute;font-size:.8rem;\">Notoriety {{_heroes.notorietyTier}}</p>\n        <p style=\"position:absolute;font-size:.8rem;right:65%;\">{{_heroes.notorietyTierName}}</p>\n        <div class=\"notoriety-gauge\">\n            <i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> \n            <p>{{_base.notoriety}}</p>\n        </div>\n        <div class=\"notoriety-meter\" [ngStyle]=\"notorietyRotationStyle()\"></div>\n    </div>\n    <div>\n        <p style=\"cursor:pointer;\" (click)=\"_system.save()\" class=\"main-title\">Bad Guy</p>\n        <i (click)=\"_base.notorietyPlus()\" style=\"position:absolute;top:3rem;left:37%;cursor:pointer;\" class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n    </div>\n    <div class=\"scheme-container\" >\n            <i (click)=\"cookieService.deleteAll()\" style=\"position:absolute;top:.1rem;left:.2rem;color:#00804f;font-size:1.2rem;cursor:pointer;\" class=\"fa fa-question\" aria-hidden=\"true\"></i>\n        <div *ngIf=\"_base.earningSchemePoints\">\n            <p class=\"scheme-title\">Scheming</p>\n            <div class=\"scheme-bar-container {{_base.currentScheme.tree}}\" [ngStyle]=\"schemeStyle()\" (click)=\"_scheming.switchToCurrentSchemePreview()\">\n                <i class=\"scheme-icon fa {{_base.currentScheme.fa}}\" aria-hidden=\"true\"></i>\n                <div class=\"scheme-progress-bar {{_base.currentScheme.tree}}\" [ngStyle]=\"schemeProgressBarStyle()\"></div>\n            </div>\n        </div>\n        <div *ngIf=\"!_base.earningSchemePoints\">\n            <p style=\"padding-bottom:.25rem;\" class=\"scheme-title\">Not Scheming</p>\n            <i class=\"fa fa-spinner fa-pulse fa-2x fa-fw\"></i>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -936,16 +962,15 @@ module.exports = "<div class=\"header\" *ngIf=\"!_base.initialLoadSchemes\">\n  
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return HeaderComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogOverviewExampleDialog; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modal_scheming_modal_scheming_modal_component__ = __webpack_require__("../../../../../src/app/modal/scheming-modal/scheming-modal.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_system_service__ = __webpack_require__("../../../../../src/app/services/system.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_heroes_service__ = __webpack_require__("../../../../../src/app/services/heroes.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modal_scheming_modal_scheming_modal_component__ = __webpack_require__("../../../../../src/app/modal/scheming-modal/scheming-modal.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_system_service__ = __webpack_require__("../../../../../src/app/services/system.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -978,15 +1003,13 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
-
 var HeaderComponent = /** @class */ (function (_super) {
     __extends(HeaderComponent, _super);
-    function HeaderComponent(_base, cookieService, _system, _player, _heroes, _scheming, _inventory, dialog) {
+    function HeaderComponent(_base, cookieService, _system, _heroes, _scheming, _inventory, dialog) {
         var _this = _super.call(this) || this;
         _this._base = _base;
         _this.cookieService = cookieService;
         _this._system = _system;
-        _this._player = _player;
         _this._heroes = _heroes;
         _this._scheming = _scheming;
         _this._inventory = _inventory;
@@ -995,7 +1018,7 @@ var HeaderComponent = /** @class */ (function (_super) {
     }
     HeaderComponent.prototype.openDialog = function () {
         var _this = this;
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_8__modal_scheming_modal_scheming_modal_component__["a" /* SchemingModal */], {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_7__modal_scheming_modal_scheming_modal_component__["a" /* SchemingModal */], {
             width: '75%',
             data: { name: this.name, animal: this.animal }
         });
@@ -1005,7 +1028,7 @@ var HeaderComponent = /** @class */ (function (_super) {
         });
     };
     HeaderComponent.prototype.notorietyRotationStyle = function () {
-        var degrees = this._player.notoriety * 1.8;
+        var degrees = this._heroes.notorietySpinnerPercent();
         return { 'transform': 'rotate(' + degrees + 'deg)' };
     };
     HeaderComponent.prototype.schemeStyle = function () {
@@ -1014,31 +1037,22 @@ var HeaderComponent = /** @class */ (function (_super) {
     HeaderComponent.prototype.schemeProgressBarStyle = function () {
         return { 'width': this._base.currentScheme.percentage + '%' };
     };
-    HeaderComponent.prototype.notorietyGaugeStyle = function (id) {
-        if (id == 0) {
-            console.log('rotate(-' + this._heroes.notorietyToDegrees(id) + 'deg)');
-            return {
-                'transform': 'none'
-            };
-        }
-    };
     HeaderComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'header',
             template: __webpack_require__("../../../../../src/app/header/header.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.scss")],
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__services_base_service__["a" /* BaseService */],
-            __WEBPACK_IMPORTED_MODULE_10_ngx_cookie_service__["a" /* CookieService */],
-            __WEBPACK_IMPORTED_MODULE_9__services_system_service__["a" /* SystemService */],
-            __WEBPACK_IMPORTED_MODULE_1__services_core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_4__services_heroes_service__["a" /* HeroesService */],
-            __WEBPACK_IMPORTED_MODULE_2__services_scheming_service__["a" /* SchemingService */],
-            __WEBPACK_IMPORTED_MODULE_3__services_inventory_service__["a" /* InventoryService */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_material__["b" /* MatDialog */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__services_base_service__["a" /* BaseService */],
+            __WEBPACK_IMPORTED_MODULE_9_ngx_cookie_service__["a" /* CookieService */],
+            __WEBPACK_IMPORTED_MODULE_8__services_system_service__["a" /* SystemService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_heroes_service__["a" /* HeroesService */],
+            __WEBPACK_IMPORTED_MODULE_1__services_scheming_service__["a" /* SchemingService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_inventory_service__["a" /* InventoryService */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["b" /* MatDialog */]])
     ], HeaderComponent);
     return HeaderComponent;
-}(__WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */]));
+}(__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */]));
 
 var DialogOverviewExampleDialog = /** @class */ (function () {
     function DialogOverviewExampleDialog(dialogRef, data) {
@@ -1053,8 +1067,8 @@ var DialogOverviewExampleDialog = /** @class */ (function () {
             selector: 'dialog-overview-example-dialog',
             template: '<p>Potato</p>',
         }),
-        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Inject */])(__WEBPACK_IMPORTED_MODULE_7__angular_material__["a" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_7__angular_material__["c" /* MatDialogRef */], Object])
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Inject */])(__WEBPACK_IMPORTED_MODULE_6__angular_material__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatDialogRef */], Object])
     ], DialogOverviewExampleDialog);
     return DialogOverviewExampleDialog;
 }());
@@ -1157,7 +1171,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var LairModal = /** @class */ (function (_super) {
     __extends(LairModal, _super);
     function LairModal(dialogRef, _lair, _training, _base
-    //@Inject(MAT_DIALOG_DATA) public data: any
+        //@Inject(MAT_DIALOG_DATA) public data: any
     ) {
         var _this = _super.call(this) || this;
         _this.dialogRef = dialogRef;
@@ -1192,7 +1206,7 @@ var LairModal = /** @class */ (function (_super) {
 /***/ "../../../../../src/app/modal/lair-modal/lair-modal.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1 style=\"color:#bf00ff;text-align:center;margin:0;margin-bottom:.75rem;\">Lair: {{_lair.lairName}}</h1>\n<h3 style=\"width:100%;text-align:center;margin:0;\">Lair Stats:</h3>\n<div style=\"width:100%;height:1rem;float:left;\"></div>\n<div style=\"width:10%;height:1.5rem;padding-top:.5rem;float:left;text-align:center;\">\n    <strong>HP:</strong>\n</div>\n<div style=\"width:90%;height:2rem;float:left;\">\n    <div style=\"width:100%;height:2rem;border-radius: 0px 1rem 1rem 0px;position:relative;text-align:center;\">\n        <div style=\"border-radius: 0px 1rem 1rem 0px;position:absolute;height:2rem;background-color:#30d52a;\" [ngStyle]=\"{'width': _lair.percentageHP + '%'}\"></div>\n        <p style=\"position:relative;font-size:1.5rem;margin-top:.125rem;\">{{_base.currentLairHP}} / {{_base.lairMaxHP}}</p>\n    </div>\n</div>\n<div style=\"width:100%;height:1rem;float:left;\"></div>\n<div style=\"width:25%;text-align:center;height:2rem;float:left;\">\n    <p>ATK</p>\n    <p>1</p>\n</div>\n<div style=\"width:25%;text-align:center;height:2rem;float:left;\">\n    <p>DEF</p>\n    <p>0</p>\n</div>\n<div style=\"width:25%;text-align:center;height:2rem;float:left;\">\n    <p>M.ATK</p>\n    <p>0</p>\n</div>\n<div style=\"width:25%;text-align:center;height:2rem;float:left;\">\n    <p>M.DEF</p>\n    <p>0</p>\n</div>\n<div style=\"width:100%;height:.5rem;float:left;margin:0;\"></div>\n<div *ngIf=\"_training.guardTrainingUnlocked\">\n    <h3 style=\"width:100%;text-align:center\">Guard Stats:</h3>\n\n    <div style=\"width:33.33%;height:2rem;float:left;text-align:center;\">\n        <i class=\"fa fa-shield\" aria-hidden=\"true\"></i>\n        <!--<p>{{_player.currentGuards}}/{{_inventory.guardCapacity}}</p>-->\n        <p>{{_base.currentGuards}}/1</p>\n    </div>\n    <div style=\"width:33.33%;height:2rem;float:left;text-align:center;\">\n        <p>HP</p>\n        <p>{{_lair.hpPerGuard * _base.currentGuards}}</p>\n    </div>\n    <div style=\"width:33.33%;height:2rem;float:left;text-align:center;\">\n        <p>ATK+</p>\n        <p>{{_lair.atkPerGuard * _base.currentGuards}}</p>\n    </div>\n</div>"
+module.exports = "<h1 style=\"color:#bf00ff;text-align:center;margin:0;margin-bottom:.75rem;\">Lair: {{_lair.lairName}}</h1>\n<div style=\"width:100%;height:1rem;float:left;\"></div>\n<div style=\"width:10%;height:1.5rem;padding-top:.5rem;float:left;text-align:center;\">\n    <strong>HP:</strong>\n</div>\n<div style=\"width:90%;height:2rem;float:left;\">\n    <div style=\"width:100%;height:2rem;border-radius: 0px 1rem 1rem 0px;position:relative;text-align:center;\">\n        <div style=\"border-radius: 0px 1rem 1rem 0px;position:absolute;height:2rem;background-color:#30d52a;\" [ngStyle]=\"{'width': _lair.percentageHP + '%'}\"></div>\n        <p style=\"position:relative;font-size:1.5rem;margin-top:.125rem;\">{{_base.currentLairHP}} / {{_base.lairMaxHP}}</p>\n    </div>\n</div>\n<div style=\"width:100%;height:1rem;float:left;\"></div>\n<div style=\"width:25%;text-align:center;height:2rem;float:left;\">\n    <p>Danger</p>\n    <p>{{_lair.danger}}</p>\n</div>\n<div style=\"width:25%;text-align:center;height:2rem;float:left;\">\n    <p>Fortification</p>\n    <p>{{_lair.fortification}}</p>\n</div>\n<div style=\"width:25%;text-align:center;height:2rem;float:left;\">\n    <p>Hazard</p>\n    <p>0</p>\n</div>\n<div style=\"width:25%;text-align:center;height:2rem;float:left;\">\n    <p>Ward</p>\n    <p>0</p>\n</div>\n<div style=\"width:100%;height:1rem;float:left;margin:0;\" ></div>\n<div *ngIf=\"_training.guardTrainingUnlocked\" style=\"color:#000099\">\n    <div style=\"width:10%;height:1.5rem;float:left;text-align:center;\">\n        <i class=\"fa fa-shield\" aria-hidden=\"true\"></i>\n        <p>Bonuses</p>\n    </div>\n    <div style=\"width:30%;height:2rem;float:left;text-align:center;\">\n        <p>Danger</p>\n        <p>+{{_base.currentGuards}}</p>\n    </div>\n    <div style=\"width:30%;height:2rem;float:left;text-align:center;\">\n        <p>Hazard</p>\n        <p>+{{_base.currentGuards}}</p>\n    </div>\n    <div style=\"width:30%;height:2rem;float:left;text-align:center;\">\n        <p>HP</p>\n        <p>+{{_base.currentGuards*3}}</p>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -1418,6 +1432,12 @@ var Scheme = /** @class */ (function () {
         if (this.ref == 9) {
             this.fa = 'fa-angle-up';
         }
+        if (this.ref == 10) {
+            this.fa = 'fa-fort-awesome';
+        }
+        if (this.ref == 11) {
+            this.fa = 'fa-wrench';
+        }
     }
     Object.defineProperty(Scheme.prototype, "currentExpTarget", {
         //Getters for current values from arrays.
@@ -1497,7 +1517,7 @@ var Train = /** @class */ (function () {
 /***/ "../../../../../src/app/scheme-panel/scheme-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"scheme-panel\" *ngIf=\"_base.schemes\">\n    <div class=\"spacer\"></div>\n    <div class=\"select-bar\">\n        <div class=\"schemes select\" (click)=\"_scheming.selected = 'scheming'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"hench select\" (click)=\"_scheming.selected = 'henchmen'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-user\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operate select\" (click)=\"_scheming.selected = 'operations'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"lair select\" (click)=\"_scheming.selected = 'lairs'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n        </div>\n    </div>\n    <div class=\"scheme-area\" *ngIf=\"_scheming.selected == 'scheming'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 0:3; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"hench-area\" *ngIf=\"_scheming.selected == 'henchmen'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 3:6; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"operate-area\" *ngIf=\"_scheming.selected == 'operations'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 6:9; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"lair-area\" *ngIf=\"_scheming.selected == 'lairs'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 9:10; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div *ngIf=\"_scheming.showPreview\" class=\"scheme-flyout {{_scheming.previewScheme.tree}}\">\n        <div class=\"inner-content\">\n            <i class=\"scheme-icon fa {{_scheming.previewScheme.fa}}\" aria-hidden=\"true\"></i>\n            <p class=\"scheme-name\">{{_scheming.previewScheme.name}} {{_scheming.previewScheme.level > 0 ? _scheming.previewScheme.level+1 : ''}}</p>\n            <p class=\"benefit-text\">{{_scheming.previewScheme.currentDescription}} </p>\n            <p *ngIf=\"_scheming.canLearn(_scheming.previewScheme)\" class=\"flavor-text\">{{_scheming.previewScheme.currentFlavor}}</p>\n            <p *ngIf=\"!_scheming.learnLair(_scheming.previewScheme)\" style=\"color:red\" class=\"flavor-text\">Lair Level {{_scheming.previewScheme.currentLairLevel}} required.</p>\n            <p *ngIf=\"!_scheming.learnCash(_scheming.previewScheme)\" style=\"color:red\" class=\"flavor-text\">{{_scheming.previewScheme.currentCashCost - _scheming.previewScheme.cash}} <i class=\"fa fa-money\" aria-hidden=\"true\"></i> investment required.</p>\n            <div style=\"width:30%;text-align:center;margin:0 auto;margin-top:1rem;display: inline-block;\">\n                <p><i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i></p>\n                <p class=\"scheme-exp\" style=\"margin-top:0; margin-bottom:0;\"> {{_scheming.previewScheme.exp}}/{{_scheming.previewScheme.currentExpTarget}}</p>\n            </div>\n            <div *ngIf=\"_scheming.previewScheme.currentCashCost > 0\" style=\"width:30%;text-align:center;margin:0 auto;margin-top:1rem;display: inline-block;\">\n                    <p><i class=\"fa fa-money\" aria-hidden=\"true\"></i></p>\n                    <p class=\"scheme-exp\" style=\"margin-top:0; margin-bottom:0;\"> {{_scheming.previewScheme.cash}}/{{_scheming.previewScheme.currentCashCost}}</p>\n            </div>\n\n            <div *ngIf=\"_scheming.previewScheme.cash < _scheming.previewScheme.currentCashCost\">\n                    <i class=\"fa fa-money\" aria-hidden=\"true\"></i>\n                    <mat-slider (input)=\"onInputChange($event)\" min=\"0\" step=\"1\" [max]=\"_base.cash < _scheming.previewScheme.currentCashCost ? _base.cash : _scheming.previewScheme.currentCashCost\" [value]=\"schemeCashAssign\" style=\"width:85%;\"></mat-slider>\n                    <p *ngIf=\"schemeCashAssign > 0\" class=\"node {{_scheming.previewScheme.tree}}-strong\" style=\"width:90%;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;margin-top:0;\" \n            (click)=\"investCash()\">Invest {{schemeCashAssign}} <i style=\"margin-top:0;\" class=\"fa fa-money\" aria-hidden=\"true\"></i> </p>\n            </div>\n            \n\n            \n            \n            \n            <p class=\"node {{_scheming.previewScheme.tree}}-strong\" style=\"width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;\" \n            *ngIf=\"_scheming.showSchemeButtonInPreviewScheme()\" (click)=\"_scheming.startSchemingPreview()\">Scheme</p>\n        </div>\n\n\n    </div>\n\n</div>"
+module.exports = "<div class=\"scheme-panel\" *ngIf=\"_base.schemes\">\n    <div class=\"spacer\"></div>\n    <div class=\"select-bar\">\n        <div class=\"schemes select\" (click)=\"_scheming.selected = 'scheming'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"hench select\" (click)=\"_scheming.selected = 'henchmen'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-user\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operate select\" (click)=\"_scheming.selected = 'operations'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"lair select\" (click)=\"_scheming.selected = 'lairs'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n        </div>\n    </div>\n    <div class=\"scheme-area\" *ngIf=\"_scheming.selected == 'scheming'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 0:3; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"hench-area\" *ngIf=\"_scheming.selected == 'henchmen'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 3:6; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"operate-area\" *ngIf=\"_scheming.selected == 'operations'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 6:9; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"lair-area\" *ngIf=\"_scheming.selected == 'lairs'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 9:12; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div *ngIf=\"_scheming.showPreview\" class=\"scheme-flyout {{_scheming.previewScheme.tree}}\">\n        <div class=\"inner-content\">\n            <i class=\"scheme-icon fa {{_scheming.previewScheme.fa}}\" aria-hidden=\"true\"></i>\n            <p class=\"scheme-name\">{{_scheming.previewScheme.name}} {{_scheming.previewScheme.level > 0 ? _scheming.previewScheme.level+1 : ''}}</p>\n            <p class=\"benefit-text\">{{_scheming.previewScheme.currentDescription}} </p>\n            <p *ngIf=\"_scheming.canLearn(_scheming.previewScheme)\" class=\"flavor-text\">{{_scheming.previewScheme.currentFlavor}}</p>\n            <p *ngIf=\"!_scheming.learnLair(_scheming.previewScheme)\" style=\"color:red\" class=\"flavor-text\">Lair Level {{_scheming.previewScheme.currentLairLevel}} required.</p>\n            <p *ngIf=\"!_scheming.learnCash(_scheming.previewScheme)\" style=\"color:red\" class=\"flavor-text\">{{_scheming.previewScheme.currentCashCost - _scheming.previewScheme.cash}} <i class=\"fa fa-money\" aria-hidden=\"true\"></i> investment required.</p>\n            <div style=\"width:30%;text-align:center;margin:0 auto;margin-top:1rem;display: inline-block;\">\n                <p><i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i></p>\n                <p class=\"scheme-exp\" style=\"margin-top:0; margin-bottom:0;\"> {{_scheming.previewScheme.exp}}/{{_scheming.previewScheme.currentExpTarget}}</p>\n            </div>\n            <div *ngIf=\"_scheming.previewScheme.currentCashCost > 0\" style=\"width:30%;text-align:center;margin:0 auto;margin-top:1rem;display: inline-block;\">\n                    <p><i class=\"fa fa-money\" aria-hidden=\"true\"></i></p>\n                    <p class=\"scheme-exp\" style=\"margin-top:0; margin-bottom:0;\"> {{_scheming.previewScheme.cash}}/{{_scheming.previewScheme.currentCashCost}}</p>\n            </div>\n\n            <div *ngIf=\"_scheming.previewScheme.cash < _scheming.previewScheme.currentCashCost\">\n                    <i class=\"fa fa-money\" aria-hidden=\"true\"></i>\n                    <mat-slider (input)=\"onInputChange($event)\" min=\"0\" step=\"1\" [max]=\"_base.cash < _scheming.previewScheme.currentCashCost ? _base.cash : _scheming.previewScheme.currentCashCost\" [value]=\"schemeCashAssign\" style=\"width:85%;\"></mat-slider>\n                    <p *ngIf=\"schemeCashAssign > 0\" class=\"node {{_scheming.previewScheme.tree}}-strong\" style=\"width:90%;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;margin-top:0;\" \n            (click)=\"investCash()\">Invest {{schemeCashAssign}} <i style=\"margin-top:0;\" class=\"fa fa-money\" aria-hidden=\"true\"></i> </p>\n            </div>\n            \n\n            \n            \n            \n            <p class=\"node {{_scheming.previewScheme.tree}}-strong\" style=\"width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;\" \n            *ngIf=\"_scheming.showSchemeButtonInPreviewScheme()\" (click)=\"_scheming.startSchemingPreview()\">Scheme</p>\n        </div>\n\n\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -1736,6 +1756,13 @@ var BaseService = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(BaseService.prototype, "notoriety", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].NOTORIETY;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(BaseService.prototype, "recruits", {
         //BaseNum
         get: function () {
@@ -1779,39 +1806,20 @@ var BaseService = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    BaseService.prototype.notorietyPlus = function () {
+        if (__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].NOTORIETY == 0) {
+            this.notorietyAdd(.5);
+        }
+        else {
+            this.notorietyAdd(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].NOTORIETY);
+        }
+    };
     BaseService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [])
     ], BaseService);
     return BaseService;
 }(__WEBPACK_IMPORTED_MODULE_2__base_num__["a" /* BaseNum */]));
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/services/core/player.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlayerService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var PlayerService = /** @class */ (function () {
-    function PlayerService() {
-        this.notoriety = 0;
-    }
-    PlayerService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])()
-    ], PlayerService);
-    return PlayerService;
-}());
 
 
 
@@ -1868,243 +1876,8 @@ var DataService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeroesService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var HeroesService = /** @class */ (function () {
-    function HeroesService(_player, _operating, _inventory) {
-        this._player = _player;
-        this._operating = _operating;
-        this._inventory = _inventory;
-    }
-    Object.defineProperty(HeroesService.prototype, "prettyNotoriety", {
-        get: function () {
-            return this._player.notoriety / 10;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    HeroesService.prototype.notorietyToDegrees = function (id) {
-        if (id == 0) {
-            var degs = 0;
-            for (var _i = 1; _i < this._player.notoriety; _i++) {
-                degs += 1.8;
-            }
-            return degs;
-        }
-    };
-    HeroesService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_3__operating_service__["a" /* OperatingService */],
-            __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]])
-    ], HeroesService);
-    return HeroesService;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/services/inventory.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InventoryService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var InventoryService = /** @class */ (function (_super) {
-    __extends(InventoryService, _super);
-    function InventoryService(_player) {
-        var _this = _super.call(this) || this;
-        _this._player = _player;
-        return _this;
-    }
-    Object.defineProperty(InventoryService.prototype, "guardCapacity", {
-        //While the player service holds the current inventory variables, this service busies
-        //itself with deriving capacity and other derived inventory values.
-        get: function () {
-            return 1; //to be modified later.
-        },
-        enumerable: true,
-        configurable: true
-    });
-    InventoryService.prototype.isHenchmenUpgradeFullById = function (id) {
-        if (id == 0) {
-            return this.isGuardCapacityFull;
-        }
-    };
-    Object.defineProperty(InventoryService.prototype, "isGuardCapacityFull", {
-        get: function () {
-            return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_GUARDS == this.guardCapacity;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(InventoryService.prototype, "henchmenCapacity", {
-        get: function () {
-            var capacity = 10;
-            capacity += this.lodgingNumbers();
-            return capacity;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(InventoryService.prototype, "isHenchmenCapacityFull", {
-        get: function () {
-            return __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_HENCHMEN == this.henchmenCapacity;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    InventoryService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */]])
-    ], InventoryService);
-    return InventoryService;
-}(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */]));
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/services/lair.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LairService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base__ = __webpack_require__("../../../../../src/app/base.ts");
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var LairService = /** @class */ (function (_super) {
-    __extends(LairService, _super);
-    function LairService(_player, _operating, _inventory) {
-        var _this = _super.call(this) || this;
-        _this._player = _player;
-        _this._operating = _operating;
-        _this._inventory = _inventory;
-        return _this;
-    }
-    Object.defineProperty(LairService.prototype, "lairName", {
-        get: function () {
-            if (this.LAIR_LEVEL == 0) {
-                return "Mom's Basement";
-            }
-            else if (this.LAIR_LEVEL == 1) {
-                return "Run-Down Rental";
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(LairService.prototype, "percentageHP", {
-        get: function () {
-            return 100 * (__WEBPACK_IMPORTED_MODULE_5__base__["a" /* Base */].CURRENT_LAIR_HP / this.LAIR_HP_MAX);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(LairService.prototype, "hpPerGuard", {
-        get: function () {
-            return 3; //expand later.
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(LairService.prototype, "atkPerGuard", {
-        get: function () {
-            return 1; // expand later.
-        },
-        enumerable: true,
-        configurable: true
-    });
-    LairService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_3__operating_service__["a" /* OperatingService */],
-            __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]])
-    ], LairService);
-    return LairService;
-}(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */]));
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/services/operating.service.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OperatingService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_operation__ = __webpack_require__("../../../../../src/app/models/operation.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base__ = __webpack_require__("../../../../../src/app/base.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
 var __extends = (this && this.__extends) || (function () {
@@ -2131,11 +1904,317 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+var HeroesService = /** @class */ (function (_super) {
+    __extends(HeroesService, _super);
+    function HeroesService(_operating, _inventory) {
+        var _this = _super.call(this) || this;
+        _this._operating = _operating;
+        _this._inventory = _inventory;
+        return _this;
+    }
+    HeroesService.prototype.checkRange = function (min, max) {
+        return __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].NOTORIETY >= min && __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].NOTORIETY < max;
+    };
+    Object.defineProperty(HeroesService.prototype, "notorietyTier", {
+        get: function () {
+            if (this.checkRange(0, 1)) {
+                return 0;
+            }
+            if (this.checkRange(1, 10)) {
+                return 1;
+            }
+            if (this.checkRange(10, 100)) {
+                return 2;
+            }
+            if (this.checkRange(100, 1000)) {
+                return 3;
+            }
+            if (this.checkRange(1000, 10000)) {
+                return 4;
+            }
+            else {
+                return 5;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    HeroesService.prototype.notorietySpinnerPercent = function () {
+        switch (this.notorietyTier) {
+            case 0: {
+                return __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].NOTORIETY * 180;
+            }
+            case 1: {
+                return __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].NOTORIETY * 18 + 360;
+            }
+            case 2: {
+                return __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].NOTORIETY * 1.8 + 720;
+            }
+            case 3: {
+                return __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].NOTORIETY * .18 + 1080;
+            }
+            case 4: {
+                return __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].NOTORIETY * .018 + 1440;
+            }
+            case 5: {
+                return 1620;
+            }
+        }
+    };
+    Object.defineProperty(HeroesService.prototype, "notorietyTierName", {
+        get: function () {
+            return [
+                "Unknown",
+                "Criminal",
+                "Crimelord",
+                "Despot",
+                "Tyrant",
+                "Supreme Overlord"
+            ][this.notorietyTier];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    HeroesService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_1__inventory_service__["a" /* InventoryService */]])
+    ], HeroesService);
+    return HeroesService;
+}(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */]));
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/inventory.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InventoryService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var InventoryService = /** @class */ (function (_super) {
+    __extends(InventoryService, _super);
+    function InventoryService() {
+        return _super.call(this) || this;
+    }
+    Object.defineProperty(InventoryService.prototype, "guardCapacity", {
+        //While the player service holds the current inventory variables, this service busies
+        //itself with deriving capacity and other derived inventory values.
+        get: function () {
+            var capacity = 1;
+            capacity += this.kingsCastleGuardCapacity();
+            return capacity;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    InventoryService.prototype.isHenchmenUpgradeFullById = function (id) {
+        if (id == 0) {
+            return this.isGuardCapacityFull;
+        }
+    };
+    Object.defineProperty(InventoryService.prototype, "isGuardCapacityFull", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_GUARDS == this.guardCapacity;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InventoryService.prototype, "henchmenCapacity", {
+        get: function () {
+            var capacity = 10;
+            capacity += this.lodgingNumbers();
+            return capacity;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InventoryService.prototype, "isHenchmenCapacityFull", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_HENCHMEN == this.henchmenCapacity;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    InventoryService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], InventoryService);
+    return InventoryService;
+}(__WEBPACK_IMPORTED_MODULE_2__base_num__["a" /* BaseNum */]));
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/lair.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LairService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base__ = __webpack_require__("../../../../../src/app/base.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var LairService = /** @class */ (function (_super) {
+    __extends(LairService, _super);
+    function LairService(_operating, _inventory) {
+        var _this = _super.call(this) || this;
+        _this._operating = _operating;
+        _this._inventory = _inventory;
+        return _this;
+    }
+    Object.defineProperty(LairService.prototype, "danger", {
+        //Actual Lair Stat Numbers getters.
+        //Danger = ATK. Raw physical damage that lairs deal to attacking heroes each round.
+        get: function () {
+            var danger = 0;
+            danger += this.beginnerLairDanger();
+            return danger;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LairService.prototype, "fortification", {
+        get: function () {
+            var fortification = 0;
+            fortification += this.kingsCastleFortification();
+            return fortification;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LairService.prototype, "lairName", {
+        get: function () {
+            if (this.LAIR_LEVEL == 0) {
+                return "Mom's Basement";
+            }
+            else if (this.LAIR_LEVEL == 1) {
+                return "Run-Down Rental";
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LairService.prototype, "percentageHP", {
+        get: function () {
+            return 100 * (__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_LAIR_HP / this.LAIR_HP_MAX);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LairService.prototype, "hpPerGuard", {
+        get: function () {
+            return 3; //expand later.
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LairService.prototype, "atkPerGuard", {
+        get: function () {
+            return 1; // expand later.
+        },
+        enumerable: true,
+        configurable: true
+    });
+    LairService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_1__inventory_service__["a" /* InventoryService */]])
+    ], LairService);
+    return LairService;
+}(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */]));
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/operating.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OperatingService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_operation__ = __webpack_require__("../../../../../src/app/models/operation.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
 var OperatingService = /** @class */ (function (_super) {
     __extends(OperatingService, _super);
-    function OperatingService(_player) {
+    function OperatingService() {
         var _this = _super.call(this) || this;
-        _this._player = _player;
         _this.operatingNow = false; //operate action lockout
         _this.operationResult = false; //operate action lockout part 2 (will not fire if fade doesn't complete)
         _this.showPreview = false; //handler for whether to show the flyout
@@ -2340,7 +2419,7 @@ var OperatingService = /** @class */ (function (_super) {
                             _this.operationResult = true;
                         } }, 1000);
                         this.operatingNow = true;
-                        this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
+                        this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0.5 };
                         var roll = Math.random() <= this.realSuccessRate(resource01, this.previewOperation.cost01, this.previewOperation.rarity, this.previewOperation.type);
                         this.operateReadout['result'] = roll ? 'success!' : 'failure.';
                         if (roll) {
@@ -2391,20 +2470,21 @@ var OperatingService = /** @class */ (function (_super) {
         if (this.operatingNow) {
             switch (this.previewOperation.type) {
                 case "heist": {
-                    __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CASH += this.operateReadout['earned'];
-                    __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN -= this.operateReadout['lost'];
+                    __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CASH += this.operateReadout['earned'];
+                    __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_HENCHMEN -= this.operateReadout['lost'];
+                    this.notorietyAdd(this.operateReadout['notoriety']);
                     break;
                 }
                 case "shady-business-deal": {
-                    __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].PASSIVE_CASH[this.previewOperation.rarity] += this.operateReadout['earned'];
-                    console.log(__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CASH + " -= " + this.operateReadout['lost']);
-                    __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CASH -= this.operateReadout['lost'];
+                    __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].PASSIVE_CASH[this.previewOperation.rarity] += this.operateReadout['earned'];
+                    console.log(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CASH + " -= " + this.operateReadout['lost']);
+                    __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CASH -= this.operateReadout['lost'];
                     break;
                 }
             }
             this.showPreview = false;
-            __WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].OPERATIONS[this.previewOperation.id] = new __WEBPACK_IMPORTED_MODULE_2__models_operation__["a" /* Operation */](this.previewOperation.id, -1, -1, -1, false, 0, 0);
-            this.resetCountdown(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].OPERATIONS[this.previewOperation.id]);
+            __WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */].OPERATIONS[this.previewOperation.id] = new __WEBPACK_IMPORTED_MODULE_1__models_operation__["a" /* Operation */](this.previewOperation.id, -1, -1, -1, false, 0, 0);
+            this.resetCountdown(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */].OPERATIONS[this.previewOperation.id]);
             this.operationResult = false;
             this.operatingNow = false;
         }
@@ -2449,10 +2529,10 @@ var OperatingService = /** @class */ (function (_super) {
     };
     OperatingService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */]])
+        __metadata("design:paramtypes", [])
     ], OperatingService);
     return OperatingService;
-}(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */]));
 
 
 
@@ -2464,17 +2544,16 @@ var OperatingService = /** @class */ (function (_super) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PrimaryLoopService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_system_service__ = __webpack_require__("../../../../../src/app/services/system.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scheming_service__ = __webpack_require__("../../../../../src/app/services/scheming.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__recruiting_service__ = __webpack_require__("../../../../../src/app/services/recruiting.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__training_service__ = __webpack_require__("../../../../../src/app/services/training.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__lair_service__ = __webpack_require__("../../../../../src/app/services/lair.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ngx_cookie_service__ = __webpack_require__("../../../../ngx-cookie-service/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_system_service__ = __webpack_require__("../../../../../src/app/services/system.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2505,16 +2584,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 //All loop related activities. Called by app.component and nowhere else.
 var PrimaryLoopService = /** @class */ (function (_super) {
     __extends(PrimaryLoopService, _super);
-    function PrimaryLoopService(_base, _system, cookieService, _player, _operating, _scheming, _recruiting, _lair, _training) {
+    function PrimaryLoopService(_base, _system, cookieService, _operating, _scheming, _recruiting, _lair, _training) {
         var _this = _super.call(this) || this;
         _this._base = _base;
         _this._system = _system;
         _this.cookieService = cookieService;
-        _this._player = _player;
         _this._operating = _operating;
         _this._scheming = _scheming;
         _this._recruiting = _recruiting;
@@ -2539,20 +2616,20 @@ var PrimaryLoopService = /** @class */ (function (_super) {
             this.doOnce();
             this.didOnce = true;
         }
-        if (__WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].EARNING_SCHEME_POINTS) {
+        if (__WEBPACK_IMPORTED_MODULE_7__base__["a" /* Base */].EARNING_SCHEME_POINTS) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
-        __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].RECRUITS.forEach(function (recruit) {
+        __WEBPACK_IMPORTED_MODULE_8__base_num__["a" /* BaseNum */].RECRUITS.forEach(function (recruit) {
             if (_this._recruiting.isRecruiting(recruit)) {
                 _this._recruiting.recruitTick(recruit);
             }
         });
-        __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].TRAINS.forEach(function (train) {
+        __WEBPACK_IMPORTED_MODULE_8__base_num__["a" /* BaseNum */].TRAINS.forEach(function (train) {
             if (_this._training.isTraining(train)) {
                 _this._training.trainTick(train);
             }
         });
-        __WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */].OPERATIONS.forEach(function (operation) {
+        __WEBPACK_IMPORTED_MODULE_8__base_num__["a" /* BaseNum */].OPERATIONS.forEach(function (operation) {
             if (_this._operating.isUnlocked(operation)) {
                 _this._operating.operateTick(operation);
             }
@@ -2566,7 +2643,7 @@ var PrimaryLoopService = /** @class */ (function (_super) {
     };
     //Events that occur every minute
     PrimaryLoopService.prototype.minute = function () {
-        __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].CASH += __WEBPACK_IMPORTED_MODULE_8__base__["a" /* Base */].PASSIVE_CASH[0];
+        __WEBPACK_IMPORTED_MODULE_7__base__["a" /* Base */].CASH += __WEBPACK_IMPORTED_MODULE_7__base__["a" /* Base */].PASSIVE_CASH[0];
         if (this._base.earningSchemePoints) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute);
         }
@@ -2588,18 +2665,17 @@ var PrimaryLoopService = /** @class */ (function (_super) {
     };
     PrimaryLoopService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_10__services_base_service__["a" /* BaseService */],
-            __WEBPACK_IMPORTED_MODULE_11__services_system_service__["a" /* SystemService */],
-            __WEBPACK_IMPORTED_MODULE_7_ngx_cookie_service__["a" /* CookieService */],
-            __WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_5__operating_service__["a" /* OperatingService */],
-            __WEBPACK_IMPORTED_MODULE_2__scheming_service__["a" /* SchemingService */],
-            __WEBPACK_IMPORTED_MODULE_3__recruiting_service__["a" /* RecruitingService */],
-            __WEBPACK_IMPORTED_MODULE_6__lair_service__["a" /* LairService */],
-            __WEBPACK_IMPORTED_MODULE_4__training_service__["a" /* TrainingService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_9__services_base_service__["a" /* BaseService */],
+            __WEBPACK_IMPORTED_MODULE_10__services_system_service__["a" /* SystemService */],
+            __WEBPACK_IMPORTED_MODULE_6_ngx_cookie_service__["a" /* CookieService */],
+            __WEBPACK_IMPORTED_MODULE_4__operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_1__scheming_service__["a" /* SchemingService */],
+            __WEBPACK_IMPORTED_MODULE_2__recruiting_service__["a" /* RecruitingService */],
+            __WEBPACK_IMPORTED_MODULE_5__lair_service__["a" /* LairService */],
+            __WEBPACK_IMPORTED_MODULE_3__training_service__["a" /* TrainingService */]])
     ], PrimaryLoopService);
     return PrimaryLoopService;
-}(__WEBPACK_IMPORTED_MODULE_9__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_8__base_num__["a" /* BaseNum */]));
 
 
 
@@ -2611,11 +2687,10 @@ var PrimaryLoopService = /** @class */ (function (_super) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecruitingService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operating_service__ = __webpack_require__("../../../../../src/app/services/operating.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2640,12 +2715,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var RecruitingService = /** @class */ (function (_super) {
     __extends(RecruitingService, _super);
-    function RecruitingService(_player, _operating, _inventory) {
+    function RecruitingService(_operating, _inventory) {
         var _this = _super.call(this) || this;
-        _this._player = _player;
         _this._operating = _operating;
         _this._inventory = _inventory;
         _this.collecting = false; //Collection lockout
@@ -2679,8 +2752,8 @@ var RecruitingService = /** @class */ (function (_super) {
     };
     //Section displays only if a recruiting object has been unlocked
     RecruitingService.prototype.areAnyUnlocked = function () {
-        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].RECRUITS.length; _i++) {
-            if (this.isUnlocked(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */].RECRUITS[_i])) {
+        for (var _i = 0; _i < __WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].RECRUITS.length; _i++) {
+            if (this.isUnlocked(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].RECRUITS[_i])) {
                 return true;
             }
         }
@@ -2694,8 +2767,8 @@ var RecruitingService = /** @class */ (function (_super) {
                 this.collecting = true;
                 var collectMarker = recruit.currentStore;
                 for (var _i = 0; _i < collectMarker; _i++) {
-                    if (__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN < this._inventory.henchmenCapacity) {
-                        __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].CURRENT_HENCHMEN++;
+                    if (__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN < this._inventory.henchmenCapacity) {
+                        __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN++;
                         recruit.currentStore--;
                     }
                 }
@@ -2733,12 +2806,11 @@ var RecruitingService = /** @class */ (function (_super) {
     };
     RecruitingService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_3__operating_service__["a" /* OperatingService */],
-            __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__operating_service__["a" /* OperatingService */],
+            __WEBPACK_IMPORTED_MODULE_1__inventory_service__["a" /* InventoryService */]])
     ], RecruitingService);
     return RecruitingService;
-}(__WEBPACK_IMPORTED_MODULE_5__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */]));
 
 
 
@@ -2750,10 +2822,9 @@ var RecruitingService = /** @class */ (function (_super) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SchemingService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_base_service__ = __webpack_require__("../../../../../src/app/services/base.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2777,12 +2848,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var SchemingService = /** @class */ (function (_super) {
     __extends(SchemingService, _super);
-    function SchemingService(_player, _base) {
+    function SchemingService(_base) {
         var _this = _super.call(this) || this;
-        _this._player = _player;
         _this._base = _base;
         //STRUCTURAL VARIABLES
         _this.selected = 'scheming'; //Which scheme tree is currently displayed on the scheme panel
@@ -2791,9 +2860,9 @@ var SchemingService = /** @class */ (function (_super) {
     }
     //Decide whether to display the "Scheme" button in the flyout
     SchemingService.prototype.showSchemeButtonInPreviewScheme = function () {
-        return !__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].EARNING_SCHEME_POINTS && this.canLearn(this.previewScheme)
+        return !__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].EARNING_SCHEME_POINTS && this.canLearn(this.previewScheme)
             ||
-                ((this.previewScheme != __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME) && this.canLearn(this.previewScheme));
+                ((this.previewScheme != __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME) && this.canLearn(this.previewScheme));
     };
     //canLearn() is the aggregate. It consults multiple methods to determine learnability.
     SchemingService.prototype.canLearn = function (scheme) {
@@ -2814,15 +2883,15 @@ var SchemingService = /** @class */ (function (_super) {
     //Clicking "Scheme" assigns the previewScheme as the currentScheme
     SchemingService.prototype.startSchemingPreview = function () {
         if (this.canLearn(this.previewScheme)) {
-            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME = this.previewScheme;
-            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].EARNING_SCHEME_POINTS = true;
+            __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME = this.previewScheme;
+            __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].EARNING_SCHEME_POINTS = true;
         }
     };
     //Clicking the currentScheme in the header assigns the currentScheme as the previewScheme
     SchemingService.prototype.switchToCurrentSchemePreview = function () {
         if (this._base.earningSchemePoints) {
-            this.selected = __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.tree;
-            this.previewScheme = __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME;
+            this.selected = __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.tree;
+            this.previewScheme = __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME;
             this.showPreview = true;
         }
     };
@@ -2856,20 +2925,19 @@ var SchemingService = /** @class */ (function (_super) {
     });
     //All scheme points earned should route through this function.
     SchemingService.prototype.earnSchemePoints = function (num) {
-        __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.exp += num;
-        if (__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.exp >= __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.currentExpTarget) {
-            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.level++;
-            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_SCHEME.exp = 0;
-            __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].EARNING_SCHEME_POINTS = false;
+        __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.exp += num;
+        if (__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.exp >= __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.currentExpTarget) {
+            __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.level++;
+            __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.exp = 0;
+            __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].EARNING_SCHEME_POINTS = false;
         }
     };
     SchemingService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_4__services_base_service__["a" /* BaseService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_base_service__["a" /* BaseService */]])
     ], SchemingService);
     return SchemingService;
-}(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_2__base_num__["a" /* BaseNum */]));
 
 
 
@@ -2934,19 +3002,21 @@ var SystemService = /** @class */ (function (_super) {
                 //The construction of a Save String:
                 //Character 0: boolean register for earning scheme points
                 '0'
+                //Notoriety.
+                + '0z'
                 //Scheme numbers. level, exp, cash in order by scheme ref. (10 schemes so far
                 + '0z0z0z' + '0z0z0z' + '0z0z0z'
                 + '0z0z0z' + '0z0z0z' + '0z0z0z'
                 + '0z0z0z' + '0z0z0z' + '0z0z0z'
-                + '0z0z0z'
+                + '0z0z0z' + '0z0z0z' + '0z0z0z'
                 //Current Scheme. Only the id is stored. An empty entry means none is selected.
                 + 'z'
                 //Current henchmen.
                 + '0z'
                 //RECRUITS numbers. currentStore, countdown, lock in order by help-wanted ref.
                 + '0z0z0z' + '0z0z0z' + '0z0z0z' + '0z0z0z' + '0z0z0z'
-                //Lair Hp. Raw number, newGame value is 10.
-                + '10z'
+                //Lair Hp. Raw number, newGame value is 1.
+                + '1z'
                 //Current guards.
                 + '0z'
                 //TRAINS numbers. currentStore, countdown, lock, queued in order by help-wanted ref.
@@ -2962,7 +3032,6 @@ var SystemService = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    //+ '0'
     SystemService.prototype.devLog = function (object) {
         //This wrapper will be used to only display save/load console logs in the dev environment.
         console.log(object);
@@ -2991,6 +3060,9 @@ var SystemService = /** @class */ (function (_super) {
         __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].EARNING_SCHEME_POINTS = data[0] === "1";
         this.devLog("Base.EARNING_SCHEME_POINTS set to " + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].EARNING_SCHEME_POINTS);
         this.marker = 0;
+        var notoriety = this.saveReader(data);
+        __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].NOTORIETY = Number(notoriety);
+        this.devLog("Base.NOTORIETY set to " + __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].NOTORIETY);
         this._data.getSchemes()
             .subscribe(function (res) {
             var SchemeData = new Array();
@@ -3079,6 +3151,9 @@ var SystemService = /** @class */ (function (_super) {
         this.devLog("capturing Base.EARNING_SCHEME_POINTS:");
         saveString += __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].EARNING_SCHEME_POINTS ? "1" : "0";
         this.devLog(saveString);
+        this.devLog("capturing Base.NOTORIETY:");
+        saveString += __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].NOTORIETY + 'z';
+        this.devLog(__WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].NOTORIETY);
         this.devLog("capturing Base.SCHEMES: (exp, cash, level)");
         __WEBPACK_IMPORTED_MODULE_4__base__["a" /* Base */].SCHEMES.forEach(function (scheme) {
             var addToString = scheme.exp + "z" + scheme.cash + "z" + scheme.level + "z";
@@ -3160,10 +3235,9 @@ var SystemService = /** @class */ (function (_super) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrainingService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_player_service__ = __webpack_require__("../../../../../src/app/services/core/player.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base__ = __webpack_require__("../../../../../src/app/base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__inventory_service__ = __webpack_require__("../../../../../src/app/services/inventory.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("../../../../../src/app/base.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_num__ = __webpack_require__("../../../../../src/app/base-num.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -3187,12 +3261,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var TrainingService = /** @class */ (function (_super) {
     __extends(TrainingService, _super);
-    function TrainingService(_player, _inventory) {
+    function TrainingService(_inventory) {
         var _this = _super.call(this) || this;
-        _this._player = _player;
         _this._inventory = _inventory;
         //Lockouts
         _this.training = false;
@@ -3200,11 +3272,11 @@ var TrainingService = /** @class */ (function (_super) {
         return _this;
     }
     TrainingService.prototype.areAnyUnlocked = function () {
-        return this.isUnlocked(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].TRAINS[0]) || this.isUnlocked(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].TRAINS[1]); //etc.
+        return this.isUnlocked(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */].TRAINS[0]) || this.isUnlocked(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */].TRAINS[1]); //etc.
     };
     Object.defineProperty(TrainingService.prototype, "guardTrainingUnlocked", {
         get: function () {
-            return this.isUnlocked(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */].TRAINS[0]);
+            return this.isUnlocked(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */].TRAINS[0]);
         },
         enumerable: true,
         configurable: true
@@ -3259,7 +3331,7 @@ var TrainingService = /** @class */ (function (_super) {
         }
     };
     TrainingService.prototype.canTrain = function (train) {
-        if (__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN > 0) {
+        if (__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_HENCHMEN > 0) {
             if (train.queued + train.currentStore < this.capacity(train)) {
                 return true;
             }
@@ -3269,11 +3341,11 @@ var TrainingService = /** @class */ (function (_super) {
     //Actions
     TrainingService.prototype.queueTrain = function (train) {
         if (train.id == 0) {
-            if (__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN > 0) {
+            if (__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_HENCHMEN > 0) {
                 if (!this.training) {
                     if (train.queued + train.currentStore < this.capacity(train)) {
                         this.training = true;
-                        __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_HENCHMEN--;
+                        __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_HENCHMEN--;
                         train.queued++;
                         this.training = false;
                     }
@@ -3286,8 +3358,8 @@ var TrainingService = /** @class */ (function (_super) {
             if (!this.collecting) {
                 this.collecting = true;
                 for (var _i = 0; _i < train.currentStore; _i++) {
-                    if (__WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_GUARDS < this._inventory.guardCapacity) {
-                        __WEBPACK_IMPORTED_MODULE_3__base__["a" /* Base */].CURRENT_GUARDS++;
+                    if (__WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_GUARDS < this._inventory.guardCapacity) {
+                        __WEBPACK_IMPORTED_MODULE_2__base__["a" /* Base */].CURRENT_GUARDS++;
                         train.currentStore--;
                     }
                 }
@@ -3315,11 +3387,10 @@ var TrainingService = /** @class */ (function (_super) {
     };
     TrainingService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_player_service__["a" /* PlayerService */],
-            __WEBPACK_IMPORTED_MODULE_2__inventory_service__["a" /* InventoryService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__inventory_service__["a" /* InventoryService */]])
     ], TrainingService);
     return TrainingService;
-}(__WEBPACK_IMPORTED_MODULE_4__base_num__["a" /* BaseNum */]));
+}(__WEBPACK_IMPORTED_MODULE_3__base_num__["a" /* BaseNum */]));
 
 
 

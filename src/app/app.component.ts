@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerService } from './services/core/player.service';
 import { SchemingService } from './services/scheming.service';
 import { PrimaryLoopService } from './services/primary-loop.service';
 import { InventoryService } from './services/inventory.service';
@@ -34,7 +33,6 @@ export class AppComponent extends BaseNum implements OnInit {
     public _system: SystemService,
     public _base: BaseService,
     public dialog: MatDialog,
-    public _player: PlayerService,
     public _lair: LairService,
     public _loop: PrimaryLoopService,
     public _scheming: SchemingService,

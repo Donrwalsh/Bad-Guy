@@ -49,7 +49,7 @@
     </div>
     <div class="lair-area" *ngIf="_scheming.selected == 'lairs'">
         <div class="column">
-            <p class="node" *ngFor="let scheme of _base.schemes | slice: 9:10; let i = index" (click)="_scheming.schemePreview(scheme)">
+            <p class="node" *ngFor="let scheme of _base.schemes | slice: 9:12; let i = index" (click)="_scheming.schemePreview(scheme)">
                 <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } "></i>
             </p>
         </div>

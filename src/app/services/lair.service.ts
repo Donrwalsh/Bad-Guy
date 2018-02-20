@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { PlayerService } from "./core/player.service";
 import { InventoryService } from "./inventory.service";
 import { OperatingService } from './operating.service';
 import { BaseNum } from '../base-num';
@@ -8,11 +7,25 @@ import { Base } from '../base';
 @Injectable()
 export class LairService extends BaseNum {
 
-    constructor(public _player: PlayerService,
-        public _operating: OperatingService,
+    constructor(public _operating: OperatingService,
         public _inventory: InventoryService) {
-            super();
-         }
+        super();
+    }
+
+    //Actual Lair Stat Numbers getters.
+    
+    //Danger = ATK. Raw physical damage that lairs deal to attacking heroes each round.
+    get danger() {
+        var danger = 0;
+        danger += this.beginnerLairDanger();
+        return danger;
+    }
+
+    get fortification() {
+        var fortification = 0;
+        fortification += this.kingsCastleFortification();
+        return fortification;
+    }
 
     get lairName() {
         if (this.LAIR_LEVEL == 0) {
@@ -21,6 +34,8 @@ export class LairService extends BaseNum {
             return "Run-Down Rental";
         }
     }
+
+
 
     get percentageHP() {
         return 100 * (Base.CURRENT_LAIR_HP / this.LAIR_HP_MAX);

@@ -44,6 +44,10 @@ export class BaseService extends BaseNum {
         return Base.CASH;
     }
 
+    get notoriety() {
+        return Base.NOTORIETY;
+    }
+
     //BaseNum
     get recruits() {
         return BaseNum.RECRUITS;
@@ -67,6 +71,19 @@ export class BaseService extends BaseNum {
 
     get heistsUnlocked() {
         return this.heistUnlocked(0);
+    }
+
+
+
+
+
+
+    notorietyPlus() {
+        if (Base.NOTORIETY == 0) {
+            this.notorietyAdd(.5);
+        } else {
+            this.notorietyAdd(Base.NOTORIETY);
+        }
     }
 
 }

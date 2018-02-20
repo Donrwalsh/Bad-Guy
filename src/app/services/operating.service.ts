@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { PlayerService } from "./core/player.service";
 import { Operation } from '../models/operation';
 import { Base } from '../base';
 import { BaseNum } from '../base-num';
@@ -7,7 +6,7 @@ import { BaseNum } from '../base-num';
 @Injectable()
 export class OperatingService extends BaseNum {
 
-    constructor(public _player: PlayerService) {
+    constructor() {
         super();
     }
 
@@ -195,7 +194,7 @@ export class OperatingService extends BaseNum {
                     if (resource01 > 0) {
                         setTimeout(() => { if (this.operatingNow) { this.operationResult = true } }, 1000);
                         this.operatingNow = true;
-                        this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0 };
+                        this.operateReadout = { result: '', lost: 0, earned: 0, notoriety: 0.5 };
                         var roll = Math.random() <= this.realSuccessRate(resource01, this.previewOperation.cost01, this.previewOperation.rarity, this.previewOperation.type)
                         this.operateReadout['result'] = roll ? 'success!' : 'failure.';
                         if (roll) {
@@ -245,6 +244,7 @@ export class OperatingService extends BaseNum {
                 case "heist": {
                     Base.CASH += this.operateReadout['earned'];
                     Base.CURRENT_HENCHMEN -= this.operateReadout['lost'];
+                    this.notorietyAdd(this.operateReadout['notoriety'])
                     break;
                 }
                 case "shady-business-deal": {

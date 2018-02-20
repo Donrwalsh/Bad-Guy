@@ -26,6 +26,16 @@ export class Base {
     static CASH: number;
     static PASSIVE_CASH: Array<number>;
 
+    //Notoriety
+    static NOTORIETY: number;
+
+    notorietyAdd(value) {
+        Base.NOTORIETY += value;
+        Base.NOTORIETY = Math.round(Base.NOTORIETY * 10) / 10;
+    }
+
+    
+
     //Array Building Blocks
     standardExpArray: Array<number> = [
         10, 45, 120, 180, 240, 
@@ -45,6 +55,13 @@ export class Base {
         1, 1, 1, 1, 1, 
         2, 2, 2, 2, 2, 
         3, 3, 3, 3, 3
+    ]
+
+    phaseOneLairReq: Array<number> = [ 
+        1, 1, 1, 1, 1, 
+        2, 2, 2, 2, 2, 
+        3, 3, 3, 3, 3,
+        4, 4, 4, 4, 4
     ]
 
     standardCashArray: Array<number> = [ 
@@ -67,7 +84,9 @@ export class Base {
         this.standardExpArray, //6: Heists
         this.standardExpArray, //7: Act I
         this.standardExpArray, //8: Communications
-        this.beginnerLairExpArray //9: Starter Lair
+        this.beginnerLairExpArray, //9: Starter Lair
+        this.beginnerLairExpArray, //10: King's Castle
+        this.beginnerLairExpArray //11: Maintenance
     ]   
 
     schemeLairReq: Array<Array<number>> = [
@@ -80,7 +99,9 @@ export class Base {
         this.standardLairReq, //6: Heists
         this.standardLairReq, //7: Act I
         this.standardLairReq, //8: Communications
-        this.standardLairReq //9: Starter Lair 
+        this.standardLairReq, //9: Beginner Lair
+        this.phaseOneLairReq, //10: King's Castle
+        this.phaseOneLairReq //11: Maintenance
     ]
 
     schemeCashCost: Array<Array<number>> = [
@@ -93,7 +114,9 @@ export class Base {
         this.standardCashArray, //6: Heists
         this.standardCashArray, //7: Act I
         this.standardCashArray, //8: Communications
-        this.beginnerLairCashArray //9: Beginner Lair
+        this.beginnerLairCashArray, //9: Beginner Lair
+        this.beginnerLairCashArray, //10: King's Castle
+        this.beginnerLairCashArray //11: Maintenance
     ]
 
 

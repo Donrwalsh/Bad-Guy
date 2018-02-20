@@ -1,5 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { PlayerService } from '../services/core/player.service';
 import { SchemingService } from '../services/scheming.service';
 import { InventoryService } from '../services/inventory.service';
 import { HeroesService } from '../services/heroes.service';
@@ -28,7 +27,6 @@ export class HeaderComponent extends Base {
     constructor(public _base: BaseService,
         public cookieService: CookieService,
         public _system: SystemService,
-        public _player: PlayerService,
         public _heroes: HeroesService,
         public _scheming: SchemingService,
         public _inventory: InventoryService,
@@ -53,7 +51,7 @@ export class HeaderComponent extends Base {
 
 
     notorietyRotationStyle() {
-        var degrees = this._player.notoriety * 1.8;
+        var degrees = this._heroes.notorietySpinnerPercent();
         return { 'transform': 'rotate(' + degrees + 'deg)' }
     }
 
@@ -63,15 +61,6 @@ export class HeaderComponent extends Base {
 
     schemeProgressBarStyle() {
         return { 'width': this._base.currentScheme.percentage + '%' }
-    }
-
-    notorietyGaugeStyle(id) {
-        if (id == 0) {
-            console.log('rotate(-' + this._heroes.notorietyToDegrees(id) + 'deg)')
-            return {
-                'transform': 'none'
-            }
-        }
     }
 
 }

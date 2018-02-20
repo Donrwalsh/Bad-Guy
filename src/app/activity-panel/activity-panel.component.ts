@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PlayerService } from '../services/core/player.service';
 import { RecruitingService } from '../services/recruiting.service';
 import { TrainingService } from '../services/training.service';
 import { InventoryService } from '../services/inventory.service';
@@ -26,8 +25,7 @@ import { trigger, style, animate, transition } from '@angular/animations';
 })
 export class ActivityPanelComponent extends BaseNum {
 
-    constructor(public _player: PlayerService,
-        public _base: BaseService,
+    constructor(public _base: BaseService,
         public _recruiting: RecruitingService,
         public _inventory: InventoryService,
         public _operating: OperatingService,

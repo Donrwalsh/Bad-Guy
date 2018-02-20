@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
-import { PlayerService } from "./core/player.service";
 import { Base } from '../base';
 import { BaseNum } from '../base-num';
 
 @Injectable()
 export class InventoryService extends BaseNum {
 
-    constructor(public _player: PlayerService) {
+    constructor() {
             super();
     }
 
@@ -14,7 +13,9 @@ export class InventoryService extends BaseNum {
     //itself with deriving capacity and other derived inventory values.
 
     get guardCapacity() {
-        return 1; //to be modified later.
+        var capacity = 1;
+        capacity += this.kingsCastleGuardCapacity();
+        return capacity;
     }
 
     isHenchmenUpgradeFullById(id) {
