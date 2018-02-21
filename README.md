@@ -82,20 +82,19 @@ While not technically part of the header, the row for player resources appears i
 
 These visual components are supported by a suite of services that handle all the logic of the game. The core of the game is delivered through the `primary-loop.service.ts` which ticks every 1/10th of a second and decides if an event should occur. 
 
-For example, every second the player naturally hatches 1 scheme point. The loop will then consult `scheming.service.ts` every second and ask for the number of scheme points hatched. `scheming.service.ts` will decide, with assistance from the core `numbers.service.ts`, how many scheme points are hatched. This number is then used by `scheming-service.ts` (at the request of `primary-loop.service.ts`) to increment accrued exp towards the current scheme, while attending to the potential of a scheme being learned on that tick. 
+For example, every second the player naturally hatches 1 scheme point. The loop will then consult `scheming.service.ts` every second and ask for the number of scheme points hatched. `scheming.service.ts` will decide, with assistance from the class `base-num.ts`, how many scheme points are hatched. This number is then used by `scheming-service.ts` (at the request of `primary-loop.service.ts`) to increment accrued exp towards the current scheme, while attending to the potential of a scheme being learned on that tick. 
 
-This is one example in a network of interactions between the baseline services that concern themselves with an area of gameplay (`scheming.service.ts` exists alongside `recruiting.service.ts` and `operating-service.ts` for example). These baseline services never reference one another, but they all rely on a pair of core services which do not import from anything:
+This is one example in a network of interactions between the baseline services that concern themselves with an area of gameplay (`scheming.service.ts` exists alongside `recruiting.service.ts` and `operating-service.ts` for example). These baseline services never reference one another, but they all extend a core class called `base-num.ts` that provides structural variables and scheme modification logic. 
 
-##### Core Service: `numbers.service.ts`
+Extending a base class replaces the original implementation of the core `player.service.ts` and `numbers.service.ts`. Complications arose when I needed to import structural data into models, necessitating this switch. It's overall a lot cleaner and makes tasks that were rather complicated pretty mundane which is always nice.
 
-Whenever a baseline service must make a calculation that is modified by passive abilities, this service is consulted to determine what the variable value is. The Numbers Service is designed to be a central location for all numeric calculations regarding game balance. Other than overall structure and default values, buffing and nerfing happens here.
+##### Current Status:
 
-##### Core Service: `player.service.ts`
+Loosely referencing this build as 'Version -4' since Phase 0 is complete. Next steps are:
 
-The Player Service exists as a collection of all state-affecting values of the current game. As is, a game should be able to be suspended and the recreated from the values found in the Player Service alone. As such, once a saving feature is implemented it need only concern itself with the values in this service. 
+- Heroes are ready to be added.
+- The Maintenance Scheme does nothing.
+- Lair Stats are loosely implemented and do not do anything.
+- No user-facing save/load handlers. Just the autosave every minute and manually deleting a cookie.
 
-##### Current Priorities:
-
-- A model structure is being introduced. So far only a scheme version exists. This structure is a drastic shift, so this is top priority.
-- There is a bug wherein help wanted objects become uncollectable. I have not caught it red-handed just yet.
-- Specializations, Heroes and any sort of combat logic has not been implemented.
+I'm going to be putting some effort towards working on this project in a more public way now that there is at least something to show.
