@@ -48,6 +48,11 @@ export class BaseService extends BaseNum {
         return Base.NOTORIETY;
     }
 
+    get bankedSchemePoints() {
+        return Base.BANKED_SCHEME_POINTS;
+    }
+    
+
     //BaseNum
     get recruits() {
         return BaseNum.RECRUITS;

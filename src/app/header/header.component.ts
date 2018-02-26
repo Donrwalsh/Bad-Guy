@@ -44,7 +44,7 @@ export class HeaderComponent extends Base {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
+            this._system.devLog('The dialog was closed');
             this.animal = result;
         });
     }

@@ -36,14 +36,11 @@ export class PrimaryLoopService extends BaseNum {
     //Used for one-off console logs - logging within the loop can be tedious.
     didOnce = false;
     doOnce() {
-        console.log(this.ENV_NAME);
+        this._system.devLog(this.ENV_NAME);
     }
 
     //Events that occur every tick
     tick() {
-        //console.log(this._operating.operationResult);
-        
-
         if (!this.didOnce) {
             this.doOnce();
             this.didOnce = true;
@@ -51,6 +48,8 @@ export class PrimaryLoopService extends BaseNum {
 
         if (Base.EARNING_SCHEME_POINTS) {
             this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisTick);
+        } else {
+            this._scheming.bankSchemePoints(this._scheming.schemePointsHatchedThisTick);
         }
         BaseNum.RECRUITS.forEach( (recruit) => {
             if(this._recruiting.isRecruiting(recruit)) {
@@ -72,7 +71,9 @@ export class PrimaryLoopService extends BaseNum {
     //Events that occur every second
     second() {
         if (this._base.earningSchemePoints) {
-            this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisSecond)
+            this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisSecond);
+        } else {
+            this._scheming.bankSchemePoints(this._scheming.schemePointsHatchedThisSecond);
         }
     }
 
@@ -80,7 +81,9 @@ export class PrimaryLoopService extends BaseNum {
     minute() {
         Base.CASH += Base.PASSIVE_CASH[0];
         if (this._base.earningSchemePoints) {
-            this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute)
+            this._scheming.earnSchemePoints(this._scheming.schemePointsHatchedThisMinute);
+        } else {
+            this._scheming.bankSchemePoints(this._scheming.schemePointsHatchedThisMinute);
         }
         this._system.save();
 

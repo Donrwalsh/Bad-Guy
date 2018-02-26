@@ -20,7 +20,11 @@
                 <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } "></i>
             </p>
         </div>
-        <div class="column"></div>
+        <div class="column">
+            <p class="node" *ngFor="let scheme of _base.schemes | slice: 12:13; let i = index" (click)="_scheming.schemePreview(scheme)">
+                <i class="fa {{scheme.fa}}" aria-hidden="true" [ngStyle]="{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } "></i>
+            </p>
+        </div>
         <div class="column"></div>
         <div class="column"></div>
         <div class="column"></div>

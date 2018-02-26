@@ -138,7 +138,7 @@ export class BaseNum extends Base {
     //06: Heists
     heistUnlocked(id) {
         if (id === 0) return Base.SCHEMES[6].level > 0;
-        if (id === 1) return Base.SCHEMES[6].level >= 3;
+        if (id === 1) return Base.SCHEMES[6].level >= 4;
     }
 
     heistCountdown() {
@@ -243,8 +243,20 @@ export class BaseNum extends Base {
     //11: Maintenance
     //Nothing done with this yet, still deciding how it should heal.
 
-    //12: Advanced Research
+    //12: Rocket Science
     //This will bank scheme points earned while not 
+
+    rocketScienceUnlocked() {
+        return Base.SCHEMES[12].level > 0;
+    }
+
+    rocketScienceMultiplier() {
+        return Base.SCHEMES[12].level * 0.02;
+    }
+
+    rocketScienceBankHatch() {
+        return Base.SCHEMES[12].level;
+    }
 
 
 

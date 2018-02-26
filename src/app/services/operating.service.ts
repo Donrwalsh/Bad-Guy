@@ -77,7 +77,6 @@ export class OperatingService extends BaseNum {
         var cap: number;
         switch (type) {
             case "heist": {
-                console.log(this.operations[0])
                 cap = this.operations[0][tiers[rarity]].length;
                 break;
             }
@@ -86,7 +85,6 @@ export class OperatingService extends BaseNum {
                 break;
             }
         }
-        console.log(cap);
         return Math.floor(Math.random() * cap);
     }
 
@@ -251,7 +249,6 @@ export class OperatingService extends BaseNum {
                 }
                 case "shady-business-deal": {
                     Base.PASSIVE_CASH[this.previewOperation.rarity] += this.operateReadout['earned'];
-                    console.log(Base.CASH + " -= " + this.operateReadout['lost']);
                     Base.CASH -= this.operateReadout['lost'];
                     break;
                 }

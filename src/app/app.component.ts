@@ -49,7 +49,7 @@ export class AppComponent extends BaseNum implements OnInit {
       _system.load(this.cookieService.get('save'));
     }   else {
       _system.devLog("save data does not exist")
-      console.log(this._system.freshGame);
+      _system.devLog(this._system.freshGame);
       _system.load(this._system.freshGame);
     }
     
@@ -63,7 +63,7 @@ export class AppComponent extends BaseNum implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+        this._system.devLog('The dialog was closed');
     });
 }
 

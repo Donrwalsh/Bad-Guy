@@ -25,6 +25,7 @@ export class Base {
     //Currency
     static CASH: number;
     static PASSIVE_CASH: Array<number>;
+    static BANKED_SCHEME_POINTS: number;
 
     //Notoriety
     static NOTORIETY: number;
@@ -32,6 +33,16 @@ export class Base {
     notorietyAdd(value) {
         Base.NOTORIETY += value;
         Base.NOTORIETY = Math.round(Base.NOTORIETY * 10) / 10;
+    }
+
+    bankedSchemePointsAdd(value) {
+        Base.BANKED_SCHEME_POINTS += value;
+        Base.BANKED_SCHEME_POINTS = Math.round(Base.BANKED_SCHEME_POINTS*100) / 100;
+    }
+
+    bankedSchemePointsSubtract(value) {
+        Base.BANKED_SCHEME_POINTS -= value;
+        Base.BANKED_SCHEME_POINTS = Math.round(Base.BANKED_SCHEME_POINTS*100) / 100;
     }
 
     
@@ -86,7 +97,8 @@ export class Base {
         this.standardExpArray, //8: Communications
         this.beginnerLairExpArray, //9: Starter Lair
         this.beginnerLairExpArray, //10: King's Castle
-        this.beginnerLairExpArray //11: Maintenance
+        this.beginnerLairExpArray, //11: Maintenance
+        this.beginnerLairExpArray //12: Rocket Science
     ]   
 
     schemeLairReq: Array<Array<number>> = [
@@ -101,7 +113,8 @@ export class Base {
         this.standardLairReq, //8: Communications
         this.standardLairReq, //9: Beginner Lair
         this.phaseOneLairReq, //10: King's Castle
-        this.phaseOneLairReq //11: Maintenance
+        this.phaseOneLairReq, //11: Maintenance
+        this.phaseOneLairReq //12: Rocket Science
     ]
 
     schemeCashCost: Array<Array<number>> = [
@@ -116,7 +129,8 @@ export class Base {
         this.standardCashArray, //8: Communications
         this.beginnerLairCashArray, //9: Beginner Lair
         this.beginnerLairCashArray, //10: King's Castle
-        this.beginnerLairCashArray //11: Maintenance
+        this.beginnerLairCashArray, //11: Maintenance
+        this.beginnerLairCashArray //12: Rocket Science
     ]
 
 

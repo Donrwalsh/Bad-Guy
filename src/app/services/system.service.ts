@@ -25,13 +25,16 @@ export class SystemService extends BaseNum {
         '0'
         //Notoriety.
         + '0z'
-        //Scheme numbers. level, exp, cash in order by scheme ref. (10 schemes so far
+        //Scheme numbers. level, exp, cash in order by scheme ref. (13 schemes so far)
         + '0z0z0z' + '0z0z0z' + '0z0z0z' 
         + '0z0z0z' + '0z0z0z' + '0z0z0z' 
         + '0z0z0z' + '0z0z0z' + '0z0z0z'
         + '0z0z0z' + '0z0z0z' + '0z0z0z'
+        + '0z0z0z'
         //Current Scheme. Only the id is stored. An empty entry means none is selected.
         + 'z'
+        //Banked Scheme Points. Relevant for the Rocket Science scheme:
+        + '0z'
         //Current henchmen.
         + '0z'
         //RECRUITS numbers. currentStore, countdown, lock in order by help-wanted ref.
@@ -68,7 +71,7 @@ export class SystemService extends BaseNum {
                 break;
             }
             if (count == 50) {
-                console.log("Something is wrong with the save reader. Breaking");
+                this.devLog("Something is wrong with the save reader. Breaking");
                 break;
             }
         }
@@ -120,6 +123,10 @@ export class SystemService extends BaseNum {
                 } else {
                     this.devLog("no current scheme to set");
                 }
+
+                var bankedSchemePoints = this.saveReader(data);
+                Base.BANKED_SCHEME_POINTS = Number(bankedSchemePoints);
+                this.devLog("Base.BANKED_SCHEME_POINTS set to " + Base.BANKED_SCHEME_POINTS);
 
                 Base.INITIAL_LOAD_SCHEMES = false; //Toggle the lockout for visible elements that rely on scheme data.
 
@@ -233,6 +240,10 @@ export class SystemService extends BaseNum {
             saveString = saveString + Base.CURRENT_SCHEME.ref + "z";
             this.devLog(Base.CURRENT_SCHEME.ref + "z")
         }
+
+        this.devLog("capturing Base.BANKED_SCHEME_POINTS:")
+        saveString = saveString + Base.BANKED_SCHEME_POINTS + "z";
+        this.devLog(Base.BANKED_SCHEME_POINTS);
 
         this.devLog("capturing Base.CURRENT_HENCHMEN:")
         saveString = saveString + Base.CURRENT_HENCHMEN + "z";
