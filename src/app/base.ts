@@ -98,7 +98,10 @@ export class Base {
         this.beginnerLairExpArray, //9: Starter Lair
         this.beginnerLairExpArray, //10: King's Castle
         this.beginnerLairExpArray, //11: Maintenance
-        this.beginnerLairExpArray //12: Rocket Science
+        this.beginnerLairExpArray, //12: Rocket Science
+        this.beginnerLairExpArray, //13: Advanced Mathematics
+        this.beginnerLairExpArray //14: Revisit Rejected Revelations
+
     ]   
 
     schemeLairReq: Array<Array<number>> = [
@@ -114,7 +117,9 @@ export class Base {
         this.standardLairReq, //9: Beginner Lair
         this.phaseOneLairReq, //10: King's Castle
         this.phaseOneLairReq, //11: Maintenance
-        this.phaseOneLairReq //12: Rocket Science
+        this.phaseOneLairReq, //12: Rocket Science
+        this.phaseOneLairReq, //13: Advanced Mathematics
+        this.phaseOneLairReq //14: Revisit Rejected Revelations
     ]
 
     schemeCashCost: Array<Array<number>> = [
@@ -130,10 +135,9 @@ export class Base {
         this.beginnerLairCashArray, //9: Beginner Lair
         this.beginnerLairCashArray, //10: King's Castle
         this.beginnerLairCashArray, //11: Maintenance
-        this.beginnerLairCashArray //12: Rocket Science
+        this.beginnerLairCashArray, //12: Rocket Science
+        this.beginnerLairCashArray, //13: Advanced Mathematics
+        this.beginnerLairCashArray //14: Revisit Rejected Revelations
     ]
-
-
-
 
 }

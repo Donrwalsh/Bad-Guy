@@ -49,7 +49,9 @@ export class Scheme {
         if (this.ref == 9) { this.fa = 'fa-angle-up'}
         if (this.ref == 10) { this.fa = 'fa-fort-awesome'}
         if (this.ref == 11) { this.fa = 'fa-wrench'}
-        if (this.ref == 12) { this.fa = 'fa-rocket'}
+        if (this.ref == 12) { this.fa = 'fa-spinner'}
+        if (this.ref == 13) { this.fa = 'fa-history'}
+        if (this.ref == 14) { this.fa = 'fa-trash-o'}
     }   
 
     //Getters for current values from arrays.

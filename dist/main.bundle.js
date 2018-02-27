@@ -852,6 +852,20 @@ var BaseNum = /** @class */ (function (_super) {
     BaseNum.prototype.rocketScienceBankHatch = function () {
         return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[12].level;
     };
+    //13: Mathematics
+    BaseNum.prototype.mathematicsUnlocked = function () {
+        return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[13].level > 0;
+    };
+    BaseNum.prototype.mathematicsMultiplier = function () {
+        return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[13].level * 0.05;
+    };
+    BaseNum.prototype.mathematicsBankHatch = function () {
+        return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[13].level;
+    };
+    //14: Revisit Rejected Revelations
+    BaseNum.prototype.rCubedBankHatch = function () {
+        return __WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */].SCHEMES[14].level * 3;
+    };
     return BaseNum;
 }(__WEBPACK_IMPORTED_MODULE_0__base__["a" /* Base */]));
 
@@ -915,7 +929,9 @@ var Base = /** @class */ (function () {
             this.beginnerLairExpArray,
             this.beginnerLairExpArray,
             this.beginnerLairExpArray,
-            this.beginnerLairExpArray //12: Rocket Science
+            this.beginnerLairExpArray,
+            this.beginnerLairExpArray,
+            this.beginnerLairExpArray //14: Revisit Rejected Revelations
         ];
         this.schemeLairReq = [
             this.standardLairReq,
@@ -930,7 +946,9 @@ var Base = /** @class */ (function () {
             this.standardLairReq,
             this.phaseOneLairReq,
             this.phaseOneLairReq,
-            this.phaseOneLairReq //12: Rocket Science
+            this.phaseOneLairReq,
+            this.phaseOneLairReq,
+            this.phaseOneLairReq //14: Revisit Rejected Revelations
         ];
         this.schemeCashCost = [
             this.standardCashArray,
@@ -945,7 +963,9 @@ var Base = /** @class */ (function () {
             this.beginnerLairCashArray,
             this.beginnerLairCashArray,
             this.beginnerLairCashArray,
-            this.beginnerLairCashArray //12: Rocket Science
+            this.beginnerLairCashArray,
+            this.beginnerLairCashArray,
+            this.beginnerLairCashArray //14: Revisit Rejected Revelations
         ];
     }
     Base.prototype.notorietyAdd = function (value) {
@@ -1464,7 +1484,13 @@ var Scheme = /** @class */ (function () {
             this.fa = 'fa-wrench';
         }
         if (this.ref == 12) {
-            this.fa = 'fa-rocket';
+            this.fa = 'fa-spinner';
+        }
+        if (this.ref == 13) {
+            this.fa = 'fa-history';
+        }
+        if (this.ref == 14) {
+            this.fa = 'fa-trash-o';
         }
     }
     Object.defineProperty(Scheme.prototype, "currentExpTarget", {
@@ -1545,7 +1571,7 @@ var Train = /** @class */ (function () {
 /***/ "../../../../../src/app/scheme-panel/scheme-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"scheme-panel\" *ngIf=\"_base.schemes\">\n    <div class=\"spacer\"></div>\n    <div class=\"select-bar\">\n        <div class=\"schemes select\" (click)=\"_scheming.selected = 'scheming'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"hench select\" (click)=\"_scheming.selected = 'henchmen'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-user\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operate select\" (click)=\"_scheming.selected = 'operations'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"lair select\" (click)=\"_scheming.selected = 'lairs'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n        </div>\n    </div>\n    <div class=\"scheme-area\" *ngIf=\"_scheming.selected == 'scheming'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 0:3; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 12:13; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"hench-area\" *ngIf=\"_scheming.selected == 'henchmen'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 3:6; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"operate-area\" *ngIf=\"_scheming.selected == 'operations'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 6:9; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"lair-area\" *ngIf=\"_scheming.selected == 'lairs'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 9:12; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div *ngIf=\"_scheming.showPreview\" class=\"scheme-flyout {{_scheming.previewScheme.tree}}\">\n        <div class=\"inner-content\">\n            <i class=\"scheme-icon fa {{_scheming.previewScheme.fa}}\" aria-hidden=\"true\"></i>\n            <p class=\"scheme-name\">{{_scheming.previewScheme.name}} {{_scheming.previewScheme.level > 0 ? _scheming.previewScheme.level+1 : ''}}</p>\n            <p class=\"benefit-text\">{{_scheming.previewScheme.currentDescription}} </p>\n            <p *ngIf=\"_scheming.canLearn(_scheming.previewScheme)\" class=\"flavor-text\">{{_scheming.previewScheme.currentFlavor}}</p>\n            <p *ngIf=\"!_scheming.learnLair(_scheming.previewScheme)\" style=\"color:red\" class=\"flavor-text\">Lair Level {{_scheming.previewScheme.currentLairLevel}} required.</p>\n            <p *ngIf=\"!_scheming.learnCash(_scheming.previewScheme)\" style=\"color:red\" class=\"flavor-text\">{{_scheming.previewScheme.currentCashCost - _scheming.previewScheme.cash}} <i class=\"fa fa-money\" aria-hidden=\"true\"></i> investment required.</p>\n            <div style=\"width:30%;text-align:center;margin:0 auto;margin-top:1rem;display: inline-block;\">\n                <p><i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i></p>\n                <p class=\"scheme-exp\" style=\"margin-top:0; margin-bottom:0;\"> {{_scheming.previewScheme.exp}}/{{_scheming.previewScheme.currentExpTarget}}</p>\n            </div>\n            <div *ngIf=\"_scheming.previewScheme.currentCashCost > 0\" style=\"width:30%;text-align:center;margin:0 auto;margin-top:1rem;display: inline-block;\">\n                    <p><i class=\"fa fa-money\" aria-hidden=\"true\"></i></p>\n                    <p class=\"scheme-exp\" style=\"margin-top:0; margin-bottom:0;\"> {{_scheming.previewScheme.cash}}/{{_scheming.previewScheme.currentCashCost}}</p>\n            </div>\n\n            <div *ngIf=\"_scheming.previewScheme.cash < _scheming.previewScheme.currentCashCost\">\n                    <i class=\"fa fa-money\" aria-hidden=\"true\"></i>\n                    <mat-slider (input)=\"onInputChange($event)\" min=\"0\" step=\"1\" [max]=\"_base.cash < _scheming.previewScheme.currentCashCost ? _base.cash : _scheming.previewScheme.currentCashCost\" [value]=\"schemeCashAssign\" style=\"width:85%;\"></mat-slider>\n                    <p *ngIf=\"schemeCashAssign > 0\" class=\"node {{_scheming.previewScheme.tree}}-strong\" style=\"width:90%;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;margin-top:0;\" \n            (click)=\"investCash()\">Invest {{schemeCashAssign}} <i style=\"margin-top:0;\" class=\"fa fa-money\" aria-hidden=\"true\"></i> </p>\n            </div>\n            \n\n            \n            \n            \n            <p class=\"node {{_scheming.previewScheme.tree}}-strong\" style=\"width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;\" \n            *ngIf=\"_scheming.showSchemeButtonInPreviewScheme()\" (click)=\"_scheming.startSchemingPreview()\">Scheme</p>\n        </div>\n\n\n    </div>\n\n</div>"
+module.exports = "<div class=\"scheme-panel\" *ngIf=\"_base.schemes\">\n    <div class=\"spacer\"></div>\n    <div class=\"select-bar\">\n        <div class=\"schemes select\" (click)=\"_scheming.selected = 'scheming'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"hench select\" (click)=\"_scheming.selected = 'henchmen'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-user\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"operate select\" (click)=\"_scheming.selected = 'operations'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-location-arrow\" aria-hidden=\"true\"></i>\n        </div>\n        <div class=\"lair select\" (click)=\"_scheming.selected = 'lairs'; _scheming.showPreview = false;\">\n            <i class=\"fa fa-home\" aria-hidden=\"true\"></i>\n        </div>\n    </div>\n    <div class=\"scheme-area\" *ngIf=\"_scheming.selected == 'scheming'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 0:3; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 12:15; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"hench-area\" *ngIf=\"_scheming.selected == 'henchmen'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 3:6; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"operate-area\" *ngIf=\"_scheming.selected == 'operations'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 6:9; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div class=\"lair-area\" *ngIf=\"_scheming.selected == 'lairs'\">\n        <div class=\"column\">\n            <p class=\"node\" *ngFor=\"let scheme of _base.schemes | slice: 9:12; let i = index\" (click)=\"_scheming.schemePreview(scheme)\">\n                <i class=\"fa {{scheme.fa}}\" aria-hidden=\"true\" [ngStyle]=\"{'color' : _scheming.learnLair(scheme) ? 'default' : 'grey' } \"></i>\n            </p>\n        </div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n        <div class=\"column\"></div>\n    </div>\n    <div *ngIf=\"_scheming.showPreview\" class=\"scheme-flyout {{_scheming.previewScheme.tree}}\">\n        <div class=\"inner-content\">\n            <i class=\"scheme-icon fa {{_scheming.previewScheme.fa}}\" aria-hidden=\"true\"></i>\n            <p class=\"scheme-name\">{{_scheming.previewScheme.name}} {{_scheming.previewScheme.level > 0 ? _scheming.previewScheme.level+1 : ''}}</p>\n            <p class=\"benefit-text\">{{_scheming.previewScheme.currentDescription}} </p>\n            <p *ngIf=\"_scheming.canLearn(_scheming.previewScheme)\" class=\"flavor-text\">{{_scheming.previewScheme.currentFlavor}}</p>\n            <p *ngIf=\"!_scheming.learnLair(_scheming.previewScheme)\" style=\"color:red\" class=\"flavor-text\">Lair Level {{_scheming.previewScheme.currentLairLevel}} required.</p>\n            <p *ngIf=\"!_scheming.learnCash(_scheming.previewScheme)\" style=\"color:red\" class=\"flavor-text\">{{_scheming.previewScheme.currentCashCost - _scheming.previewScheme.cash}} <i class=\"fa fa-money\" aria-hidden=\"true\"></i> investment required.</p>\n            <div style=\"width:30%;text-align:center;margin:0 auto;margin-top:1rem;display: inline-block;\">\n                <p><i class=\"fa fa-lightbulb-o\" aria-hidden=\"true\"></i></p>\n                <p class=\"scheme-exp\" style=\"margin-top:0; margin-bottom:0;\"> {{_scheming.previewScheme.exp}}/{{_scheming.previewScheme.currentExpTarget}}</p>\n            </div>\n            <div *ngIf=\"_scheming.previewScheme.currentCashCost > 0\" style=\"width:30%;text-align:center;margin:0 auto;margin-top:1rem;display: inline-block;\">\n                    <p><i class=\"fa fa-money\" aria-hidden=\"true\"></i></p>\n                    <p class=\"scheme-exp\" style=\"margin-top:0; margin-bottom:0;\"> {{_scheming.previewScheme.cash}}/{{_scheming.previewScheme.currentCashCost}}</p>\n            </div>\n\n            <div *ngIf=\"_scheming.previewScheme.cash < _scheming.previewScheme.currentCashCost\">\n                    <i class=\"fa fa-money\" aria-hidden=\"true\"></i>\n                    <mat-slider (input)=\"onInputChange($event)\" min=\"0\" step=\"1\" [max]=\"_base.cash < _scheming.previewScheme.currentCashCost ? _base.cash : _scheming.previewScheme.currentCashCost\" [value]=\"schemeCashAssign\" style=\"width:85%;\"></mat-slider>\n                    <p *ngIf=\"schemeCashAssign > 0\" class=\"node {{_scheming.previewScheme.tree}}-strong\" style=\"width:90%;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;margin-top:0;\" \n            (click)=\"investCash()\">Invest {{schemeCashAssign}} <i style=\"margin-top:0;\" class=\"fa fa-money\" aria-hidden=\"true\"></i> </p>\n            </div>\n            \n\n            \n            \n            \n            <p class=\"node {{_scheming.previewScheme.tree}}-strong\" style=\"width:90%;margin-top:.5rem;font-family:'Prociono';border-radius:.5rem;font-size:1rem;height:1.3rem;\" \n            *ngIf=\"_scheming.showSchemeButtonInPreviewScheme()\" (click)=\"_scheming.startSchemingPreview()\">Scheme</p>\n        </div>\n\n\n    </div>\n\n</div>"
 
 /***/ }),
 
@@ -2946,7 +2972,9 @@ var SchemingService = /** @class */ (function (_super) {
             hatched += this.mastermindNumbers; // T0 Scheme
             if (__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].BANKED_SCHEME_POINTS >= 1 && __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].EARNING_SCHEME_POINTS) {
                 bankHatch += this.rocketScienceBankHatch();
-                bankHatch = bankHatch > __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].BANKED_SCHEME_POINTS ? __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].BANKED_SCHEME_POINTS : bankHatch;
+                bankHatch += this.mathematicsBankHatch();
+                bankHatch += this.rCubedBankHatch();
+                bankHatch = bankHatch > __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].BANKED_SCHEME_POINTS ? Math.floor(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].BANKED_SCHEME_POINTS) : bankHatch;
                 this.bankedSchemePointsSubtract(bankHatch);
             }
             hatched += bankHatch;
@@ -2968,6 +2996,10 @@ var SchemingService = /** @class */ (function (_super) {
     SchemingService.prototype.earnSchemePoints = function (num) {
         __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.exp += num;
         if (__WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.exp >= __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.currentExpTarget) {
+            if (this.mathematicsUnlocked) {
+                var remainder = __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.exp - __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.currentExpTarget;
+                this.bankedSchemePointsAdd(remainder * this.mathematicsMultiplier());
+            }
             __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.level++;
             __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].CURRENT_SCHEME.exp = 0;
             __WEBPACK_IMPORTED_MODULE_1__base__["a" /* Base */].EARNING_SCHEME_POINTS = false;
@@ -2975,7 +3007,7 @@ var SchemingService = /** @class */ (function (_super) {
     };
     //Function used for tracking unearned scheme points for the Rocket Science scheme
     SchemingService.prototype.bankSchemePoints = function (num) {
-        if (this.rocketScienceUnlocked) {
+        if (this.rocketScienceUnlocked()) {
             this.bankedSchemePointsAdd(num * this.rocketScienceMultiplier());
         }
     };
@@ -3056,7 +3088,7 @@ var SystemService = /** @class */ (function (_super) {
                 + '0z0z0z' + '0z0z0z' + '0z0z0z'
                 + '0z0z0z' + '0z0z0z' + '0z0z0z'
                 + '0z0z0z' + '0z0z0z' + '0z0z0z'
-                + '0z0z0z'
+                + '0z0z0z' + '0z0z0z' + '0z0z0z'
                 //Current Scheme. Only the id is stored. An empty entry means none is selected.
                 + 'z'
                 //Banked Scheme Points. Relevant for the Rocket Science scheme:

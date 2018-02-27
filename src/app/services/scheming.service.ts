@@ -74,7 +74,9 @@ export class SchemingService extends BaseNum {
         hatched += this.mastermindNumbers; // T0 Scheme
         if (Base.BANKED_SCHEME_POINTS >= 1 && Base.EARNING_SCHEME_POINTS) {
             bankHatch += this.rocketScienceBankHatch();
-            bankHatch = bankHatch > Base.BANKED_SCHEME_POINTS ? Base.BANKED_SCHEME_POINTS : bankHatch;
+            bankHatch += this.mathematicsBankHatch();
+            bankHatch += this.rCubedBankHatch();
+            bankHatch = bankHatch > Base.BANKED_SCHEME_POINTS ? Math.floor(Base.BANKED_SCHEME_POINTS) : bankHatch;
             this.bankedSchemePointsSubtract(bankHatch);
         }
         hatched += bankHatch;
@@ -91,6 +93,10 @@ export class SchemingService extends BaseNum {
     earnSchemePoints(num) {
         Base.CURRENT_SCHEME.exp += num;
         if (Base.CURRENT_SCHEME.exp >= Base.CURRENT_SCHEME.currentExpTarget){
+            if (this.mathematicsUnlocked) {
+                var remainder = Base.CURRENT_SCHEME.exp - Base.CURRENT_SCHEME.currentExpTarget;
+                this.bankedSchemePointsAdd(remainder * this.mathematicsMultiplier())
+            }
             Base.CURRENT_SCHEME.level++;
             Base.CURRENT_SCHEME.exp = 0;
             Base.EARNING_SCHEME_POINTS = false;
@@ -99,7 +105,7 @@ export class SchemingService extends BaseNum {
 
     //Function used for tracking unearned scheme points for the Rocket Science scheme
     bankSchemePoints(num) {
-        if (this.rocketScienceUnlocked) {
+        if (this.rocketScienceUnlocked()) {
             this.bankedSchemePointsAdd(num * this.rocketScienceMultiplier())
         }
     }

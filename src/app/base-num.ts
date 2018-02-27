@@ -258,6 +258,26 @@ export class BaseNum extends Base {
         return Base.SCHEMES[12].level;
     }
 
+    //13: Mathematics
+
+    mathematicsUnlocked() {
+        return Base.SCHEMES[13].level > 0;
+    }
+
+    mathematicsMultiplier() {
+        return Base.SCHEMES[13].level * 0.05;
+    }
+
+    mathematicsBankHatch() {
+        return Base.SCHEMES[13].level;
+    }
+
+    //14: Revisit Rejected Revelations
+
+    rCubedBankHatch() {
+        return Base.SCHEMES[14].level * 3;
+    }
+
 
 
 

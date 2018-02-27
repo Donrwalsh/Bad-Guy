@@ -30,7 +30,7 @@ export class SystemService extends BaseNum {
         + '0z0z0z' + '0z0z0z' + '0z0z0z' 
         + '0z0z0z' + '0z0z0z' + '0z0z0z'
         + '0z0z0z' + '0z0z0z' + '0z0z0z'
-        + '0z0z0z'
+        + '0z0z0z' + '0z0z0z' + '0z0z0z'
         //Current Scheme. Only the id is stored. An empty entry means none is selected.
         + 'z'
         //Banked Scheme Points. Relevant for the Rocket Science scheme:
